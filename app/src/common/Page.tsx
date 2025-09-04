@@ -1,7 +1,7 @@
 import * as React from 'react';
 import css from './Page.module.scss';
 import { cx, IHasChildren } from '@epam/uui-core';
-import { ErrorHandler } from '@epam/promo';
+import { ErrorHandler } from '@epam/uui';
 
 export interface PageProps extends IHasChildren {
     renderHeader?: () => React.ReactNode;

@@ -1,4 +1,4 @@
-import { Avatar, FlexCell, FlexRow, SearchInput, TabList } from '@epam/uui';
+import { Avatar, FlexCell, FlexRow, SearchInput, Tabs } from '@epam/uui';
 import React, { type ReactNode, useState } from 'react';
 
 export default function AdditionalElementsTabListExample(): ReactNode {
@@ -20,7 +20,7 @@ export default function AdditionalElementsTabListExample(): ReactNode {
                     size="36"
                 />
 
-                <TabList
+                <Tabs
                     items={ [
                         {
                             id: 'additional-elements-tab-1',
