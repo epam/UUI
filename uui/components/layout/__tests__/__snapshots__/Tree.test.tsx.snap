@@ -56,7 +56,7 @@ Object {
           </div>
         </div>
         <div
-          class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+          class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-auto-hide-hidden os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
           style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
         >
           <div
@@ -68,7 +68,7 @@ Object {
           </div>
         </div>
         <div
-          class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+          class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-auto-hide-hidden os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
           style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
         >
           <div
@@ -134,7 +134,7 @@ Object {
         </div>
       </div>
       <div
-        class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+        class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-auto-hide-hidden os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
         style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
       >
         <div
@@ -146,7 +146,7 @@ Object {
         </div>
       </div>
       <div
-        class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+        class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-auto-hide-hidden os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
         style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
       >
         <div
@@ -306,7 +306,7 @@ Object {
           </div>
         </div>
         <div
-          class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+          class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-auto-hide-hidden os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
           style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
         >
           <div
@@ -318,7 +318,7 @@ Object {
           </div>
         </div>
         <div
-          class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+          class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-auto-hide-hidden os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
           style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
         >
           <div
@@ -409,7 +409,7 @@ Object {
         </div>
       </div>
       <div
-        class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+        class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-auto-hide-hidden os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
         style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
       >
         <div
@@ -421,7 +421,7 @@ Object {
         </div>
       </div>
       <div
-        class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+        class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-auto-hide-hidden os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
         style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
       >
         <div
