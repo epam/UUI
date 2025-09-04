@@ -28,7 +28,5 @@ export type { CustomWrapperType } from './src/rendering/renderingWithContextUtil
 export { setupComponentForTest } from './src/rendering/setupComponentUtils';
 // delay
 export { delayAct, delay } from './src/rendering/timerUtils';
-// scrollbar testing utilities
-export { waitForScrollbarTransitionsToComplete } from './src/rendering/scrollbarTestUtils';
 // test objects
 export { PickerInputTestObject, PickerModalTestObject, PickerListTestObject } from './src/testObjects';
