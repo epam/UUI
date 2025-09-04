@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { ColumnsConfig, DataColumnProps, DropParams } from '@epam/uui-core';
+import { ColumnsConfig, DataColumnProps, DataTableColumnsConfigOptions, DropParams } from '@epam/uui-core';
 import {
     moveColumnRelativeToAnotherColumn, toggleSingleColumnPin, toggleAllColumnsVisibility, toggleSingleColumnVisibility,
 } from '../columnsConfigurationActions';
@@ -11,7 +11,7 @@ import {
 import { DndDataType, GroupedDataColumnProps, ColumnsConfigurationRowProps, TColumnPinPosition } from '../types';
 import { groupAndFilterSortedColumns, sortColumnsAndAddGroupKey } from '../columnsConfigurationUtils';
 
-interface UseColumnsConfigurationProps<TItem, TId, TFilter> {
+interface UseColumnsConfigurationProps<TItem, TId, TFilter> extends Pick<DataTableColumnsConfigOptions, 'allowColumnsReordering'> {
     initialColumnsConfig: ColumnsConfig;
     defaultConfig: ColumnsConfig;
     columns: DataColumnProps<TItem, TId, TFilter>[];
@@ -19,9 +19,9 @@ interface UseColumnsConfigurationProps<TItem, TId, TFilter> {
 }
 
 export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any, any, any>) {
-    const { initialColumnsConfig, defaultConfig, columns } = props;
+    const { initialColumnsConfig, defaultConfig, columns, allowColumnsReordering } = props;
     const [searchValue, setSearchValue] = useState<string>();
-    const isDndAllowed = !searchValue;
+    const isSearchActive = searchValue?.length > 0;
     const [columnsConfig, setColumnsConfig] = useState<ColumnsConfig>(() => initialColumnsConfig || defaultConfig);
     const columnsSorted: GroupedDataColumnProps[] = useMemo(() => sortColumnsAndAddGroupKey({ columns, prevConfig: columnsConfig }), [columns, columnsConfig]);
 
@@ -80,7 +80,8 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any,
                 return {
                     ...column,
                     columnConfig,
-                    isDndAllowed: isDndAllowed && !isPinnedAlways,
+                    isDndAllowed: props.allowColumnsReordering,
+                    isDndDisabled: isSearchActive && isPinnedAlways,
                     isPinnedAlways,
                     fix,
                     togglePin: (_fix: TColumnPinPosition) => togglePin(column.key, _fix),
@@ -90,7 +91,7 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any,
                 };
             }),
         [
-            columnsSorted, columnsConfig, isDndAllowed, togglePin, toggleVisibility,
+            columnsSorted, columnsConfig, isSearchActive, togglePin, toggleVisibility, allowColumnsReordering,
         ],
     );
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useCallback, useMemo, useState } from 'react';
 
-import { ColumnsConfig, cx, DataColumnProps, IModal } from '@epam/uui-core';
+import { ColumnsConfig, cx, DataColumnProps, DataTableColumnsConfigOptions, IModal } from '@epam/uui-core';
 import { Accordion, ColumnsConfigurationRowProps, IconContainer, useColumnsConfiguration } from '@epam/uui-components';
 
 import { FlexRow, FlexSpacer, Panel, ScrollBars } from '../../layout';
@@ -17,7 +17,7 @@ import { settings } from '../../../settings';
 
 import css from './ColumnsConfigurationModal.module.scss';
 
-export interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IModal<ColumnsConfig> {
+export interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IModal<ColumnsConfig>, Pick<DataTableColumnsConfigOptions, 'allowColumnsReordering'> {
     columnsConfig?: ColumnsConfig;
     defaultConfig: ColumnsConfig;
     columns: DataColumnProps<TItem, TId, TFilter>[];
@@ -47,7 +47,7 @@ const renderGroupTitle = (title: string, amount: number) => (
 export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) {
     const i18n = uuiI18n.tables.columnsConfigurationModal;
 
-    const { columns, columnsConfig: initialColumnsConfig, defaultConfig, ...modalProps } = props;
+    const { columns, columnsConfig: initialColumnsConfig, defaultConfig, allowColumnsReordering, ...modalProps } = props;
     const {
         groupedColumns, searchValue, columnsConfig, reset, checkAll, uncheckAll, setSearchValue, hasAnySelectedColumns,
     } = useColumnsConfiguration({
@@ -55,6 +55,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         columns,
         defaultConfig,
         getSearchFields: props.getSearchFields,
+        allowColumnsReordering,
     });
     const apply = useCallback(() => modalProps.success(columnsConfig), [columnsConfig, modalProps]);
     const close = useCallback(() => modalProps.abort(), [modalProps]);
@@ -176,7 +177,13 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
     );
 }
 
-function SubGroup(props: { items: ColumnsConfigurationRowProps[]; renderItem: (column: DataColumnProps) => React.ReactNode; title?: React.ReactNode }) {
+interface SubGroupProps {
+    items: ColumnsConfigurationRowProps[];
+    renderItem: (column: DataColumnProps) => React.ReactNode;
+    title?: React.ReactNode
+}
+
+function SubGroup(props: SubGroupProps) {
     const [isExpanded, setIsExpanded] = useState<boolean>(true);
     const { title, items, renderItem } = props;
     const isCollapsible = !!title;

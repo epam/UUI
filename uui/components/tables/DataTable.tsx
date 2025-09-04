@@ -144,6 +144,7 @@ export function DataTable<TItem, TId>(props: DataTableProps<TItem, TId>) {
                             columns={ props.columns }
                             columnsConfig={ config }
                             defaultConfig={ defaultConfig }
+                            allowColumnsReordering={ props.allowColumnsReordering }
                         />
                     )
             );

@@ -1,6 +1,7 @@
 # 6.xx.xx - xx.xx.2025
 
 **What's New**
+* [Breaking Change][DataTable]: disable reordering columns in columns config modal if `allowColumnsReordering` prop isn't set to `true`
 * [TabList] Create the component ([#2857](https://github.com/epam/UUI/pull/2857))
 * [TabButton] Activate tab button by pressing "Space" key ([#2857](https://github.com/epam/UUI/pull/2857))
 * [FiltersPanel]: added 'disableClear' and 'filter' props for picker filters
