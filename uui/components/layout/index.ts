@@ -10,4 +10,4 @@ export * from './Tree';
 export * from './VirtualList';
 export * from './Blocker';
 export * from './CheckboxGroup';
-export * from './TabList';
+export * from './Tabs';

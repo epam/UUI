@@ -30,21 +30,7 @@
         ]
       },
       {
-        "text": ". This component implements "
-      },
-      {
-        "text": "tablist",
-        "uui-richTextEditor-code": true
-      },
-      {
-        "text": ", while users have to implement "
-      },
-      {
-        "text": "tabpanel",
-        "uui-richTextEditor-code": true
-      },
-      {
-        "text": " themselves, since use-cases may vary in different projects."
+        "text": "."
       }
     ]
   }

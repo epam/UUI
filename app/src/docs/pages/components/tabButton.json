@@ -5,6 +5,6 @@
     "examples": [
         { "descriptionPath": "tab-button-descriptions" },
         { "name": "Basic", "componentPath": "tabButton/Basic.example.tsx" },
-        { "name": "Tab List", "componentPath": "tabList/Basic.example.tsx" }
+        { "name": "Tab List", "componentPath": "tabs/Basic.example.tsx" }
     ]
 }

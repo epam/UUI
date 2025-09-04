@@ -30,11 +30,11 @@
       },
       {
         "type": "link",
-        "url": "/documents?id=tabList&mode=doc&category=components",
+        "url": "/documents?id=tabs",
         "target": "_blank",
         "children": [
           {
-            "text": "Tab List"
+            "text": "Tabs"
           }
         ]
       },

@@ -1,4 +1,4 @@
-import { FlexCell, LinkButton, TabList, Text } from '@epam/uui';
+import { FlexCell, LinkButton, Tabs, Text } from '@epam/uui';
 import React, { type ReactNode, type PropsWithChildren, useState } from 'react';
 
 import css from './TabPanel.module.scss';
@@ -79,7 +79,7 @@ export default function TabPanelTabListExample(): ReactNode {
         <FlexCell
             grow={ 1 }
         >
-            <TabList
+            <Tabs
                 items={ [
                     {
                         id: 'tab-panel-tab-1',

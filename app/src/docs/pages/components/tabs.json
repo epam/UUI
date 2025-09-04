@@ -1,0 +1,11 @@
+{
+    "id": "tabs",
+    "name": "Tabs",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "tabs-descriptions" },
+        { "name": "Basic", "componentPath": "tabs/Basic.example.tsx" },
+        { "name": "With tab panel", "componentPath": "tabs/TabPanel.example.tsx" },
+        { "name": "With additional elements", "componentPath": "tabs/AdditionalElements.example.tsx" }
+    ]
+}
