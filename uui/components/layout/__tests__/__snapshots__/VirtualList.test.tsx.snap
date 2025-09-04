@@ -22,8 +22,9 @@ exports[`VirtualList should be rendered correctly 1`] = `
     >
       <div
         data-overlayscrollbars-contents=""
-        data-overlayscrollbars-viewport=""
-        style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px; margin-left: 0px; width: calc(100% + 0px);"
+        data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
+        style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px;"
+        tabindex="-1"
       >
         <div
           class="listContainer"
@@ -43,26 +44,26 @@ exports[`VirtualList should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      class="os-scrollbar os-scrollbar-horizontal os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+      class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+      style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
     >
       <div
         class="os-scrollbar-track"
       >
         <div
           class="os-scrollbar-handle"
-          style="width: 0.000%; transform: translateX(0.000%);"
         />
       </div>
     </div>
     <div
-      class="os-scrollbar os-scrollbar-vertical os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+      class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+      style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
     >
       <div
         class="os-scrollbar-track"
       >
         <div
           class="os-scrollbar-handle"
-          style="height: 0.000%; transform: translateY(0.000%);"
         />
       </div>
     </div>
