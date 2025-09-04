@@ -24,12 +24,12 @@ export type ScrollbarProps = React.HTMLAttributes<HTMLDivElement> & IHasCX & IHa
 
     /**
      * Whether scrollbars should automatically hide when not in use
-     * @default false
+     * @default true
      */
     autoHide?: boolean;
     /**
      * Delay in milliseconds before scrollbars hide after scrolling stops
-     * @default 1000
+     * @default 500
      */
     autoHideTimeout?: number;
     /**
@@ -67,8 +67,8 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
 
         onScroll,
 
-        autoHide,
-        autoHideTimeout,
+        autoHide = true,
+        autoHideTimeout = 500,
         autoHideDuration,
         rawProps,
         ...rest
