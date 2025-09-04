@@ -54,9 +54,11 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
         rowsSelector: props.rowsSelector,
     });
 
+    const [scrollContainer, setScrollContainer] = React.useState<HTMLElement | undefined>(undefined);
+
     React.useImperativeHandle(ref, () => scrollContainerRef.current, [scrollContainerRef.current]);
 
-    const scrollShadows = useScrollShadows({ root: scrollContainerRef.current });
+    const scrollShadows = useScrollShadows({ root: scrollContainer });
 
     const renderRows = () =>
         props.renderRows?.({
@@ -71,7 +73,9 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
 
     const scrollBarsRef = React.useCallback((scrollbars: ScrollbarsApi) => {
         if (!scrollbars?.view) return;
-        scrollContainerRef.current = scrollbars.view as HTMLDivElement;
+        const container = scrollbars.view as HTMLDivElement;
+        scrollContainerRef.current = container;
+        setScrollContainer(container);
     }, []);
 
     return (
