@@ -13,6 +13,6 @@ export {
     Spinner, DataPickerBody, PickerModal, ModalBlocker, ModalHeader, ModalFooter, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, DropdownMenuHeader,
     DropdownSubMenu, DropdownMenuSwitchButton, TimePicker, FileCard, SvgCircleProgress, DropSpot, DropMarker, IndeterminateBar, IndicatorBar, ProgressBar, RichTextView,
     Slider, ScrollBars, VirtualList, TextInput, SearchInput, LabeledInput, Snackbar, ErrorHandler, getRecoveryMessageConfig, getErrorPageConfig, ErrorPage,
-    HintAlert, SuccessAlert, WarningAlert, ErrorAlert, IconContainer, DropdownContainer, Rating, TabList,
+    HintAlert, SuccessAlert, WarningAlert, ErrorAlert, IconContainer, DropdownContainer, Rating, Tabs,
 } from '@epam/uui';
 export { MainMenuLogo, MainMenuCustomElement } from '@epam/uui-components';

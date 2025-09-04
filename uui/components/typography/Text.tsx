@@ -17,14 +17,20 @@ interface TextMods {
      */
     color?: TextColor;
     /**
-     * Defines text size
+     * Defines size(height) of text block, to align text by its baseline with other components of the same size.
+     * Used to calculate line-height and vertical paddings so that the sum of their values be equal size value(size = vPaddings/2 + lineHeight)
+     * Pass 'none' to disable it.
      * @default '36'
      */
     size?: TextSize;
-    /** Defines text line-height */
-    lineHeight?: '12' | '18' | '24' | '30';
-    /** Defines text font-size */
-    fontSize?: '10' | '12' | '14' | '16' | '18' | '24';
+    /** Defines text line-height
+     * Provide number or string value without 'px'
+     * */
+    lineHeight?: number | string;
+    /** Defines text font-size
+     * Provide number or string value without 'px'
+     * */
+    fontSize?: number | string;
     /**
      * Defines text font weight value
      * @default '400'
