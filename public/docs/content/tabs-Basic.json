@@ -3,11 +3,11 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Basic usage of "
+        "text": "This example shows how to achieve the tab list behavior using "
       },
       {
         "type": "link",
-        "url": "/documents?id=tabs",
+        "url": "http://localhost:3793/documents?id=tabs",
         "target": "_blank",
         "children": [
           {
@@ -16,7 +16,11 @@
         ]
       },
       {
-        "text": " component."
+        "text": " ",
+        "color": "rgb(48, 50, 64)"
+      },
+      {
+        "text": "component."
       }
     ]
   }
