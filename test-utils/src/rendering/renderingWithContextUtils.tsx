@@ -66,6 +66,7 @@ export const renderSnapshotWithContextAsync = async (reactElement: ReactElement<
     const wrapper = options?.wrapper || getDefaultUUiContextWrapper().wrapper;
     const { asFragment } = render(React.createElement(wrapper, { children: reactElement }));
     await delayAct();
+
     return asFragment();
 };
 

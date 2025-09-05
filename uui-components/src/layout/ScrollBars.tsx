@@ -1,98 +1,191 @@
-import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
-import { Scrollbars as ReactCustomScrollBars } from 'react-custom-scrollbars-2';
-import { IHasCX, cx, IHasRawProps, getDir } from '@epam/uui-core';
-import type { Scrollbars, ScrollbarProps as LibScrollbarProps, positionValues } from 'react-custom-scrollbars-2';
-
+import React, {
+    forwardRef,
+    useEffect,
+    useImperativeHandle,
+    useMemo,
+    useRef,
+} from 'react';
+import { useOverlayScrollbars } from 'overlayscrollbars-react';
+import { IHasCX, IHasRawProps } from '@epam/uui-core';
+import cx from 'classnames';
+import 'overlayscrollbars/styles/overlayscrollbars.css';
 import css from './ScrollBars.module.scss';
 
-export interface ScrollbarProps extends IHasCX, Omit<LibScrollbarProps, 'ref'>, IHasRawProps<Scrollbars> {
-    /** If true, shadow will be added to the top of container, in case when scroll isn't in top position */
-    hasTopShadow?: boolean;
-    /** If true, shadow will be added to the bottom of container, in case when scroll isn't in bottom position */
-    hasBottomShadow?: boolean;
-    /** Render callback for the scroll container.
-     *
-     * If omitted, default uui implementation with flex container will be rendered.
+export type ScrollbarsApi = {
+    /** Reference to the scrollbar container element */
+    container: HTMLElement | null;
+    /** Reference to the scrollable view element */
+    view: HTMLElement | null;
+};
+
+export type ScrollbarProps = React.HTMLAttributes<HTMLDivElement> & IHasCX & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {
+    /** Callback fired when scroll position changes */
+    onScroll?: React.UIEventHandler<any>;
+
+    /**
+     * Whether scrollbars should automatically hide when not in use
+     * @default true
      */
-    renderView?: (props: any) => React.ReactElement<any>;
-}
-
-export interface PositionValues extends positionValues {
-}
-
-export interface ScrollbarsApi extends Scrollbars {
-}
+    autoHide?: boolean;
+    /**
+     * Delay in milliseconds before scrollbars hide after scrolling stops
+     * @default 500
+     */
+    autoHideTimeout?: number;
+    /**
+     * Duration in milliseconds for the scrollbar hide animation
+     * @default 300
+     */
+    autoHideDuration?: number;
+    /**
+     * Whether to show a shadow at the top when content is scrolled down
+     * @default false
+     */
+    hasTopShadow?: boolean;
+    /**
+     * Whether to show a shadow at the bottom when content can be scrolled down
+     * @default false
+     */
+    hasBottomShadow?: boolean;
+};
 
 enum uuiScrollbars {
     uuiShadowTop = 'uui-shadow-top',
     uuiShadowBottom = 'uui-shadow-bottom',
-    uuiThumbVertical = 'uui-thumb-vertical',
-    uuiThumbHorizontal = 'uui-thumb-horizontal',
-    uuiTrackVertical = 'uui-track-vertical',
-    uuiTrackHorizontal = 'uui-track-horizontal',
     uuiShadowTopVisible = 'uui-shadow-top-visible',
     uuiShadowBottomVisible = 'uui-shadow-bottom-visible'
 }
 
-export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
-    style: outerStyle, hasBottomShadow, hasTopShadow, rawProps, cx: outerCx, ...props
-}, ref) => {
-    const bars = useRef<ScrollbarsApi>(undefined);
+export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref) => {
+    const {
+        className,
+        cx: outerCx,
+        style,
+        children,
+        hasTopShadow,
+        hasBottomShadow,
 
-    useImperativeHandle(ref, () => bars.current, [bars.current]);
+        onScroll,
 
-    const handleUpdateScroll = (event?: React.UIEvent<ScrollbarsApi>) => {
-        if (!bars.current) return;
-        event && props.onScroll?.(event);
-        const scrollBars = bars.current?.container;
-        if (!scrollBars) return;
-        const { scrollTop, scrollHeight, clientHeight } = bars.current.getValues();
+        autoHide = true,
+        autoHideTimeout = 500,
+        autoHideDuration,
+        rawProps,
+        ...rest
+    } = props;
+
+    // DOM refs
+    const hostRef = useRef<HTMLDivElement | null>(null);
+    const viewportRef = useRef<HTMLElement | null>(null);
+    const containerRef = useRef<HTMLElement | null>(null);
+
+    const handleUpdateScroll = () => {
+        const instance = osInstance();
+        if (!instance || !hostRef.current) return;
+
+        const { scrollOffsetElement } = instance.elements();
+        if (!scrollOffsetElement) return;
+
+        const { scrollTop, scrollHeight, clientHeight } = scrollOffsetElement;
         const showTopShadow = hasTopShadow && scrollTop > 0;
-        const showBottomShadow = hasBottomShadow && scrollHeight - clientHeight > scrollTop;
+        const showBottomShadow = hasBottomShadow && scrollTop < scrollHeight - clientHeight - 1;
 
-        if (showTopShadow) scrollBars.classList.add(uuiScrollbars.uuiShadowTopVisible);
-        else scrollBars.classList.remove(uuiScrollbars.uuiShadowTopVisible);
+        if (showTopShadow) hostRef.current.classList.add(uuiScrollbars.uuiShadowTopVisible);
+        else hostRef.current.classList.remove(uuiScrollbars.uuiShadowTopVisible);
 
-        if (showBottomShadow) scrollBars.classList.add(uuiScrollbars.uuiShadowBottomVisible);
-        else scrollBars.classList.remove(uuiScrollbars.uuiShadowBottomVisible);
+        if (showBottomShadow) hostRef.current.classList.add(uuiScrollbars.uuiShadowBottomVisible);
+        else hostRef.current.classList.remove(uuiScrollbars.uuiShadowBottomVisible);
     };
 
-    useEffect(handleUpdateScroll);
+    // OverlayScrollbars hook: options + events
+    const [initialize, osInstance] = useOverlayScrollbars({
+        options: {
+            scrollbars: {
+                theme: 'uui-scroll-bars',
+                autoHide: autoHide === true ? 'move' : 'never',
+                autoHideDelay:
+                    typeof autoHideDuration === 'number'
+                        ? autoHideDuration
+                        : typeof autoHideTimeout === 'number'
+                            ? autoHideTimeout
+                            : undefined,
+            },
+        },
+        events: {
+            scroll: (_inst, ev) => {
+                handleUpdateScroll();
+                onScroll?.(ev as unknown as React.UIEvent<ScrollbarsApi>);
+            },
+        },
+    });
 
-    const getIndent = (margin: string | number): Record<string, string | number> => {
-        const dir = getDir();
+    // Initialize OverlayScrollbars with elements
+    useEffect(() => {
+        const host = hostRef.current;
+        const vp = viewportRef.current;
+        if (!host || !vp) return;
 
-        // for windows we need to get positive right margin to hide native scrollbar
-        if (dir === 'rtl') {
-            if (margin === 0) return { right: margin };
-            const marginNum = typeof margin === 'string' ? parseInt(margin, 10) : margin;
-            return { right: Math.abs(marginNum) + 'px' };
-        }
-        return {};
+        initialize({
+            target: host,
+            elements: {
+                viewport: vp,
+                content: vp,
+            },
+        });
+
+        return () => {
+            osInstance()?.destroy();
+        };
+    }, [initialize, osInstance]);
+
+    // Update shadows on initial load
+    useEffect(() => {
+        handleUpdateScroll();
+    });
+
+    useImperativeHandle(ref, (): ScrollbarsApi => {
+        return {
+            container: containerRef.current,
+            view: viewportRef.current,
+        };
+    }, []);
+
+    const rcs2InnerStyleBase: React.CSSProperties = useMemo(() => {
+        return { marginRight: 0, marginBottom: 0 };
+    }, []);
+
+    const hostStyle: React.CSSProperties = useMemo(() => {
+        return {
+            ...style,
+            height: '100%',
+            width: '100%',
+        };
+    }, [style]);
+
+    const innerStyle: React.CSSProperties = {
+        ...rcs2InnerStyleBase,
+        position: 'relative',
+        flex: '1 1 auto',
     };
-
-    const customRenderView = ({ style: innerStyle, ...rest }: { style: CSSProperties; rest: {} }) => {
-        const propsRenderView = props.renderView as (p: any) => any;
-        const rv = propsRenderView?.({ style: { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto', ...getIndent(innerStyle?.marginRight) } }, ...rest });
-        return rv || <div style={ { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto', ...getIndent(innerStyle?.marginRight) } } } { ...rest } />;
-    };
-
-    const { renderView, ...customProps } = props;
 
     return (
-        <ReactCustomScrollBars
-            className={ cx(css.root, outerCx, props.className, hasTopShadow && uuiScrollbars.uuiShadowTop, hasBottomShadow && uuiScrollbars.uuiShadowBottom) }
-            renderView={ (params) => customRenderView(params) }
-            renderTrackHorizontal={ (props: any) => <div { ...props } className={ uuiScrollbars.uuiTrackHorizontal } /> }
-            renderTrackVertical={ (props: any) => <div { ...props } className={ uuiScrollbars.uuiTrackVertical } /> }
-            renderThumbHorizontal={ () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> }
-            renderThumbVertical={ () => <div className={ uuiScrollbars.uuiThumbVertical } /> }
-            style={ { ...{ display: 'flex' }, ...outerStyle } }
-            onScroll={ handleUpdateScroll }
-            hideTracksWhenNotNeeded
-            ref={ bars }
-            { ...customProps }
-            { ...rawProps }
-        />
+        <div
+            ref={ hostRef }
+            className={ cx(css.root, className, outerCx, hasTopShadow && uuiScrollbars.uuiShadowTop, hasBottomShadow && uuiScrollbars.uuiShadowBottom) }
+            style={ hostStyle }
+            { ...rest }
+            data-overlayscrollbars-initialize=""
+        >
+            <div
+                style={ innerStyle }
+                data-overlayscrollbars-contents=""
+                ref={ (node) => { viewportRef.current = node; } }
+                { ...rawProps }
+            >
+                {children}
+            </div>
+        </div>
     );
 });
+
+ScrollBars.displayName = 'ScrollBars';

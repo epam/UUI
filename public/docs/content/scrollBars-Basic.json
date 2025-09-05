@@ -1,0 +1,17 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Simple ScrollBars usage with vertical scrolling content. Wrap your content in "
+      },
+      {
+        "text": "ScrollBars",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " component."
+      }
+    ]
+  }
+]

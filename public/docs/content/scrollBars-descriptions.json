@@ -1,0 +1,10 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "ScrollBars component provides custom scrollbars with cross-platform compatibility and enhanced visual features like shadows and auto-hide behavior."
+      }
+    ]
+  }
+]

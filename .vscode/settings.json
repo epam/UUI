@@ -113,5 +113,8 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "[scss]": {
       "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
     }
 }
