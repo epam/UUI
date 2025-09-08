@@ -5,7 +5,7 @@ import {
 } from '../types';
 import { isClientSide } from '../helpers/ssr';
 import { getCookie } from '../helpers/cookie';
-import { AuthRecoveryContext, AuthRecoveryContextProps } from './AuthRecoveryContext';
+import { AuthRecoveryContext } from './AuthRecoveryContext';
 
 interface ApiCall extends ApiCallInfo {
     /** Request promise resolve callback */
@@ -75,7 +75,7 @@ export interface ApiContextProps {
      * Note: 'postMessage' is used by default, but 'localStorageMessage' is preferred.
      * It must be synchronized with the implementation of the HTML page returned by 'apiReloginPath'.
      */
-    authRecoveryMessageChannel?: AuthRecoveryContextProps['messageChannel'];
+    authRecoveryMessageChannel?: 'localStorageMessage' | 'postMessage';
 }
 
 export class ApiContext extends BaseContext implements IApiContext {
