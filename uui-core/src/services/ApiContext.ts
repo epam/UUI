@@ -71,6 +71,10 @@ export interface ApiContextProps {
      */
     fetch?: typeof fetch;
 
+    /**
+     * Note: 'postMessage' is used by default, but 'localStorageMessage' is preferred.
+     * It must be synchronized with the implementation of the HTML page returned by 'apiReloginPath'.
+     */
     authRecoveryMessageChannel?: AuthRecoveryContextProps['messageChannel'];
 }
 
