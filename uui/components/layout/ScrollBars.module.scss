@@ -1,29 +1,50 @@
-:global(.os-scrollbar.uui-scroll-bars) {
+.root {
     --uui-scroll_bars-bg: var(--uui-neutral-40);
+    --uui-scroll_bars-bg-hover: var(--uui-neutral-50);
     --uui-scroll_bars-bg-active: var(--uui-neutral-60);
+    --uui-scroll_bars-track-active: var(--uui-surface-sunken);
+    --uui-scroll_bars-shadow-top: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    --uui-scroll_bars-shadow-bottom: linear-gradient(to top, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
 
-    --os-size: 10px;
-    --os-padding-perpendicular: 2px;
-    --os-padding-axis: 2px;
-    --os-handle-border-radius: 3px;
-    --os-handle-bg: var(--uui-scroll_bars-bg);
-    --os-handle-bg-hover: var(--uui-scroll_bars-bg);
-    --os-handle-bg-active: var(--uui-scroll_bars-bg-active);
-    --os-handle-min-size: 30px;
-    --os-handle-perpendicular-size: 50%;
-    --os-handle-perpendicular-size-hover: 100%;
-    --os-handle-perpendicular-size-active: 100%;
-    --os-handle-interactive-area-offset: 2px;
+    --uui-scroll_bars-size: 9px;
+    --uui-scroll_bars-padding-perpendicular: 3px;
+    --uui-scroll_bars-padding-axis: 6px;
+    --uui-scroll_bars-handle-border-radius: 9px;
+    --uui-scroll_bars-handle-min-size: 30px;
+    --uui-scroll_bars-handle-perpendicular-size: 67%;
+    --uui-scroll_bars-handle-perpendicular-size-hover: 100%;
+    --uui-scroll_bars-handle-perpendicular-size-active: 100%;
+    --uui-scroll_bars-handle-interactive-area-offset: 2px;
+    --uui-scroll_bars-shadow-height: 5px;
 
     box-sizing: border-box;
 }
 
+:global(.os-scrollbar.uui-scroll-bars) {
+    --os-size: var(--uui-scroll_bars-size);
+    --os-padding-perpendicular: var(--uui-scroll_bars-padding-perpendicular);
+    --os-padding-axis: var(--uui-scroll_bars-padding-axis);
+    --os-handle-border-radius: var(--uui-scroll_bars-handle-border-radius);
+    --os-handle-bg: var(--uui-scroll_bars-bg);
+    --os-handle-bg-hover: var(--uui-scroll_bars-bg-hover);
+    --os-handle-bg-active: var(--uui-scroll_bars-bg-active);
+    --os-handle-min-size: var(--uui-scroll_bars-handle-min-size);
+    --os-handle-perpendicular-size: var(--uui-scroll_bars-handle-perpendicular-size);
+    --os-handle-perpendicular-size-hover: var(--uui-scroll_bars-handle-perpendicular-size-hover);
+    --os-handle-perpendicular-size-active: var(--uui-scroll_bars-handle-perpendicular-size-active);
+    --os-handle-interactive-area-offset: var(--uui-scroll_bars-handle-interactive-area-offset);
+}
+
+:global(.os-scrollbar-horizontal):active, :global(.os-scrollbar-vertical):active {
+    background-color: var(--uui-scroll_bars-track-active);
+}
+
 :global(.uui-shadow-top)::before {
-    background: var(--uui-scroll-bars-shadow-top);
-    height: var(--uui-scroll-bars-shadow-height);
+    background: var(--uui-scroll_bars-shadow-top);
+    height: var(--uui-scroll_bars-shadow-height);
 }
 
 :global(.uui-shadow-bottom)::after {
-    background: var(--uui-scroll-bars-shadow-bottom);
-    height: var(--uui-scroll-bars-shadow-height);
+    background: var(--uui-scroll_bars-shadow-bottom);
+    height: var(--uui-scroll_bars-shadow-height);
 }

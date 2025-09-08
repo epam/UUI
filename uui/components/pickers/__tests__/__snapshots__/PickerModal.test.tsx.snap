@@ -85,10 +85,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
         tabindex="-1"
       >
         <div
-          class="root uui-scroll-bars scrollContainer"
+          class="root root uui-scroll-bars scrollContainer"
           data-overlayscrollbars="host"
           data-overlayscrollbars-initialize=""
-          style="height: 100%; width: 100%;"
         >
           <div
             class="os-size-observer"
@@ -206,7 +205,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
             </div>
           </div>
           <div
-            class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-auto-hide-hidden os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+            class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
             style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
           >
             <div
@@ -218,7 +217,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
             </div>
           </div>
           <div
-            class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-auto-hide-hidden os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+            class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
             style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
           >
             <div
@@ -385,10 +384,9 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         tabindex="-1"
       >
         <div
-          class="root uui-scroll-bars scrollContainer"
+          class="root root uui-scroll-bars scrollContainer"
           data-overlayscrollbars="host"
           data-overlayscrollbars-initialize=""
-          style="height: 100%; width: 100%;"
         >
           <div
             class="os-size-observer"
@@ -1000,7 +998,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
             </div>
           </div>
           <div
-            class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-auto-hide-hidden os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+            class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
             style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
           >
             <div
@@ -1012,7 +1010,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
             </div>
           </div>
           <div
-            class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-auto-hide-hidden os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+            class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
             style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
           >
             <div
@@ -1163,10 +1161,9 @@ exports[`PickerModal should open body 1`] = `
           tabindex="-1"
         >
           <div
-            class="root uui-scroll-bars scrollContainer"
+            class="root root uui-scroll-bars scrollContainer"
             data-overlayscrollbars="host"
             data-overlayscrollbars-initialize=""
-            style="height: 100%; width: 100%;"
           >
             <div
               class="os-size-observer"
@@ -1306,7 +1303,7 @@ exports[`PickerModal should open body 1`] = `
               </div>
             </div>
             <div
-              class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-auto-hide-hidden os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+              class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
               style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
             >
               <div
@@ -1318,7 +1315,7 @@ exports[`PickerModal should open body 1`] = `
               </div>
             </div>
             <div
-              class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-auto-hide-hidden os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+              class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
               style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
             >
               <div

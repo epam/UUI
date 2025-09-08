@@ -31,11 +31,13 @@
         bottom: var(--uui-dt-scroll-shadow-bottom-offset);
     }
 
-    :global(.uui-scroll-shadow-top-visible) {
-        display: block;
-        height: var(--uui-dt-scroll-shadow-height);
-        background: var(--uui-dt-top-shadow, var(--uui-dt-scroll-shadow-background));
-        transition: display var(--uui-dt-scroll-shadow-transition);
+    &:global(.-scrolled-top) {
+        :global(.uui-scroll-shadow-top) {
+            display: block;
+            height: var(--uui-dt-scroll-shadow-height);
+            background: var(--uui-dt-top-shadow, var(--uui-dt-scroll-shadow-background));
+            transition: display var(--uui-dt-scroll-shadow-transition);
+        }
     }
 }
 
@@ -44,6 +46,7 @@
     top: var(--uui-dt-sticky-header-top);
     isolation: isolate;
     z-index: var(--uui-dt-sticky-header-z-index);
+    width: max-content;
 }
 
 .no-results {

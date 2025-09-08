@@ -3,7 +3,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Simple ScrollBars usage with vertical scrolling content. Wrap your content in "
+        "text": "Simple ScrollBars usage with vertical and horizontal scrolling content. Wrap your content in "
       },
       {
         "text": "ScrollBars",
