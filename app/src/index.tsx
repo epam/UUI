@@ -82,6 +82,7 @@ function UuiEnhancedApp() {
         router,
         apiReloginPath: 'api/auth/login',
         apiPingPath: 'api/auth/ping',
+        authRecoveryMessageChannel: 'localStorageMessage',
     });
 
     useEffect(() => {

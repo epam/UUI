@@ -5,6 +5,7 @@ import {
 } from '../types';
 import { isClientSide } from '../helpers/ssr';
 import { getCookie } from '../helpers/cookie';
+import { AuthRecoveryContext, AuthRecoveryContextProps } from './AuthRecoveryContext';
 
 interface ApiCall extends ApiCallInfo {
     /** Request promise resolve callback */
@@ -69,6 +70,8 @@ export interface ApiContextProps {
      * By default, standard fetch will be used.
      */
     fetch?: typeof fetch;
+
+    authRecoveryMessageChannel?: AuthRecoveryContextProps['messageChannel'];
 }
 
 export class ApiContext extends BaseContext implements IApiContext {
@@ -77,37 +80,25 @@ export class ApiContext extends BaseContext implements IApiContext {
     public status: ApiStatus = 'idle';
     public recoveryReason: ApiRecoveryReason | null = null;
     public apiReloginPath: string;
+    private readonly authRecoveryContext: AuthRecoveryContext;
+
     constructor(private props: ApiContextProps, private analyticsCtx?: AnalyticsContext) {
         super();
-        this.apiReloginPath = this.props.apiReloginPath ?? '/auth/login';
+        const apiReloginPath = this.props.apiReloginPath ?? '/auth/login';
+        this.apiReloginPath = apiReloginPath;
         this.props.apiPingPath = this.props.apiPingPath ?? '/auth/ping';
         this.props.apiServerUrl = this.props.apiServerUrl ?? '';
+        this.authRecoveryContext = new AuthRecoveryContext({
+            apiReloginPath,
+            messageChannel: this.props.authRecoveryMessageChannel,
+            onSuccessAuthRecovery: this.handleSuccessAuthRecovery,
+        });
     }
 
     init() {
         super.init();
-
-        if (isClientSide) {
-            // If we opened another window to relogin and check auth - close this window and resume
-            window.addEventListener('message', this.handleWindowMessage);
-            window.addEventListener('storage', this.handleStorageUpdate);
-        }
+        this.authRecoveryContext.init();
     }
-
-    private handleWindowMessage = (e: MessageEvent) => {
-        if (e.data === 'authSuccess') {
-            this.handleSuccessAuthRecovery();
-            (e.source as any).close();
-        }
-    };
-
-    private handleStorageUpdate = () => {
-        const isRecoverySuccess = window.localStorage.getItem('uui-auth-recovery-success');
-        if (isRecoverySuccess === 'true') {
-            this.handleSuccessAuthRecovery();
-            window.localStorage.removeItem('uui-auth-recovery-success');
-        }
-    };
 
     private handleSuccessAuthRecovery = () => {
         if (this.status === 'recovery' && this.recoveryReason === 'auth-lost') {
@@ -119,9 +110,7 @@ export class ApiContext extends BaseContext implements IApiContext {
 
     public destroyContext() {
         super.destroyContext();
-        if (isClientSide) {
-            window.removeEventListener('message', this.handleWindowMessage);
-        }
+        this.authRecoveryContext.destroy();
     }
 
     public getActiveCalls(): ApiCallInfo[] {
@@ -157,7 +146,7 @@ export class ApiContext extends BaseContext implements IApiContext {
             }
             this.setStatus('recovery', reason);
             if (reason === 'auth-lost') {
-                window.open(this.apiReloginPath);
+                this.authRecoveryContext.tryToRecover();
             } else {
                 this.recoverConnection();
             }
