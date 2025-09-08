@@ -7,13 +7,11 @@ export default function BasicTabButtonExample() {
         <FlexCell width={ 50 }>
             <TabButton
                 caption="Tab"
-                size="36"
             />
 
             <TabButton
                 caption="Active Tab"
                 isActive={ true }
-                size="36"
             />
 
             <TabButton
@@ -21,7 +19,6 @@ export default function BasicTabButtonExample() {
                 count={ 18 }
                 withNotify={ true }
                 icon={ ContentFlagFillIcon }
-                size="36"
             />
         </FlexCell>
     );
