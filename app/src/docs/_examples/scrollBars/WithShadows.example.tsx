@@ -12,11 +12,6 @@ export default function ScrollBarsWithShadowsExample() {
             <ScrollBars
                 hasTopShadow
                 hasBottomShadow
-                style={ {
-                    '--uui-scroll-bars-shadow-top': 'linear-gradient(to bottom, var(--uui-divider-light) 0%, transparent 100%)',
-                    '--uui-scroll-bars-shadow-bottom': 'linear-gradient(to top, var(--uui-divider-light) 0%, transparent 100%)',
-                    '--uui-scroll-bars-shadow-height': '6px',
-                } as React.CSSProperties }
             >
                 <FlexRow padding="24" rawProps={ { style: { flexDirection: 'column' } } }>
                     {Array.from({ length: 15 }, (_, index) => (

@@ -4,9 +4,10 @@ import React, {
     useImperativeHandle,
     useMemo,
     useRef,
+    useState,
 } from 'react';
 import { useOverlayScrollbars } from 'overlayscrollbars-react';
-import { IHasCX, IHasRawProps } from '@epam/uui-core';
+import { IHasCX, IHasRawProps, useScrollShadows } from '@epam/uui-core';
 import cx from 'classnames';
 import 'overlayscrollbars/styles/overlayscrollbars.css';
 import css from './ScrollBars.module.scss';
@@ -24,19 +25,14 @@ export type ScrollbarProps = React.HTMLAttributes<HTMLDivElement> & IHasCX & IHa
 
     /**
      * Whether scrollbars should automatically hide when not in use
-     * @default true
+     * @default false
      */
     autoHide?: boolean;
     /**
      * Delay in milliseconds before scrollbars hide after scrolling stops
-     * @default 500
+     * @default 1300
      */
-    autoHideTimeout?: number;
-    /**
-     * Duration in milliseconds for the scrollbar hide animation
-     * @default 300
-     */
-    autoHideDuration?: number;
+    autoHideDelay?: number;
     /**
      * Whether to show a shadow at the top when content is scrolled down
      * @default false
@@ -51,9 +47,7 @@ export type ScrollbarProps = React.HTMLAttributes<HTMLDivElement> & IHasCX & IHa
 
 enum uuiScrollbars {
     uuiShadowTop = 'uui-shadow-top',
-    uuiShadowBottom = 'uui-shadow-bottom',
-    uuiShadowTopVisible = 'uui-shadow-top-visible',
-    uuiShadowBottomVisible = 'uui-shadow-bottom-visible'
+    uuiShadowBottom = 'uui-shadow-bottom'
 }
 
 export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref) => {
@@ -67,59 +61,35 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
 
         onScroll,
 
-        autoHide = true,
-        autoHideTimeout = 500,
-        autoHideDuration,
+        autoHide,
+        autoHideDelay,
         rawProps,
         ...rest
     } = props;
+    const [shadowElements, setShadowElements] = useState<{ host: HTMLElement | null, viewport: HTMLElement | null }>({
+        host: null,
+        viewport: null,
+    });
 
-    // DOM refs
     const hostRef = useRef<HTMLDivElement | null>(null);
     const viewportRef = useRef<HTMLElement | null>(null);
     const containerRef = useRef<HTMLElement | null>(null);
 
-    const handleUpdateScroll = () => {
-        const instance = osInstance();
-        if (!instance || !hostRef.current) return;
-
-        const { scrollOffsetElement } = instance.elements();
-        if (!scrollOffsetElement) return;
-
-        const { scrollTop, scrollHeight, clientHeight } = scrollOffsetElement;
-        const showTopShadow = hasTopShadow && scrollTop > 0;
-        const showBottomShadow = hasBottomShadow && scrollTop < scrollHeight - clientHeight - 1;
-
-        if (showTopShadow) hostRef.current.classList.add(uuiScrollbars.uuiShadowTopVisible);
-        else hostRef.current.classList.remove(uuiScrollbars.uuiShadowTopVisible);
-
-        if (showBottomShadow) hostRef.current.classList.add(uuiScrollbars.uuiShadowBottomVisible);
-        else hostRef.current.classList.remove(uuiScrollbars.uuiShadowBottomVisible);
-    };
-
-    // OverlayScrollbars hook: options + events
     const [initialize, osInstance] = useOverlayScrollbars({
         options: {
             scrollbars: {
                 theme: 'uui-scroll-bars',
                 autoHide: autoHide === true ? 'move' : 'never',
-                autoHideDelay:
-                    typeof autoHideDuration === 'number'
-                        ? autoHideDuration
-                        : typeof autoHideTimeout === 'number'
-                            ? autoHideTimeout
-                            : undefined,
+                autoHideDelay: typeof autoHideDelay === 'number' ? autoHideDelay : undefined,
             },
         },
         events: {
             scroll: (_inst, ev) => {
-                handleUpdateScroll();
                 onScroll?.(ev as unknown as React.UIEvent<ScrollbarsApi>);
             },
         },
     });
 
-    // Initialize OverlayScrollbars with elements
     useEffect(() => {
         const host = hostRef.current;
         const vp = viewportRef.current;
@@ -138,10 +108,18 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
         };
     }, [initialize, osInstance]);
 
-    // Update shadows on initial load
     useEffect(() => {
-        handleUpdateScroll();
-    });
+        const instance = osInstance();
+        if (!instance) return;
+
+        const elements = instance.elements();
+        setShadowElements({
+            host: elements.host,
+            viewport: elements.viewport,
+        });
+    }, [osInstance]);
+
+    useScrollShadows(shadowElements.host, shadowElements.viewport);
 
     useImperativeHandle(ref, (): ScrollbarsApi => {
         return {
@@ -157,8 +135,6 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
     const hostStyle: React.CSSProperties = useMemo(() => {
         return {
             ...style,
-            height: '100%',
-            width: '100%',
         };
     }, [style]);
 

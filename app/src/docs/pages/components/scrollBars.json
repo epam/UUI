@@ -5,10 +5,8 @@
     "examples": [
         { "descriptionPath": "scrollBars-descriptions" },
         { "name": "Basic", "componentPath": "scrollBars/Basic.example.tsx" },
-        { "name": "With Shadows", "componentPath": "scrollBars/WithShadows.example.tsx" },
         { "name": "Autohide Configuration", "componentPath": "scrollBars/AutohideConfiguration.example.tsx" },
-        { "name": "Horizontal Scroll", "componentPath": "scrollBars/HorizontalScroll.example.tsx" },
-        { "name": "Two-Axis Scroll", "componentPath": "scrollBars/TwoAxisScroll.example.tsx" },
+        { "name": "With Shadows", "componentPath": "scrollBars/WithShadows.example.tsx" },
         { "name": "In Modal", "componentPath": "modals/Basic.example.tsx" }
     ],
     "tags": ["ScrollBars", "Scroll"]

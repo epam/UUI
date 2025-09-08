@@ -173,9 +173,7 @@ export function DataTable<TItem, TId>(props: DataTableProps<TItem, TId>) {
                         columnsGap={ props.columnsGap }
                     />
                     <div
-                        className={ cx(uuiScrollShadows.top, {
-                            [uuiScrollShadows.topVisible]: params?.scrollShadows?.verticalTop,
-                        }) }
+                        className={ cx(uuiScrollShadows.top) }
                     />
                 </div>
                 {props.exactRowsCount !== 0 ? (
@@ -184,7 +182,6 @@ export function DataTable<TItem, TId>(props: DataTableProps<TItem, TId>) {
                         listContainerRef={ params?.listContainerRef }
                         estimatedHeight={ params?.estimatedHeight }
                         offsetY={ params?.offsetY }
-                        scrollShadows={ params?.scrollShadows }
                         renderRow={ renderRow }
                         rows={ rows }
                     />

@@ -1,6 +1,6 @@
 import React, { HTMLAttributes } from 'react';
 import {
-    IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, useScrollShadows, cx, uuiMarkers, UseVirtualListProps,
+    IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, cx, UseVirtualListProps,
 } from '@epam/uui-core';
 import { ScrollbarsApi } from '@epam/uui-components';
 import { ScrollBars } from './ScrollBars';
@@ -11,12 +11,6 @@ export interface VirtualListRenderRowsParams<ListContainer extends HTMLElement =
     listContainerRef: React.MutableRefObject<ListContainer>;
     estimatedHeight: number;
     offsetY: number;
-    scrollShadows: {
-        verticalTop: boolean;
-        verticalBottom: boolean;
-        horizontalLeft: boolean;
-        horizontalRight: boolean;
-    };
 }
 type VirtualListRenderRows<List extends HTMLElement = any> = {
     rows?: React.ReactNode[];
@@ -54,15 +48,11 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
         rowsSelector: props.rowsSelector,
     });
 
-    const [scrollContainer, setScrollContainer] = React.useState<HTMLElement | undefined>(undefined);
-
     React.useImperativeHandle(ref, () => scrollContainerRef.current, [scrollContainerRef.current]);
-
-    const scrollShadows = useScrollShadows({ root: scrollContainer });
 
     const renderRows = () =>
         props.renderRows?.({
-            listContainerRef, estimatedHeight, offsetY, scrollShadows,
+            listContainerRef, estimatedHeight, offsetY,
         }) || (
             <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
                 <div ref={ listContainerRef } role={ props.role } style={ { marginTop: offsetY } }>
@@ -73,19 +63,12 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
 
     const scrollBarsRef = React.useCallback((scrollbars: ScrollbarsApi) => {
         if (!scrollbars?.view) return;
-        const container = scrollbars.view as HTMLDivElement;
-        scrollContainerRef.current = container;
-        setScrollContainer(container);
+        scrollContainerRef.current = scrollbars.view;
     }, []);
 
     return (
         <ScrollBars
-            cx={ cx(css.scrollContainer, props.cx, {
-                [uuiMarkers.scrolledLeft]: scrollShadows.horizontalLeft,
-                [uuiMarkers.scrolledRight]: scrollShadows.horizontalRight,
-                [uuiMarkers.scrolledTop]: scrollShadows.verticalTop,
-                [uuiMarkers.scrolledBottom]: scrollShadows.verticalBottom,
-            }) }
+            cx={ cx(css.scrollContainer, props.cx) }
             onScroll={ handleScroll }
             ref={ scrollBarsRef }
             rawProps={ props.rawProps }

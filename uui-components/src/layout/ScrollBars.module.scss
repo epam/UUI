@@ -1,4 +1,7 @@
 .root {
+    height: 100%;
+    width: 100%;
+
     &:global(.uui-shadow-top)::before,
     &:global(.uui-shadow-bottom)::after {
         content: '';
@@ -18,11 +21,11 @@
         bottom: 0;
     }
 
-    &:global(.uui-shadow-top-visible)::before {
+    &:global(.-scrolled-top)::before {
         opacity: 1;
     }
 
-    &:global(.uui-shadow-bottom-visible)::after {
+    &:global(.-scrolled-bottom)::after {
         opacity: 1;
     }
 }

@@ -3,10 +3,10 @@ import { ScrollBars, Panel, Text, FlexRow, Checkbox, LabeledInput, NumericInput,
 
 export default function ScrollBarsAutohideConfigurationExample() {
     const [autoHide, setAutoHide] = useState(true);
-    const [autoHideTimeout, setAutoHideTimeout] = useState(1000);
+    const [autoHideDelay, setAutoHideDelay] = useState(1000);
 
     return (
-        <Panel background="surface-main" shadow style={ { width: '600px', height: '400px' } }>
+        <Panel background="surface-main" shadow style={ { width: '600px' } }>
             <FlexRow padding="24" borderBottom>
                 <Text fontWeight="600">
                     Title
@@ -20,10 +20,10 @@ export default function ScrollBarsAutohideConfigurationExample() {
                         value={ autoHide }
                         onValueChange={ setAutoHide }
                     />
-                    <LabeledInput label="Auto Hide Timeout (ms)">
+                    <LabeledInput label="Auto Hide Delay (ms)">
                         <NumericInput
-                            value={ autoHideTimeout }
-                            onValueChange={ setAutoHideTimeout }
+                            value={ autoHideDelay }
+                            onValueChange={ setAutoHideDelay }
                             min={ 0 }
                             max={ 5000 }
                         />
@@ -33,18 +33,33 @@ export default function ScrollBarsAutohideConfigurationExample() {
 
             <ScrollBars
                 autoHide={ autoHide }
-                autoHideTimeout={ autoHideTimeout }
+                autoHideDelay={ autoHideDelay }
             >
-                <FlexRow padding="24" rawProps={ { style: { flexDirection: 'column' } } }>
+                <FlexRow
+                    padding="24"
+                    vPadding="24"
+                    columnGap={ 16 }
+                    rawProps={ { style: { minWidth: '1200px' } } }
+                >
                     {Array.from({ length: 10 }, (_, index) => (
-                        <Text key={ index }>
-                            Configure the ScrollBars behavior using the controls above.
-                            Item 
-                            {' '}
-                            {index + 1}
-                            {' '}
-                            - try different settings to see how they affect the scrollbars.
-                        </Text>
+                        <Panel
+                            key={ index }
+                            background="surface-main"
+                            shadow
+                            style={ {
+                                width: '200px',
+                                padding: '16px',
+                            } }
+                        >
+                            <Text fontWeight="600">
+                                Card
+                                {index + 1}
+                            </Text>
+                            <Text fontSize="12" color="secondary">
+                                This card demonstrates horizontal scrolling behavior.
+                                Content that exceeds the container width will be scrollable.
+                            </Text>
+                        </Panel>
                     ))}
                 </FlexRow>
             </ScrollBars>
