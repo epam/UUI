@@ -11,8 +11,7 @@ export type AuthRecoveryContextProps = {
     apiReloginPath: string;
     onSuccessAuthRecovery: () => void;
     /**
-     * Note: 'postMessage' is used by default, but 'localStorageMessage' is preferred.
-     * It must be synchronized with the implementation of the HTML page returned by 'apiReloginPath'.
+     * 'localStorageMessage' is preferred, but please make sure that it is supported by the implementation of the HTML page returned by 'apiReloginPath'.
      */
     messageChannel?: 'localStorageMessage' | 'postMessage';
 };
