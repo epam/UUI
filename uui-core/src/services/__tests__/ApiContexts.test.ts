@@ -147,7 +147,7 @@ describe('ApiContext', () => {
 
         await delay();
 
-        expect(windowOpenMock).toBeCalledWith('/auth/login');
+        expect(windowOpenMock).toBeCalledWith('/auth/login', '_blank', 'noopener,noreferrer');
 
         (global.open as jest.Mock<ReturnType<GlobalOpenType>>).mockClear();
     });
@@ -173,7 +173,7 @@ describe('ApiContext', () => {
 
         await delay();
 
-        expect(windowOpenMock).toBeCalledWith('/auth/login');
+        expect(windowOpenMock).toBeCalledWith('/auth/login', '_blank', 'noopener,noreferrer');
 
         (global.open as jest.Mock<ReturnType<GlobalOpenType>>).mockClear();
     });
