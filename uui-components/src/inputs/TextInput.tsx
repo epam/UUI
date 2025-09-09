@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    Icon, uuiMod, uuiElement, CX, TextInputCoreProps, cx, useUuiContext,
+    Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext,
 } from '@epam/uui-core';
 import { IconButton } from '../buttons/IconButton';
 import { IconContainer } from '../layout';
@@ -27,12 +27,13 @@ export interface TextInputProps extends TextInputCoreProps {
     renderInput?: (props: IRenderInputProps) => JSX.Element;
 }
 
-export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
+export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props, ref) => {
     const context = useUuiContext();
     const [inFocus, setInFocus] = React.useState<boolean>(false);
     const inputElement = React.useRef<HTMLInputElement>(undefined);
+    const containerRef = React.useRef<HTMLDivElement>(undefined);
 
-    React.useImperativeHandle(ref, () => inputElement.current, [inputElement.current]);
+    React.useImperativeHandle(ref, () => containerRef.current, [containerRef.current]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         // Android does not support maxLength
@@ -69,9 +70,49 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         props.onBlur?.(event);
     };
 
+    const moveFocusToInput = (eventTargetElement: HTMLElement): void => {
+        const isWithingContainer = containerRef.current?.contains(eventTargetElement);
+        const isContainer = eventTargetElement === containerRef.current;
+        const isClickable = eventTargetElement.classList.contains(uuiMarkers.clickable);
+
+        if (
+            (
+                isWithingContainer
+                && !isClickable
+            )
+            || isContainer
+        ) {
+            inputElement.current?.focus();
+        }
+    };
+
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        if (
+            props.isReadonly
+            || props.isDisabled
+        ) {
+            return;
+        }
+
+        moveFocusToInput(event.target as HTMLElement);
+
+        props.onClick?.(event);
+    };
+
     const handleCancel = () => {
         props.onCancel();
         inputElement.current?.focus();
+    };
+
+    const handleWrapperFocus = (event: React.FocusEvent<HTMLElement>) => {
+        if (
+            props.isReadonly
+            || props.isDisabled
+        ) {
+            return;
+        }
+
+        moveFocusToInput(event.target);
     };
 
     const getInputProps = () => ({
@@ -91,7 +132,6 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         name: props.name,
         maxLength: props.maxLength,
         inputMode: props.inputMode,
-        onClick: props.onClick,
         tabIndex: (props.isReadonly || props.isDisabled) ? -1 : props.tabIndex || 0,
         id: props.id,
         required: props.isRequired,
@@ -135,6 +175,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
 
     return (
         <div
+            onClick={ handleClick }
+            ref={ containerRef }
             className={ cx(
                 css.container,
                 uuiElement.inputBox,
@@ -144,6 +186,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
                 !props.isReadonly && inFocus && uuiMod.focus,
                 props.cx,
             ) }
+            onFocus={ handleWrapperFocus }
             { ...props.rawProps }
         >
             {props.iconPosition !== 'right' && icon}
