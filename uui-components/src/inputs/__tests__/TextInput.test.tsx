@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { fireEvent, renderWithContextAsync, screen, setupComponentForTest, userEvent } from '@epam/uui-test-utils';
+// @ts-ignore TODO: fix the TypeScript error about not being able to find the package.
+import { ReactComponent as CalendarIcon } from '@epam/assets/icons/action-calendar-fill.svg';
 import { TextInput, TextInputProps } from '../TextInput';
 
 jest.mock('@epam/uui-core', () => {
@@ -77,9 +79,9 @@ describe('TextInput', () => {
                 'data-testid': 'uui-text-input-wrapper',
             },
         });
-        const input = screen.getByRole('textbox');
+        const wrapper = screen.queryByTestId('uui-text-input-wrapper') as HTMLDivElement;
 
-        await userEvent.click(input);
+        await userEvent.click(wrapper);
 
         expect(handleClick).toHaveBeenCalledTimes(1);
     });
@@ -186,9 +188,7 @@ describe('TextInput', () => {
         await setupTextInput({
             value: '',
             onValueChange: handleChange,
-            icon: () => {
-                return null;
-            },
+            icon: CalendarIcon,
             onIconClick,
         });
         const clickableIcon = screen.getByRole(
