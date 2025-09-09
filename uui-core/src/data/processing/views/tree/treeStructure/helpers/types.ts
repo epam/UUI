@@ -129,7 +129,7 @@ export interface SearchOptions<TItem, TId, TFilter> extends ApplySearchOptions<T
     tree: ITree<TItem, TId>;
 }
 
-export interface PatchIntoTreeStructureOptions<TItem, TId> extends Omit<ExtendedPatchOptions<TItem, TId>, 'getNewItemPosition'> {
+export interface PatchIntoTreeStructureOptions<TItem, TId, TFilter> extends Omit<ExtendedPatchOptions<TItem, TId, TFilter>, 'getNewItemPosition'> {
     treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
 }

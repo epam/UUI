@@ -9,7 +9,8 @@ import { TreeState } from '../../treeState';
 export interface UsePatchTreeProps<TItem, TId, TFilter = any> extends PatchOptions<TItem, TId> {
     tree: TreeState<TItem, TId>;
     sorting: DataSourceState<TFilter, TId>['sorting'];
-
+    filter?: TFilter;
+    getFilter?: (filter: TFilter) => (item: TItem) => boolean
 }
 
 export function usePatchTree<TItem, TId, TFilter = any>(
@@ -22,6 +23,8 @@ export function usePatchTree<TItem, TId, TFilter = any>(
         isDeleted,
         sorting,
         sortBy,
+        filter,
+        getFilter,
     }: UsePatchTreeProps<TItem, TId, TFilter>,
 ) {
     const prevPatch = usePrevious(patch);
@@ -53,9 +56,11 @@ export function usePatchTree<TItem, TId, TFilter = any>(
             isDeleted,
             sorting,
             sortBy,
+            filter,
+            getFilter,
             ...tree.visible.getParams(),
         });
-    }, [tree, patch]);
+    }, [tree, filter, patch]);
 
     const applyPatch = useCallback((updated: IMap<TId, TItem> | IImmutableMap<TId, TItem>) => {
         const patchAfterSort = getSortedPatchByParentId(

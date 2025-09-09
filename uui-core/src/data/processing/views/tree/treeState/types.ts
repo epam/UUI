@@ -82,4 +82,6 @@ export interface ExtendedPatchOptions<TItem, TId, TFilter = any> extends SortCon
     sortedPatch?: SortedPatchByParentId<TItem, TId>,
     patchAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
     sorting: DataSourceState<TFilter, TId>['sorting'];
+    filter?: DataSourceState<TFilter, TId>['filter'];
+    getFilter?: (filter: TFilter) => (item: TItem) => boolean
 }

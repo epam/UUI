@@ -78,6 +78,8 @@ export function useSyncTree<TItem, TId, TFilter = any>(
         fixItemBetweenSortings,
         sorting: dataSourceState.sorting,
         sortBy,
+        filter: dataSourceState.filter,
+        getFilter,
     });
 
     const reload = useCallback(() => {

@@ -165,10 +165,10 @@ export class TreeState<TItem, TId> {
         return this.withNewTreeStructures({ using: 'visible', treeStructure: newTreeStructure, itemsMap: this.itemsMap });
     }
 
-    private patchTreeStructure(
-        { treeStructure, itemsMap, sortedPatch, patchAtLastSort, getItemTemporaryOrder, isDeleted, sorting, sortBy }: PatchIntoTreeStructureOptions<TItem, TId>,
-    ) {
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patch<TItem, TId>({
+    private patchTreeStructure<TFilter>({
+        treeStructure, itemsMap, sortedPatch, patchAtLastSort, getItemTemporaryOrder, isDeleted, sorting, sortBy, filter, getFilter,
+    }: PatchIntoTreeStructureOptions<TItem, TId, TFilter>) {
+        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patch<TItem, TId, TFilter>({
             treeStructure,
             itemsMap: itemsMap,
             sortedPatch,
@@ -177,6 +177,8 @@ export class TreeState<TItem, TId> {
             isDeleted,
             sorting,
             sortBy,
+            filter,
+            getFilter,
         });
 
         if (newTreeStructure === treeStructure && newItemsMap === itemsMap && !newItems.length) {
@@ -186,8 +188,8 @@ export class TreeState<TItem, TId> {
         return { treeStructure: newTreeStructure, itemsMap: newItemsMap };
     }
 
-    public patch(
-        { sortedPatch, patchAtLastSort, getItemTemporaryOrder, isDeleted, sorting, sortBy }: ExtendedPatchOptions<TItem, TId>,
+    public patch<TFilter>(
+        { sortedPatch, patchAtLastSort, getItemTemporaryOrder, isDeleted, sorting, sortBy, filter, getFilter }: ExtendedPatchOptions<TItem, TId, TFilter>,
     ): TreeState<TItem, TId> {
         const { treeStructure: newFull } = this.patchTreeStructure({
             treeStructure: this.getTreeStructure('full'),
@@ -209,6 +211,8 @@ export class TreeState<TItem, TId> {
             isDeleted,
             sorting,
             sortBy,
+            filter,
+            getFilter,
         });
 
         if (this.getTreeStructure('full') === newFull && this.getTreeStructure('visible') === newVisible) {

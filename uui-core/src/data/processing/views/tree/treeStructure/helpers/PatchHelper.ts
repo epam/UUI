@@ -90,7 +90,7 @@ export class PatchHelper {
         );
     }
 
-    public static patch<TItem, TId>({
+    public static patch<TItem, TId, TFilter>({
         itemsMap: originalItemsMap,
         treeStructure,
         sortedPatch,
@@ -99,7 +99,9 @@ export class PatchHelper {
         isDeleted,
         sorting,
         sortBy,
-    }: PatchIntoTreeStructureOptions<TItem, TId>) {
+        filter,
+        getFilter,
+    }: PatchIntoTreeStructureOptions<TItem, TId, TFilter>) {
         if (!sortedPatch || !sortedPatch.size) return { treeStructure, itemsMap: originalItemsMap, newItems: [] };
 
         const newByParentId = cloneMap(treeStructure.byParentId); // shallow clone, still need to copy arrays inside!
@@ -117,7 +119,11 @@ export class PatchHelper {
             const itemIds = newByParentId.get(patchParentId) ?? [];
 
             // eslint-disable-next-line no-loop-func
-            const isDeletedFn = (id: TId) => isDeleted?.(patchedItemsMap.get(id)) ?? false;
+            const isDeletedFn = (id: TId) => {
+                if (isDeleted && isDeleted(patchedItemsMap.get(id)) === true) return true;
+                if (getFilter && getFilter(filter)(patchedItemsMap.get(id)) === false) return true;
+                return false;
+            };
 
             const [sortedItems, isUpdatedOnPatch] = this.applyPatchWithSorting(
                 sorted.updated,
