@@ -25,14 +25,10 @@ export function useScrollShadows(root: HTMLElement | null, view: HTMLElement | n
 
         const normalizedScrollLeft = scrollLeft * rtlMultiplier;
 
-        // console.log('scrollLeft', scrollLeft, 'normalizedScrollLeft', normalizedScrollLeft, 'scrollTop', scrollTop, 'scrollWidth', scrollWidth, 'clientWidth', clientWidth);
-
         root.classList.toggle(
             scrollMarkers.scrolledRight,
             normalizedScrollLeft > 0,
         );
-
-        // console.log('scrollWidth - clientWidth - normalizedScrollLeft', scrollWidth - clientWidth - normalizedScrollLeft);
 
         root.classList.toggle(
             scrollMarkers.scrolledLeft,
@@ -48,7 +44,7 @@ export function useScrollShadows(root: HTMLElement | null, view: HTMLElement | n
             scrollMarkers.scrolledBottom,
             scrollHeight - clientHeight - scrollTop > 1,
         );
-    }, [root]);
+    }, [root, view]);
 
     React.useEffect(() => {
         if (!root || !view) return;
@@ -58,7 +54,16 @@ export function useScrollShadows(root: HTMLElement | null, view: HTMLElement | n
         const handleScroll = () => updateScrollShadows();
         view.addEventListener('scroll', handleScroll, { passive: true });
 
-        const resizeObserver = new ResizeObserver(updateScrollShadows);
+        let resizeTimeout: number;
+        const resizeObserver = new ResizeObserver(() => {
+            // Prevent ResizeObserver loop by debouncing with requestAnimationFrame
+            if (resizeTimeout) {
+                cancelAnimationFrame(resizeTimeout);
+            }
+            resizeTimeout = requestAnimationFrame(() => {
+                updateScrollShadows();
+            });
+        });
         resizeObserver.observe(view);
 
         const handleResize = () => updateScrollShadows();
@@ -68,6 +73,9 @@ export function useScrollShadows(root: HTMLElement | null, view: HTMLElement | n
             view.removeEventListener('scroll', handleScroll);
             resizeObserver.disconnect();
             window.removeEventListener('resize', handleResize);
+            if (resizeTimeout) {
+                cancelAnimationFrame(resizeTimeout);
+            }
         };
     }, [root, updateScrollShadows]);
 }
