@@ -5,7 +5,8 @@
 * [TabButton] Activate tab button by pressing "Space" key ([#2857](https://github.com/epam/UUI/pull/2857))
 * [FiltersPanel]: added 'disableClear' and 'filter' props for picker filters
 * [ApiContext][Breaking Change]:
-    * ApiContext no longer supports auth recovery via the 'message' event; it now uses the 'storage' event instead; 
+    * ApiContext no longer supports auth recovery via the 'message' event; it now uses the 'storage' event instead;
+        - To switch to the handling via `localStorage` replace code of `apiReloginPath` endpoint to `<html><script>window.localStorage.setItem("uui-auth-recovery-success", "true"); window.close();</script></html>`
     * The 'opener' is cleared when the auth recovery popup is opened
 
 **What's Fixed**
