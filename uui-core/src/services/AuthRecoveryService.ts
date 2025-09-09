@@ -7,7 +7,7 @@ export type AuthRecoveryContextProps = {
     onSuccessAuthRecovery: () => void;
 };
 
-export class AuthRecoveryContext {
+export class AuthRecoveryService {
     constructor(private props: AuthRecoveryContextProps) {}
 
     init = () => {

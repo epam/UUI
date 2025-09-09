@@ -5,7 +5,7 @@ import {
 } from '../types';
 import { isClientSide } from '../helpers/ssr';
 import { getCookie } from '../helpers/cookie';
-import { AuthRecoveryContext } from './AuthRecoveryContext';
+import { AuthRecoveryService } from './AuthRecoveryService';
 
 interface ApiCall extends ApiCallInfo {
     /** Request promise resolve callback */
@@ -78,14 +78,14 @@ export class ApiContext extends BaseContext implements IApiContext {
     public status: ApiStatus = 'idle';
     public recoveryReason: ApiRecoveryReason | null = null;
     public apiReloginPath: string;
-    private readonly authRecoveryContext: AuthRecoveryContext;
+    private readonly authRecoveryContext: AuthRecoveryService;
 
     constructor(private props: ApiContextProps, private analyticsCtx?: AnalyticsContext) {
         super();
         this.apiReloginPath = this.props.apiReloginPath ?? '/auth/login';
         this.props.apiPingPath = this.props.apiPingPath ?? '/auth/ping';
         this.props.apiServerUrl = this.props.apiServerUrl ?? '';
-        this.authRecoveryContext = new AuthRecoveryContext({
+        this.authRecoveryContext = new AuthRecoveryService({
             apiReloginPath: this.apiReloginPath,
             onSuccessAuthRecovery: this.handleSuccessAuthRecovery,
         });

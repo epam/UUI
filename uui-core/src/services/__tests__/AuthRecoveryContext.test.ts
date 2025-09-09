@@ -1,4 +1,4 @@
-import { AuthRecoveryContext } from './../AuthRecoveryContext';
+import { AuthRecoveryService } from '../AuthRecoveryService';
 
 const apiReloginPath = '/test';
 
@@ -15,7 +15,7 @@ describe('AuthRecoveryContext', () => {
         jest.spyOn(window, 'addEventListener');
         jest.spyOn(window, 'removeEventListener');
 
-        const context = new AuthRecoveryContext({
+        const context = new AuthRecoveryService({
             apiReloginPath,
             onSuccessAuthRecovery,
         });
@@ -32,7 +32,7 @@ describe('AuthRecoveryContext', () => {
         const onSuccessAuthRecovery = jest.fn();
         jest.spyOn(window, 'addEventListener');
 
-        const context = new AuthRecoveryContext({
+        const context = new AuthRecoveryService({
             apiReloginPath,
             onSuccessAuthRecovery,
         });
@@ -50,7 +50,7 @@ describe('AuthRecoveryContext', () => {
         const onSuccessAuthRecovery = jest.fn();
         jest.spyOn(window, 'addEventListener');
 
-        const context = new AuthRecoveryContext({
+        const context = new AuthRecoveryService({
             apiReloginPath,
             onSuccessAuthRecovery,
         });
