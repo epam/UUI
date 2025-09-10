@@ -142,6 +142,7 @@ export function DataTable<TItem, TId>(props: DataTableProps<TItem, TId>) {
                         <ColumnsConfigurationModal
                             { ...modalProps }
                             columns={ props.columns }
+                            columnGroups={ props.columnGroups }
                             columnsConfig={ config }
                             defaultConfig={ defaultConfig }
                         />
