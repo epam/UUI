@@ -2,7 +2,6 @@
     --uui-scroll_bars-bg: var(--uui-neutral-40);
     --uui-scroll_bars-bg-hover: var(--uui-neutral-50);
     --uui-scroll_bars-bg-active: var(--uui-neutral-60);
-    --uui-scroll_bars-track-active: var(--uui-surface-sunken);
     --uui-scroll_bars-shadow-top: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
     --uui-scroll_bars-shadow-bottom: linear-gradient(to top, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
 
@@ -35,10 +34,6 @@
     --os-handle-interactive-area-offset: var(--uui-scroll_bars-handle-interactive-area-offset);
 }
 
-:global(.os-scrollbar-horizontal):active, :global(.os-scrollbar-vertical):active {
-    background-color: var(--uui-scroll_bars-track-active);
-}
-
 :global(.uui-shadow-top)::before {
     background: var(--uui-scroll_bars-shadow-top);
     height: var(--uui-scroll_bars-shadow-height);
@@ -47,4 +42,12 @@
 :global(.uui-shadow-bottom)::after {
     background: var(--uui-scroll_bars-shadow-bottom);
     height: var(--uui-scroll_bars-shadow-height);
+}
+
+:global(.uui-line-top.-scrolled-top) {
+    border-top: 1px solid var(--uui-divider);
+}
+
+:global(.uui-line-bottom.-scrolled-bottom) {
+    border-bottom: 1px solid var(--uui-divider);
 }

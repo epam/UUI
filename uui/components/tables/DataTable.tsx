@@ -171,9 +171,7 @@ export function DataTable<TItem, TId>(props: DataTableProps<TItem, TId>) {
                         value={ { ...props.value, columnsConfig: config } }
                         onValueChange={ props.onValueChange }
                         columnsGap={ props.columnsGap }
-                    />
-                    <div
-                        className={ cx(uuiScrollShadows.top) }
+                        cx={ uuiScrollShadows.top }
                     />
                 </div>
                 {props.exactRowsCount !== 0 ? (

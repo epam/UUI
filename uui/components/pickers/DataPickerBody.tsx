@@ -161,6 +161,8 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
                             rowsCount={ props.rowsCount }
                             isLoading={ props.isReloading }
                             renderBlocker={ settings.pickerInput.renderBlocker }
+                            overflowTopEffect={ showSearch ? 'line' : 'none' }
+                            overflowBottomEffect="line"
                         />
                     )}
             </FlexRow>

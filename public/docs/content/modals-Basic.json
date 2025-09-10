@@ -14,14 +14,14 @@
         "text": " usage in modal windows with "
       },
       {
-        "text": "hasTopShadow",
+        "text": "overflowTopEffect='line'",
         "uui-richTextEditor-code": true
       },
       {
         "text": " and "
       },
       {
-        "text": "hasBottomShadow",
+        "text": "overflowBottomEffect='line'",
         "uui-richTextEditor-code": true
       },
       {

@@ -34,20 +34,28 @@ export type ScrollbarProps = React.HTMLAttributes<HTMLDivElement> & IHasCX & IHa
      */
     autoHideDelay?: number;
     /**
-     * Whether to show a shadow at the top when content is scrolled down
-     * @default false
+     * Visual effect to show at the top when content is scrolled down
+     * - 'line': shows a thin line border
+     * - 'shadow': shows a gradient shadow
+     * - 'none': no visual effect
+     * @default 'none'
      */
-    hasTopShadow?: boolean;
+    overflowTopEffect?: 'line' | 'shadow' | 'none';
     /**
-     * Whether to show a shadow at the bottom when content can be scrolled down
-     * @default false
+     * Visual effect to show at the bottom when content can be scrolled down
+     * - 'line': shows a thin line border
+     * - 'shadow': shows a gradient shadow
+     * - 'none': no visual effect
+     * @default 'none'
      */
-    hasBottomShadow?: boolean;
+    overflowBottomEffect?: 'line' | 'shadow' | 'none';
 };
 
 enum uuiScrollbars {
     uuiShadowTop = 'uui-shadow-top',
-    uuiShadowBottom = 'uui-shadow-bottom'
+    uuiShadowBottom = 'uui-shadow-bottom',
+    uuiLineTop = 'uui-line-top',
+    uuiLineBottom = 'uui-line-bottom'
 }
 
 export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref) => {
@@ -56,8 +64,8 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
         cx: outerCx,
         style,
         children,
-        hasTopShadow,
-        hasBottomShadow,
+        overflowTopEffect = 'none',
+        overflowBottomEffect = 'none',
 
         onScroll,
 
@@ -147,7 +155,15 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
     return (
         <div
             ref={ hostRef }
-            className={ cx(css.root, className, outerCx, hasTopShadow && uuiScrollbars.uuiShadowTop, hasBottomShadow && uuiScrollbars.uuiShadowBottom) }
+            className={ cx(
+                css.root,
+                className,
+                outerCx,
+                overflowTopEffect === 'shadow' && uuiScrollbars.uuiShadowTop,
+                overflowBottomEffect === 'shadow' && uuiScrollbars.uuiShadowBottom,
+                overflowTopEffect === 'line' && uuiScrollbars.uuiLineTop,
+                overflowBottomEffect === 'line' && uuiScrollbars.uuiLineBottom,
+            ) }
             style={ hostStyle }
             { ...rest }
             data-overlayscrollbars-initialize=""

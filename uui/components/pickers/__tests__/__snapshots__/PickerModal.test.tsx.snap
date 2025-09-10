@@ -85,7 +85,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         tabindex="-1"
       >
         <div
-          class="root root uui-scroll-bars scrollContainer"
+          class="root root uui-scroll-bars scrollContainer uui-line-bottom"
           data-overlayscrollbars="host"
           data-overlayscrollbars-initialize=""
         >
@@ -384,7 +384,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         tabindex="-1"
       >
         <div
-          class="root root uui-scroll-bars scrollContainer"
+          class="root root uui-scroll-bars scrollContainer uui-line-bottom"
           data-overlayscrollbars="host"
           data-overlayscrollbars-initialize=""
         >
@@ -1161,7 +1161,7 @@ exports[`PickerModal should open body 1`] = `
           tabindex="-1"
         >
           <div
-            class="root root uui-scroll-bars scrollContainer"
+            class="root root uui-scroll-bars scrollContainer uui-line-bottom"
             data-overlayscrollbars="host"
             data-overlayscrollbars-initialize=""
           >

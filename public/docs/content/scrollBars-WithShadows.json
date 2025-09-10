@@ -6,14 +6,14 @@
         "text": "ScrollBars with dynamic top and bottom shadows that appear when content is scrollable. Use "
       },
       {
-        "text": "hasTopShadow",
+        "text": "overflowTopEffect='shadow'",
         "uui-richTextEditor-code": true
       },
       {
         "text": " and "
       },
       {
-        "text": "hasBottomShadow",
+        "text": "overflowBottomEffect='shadow'",
         "uui-richTextEditor-code": true
       },
       {
