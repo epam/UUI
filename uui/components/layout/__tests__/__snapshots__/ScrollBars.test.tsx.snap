@@ -3,7 +3,7 @@
 exports[`ScrollBars should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
-    class="root root uui-scroll-bars"
+    class="root uui-scroll-bars"
     data-overlayscrollbars="host"
     data-overlayscrollbars-initialize=""
   >
@@ -20,9 +20,10 @@ exports[`ScrollBars should be rendered correctly 1`] = `
       style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; left: 0px; width: calc(100% + 0px);"
     >
       <div
+        class="viewport"
         data-overlayscrollbars-contents=""
         data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
-        style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px;"
+        style="padding: 0px 0px 0px 0px;"
         tabindex="-1"
       >
         <button

@@ -85,7 +85,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         tabindex="-1"
       >
         <div
-          class="root root uui-scroll-bars scrollContainer uui-line-bottom"
+          class="root scrollContainer uui-scroll-bars uui-line-bottom"
           data-overlayscrollbars="host"
           data-overlayscrollbars-initialize=""
         >
@@ -103,9 +103,10 @@ exports[`PickerModal should be rendered correctly 1`] = `
           >
             <div
               aria-orientation="vertical"
+              class="viewport"
               data-overlayscrollbars-contents=""
               data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
-              style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px;"
+              style="padding: 0px 0px 0px 0px;"
               tabindex="-1"
             >
               <div
@@ -384,7 +385,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         tabindex="-1"
       >
         <div
-          class="root root uui-scroll-bars scrollContainer uui-line-bottom"
+          class="root scrollContainer uui-scroll-bars uui-line-bottom"
           data-overlayscrollbars="host"
           data-overlayscrollbars-initialize=""
         >
@@ -402,9 +403,10 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
           >
             <div
               aria-orientation="vertical"
+              class="viewport"
               data-overlayscrollbars-contents=""
               data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
-              style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px;"
+              style="padding: 0px 0px 0px 0px;"
               tabindex="-1"
             >
               <div
@@ -1161,7 +1163,7 @@ exports[`PickerModal should open body 1`] = `
           tabindex="-1"
         >
           <div
-            class="root root uui-scroll-bars scrollContainer uui-line-bottom"
+            class="root scrollContainer uui-scroll-bars uui-line-bottom"
             data-overlayscrollbars="host"
             data-overlayscrollbars-initialize=""
           >
@@ -1179,9 +1181,10 @@ exports[`PickerModal should open body 1`] = `
             >
               <div
                 aria-orientation="vertical"
+                class="viewport"
                 data-overlayscrollbars-contents=""
                 data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
-                style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px;"
+                style="padding: 0px 0px 0px 0px;"
                 tabindex="-1"
               >
                 <div
