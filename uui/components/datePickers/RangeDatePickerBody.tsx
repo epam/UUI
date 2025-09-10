@@ -34,7 +34,7 @@ export const rangeDatePickerPresets: RangeDatePickerPresets = {
         name: 'Today',
         getRange: () => ({
             from: uuiDayjs.dayjs().toString(),
-            to: undefined,
+            to: uuiDayjs.dayjs().toString(),
             order: 1,
         }),
     },
@@ -75,7 +75,7 @@ export const rangeDatePickerPresets: RangeDatePickerPresets = {
         getRange: () => ({
             from: uuiDayjs.dayjs().startOf('month').subtract(3, 'month').toString(),
             to: uuiDayjs.dayjs().subtract(1, 'month').endOf('month').toString(),
-            order: 5,
+            order: 6,
         }),
     },
     thisYear: {
@@ -205,8 +205,8 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
                         props.onValueChange({
                             inFocus: props.value.inFocus,
                             selectedDate: {
-                                from: uuiDayjs.dayjs(presetVal.from).format(valueFormat),
-                                to: uuiDayjs.dayjs(presetVal.to).format(valueFormat),
+                                from: presetVal.from ? uuiDayjs.dayjs(presetVal.from).format(valueFormat) : undefined,
+                                to: presetVal.to ? uuiDayjs.dayjs(presetVal.to).format(valueFormat) : undefined,
                             },
                         });
                     } }

@@ -12,8 +12,9 @@
 
 **What's Fixed**
 * [useForm]: improved router block removal on discard and custom beforeLeave for close action. Rework useLock to unblock router immediately, rather than on next render
-* [Modals]: fixed incorrect order of abort() calls when pressing ESC with nested modals — now only the topmost modal responds to ESC key
+* [Modals]: fixed incorrect order of abort() calls when pressing ESC with nested modals — now only the topmost modal responds to ESC key ([#2873](https://github.com/epam/UUI/issues/2873))
 * [Text]: changed `fontSize` and `lineHeight` props typings from strict string literal to more common `number | string` type, to support varied customization cases
+* [RangeDatePicker]: undefined value in preset range now applies like an empty date, not the current one ([#2879](https://github.com/epam/UUI/issues/2879))
 
 # 6.2.0 - 05.08.2025
 **What's New**
