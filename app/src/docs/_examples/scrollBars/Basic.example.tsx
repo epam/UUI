@@ -1,35 +1,22 @@
 import React from 'react';
 import { ScrollBars, Panel, Text, FlexRow } from '@epam/uui';
+import css from './BasicExample.module.scss';
 
 export default function BasicScrollBarsExample() {
     return (
-        <Panel background="surface-main" shadow style={ { width: '600px', height: '400px' } }>
+        <Panel background="surface-main" shadow cx={ css.container }>
             <FlexRow padding="24" borderBottom>
                 <Text fontWeight="600">
                     Title
                 </Text>
             </FlexRow>
             <ScrollBars>
-                <div style={ {
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(8, 140px)',
-                    gridTemplateRows: 'repeat(10, 80px)',
-                    gap: '16px',
-                    minWidth: 'max-content',
-                    minHeight: 'max-content',
-                    padding: '24px',
-                } }
-                >
+                <div className={ css.gridLayout }>
                     {Array.from({ length: 80 }, (_, index) => (
                         <Panel
                             key={ index }
                             background="surface-main"
-                            style={ {
-                                borderRadius: '8px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                            } }
+                            cx={ css.card }
                             shadow
                         >
                             <Text fontSize="12" fontWeight="600">
