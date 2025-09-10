@@ -16,8 +16,9 @@ import { i18n as uuiI18n } from '../../../i18n';
 import { settings } from '../../../settings';
 
 import css from './ColumnsConfigurationModal.module.scss';
+import { DataTableProps } from '../DataTable';
 
-export interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IModal<ColumnsConfig> {
+export interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends Pick<DataTableProps<TItem, TId>, 'columnGroups'>, IModal<ColumnsConfig> {
     columnsConfig?: ColumnsConfig;
     defaultConfig: ColumnsConfig;
     columns: DataColumnProps<TItem, TId, TFilter>[];
@@ -55,6 +56,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         columns,
         defaultConfig,
         getSearchFields: props.getSearchFields,
+        columnGroups: props.columnGroups,
     });
     const apply = useCallback(() => modalProps.success(columnsConfig), [columnsConfig, modalProps]);
     const close = useCallback(() => modalProps.abort(), [modalProps]);

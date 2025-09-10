@@ -84,7 +84,7 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
         const isFirstCell = firstColumnIdx === 0;
         const isLastCell = lastColumnIdx === this.props.columns.length - 1;
         return this.props.renderGroupCell({
-            key: `${group.key}-${idx}`,
+            key: `groupTitle-${group.key}-${idx}`,
             group,
             isFirstCell,
             isLastCell,

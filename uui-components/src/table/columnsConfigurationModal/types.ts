@@ -1,5 +1,5 @@
 import {
-    AcceptDropParams, DataColumnProps, DropParams, DropPositionOptions, ICanBeFixed, IColumnConfig,
+    AcceptDropParams, DataColumnProps, DropParams, DropPositionOptions, ICanBeFixed, IColumnConfig, DataColumnGroupProps,
 } from '@epam/uui-core';
 
 export type TColumnPinPosition = ICanBeFixed['fix'] | undefined;
@@ -21,6 +21,10 @@ export interface ColumnsConfigurationRowProps extends GroupedDataColumnProps {
      */
     fix: TColumnPinPosition;
     isPinnedAlways: boolean;
+    /**
+     * Full group configuration object for the column, if any
+     */
+    columnGroup?: DataColumnGroupProps;
 }
 export type GroupedColumnsType = {
     hidden: ColumnsConfigurationRowProps[];
