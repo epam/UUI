@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { ColumnsConfig, DataColumnProps, DropParams } from '@epam/uui-core';
+import { ColumnsConfig, DataColumnGroupProps, DataColumnProps, DropParams } from '@epam/uui-core';
 import {
     moveColumnRelativeToAnotherColumn, toggleSingleColumnPin, toggleAllColumnsVisibility, toggleSingleColumnVisibility,
 } from '../columnsConfigurationActions';
@@ -16,6 +16,7 @@ interface UseColumnsConfigurationProps<TItem, TId, TFilter> {
     defaultConfig: ColumnsConfig;
     columns: DataColumnProps<TItem, TId, TFilter>[];
     getSearchFields?: (column: DataColumnProps<TItem, TId, TFilter>) => string[];
+    columnGroups?: DataColumnGroupProps[];
 }
 
 export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any, any, any>) {
@@ -50,10 +51,17 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any,
         [columnsSorted],
     );
 
+    const groupsByKey = useMemo(() => {
+        const res: Record<string, DataColumnGroupProps> = {};
+        (props.columnGroups || []).forEach((g) => { res[g.key] = g; });
+        return res;
+    }, [props.columnGroups]);
+
     const sortedColumnsExtended = useMemo(
         () =>
             columnsSorted.map((column: DataColumnProps, index): ColumnsConfigurationRowProps => {
                 const columnConfig = columnsConfig[column.key];
+                const columnGroup = column.group ? groupsByKey[column.group] : undefined;
                 const nextColumn = columnsSorted[index + 1];
                 const prevColumn = columnsSorted[index - 1];
                 const prevColumnConfig = columnsConfig[prevColumn?.key];
@@ -79,6 +87,7 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any,
                 const fix = columnConfig.fix || (isPinnedAlways ? 'left' : undefined);
                 return {
                     ...column,
+                    columnGroup,
                     columnConfig,
                     isDndAllowed: isDndAllowed && !isPinnedAlways,
                     isPinnedAlways,
@@ -90,7 +99,7 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any,
                 };
             }),
         [
-            columnsSorted, columnsConfig, isDndAllowed, togglePin, toggleVisibility,
+            columnsSorted, columnsConfig, isDndAllowed, togglePin, toggleVisibility, groupsByKey,
         ],
     );
 
