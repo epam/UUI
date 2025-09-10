@@ -61,7 +61,7 @@ export function DescriptionModal(props: IDemoItemDescriptionModal) {
         <ModalBlocker { ...modalProps }>
             <ModalWindow width={ 600 } height="auto">
                 <ModalHeader borderBottom title={ demoItemName } onClose={ handleClose } />
-                <ScrollBars hasTopShadow hasBottomShadow>
+                <ScrollBars>
                     <SlateEditor
                         placeholder="Please type"
                         plugins={ plugins }

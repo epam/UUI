@@ -24,19 +24,25 @@
     }
 
     :global(.uui-scroll-shadow-top) {
-        position: absolute;
-        pointer-events: none;
-        left: 0;
-        right: 0;
-        bottom: var(--uui-dt-scroll-shadow-bottom-offset);
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            height: var(--uui-dt-scroll-shadow-height);
+            left: 0;
+            right: 0;
+            bottom: var(--uui-dt-scroll-shadow-bottom-offset);
+            background: var(--uui-dt-top-shadow, var(--uui-dt-scroll-shadow-background));
+            opacity: 0;
+            transition: opacity var(--uui-dt-scroll-shadow-transition);
+            z-index: 0;
+        }
     }
 
     &:global(.-scrolled-top) {
-        :global(.uui-scroll-shadow-top) {
-            display: block;
-            height: var(--uui-dt-scroll-shadow-height);
-            background: var(--uui-dt-top-shadow, var(--uui-dt-scroll-shadow-background));
-            transition: display var(--uui-dt-scroll-shadow-transition);
+        :global(.uui-scroll-shadow-top)::after {
+            opacity: 1;
         }
     }
 }
@@ -46,7 +52,6 @@
     top: var(--uui-dt-sticky-header-top);
     isolation: isolate;
     z-index: var(--uui-dt-sticky-header-z-index);
-    width: max-content;
 }
 
 .no-results {

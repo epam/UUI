@@ -9,8 +9,7 @@ export default function BasicScrollBarsExample() {
                     Title
                 </Text>
             </FlexRow>
-            <ScrollBars hasTopShadow hasBottomShadow>
-
+            <ScrollBars>
                 <div style={ {
                     display: 'grid',
                     gridTemplateColumns: 'repeat(8, 140px)',
@@ -41,7 +40,6 @@ export default function BasicScrollBarsExample() {
                         </Panel>
                     ))}
                 </div>
-
             </ScrollBars>
             <FlexRow padding="24" borderTop>
                 <Text fontSize="12" color="secondary">

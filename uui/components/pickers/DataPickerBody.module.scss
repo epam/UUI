@@ -11,15 +11,9 @@
     width: 100%;
 }
 
-// We should add bottom border for list with scroll, only in case if we have footer
-:global(.uui-picker_input-body):has(+ :global(.uui-picker_input-footer)) :global(.-scrolled-bottom) {
-    border-bottom: 1px solid var(--uui-divider);
-}
-
-.search-wrapper ~ :global(.uui-picker_input-body) {
-    :global(.-scrolled-top) {
-        border-top: 1px solid var(--uui-divider);
-    }
+// We should remove bottom border for list with scroll, only in case if we haven't footer
+:global(.uui-picker_input-body):not(:has(+ :global(.uui-picker_input-footer))) :global(.uui-line-bottom.-scrolled-bottom) {
+    border-bottom: 0 none;
 }
 
 .search-wrapper {

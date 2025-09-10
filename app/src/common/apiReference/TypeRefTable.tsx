@@ -3,7 +3,7 @@ import {
     DataColumnProps, DataTableRowProps, DataTableState, IHasRawProps, SortingOption, useArrayDataSource,
     useColumnsConfig,
 } from '@epam/uui-core';
-import { DataTableHeaderRow, DataTableRow, Text } from '@epam/uui';
+import { DataTableHeaderRow, DataTableRow, ScrollBars, Text } from '@epam/uui';
 import { isApiRefPropGroup, TDocsGenTypeSummary, TApiRefPropsItem, TTypeGroup } from './types';
 import { Code } from '../docs/Code';
 import { TsComment } from './components/TsComment';
@@ -89,15 +89,17 @@ export function TypeRefTable(props: TypeRefTableProps) {
 
     return (
         <div { ...props.rawProps }>
-            <div className={ css.stickyHeader }>
-                <DataTableHeaderRow
-                    columns={ columns }
-                    allowColumnsResizing={ true }
-                    value={ { ...tableState, columnsConfig } }
-                    onValueChange={ setTableState }
-                />
-            </div>
-            { view.getVisibleRows().map(renderRow) }
+            <ScrollBars>
+                <div className={ css.stickyHeader }>
+                    <DataTableHeaderRow
+                        columns={ columns }
+                        allowColumnsResizing={ true }
+                        value={ { ...tableState, columnsConfig } }
+                        onValueChange={ setTableState }
+                    />
+                </div>
+                { view.getVisibleRows().map(renderRow) }
+            </ScrollBars>
         </div>
     );
 }

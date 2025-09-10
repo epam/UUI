@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from 'react';
 import {
     IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, cx, UseVirtualListProps,
 } from '@epam/uui-core';
-import { ScrollbarsApi } from '@epam/uui-components';
+import { ScrollbarsApi, ScrollbarProps } from '@epam/uui-components';
 import { ScrollBars } from './ScrollBars';
 import { Blocker } from './Blocker';
 import css from './VirtualList.module.scss';
@@ -23,7 +23,9 @@ type VirtualListRenderRows<List extends HTMLElement = any> = {
 interface BaseVirtualListProps
     extends IHasCX,
     IEditable<VirtualListState>,
-    IHasRawProps<HTMLAttributes<HTMLDivElement>>, Pick<UseVirtualListProps, 'rowsCount' | 'rowsSelector' | 'onScroll'> {
+    IHasRawProps<HTMLAttributes<HTMLDivElement>>,
+    Pick<UseVirtualListProps, 'rowsCount' | 'rowsSelector' | 'onScroll'>,
+    Pick<ScrollbarProps, 'overflowTopEffect' | 'overflowBottomEffect'> {
     /** HTML role attribute to place on list container */
     role?: React.HTMLAttributes<HTMLDivElement>['role'];
     /** Pass true, to enable Blocker while list loading */
@@ -72,6 +74,8 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
             onScroll={ handleScroll }
             ref={ scrollBarsRef }
             rawProps={ props.rawProps }
+            overflowTopEffect={ props.overflowTopEffect }
+            overflowBottomEffect={ props.overflowBottomEffect }
         >
             {renderRows()}
             <Blocker isEnabled={ props.isLoading } />

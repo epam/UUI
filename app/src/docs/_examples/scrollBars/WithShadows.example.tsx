@@ -10,14 +10,14 @@ export default function ScrollBarsWithShadowsExample() {
                 </Text>
             </FlexRow>
             <ScrollBars
-                hasTopShadow
-                hasBottomShadow
+                overflowTopEffect="shadow"
+                overflowBottomEffect="shadow"
             >
                 <FlexRow padding="24" rawProps={ { style: { flexDirection: 'column' } } }>
                     {Array.from({ length: 15 }, (_, index) => (
                         <Text key={ index }>
                             Scroll to see shadows appear and disappear at the top and bottom edges.
-                            Content item 
+                            Content item
                             {' '}
                             {index + 1}
                             {' '}

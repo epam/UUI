@@ -51,7 +51,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
         tabindex="-1"
       >
         <div
-          class="root root uui-scroll-bars scrollContainer"
+          class="root root uui-scroll-bars scrollContainer uui-line-bottom"
           data-overlayscrollbars="host"
           data-overlayscrollbars-initialize=""
         >
