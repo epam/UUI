@@ -3,7 +3,7 @@
 exports[`DataTable should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
-    class="root root uui-scroll-bars scrollContainer root user-class uui-dt-vars uui-data_table"
+    class="root scrollContainer root user-class uui-dt-vars uui-data_table uui-scroll-bars"
     data-overlayscrollbars="host"
     data-overlayscrollbars-initialize=""
   >
@@ -21,10 +21,11 @@ exports[`DataTable should be rendered correctly 1`] = `
     >
       <div
         aria-colcount="0"
+        class="viewport"
         data-overlayscrollbars-contents=""
         data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
         role="table"
-        style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px;"
+        style="padding: 0px 0px 0px 0px;"
         tabindex="-1"
       >
         <div

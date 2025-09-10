@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="root root uui-scroll-bars scrollContainer"
+        class="root scrollContainer uui-scroll-bars"
         data-overlayscrollbars="host"
         data-overlayscrollbars-initialize=""
       >
@@ -23,9 +23,10 @@ Object {
           style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; left: 0px; width: calc(100% + 0px);"
         >
           <div
+            class="viewport"
             data-overlayscrollbars-contents=""
             data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
-            style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px;"
+            style="padding: 0px 0px 0px 0px;"
             tabindex="-1"
           >
             <div
@@ -83,7 +84,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="root root uui-scroll-bars scrollContainer"
+      class="root scrollContainer uui-scroll-bars"
       data-overlayscrollbars="host"
       data-overlayscrollbars-initialize=""
     >
@@ -100,9 +101,10 @@ Object {
         style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; left: 0px; width: calc(100% + 0px);"
       >
         <div
+          class="viewport"
           data-overlayscrollbars-contents=""
           data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
-          style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px;"
+          style="padding: 0px 0px 0px 0px;"
           tabindex="-1"
         >
           <div
@@ -229,7 +231,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="root root uui-scroll-bars scrollContainer"
+        class="root scrollContainer uui-scroll-bars"
         data-overlayscrollbars="host"
         data-overlayscrollbars-initialize=""
       >
@@ -246,9 +248,10 @@ Object {
           style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; left: 0px; width: calc(100% + 0px);"
         >
           <div
+            class="viewport"
             data-overlayscrollbars-contents=""
             data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
-            style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px;"
+            style="padding: 0px 0px 0px 0px;"
             tabindex="-1"
           >
             <div
@@ -331,7 +334,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="root root uui-scroll-bars scrollContainer"
+      class="root scrollContainer uui-scroll-bars"
       data-overlayscrollbars="host"
       data-overlayscrollbars-initialize=""
     >
@@ -348,9 +351,10 @@ Object {
         style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; left: 0px; width: calc(100% + 0px);"
       >
         <div
+          class="viewport"
           data-overlayscrollbars-contents=""
           data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
-          style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px;"
+          style="padding: 0px 0px 0px 0px;"
           tabindex="-1"
         >
           <div
