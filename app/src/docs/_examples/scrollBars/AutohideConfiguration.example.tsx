@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import { ScrollBars, Panel, Text, FlexRow, Checkbox, LabeledInput, NumericInput, FlexCell } from '@epam/uui';
+import { useArrayDataSource } from '@epam/uui-core';
+import { ScrollBars, Panel, Text, FlexRow, LabeledInput, NumericInput, FlexCell, PickerInput } from '@epam/uui';
+import type { ScrollbarProps } from '@epam/uui';
 
 export default function ScrollBarsAutohideConfigurationExample() {
-    const [autoHide, setAutoHide] = useState(true);
+    const [autoHide, setAutoHide] = useState<ScrollbarProps['autoHide']>('move');
     const [autoHideDelay, setAutoHideDelay] = useState(1000);
+
+    const autoHideDataSource = useArrayDataSource({
+        items: ['move', 'scroll', 'leave', 'never'].map((item) => ({ id: item, name: item })),
+    }, []);
 
     return (
         <Panel background="surface-main" shadow style={ { width: '600px' } }>
@@ -12,14 +18,17 @@ export default function ScrollBarsAutohideConfigurationExample() {
                     Title
                 </Text>
             </FlexRow>
-
             <FlexRow padding="24" vPadding="24" columnGap="24" borderBottom>
                 <FlexCell width="auto">
-                    <Checkbox
-                        label="Auto Hide"
-                        value={ autoHide }
-                        onValueChange={ setAutoHide }
-                    />
+                    <LabeledInput label="Auto Hide">
+                        <PickerInput
+                            dataSource={ autoHideDataSource }
+                            value={ autoHide }
+                            onValueChange={ setAutoHide }
+                            selectionMode="single"
+                            valueType="id"
+                        />
+                    </LabeledInput>
                     <LabeledInput label="Auto Hide Delay (ms)">
                         <NumericInput
                             value={ autoHideDelay }
@@ -30,7 +39,6 @@ export default function ScrollBarsAutohideConfigurationExample() {
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
-
             <ScrollBars
                 autoHide={ autoHide }
                 autoHideDelay={ autoHideDelay }

@@ -1,0 +1,21 @@
+.container {
+    width: 600px;
+    height: 400px;
+}
+
+.card {
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gridLayout {
+    display: grid;
+    grid-template-columns: repeat(8, 140px);
+    grid-template-rows: repeat(10, 80px);
+    gap: 16px;
+    min-width: max-content;
+    min-height: max-content;
+    padding: 24px;
+}

@@ -2,9 +2,9 @@ import React, { HTMLAttributes } from 'react';
 import {
     IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, cx, UseVirtualListProps,
 } from '@epam/uui-core';
-import { ScrollbarsApi, ScrollbarProps } from '@epam/uui-components';
-import { ScrollBars } from './ScrollBars';
 import { Blocker } from './Blocker';
+import { ScrollBars } from './ScrollBars';
+import type { ScrollbarsApi, ScrollbarProps } from './ScrollBars';
 import css from './VirtualList.module.scss';
 
 export interface VirtualListRenderRowsParams<ListContainer extends HTMLElement = any> {
