@@ -8,6 +8,7 @@
     * ApiContext no longer supports auth recovery via the 'message' event; it now uses the 'storage' event instead;
         - To switch to the handling via `localStorage` replace code of `apiReloginPath` endpoint to `<html><script>window.localStorage.setItem("uui-auth-recovery-success", "true"); window.close();</script></html>`
     * The 'opener' is cleared when the auth recovery popup is opened
+* [DataTable]: add support of columns configuration modal for table with grouped columns
 
 **What's Fixed**
 * [useForm]: improved router block removal on discard and custom beforeLeave for close action. Rework useLock to unblock router immediately, rather than on next render
