@@ -83,14 +83,14 @@ export function findComponentApiByName(name: string) {
 
     // First try exact match in @epam/uui
     const exactMatch = Object.entries(summaries).find(([, summary]: any) =>
-        summary.module.startsWith('@epam/uui')
-        && summary.typeName.name.toLowerCase() === lowerName);
+        summary.module === '@epam/uui'
+        && summary.typeName.name.toLowerCase() === `${lowerName}props`);
 
     if (exactMatch) return exactMatch[0];
 
     // Then try fuzzy match in @epam/uui
     const fuzzyMatch = Object.entries(summaries).find(([, summary]: any) =>
-        summary.module.startsWith('@epam/uui')
+        summary.module === '@epam/uui'
         && summary.typeName.name.toLowerCase().includes(lowerName));
 
     if (fuzzyMatch) return fuzzyMatch[0];

@@ -1,31 +1,25 @@
-import React, { useState } from 'react';
-import { TabButton, FlexRow, FlexCell, TabButtonProps } from '@epam/uui';
-import { ExampleProps } from '../types';
-import { getAllPropValues } from '../utils';
+import React from 'react';
+import { TabButton, FlexCell } from '@epam/uui';
+import { ReactComponent as ContentFlagFillIcon } from '@epam/assets/icons/content-flag-fill.svg';
 
-const routes = ['Main', 'Home', 'Tools', 'Options'];
-
-export default function BasicTabButtonExample(props: ExampleProps) {
-    const [value, onValueChange] = useState('Home');
-    const sizes = getAllPropValues('size', false, props) as TabButtonProps['size'][];
-
+export default function BasicTabButtonExample() {
     return (
-        <FlexCell grow={ 1 }>
-            { sizes.map((size) => (
-                <FlexRow key={ size } borderBottom>
-                    { routes.map((route) => (
-                        <TabButton
-                            key={ route }
-                            caption={ route }
-                            isActive={ value === route }
-                            onClick={ () => onValueChange(route) }
-                            count={ route === 'Tools' ? 18 : undefined } // pseudocode - random number, to show the count badge
-                            withNotify={ route === 'Options' } // pseudocode - to show the notification mark
-                            size={ size }
-                        />
-                    )) }
-                </FlexRow>
-            )) }
+        <FlexCell width={ 50 }>
+            <TabButton
+                caption="Tab"
+            />
+
+            <TabButton
+                caption="Active Tab"
+                isActive={ true }
+            />
+
+            <TabButton
+                caption="Feature-rich Tab"
+                count={ 18 }
+                withNotify={ true }
+                icon={ ContentFlagFillIcon }
+            />
         </FlexCell>
     );
 }

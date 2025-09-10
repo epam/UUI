@@ -261,7 +261,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
             flushSync(() => {
                 updateFormState(() => newState);
             });
-            return;
+            return Promise.reject(); // Save wasn't success, reject save promise, which is then used by handleLeave
         }
         flushSync(() => {
             resetForm(newState);

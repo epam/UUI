@@ -17,12 +17,24 @@ export interface ColumnRowProps<TItem, TId, TFilter> {
 export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any, any, any>) {
     const { column } = props;
     const {
-        toggleVisibility, togglePin, onCanAcceptDrop, onDrop, columnConfig, isDndAllowed, isPinnedAlways,
+        toggleVisibility, togglePin, onCanAcceptDrop, onDrop, columnConfig, isDndAllowed, isPinnedAlways, columnGroup,
     } = column;
     const { isVisible, fix } = columnConfig;
     const pinPosition = fix || (isPinnedAlways ? 'left' : undefined);
     const isPinned = !!pinPosition;
     const data = { column, columnConfig };
+
+    const getColumnCaption = () => {
+        if (props.renderItem) {
+            return props.renderItem(props.column);
+        }
+
+        if (column.group) {
+            return `${column.caption}/${columnGroup.caption}`;
+        } else {
+            return column.caption;
+        }
+    };
 
     const renderContent = (dndActorParams: DndActorRenderParams) => {
         const wrapperClasses = cx(
@@ -52,7 +64,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
                 />
                 <Checkbox
                     key={ column.key }
-                    label={ props.renderItem ? props.renderItem(props.column) : column.caption }
+                    label={ getColumnCaption() }
                     value={ isVisible }
                     onValueChange={ toggleVisibility }
                     isReadonly={ column.isAlwaysVisible || column.isLocked }

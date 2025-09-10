@@ -4,7 +4,7 @@
     "data": {},
     "children": [
       {
-        "text": "TabButton is used in the Tabs menu. It extends all behavior from basic "
+        "text": "TabButton is an stand-alone component of one tab item. It extends all behavior from basic "
       },
       {
         "type": "link",
@@ -26,7 +26,7 @@
     "data": {},
     "children": [
       {
-        "text": "If you want an accessible keyboard navigation between tabs, consider using "
+        "text": "For case of more complex tab list behaviour, consider using "
       },
       {
         "type": "link",
