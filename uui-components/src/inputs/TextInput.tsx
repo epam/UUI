@@ -86,33 +86,9 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
         }
     };
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        if (
-            props.isReadonly
-            || props.isDisabled
-        ) {
-            return;
-        }
-
-        moveFocusToInput(event.target as HTMLElement);
-
-        props.onClick?.(event);
-    };
-
     const handleCancel = () => {
         props.onCancel();
         inputElement.current?.focus();
-    };
-
-    const handleWrapperFocus = (event: React.FocusEvent<HTMLElement>) => {
-        if (
-            props.isReadonly
-            || props.isDisabled
-        ) {
-            return;
-        }
-
-        moveFocusToInput(event.target);
     };
 
     const getInputProps = () => ({
@@ -173,9 +149,32 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
     const icon = getIcon();
     const showIconsOnAction = props.value && !props.isReadonly && !props.isDisabled;
 
+    const handleWrapperClick = (event: React.MouseEvent<HTMLElement>) => {
+        if (
+            props.isReadonly
+            || props.isDisabled
+        ) {
+            return;
+        }
+
+        moveFocusToInput(event.target as HTMLElement);
+
+        props.onClick?.(event);
+    };
+
+    const handleWrapperFocus = (event: React.FocusEvent<HTMLElement>) => {
+        if (
+            props.isReadonly
+            || props.isDisabled
+        ) {
+            return;
+        }
+
+        moveFocusToInput(event.target);
+    };
+
     return (
         <div
-            onClick={ handleClick }
             ref={ containerRef }
             className={ cx(
                 css.container,
@@ -186,6 +185,7 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
                 !props.isReadonly && inFocus && uuiMod.focus,
                 props.cx,
             ) }
+            onClick={ handleWrapperClick }
             onFocus={ handleWrapperFocus }
             { ...props.rawProps }
         >
