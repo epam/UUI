@@ -40,6 +40,8 @@ export const TextConfig: TDocConfig = {
             ],
             editorType: 'StringWithExamplesEditor',
         });
+        doc.merge('lineHeight', { editorType: 'NumEditor' });
+        doc.merge('fontSize', { editorType: 'NumEditor' });
         doc.merge('color', {
             editorType: getColorPickerComponent({
                 ...COLOR_MAP,
