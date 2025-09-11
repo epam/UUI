@@ -50418,7 +50418,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -50433,7 +50433,7 @@
        "raw": "string | React.ComponentClass<Record<string, any> & { children: React.ReactNode; }, any> | React.FunctionComponent<Record<string, any> & { children: React.ReactNode; }>",
        "html": "<span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span> children<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>ReactNode<span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span> children<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>ReactNode<span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token operator\">></span>"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -50448,7 +50448,7 @@
        "raw": "(HTMLElement | React.RefObject<any>)[]",
        "html": "<span class=\"token punctuation\">(</span>HTMLElement <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -50468,7 +50468,7 @@
        "raw": "boolean | FocusOptions | (returnTo: Element) => boolean | FocusOptions",
        "html": "<span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> FocusOptions <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>returnTo<span class=\"token operator\">:</span> Element<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> FocusOptions"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      }
     ],
@@ -65878,17 +65878,6 @@
     "exported": false
    }
   },
-  "@epam/uui-components:ReactFocusLockProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "ReactFocusLockProps",
-     "nameFull": "ReactFocusLockProps<ChildrenType, LockProps>"
-    },
-    "src": "uui-components/node_modules/react-focus-lock/dist/cjs/interfaces.d.ts",
-    "exported": false
-   }
-  },
   "@epam/uui-components:SelectionManager": {
    "summary": {
     "module": "@epam/uui-components",
@@ -76769,7 +76758,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -76784,7 +76773,7 @@
        "raw": "string | React.ComponentClass<Record<string, any> & { children: React.ReactNode; }, any> | React.FunctionComponent<Record<string, any> & { children: React.ReactNode; }>",
        "html": "<span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span> children<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>ReactNode<span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span> children<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>ReactNode<span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token operator\">></span>"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -76799,7 +76788,7 @@
        "raw": "(HTMLElement | React.RefObject<any>)[]",
        "html": "<span class=\"token punctuation\">(</span>HTMLElement <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -76819,7 +76808,7 @@
        "raw": "boolean | FocusOptions | (returnTo: Element) => boolean | FocusOptions",
        "html": "<span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> FocusOptions <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>returnTo<span class=\"token operator\">:</span> Element<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> FocusOptions"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -118434,6 +118423,17 @@
       " ```"
      ]
     },
+    "exported": false
+   }
+  },
+  "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps": {
+   "summary": {
+    "module": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts",
+    "typeName": {
+     "name": "ReactFocusLockProps",
+     "nameFull": "ReactFocusLockProps<ChildrenType, LockProps>"
+    },
+    "src": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts",
     "exported": false
    }
   },

@@ -9,15 +9,43 @@
         - To switch to the handling via `localStorage` replace code of `apiReloginPath` endpoint to `<html><script>window.localStorage.setItem("uui-auth-recovery-success", "true"); window.close();</script></html>`
     * The 'opener' is cleared when the auth recovery popup is opened
 * [DataTable]: add support of columns configuration modal for table with grouped columns
+* [ScrollBars][Breaking Change]:
+    * migrated from `react-custom-scrollbars-2` to `overlayscrollbars-react`;
+    * base component removed from `@epam/uui-components`, all types moved to `@epam/uui`;
+    * Ref API changed to `{ container: HTMLElement | null, view: HTMLElement | null }` to simplyfy access to the view container due to mutable structure
+    * `autoHide` prop now accepts string values `('never' | 'scroll' | 'move' | 'leave')` instead of `boolean`, `autoHideTimeout` & `autoHideDuration` replaced with `autoHideDelay`
+    * removed render callbacks for scrollbars view customizations use css classes `cx` and variables
+    ```css
+        --uui-scroll_bars-bg: var(--uui-neutral-40);
+        --uui-scroll_bars-bg-hover: var(--uui-neutral-50);
+        --uui-scroll_bars-bg-active: var(--uui-neutral-60);
+        --uui-scroll_bars-shadow-top: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+        --uui-scroll_bars-shadow-bottom: linear-gradient(to top, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+
+        --uui-scroll_bars-size: 9px;
+        --uui-scroll_bars-padding-perpendicular: 3px;
+        --uui-scroll_bars-padding-axis: 6px;
+        --uui-scroll_bars-handle-border-radius: 9px;
+        --uui-scroll_bars-handle-min-size: 30px;
+        --uui-scroll_bars-handle-perpendicular-size: 67%;
+        --uui-scroll_bars-handle-perpendicular-size-hover: 100%;
+        --uui-scroll_bars-handle-perpendicular-size-active: 100%;
+        --uui-scroll_bars-handle-interactive-area-offset: 2px;
+        --uui-scroll_bars-shadow-height: 5px;
+    ```
+    * refactored shadows API: `hasTopShadow, hasBottomShadow` → `overflowTopEffect, overflowBottomEffect` with `'line' | 'shadow' | 'none'` values which themed via global classes `.uui-shadow-top`, `.uui-shadow-bottom`, `.uui-line-top`, `.uui-line-bottom`;
+    * centralized overflow management: previously scattered across DataTable, VirtualList, Modals with custom implementations, now unified in ScrollBars which managed via `useScrollShadows` hook with automatic CSS classes: `.-scrolled-top`, `.-scrolled-bottom`, `.-scrolled-left`, `.-scrolled-right`;
+    * added RTL support and performance optimizations (ResizeObserver, passive listeners);
 
 **What's Fixed**
 * [useForm]: improved router block removal on discard and custom beforeLeave for close action. Rework useLock to unblock router immediately, rather than on next render
 * [Modals]: fixed incorrect order of abort() calls when pressing ESC with nested modals — now only the topmost modal responds to ESC key
 * [Text]: changed `fontSize` and `lineHeight` props typings from strict string literal to more common `number | string` type, to support varied customization cases
+* [ScrollBars]: fixed issues [#1645](https://github.com/epam/UUI/issues/1645), [#2548](https://github.com/epam/UUI/issues/2548), [#2644](https://github.com/epam/UUI/issues/2644), [#2882](https://github.com/epam/UUI/issues/2882), [#2893](https://github.com/epam/UUI/issues/2893)
 
 # 6.2.0 - 05.08.2025
 **What's New**
-* Introduced a UUI docs MCP server for LLM Agents like Cursor IDE and Copilot. 
+* Introduced a UUI docs MCP server for LLM Agents like Cursor IDE and Copilot.
   These MCP tools will respond with comprehensive UUI documentation for each component, including API details, descriptions, and code examples. This will add additional context about UUI usage for LLMs.
   * To connect it to the Cursor IDE, add the following content to `.cursor/mcp.json` file:
     ```
@@ -27,13 +55,13 @@
       }
     }
     ```
-  * For Copilot instructions, read [this](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/use-the-github-mcp-server?tool=jetbrains)  
-* Remove support of deprecated `@epam/draft-rte` package, this package source code was removed and will no longer receive new updated and release. 
-* [MainMenu][Breaking Change]: 
+  * For Copilot instructions, read [this](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/use-the-github-mcp-server?tool=jetbrains)
+* Remove support of deprecated `@epam/draft-rte` package, this package source code was removed and will no longer receive new updated and release.
+* [MainMenu][Breaking Change]:
   * Removed deprecated `children` support, use `items` prop instead
-  * removed outdated customer logo(`customerLogoUrl`, `customerLogoLink`, `customerLogoHref`, `customerLogoBgColor`) and `isTransparent` props. 
-  * removed `Burger`, `renderBurger`, `alwaysShowBurger` props, use `Burger` component in items with `collapsedContainer: true` option. 
-  * removed `appLogoUrl`, `logoLink`, `onLogoClick` prop, use `MainMenuLogo` component instead. 
+  * removed outdated customer logo(`customerLogoUrl`, `customerLogoLink`, `customerLogoHref`, `customerLogoBgColor`) and `isTransparent` props.
+  * removed `Burger`, `renderBurger`, `alwaysShowBurger` props, use `Burger` component in items with `collapsedContainer: true` option.
+  * removed `appLogoUrl`, `logoLink`, `onLogoClick` prop, use `MainMenuLogo` component instead.
   * see example [here](https://uui.epam.com/documents?id=mainMenu&mode=doc&category=components#examples-mainMenu-Responsive)
 
     ```tsx
@@ -84,7 +112,7 @@
     * "Duplicate" action is now only available for unchanged presets
     * "Copy Link" action copies a link to the current (modified) state if the preset is changed, or to the saved preset otherwise
     * Added `onCopyLink` prop to customize or disable the "Copy Link" action (set to `null` to hide the action)
-* [Tree]: 
+* [Tree]:
   * reworked with improved functionality and styling, moved from `@epam/uui-components` to `@epam/uui` package
   * See docs [here](https://uui.epam.com/documents?id=tree&mode=doc&category=components)
 * [DataTable]: added disableVirtualization prop to turn off rows virtualization
