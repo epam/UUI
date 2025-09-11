@@ -1,5 +1,5 @@
 {
- "version": "6.1.5-beta.1",
+ "version": "6.2.0",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -960,7 +960,8 @@
       "name": "patch",
       "comment": {
        "raw": [
-        "Items, which should be added/updated/deleted from the tree."
+        "Edited items array, which should be added/updated/deleted upon the tree.",
+        " Note: Search and filter are not applied to the patched items. This is to ensure that newly added or edited items are not filtered out from the view."
        ]
       },
       "typeValue": {
@@ -1412,7 +1413,8 @@
       "name": "patch",
       "comment": {
        "raw": [
-        "Items, which should be added/updated/deleted from the tree."
+        "Edited items array, which should be added/updated/deleted upon the tree.",
+        " Note: Search and filter are not applied to the patched items. This is to ensure that newly added or edited items are not filtered out from the view."
        ]
       },
       "typeValue": {
@@ -2095,7 +2097,8 @@
       "name": "patch",
       "comment": {
        "raw": [
-        "Items, which should be added/updated/deleted from the tree."
+        "Edited items array, which should be added/updated/deleted upon the tree.",
+        " Note: Search and filter are not applied to the patched items. This is to ensure that newly added or edited items are not filtered out from the view."
        ]
       },
       "typeValue": {
@@ -2533,7 +2536,8 @@
       "name": "patch",
       "comment": {
        "raw": [
-        "Items, which should be added/updated/deleted from the tree."
+        "Edited items array, which should be added/updated/deleted upon the tree.",
+        " Note: Search and filter are not applied to the patched items. This is to ensure that newly added or edited items are not filtered out from the view."
        ]
       },
       "typeValue": {
@@ -2971,7 +2975,8 @@
       "name": "patch",
       "comment": {
        "raw": [
-        "Items, which should be added/updated/deleted from the tree."
+        "Edited items array, which should be added/updated/deleted upon the tree.",
+        " Note: Search and filter are not applied to the patched items. This is to ensure that newly added or edited items are not filtered out from the view."
        ]
       },
       "typeValue": {
@@ -3451,7 +3456,8 @@
       "name": "patch",
       "comment": {
        "raw": [
-        "Items, which should be added/updated/deleted from the tree."
+        "Edited items array, which should be added/updated/deleted upon the tree.",
+        " Note: Search and filter are not applied to the patched items. This is to ensure that newly added or edited items are not filtered out from the view."
        ]
       },
       "typeValue": {
@@ -3796,7 +3802,8 @@
       "name": "patch",
       "comment": {
        "raw": [
-        "Items, which should be added/updated/deleted from the tree."
+        "Edited items array, which should be added/updated/deleted upon the tree.",
+        " Note: Search and filter are not applied to the patched items. This is to ensure that newly added or edited items are not filtered out from the view."
        ]
       },
       "typeValue": {
@@ -15636,7 +15643,10 @@
      "raw": "ICanBeActive",
      "print": [
       "interface ICanBeActive {",
-      "    /** Highlights component to show that link is active (browser is displaying the page to which link is pointing) */",
+      "    /**",
+      "     * @deprecated Use `isActive` instead",
+      "     * Highlights component to show that link is active (browser is displaying the page to which link is pointing)",
+      "     */",
       "    isLinkActive?: boolean;",
       "    /** Highlights component to show that it is active (e.g. selected in a list) */",
       "    isActive?: boolean;",
@@ -15649,8 +15659,12 @@
       "name": "isLinkActive",
       "comment": {
        "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
+        "@deprecated Use `isActive` instead",
+        " Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ],
+       "tags": {
+        "@deprecated": "Use"
+       }
       },
       "typeValue": {
        "raw": "boolean",
@@ -18195,7 +18209,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & { type: 'datePicker'; renderFooter?: ((props: FilterDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'renderDay' | 'preventEmptyToDate' | 'preventEmptyFromDate'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; renderFooter?: ((props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
+     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'filter' | 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch' | 'disableClear'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & { type: 'datePicker'; renderFooter?: ((props: FilterDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'renderDay' | 'preventEmptyToDate' | 'preventEmptyFromDate'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; renderFooter?: ((props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
       "type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> & IEditable<any> & IDropdownBodyProps & {",
       "    /** Name of currently selected predicate */",
@@ -18326,6 +18340,21 @@
       "required": false
      },
      {
+      "uid": "filter",
+      "name": "filter",
+      "comment": {
+       "raw": [
+        "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+       ]
+      },
+      "typeValue": {
+       "raw": "any",
+       "html": "<span class=\"token builtin\">any</span>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
       "uid": "dataSource",
       "name": "dataSource",
       "comment": {
@@ -18414,6 +18443,24 @@
        "type": "number"
       },
       "from": "@epam/uui-core:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
      },
      {
@@ -18735,7 +18782,7 @@
       "required": false
      },
      {
-      "uid": "filter",
+      "uid": "filter_2",
       "name": "filter",
       "comment": {
        "raw": [
@@ -19197,8 +19244,12 @@
       "    revert(): void;",
       "    /**",
       "     * Try to leave form and ask to save unsaved changes",
+      "     * You can provide your own `beforeLeave` callback via options param, this callback will be called before close action.",
+      "     * If `beforeLeave` param is omitted, default UUI beforeLeave implementation will be used",
       "     */",
-      "    close(): Promise<any>;",
+      "    close(options?: {",
+      "        beforeLeave?: FormProps<T>['beforeLeave'];",
+      "    }): Promise<any>;",
       "    /**",
       "     * Forces form to validate value.",
       "     * Validation is usually done automatically, according to validationOn prop.",
@@ -19346,12 +19397,14 @@
       "name": "close",
       "comment": {
        "raw": [
-        "Try to leave form and ask to save unsaved changes"
+        "Try to leave form and ask to save unsaved changes",
+        " You can provide your own `beforeLeave` callback via options param, this callback will be called before close action.",
+        " If `beforeLeave` param is omitted, default UUI beforeLeave implementation will be used"
        ]
       },
       "typeValue": {
-       "raw": "() => Promise<any>",
-       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span>"
+       "raw": "(options?: { beforeLeave?: ((nextLocation: Link, currentLocation: Link) => Promise<boolean | 'remain'>) | null | undefined; } | undefined) => Promise<any>",
+       "html": "<span class=\"token punctuation\">(</span>options<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> beforeLeave<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span>nextLocation<span class=\"token operator\">:</span> Link<span class=\"token punctuation\">,</span> currentLocation<span class=\"token operator\">:</span> Link<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span><span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token string\">'remain'</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span>"
       },
       "editor": {
        "type": "func"
@@ -24967,7 +25020,8 @@
       "name": "patch",
       "comment": {
        "raw": [
-        "Items, which should be added/updated/deleted from the tree."
+        "Edited items array, which should be added/updated/deleted upon the tree.",
+        " Note: Search and filter are not applied to the patched items. This is to ensure that newly added or edited items are not filtered out from the view."
        ]
       },
       "typeValue": {
@@ -25451,7 +25505,8 @@
       "name": "patch",
       "comment": {
        "raw": [
-        "Items, which should be added/updated/deleted from the tree."
+        "Edited items array, which should be added/updated/deleted upon the tree.",
+        " Note: Search and filter are not applied to the patched items. This is to ensure that newly added or edited items are not filtered out from the view."
        ]
       },
       "typeValue": {
@@ -27007,7 +27062,8 @@
       " */",
       "interface PatchOptions<TItem, TId> extends SortConfig<TItem> {",
       "    /**",
-      "     * Items, which should be added/updated/deleted from the tree.",
+      "     * Edited items array, which should be added/updated/deleted upon the tree.",
+      "     * Note: Search and filter are not applied to the patched items. This is to ensure that newly added or edited items are not filtered out from the view.",
       "     */",
       "    patch?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;",
       "    /**",
@@ -27044,7 +27100,8 @@
       "name": "patch",
       "comment": {
        "raw": [
-        "Items, which should be added/updated/deleted from the tree."
+        "Edited items array, which should be added/updated/deleted upon the tree.",
+        " Note: Search and filter are not applied to the patched items. This is to ensure that newly added or edited items are not filtered out from the view."
        ]
       },
       "typeValue": {
@@ -28711,7 +28768,7 @@
     "typeValue": {
      "raw": "PickerFilterConfig<TFilter>",
      "print": [
-      "type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & {",
+      "type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch' | 'disableClear' | 'filter'> & {",
       "    /** Type of the filter */",
       "    type: 'singlePicker' | 'multiPicker';",
       "    /**",
@@ -28851,6 +28908,21 @@
       "required": false
      },
      {
+      "uid": "filter",
+      "name": "filter",
+      "comment": {
+       "raw": [
+        "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+       ]
+      },
+      "typeValue": {
+       "raw": "any",
+       "html": "<span class=\"token builtin\">any</span>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
       "uid": "dataSource",
       "name": "dataSource",
       "comment": {
@@ -28939,6 +29011,24 @@
        "type": "number"
       },
       "from": "@epam/uui-core:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
      },
      {
@@ -39222,6 +39312,21 @@
       "required": false
      },
      {
+      "uid": "filter",
+      "name": "filter",
+      "comment": {
+       "raw": [
+        "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+       ]
+      },
+      "typeValue": {
+       "raw": "any",
+       "html": "<span class=\"token builtin\">any</span>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
       "uid": "dataSource",
       "name": "dataSource",
       "comment": {
@@ -39313,6 +39418,24 @@
       "required": false
      },
      {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
       "uid": "type",
       "name": "type",
       "comment": {
@@ -39390,7 +39513,7 @@
       "required": false
      },
      {
-      "uid": "filter",
+      "uid": "filter_2",
       "name": "filter",
       "comment": {
        "raw": [
@@ -41462,6 +41585,30 @@
       "required": false
      },
      {
+      "uid": "beforeLeave",
+      "name": "beforeLeave",
+      "comment": {
+       "raw": [
+        "Called when form is unmounted, but user still have unsaved changes.",
+        " Accepts a Promise<boolean | 'remain'> to be returned.",
+        " If promise resolves to true - save procedure is performed.",
+        " If promise resolves to false - save action will not be called, form will be unblocked.",
+        " If promise resolves to 'remain' - form will be remained in the same state - blocked and not saved.",
+        " The common use-case is to show a modal with \"Save Changes?\" dialog",
+        " Skins usually implement this as default behavior. To prevent it, you can pass null to this prop to override it."
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (nextLocation: Link, currentLocation: Link) => Promise<boolean | 'remain'>",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>nextLocation<span class=\"token operator\">:</span> Link<span class=\"token punctuation\">,</span> currentLocation<span class=\"token operator\">:</span> Link<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span><span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token string\">'remain'</span><span class=\"token operator\">></span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:FormProps",
+      "required": false
+     },
+     {
       "uid": "getMetadata",
       "name": "getMetadata",
       "comment": {
@@ -41500,30 +41647,6 @@
       },
       "from": "@epam/uui-core:FormProps",
       "required": true
-     },
-     {
-      "uid": "beforeLeave",
-      "name": "beforeLeave",
-      "comment": {
-       "raw": [
-        "Called when form is unmounted, but user still have unsaved changes.",
-        " Accepts a Promise<boolean | 'remain'> to be returned.",
-        " If promise resolves to true - save procedure is performed.",
-        " If promise resolves to false - save action will not be called, form will be unblocked.",
-        " If promise resolves to 'remain' - form will be remained in the same state - blocked and not saved.",
-        " The common use-case is to show a modal with \"Save Changes?\" dialog",
-        " Skins usually implement this as default behavior. To prevent it, you can pass null to this prop to override it."
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (nextLocation: Link, currentLocation: Link) => Promise<boolean | 'remain'>",
-       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>nextLocation<span class=\"token operator\">:</span> Link<span class=\"token punctuation\">,</span> currentLocation<span class=\"token operator\">:</span> Link<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span><span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token string\">'remain'</span><span class=\"token operator\">></span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:FormProps",
-      "required": false
      },
      {
       "uid": "loadUnsavedChanges",
@@ -41637,8 +41760,12 @@
       "name": "isLinkActive",
       "comment": {
        "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
+        "@deprecated Use `isActive` instead",
+        " Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ],
+       "tags": {
+        "@deprecated": "Use"
+       }
       },
       "typeValue": {
        "raw": "boolean",
@@ -42768,7 +42895,8 @@
       "name": "patch",
       "comment": {
        "raw": [
-        "Items, which should be added/updated/deleted from the tree."
+        "Edited items array, which should be added/updated/deleted upon the tree.",
+        " Note: Search and filter are not applied to the patched items. This is to ensure that newly added or edited items are not filtered out from the view."
        ]
       },
       "typeValue": {
@@ -48259,6 +48387,10 @@
       "     */",
       "    fix: TColumnPinPosition;",
       "    isPinnedAlways: boolean;",
+      "    /**",
+      "     * Full group configuration object for the column, if any",
+      "     */",
+      "    columnGroup?: DataColumnGroupProps;",
       "}"
      ]
     },
@@ -48372,6 +48504,20 @@
        "type": "bool"
       },
       "required": true
+     },
+     {
+      "uid": "columnGroup",
+      "name": "columnGroup",
+      "comment": {
+       "raw": [
+        "Full group configuration object for the column, if any"
+       ]
+      },
+      "typeValue": {
+       "raw": "DataColumnGroupProps",
+       "html": "DataColumnGroupProps"
+      },
+      "required": false
      },
      {
       "uid": "groupKey",
@@ -56682,8 +56828,12 @@
       "name": "isLinkActive",
       "comment": {
        "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
+        "@deprecated Use `isActive` instead",
+        " Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ],
+       "tags": {
+        "@deprecated": "Use"
+       }
       },
       "typeValue": {
        "raw": "boolean",
@@ -74134,8 +74284,12 @@
       "name": "isLinkActive",
       "comment": {
        "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
+        "@deprecated Use `isActive` instead",
+        " Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ],
+       "tags": {
+        "@deprecated": "Use"
+       }
       },
       "typeValue": {
        "raw": "boolean",
@@ -75651,7 +75805,7 @@
     "typeValue": {
      "raw": "ColumnsConfigurationModalProps<TItem, TId, TFilter>",
      "print": [
-      "interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IModal<ColumnsConfig> {",
+      "interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends Pick<DataTableProps<TItem, TId>, 'columnGroups'>, IModal<ColumnsConfig> {",
       "    columnsConfig?: ColumnsConfig;",
       "    defaultConfig: ColumnsConfig;",
       "    columns: DataColumnProps<TItem, TId, TFilter>[];",
@@ -75711,6 +75865,21 @@
       "editor": {
        "type": "func"
       },
+      "required": false
+     },
+     {
+      "uid": "columnGroups",
+      "name": "columnGroups",
+      "comment": {
+       "raw": [
+        "Array of all possible column groups for the table"
+       ]
+      },
+      "typeValue": {
+       "raw": "DataColumnGroupProps[]",
+       "html": "DataColumnGroupProps<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+      },
+      "from": "@epam/uui:DataTableCoreProps",
       "required": false
      },
      {
@@ -78220,6 +78389,26 @@
       "required": false
      },
      {
+      "uid": "renderDragHandle",
+      "name": "renderDragHandle",
+      "comment": {
+       "raw": [
+        "Render callback for drag handle aria.",
+        "*",
+        " If omitted, the default implementation with DragHandle component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DragHandleRenderProps<TItem, TId>) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> DragHandleRenderProps<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui:DataRowAddonsCoreProps",
+      "required": false
+     },
+     {
       "uid": "size",
       "name": "size",
       "comment": {
@@ -78492,7 +78681,7 @@
     "typeValue": {
      "raw": "DataTableCellProps<TItem, TId, TCellValue>",
      "print": [
-      "interface DataTableCellProps<TItem, TId, TCellValue> extends UuiCoreDataTableCellProps<TItem, TId, TCellValue>, Overwrite<DataTableCellMods, DataTableCellModsOverride> {",
+      "interface DataTableCellProps<TItem, TId, TCellValue> extends UuiCoreDataTableCellProps<TItem, TId, TCellValue>, Pick<DataRowAddonsProps<TItem, TId>, 'renderDragHandle'>, Overwrite<DataTableCellMods, DataTableCellModsOverride> {",
       "}"
      ]
     },
@@ -78879,6 +79068,26 @@
       "required": false
      },
      {
+      "uid": "renderDragHandle",
+      "name": "renderDragHandle",
+      "comment": {
+       "raw": [
+        "Render callback for drag handle aria.",
+        "*",
+        " If omitted, the default implementation with DragHandle component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DragHandleRenderProps<TItem, TId>) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> DragHandleRenderProps<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui:DataRowAddonsCoreProps",
+      "required": false
+     },
+     {
       "uid": "size",
       "name": "size",
       "typeValue": {
@@ -78893,23 +79102,6 @@
         "36",
         "42",
         "48"
-       ]
-      },
-      "from": "@epam/uui:TableSizesAndPositionMods",
-      "required": false
-     },
-     {
-      "uid": "alignActions",
-      "name": "alignActions",
-      "typeValue": {
-       "raw": "'top' | 'center'",
-       "html": "<span class=\"token string\">'top'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'center'</span>"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "top",
-        "center"
        ]
       },
       "from": "@epam/uui:TableSizesAndPositionMods",
@@ -78952,6 +79144,23 @@
        ]
       },
       "from": "@epam/uui:DataTableCellMods",
+      "required": false
+     },
+     {
+      "uid": "alignActions",
+      "name": "alignActions",
+      "typeValue": {
+       "raw": "'top' | 'center'",
+       "html": "<span class=\"token string\">'top'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'center'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "top",
+        "center"
+       ]
+      },
+      "from": "@epam/uui:TableSizesAndPositionMods",
       "required": false
      }
     ],
@@ -80465,6 +80674,28 @@
       "required": false
      },
      {
+      "uid": "disableVirtualization",
+      "name": "disableVirtualization",
+      "comment": {
+       "raw": [
+        "Pass true to disable rows virtualization.",
+        " This will disable rows virtualization and remove inner vertical scrollbar from the table",
+        "",
+        " Note: A table without virtualization could cause performance issues.",
+        " Some DataTable features, like sticky header, pinned rows, and scroll to row, will not work with disabled virtualization"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui:DataTableCoreProps",
+      "required": false
+     },
+     {
       "uid": "isInvalid",
       "name": "isInvalid",
       "comment": {
@@ -80804,26 +81035,26 @@
       "required": false
      },
      {
-      "uid": "columnsGap",
-      "name": "columnsGap",
+      "uid": "headerTextCase",
+      "name": "headerTextCase",
       "comment": {
        "raw": [
-        "Defines table columns gap size",
-        " @default '24'"
+        "Configure column header text case",
+        " @default 'normal'"
        ],
        "tags": {
-        "@default": "24"
+        "@default": "normal"
        }
       },
       "typeValue": {
-       "raw": "'12' | '24'",
-       "html": "<span class=\"token string\">'12'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span>"
+       "raw": "'normal' | 'upper'",
+       "html": "<span class=\"token string\">'normal'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'upper'</span>"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "12",
-        "24"
+        "normal",
+        "upper"
        ]
       },
       "from": "@epam/uui:DataTableMods",
@@ -80857,26 +81088,26 @@
       "required": false
      },
      {
-      "uid": "headerTextCase",
-      "name": "headerTextCase",
+      "uid": "columnsGap",
+      "name": "columnsGap",
       "comment": {
        "raw": [
-        "Configure column header text case",
-        " @default 'normal'"
+        "Defines table columns gap size",
+        " @default '24'"
        ],
        "tags": {
-        "@default": "normal"
+        "@default": "24"
        }
       },
       "typeValue": {
-       "raw": "'normal' | 'upper'",
-       "html": "<span class=\"token string\">'normal'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'upper'</span>"
+       "raw": "'12' | '24'",
+       "html": "<span class=\"token string\">'12'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span>"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "normal",
-        "upper"
+        "12",
+        "24"
        ]
       },
       "from": "@epam/uui:DataTableMods",
@@ -81874,23 +82105,6 @@
       "required": false
      },
      {
-      "uid": "alignActions",
-      "name": "alignActions",
-      "typeValue": {
-       "raw": "'top' | 'center'",
-       "html": "<span class=\"token string\">'top'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'center'</span>"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "top",
-        "center"
-       ]
-      },
-      "from": "@epam/uui:TableSizesAndPositionMods",
-      "required": false
-     },
-     {
       "uid": "columnsGap",
       "name": "columnsGap",
       "comment": {
@@ -81914,6 +82128,23 @@
        ]
       },
       "from": "@epam/uui:DataTableRowMods",
+      "required": false
+     },
+     {
+      "uid": "alignActions",
+      "name": "alignActions",
+      "typeValue": {
+       "raw": "'top' | 'center'",
+       "html": "<span class=\"token string\">'top'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'center'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "top",
+        "center"
+       ]
+      },
+      "from": "@epam/uui:TableSizesAndPositionMods",
       "required": false
      },
      {
@@ -87565,8 +87796,12 @@
       "name": "isLinkActive",
       "comment": {
        "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
+        "@deprecated Use `isActive` instead",
+        " Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ],
+       "tags": {
+        "@deprecated": "Use"
+       }
       },
       "typeValue": {
        "raw": "boolean",
@@ -87983,8 +88218,12 @@
       "name": "isLinkActive",
       "comment": {
        "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
+        "@deprecated Use `isActive` instead",
+        " Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ],
+       "tags": {
+        "@deprecated": "Use"
+       }
       },
       "typeValue": {
        "raw": "boolean",
@@ -88645,8 +88884,12 @@
       "name": "isLinkActive",
       "comment": {
        "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
+        "@deprecated Use `isActive` instead",
+        " Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ],
+       "tags": {
+        "@deprecated": "Use"
+       }
       },
       "typeValue": {
        "raw": "boolean",
@@ -100419,6 +100662,24 @@
       "required": false
      },
      {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disable clearing date value (e.g. via cross icon)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
       "uid": "preventEmptyFromDate",
       "name": "preventEmptyFromDate",
       "comment": {
@@ -100472,24 +100733,6 @@
        "type": "func"
       },
       "from": "@epam/uui-core:RangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": "disableClear",
-      "name": "disableClear",
-      "comment": {
-       "raw": [
-        "Disable clearing date value (e.g. via cross icon)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:CommonDatePickerProps",
       "required": false
      }
     ],
@@ -103894,8 +104137,12 @@
       "name": "isLinkActive",
       "comment": {
        "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
+        "@deprecated Use `isActive` instead",
+        " Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ],
+       "tags": {
+        "@deprecated": "Use"
+       }
       },
       "typeValue": {
        "raw": "boolean",
@@ -103929,22 +104176,22 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:TabListItemProps": {
+  "@epam/uui:TabsItemProps": {
    "summary": {
     "module": "@epam/uui",
     "typeName": {
-     "name": "TabListItemProps",
-     "nameFull": "TabListItemProps"
+     "name": "TabsItemProps",
+     "nameFull": "TabsItemProps"
     },
-    "src": "uui/components/layout/TabList.tsx",
+    "src": "uui/components/layout/Tabs.tsx",
     "exported": true
    },
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "TabListItemProps",
+     "raw": "TabsItemProps",
      "print": [
-      "type TabListItemProps = TabButtonProps & {",
+      "type TabsItemProps = TabButtonProps & {",
       "    /** Ref to the tab button. */",
       "    ref?: ForwardedRef<TabElement>;",
       "    /** ID of the tab button. There should be only one element with such ID on a page. */",
@@ -104338,8 +104585,12 @@
       "name": "isLinkActive",
       "comment": {
        "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
+        "@deprecated Use `isActive` instead",
+        " Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ],
+       "tags": {
+        "@deprecated": "Use"
+       }
       },
       "typeValue": {
        "raw": "boolean",
@@ -104404,24 +104655,24 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:TabListProps": {
+  "@epam/uui:TabsProps": {
    "summary": {
     "module": "@epam/uui",
     "typeName": {
-     "name": "TabListProps",
-     "nameFull": "TabListProps"
+     "name": "TabsProps",
+     "nameFull": "TabsProps"
     },
-    "src": "uui/components/layout/TabList.tsx",
+    "src": "uui/components/layout/Tabs.tsx",
     "exported": true
    },
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "TabListProps",
+     "raw": "TabsProps",
      "print": [
-      "interface TabListProps extends IControlled<TabId>, FlexRowProps {",
+      "interface TabsProps extends IControlled<TabId>, FlexRowProps {",
       "    /** `TabButton` props with required `id` field. */",
-      "    items: Array<TabListItemProps>;",
+      "    items: Array<TabsItemProps>;",
       "}"
      ]
     },
@@ -104435,8 +104686,8 @@
        ]
       },
       "typeValue": {
-       "raw": "TabListItemProps[]",
-       "html": "TabListItemProps<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+       "raw": "TabsItemProps[]",
+       "html": "TabsItemProps<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "required": true
      },
@@ -107252,7 +107503,9 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines text size",
+        "Defines size(height) of text block, to align text by its baseline with other components of the same size.",
+        " Used to calculate line-height and vertical paddings so that the sum of their values be equal size value(size = vPaddings/2 + lineHeight)",
+        " Pass 'none' to disable it.",
         " @default '36'"
        ],
        "tags": {
@@ -107283,23 +107536,13 @@
       "name": "fontSize",
       "comment": {
        "raw": [
-        "Defines text font-size"
+        "Defines text font-size",
+        " Provide number or string value without 'px'"
        ]
       },
       "typeValue": {
-       "raw": "'12' | '18' | '24' | '14' | '16' | '10'",
-       "html": "<span class=\"token string\">'12'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'14'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'16'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'10'</span>"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "10",
-        "12",
-        "14",
-        "16",
-        "18",
-        "24"
-       ]
+       "raw": "string | number",
+       "html": "<span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span>"
       },
       "from": "@epam/uui:TextMods",
       "required": false
@@ -107365,21 +107608,13 @@
       "name": "lineHeight",
       "comment": {
        "raw": [
-        "Defines text line-height"
+        "Defines text line-height",
+        " Provide number or string value without 'px'"
        ]
       },
       "typeValue": {
-       "raw": "'12' | '18' | '24' | '30'",
-       "html": "<span class=\"token string\">'12'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span>"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18",
-        "24",
-        "30"
-       ]
+       "raw": "string | number",
+       "html": "<span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span>"
       },
       "from": "@epam/uui:TextMods",
       "required": false
@@ -109298,10 +109533,10 @@
       "comment": {
        "raw": [
         "Defines component size.",
-        " @default '36'"
+        " @default '48'"
        ],
        "tags": {
-        "@default": "36"
+        "@default": "48"
        }
       },
       "typeValue": {
@@ -109579,8 +109814,12 @@
       "name": "isLinkActive",
       "comment": {
        "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
+        "@deprecated Use `isActive` instead",
+        " Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ],
+       "tags": {
+        "@deprecated": "Use"
+       }
       },
       "typeValue": {
        "raw": "boolean",
@@ -112938,8 +113177,12 @@
       "name": "isLinkActive",
       "comment": {
        "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
+        "@deprecated Use `isActive` instead",
+        " Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ],
+       "tags": {
+        "@deprecated": "Use"
+       }
       },
       "typeValue": {
        "raw": "boolean",
@@ -114735,7 +114978,9 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines text size",
+        "Defines size(height) of text block, to align text by its baseline with other components of the same size.",
+        " Used to calculate line-height and vertical paddings so that the sum of their values be equal size value(size = vPaddings/2 + lineHeight)",
+        " Pass 'none' to disable it.",
         " @default '36'"
        ],
        "tags": {
@@ -114822,21 +115067,13 @@
       "name": "lineHeight",
       "comment": {
        "raw": [
-        "Defines text line-height"
+        "Defines text line-height",
+        " Provide number or string value without 'px'"
        ]
       },
       "typeValue": {
-       "raw": "'18' | '24' | '30' | '12'",
-       "html": "<span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'12'</span>"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18",
-        "24",
-        "30"
-       ]
+       "raw": "string | number",
+       "html": "<span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span>"
       },
       "from": "@epam/uui:TextMods",
       "required": false
@@ -114846,23 +115083,13 @@
       "name": "fontSize",
       "comment": {
        "raw": [
-        "Defines text font-size"
+        "Defines text font-size",
+        " Provide number or string value without 'px'"
        ]
       },
       "typeValue": {
-       "raw": "'18' | '24' | '12' | '10' | '14' | '16'",
-       "html": "<span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'12'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'10'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'14'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'16'</span>"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "10",
-        "12",
-        "14",
-        "16",
-        "18",
-        "24"
-       ]
+       "raw": "string | number",
+       "html": "<span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span>"
       },
       "from": "@epam/uui:TextMods",
       "required": false
@@ -116122,8 +116349,12 @@
       "name": "isLinkActive",
       "comment": {
        "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
+        "@deprecated Use `isActive` instead",
+        " Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ],
+       "tags": {
+        "@deprecated": "Use"
+       }
       },
       "typeValue": {
        "raw": "boolean",
@@ -119653,8 +119884,12 @@
       "name": "isLinkActive",
       "comment": {
        "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
+        "@deprecated Use `isActive` instead",
+        " Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ],
+       "tags": {
+        "@deprecated": "Use"
+       }
       },
       "typeValue": {
        "raw": "boolean",
@@ -119961,8 +120196,12 @@
       "name": "isLinkActive",
       "comment": {
        "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
+        "@deprecated Use `isActive` instead",
+        " Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ],
+       "tags": {
+        "@deprecated": "Use"
+       }
       },
       "typeValue": {
        "raw": "boolean",
@@ -122765,7 +123004,9 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines text size",
+        "Defines size(height) of text block, to align text by its baseline with other components of the same size.",
+        " Used to calculate line-height and vertical paddings so that the sum of their values be equal size value(size = vPaddings/2 + lineHeight)",
+        " Pass 'none' to disable it.",
         " @default '36'"
        ],
        "tags": {
@@ -122852,21 +123093,13 @@
       "name": "lineHeight",
       "comment": {
        "raw": [
-        "Defines text line-height"
+        "Defines text line-height",
+        " Provide number or string value without 'px'"
        ]
       },
       "typeValue": {
-       "raw": "'18' | '24' | '30' | '12'",
-       "html": "<span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'12'</span>"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18",
-        "24",
-        "30"
-       ]
+       "raw": "string | number",
+       "html": "<span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span>"
       },
       "from": "@epam/uui:TextMods",
       "required": false
@@ -122876,23 +123109,13 @@
       "name": "fontSize",
       "comment": {
        "raw": [
-        "Defines text font-size"
+        "Defines text font-size",
+        " Provide number or string value without 'px'"
        ]
       },
       "typeValue": {
-       "raw": "'18' | '24' | '12' | '10' | '14' | '16'",
-       "html": "<span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'12'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'10'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'14'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'16'</span>"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "10",
-        "12",
-        "14",
-        "16",
-        "18",
-        "24"
-       ]
+       "raw": "string | number",
+       "html": "<span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span>"
       },
       "from": "@epam/uui:TextMods",
       "required": false
