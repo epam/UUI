@@ -9,32 +9,14 @@
         - To switch to the handling via `localStorage` replace code of `apiReloginPath` endpoint to `<html><script>window.localStorage.setItem("uui-auth-recovery-success", "true"); window.close();</script></html>`
     * The 'opener' is cleared when the auth recovery popup is opened
 * [DataTable]: add support of columns configuration modal for table with grouped columns
-* [ScrollBars][Breaking Change]:
-    * migrated from `react-custom-scrollbars-2` to `overlayscrollbars-react`;
-    * base component removed from `@epam/uui-components`, all types moved to `@epam/uui`;
-    * Ref API changed to `{ container: HTMLElement | null, view: HTMLElement | null }` to simplyfy access to the view container due to mutable structure
-    * `autoHide` prop now accepts string values `('never' | 'scroll' | 'move' | 'leave')` instead of `boolean`, `autoHideTimeout` & `autoHideDuration` replaced with `autoHideDelay`
-    * removed render callbacks for scrollbars view customizations use css classes `cx` and variables
-    ```css
-        --uui-scroll_bars-bg: var(--uui-neutral-40);
-        --uui-scroll_bars-bg-hover: var(--uui-neutral-50);
-        --uui-scroll_bars-bg-active: var(--uui-neutral-60);
-        --uui-scroll_bars-shadow-top: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
-        --uui-scroll_bars-shadow-bottom: linear-gradient(to top, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
-
-        --uui-scroll_bars-size: 9px;
-        --uui-scroll_bars-padding-perpendicular: 3px;
-        --uui-scroll_bars-padding-axis: 6px;
-        --uui-scroll_bars-handle-border-radius: 9px;
-        --uui-scroll_bars-handle-min-size: 30px;
-        --uui-scroll_bars-handle-perpendicular-size: 67%;
-        --uui-scroll_bars-handle-perpendicular-size-hover: 100%;
-        --uui-scroll_bars-handle-perpendicular-size-active: 100%;
-        --uui-scroll_bars-handle-interactive-area-offset: 2px;
-        --uui-scroll_bars-shadow-height: 5px;
-    ```
-    * refactored shadows API: `hasTopShadow, hasBottomShadow` → `overflowTopEffect, overflowBottomEffect` with `'line' | 'shadow' | 'none'` values which themed via global classes `.uui-shadow-top`, `.uui-shadow-bottom`, `.uui-line-top`, `.uui-line-bottom`;
-    * centralized overflow management: previously scattered across DataTable, VirtualList, Modals with custom implementations, now unified in ScrollBars which managed via `useScrollShadows` hook with automatic CSS classes: `.-scrolled-top`, `.-scrolled-bottom`, `.-scrolled-left`, `.-scrolled-right`;
+* [ScrollBars]: migrated from deprecated `react-custom-scrollbars-2` to modern `overlayscrollbars-react` library to fix multiple issues and improve stability. This migration improved scrollbar styling, expanded API capabilities, but introduced breaking changes. Note: on macOS scrollbars now use custom UUI styling and behavior by default instead of native system scrollbars - use `autoHide` prop to control visibility:
+    * [Breaking Change] base component removed from `@epam/uui-components`, all types moved to `@epam/uui`;
+    * [Breaking Change] Ref API changed from `{ container: HTMLDivElement | undefined }` to `{ container: HTMLElement | null, view: HTMLElement | null }`;
+    * [Breaking Change] `autoHide` prop changed from `boolean` to string values `('never' | 'scroll' | 'move' | 'leave')`, `autoHideTimeout` & `autoHideDuration` replaced with `autoHideDelay`;
+    * [Breaking Change] removed render callbacks `renderView, renderTrackHorizontal, renderTrackVertical, renderThumbHorizontal, renderThumbVertical` - use CSS classes and variables instead;
+    * [Breaking Change] shadows API changed from `hasTopShadow, hasBottomShadow` to `overflowTopEffect, overflowBottomEffect` with `'line' | 'shadow' | 'none'` values. ScrollBars now handle overflow effects internally - if you had custom shadow/border styling, you can remove it and use the new props instead;
+    * overflow management centralized: previously each component (DataTable, VirtualList, Modals) had custom shadow implementations, now all use unified ScrollBars system with automatic CSS classes `.-scrolled-top`, `.-scrolled-bottom`, `.-scrolled-left`, `.-scrolled-right`. Removed old shadow classes `uui-shadow-top-visible`, `uui-shadow-bottom-visible` in favor of unified system;
+    * [Breaking Change] HTML attributes removed from ScrollBars interface - use `rawProps` instead;
     * added RTL support and performance optimizations (ResizeObserver, passive listeners);
 
 **What's Fixed**
@@ -113,7 +95,7 @@
     * "Duplicate" action is now only available for unchanged presets
     * "Copy Link" action copies a link to the current (modified) state if the preset is changed, or to the saved preset otherwise
     * Added `onCopyLink` prop to customize or disable the "Copy Link" action (set to `null` to hide the action)
-* [Tree]: 
+* [Tree]:
   * reworked with improved functionality and styling, moved from `@epam/uui-components` to `@epam/uui` package
   * See docs [here](https://uui.epam.com/documents?id=tree&mode=doc&category=components)
 * [DataTable]: added disableVirtualization prop to turn off rows virtualization
