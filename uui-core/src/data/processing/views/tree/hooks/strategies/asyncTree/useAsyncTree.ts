@@ -63,7 +63,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         setIncommingTree(baseTree);
     }, [baseTree]);
 
-    const { tree: treeWithData, itemsStatusCollector, isLoaded: isTreeLoaded, isLoading, isFetching } = useLoadData({
+    const { tree: treeWithData, itemsStatusCollector, isLoading, isFetching } = useLoadData({
         getId,
         complexIds,
         api: () => props.api().then((items) => ({ items })),
@@ -98,15 +98,14 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         setIsForceReload(true);
     }, [setIsForceReload]);
 
-    const isTreeLoading = !isTreeLoaded || isLoading || isFetching;
     const filteredTree = useFilterTreeState(
-        { tree: actualTree, getFilter, dataSourceState, isLoading: isTreeLoading },
-        [actualTree, isTreeLoading],
+        { tree: actualTree, getFilter, dataSourceState },
+        [actualTree],
     );
 
     const sortTree = useSortTreeState(
-        { tree: filteredTree, sortBy, dataSourceState, isLoading: isTreeLoading },
-        [filteredTree, isTreeLoading],
+        { tree: filteredTree, sortBy, dataSourceState },
+        [filteredTree],
     );
 
     const searchTree = useSearchTreeState(
@@ -115,16 +114,14 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
             getSearchFields,
             sortSearchByRelevance,
             dataSourceState,
-            isLoading: isTreeLoading,
         },
-        [sortTree, isTreeLoading],
+        [sortTree],
     );
 
     const treeWithSelectedOnly = useSelectedOnlyTree({
         tree: searchTree,
         dataSourceState,
-        isLoading: isTreeLoading,
-    }, [searchTree, isTreeLoading]);
+    }, [searchTree]);
 
     const treeWithNewItemsMap = useActualItemsStorage({
         tree: treeWithSelectedOnly,

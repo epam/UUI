@@ -53,4 +53,9 @@ export interface ITree<TItem, TId> {
      * Instead, use tree.getItems(), in the combination with tree.getById(id).
      */
     getItemsAccessor(): IItemsAccessor<TItem, TId>;
+
+    /**
+     * Indicates if the tree is just created and no data has been set.
+     */
+    isBlank(): boolean;
 }
