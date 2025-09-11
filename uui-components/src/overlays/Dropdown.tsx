@@ -15,6 +15,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         onValueChange: setControlledOpen,
         isNotUnfoldable,
         openOnHover,
+        openOnFocus,
         openOnClick,
         closeOnMouseLeave,
         closeOnClickOutside,
@@ -139,6 +140,24 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
             } else {
                 handleOpenedChange(false);
             }
+        }
+    };
+
+    const handleFocus = () => {
+        clearCloseDropdownTimer();
+        if (openDelay) {
+            setOpenDropdownTimer();
+        } else {
+            handleOpenedChange(true);
+        }
+    };
+
+    const handleBlur = () => {
+        clearOpenDropdownTimer();
+        if (closeDelay) {
+            setCloseDropdownTimer(closeDelay);
+        } else {
+            handleOpenedChange(false);
         }
     };
 
@@ -323,6 +342,11 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
             }
         }
 
+        if (openOnFocus && !openOnClick) {
+            targetNodeRef.current?.addEventListener?.('focus', handleFocus);
+            targetNodeRef.current?.addEventListener?.('blur', handleBlur);
+        }
+
         if (closeOnClickOutside !== false) {
             window.addEventListener('click', clickOutsideHandler, true);
         }
@@ -331,18 +355,23 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
             window.removeEventListener('dragstart', clickOutsideHandler);
             targetNodeRef.current?.removeEventListener?.('mouseenter', handleMouseEnter);
             targetNodeRef.current?.removeEventListener?.('mouseleave', handleMouseLeave);
+            targetNodeRef.current?.removeEventListener?.('focus', handleFocus);
+            targetNodeRef.current?.removeEventListener?.('blur', handleBlur);
             window.removeEventListener('click', clickOutsideHandler, true);
             layerRef.current && uuiContext.uuiLayout?.releaseLayer(layerRef.current);
         };
     }, [
         uuiContext.uuiLayout,
         openOnHover,
+        openOnFocus,
         openOnClick,
         closeOnMouseLeave,
         closeOnClickOutside,
         clickOutsideHandler,
         handleMouseEnter,
         handleMouseLeave,
+        handleFocus,
+        handleBlur,
         handleMouseMove,
     ]);
 

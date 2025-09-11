@@ -14,6 +14,10 @@ export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<Rea
     rotate?: '0' | '90cw' | '180' | '90ccw';
     /** Click handler */
     onClick?(e: React.SyntheticEvent<HTMLDivElement>): void;
+    /** Focus handler */
+    onFocus?(e: React.FocusEvent<HTMLDivElement>): void;
+    /** Blur handler */
+    onBlur?(e: React.FocusEvent<HTMLDivElement>): void;
     /** CSS style prop to put on the component */
     style?: React.CSSProperties;
     /** Icon size in pixels (both width and height, as icons are assumed to be square-shaped) */
@@ -25,6 +29,7 @@ export type IconContainerProps = ControlIconProps & {};
 
 export const IconContainer = React.forwardRef<HTMLDivElement, ControlIconProps>((props, ref) => {
     const isClickable = !props.isDisabled && props.onClick;
+    const isFocusable = !props.isDisabled && (props.onClick || props.onFocus || props.onBlur);
 
     return (
         <div
@@ -38,7 +43,9 @@ export const IconContainer = React.forwardRef<HTMLDivElement, ControlIconProps>(
             ) }
             ref={ ref }
             onClick={ isClickable ? props.onClick : undefined }
-            tabIndex={ isClickable ? props.tabIndex : undefined }
+            onFocus={ props.onFocus }
+            onBlur={ props.onBlur }
+            tabIndex={ isFocusable ? props.tabIndex : undefined }
             style={ { ...props.style, ...props.rawProps?.style } }
             { ...props.rawProps }
         >
