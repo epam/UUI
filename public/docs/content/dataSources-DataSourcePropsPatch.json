@@ -231,5 +231,13 @@
         ]
       }
     ]
+  },
+  {
+    "type": "note-warning",
+    "children": [
+      {
+        "text": "Note: Search and filter are not applied to the patched items. This is to ensure that newly added or edited items are not filtered out from the view"
+      }
+    ]
   }
 ]
