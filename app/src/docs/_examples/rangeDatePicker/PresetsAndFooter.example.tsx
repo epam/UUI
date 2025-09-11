@@ -14,17 +14,24 @@ export default function DatePickerBaseExample() {
                 onValueChange={ onPickerValueChange }
                 format="MMM D, YYYY"
                 presets={ {
-                    ...rangeDatePickerPresets,
+                    ...rangeDatePickerPresets, // Default set of presets, you can pick some from it
+                    // Custom presets
                     last3Days: {
                         name: 'Last 3 days',
                         getRange: () => {
                             return { from: dayjs().subtract(2, 'day').toString(), to: dayjs().toString(), order: 11 };
                         },
                     },
-                    last7Days: {
-                        name: 'Last 7 days',
+                    tillNow: {
+                        name: 'Till now',
                         getRange: () => {
-                            return { from: dayjs().subtract(6, 'day').toString(), to: dayjs().toString(), order: 12 };
+                            return { from: undefined, to: dayjs().toString(), order: 12 };
+                        },
+                    },
+                    fromNow: {
+                        name: 'From now',
+                        getRange: () => {
+                            return { from: dayjs().toString(), to: undefined, order: 13 };
                         },
                     },
                 } }
@@ -48,8 +55,8 @@ const getRangeLength = (value: RangeDatePickerValue) => {
     const isOneOrZero = dayjs(value.from).valueOf() === dayjs(value.to).valueOf() ? 1 : 0;
 
     return (
-        dayjs(value.to).isValid()
-        && dayjs(value.from).isValid()
+        value?.to
+        && value?.from
         && dayjs(value.from).valueOf() < dayjs(value.to).valueOf()
     )
         ? dayjs(value.to).diff(dayjs(value.from), 'day') + 1

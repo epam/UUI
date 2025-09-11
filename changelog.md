@@ -39,8 +39,9 @@
 
 **What's Fixed**
 * [useForm]: improved router block removal on discard and custom beforeLeave for close action. Rework useLock to unblock router immediately, rather than on next render
-* [Modals]: fixed incorrect order of abort() calls when pressing ESC with nested modals — now only the topmost modal responds to ESC key
+* [Modals]: fixed incorrect order of abort() calls when pressing ESC with nested modals — now only the topmost modal responds to ESC key ([#2873](https://github.com/epam/UUI/issues/2873))
 * [Text]: changed `fontSize` and `lineHeight` props typings from strict string literal to more common `number | string` type, to support varied customization cases
+* [RangeDatePicker]: undefined value in preset range now applies like an empty date, not the current one ([#2879](https://github.com/epam/UUI/issues/2879))
 * [ScrollBars]: fixed issues [#1645](https://github.com/epam/UUI/issues/1645), [#2548](https://github.com/epam/UUI/issues/2548), [#2644](https://github.com/epam/UUI/issues/2644), [#2882](https://github.com/epam/UUI/issues/2882), [#2893](https://github.com/epam/UUI/issues/2893)
 
 # 6.2.0 - 05.08.2025
@@ -112,7 +113,7 @@
     * "Duplicate" action is now only available for unchanged presets
     * "Copy Link" action copies a link to the current (modified) state if the preset is changed, or to the saved preset otherwise
     * Added `onCopyLink` prop to customize or disable the "Copy Link" action (set to `null` to hide the action)
-* [Tree]:
+* [Tree]: 
   * reworked with improved functionality and styling, moved from `@epam/uui-components` to `@epam/uui` package
   * See docs [here](https://uui.epam.com/documents?id=tree&mode=doc&category=components)
 * [DataTable]: added disableVirtualization prop to turn off rows virtualization
