@@ -81,10 +81,11 @@
     &:global(.uui-control-mode-form) {
         background-color: var(--uui-text_input-bg);
         border-color: var(--uui-text_input-border);
-        fill: var(--uui-text_input-icon-clickable);
 
         // Copied from `IconButton` styles.
         :global(.-clickable):has(> :global(.uui-icon):global(.uui-enabled)) {
+            fill: var(--uui-text_input-icon-clickable);
+
             &:hover {
                 fill: var(--uui-text_input-icon-clickable-hover);
             }
