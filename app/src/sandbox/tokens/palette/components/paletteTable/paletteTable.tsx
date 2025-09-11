@@ -135,7 +135,7 @@ export function PaletteTable(props: PaletteTableProps) {
             </FlexRow>
             <div>
                 <Blocker isEnabled={ loading } cx={ css.blocker } />
-                <ScrollBars style={ { height: `calc(100vh - ${TOP_INDENT})`, marginBottom: '0px' } }>
+                <ScrollBars rawProps={ { style: { height: `calc(100vh - ${TOP_INDENT})`, marginBottom: '0px' } } }>
                     <div>
                         <div className={ css.stickyHeader }>
                             <DataTableHeaderRow

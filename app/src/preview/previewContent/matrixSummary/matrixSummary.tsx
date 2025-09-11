@@ -20,7 +20,7 @@ export function MatrixSummary(modalProps: IModal<string> & { arr: TNormalizedMat
             <ModalWindow width={ 640 }>
                 <Panel background="surface-main">
                     <ModalHeader title={ title } onClose={ () => modalProps.abort() } />
-                    <ScrollBars hasTopShadow hasBottomShadow>
+                    <ScrollBars overflowTopEffect="line" overflowBottomEffect="line">
                         <FlexRow padding="24" vPadding="24">
                             <FlexCell minWidth={ 360 }>
                                 { formatNormalizedMatrix(modalProps.arr) }

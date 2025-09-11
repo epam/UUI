@@ -48,35 +48,61 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
-        style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+        class="root uui-scroll-bars"
+        data-overlayscrollbars="host"
+        data-overlayscrollbars-initialize=""
       >
         <div
-          style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto;"
+          class="os-size-observer"
         >
           <div
-            class="uui-panel root margin-24 uui-surface-main container"
+            class="os-size-observer-listener"
+          />
+        </div>
+        <div
+          class=""
+          data-overlayscrollbars-padding=""
+          style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; left: 0px; width: calc(100% + 0px);"
+        >
+          <div
+            class="viewport"
+            data-overlayscrollbars-contents=""
+            data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
+            style="padding: 0px 0px 0px 0px;"
+            tabindex="-1"
           >
-            <div>
-              Test content
+            <div
+              class="uui-panel root margin-24 uui-surface-main container"
+            >
+              <div>
+                Test content
+              </div>
             </div>
           </div>
         </div>
         <div
-          class="uui-track-horizontal"
-          style="position: absolute; height: 6px; display: none;"
+          class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+          style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
         >
           <div
-            class="uui-thumb-horizontal"
-          />
+            class="os-scrollbar-track"
+          >
+            <div
+              class="os-scrollbar-handle"
+            />
+          </div>
         </div>
         <div
-          class="uui-track-vertical"
-          style="position: absolute; width: 6px; display: none;"
+          class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+          style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
         >
           <div
-            class="uui-thumb-vertical"
-          />
+            class="os-scrollbar-track"
+          >
+            <div
+              class="os-scrollbar-handle"
+            />
+          </div>
         </div>
       </div>
       <div
@@ -158,27 +184,53 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
         </div>
       </div>
       <div
-        class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
-        style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+        class="root uui-scroll-bars"
+        data-overlayscrollbars="host"
+        data-overlayscrollbars-initialize=""
       >
         <div
-          style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto;"
-        />
-        <div
-          class="uui-track-horizontal"
-          style="position: absolute; height: 6px; display: none;"
+          class="os-size-observer"
         >
           <div
-            class="uui-thumb-horizontal"
+            class="os-size-observer-listener"
           />
         </div>
         <div
-          class="uui-track-vertical"
-          style="position: absolute; width: 6px; display: none;"
+          class=""
+          data-overlayscrollbars-padding=""
+          style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; left: 0px; width: calc(100% + 0px);"
         >
           <div
-            class="uui-thumb-vertical"
+            class="viewport"
+            data-overlayscrollbars-contents=""
+            data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
+            style="padding: 0px 0px 0px 0px;"
+            tabindex="-1"
           />
+        </div>
+        <div
+          class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+          style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
+        >
+          <div
+            class="os-scrollbar-track"
+          >
+            <div
+              class="os-scrollbar-handle"
+            />
+          </div>
+        </div>
+        <div
+          class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+          style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
+        >
+          <div
+            class="os-scrollbar-track"
+          >
+            <div
+              class="os-scrollbar-handle"
+            />
+          </div>
         </div>
       </div>
       <div
