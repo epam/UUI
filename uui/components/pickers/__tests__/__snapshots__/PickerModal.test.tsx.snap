@@ -60,7 +60,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
             dir="auto"
           >
             <div
-              class="container uui-icon uui-enabled"
+              class="container uui-icon uui-enabled controlIcon"
             >
               <svg
                 class=""
@@ -311,7 +311,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
             dir="auto"
           >
             <div
-              class="container uui-icon uui-enabled"
+              class="container uui-icon uui-enabled controlIcon"
             >
               <svg
                 class=""
@@ -1086,7 +1086,7 @@ exports[`PickerModal should open body 1`] = `
               dir="auto"
             >
               <div
-                class="container uui-icon uui-enabled"
+                class="container uui-icon uui-enabled controlIcon"
               >
                 <svg
                   class=""

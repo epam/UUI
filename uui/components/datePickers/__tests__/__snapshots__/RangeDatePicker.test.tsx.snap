@@ -9,7 +9,7 @@ exports[`RangeDataPicker should be rendered if many params defined 1`] = `
       class="container uui-input-box uui-disabled uui-readonly uui-invalid root uui-size-36 uui-control-mode-form dateInput"
     >
       <div
-        class="container uui-icon uui-enabled"
+        class="container uui-icon uui-enabled controlIcon"
       >
         <svg
           class=""
@@ -59,7 +59,7 @@ exports[`RangeDataPicker should be rendered if minimum params and custom format 
       class="container uui-input-box root uui-size-36 uui-control-mode-form dateInput"
     >
       <div
-        class="container uui-icon uui-enabled"
+        class="container uui-icon uui-enabled controlIcon"
       >
         <svg
           class=""

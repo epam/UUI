@@ -6,6 +6,7 @@ import css from './PickerToggler.module.scss';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
 import { IconButton } from '../buttons/IconButton';
 import { flushSync } from 'react-dom';
+import { ControlIcon } from '../widgets/ControlIcon';
 
 export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, IDisableable {
     /** DataRowProps object of the rendered item */
@@ -247,35 +248,13 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         );
     };
 
-    const getIcon = (): React.ReactNode => {
-        if (!props.icon) {
-            return null;
-        }
-
-        if (
-            !props.onIconClick
-            || isPickerDisabled
-        ) {
-            return (
-                <IconContainer
-                    icon={ props.icon }
-                />
-            );
-        }
-
-        return (
-            <IconButton
-                icon={ props.icon }
-                onClick={ props.onIconClick }
-                cx={ css.clickableIcon }
-                rawProps={ {
-                    'aria-label': 'Icon in input',
-                } }
-            />
-        );
-    };
-
-    const icon = getIcon();
+    const icon = (
+        <ControlIcon
+            icon={ props.icon }
+            onClick={ props.onIconClick }
+            isDisabled={ isPickerDisabled }
+        />
+    );
 
     const getIsEventTargetContainer = (event: React.SyntheticEvent) : boolean => {
         const eventTargetElement = event.target as HTMLElement;

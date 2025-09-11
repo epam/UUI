@@ -198,7 +198,7 @@ exports[`PickerList should open body 1`] = `
               dir="auto"
             >
               <div
-                class="container uui-icon uui-enabled"
+                class="container uui-icon uui-enabled controlIcon"
               >
                 <svg
                   class=""

@@ -17,7 +17,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
           dir="auto"
         >
           <div
-            class="container uui-icon uui-enabled"
+            class="container uui-icon uui-enabled controlIcon"
           >
             <svg
               class=""
