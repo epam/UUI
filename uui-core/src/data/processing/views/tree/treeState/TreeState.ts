@@ -417,4 +417,8 @@ export class TreeState<TItem, TId> {
             setItems,
         );
     }
+
+    public isBlank() {
+        return this.visible.isBlank() || this.full.isBlank();
+    }
 }
