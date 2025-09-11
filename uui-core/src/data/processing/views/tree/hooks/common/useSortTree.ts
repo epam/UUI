@@ -33,7 +33,6 @@ export function useSortTree<TItem, TId, TFilter = any>(
         dataSourceState: { sorting },
         sortBy,
         newTreeInstance,
-        isLoading,
     }: UseSortTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ): ITree<TItem, TId> {
@@ -41,11 +40,11 @@ export function useSortTree<TItem, TId, TFilter = any>(
 
     const sortTree = useUpdateTree({
         tree,
-        shouldUpdate: () => sorting !== prevSorting,
+        shouldUpdate: () => !tree.isBlank() && sorting !== prevSorting,
         update: (currentTree) => SortHelper.sort({ tree: currentTree, sorting, sortBy, newTreeInstance }),
     }, [sorting, ...deps]);
 
-    if (isLoading || sortTree === null) {
+    if (tree === null || tree.isBlank()) {
         return tree;
     }
 

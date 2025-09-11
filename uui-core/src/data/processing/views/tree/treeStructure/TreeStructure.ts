@@ -1,9 +1,10 @@
 import { IMap } from '../../../../../types';
 import { ITreeNodeInfo, ITreeParams, IItemsAccessor } from './types';
 import { newMap } from '../helpers/map';
-import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED } from '../constants';
+import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED, ROOT_ID } from '../constants';
 import { ItemsMap } from '../ItemsMap';
 import { ITree, ITreeItemsInfo, ITreeNodeStatus } from '../ITree';
+// eslint-disable-next-line import/no-cycle
 import { Tree } from '../Tree';
 
 export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
@@ -160,5 +161,9 @@ export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
         }
 
         return this.create<TItem, TId>(params, itemsAccessor, byParentId, newNodeInfoById);
+    }
+
+    public isBlank() {
+        return !this.nodeInfoById.has(ROOT_ID);
     }
 }

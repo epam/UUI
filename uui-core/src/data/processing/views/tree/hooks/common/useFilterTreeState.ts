@@ -7,11 +7,10 @@ export type UseFilterTreeStateProps<TItem, TId, TFilter = any> = {
     getFilter?: (filter: TFilter) => (item: TItem) => boolean;
     tree: TreeState<TItem, TId>;
     dataSourceState: DataSourceState<TFilter, TId>;
-    isLoading?: boolean;
 };
 
 export function useFilterTreeState<TItem, TId, TFilter = any>(
-    { tree, dataSourceState: { filter }, getFilter, isLoading }: UseFilterTreeStateProps<TItem, TId, TFilter>,
+    { tree, dataSourceState: { filter }, getFilter }: UseFilterTreeStateProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
     const prevFilter = usePrevious(filter);
@@ -21,7 +20,7 @@ export function useFilterTreeState<TItem, TId, TFilter = any>(
         update: (currentTree) => currentTree.filter({ filter, getFilter }),
     }, [filter, ...deps]);
 
-    if (isLoading || filteredTree === null) {
+    if (tree === null || tree.isBlank()) {
         return tree;
     }
 
