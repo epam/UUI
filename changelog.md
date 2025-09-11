@@ -9,14 +9,15 @@
         - To switch to the handling via `localStorage` replace code of `apiReloginPath` endpoint to `<html><script>window.localStorage.setItem("uui-auth-recovery-success", "true"); window.close();</script></html>`
     * The 'opener' is cleared when the auth recovery popup is opened
 * [DataTable]: add support of columns configuration modal for table with grouped columns
-* [ScrollBars]: migrated from deprecated `react-custom-scrollbars-2` to modern `overlayscrollbars-react` library to fix multiple issues and improve stability. This migration improved scrollbar styling, expanded API capabilities, but introduced breaking changes. Note: on macOS scrollbars now use custom UUI styling and behavior by default instead of native system scrollbars - use `autoHide` prop to control visibility:
+* [ScrollBars]: migrated from deprecated `react-custom-scrollbars-2` to modern `overlayscrollbars-react` library to fix multiple issues and improve stability. This migration improved scrollbar styling, expanded API capabilities, but introduced breaking changes:
     * [Breaking Change] base component removed from `@epam/uui-components`, all types moved to `@epam/uui`;
     * [Breaking Change] Ref API changed from `{ container: HTMLDivElement | undefined }` to `{ container: HTMLElement | null, view: HTMLElement | null }`;
     * [Breaking Change] `autoHide` prop changed from `boolean` to string values `('never' | 'scroll' | 'move' | 'leave')`, `autoHideTimeout` & `autoHideDuration` replaced with `autoHideDelay`;
-    * [Breaking Change] removed render callbacks `renderView, renderTrackHorizontal, renderTrackVertical, renderThumbHorizontal, renderThumbVertical` - use CSS classes and variables instead;
+    * [Breaking Change] removed render callbacks `renderView, renderTrackHorizontal, renderTrackVertical, renderThumbHorizontal, renderThumbVertical` - now you can customize them via classes and uui css variables;
     * [Breaking Change] shadows API changed from `hasTopShadow, hasBottomShadow` to `overflowTopEffect, overflowBottomEffect` with `'line' | 'shadow' | 'none'` values. ScrollBars now handle overflow effects internally - if you had custom shadow/border styling, you can remove it and use the new props instead;
     * overflow management centralized: previously each component (DataTable, VirtualList, Modals) had custom shadow implementations, now all use unified ScrollBars system with automatic CSS classes `.-scrolled-top`, `.-scrolled-bottom`, `.-scrolled-left`, `.-scrolled-right`. Removed old shadow classes `uui-shadow-top-visible`, `uui-shadow-bottom-visible` in favor of unified system;
     * [Breaking Change] HTML attributes removed from ScrollBars interface - use `rawProps` instead;
+    * [Breaking Change] on macOS scrollbars now use custom UUI styling and behavior by default instead of native system scrollbars - use `autoHide` prop to control visibility;
     * added RTL support and performance optimizations (ResizeObserver, passive listeners);
 
 **What's Fixed**
