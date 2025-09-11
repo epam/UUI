@@ -86,7 +86,6 @@ export default function TableGroupedHeaderExample() {
             caption: 'Track & Level',
             group: 'position', // Specify group key
             render: (p) => <Text>{p.titleLevel}</Text>,
-            grow: 1,
             width: 110,
             isSortable: true,
         },
