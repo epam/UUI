@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Basic tooltip types are Compact , Default and Infotip. Each type can be shown using any trigger component. General rules are described below.",
-            "marks": []
-          }
-        ]
+        "text": "Basic tooltip types are Compact , Default and Infotip. Each type can be shown using any trigger component. General rules are described below."
       }
     ]
   }
-}
+]
