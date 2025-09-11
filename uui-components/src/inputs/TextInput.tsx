@@ -5,9 +5,8 @@ import {
 import { IconButton } from '../buttons/IconButton';
 import { IconContainer } from '../layout';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
+import { ControlIcon } from '../widgets/ControlIcon';
 import css from './TextInput.module.scss';
-
-import type { JSX } from 'react';
 
 const ENTER = 'Enter';
 const ESCAPE = 'Escape';
@@ -24,7 +23,7 @@ export interface TextInputProps extends TextInputCoreProps {
     /** CSS class(es) to put to the HTML Input element */
     inputCx?: CX;
     /** overrides rendering of HTML Input element  */
-    renderInput?: (props: IRenderInputProps) => JSX.Element;
+    renderInput?: (props: IRenderInputProps) => React.JSX.Element;
 }
 
 export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props, ref) => {
@@ -118,35 +117,13 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
             : props?.rawProps?.dir, // TODO: remove after browser bug fix
     });
 
-    const getIcon = (): React.ReactNode => {
-        if (!props.icon) {
-            return null;
-        }
-
-        if (
-            !props.onIconClick
-            || props.isDisabled
-            || props.isReadonly
-        ) {
-            return (
-                <IconContainer
-                    icon={ props.icon }
-                />
-            );
-        }
-
-        return (
-            <IconButton
-                icon={ props.icon }
-                onClick={ props.onIconClick }
-                rawProps={ {
-                    'aria-label': 'Icon in input',
-                } }
-            />
-        );
-    };
-
-    const icon = getIcon();
+    const icon = (
+        <ControlIcon
+            icon={ props.icon }
+            onClick={ props.onIconClick }
+            isDisabled={ props.isDisabled || props.isReadonly }
+        />
+    );
     const showIconsOnAction = props.value && !props.isReadonly && !props.isDisabled;
 
     const handleWrapperClick = (event: React.MouseEvent<HTMLElement>) => {

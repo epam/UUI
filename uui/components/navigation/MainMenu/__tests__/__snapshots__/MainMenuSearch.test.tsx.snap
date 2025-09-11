@@ -6,7 +6,7 @@ exports[`MainMenuSearch should be rendered correctly with null value 1`] = `
     class="container uui-input-box searchInput"
   >
     <div
-      class="container uui-icon uui-enabled"
+      class="container uui-icon uui-enabled controlIcon"
     >
       <svg
         class=""
@@ -28,7 +28,7 @@ exports[`MainMenuSearch should be rendered correctly with value and extra props 
     class="container uui-input-box searchInput"
   >
     <div
-      class="container uui-icon uui-enabled"
+      class="container uui-icon uui-enabled controlIcon"
     >
       <svg
         class=""

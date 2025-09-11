@@ -6,7 +6,7 @@ exports[`DatePicker should render with maximum props defined 1`] = `
     class="container uui-input-box root uui-size-36 uui-control-mode-form"
   >
     <div
-      class="container uui-icon uui-enabled"
+      class="container uui-icon uui-enabled controlIcon"
     >
       <svg
         class=""
@@ -29,7 +29,7 @@ exports[`DatePicker should render with minimum props defined 1`] = `
     class="container uui-input-box root uui-size-36 uui-control-mode-form"
   >
     <div
-      class="container uui-icon uui-enabled"
+      class="container uui-icon uui-enabled controlIcon"
     >
       <svg
         class=""

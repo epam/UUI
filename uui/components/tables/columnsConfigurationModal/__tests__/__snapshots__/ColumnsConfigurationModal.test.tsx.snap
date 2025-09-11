@@ -54,7 +54,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           class="container uui-input-box root uui-size-30 uui-control-mode-form"
         >
           <div
-            class="container uui-icon uui-enabled"
+            class="container uui-icon uui-enabled controlIcon"
           >
             <svg
               class=""
