@@ -7,7 +7,6 @@
         "text": "VirtualList provides a scrollable container, which renders only a visible part of a list of components. It automatically measures the height of items to detect the position of the visible portion and adjusts scroll values and container height.",
         "font-size": "12pt",
         "font-family": null,
-        "color": "#303240",
         "background-color": null,
         "font-weight": "400",
         "font-style": null,

@@ -214,7 +214,7 @@ function RemovePresetConfirmationModal({ presetName, ...modalProps }: IModal<str
             <ModalWindow>
                 <Panel>
                     <ModalHeader title="Delete preset" onClose={ () => modalProps.abort() } />
-                    <ScrollBars hasTopShadow hasBottomShadow>
+                    <ScrollBars overflowTopEffect="line" overflowBottomEffect="line">
                         <FlexRow padding="24">
                             <Text size="36">
                                 { content }

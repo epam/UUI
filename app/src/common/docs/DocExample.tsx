@@ -108,6 +108,7 @@ export function DocExample(props: DocExampleProps) {
                         cx={ [css.containerFooter] }
                         columnGap="12"
                         rawProps={ { role: 'toolbar', 'aria-label': 'Documentation example controls' } }
+                        borderBottom={ showCode }
                     >
                         <Switch
                             value={ showCode }

@@ -10,7 +10,7 @@ function ModalWithDisabledClickOutsideAndCross(props: IModal<string>) {
             <ModalWindow>
                 <Panel background="surface-main">
                     <ModalHeader title="Simple modal example " />
-                    <ScrollBars hasTopShadow hasBottomShadow>
+                    <ScrollBars overflowTopEffect="line" overflowBottomEffect="line">
                         <FlexRow padding="24" vPadding="12">
                             <Text size="36">
                                 {' '}

@@ -3,63 +3,86 @@
 exports[`DataTable should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
-    class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer user-class uui-dt-vars uui-data_table"
-    style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+    class="root scrollContainer root user-class uui-dt-vars uui-data_table uui-scroll-bars"
+    data-overlayscrollbars="host"
+    data-overlayscrollbars-initialize=""
   >
     <div
-      aria-colcount="0"
-      role="table"
-      style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+      class="os-size-observer"
     >
       <div
-        class="stickyHeader uui-dt-sticky_header"
+        class="os-size-observer-listener"
+      />
+    </div>
+    <div
+      class=""
+      data-overlayscrollbars-padding=""
+      style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; left: 0px; width: calc(100% + 0px);"
+    >
+      <div
+        aria-colcount="0"
+        class="viewport"
+        data-overlayscrollbars-contents=""
+        data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
+        role="table"
+        style="padding: 0px 0px 0px 0px;"
+        tabindex="-1"
       >
         <div
-          class="container uui-table-row-container root root uui-dt-vars uui-table-header-row"
-          role="row"
-          style="min-width: 0px;"
+          class="stickyHeader uui-dt-sticky_header"
         >
           <div
-            class="section scrollingSection uui-table-scrolling-section"
-            style="flex: 1 0 0px; min-width: 0px; --uui-dt-cell-border-width: 1px;"
+            class="container uui-table-row-container root root uui-dt-vars uui-scroll-shadow-top uui-table-header-row"
+            role="row"
+            style="min-width: 0px;"
+          >
+            <div
+              class="section scrollingSection uui-table-scrolling-section"
+              style="flex: 1 0 0px; min-width: 0px; --uui-dt-cell-border-width: 1px;"
+            />
+          </div>
+        </div>
+        <div
+          class="listContainer uui-dt-data_row_container"
+          style="min-height: NaNpx;"
+        >
+          <div
+            role="rowgroup"
+            style="margin-top: 0px;"
           />
         </div>
         <div
-          class="uui-scroll-shadow-top"
+          aria-busy="false"
+          aria-label=""
+          aria-live="polite"
+          class="container uui-blocker-container root"
+          role="status"
         />
       </div>
+    </div>
+    <div
+      class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+      style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
+    >
       <div
-        class="listContainer uui-dt-data_row_container"
-        style="min-height: NaNpx;"
+        class="os-scrollbar-track"
       >
         <div
-          role="rowgroup"
-          style="margin-top: 0px;"
+          class="os-scrollbar-handle"
         />
       </div>
     </div>
     <div
-      aria-busy="false"
-      aria-label=""
-      aria-live="polite"
-      class="container uui-blocker-container root"
-      role="status"
-    />
-    <div
-      class="uui-track-horizontal"
-      style="position: absolute; height: 6px; display: none;"
+      class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+      style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
     >
       <div
-        class="uui-thumb-horizontal"
-      />
-    </div>
-    <div
-      class="uui-track-vertical"
-      style="position: absolute; width: 6px; display: none;"
-    >
-      <div
-        class="uui-thumb-vertical"
-      />
+        class="os-scrollbar-track"
+      >
+        <div
+          class="os-scrollbar-handle"
+        />
+      </div>
     </div>
   </div>
 </DocumentFragment>

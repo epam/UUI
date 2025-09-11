@@ -35,7 +35,7 @@ function FirstModal(props: IModal<string>) {
             <ModalWindow>
                 <Panel background="surface-main">
                     <ModalHeader title="First Modal" onClose={ props.abort } />
-                    <ScrollBars hasTopShadow hasBottomShadow>
+                    <ScrollBars overflowTopEffect="line" overflowBottomEffect="line">
                         <FlexRow padding="24" vPadding="12">
                             <Text size="36">
                                 This is the first modal. When you open a second modal from this one,
@@ -72,7 +72,7 @@ function SecondModal(props: IModal<string>) {
             <ModalWindow>
                 <Panel background="surface-main">
                     <ModalHeader title="Second Modal" onClose={ props.abort } />
-                    <ScrollBars hasTopShadow hasBottomShadow>
+                    <ScrollBars overflowTopEffect="line" overflowBottomEffect="line">
                         <FlexRow padding="24" vPadding="12">
                             <Text size="36">
                                 This is the second modal (topmost). When you press ESC,
