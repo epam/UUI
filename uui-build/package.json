@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "6.1.5-beta.7",
+  "version": "6.1.5-beta.8",
   "bin": {
     "epam-uui-build": "./bin/cli.js"
   },
