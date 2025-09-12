@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DataSourceState, IImmutableMap, IMap, LazyDataSourceApi } from '../../../../../../../types';
 import { TreeState } from '../../../treeState';
 import { usePrevious } from '../../../../../../../hooks/usePrevious';
@@ -56,12 +56,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
         [itemsStatusMap, externalItemsStatusCollector],
     );
 
-    const watchedApi = useMemo(
-        () => itemsStatusCollector.watch(api),
-        [itemsStatusCollector, api],
-    );
-
-    const loadData = useCallback(async (
+    const loadData = async (
         sourceTree: TreeState<TItem, TId>,
         dsState: DataSourceState<TFilter, TId> = {},
     ): Promise<LoadResult<TItem, TId>> => {
@@ -71,7 +66,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
             const newTreePromise = sourceTree.loadAll<TFilter>({
                 using: partialDsState.search ? 'visible' : undefined,
                 options: {
-                    api: watchedApi,
+                    api: itemsStatusCollector.watch(api),
                     filter: {
                         ...dsState?.filter,
                     },
@@ -92,7 +87,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
             console.error('useLoadData: Error while loading items.', e);
             return { isUpdated: false, isOutdated: false, tree: loadingTree, error: e };
         }
-    }, [api]);
+    };
 
     const shouldForceReload = prevForceReload !== forceReload && forceReload;
 
