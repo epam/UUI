@@ -6,7 +6,7 @@
         "text": "This example demonstrates how to add additional items on the same row as "
       },
       {
-        "text": "TabList",
+        "text": "Tabs",
         "uui-richTextEditor-code": true
       },
       {
@@ -90,7 +90,7 @@
               },
               {
                 "color": "rgb(48, 50, 64)",
-                "text": "TabList",
+                "text": "Tabs",
                 "uui-richTextEditor-code": true
               },
               {

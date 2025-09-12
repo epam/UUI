@@ -1,0 +1,24 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Content that scrolls both horizontally and vertically using CSS Grid with max-content sizing. Use "
+      },
+      {
+        "text": "minWidth: 'max-content'",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "minHeight: 'max-content'",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " on grid container."
+      }
+    ]
+  }
+]

@@ -19,7 +19,7 @@ export function ScrollSpyModal() {
                     <ModalWindow>
                         <Panel background="white">
                             <ModalHeader title="Continue reading? " onClose={ () => modalProps.abort() } />
-                            <ScrollBars hasTopShadow hasBottomShadow>
+                            <ScrollBars overflowTopEffect="line" overflowBottomEffect="line">
                                 <FlexRow padding="24">
                                     <Text size="36">Would you like to continue reading from the place you previously stopped?</Text>
                                 </FlexRow>

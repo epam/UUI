@@ -34,7 +34,6 @@ export function useSearchTree<TItem, TId, TFilter = any>(
         dataSourceState: { search },
         getSearchFields,
         sortSearchByRelevance,
-        isLoading,
     }: UseSearchTreeProps<TItem, TId, TFilter>,
     deps: any[] = [],
 ) {
@@ -42,7 +41,7 @@ export function useSearchTree<TItem, TId, TFilter = any>(
 
     const searchTree = useUpdateTree({
         tree,
-        shouldUpdate: () => search !== prevSearch,
+        shouldUpdate: () => !tree.isBlank() && search !== prevSearch,
         update: (currentTree) => SearchHelper.search({
             tree: currentTree,
             newTreeInstance,
@@ -52,7 +51,7 @@ export function useSearchTree<TItem, TId, TFilter = any>(
         }),
     }, [search, ...deps]);
 
-    if (isLoading || searchTree === null) {
+    if (tree === null || tree.isBlank()) {
         return tree;
     }
 

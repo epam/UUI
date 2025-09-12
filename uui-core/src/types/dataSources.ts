@@ -120,7 +120,8 @@ export interface IDataSource<TItem, TId, TFilter> {
  */
 export interface PatchOptions<TItem, TId> extends SortConfig<TItem> {
     /**
-     * Items, which should be added/updated/deleted from the tree.
+     * Edited items array, which should be added/updated/deleted upon the tree.
+     * Note: Search and filter are not applied to the patched items. This is to ensure that newly added or edited items are not filtered out from the view.
      */
     patch?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
 

@@ -1,17 +1,17 @@
 import { renderWithContextAsync, screen, userEvent, within } from '@epam/uui-test-utils';
-import { type TabListItemProps, TabList } from '../TabList';
+import { type TabsItemProps, Tabs } from '../Tabs';
 
-const tab1: TabListItemProps = {
+const tab1: TabsItemProps = {
     id: 'tab-1',
     caption: 'Tab 1',
 };
 
-const tab2: TabListItemProps = {
+const tab2: TabsItemProps = {
     id: 'tab-2',
     caption: 'Tab 2',
 };
 
-const items: Array<TabListItemProps> = [
+const items: Array<TabsItemProps> = [
     tab1,
     tab2,
     {
@@ -23,7 +23,7 @@ const items: Array<TabListItemProps> = [
 describe('static rendering', () => {
     test('sets correct aria-orientation and role to tab list', async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ items }
                 value="tab-1"
                 onValueChange={ jest.fn() }
@@ -37,7 +37,7 @@ describe('static rendering', () => {
 
     test('renders nothing if items array is empty', async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ [] }
                 value="tab-1"
                 onValueChange={ jest.fn() }
@@ -51,7 +51,7 @@ describe('static rendering', () => {
 
     test('sets id to tab', async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ [
                     tab1,
                     tab2,
@@ -70,7 +70,7 @@ describe('static rendering', () => {
 
     test("renders inactive tabs if value doesn't match any tab id", async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ [
                     tab1,
                     tab2,
@@ -90,7 +90,7 @@ describe('static rendering', () => {
 
     test('renders tabs with one of them selected', async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ [
                     tab1,
                     tab2,
@@ -112,7 +112,7 @@ describe('static rendering', () => {
 describe('focus managements', () => {
     test('focuses on an active tab when pressing Tab', async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ items }
                 value="tab-1"
                 onValueChange={ jest.fn() }
@@ -129,7 +129,7 @@ describe('focus managements', () => {
 
     test("moves focus to the first tab when 'Home' key is pressed", async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ items }
                 value="tab-2"
                 onValueChange={ jest.fn() }
@@ -147,7 +147,7 @@ describe('focus managements', () => {
 
     test("moves focus to the last tab when 'End' key is pressed", async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ items }
                 value="tab-2"
                 onValueChange={ jest.fn() }
@@ -165,7 +165,7 @@ describe('focus managements', () => {
 
     test('moves focus to the next tab when right arrow key is pressed', async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ items }
                 value="tab-2"
                 onValueChange={ jest.fn() }
@@ -183,7 +183,7 @@ describe('focus managements', () => {
 
     test('moves focus to the next tab when left arrow key is pressed', async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ items }
                 value="tab-2"
                 onValueChange={ jest.fn() }
@@ -201,7 +201,7 @@ describe('focus managements', () => {
 
     test('moves focus to the first tab when the last tab is focused and right arrow key is pressed', async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ items }
                 value="tab-3"
                 onValueChange={ jest.fn() }
@@ -219,7 +219,7 @@ describe('focus managements', () => {
 
     test('moves focus to the last tab when the first tab is focused and left arrow key is pressed', async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ items }
                 value="tab-1"
                 onValueChange={ jest.fn() }
@@ -238,7 +238,7 @@ describe('focus managements', () => {
     test('calls a custom `onKeyDown` callback', async () => {
         const onKeyDown = jest.fn();
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ [
                     {
                         ...tab1,
@@ -267,7 +267,7 @@ describe('tab activation', () => {
         const onClick = jest.fn();
         const onKeyDown = jest.fn();
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ [
                     tab1,
                     {
@@ -299,7 +299,7 @@ describe('tab activation', () => {
         const onClick = jest.fn();
         const onKeyDown = jest.fn();
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ [
                     tab1,
                     {
@@ -331,7 +331,7 @@ describe('tab activation', () => {
         const onClick = jest.fn();
         const onKeyDown = jest.fn();
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ [
                     {
                         ...tab1,
@@ -377,7 +377,7 @@ describe('tab activation', () => {
         const onClick = jest.fn();
         const onKeyDown = jest.fn();
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ [
                     {
                         ...tab1,
@@ -422,7 +422,7 @@ describe('tab activation', () => {
 describe('customization', () => {
     test('sets custom raw props to tab list', async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ items }
                 value="tab-1"
                 onValueChange={ jest.fn() }
@@ -442,7 +442,7 @@ describe('customization', () => {
 
     test('sets a custom class to tab list', async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ items }
                 value="tab-1"
                 onValueChange={ jest.fn() }
@@ -458,7 +458,7 @@ describe('customization', () => {
 
     test('replaces default attributes in tab list', async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ items }
                 value="tab-1"
                 onValueChange={ jest.fn() }
@@ -477,7 +477,7 @@ describe('customization', () => {
 
     test('replaces default attributes in tab', async () => {
         await renderWithContextAsync(
-            <TabList
+            <Tabs
                 items={ [
                     {
                         ...tab1,

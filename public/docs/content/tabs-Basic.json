@@ -1,0 +1,27 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This example shows how to achieve the tab list behavior using "
+      },
+      {
+        "type": "link",
+        "url": "http://localhost:3793/documents?id=tabs",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "Tabs"
+          }
+        ]
+      },
+      {
+        "text": " ",
+        "color": "rgb(48, 50, 64)"
+      },
+      {
+        "text": "component."
+      }
+    ]
+  }
+]

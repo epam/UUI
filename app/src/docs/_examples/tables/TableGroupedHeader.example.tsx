@@ -70,7 +70,7 @@ export default function TableGroupedHeaderExample() {
             group: 'location', // Specify group key
             render: (p) => <Text>{p.officeAddress}</Text>,
             grow: 0,
-            width: 150,
+            width: 140,
             isSortable: true,
         },
         {
@@ -78,7 +78,7 @@ export default function TableGroupedHeaderExample() {
             caption: 'Title',
             group: 'position', // Specify group key
             render: (r) => <Text>{r.jobTitle}</Text>,
-            width: 180,
+            width: 170,
             isSortable: true,
         },
         {
@@ -86,9 +86,15 @@ export default function TableGroupedHeaderExample() {
             caption: 'Track & Level',
             group: 'position', // Specify group key
             render: (p) => <Text>{p.titleLevel}</Text>,
-            grow: 1,
-            width: 100,
+            width: 110,
             isSortable: true,
+        },
+        {
+            key: 'actions',
+            caption: '',
+            render: () => {},
+            width: 54,
+            fix: 'right',
         },
     ];
 
@@ -106,7 +112,7 @@ export default function TableGroupedHeaderExample() {
                 onValueChange={ setTableState }
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }
-                showColumnsConfig={ false }
+                showColumnsConfig={ true }
                 columnGroups={ columnGroups }
                 columns={ personColumns }
                 headerTextCase="upper"

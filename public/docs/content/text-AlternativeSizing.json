@@ -1,0 +1,38 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "If your use case does not require default sizing behavior and additional padding disrupts your layout, set the "
+      },
+      {
+        "text": "size",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop to "
+      },
+      {
+        "text": "none",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". \nYou can then directly configure the sizing of the Text component using the "
+      },
+      {
+        "text": "lineHeight",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "fontSize",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " props."
+      }
+    ]
+  }
+]
