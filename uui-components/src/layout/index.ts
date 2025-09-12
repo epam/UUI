@@ -4,6 +4,5 @@ export * from './LabeledInput';
 export * from './IconContainer';
 export * from './ControlGroup';
 export * from './Blocker';
-export * from './ScrollBars';
 export * from '../adaptivePanel/AdaptivePanel';
 export * from '../adaptivePanel/types';

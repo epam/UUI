@@ -223,7 +223,7 @@ export default function FiltersPanelExample() {
         const newState = state;
 
         // Reset city filter value if country filter was changed
-        if (state.filter.countryId !== tableState.filter.countryId) {
+        if (state.filter?.countryId !== tableState.filter?.countryId) {
             newState.filter.cityId = undefined;
         }
 

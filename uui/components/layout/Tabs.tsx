@@ -7,19 +7,19 @@ type TabId = string;
 
 type TabElement = | HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement;
 
-export type TabListItemProps = TabButtonProps & {
+export type TabsItemProps = TabButtonProps & {
     /** Ref to the tab button. */
     ref?: ForwardedRef<TabElement>;
     /** ID of the tab button. There should be only one element with such ID on a page. */
     id: TabId;
 };
 
-export interface TabListProps extends IControlled<TabId>, FlexRowProps {
+export interface TabsProps extends IControlled<TabId>, FlexRowProps {
     /** `TabButton` props with required `id` field. */
-    items: Array<TabListItemProps>;
+    items: Array<TabsItemProps>;
 }
 
-export const TabList = forwardRef<HTMLDivElement, TabListProps>((props, ref) => {
+export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     const { items, value, onValueChange, borderBottom = true, rawProps, ...otherProps } = props;
 
     if (items.length === 0) {
@@ -149,4 +149,4 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>((props, ref) => 
     );
 });
 
-TabList.displayName = 'TabList';
+Tabs.displayName = 'Tabs';

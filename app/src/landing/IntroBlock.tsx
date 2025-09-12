@@ -24,7 +24,7 @@ import {
     FlexSpacer,
     BadgeProps,
     IconButton,
-    TabList,
+    Tabs,
 } from '@epam/uui';
 import { DataQueryFilter, DropdownBodyProps, INotification, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import cx from 'classnames';
@@ -180,7 +180,7 @@ export function IntroBlock() {
                         { renderComponentsDemo() }
                         <div className={ css.componentsWrapper }>
                             <Panel background="surface-main" shadow={ true } cx={ css.infoComponentsWrapper }>
-                                <TabList
+                                <Tabs
                                     value={ tabValue }
                                     onValueChange={ onTabValueChange }
                                     items={ [

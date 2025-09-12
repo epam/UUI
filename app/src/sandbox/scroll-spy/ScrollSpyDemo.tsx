@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-    FlexRow, FlexSpacer, Panel, ScrollBars, Text, TabList,
+    FlexRow, FlexSpacer, Panel, ScrollBars, Text, Tabs,
 } from '@epam/promo';
 import { ScrollSpyForm } from './ScrollSpyForm';
 import { ScrollSpyModal } from './ScrollSpyModal';
@@ -35,7 +35,7 @@ export function ScrollSpyDemo() {
                 </Text>
                 <FlexSpacer />
             </FlexRow>
-            <TabList
+            <Tabs
                 value={ page }
                 onValueChange={ (pageNext: Pages) => {
                     if (pageNext !== page) {

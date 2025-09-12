@@ -1,0 +1,13 @@
+{
+    "id": "scrollBars",
+    "name": "Scroll Bars",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "scrollBars-descriptions" },
+        { "name": "Basic", "componentPath": "scrollBars/Basic.example.tsx" },
+        { "name": "Autohide Configuration", "componentPath": "scrollBars/AutohideConfiguration.example.tsx" },
+        { "name": "With Shadows", "componentPath": "scrollBars/WithShadows.example.tsx" },
+        { "name": "In Modal", "componentPath": "modals/Basic.example.tsx" }
+    ],
+    "tags": ["ScrollBars", "Scroll"]
+}

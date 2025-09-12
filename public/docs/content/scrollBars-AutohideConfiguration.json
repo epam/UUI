@@ -1,0 +1,24 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Interactive example showing different auto-hide and visibility options for scrollbars. Configure with "
+      },
+      {
+        "text": "autoHide",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "autoHideTimeout",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " props."
+      }
+    ]
+  }
+]

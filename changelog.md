@@ -4,15 +4,33 @@
 * [TabList] Create the component ([#2857](https://github.com/epam/UUI/pull/2857))
 * [TabButton] Activate tab button by pressing "Space" key ([#2857](https://github.com/epam/UUI/pull/2857))
 * [FiltersPanel]: added 'disableClear' and 'filter' props for picker filters
+* [ApiContext][Breaking Change]:
+    * ApiContext no longer supports auth recovery via the 'message' event; it now uses the 'storage' event instead;
+        - To switch to the handling via `localStorage` replace code of `apiReloginPath` endpoint to `<html><script>window.localStorage.setItem("uui-auth-recovery-success", "true"); window.close();</script></html>`
+    * The 'opener' is cleared when the auth recovery popup is opened
+* [DataTable]: add support of columns configuration modal for table with grouped columns
+* [ScrollBars]: migrated from deprecated `react-custom-scrollbars-2` to modern `overlayscrollbars-react` library to fix multiple issues and improve stability. This migration improved scrollbar styling, expanded API capabilities, but introduced breaking changes:
+    * [Breaking Change] base component removed from `@epam/uui-components`, all types moved to `@epam/uui`;
+    * [Breaking Change] Ref API changed from `{ container: HTMLDivElement | undefined }` to `{ container: HTMLElement | null, view: HTMLElement | null }`;
+    * [Breaking Change] `autoHide` prop changed from `boolean` to string values `('never' | 'scroll' | 'move' | 'leave')`, `autoHideTimeout` & `autoHideDuration` replaced with `autoHideDelay`;
+    * [Breaking Change] removed render callbacks `renderView, renderTrackHorizontal, renderTrackVertical, renderThumbHorizontal, renderThumbVertical` - now you can customize them via classes and uui css variables;
+    * [Breaking Change] shadows API changed from `hasTopShadow, hasBottomShadow` to `overflowTopEffect, overflowBottomEffect` with `'line' | 'shadow' | 'none'` values. ScrollBars now handle overflow effects internally - if you had custom shadow/border styling, you can remove it and use the new props instead;
+    * overflow management centralized: previously each component (DataTable, VirtualList, Modals) had custom shadow implementations, now all use unified ScrollBars system with automatic CSS classes `.-scrolled-top`, `.-scrolled-bottom`, `.-scrolled-left`, `.-scrolled-right`. Removed old shadow classes `uui-shadow-top-visible`, `uui-shadow-bottom-visible` in favor of unified system;
+    * [Breaking Change] HTML attributes removed from ScrollBars interface - use `rawProps` instead;
+    * [Breaking Change] on macOS scrollbars now use custom UUI styling and behavior by default instead of native system scrollbars - use `autoHide` prop to control visibility;
+    * added RTL support and performance optimizations (ResizeObserver, passive listeners);
 
 **What's Fixed**
 * [useForm]: improved router block removal on discard and custom beforeLeave for close action. Rework useLock to unblock router immediately, rather than on next render
-* [Modals]: fixed incorrect order of abort() calls when pressing ESC with nested modals — now only the topmost modal responds to ESC key
-* Make clear buttons accessible via keyboards ([#2845](https://github.com/epam/UUI/pull/2845))
+* [Modals]: fixed incorrect order of abort() calls when pressing ESC with nested modals — now only the topmost modal responds to ESC key ([#2873](https://github.com/epam/UUI/issues/2873))
+* [Text]: changed `fontSize` and `lineHeight` props typings from strict string literal to more common `number | string` type, to support varied customization cases
+* [RangeDatePicker]: undefined value in preset range now applies like an empty date, not the current one ([#2879](https://github.com/epam/UUI/issues/2879))
+* [ScrollBars]: fixed issues [#1645](https://github.com/epam/UUI/issues/1645), [#2548](https://github.com/epam/UUI/issues/2548), [#2644](https://github.com/epam/UUI/issues/2644), [#2882](https://github.com/epam/UUI/issues/2882), [#2893](https://github.com/epam/UUI/issues/2893)
+* Make clear buttons accessible via keyboard ([#2845](https://github.com/epam/UUI/pull/2845))
 
 # 6.2.0 - 05.08.2025
 **What's New**
-* Introduced a UUI docs MCP server for LLM Agents like Cursor IDE and Copilot. 
+* Introduced a UUI docs MCP server for LLM Agents like Cursor IDE and Copilot.
   These MCP tools will respond with comprehensive UUI documentation for each component, including API details, descriptions, and code examples. This will add additional context about UUI usage for LLMs.
   * To connect it to the Cursor IDE, add the following content to `.cursor/mcp.json` file:
     ```
@@ -22,13 +40,13 @@
       }
     }
     ```
-  * For Copilot instructions, read [this](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/use-the-github-mcp-server?tool=jetbrains)  
-* Remove support of deprecated `@epam/draft-rte` package, this package source code was removed and will no longer receive new updated and release. 
-* [MainMenu][Breaking Change]: 
+  * For Copilot instructions, read [this](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/use-the-github-mcp-server?tool=jetbrains)
+* Remove support of deprecated `@epam/draft-rte` package, this package source code was removed and will no longer receive new updated and release.
+* [MainMenu][Breaking Change]:
   * Removed deprecated `children` support, use `items` prop instead
-  * removed outdated customer logo(`customerLogoUrl`, `customerLogoLink`, `customerLogoHref`, `customerLogoBgColor`) and `isTransparent` props. 
-  * removed `Burger`, `renderBurger`, `alwaysShowBurger` props, use `Burger` component in items with `collapsedContainer: true` option. 
-  * removed `appLogoUrl`, `logoLink`, `onLogoClick` prop, use `MainMenuLogo` component instead. 
+  * removed outdated customer logo(`customerLogoUrl`, `customerLogoLink`, `customerLogoHref`, `customerLogoBgColor`) and `isTransparent` props.
+  * removed `Burger`, `renderBurger`, `alwaysShowBurger` props, use `Burger` component in items with `collapsedContainer: true` option.
+  * removed `appLogoUrl`, `logoLink`, `onLogoClick` prop, use `MainMenuLogo` component instead.
   * see example [here](https://uui.epam.com/documents?id=mainMenu&mode=doc&category=components#examples-mainMenu-Responsive)
 
     ```tsx
@@ -79,7 +97,7 @@
     * "Duplicate" action is now only available for unchanged presets
     * "Copy Link" action copies a link to the current (modified) state if the preset is changed, or to the saved preset otherwise
     * Added `onCopyLink` prop to customize or disable the "Copy Link" action (set to `null` to hide the action)
-* [Tree]: 
+* [Tree]:
   * reworked with improved functionality and styling, moved from `@epam/uui-components` to `@epam/uui` package
   * See docs [here](https://uui.epam.com/documents?id=tree&mode=doc&category=components)
 * [DataTable]: added disableVirtualization prop to turn off rows virtualization

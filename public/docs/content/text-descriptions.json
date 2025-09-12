@@ -4,32 +4,20 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Displays a single-line text with various configurations."
+        "text": "Displays a simple text with various configurations."
       }
     ]
   },
   {
-    "data": {},
     "type": "paragraph",
     "children": [
       {
-        "text": "Sizes are aligned to other components (e.g., TextInput, Button), so it can be used it to align text to other components."
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "For multiline text, it's better to use "
+        "text": "For complex texts with varied styling, it is recommended to use the "
       },
       {
-        "data": {
-          "url": "https://uui.epam.com/documents?id=richTextView&mode=doc&skin=UUI4_promo&category=components"
-        },
         "type": "link",
-        "url": "https://uui.epam.com/documents?id=richTextView&mode=doc&skin=UUI4_promo&category=components",
+        "url": "/documents?id=richTextView",
+        "target": "_blank",
         "children": [
           {
             "text": "RichTextView"

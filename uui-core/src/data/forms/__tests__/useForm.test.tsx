@@ -992,5 +992,50 @@ describe('useForm', () => {
 
             expect(result.current.serverValidationState).toBe(undefined);
         });
+
+        it('Should perform server validation in case of save from beforeLeave callback', async () => {
+            const serverResponse: FormSaveResponse<IAdvancedFoo> = {
+                validation: {
+                    isInvalid: true,
+                    validationProps: {
+                        dummy: {
+                            isInvalid: true,
+                            validationMessage: 'Test error',
+                        },
+                        deep: {
+                            isInvalid: true,
+                            validationProps: {
+                                inner: {
+                                    isInvalid: true,
+                                    validationMessage: 'Inner test error',
+                                },
+                            },
+                        },
+                    },
+                },
+            };
+
+            const saveMock = jest.fn().mockResolvedValue(serverResponse);
+            const beforeLeaveMock = jest.fn().mockResolvedValue(true);
+
+            const { result, svc } = await renderHookWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
+                useForm({
+                    value: { dummy: '', deep: { inner: '' } },
+                    onSave: saveMock,
+                    onSuccess: () => '',
+                    getMetadata: () => testMetadataLocal,
+                    beforeLeave: beforeLeaveMock,
+                }));
+
+            act(() => result.current.lens.prop('dummy').set('hi'));
+            expect(result.current.isChanged).toBe(true);
+
+            await act(() => svc.uuiRouter.redirect('/'));
+
+            expect(beforeLeaveMock).toHaveBeenCalled();
+            expect(saveMock).toHaveBeenCalled();
+            expect(result.current.isInvalid).toBe(true);
+            expect(result.current.isChanged).toBe(true);
+        });
     });
 });

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, FlexRow, FlexSpacer, TabList, type TabListItemProps } from '@epam/uui';
+import { Button, FlexRow, FlexSpacer, Tabs, type TabsItemProps } from '@epam/uui';
 import { TMode } from '../../docsConstants';
 import { ReactComponent as NavigationShowOutlineIcon } from '@epam/assets/icons/navigation-show-outline.svg';
 import css from './tabsNav.module.scss';
@@ -65,13 +65,13 @@ export function TabsNav(props: TTabsNavProps) {
                 </Button>
             ) }
 
-            <TabList
+            <Tabs
                 value={ mode }
                 onValueChange={ (modeNext: TMode) => {
                     onChangeMode(modeNext);
                 } }
                 items={
-                    Object.keys(allTabs).reduce<TabListItemProps[]>((acc, tm) => {
+                    Object.keys(allTabs).reduce<TabsItemProps[]>((acc, tm) => {
                         if (supportedModes.includes(tm as TMode) || (tm as TMode) === mode) {
                             const data = allTabs[tm as TMode];
 

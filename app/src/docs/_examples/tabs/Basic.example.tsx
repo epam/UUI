@@ -1,4 +1,4 @@
-import { FlexCell, TabList } from '@epam/uui';
+import { FlexCell, Tabs } from '@epam/uui';
 import React, { type ReactNode, useState } from 'react';
 
 export default function BasicTabListExample(): ReactNode {
@@ -8,7 +8,7 @@ export default function BasicTabListExample(): ReactNode {
         <FlexCell
             grow={ 1 }
         >
-            <TabList
+            <Tabs
                 items={ [
                     {
                         id: 'basic-tab-1',

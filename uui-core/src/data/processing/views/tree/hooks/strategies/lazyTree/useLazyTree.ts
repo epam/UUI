@@ -164,7 +164,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     const treeWithSelectedOnly = useSelectedOnlyTree({
         tree: treeWithDataActual,
         dataSourceState,
-        isLoading: isLoading || isFetching,
     }, [treeWithDataActual]);
 
     const { tree, applyPatch } = usePatchTree({

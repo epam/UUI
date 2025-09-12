@@ -89,181 +89,59 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         class="uui-panel root uui-surface-main mainPanel container"
       >
         <div
-          class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
-          style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+          class="root uui-scroll-bars"
+          data-overlayscrollbars="host"
+          data-overlayscrollbars-initialize=""
         >
           <div
-            style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto;"
+            class="os-size-observer"
           >
             <div
-              class="root uui-flex-row group uui-size-36"
-            >
-              <div
-                class="root uui-text uui-size-none uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline groupTitle container"
-              >
-                Displayed in table
-              </div>
-              <div
-                class="root uui-count_indicator uui-size-18 uui-color-neutral"
-              >
-                2
-              </div>
-              <div
-                class="flexSpacer"
-              />
-            </div>
-            <div
-              aria-expanded="true"
-              class="uui-accordion-container container uui-opened subgroupAccordion"
-            >
-              <div
-                class="uui-accordion-toggler uui-opened"
-                tabindex="0"
-              >
-                <div
-                  class="uui-accordion-toggle-container"
-                >
-                  <div
-                    class="root uui-flex-row subgroup uui-size-36"
-                  >
-                    <div
-                      class="container uui-icon uui-enabled"
-                    >
-                      <svg
-                        class=""
-                      />
-                    </div>
-                    <div
-                      class="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline subgroupTitle container"
-                    >
-                      Pinned to the left
-                    </div>
-                  </div>
-                  <div
-                    class="container uui-icon uui-enabled arrow"
-                  />
-                </div>
-              </div>
-              <div
-                class="uui-accordion-body"
-                role="region"
-              >
-                <div
-                  class="root uui-flex-row groupItems uui-size-30"
-                >
-                  <div
-                    class="root uui-flex-row rowWrapper uui-dt-columns-config-row uui-size-30 alignItems"
-                    style="--uui-flex-row-align-items: flex-start;"
-                  >
-                    <div
-                      class="dragHandle dndDisabled container uui-drag-handle uui-disabled"
-                    >
-                      <div
-                        class="container uui-icon uui-disabled"
-                      >
-                        <svg
-                          class=""
-                        />
-                      </div>
-                    </div>
-                    <label
-                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary checkbox uui-readonly"
-                    >
-                      <div
-                        class="uui-checkbox uui-checked"
-                      >
-                        <input
-                          aria-checked="true"
-                          aria-readonly="true"
-                          checked=""
-                          readonly=""
-                          tabindex="-1"
-                          type="checkbox"
-                        />
-                        <div
-                          class="container uui-icon uui-enabled"
-                        >
-                          <svg
-                            class=""
-                          />
-                        </div>
-                      </div>
-                      <div
-                        class="uui-input-label"
-                      >
-                        ID
-                      </div>
-                    </label>
-                    <div
-                      class="root uui-flex-row pinIconButton"
-                    >
-                      <button
-                        aria-disabled="true"
-                        class="uui-button-box uui-disabled container uui-icon_button uui-color-primary root pinTogglerIcon"
-                        tabindex="-1"
-                        type="button"
-                      >
-                        <div
-                          class="container uui-icon uui-enabled"
-                        >
-                          <svg
-                            class=""
-                          />
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="root uui-flex-row hDivider"
+              class="os-size-observer-listener"
             />
+          </div>
+          <div
+            class=""
+            data-overlayscrollbars-padding=""
+            style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; left: 0px; width: calc(100% + 0px);"
+          >
             <div
-              aria-expanded="true"
-              class="uui-accordion-container container uui-opened subgroupAccordion"
+              class="viewport"
+              data-overlayscrollbars-contents=""
+              data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
+              style="padding: 0px 0px 0px 0px;"
+              tabindex="-1"
             >
               <div
-                class="uui-accordion-toggler uui-opened"
-                tabindex="0"
+                class="root uui-flex-row group uui-size-36"
               >
                 <div
-                  class="uui-accordion-toggle-container"
+                  class="root uui-text uui-size-none uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline groupTitle container"
                 >
-                  <div
-                    class="root uui-flex-row subgroup uui-size-36"
-                  >
-                    <div
-                      class="container uui-icon uui-enabled"
-                    >
-                      <svg
-                        class=""
-                      />
-                    </div>
-                    <div
-                      class="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline subgroupTitle container"
-                    >
-                      Not pinned
-                    </div>
-                  </div>
-                  <div
-                    class="container uui-icon uui-enabled arrow"
-                  />
+                  Displayed in table
                 </div>
+                <div
+                  class="root uui-count_indicator uui-size-18 uui-color-neutral"
+                >
+                  2
+                </div>
+                <div
+                  class="flexSpacer"
+                />
               </div>
               <div
-                class="uui-accordion-body"
-                role="region"
+                aria-expanded="true"
+                class="uui-accordion-container container uui-opened subgroupAccordion"
               >
                 <div
-                  class="root uui-flex-row groupItems uui-size-30"
+                  class="uui-accordion-toggler uui-opened"
+                  tabindex="0"
                 >
                   <div
-                    class="root uui-flex-row rowWrapper notPinned uui-dt-columns-config-row uui-size-30 alignItems"
-                    style="--uui-flex-row-align-items: flex-start;"
+                    class="uui-accordion-toggle-container"
                   >
                     <div
-                      class="dragHandle container uui-drag-handle"
+                      class="root uui-flex-row subgroup uui-size-36"
                     >
                       <div
                         class="container uui-icon uui-enabled"
@@ -272,43 +150,137 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                           class=""
                         />
                       </div>
+                      <div
+                        class="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline subgroupTitle container"
+                      >
+                        Pinned to the left
+                      </div>
                     </div>
-                    <label
-                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary checkbox uui-readonly"
-                    >
-                      <div
-                        class="uui-checkbox uui-checked"
-                      >
-                        <input
-                          aria-checked="true"
-                          aria-readonly="true"
-                          checked=""
-                          readonly=""
-                          tabindex="-1"
-                          type="checkbox"
-                        />
-                        <div
-                          class="container uui-icon uui-enabled"
-                        >
-                          <svg
-                            class=""
-                          />
-                        </div>
-                      </div>
-                      <div
-                        class="uui-input-label"
-                      >
-                        Level
-                      </div>
-                    </label>
                     <div
-                      class="root uui-flex-row pinIconButton"
+                      class="container uui-icon uui-enabled arrow"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="uui-accordion-body"
+                  role="region"
+                >
+                  <div
+                    class="root uui-flex-row groupItems uui-size-30"
+                  >
+                    <div
+                      class="root uui-flex-row rowWrapper uui-dt-columns-config-row uui-size-30 alignItems"
+                      style="--uui-flex-row-align-items: flex-start;"
                     >
-                      <button
-                        aria-disabled="false"
-                        class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
-                        tabindex="0"
-                        type="button"
+                      <div
+                        class="dragHandle dndDisabled container uui-drag-handle uui-disabled"
+                      >
+                        <div
+                          class="container uui-icon uui-disabled"
+                        >
+                          <svg
+                            class=""
+                          />
+                        </div>
+                      </div>
+                      <label
+                        class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary checkbox uui-readonly"
+                      >
+                        <div
+                          class="uui-checkbox uui-checked"
+                        >
+                          <input
+                            aria-checked="true"
+                            aria-readonly="true"
+                            checked=""
+                            readonly=""
+                            tabindex="-1"
+                            type="checkbox"
+                          />
+                          <div
+                            class="container uui-icon uui-enabled"
+                          >
+                            <svg
+                              class=""
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="uui-input-label"
+                        >
+                          ID
+                        </div>
+                      </label>
+                      <div
+                        class="root uui-flex-row pinIconButton"
+                      >
+                        <button
+                          aria-disabled="true"
+                          class="uui-button-box uui-disabled container uui-icon_button uui-color-primary root pinTogglerIcon"
+                          tabindex="-1"
+                          type="button"
+                        >
+                          <div
+                            class="container uui-icon uui-enabled"
+                          >
+                            <svg
+                              class=""
+                            />
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="root uui-flex-row hDivider"
+              />
+              <div
+                aria-expanded="true"
+                class="uui-accordion-container container uui-opened subgroupAccordion"
+              >
+                <div
+                  class="uui-accordion-toggler uui-opened"
+                  tabindex="0"
+                >
+                  <div
+                    class="uui-accordion-toggle-container"
+                  >
+                    <div
+                      class="root uui-flex-row subgroup uui-size-36"
+                    >
+                      <div
+                        class="container uui-icon uui-enabled"
+                      >
+                        <svg
+                          class=""
+                        />
+                      </div>
+                      <div
+                        class="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline subgroupTitle container"
+                      >
+                        Not pinned
+                      </div>
+                    </div>
+                    <div
+                      class="container uui-icon uui-enabled arrow"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="uui-accordion-body"
+                  role="region"
+                >
+                  <div
+                    class="root uui-flex-row groupItems uui-size-30"
+                  >
+                    <div
+                      class="root uui-flex-row rowWrapper notPinned uui-dt-columns-config-row uui-size-30 alignItems"
+                      style="--uui-flex-row-align-items: flex-start;"
+                    >
+                      <div
+                        class="dragHandle container uui-drag-handle"
                       >
                         <div
                           class="container uui-icon uui-enabled"
@@ -317,21 +289,67 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                             class=""
                           />
                         </div>
-                      </button>
-                      <button
-                        aria-disabled="false"
-                        class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
-                        tabindex="0"
-                        type="button"
+                      </div>
+                      <label
+                        class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary checkbox uui-readonly"
                       >
                         <div
-                          class="container uui-icon uui-enabled"
+                          class="uui-checkbox uui-checked"
                         >
-                          <svg
-                            class=""
+                          <input
+                            aria-checked="true"
+                            aria-readonly="true"
+                            checked=""
+                            readonly=""
+                            tabindex="-1"
+                            type="checkbox"
                           />
+                          <div
+                            class="container uui-icon uui-enabled"
+                          >
+                            <svg
+                              class=""
+                            />
+                          </div>
                         </div>
-                      </button>
+                        <div
+                          class="uui-input-label"
+                        >
+                          Level
+                        </div>
+                      </label>
+                      <div
+                        class="root uui-flex-row pinIconButton"
+                      >
+                        <button
+                          aria-disabled="false"
+                          class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
+                          tabindex="0"
+                          type="button"
+                        >
+                          <div
+                            class="container uui-icon uui-enabled"
+                          >
+                            <svg
+                              class=""
+                            />
+                          </div>
+                        </button>
+                        <button
+                          aria-disabled="false"
+                          class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
+                          tabindex="0"
+                          type="button"
+                        >
+                          <div
+                            class="container uui-icon uui-enabled"
+                          >
+                            <svg
+                              class=""
+                            />
+                          </div>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -339,20 +357,28 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             </div>
           </div>
           <div
-            class="uui-track-horizontal"
-            style="position: absolute; height: 6px; display: none;"
+            class="os-scrollbar os-scrollbar-horizontal os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+            style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
           >
             <div
-              class="uui-thumb-horizontal"
-            />
+              class="os-scrollbar-track"
+            >
+              <div
+                class="os-scrollbar-handle"
+              />
+            </div>
           </div>
           <div
-            class="uui-track-vertical"
-            style="position: absolute; width: 6px; display: none;"
+            class="os-scrollbar os-scrollbar-vertical os-theme-none uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+            style="--os-scroll-percent: 0; --os-viewport-percent: 0; --os-scroll-direction: 0;"
           >
             <div
-              class="uui-thumb-vertical"
-            />
+              class="os-scrollbar-track"
+            >
+              <div
+                class="os-scrollbar-handle"
+              />
+            </div>
           </div>
         </div>
       </div>
