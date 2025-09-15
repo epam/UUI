@@ -1,0 +1,186 @@
+[
+  {
+    "children": [
+      {
+        "text": "AI assistants like Cursor or GitHub Copilot need more context to write code with UUI. To address this, we have provided a UUI MCP (Multi-Content Provider) server. This server gives them comprehensive information from the UUI documentation, including component APIs, code examples, and descriptions."
+      }
+    ],
+    "type": "paragraph"
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI MCP server URL: "
+      },
+      {
+        "type": "link",
+        "url": "https://uui.epam.com/api/mcp",
+        "children": [
+          {
+            "text": "https://uui.epam.com/api/mcp"
+          }
+        ]
+      },
+      {
+        "text": "."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "text": "How to connect",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": ":"
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Cursor: add the following code to the "
+              },
+              {
+                "text": ".cursor/mcp.json",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " file into your project:"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "{",
+        "color": "rgb(36, 36, 36)"
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "text": "  \"mcpServers\": {",
+        "color": "rgb(36, 36, 36)"
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "text": "    \"uui\": {",
+        "color": "rgb(36, 36, 36)"
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "text": "      \"url\": \"https://uui.epam.com/api/mcp\"",
+        "color": "rgb(36, 36, 36)"
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "text": "    }",
+        "color": "rgb(36, 36, 36)"
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "text": "  }\n}",
+        "color": "rgb(36, 36, 36)"
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "GitHub Copilot"
+              },
+              {
+                "uui-richTextEditor-bold": true,
+                "text": ": "
+              },
+              {
+                "text": " use following the "
+              },
+              {
+                "type": "link",
+                "url": "https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/use-the-github-mcp-server?tool=jetbrains",
+                "target": "_blank",
+                "children": [
+                  {
+                    "text": "instructions"
+                  }
+                ]
+              },
+              {
+                "text": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "For other tools, check their documentation about how to connect to an MCP."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Upon a successful connection, AI tools will make requests to the UUI server to get the necessary documentation."
+      },
+      {
+        "type": "link",
+        "url": "https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/use-the-github-mcp-server?tool=jetbrains",
+        "target": "_blank",
+        "children": [
+          {
+            "text": ""
+          }
+        ]
+      },
+      {
+        "text": ""
+      }
+    ]
+  }
+]

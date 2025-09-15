@@ -1,0 +1,10 @@
+{
+  "id": "ai-tools",
+  "name": "UUI + AI Tools",
+  "markIsNew": true,
+  "examples": [
+    { "descriptionPath": "ai-tools-description" },
+    { "name": "MCP", "descriptionPath": "mcp-ai-tool" },
+    { "name": "CodeMie(EPAM only)", "descriptionPath": "chat-ai-tool" }
+  ]
+}
