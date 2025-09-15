@@ -7,11 +7,10 @@ import { useUpdateTreeState } from './useUpdateTreeState';
 export type UseSelectedOnlyTreeProps<TItem, TId, TFilter = any> = {
     tree: TreeState<TItem, TId>;
     dataSourceState: DataSourceState<TFilter, TId>;
-    isLoading?: boolean;
 };
 
 export function useSelectedOnlyTree<TItem, TId, TFilter = any>(
-    { tree, dataSourceState, isLoading }: UseSelectedOnlyTreeProps<TItem, TId, TFilter>,
+    { tree, dataSourceState }: UseSelectedOnlyTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
     const prevDataSourceState = usePrevious(dataSourceState);
@@ -21,10 +20,6 @@ export function useSelectedOnlyTree<TItem, TId, TFilter = any>(
         shouldUpdate: () => isSelectedOrCheckedChanged(dataSourceState, prevDataSourceState),
         update: (currentTree) => currentTree.buildSelectedOnly(getChecked(dataSourceState)),
     }, [dataSourceState.checked, dataSourceState.selectedId, ...deps]);
-
-    if (isLoading || selectedOnlyTree === null) {
-        return tree;
-    }
 
     return selectedOnlyTree;
 }

@@ -70,6 +70,7 @@ import AdvancedTablesDocItem from '../../docs/pages/tables/advancedTables.json';
 import useTableStateDocItem from '../../docs/pages/tables/useTableState.json';
 import FiltersPanelDocItem from '../../docs/pages/tables/filtersPanel.json';
 import PresetsPanelDocItem from '../../docs/pages/tables/presetsPanel.json';
+import ScrollBarsDocItem from '../../docs/pages/components/scrollBars.json';
 
 export const componentsStructure: DocItem[] = orderBy<DocItem>(
     [
@@ -146,6 +147,7 @@ export const componentsStructure: DocItem[] = orderBy<DocItem>(
         ScrollSpyDocItem,
         DropdownContainerDocItem,
         TabsDocItem,
+        ScrollBarsDocItem,
     ],
     (item: DocItem) => (item.order ? item.order + item.name : item.name),
 );

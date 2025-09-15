@@ -70,6 +70,8 @@ export const TextConfig: TDocConfig = {
             value1line: 'Abc',
             // eslint-disable-next-line
             value2lines: (<>{'Abc Abc Abc Abc'}</>),
+            lineHeight: [12, 18, 24, 30],
+            fontSize: [10, 12, 14, 16, 18, 24],
         };
         const w70_h85: TPreviewCellSize = '70-85';
         const w70_h55: TPreviewCellSize = '70-55';
@@ -82,12 +84,12 @@ export const TextConfig: TDocConfig = {
             {
                 size: { examples: '*' },
                 children: { values: [TEST_DATA.value2lines] },
-                lineHeight: { examples: '*' },
+                lineHeight: { values: TEST_DATA.lineHeight },
             },
             {
                 size: { values: ['none'] },
                 children: { values: [TEST_DATA.value1line] },
-                fontSize: { examples: '*' },
+                fontSize: { values: TEST_DATA.fontSize },
                 fontWeight: { examples: '*' },
                 fontStyle: { examples: '*' },
             },

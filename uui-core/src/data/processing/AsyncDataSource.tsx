@@ -23,7 +23,15 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         this.itemsStatusCollector = new ItemsStatusCollector(newMap(params), params);
     }
 
-    private cache: Promise<TItem[]>;
+    private _cache: Promise<TItem[]>;
+    private get cache(): Promise<TItem[]> {
+        return this._cache;
+    }
+
+    private set cache(_cache: Promise<TItem[]> | null) {
+        this._cache = _cache;
+    }
+    
     private cachedApi = async () => {
         if (!this.cache) {
             this.cache = this.api();
@@ -84,7 +92,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         const clearCacheAndReload = useCallback(() => {
             this.cache = null;
             reload();
-        }, [reload]);
+        }, [reload, this]);
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {

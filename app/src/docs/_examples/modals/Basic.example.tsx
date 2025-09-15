@@ -46,7 +46,7 @@ export function BasicModalExample(modalProps: IModal<string>) {
             <ModalWindow>
                 <Panel background="surface-main">
                     <ModalHeader title="Simple modal example " onClose={ () => modalProps.abort() } />
-                    <ScrollBars hasTopShadow hasBottomShadow>
+                    <ScrollBars overflowTopEffect="line" overflowBottomEffect="line">
                         <FlexRow padding="24">
                             <Text size="36">
                                 {' '}
