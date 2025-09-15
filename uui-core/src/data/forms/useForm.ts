@@ -74,9 +74,8 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
                 newState.serverValidationState = undefined; // reset serverValidationState if valid form is saving
                 savePromise = propsRef.current
                     .onSave(formState.current.form)
-                    .then((response) =>
-                        handleSaveResponse(response, isSavedBeforeLeave))
-                    .catch((err) => { handleError(err); return Promise.reject(); });
+                    .catch((err) => { handleError(err); return Promise.reject(); })
+                    .then((response) => handleSaveResponse(response, isSavedBeforeLeave));
             } else {
                 savePromise = Promise.reject();
             }
