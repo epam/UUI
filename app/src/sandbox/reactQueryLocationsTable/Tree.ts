@@ -50,6 +50,10 @@ export class Tree implements ITree<Location, string> {
         return this._itemsAccessor;
     }
 
+    public isBlank(): boolean {
+        return !this._nodeInfoById.has(undefined);
+    }
+
     public update(items: Location[], newByParentId: IMap<string, string[]>, newNodeInfoById: IMap<string, ITreeNodeInfo>) {
         items.forEach((item) => {
             const id = this.getParams().getId(item);

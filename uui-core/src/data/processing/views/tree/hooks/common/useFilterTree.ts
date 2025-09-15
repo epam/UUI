@@ -17,10 +17,6 @@ export interface UseFilterTreeProps<TItem, TId, TFilter = any> extends FilterCon
      * State of the dataSource.
      */
     dataSourceState: DataSourceState<TFilter, TId>;
-    /**
-     * Are data loading.
-     */
-    isLoading?: boolean;
 }
 
 /**
@@ -28,17 +24,17 @@ export interface UseFilterTreeProps<TItem, TId, TFilter = any> extends FilterCon
  * @returns tree without filtered records.
  */
 export function useFilterTree<TItem, TId, TFilter = any>(
-    { tree, newTreeInstance, dataSourceState: { filter }, getFilter, isLoading }: UseFilterTreeProps<TItem, TId, TFilter>,
+    { tree, newTreeInstance, dataSourceState: { filter }, getFilter }: UseFilterTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
     const prevFilter = usePrevious(filter);
     const filteredTree = useUpdateTree({
         tree,
-        shouldUpdate: () => filter !== prevFilter,
+        shouldUpdate: () => !tree.isBlank() && filter !== prevFilter,
         update: (currentTree) => FilterHelper.filter({ tree: currentTree, filter, getFilter, newTreeInstance }),
     }, [filter, ...deps]);
 
-    if (isLoading || filteredTree === null) {
+    if (tree === null || tree.isBlank()) {
         return tree;
     }
 

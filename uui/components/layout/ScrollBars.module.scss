@@ -1,56 +1,87 @@
 .root {
     --uui-scroll_bars-bg: var(--uui-neutral-40);
+    --uui-scroll_bars-bg-hover: var(--uui-neutral-50);
     --uui-scroll_bars-bg-active: var(--uui-neutral-60);
+    --uui-scroll_bars-shadow-top: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    --uui-scroll_bars-shadow-bottom: linear-gradient(to top, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+
+    --uui-scroll_bars-size: 9px;
+    --uui-scroll_bars-padding-perpendicular: 3px;
+    --uui-scroll_bars-padding-axis: 6px;
+    --uui-scroll_bars-handle-border-radius: 9px;
+    --uui-scroll_bars-handle-min-size: 30px;
+    --uui-scroll_bars-handle-perpendicular-size: 67%;
+    --uui-scroll_bars-handle-perpendicular-size-hover: 100%;
+    --uui-scroll_bars-handle-perpendicular-size-active: 100%;
+    --uui-scroll_bars-handle-interactive-area-offset: 2px;
+    --uui-scroll_bars-shadow-height: 5px;
+
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+
+    .viewport {
+        position: relative;
+        flex: 1 1 auto;
+    }
+
+    &:global(.uui-shadow-top)::before,
+    &:global(.uui-shadow-bottom)::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        transition: opacity 200ms;
+    }
+
+    &:global(.uui-shadow-top)::before {
+        top: 0;
+        z-index: 1;
+    }
+
+    &:global(.uui-shadow-bottom)::after {
+        bottom: 0;
+    }
+
+    &:global(.uui-shadow-top.-scrolled-top)::before {
+        opacity: 1;
+    }
+
+    &:global(.uui-shadow-bottom.-scrolled-bottom)::after {
+        opacity: 1;
+    }
+}
+
+:global(.os-scrollbar.uui-scroll-bars) {
+    --os-size: var(--uui-scroll_bars-size);
+    --os-padding-perpendicular: var(--uui-scroll_bars-padding-perpendicular);
+    --os-padding-axis: var(--uui-scroll_bars-padding-axis);
+    --os-handle-border-radius: var(--uui-scroll_bars-handle-border-radius);
+    --os-handle-bg: var(--uui-scroll_bars-bg);
+    --os-handle-bg-hover: var(--uui-scroll_bars-bg-hover);
+    --os-handle-bg-active: var(--uui-scroll_bars-bg-active);
+    --os-handle-min-size: var(--uui-scroll_bars-handle-min-size);
+    --os-handle-perpendicular-size: var(--uui-scroll_bars-handle-perpendicular-size);
+    --os-handle-perpendicular-size-hover: var(--uui-scroll_bars-handle-perpendicular-size-hover);
+    --os-handle-perpendicular-size-active: var(--uui-scroll_bars-handle-perpendicular-size-active);
+    --os-handle-interactive-area-offset: var(--uui-scroll_bars-handle-interactive-area-offset);
 }
 
 :global(.uui-shadow-top)::before {
-    background: var(--scroll-bars-shadow);
+    background: var(--uui-scroll_bars-shadow-top);
+    height: var(--uui-scroll_bars-shadow-height);
 }
 
 :global(.uui-shadow-bottom)::after {
-    background: var(--scroll-bars-shadow);
+    background: var(--uui-scroll_bars-shadow-bottom);
+    height: var(--uui-scroll_bars-shadow-height);
 }
 
-:global(.uui-thumb-vertical), :global(.uui-thumb-horizontal) {
-    background: var(--uui-scroll_bars-bg);
-    border-radius: 1.5px;
-
-    &:hover {
-        border-radius: 3px;
-    }
-
-    &:active {
-        border-radius: 3px;
-        background: var(--uui-scroll_bars-bg-active);
-    }
+:global(.uui-line-top.-scrolled-top) {
+    border-top: 1px solid var(--uui-divider);
 }
 
-:global(.uui-thumb-vertical) {
-    width: 3px;
-    margin-inline-start: 3px;
-
-    &:hover {
-        width: 6px;
-        margin-inline-start: 0;
-    }
-
-    &:active {
-        width: 6px;
-        margin-inline-start: 0;
-    }
-}
-
-:global(.uui-thumb-horizontal) {
-    height: 3px;
-    margin-top: 3px;
-
-    &:hover {
-        height: 6px;
-        margin-top: 0;
-    }
-
-    &:active {
-        height: 6px;
-        margin-top: 0;
-    }
+:global(.uui-line-bottom.-scrolled-bottom) {
+    border-bottom: 1px solid var(--uui-divider);
 }
