@@ -22,31 +22,42 @@ export function FloatingToolbar(props: ToolbarProps): any {
     const editor = useEditorState(); // TODO: use useEditorRef
     const inFocus = useEventEditorSelectors.focus() === editor.id;
 
-    const virtualReferenceElement = {
-        getBoundingClientRect(): DOMRect {
-            if (props.isTable) {
-                const [selectedNode] = findNode(editor, {
-                    at: Range.start(editor.selection),
-                    match: { type: getCellTypes(editor) },
-                });
+    const getVirtualReferenceElement = () => {
+        if (props.isTable) {
+            const [selectedNode] = findNode(editor, {
+                at: Range.start(editor.selection),
+                match: { type: getCellTypes(editor) },
+            });
 
-                const domNode = toDOMNode(editor, selectedNode);
-                return domNode.getBoundingClientRect();
+            const domNode = toDOMNode(editor, selectedNode);
+            
+            if (!domNode) {
+                return null;
             }
+            
+            return {
+                getBoundingClientRect(): DOMRect {
+                    return domNode.getBoundingClientRect();
+                },
+            };
+        }
 
-            const shadowRoot = (() => {
-                if (ref.current) {
-                    const rootNode = ref.current.getRootNode();
-                    const isShadow = rootNode instanceof ShadowRoot;
+        return {
+            getBoundingClientRect(): DOMRect {
+                const shadowRoot = (() => {
+                    if (ref.current) {
+                        const rootNode = ref.current.getRootNode();
+                        const isShadow = rootNode instanceof ShadowRoot;
 
-                    if (isShadow) {
-                        return rootNode;
+                        if (isShadow) {
+                            return rootNode;
+                        }
                     }
-                }
-            })();
+                })();
 
-            return getSelectionBoundingClientRect({ shadowRoot });
-        },
+                return getSelectionBoundingClientRect({ shadowRoot });
+            },
+        };
     };
 
     let isToolbarVisible: boolean;
@@ -59,7 +70,7 @@ export function FloatingToolbar(props: ToolbarProps): any {
     return isToolbarVisible && (
         <Dropdown
             value={ isToolbarVisible }
-            virtualTarget={ virtualReferenceElement }
+            virtualTarget={ getVirtualReferenceElement() }
             renderTarget={ (p) => <div { ...p }></div> }
             placement={ props.placement || 'top' }
             middleware={ [
