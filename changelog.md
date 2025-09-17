@@ -1,8 +1,8 @@
 # 6.xx.xx - xx.xx.2025
 
 **What's New**
-* [TabList] Create the component ([#2857](https://github.com/epam/UUI/pull/2857))
-* [TabButton] Activate tab button by pressing "Space" key ([#2857](https://github.com/epam/UUI/pull/2857))
+* [Tabs]: Create the component ([#2857](https://github.com/epam/UUI/pull/2857))
+* [TabButton]: Activate tab button by pressing "Space" key ([#2857](https://github.com/epam/UUI/pull/2857))
 * [FiltersPanel]: added 'disableClear' and 'filter' props for picker filters
 * [ApiContext][Breaking Change]:
     * ApiContext no longer supports auth recovery via the 'message' event; it now uses the 'storage' event instead;
