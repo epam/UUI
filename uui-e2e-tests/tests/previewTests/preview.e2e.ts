@@ -317,7 +317,7 @@ builder
     .add(avatarStack, { previewId: values(TAvatarStackPreview) })
     .add(dropdownContainer, { previewId: values(TDropdownContainerPreview) })
     .add(radioGroup, { previewId: values(TRadioGroupPreview) })
-    .only(labeledInput, { previewId: values(TLabeledInputPreview) })
+    .add(labeledInput, { previewId: values(TLabeledInputPreview) })
     .add(mainMenu, { previewId: values(TMainMenuPreview) })
     .add(paginator, { previewId: values(TPaginatorPreview) });
 

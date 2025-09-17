@@ -89,6 +89,10 @@
 
     :global(.uui-label-left) {
         :global(.uui-label) {
+            margin-inline-end: var(--uui-labeled_input-horizontal-gap);
+        }
+
+        :global(.uui-label):has(:global(.uui-labeled-input-info-icon)) {
             margin-inline-end: calc(var(--uui-labeled_input-horizontal-gap) - var(--uui-focus-outline-width));
         }
     }
