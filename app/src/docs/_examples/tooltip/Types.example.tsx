@@ -15,21 +15,63 @@ export default function TypesTooltipExample() {
 
     return (
         <div className={ css.container }>
-            <Tooltip content="Compact">
-                <Button icon={ copyIcon } caption="Copy" fill="outline" color="primary" cx={ css.firstColumn } onClick={ () => null } />
+            <Tooltip
+                content="Copy to clipboard"
+                rawProps={ { id: 'copyTooltip' } }
+            >
+                <Button
+                    rawProps={ {
+                        'aria-describedby': 'copyTooltip',
+                        'aria-description': 'Copy to clipboard',
+                    } }
+                    icon={ copyIcon }
+                    caption="Copy"
+                    fill="outline"
+                    color="primary"
+                    cx={ css.firstColumn }
+                    onClick={ () => null }
+                />
             </Tooltip>
 
-            <FlexRow alignItems="center" cx={ css.firstColumn }>
+            <FlexRow size={ null } alignItems="center" cx={ css.firstColumn }>
                 <RichTextView>
                     <span className={ css.permissionText }>Permissions</span>
                 </RichTextView>
-                <Tooltip content="Default tooltip. Can be inside as one row as 3 rows of text">
-                    <IconContainer icon={ infoIcon } cx={ css.iconBlue } />
+                <Tooltip
+                    rawProps={ {
+                        id: 'permissionTooltip',
+                    } }
+                    content="Default tooltip. Can be inside as one row as 3 rows of text"
+                >
+                    <IconContainer
+                        rawProps={ {
+                            tabIndex: 0,
+                            'aria-describedby': 'permissionTooltip',
+                            'aria-description': 'More information about permissions',
+                        } }
+                        icon={ infoIcon }
+                        cx={ css.iconBlue }
+                    />
                 </Tooltip>
             </FlexRow>
 
-            <Tooltip content={ renderTypesMarkup() } color="neutral">
-                <Button icon={ plusIcon } onClick={ () => null } cx={ css.firstColumn } />
+            <Tooltip
+                rawProps={ {
+                    id: 'addTooltip',
+                } }
+                content={ renderTypesMarkup() }
+                color="neutral"
+            >
+                <Button
+                    rawProps={ {
+                        'aria-describedby': 'addTooltip',
+                        'aria-description': 'Add file to the folder',
+                        'aria-label': 'Add file',
+                    } }
+                    icon={ plusIcon }
+                    onClick={ () => null }
+                    cx={ css.firstColumn }
+                />
             </Tooltip>
 
             <Text fontSize="14" cx={ css.secondColumn }>

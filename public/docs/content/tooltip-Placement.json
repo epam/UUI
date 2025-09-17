@@ -1,37 +1,18 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "There are 12 placement options available. You can configure it by the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "placement",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop. If tooltip cannot be shown based on available space in the needed direction (the browser window ends physically), it should be shown directed to free space.",
-            "marks": []
-          }
-        ]
+        "text": "There are 12 placement options available. You can configure it by the "
+      },
+      {
+        "text": "placement",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop. If tooltip cannot be shown based on available space in the needed direction (the browser window ends physically), it should be shown directed to free space."
       }
     ]
   }
-}
+]

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, cx, IHasRawProps, ICanFocus, isEventTargetInsideClickable, DataRowProps, IHasCaption, IDisableable } from '@epam/uui-core';
+import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, cx, IHasRawProps, isEventTargetInsideClickable, DataRowProps, IHasCaption, IDisableable } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import { i18n } from '../i18n';
 import css from './PickerToggler.module.scss';
@@ -20,7 +20,7 @@ export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, 
 }
 
 export interface PickerTogglerProps<TItem = any, TId = any>
-    extends IPickerToggler<TItem, TId>, ICanFocus<HTMLElement>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
+    extends IPickerToggler<TItem, TId>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
     cancelIcon?: Icon;
     dropdownIcon?: Icon;
     autoFocus?: boolean;

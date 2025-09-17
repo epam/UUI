@@ -4,7 +4,14 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Tooltip is a text description related to a particular UI element. Tooltips appear near the \"hovered\" element and doesn't support complex texts, tables, and interactions."
+        "text": "Tooltips provide contextual information or additional details when \"focusing\" on or \"hovering\" over a specific interactive "
+      },
+      {
+        "text": "UI",
+        "color": "rgb(48, 50, 64)"
+      },
+      {
+        "text": " element. Tooltips appear near the element and doesn't support complex texts, tables, and interactions."
       }
     ]
   },

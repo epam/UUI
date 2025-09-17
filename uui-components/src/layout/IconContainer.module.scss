@@ -1,4 +1,10 @@
 .container {
+    &:focus-visible {
+        outline: var(--uui-focus-outline-width) solid var(--uui-outline-focus);
+        outline-offset: 0;
+        border-radius: var(--uui-focus-radius);
+    }
+
     &:global(.uui-icon) {
         align-self: stretch;
         display: flex;

@@ -276,6 +276,8 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         ref: mergedTargetRef,
         toggleDropdownOpening: handleOpenedChange,
         isInteractedOutside: getIsInteractedOutside,
+        onFocus: openOnFocus ? handleFocus : undefined,
+        onBlur: openOnFocus ? handleBlur : undefined,
     }) : null;
 
     // Set the reference element based on virtual or real element
