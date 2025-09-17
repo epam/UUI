@@ -76,11 +76,10 @@ export const LabeledInput = React.forwardRef<HTMLDivElement, LabeledInputProps>(
                             {props.label}
                             {props.isRequired && <span className={ uuiLabeledInput.asterisk }>*</span>}
                             {props.info && Tooltip && (
-                                <Tooltip content={ props.info } rawProps={ { id: 'labeledInputInfo' } }>
+                                <Tooltip content={ props.info }>
                                     <IconContainer
                                         rawProps={ {
                                             tabIndex: 0,
-                                            'aria-describedby': 'labeledInputInfo',
                                         } }
                                         icon={ props.infoIcon }
                                         cx={ uuiLabeledInput.infoIcon }

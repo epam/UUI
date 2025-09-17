@@ -34,9 +34,6 @@ export function PinIconButton(props: IPinIconButton) {
                 content={ iconTooltip }
                 placement="bottom"
                 color="inverted"
-                rawProps={ {
-                    id: 'pinUnpinButtonTooltip',
-                } }
             >
                 <IconButton
                     cx={ cx(!isPinnedAlways && css.unpinIcon, css.pinTogglerIcon) }
@@ -45,7 +42,6 @@ export function PinIconButton(props: IPinIconButton) {
                     isDisabled={ isPinnedAlways }
                     color="primary"
                     rawProps={ {
-                        'aria-describedby': 'pinUnpinButtonTooltip',
                         'aria-description': iconTooltip,
                         'aria-label': 'Unpin Button',
                     } }
@@ -59,9 +55,6 @@ export function PinIconButton(props: IPinIconButton) {
                     content={ i18nLocal.pinColumnToTheLeftButton }
                     placement="bottom"
                     color="inverted"
-                    rawProps={ {
-                        id: 'pinLeftButtonTooltip',
-                    } }
                 >
                     <IconButton
                         cx={ css.pinTogglerIcon }
@@ -69,7 +62,6 @@ export function PinIconButton(props: IPinIconButton) {
                         onClick={ () => onTogglePin('left') }
                         isDisabled={ isPinnedAlways }
                         rawProps={ {
-                            'aria-describedby': 'pinRightButtonTooltip',
                             'aria-description': i18nLocal.pinColumnToTheLeftButton,
                             'aria-label': 'Pin left button',
                         } }
@@ -79,9 +71,6 @@ export function PinIconButton(props: IPinIconButton) {
                     content={ i18nLocal.pinColumnToTheRightButton }
                     placement="bottom"
                     color="inverted"
-                    rawProps={ {
-                        id: 'pinRightButtonTooltip',
-                    } }
                 >
                     <IconButton
                         cx={ css.pinTogglerIcon }
@@ -89,7 +78,6 @@ export function PinIconButton(props: IPinIconButton) {
                         onClick={ () => onTogglePin('right') }
                         isDisabled={ isPinnedAlways }
                         rawProps={ {
-                            'aria-describedby': 'pinRightButtonTooltip',
                             'aria-description': i18nLocal.pinColumnToTheRightButton,
                             'aria-label': 'Pin right button',
                         } }
