@@ -1,0 +1,23 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You can use CodeMie "
+      },
+      {
+        "type": "link",
+        "url": "https://codemie.lab.epam.com/#/assistants/uui-copilot/start",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "UUI Copilot"
+          }
+        ]
+      },
+      {
+        "text": " agent to chat about UUI or integrate it with other agents.\n"
+      }
+    ]
+  }
+]
