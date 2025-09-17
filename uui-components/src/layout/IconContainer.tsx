@@ -14,9 +14,9 @@ export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<Rea
     rotate?: '0' | '90cw' | '180' | '90ccw';
     /** Click handler */
     onClick?(e: React.SyntheticEvent<HTMLDivElement>): void;
-    /** Focus handler */
+    /** Focus handler. To enable focus, remember to pass tabIndex. */
     onFocus?(e: React.FocusEvent<HTMLDivElement>): void;
-    /** Blur handler */
+    /** Blur handler. To enable blur, remember to pass tabIndex. */
     onBlur?(e: React.FocusEvent<HTMLDivElement>): void;
     /** CSS style prop to put on the component */
     style?: React.CSSProperties;

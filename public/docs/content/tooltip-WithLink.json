@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Links can also be added for an exceptional case.",
-            "marks": []
-          }
-        ]
+        "text": "Links can also be added for an exceptional case."
       }
     ]
   }
-}
+]

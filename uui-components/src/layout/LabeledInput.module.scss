@@ -11,6 +11,7 @@
 
         :global(.uui-labeled-input-info-icon) {
             display: flex;
+            margin-inline-end: 2px; // to fix focus outline clapping
         }
     }
 

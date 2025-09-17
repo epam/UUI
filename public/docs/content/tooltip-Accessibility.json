@@ -1,0 +1,89 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To ensure tooltips work with keyboard navigation and screen readers, implement proper ARIA attributes:"
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Enable keyboard navigation:",
+                "uui-richTextEditor-bold": true
+              },
+              {
+                "text": " Add "
+              },
+              {
+                "text": "tabIndex={0}",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " for non-interactive target elements, tooltips will appear on focus (Tab/Shift+Tab)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Link tooltip content to trigger element with unique IDs:",
+                "color": "rgb(48, 50, 64)",
+                "uui-richTextEditor-bold": true
+              },
+              {
+                "color": "rgb(48, 50, 64)",
+                "text": " "
+              },
+              {
+                "text": "Add "
+              },
+              {
+                "text": "aria-describedby",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " attribute"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Provide fallback description when tooltip content is not rendered in DOM:",
+                "uui-richTextEditor-bold": true
+              },
+              {
+                "text": " Include "
+              },
+              {
+                "text": "aria-description",
+                "uui-richTextEditor-code": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
