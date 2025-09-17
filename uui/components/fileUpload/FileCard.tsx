@@ -102,13 +102,9 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
         <Tooltip
             content={ file.error.message }
             placement="bottom-start"
-            rawProps={ {
-                id: 'fileUploadErrorTooltip',
-            } }
         >
             <div
                 className={ css.errorBlock }
-                aria-describedby="fileUploadErrorTooltip"
                 aria-description={ file.error.message }
                 aria-label="File Upload Error"
             >
