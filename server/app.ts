@@ -10,6 +10,15 @@ import { isDevServer } from './utils/envUtils';
 import actuator from 'express-actuator';
 import staticMiddleware from './static';
 import { getCspHeaderValue } from './utils/cspUtil';
+import apm from 'elastic-apm-node';
+
+apm.start({
+    serviceName: 'uui-server',
+    serverUrl: 'https://apm.app.epam.com',
+    breakdownMetrics: true,
+    // serverUrl: isProduction ? 'https://apm.app.epam.com' : 'https://apm-sandbox.cloudapp.epam.com/',
+});
+apm.addLabels({ project: 'epm-uui', service_type: 'server' });
 
 export const app = express();
 
