@@ -85,6 +85,7 @@ export function Tooltip(props: TooltipProps) {
             { ...props }
             renderBody={ (props) => renderTooltip(props) }
             openOnHover={ true }
+            openOnFocus={ true }
             closeOnMouseLeave={ closeOnMouseLeave ?? 'toggler' }
             placement={ placement as Placement }
             middleware={ finalMiddleware }

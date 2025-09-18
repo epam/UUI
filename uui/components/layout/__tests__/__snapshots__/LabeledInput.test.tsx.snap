@@ -22,6 +22,7 @@ exports[`LabeledInput should be rendered correctly with maximum props 1`] = `
           </span>
           <div
             class="container uui-icon uui-enabled uui-labeled-input-info-icon"
+            tabindex="0"
           >
             <svg
               class=""

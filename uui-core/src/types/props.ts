@@ -291,7 +291,7 @@ export interface IDropdownToggler {
     isDropdown?: boolean;
 }
 
-export interface IDropdownTogglerProps extends IDropdownToggler, IClickable {
+export interface IDropdownTogglerProps extends IDropdownToggler, IClickable, ICanFocus<any> {
     /** Called when associated dropdown should open or close  */
     toggleDropdownOpening?: (value: boolean) => void;
     /** Called when component is interacted outside, to close the dropdown */
