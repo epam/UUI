@@ -26,6 +26,7 @@
 * [Text]: changed `fontSize` and `lineHeight` props typings from strict string literal to more common `number | string` type, to support varied customization cases
 * [RangeDatePicker]: undefined value in preset range now applies like an empty date, not the current one ([#2879](https://github.com/epam/UUI/issues/2879))
 * [ScrollBars]: fixed issues [#1645](https://github.com/epam/UUI/issues/1645), [#2548](https://github.com/epam/UUI/issues/2548), [#2644](https://github.com/epam/UUI/issues/2644), [#2882](https://github.com/epam/UUI/issues/2882), [#2893](https://github.com/epam/UUI/issues/2893)
+* [TimePicker]: disabled time editing in time picker body
 
 # 6.2.0 - 05.08.2025
 **What's New**
