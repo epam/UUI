@@ -13,12 +13,14 @@ import { getCspHeaderValue } from './utils/cspUtil';
 import apm from 'elastic-apm-node';
 
 apm.start({
+    active: !isDevServer(),
     serviceName: 'uui-server',
     serverUrl: 'https://apm.app.epam.com',
     breakdownMetrics: true,
-    // serverUrl: isProduction ? 'https://apm.app.epam.com' : 'https://apm-sandbox.cloudapp.epam.com/',
+    transactionSampleRate: 0.2,
+    environment: 'prod',
+    globalLabels: { project: 'epm-uui', service_type: 'server' },
 });
-apm.addLabels({ project: 'epm-uui', service_type: 'server' });
 
 export const app = express();
 
