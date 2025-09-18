@@ -216,7 +216,9 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                         class="root uui-flex-row pinIconButton"
                       >
                         <button
+                          aria-description="You cannot unpin this column"
                           aria-disabled="true"
+                          aria-label="Unpin Button"
                           class="uui-button-box uui-disabled container uui-icon_button uui-color-primary root pinTogglerIcon"
                           tabindex="-1"
                           type="button"
@@ -323,7 +325,9 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                         class="root uui-flex-row pinIconButton"
                       >
                         <button
+                          aria-description="Pin column to left"
                           aria-disabled="false"
+                          aria-label="Pin left button"
                           class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
                           tabindex="0"
                           type="button"
@@ -337,7 +341,9 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                           </div>
                         </button>
                         <button
+                          aria-description="Pin column to right"
                           aria-disabled="false"
+                          aria-label="Pin right button"
                           class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
                           tabindex="0"
                           type="button"

@@ -1,53 +1,25 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Set values for the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "openDelay",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "closeDelay",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " props to determine the delay when opening or closing a tooltip.",
-            "marks": []
-          }
-        ]
+        "text": "Set values for the "
+      },
+      {
+        "text": "openDelay",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "closeDelay",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " props to determine the delay when opening or closing a tooltip."
       }
     ]
   }
-}
+]

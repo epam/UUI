@@ -46,6 +46,10 @@ export interface DropdownProps extends Partial<IControlled<boolean>> {
      * @default false
      * */
     openOnHover?: boolean;
+    /** If true, dropdown will be opened by focus on toggler.
+     * @default false
+     * */
+    openOnFocus?: boolean;
     /** If true, clicks on target will toggle dropdown open state.
      * If false, click on target will only open dropdown and won't close it.
      * @default true

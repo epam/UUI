@@ -1,67 +1,36 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "You can use the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "color",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop for configuring the tooltip content background color. Basically, three tooltip variants are ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "distinguished —",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "Contrast, Default, Critical. Each variant can be applied to any type of a tooltip.",
-            "marks": []
-          }
-        ]
+        "text": "You can use the "
+      },
+      {
+        "text": "color",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop for configuring the tooltip content background color. Basically, three tooltip variants are "
+      },
+      {
+        "text": "distinguished —",
+        "font-size": "12pt",
+        "font-family": null,
+        "color": "#303240",
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "Contrast, Default, Critical. Each variant can be applied to any type of a tooltip."
       }
     ]
   }
-}
+]

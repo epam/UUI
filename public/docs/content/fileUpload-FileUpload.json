@@ -1,55 +1,28 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "DropSpot",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "  provides you with drop zone and default browser file upload dialog.",
-            "marks": []
-          }
-        ]
+        "text": "DropSpot",
+        "uui-richTextEditor-code": true
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "FileCard",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "  component is used to display uploaded files.",
-            "marks": []
-          }
-        ]
+        "text": "  provides you with drop zone and default browser file upload dialog."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "FileCard",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "  component is used to display uploaded files."
       }
     ]
   }
-}
+]
