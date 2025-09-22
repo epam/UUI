@@ -16,13 +16,17 @@ apm.start({
     active: !isDevServer(),
     serviceName: 'uui-server',
     serverUrl: 'https://apm.app.epam.com',
-    breakdownMetrics: true,
-    transactionSampleRate: 0.2,
+    transactionSampleRate: 1.0,
+    captureBody: 'errors',
+    captureHeaders: true,
     environment: 'prod',
+    usePathAsTransactionName: true,
     globalLabels: { project: 'epm-uui', service_type: 'server' },
 });
 
 export const app = express();
+
+app.use(apm.middleware.connect());
 
 !isDevServer() && app.use(logger('dev'));
 
