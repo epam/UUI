@@ -32,6 +32,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         placement = 'bottom-start',
         middleware,
         boundaryElement,
+        closeOnEscape = false,
     } = props;
 
     const uuiContext = useContext(UuiContext);
@@ -82,7 +83,16 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         whileElementsMounted: autoUpdate,
     });
 
-    const { floating: { onKeyDown } } = useDismiss(context);
+    const { floating } = useDismiss(
+        context,
+        {
+            enabled: closeOnEscape,
+            escapeKey: closeOnEscape,
+            outsidePress: false,
+            ancestorScroll: false,
+            referencePress: false,
+        },
+    );
 
     // Force update when the virtualTarget changes.
     useEffect(() => {
@@ -420,7 +430,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
                             className="uui-popper"
                             aria-hidden={ !isOpened() }
                             ref={ mergedBodyRef }
-                            onKeyDown={ onKeyDown }
+                            onKeyDown={ floating?.onKeyDown }
                             style={ {
                                 position: strategy,
                                 top: y ?? 0,
