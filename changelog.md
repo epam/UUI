@@ -19,6 +19,7 @@
     * [Breaking Change] HTML attributes removed from ScrollBars interface - use `rawProps` instead;
     * [Breaking Change] on macOS scrollbars now use custom UUI styling and behavior by default instead of native system scrollbars - use `autoHide` prop to control visibility;
     * added RTL support and performance optimizations (ResizeObserver, passive listeners);
+* [Dropdown]: added `closeOnEscape` prop to control whether the dropdown should close when the Escape key is pressed
 
 **What's Fixed**
 * [useForm]: improved router block removal on discard and custom beforeLeave for close action. Rework useLock to unblock router immediately, rather than on next render
