@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexCell, FlexRow, IconContainer, Text, Tooltip } from '@epam/uui';
+import { FlexCell, FlexRow, IconContainer, LinkButton, Text, Tooltip } from '@epam/uui';
 import { ReactComponent as myIcon } from '@epam/assets/icons/common/action-target-18.svg';
 import css from './WithIconExample.module.scss';
 
@@ -21,10 +21,14 @@ export default function IconTooltipExample() {
     return (
         <FlexRow alignItems="center">
             <Tooltip content={ renderIconMarkup() } color="neutral">
-                <Text fontSize="14" cx={ css.text }>
-                    Jun 21, 2022 09:16
-                    {' '}
-                </Text>
+                <LinkButton
+                    color="secondary"
+                    href="#"
+                    caption="Jun 21, 2022 09:16"
+                    underline="dashed"
+                    weight="regular"
+                    size="30"
+                />
             </Tooltip>
         </FlexRow>
     );

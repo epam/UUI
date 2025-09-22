@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, FlexRow, IconContainer, RichTextView, Text, Tooltip } from '@epam/uui';
+import { Button, FlexRow, IconButton, RichTextView, Text, Tooltip } from '@epam/uui';
 import { ReactComponent as copyIcon } from '@epam/assets/icons/common/content-link-18.svg';
 import { ReactComponent as plusIcon } from '@epam/assets/icons/common/content-add-fill-18.svg';
 import { ReactComponent as infoIcon } from '@epam/assets/icons/common/notification-info-outline-18.svg';
@@ -22,7 +22,6 @@ export default function TypesTooltipExample() {
                 <Button
                     rawProps={ {
                         'aria-describedby': 'copyTooltip',
-                        'aria-description': 'Copy to clipboard',
                     } }
                     icon={ copyIcon }
                     caption="Copy"
@@ -43,14 +42,14 @@ export default function TypesTooltipExample() {
                     } }
                     content="Default tooltip. Can be inside as one row as 3 rows of text"
                 >
-                    <IconContainer
+                    <IconButton
                         rawProps={ {
-                            tabIndex: 0,
                             'aria-describedby': 'permissionTooltip',
-                            'aria-description': 'More information about permissions',
+                            'aria-label': 'More information about permissions',
                         } }
                         icon={ infoIcon }
-                        cx={ css.iconBlue }
+                        color="primary"
+                        onClick={ () => null }
                     />
                 </Tooltip>
             </FlexRow>
@@ -65,7 +64,6 @@ export default function TypesTooltipExample() {
                 <Button
                     rawProps={ {
                         'aria-describedby': 'addTooltip',
-                        'aria-description': 'Add file to the folder',
                         'aria-label': 'Add file',
                     } }
                     icon={ plusIcon }
