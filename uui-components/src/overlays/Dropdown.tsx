@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useContext, useState, forwardRef, useRef } from 'react';
 import {
-    useFloating, autoUpdate, flip, shift, useMergeRefs, hide, arrow,
+    useFloating, autoUpdate, flip, shift, useMergeRefs, hide, arrow, useDismiss,
 } from '@floating-ui/react';
 import { FreeFocusInside } from 'react-focus-lock';
 import { isEventTargetInsideClickable, UuiContext } from '@epam/uui-core';
@@ -73,7 +73,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         defaultMiddleware.push(arrow({ element: arrowRef }));
     }
 
-    const { x, y, refs, strategy, placement: finalPlacement, middlewareData, update, isPositioned } = useFloating({
+    const { x, y, refs, strategy, placement: finalPlacement, middlewareData, update, isPositioned, context } = useFloating({
         middleware: defaultMiddleware.concat(middleware || []),
         placement: placement,
         strategy: 'fixed',
@@ -81,6 +81,8 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         onOpenChange: handleOpenedChange,
         whileElementsMounted: autoUpdate,
     });
+
+    const { floating: { onKeyDown } } = useDismiss(context);
 
     // Force update when the virtualTarget changes.
     useEffect(() => {
@@ -418,6 +420,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
                             className="uui-popper"
                             aria-hidden={ !isOpened() }
                             ref={ mergedBodyRef }
+                            onKeyDown={ onKeyDown }
                             style={ {
                                 position: strategy,
                                 top: y ?? 0,
