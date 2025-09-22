@@ -90,6 +90,7 @@ export function Tooltip(props: TooltipProps) {
             placement={ placement as Placement }
             middleware={ finalMiddleware }
             renderTarget={ (props: IDropdownTogglerProps) => renderTarget(props) }
+            closeOnEscape
         />
     );
 }
