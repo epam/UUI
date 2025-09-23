@@ -79,9 +79,8 @@ export interface DropdownProps extends Partial<IControlled<boolean>> {
      * @default true
      * */
     closeBodyOnTogglerHidden?: boolean;
-    /**
-     * If true, dropdown will be closed on Escape key press.
+    /** Pass false, if you do not want to close the dropdown when the Escape key is pressed.
      * @default true
-     */
+     * */
     closeOnEscape?: boolean;
 }
