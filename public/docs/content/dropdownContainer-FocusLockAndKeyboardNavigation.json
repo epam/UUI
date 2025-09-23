@@ -13,28 +13,5 @@
       }
     ],
     "type": "paragraph"
-  },
-  {
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "Additionally component implements close on 'Escape' handling out of the box, you can disable it via "
-      },
-      {
-        "text": "closeOnEsc={ false }",
-        "uui-richTextEditor-code": true
-      },
-      {
-        "text": " prop."
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "Current example illustrate behaviour with disabled close on 'Escape' and without locked focus. This case can be useful for dropdown which opened by hover."
-      }
-    ]
   }
 ]
