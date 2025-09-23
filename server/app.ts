@@ -13,15 +13,12 @@ import { getCspHeaderValue } from './utils/cspUtil';
 import apm from 'elastic-apm-node';
 
 apm.start({
-    active: !isDevServer(),
     serviceName: 'uui-server',
     serverUrl: 'https://apm.app.epam.com',
-    transactionSampleRate: 1.0,
-    captureBody: 'errors',
-    captureHeaders: true,
-    environment: 'prod',
-    usePathAsTransactionName: true,
-    globalLabels: { project: 'epm-uui', service_type: 'server' },
+    transactionSampleRate: 0.2,
+    serviceVersion: '0.0.1',
+    environment: 'production',
+    globalLabels: { project: 'epm-uui', service_type: 'other' },
 });
 
 export const app = express();
