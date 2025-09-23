@@ -12548,6 +12548,10 @@
       "     * @default false",
       "     * */",
       "    openOnHover?: boolean;",
+      "    /** If true, dropdown will be opened by focus on toggler.",
+      "     * @default false",
+      "     * */",
+      "    openOnFocus?: boolean;",
       "    /** If true, clicks on target will toggle dropdown open state.",
       "     * If false, click on target will only open dropdown and won't close it.",
       "     * @default true",
@@ -12577,6 +12581,10 @@
       "     * @default true",
       "     * */",
       "    closeBodyOnTogglerHidden?: boolean;",
+      "    /** Pass false, if you do not want to close the dropdown when the Escape key is pressed.",
+      "     * @default true",
+      "     * */",
+      "    closeOnEscape?: boolean;",
       "}"
      ]
     },
@@ -12814,6 +12822,27 @@
       "required": false
      },
      {
+      "uid": "openOnFocus",
+      "name": "openOnFocus",
+      "comment": {
+       "raw": [
+        "If true, dropdown will be opened by focus on toggler.",
+        " @default false"
+       ],
+       "tags": {
+        "@default": false
+       }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
       "uid": "closeOnTargetClick",
       "name": "closeOnTargetClick",
       "comment": {
@@ -12920,6 +12949,27 @@
       "comment": {
        "raw": [
         "Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+        " @default true"
+       ],
+       "tags": {
+        "@default": true
+       }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "closeOnEscape",
+      "name": "closeOnEscape",
+      "comment": {
+       "raw": [
+        "Pass false, if you do not want to close the dropdown when the Escape key is pressed.",
         " @default true"
        ],
        "tags": {
@@ -15622,6 +15672,42 @@
       },
       "from": "@epam/uui-core:IClickable",
       "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -17423,7 +17509,7 @@
     "typeValue": {
      "raw": "IDropdownTogglerProps",
      "print": [
-      "interface IDropdownTogglerProps extends IDropdownToggler, IClickable {",
+      "interface IDropdownTogglerProps extends IDropdownToggler, IClickable, ICanFocus<any> {",
       "    /** Called when associated dropdown should open or close  */",
       "    toggleDropdownOpening?: (value: boolean) => void;",
       "    /** Called when component is interacted outside, to close the dropdown */",
@@ -17534,6 +17620,42 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
       "required": false
      }
     ],
@@ -22015,6 +22137,42 @@
       "required": false
      },
      {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
       "uid": "isInvalid",
       "name": "isInvalid",
       "comment": {
@@ -23235,6 +23393,10 @@
       "     * Instead, use tree.getItems(), in the combination with tree.getById(id).",
       "     */",
       "    getItemsAccessor(): IItemsAccessor<TItem, TId>;",
+      "    /**",
+      "     * Indicates if the tree is just created and no data has been set.",
+      "     */",
+      "    isBlank(): boolean;",
       "}"
      ]
     },
@@ -23305,6 +23467,23 @@
       "typeValue": {
        "raw": "() => IItemsAccessor<TItem, TId>",
        "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> IItemsAccessor<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "isBlank",
+      "name": "isBlank",
+      "comment": {
+       "raw": [
+        "Indicates if the tree is just created and no data has been set."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => boolean",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
       },
       "editor": {
        "type": "func"
@@ -41332,10 +41511,6 @@
       "     * State of the dataSource.",
       "     */",
       "    dataSourceState: DataSourceState<TFilter, TId>;",
-      "    /**",
-      "     * Are data loading.",
-      "     */",
-      "    isLoading?: boolean;",
       "}"
      ]
     },
@@ -41367,23 +41542,6 @@
        "html": "DataSourceState<span class=\"token operator\">&lt;</span>TFilter<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
       },
       "required": true
-     },
-     {
-      "uid": "isLoading",
-      "name": "isLoading",
-      "comment": {
-       "raw": [
-        "Are data loading."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
      },
      {
       "uid": "getFilter",
@@ -49135,6 +49293,10 @@
       "    rotate?: '0' | '90cw' | '180' | '90ccw';",
       "    /** Click handler */",
       "    onClick?(e: React.SyntheticEvent<HTMLDivElement>): void;",
+      "    /** Focus handler. To enable focus, remember to pass tabIndex. */",
+      "    onFocus?(e: React.FocusEvent<HTMLDivElement>): void;",
+      "    /** Blur handler. To enable blur, remember to pass tabIndex. */",
+      "    onBlur?(e: React.FocusEvent<HTMLDivElement>): void;",
       "    /** CSS style prop to put on the component */",
       "    style?: React.CSSProperties;",
       "    /** Icon size in pixels (both width and height, as icons are assumed to be square-shaped) */",
@@ -49211,6 +49373,40 @@
       "typeValue": {
        "raw": "(e: React.SyntheticEvent<HTMLDivElement, Event>) => void",
        "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>SyntheticEvent<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token punctuation\">,</span> Event<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Focus handler. To enable focus, remember to pass tabIndex."
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLDivElement, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Blur handler. To enable blur, remember to pass tabIndex."
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLDivElement, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
       },
       "editor": {
        "type": "func"
@@ -49989,11 +50185,6 @@
       "     * Pass any extra props to the FocusLock wrapper.",
       "     */",
       "    lockProps?: Record<string, any>;",
-      "    /**",
-      "     * Pass true to handle Escape key press and call props.onClose().",
-      "     * If omitted, true value will be used. It's used if focusLock=true.",
-      "     */",
-      "    closeOnEsc?: boolean;",
       "    /** Called on keyDown event in DropdownContainer.",
       "     Can be used to provide your own handlers.",
       "     */",
@@ -50156,24 +50347,6 @@
       "typeValue": {
        "raw": "Record<string, any>",
        "html": "Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span>"
-      },
-      "required": false
-     },
-     {
-      "uid": "closeOnEsc",
-      "name": "closeOnEsc",
-      "comment": {
-       "raw": [
-        "Pass true to handle Escape key press and call props.onClose().",
-        " If omitted, true value will be used. It's used if focusLock=true."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "required": false
      },
@@ -51326,6 +51499,42 @@
       "typeValue": {
        "raw": "(e: React.SyntheticEvent<HTMLDivElement, Event>) => void",
        "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>SyntheticEvent<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token punctuation\">,</span> Event<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ControlIconProps",
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Focus handler. To enable focus, remember to pass tabIndex."
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLDivElement, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ControlIconProps",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Blur handler. To enable blur, remember to pass tabIndex."
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLDivElement, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
       },
       "editor": {
        "type": "func"
@@ -59779,7 +59988,7 @@
     "typeValue": {
      "raw": "PickerTogglerProps<TItem, TId>",
      "print": [
-      "interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggler<TItem, TId>, ICanFocus<HTMLElement>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
+      "interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggler<TItem, TId>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
       "    cancelIcon?: Icon;",
       "    dropdownIcon?: Icon;",
       "    autoFocus?: boolean;",
@@ -60166,6 +60375,42 @@
       "required": false
      },
      {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
       "uid": "isInvalid",
       "name": "isInvalid",
       "comment": {
@@ -60286,42 +60531,6 @@
        "html": "<span class=\"token builtin\">any</span>"
       },
       "from": "@epam/uui-core:IHasPlaceholder",
-      "required": false
-     },
-     {
-      "uid": "onFocus",
-      "name": "onFocus",
-      "comment": {
-       "raw": [
-        "Called when component gets input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
-      "required": false
-     },
-     {
-      "uid": "onBlur",
-      "name": "onBlur",
-      "comment": {
-       "raw": [
-        "Called when component looses input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
       "required": false
      },
      {
@@ -76498,25 +76707,6 @@
       "required": false
      },
      {
-      "uid": "closeOnEsc",
-      "name": "closeOnEsc",
-      "comment": {
-       "raw": [
-        "Pass true to handle Escape key press and call props.onClose().",
-        " If omitted, true value will be used. It's used if focusLock=true."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
       "uid": "onKeyDown",
       "name": "onKeyDown",
       "comment": {
@@ -79770,6 +79960,42 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
       "required": false
      },
      {
@@ -91240,6 +91466,42 @@
       "required": false
      },
      {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
       "uid": "isInvalid",
       "name": "isInvalid",
       "comment": {
@@ -91360,42 +91622,6 @@
        "html": "<span class=\"token builtin\">any</span>"
       },
       "from": "@epam/uui-core:IHasPlaceholder",
-      "required": false
-     },
-     {
-      "uid": "onFocus",
-      "name": "onFocus",
-      "comment": {
-       "raw": [
-        "Called when component gets input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
-      "required": false
-     },
-     {
-      "uid": "onBlur",
-      "name": "onBlur",
-      "comment": {
-       "raw": [
-        "Called when component looses input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
       "required": false
      },
      {

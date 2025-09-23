@@ -11,7 +11,6 @@ export default function FocusLockAndKeyboardNavigationExample() {
                 vPadding="12"
                 padding="18"
                 focusLock={ false }
-                closeOnEsc={ false }
                 { ...props }
             >
                 <Text fontSize="14">
@@ -28,7 +27,6 @@ export default function FocusLockAndKeyboardNavigationExample() {
     };
 
     return (
-
         <Dropdown
             renderBody={ (props) => renderFirstDropdownBody(props) }
             renderTarget={ (props: IDropdownToggler) => <LinkButton caption="Toggler" size="36" { ...props } /> }
