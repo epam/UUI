@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexCell, FlexRow, IconContainer, Text, Tooltip } from '@epam/uui';
+import { FlexCell, FlexRow, IconButton, Text, Tooltip } from '@epam/uui';
 import { ReactComponent as myIcon } from '@epam/assets/icons/common/notification-warning-outline-18.svg';
 import css from './WithLinkExample.module.scss';
 
@@ -18,10 +18,25 @@ export default function LinkTooltipExample() {
     );
 
     return (
-        <FlexRow alignItems="center">
+        <FlexRow alignItems="center" columnGap={ 3 }>
             <Text fontSize="14">Working from home allowed for employees only</Text>
-            <Tooltip content={ renderTypesMarkup() } color="neutral" closeOnMouseLeave="boundary">
-                <IconContainer icon={ myIcon } style={ { justifyContent: 'center', marginLeft: '3px' } } cx={ css.iconAmber } />
+            <Tooltip
+                rawProps={ {
+                    id: 'linkTooltipExample',
+                } }
+                content={ renderTypesMarkup() }
+                color="neutral"
+                closeOnMouseLeave="boundary"
+            >
+                <IconButton
+                    icon={ myIcon }
+                    color="warning"
+                    onClick={ () => null }
+                    rawProps={ {
+                        'aria-describedby': 'linkTooltipExample',
+                        'aria-label': 'More information about deprecation',
+                    } }
+                />
             </Tooltip>
         </FlexRow>
     );
