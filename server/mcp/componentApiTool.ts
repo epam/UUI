@@ -9,7 +9,7 @@ function getComponentsListWithDescriptions() {
     const docsList = getComponentsDocsList();
     const result = [];
     docsList.forEach(({ id, name, parentId, examples }) => {
-        const resultItem: any = { id, name, parentId };
+        const resultItem: any = { id, docName: name, parentId };
         if (examples[0].descriptionPath) {
             const description = getExampleDescription(examples[0]);
             description && (resultItem.description = description);
@@ -77,9 +77,9 @@ export function addComponentApiTools(server: McpServer) {
         'uui-component-api',
         {
             title: 'UUI Component API',
-            description: 'Gets detailed info about a specific UUI component, including its props and code examples with descriptions',
+            description: 'Gets detailed info about a specific UUI component or util/service, including its props and code examples with descriptions',
             inputSchema: {
-                componentName: z.string().describe('Name of the component to look up'),
+                componentName: z.string().describe('Name of the component to look up in camelCase. Can be used `id` field from `uui-components-list` tool.'),
             },
         },
         async ({ componentName }) => {
