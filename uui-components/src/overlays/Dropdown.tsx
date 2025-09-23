@@ -32,7 +32,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         placement = 'bottom-start',
         middleware,
         boundaryElement,
-        closeOnEscape = false,
+        closeOnEscape = true,
     } = props;
 
     const uuiContext = useContext(UuiContext);
