@@ -24,22 +24,25 @@ export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildr
     const hasClick = Boolean(!props.isDisabled && (props.link || props.onClick || props.clickAnalyticsEvent));
 
     const clickHandler = (e: React.MouseEvent) => {
-        if (!isEventTargetInsideClickable(e) && !props.isDisabled) {
-            if (props.onClick) {
-                props.onClick(e);
-            }
-
-            if (!!props.link) {
-                if (props.target) { // if target _blank we should not invoke redirect
-                    return;
-                }
-
-                e.preventDefault();
-                context.uuiRouter.redirect(props.link);
-            }
-
-            context.uuiAnalytics.sendEvent(props.clickAnalyticsEvent);
+        if (isEventTargetInsideClickable(e) && !props.isDisabled) {
+            e.preventDefault(); // If it was click on another clickable element, we should also make preventDefault, to disable redirect by href attribute
+            return;
         }
+
+        if (props.onClick) {
+            props.onClick(e);
+        }
+
+        if (!!props.link) {
+            if (props.target) { // if target _blank we should not invoke redirect
+                return;
+            }
+
+            e.preventDefault();
+            context.uuiRouter.redirect(props.link);
+        }
+
+        context.uuiAnalytics.sendEvent(props.clickAnalyticsEvent);
     };
 
     const getTabIndex = () => {
