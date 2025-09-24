@@ -30,6 +30,7 @@
 * [ScrollBars]: fixed issues [#1645](https://github.com/epam/UUI/issues/1645), [#2548](https://github.com/epam/UUI/issues/2548), [#2644](https://github.com/epam/UUI/issues/2644), [#2882](https://github.com/epam/UUI/issues/2882), [#2893](https://github.com/epam/UUI/issues/2893)
 * [TimePicker]: disabled time editing in time picker body
 * [Tooltip]: added keyboard accessibility support (Tab/Shift+Tab navigation), added accessibility example with ARIA attributes to docs
+* [Dropdown]: fixed `zIndex` recalculation on dropdown update
 
 # 6.2.0 - 05.08.2025
 **What's New**

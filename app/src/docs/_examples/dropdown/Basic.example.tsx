@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Dropdown, FlexSpacer } from '@epam/uui-components';
 import { offset } from '@floating-ui/react';
-import { Badge, Panel, Text, FlexRow, LinkButton, DropdownContainer, IconButton, FlexCell, IconContainer, Avatar } from '@epam/uui';
+import {
+    Badge,
+    Panel,
+    Text,
+    FlexRow,
+    LinkButton,
+    DropdownContainer,
+    IconButton,
+    FlexCell,
+    IconContainer,
+    Avatar,
+    TimePicker,
+    TimePickerValue,
+} from '@epam/uui';
 import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
 import css from './BasicExample.module.scss';
 import { ReactComponent as pinIcon } from '@epam/assets/icons/action-pin_on-fill.svg';
@@ -20,6 +33,8 @@ import { ReactComponent as geoIcon } from '@epam/assets/icons/action-map_pin-fil
 import { ReactComponent as rightArrIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
 
 export default function BasicDropdownExample() {
+    const [state, setState] = useState<TimePickerValue>({ hours: 0, minutes: 0 });
+
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
             <DropdownContainer showArrow={ true } cx={ css.container } { ...props }>
@@ -156,6 +171,9 @@ export default function BasicDropdownExample() {
                 <FlexRow padding="18" vPadding="24">
                     <LinkButton onClick={ () => {} } caption="Show Reporting Line" size="36" icon={ rightArrIcon } iconPosition="right" />
                 </FlexRow>
+
+                <TimePicker value={ state } onValueChange={ (val) => setState(val) } />
+
             </DropdownContainer>
         );
     };
