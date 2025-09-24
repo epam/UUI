@@ -31,6 +31,7 @@
 * [TimePicker]: disabled time editing in time picker body
 * [Tooltip]: added keyboard accessibility support (Tab/Shift+Tab navigation), added accessibility example with ARIA attributes to docs
 * [Dropdown]: fixed `zIndex` recalculation on dropdown update
+* [DataTable]: fixed preventing row redirect in case of click on `-clickable` element inside this row
 
 # 6.2.0 - 05.08.2025
 **What's New**
