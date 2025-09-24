@@ -133,16 +133,16 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         }, delay);
     };
 
-    const handleMouseEnter = () => {
+    const handleMouseEnter = useCallback(() => {
         clearCloseDropdownTimer();
         if (openDelay) {
             setOpenDropdownTimer();
         } else {
             handleOpenedChange(true);
         }
-    };
+    }, []);
 
-    const handleMouseLeave = () => {
+    const handleMouseLeave = useCallback(() => {
         clearOpenDropdownTimer();
 
         if (closeOnMouseLeave !== 'boundary') {
@@ -153,25 +153,25 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
                 handleOpenedChange(false);
             }
         }
-    };
+    }, [open]);
 
-    const handleFocus = () => {
+    const handleFocus = useCallback(() => {
         clearCloseDropdownTimer();
         if (openDelay) {
             setOpenDropdownTimer();
         } else {
             handleOpenedChange(true);
         }
-    };
+    }, []);
 
-    const handleBlur = () => {
+    const handleBlur = useCallback(() => {
         clearOpenDropdownTimer();
         if (closeDelay) {
             setCloseDropdownTimer(closeDelay);
         } else {
             handleOpenedChange(false);
         }
-    };
+    }, []);
 
     const isClientInArea = (e: MouseEvent) => {
         const areaPadding = 30;
@@ -199,10 +199,10 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         );
     };
 
-    const isInteractedOutside = (e: Event) => {
+    const isInteractedOutside = useCallback((e: Event) => {
         if (!isOpened()) return false;
         return getIsInteractedOutside(e);
-    };
+    }, [isOpened()]);
 
     const handleMouseMove = (e: MouseEvent) => {
         if (!bodyNodeRef.current || !targetNodeRef.current) return;
@@ -248,11 +248,11 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         else handleOpenedChange(false);
     }, [onClose, handleOpenedChange]);
 
-    const clickOutsideHandler = (e: Event) => {
+    const clickOutsideHandler = useCallback((e: Event) => {
         if (isInteractedOutside(e)) {
             handleOpenedChange(false);
         }
-    };
+    }, [isInteractedOutside]);
 
     // We'll use this function to get the reference element (either virtual or real)
     const getReferenceElement = () => {
@@ -332,6 +332,29 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     const mergedBodyRef = useMergeRefs([refs.setFloating, bodyNodeRef]);
 
     useEffect(() => {
+        layerRef.current = uuiContext.uuiLayout?.getLayer();
+
+        return () => {
+            layerRef.current && uuiContext.uuiLayout?.releaseLayer(layerRef.current);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (isOpened()) {
+            window.addEventListener('dragstart', clickOutsideHandler);
+
+            if (closeOnClickOutside !== false) {
+                window.addEventListener('click', clickOutsideHandler, true);
+            }
+        }
+
+        return () => {
+            window.removeEventListener('dragstart', clickOutsideHandler);
+            window.removeEventListener('click', clickOutsideHandler, true);
+        };
+    }, [closeOnClickOutside, isOpened()]);
+
+    useEffect(() => {
         if (open && closeOnMouseLeave === 'boundary') {
             window.addEventListener('mousemove', handleMouseMove);
         } else if (closeOnMouseLeave === 'boundary') {
@@ -341,13 +364,9 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
         };
-    }, [open, closeOnMouseLeave, handleMouseMove]);
+    }, [open, closeOnMouseLeave]);
 
     useEffect(() => {
-        layerRef.current = uuiContext.uuiLayout?.getLayer();
-
-        window.addEventListener('dragstart', clickOutsideHandler);
-
         if (openOnHover && !openOnClick) {
             targetNodeRef.current?.addEventListener?.('mouseenter', handleMouseEnter);
 
@@ -356,37 +375,32 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
             }
         }
 
-        if (openOnFocus && !openOnClick) {
+        return () => {
+            targetNodeRef.current?.removeEventListener?.('mouseenter', handleMouseEnter);
+            targetNodeRef.current?.removeEventListener?.('mouseleave', handleMouseLeave);
+        };
+    }, [
+        openOnHover,
+        openOnClick,
+        closeOnMouseLeave,
+        handleMouseEnter,
+        handleMouseLeave,
+    ]);
+
+    useEffect(() => {
+        if (openOnFocus) {
             targetNodeRef.current?.addEventListener?.('focus', handleFocus);
             targetNodeRef.current?.addEventListener?.('blur', handleBlur);
         }
 
-        if (closeOnClickOutside !== false) {
-            window.addEventListener('click', clickOutsideHandler, true);
-        }
-
         return () => {
-            window.removeEventListener('dragstart', clickOutsideHandler);
-            targetNodeRef.current?.removeEventListener?.('mouseenter', handleMouseEnter);
-            targetNodeRef.current?.removeEventListener?.('mouseleave', handleMouseLeave);
             targetNodeRef.current?.removeEventListener?.('focus', handleFocus);
             targetNodeRef.current?.removeEventListener?.('blur', handleBlur);
-            window.removeEventListener('click', clickOutsideHandler, true);
-            layerRef.current && uuiContext.uuiLayout?.releaseLayer(layerRef.current);
         };
     }, [
-        uuiContext.uuiLayout,
-        openOnHover,
         openOnFocus,
-        openOnClick,
-        closeOnMouseLeave,
-        closeOnClickOutside,
-        clickOutsideHandler,
-        handleMouseEnter,
-        handleMouseLeave,
         handleFocus,
         handleBlur,
-        handleMouseMove,
     ]);
 
     useLayoutEffect(() => {
