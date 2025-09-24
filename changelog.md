@@ -21,6 +21,7 @@
     * added RTL support and performance optimizations (ResizeObserver, passive listeners);
 * [Dropdown]: added `closeOnEscape` prop (default: true) to control whether the dropdown should close when the Escape key is pressed for accessibility compliance for content triggered on [hover, focus,](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus) or [other user interactions](https://www.w3.org/WAI/ARIA/apg/patterns/)
 * [DropdownContainer][Breaking Change]: moved `closeOnEsc` prop to the `Dropdown` component with name `closeOnEscape`. This change centralizes all dropdown dismissal logic in one place and improves accessibility control. Replace `<DropdownContainer closeOnEsc={false} />` with `<Dropdown closeOnEscape={false}><DropdownContainer /></Dropdown>` if needed.
+* [Tooltip]: added `closeOnEscape` prop (default: true) to control whether the tooltip should close when the Escape key is pressed for accessibility compliance for content triggered on [hover, focus](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus).
 
 **What's Fixed**
 * [useForm]: improved router block removal on discard and custom beforeLeave for close action. Rework useLock to unblock router immediately, rather than on next render
