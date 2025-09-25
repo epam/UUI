@@ -63,13 +63,13 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     React.useEffect(() => {
         // We need to subscribe on any document clicks, when toggler is in focus to be able to make blur on toggler in case of click outside.
-        inFocus && window.document.addEventListener('click', handleClick);
+        inFocus && window.document.addEventListener('mousedown', handleClick);
 
         if (props.autoFocus && !props.disableSearch && isSearchInToggler) {
             searchInput.current?.focus();
         }
 
-        return () => window.document.removeEventListener('click', handleClick);
+        return () => window.document.removeEventListener('mousedown', handleClick);
     }, [inFocus, handleClick]);
 
     const isActivePlaceholder = (): Boolean => {
