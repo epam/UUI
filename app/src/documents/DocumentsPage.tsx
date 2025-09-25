@@ -10,6 +10,7 @@ import { DocsSidebar } from '../common/docs/DocsSidebar';
 import { useAppThemeContext } from '../helpers/appTheme';
 import { ThemeId } from '@epam/uui-docs';
 import { DocsBlock } from '../common/docs/docsBlock/DocsBlock';
+import css from './DocumentsPage.module.scss';
 
 type DocsQuery = {
     id: string;
@@ -87,7 +88,7 @@ export function DocumentsPage() {
 
     return (
         <Page renderHeader={ () => <AppHeader /> }>
-            <FlexRow alignItems="stretch">
+            <FlexRow cx={ css.content } alignItems="stretch">
                 { pageWidth > 768 && (
                     <DocsSidebar />
                 ) }
