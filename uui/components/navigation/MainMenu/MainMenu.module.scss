@@ -47,8 +47,4 @@
         font-size: 9px;
         text-transform: uppercase;
     }
-
-    :global(.-clickable):focus-visible {
-        @include focus-visible-effect(-2px);
-    }
 }

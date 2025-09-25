@@ -133,6 +133,12 @@
         }
     }
 
+    &:global(:not(.uui-disabled)) {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
     &:global(.-clickable:not(.uui-disabled)) {
         &:hover {
             background-color: var(--uui-dropdown_menu-item-hover);
@@ -163,6 +169,12 @@
 
     & > *:not(:last-child) {
         margin-inline: 0 7px;
+    }
+
+    &.submenu-root-item, &.submenu-root-item-rtl {
+        &:focus-visible {
+            @include focus-visible-effect(-2px);
+        }
     }
 }
 
