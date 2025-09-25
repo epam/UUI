@@ -313,6 +313,12 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     useEffect(() => {
         layerRef.current = uuiContext.uuiLayout?.getLayer();
 
+        return () => {
+            layerRef.current && uuiContext.uuiLayout?.releaseLayer(layerRef.current);
+        };
+    }, []);
+
+    useEffect(() => {
         window.addEventListener('dragstart', clickOutsideHandler);
 
         if (openOnHover && !openOnClick) {
@@ -332,10 +338,8 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
             targetNodeRef.current?.removeEventListener?.('mouseenter', handleMouseEnter);
             targetNodeRef.current?.removeEventListener?.('mouseleave', handleMouseLeave);
             window.removeEventListener('click', clickOutsideHandler, true);
-            layerRef.current && uuiContext.uuiLayout?.releaseLayer(layerRef.current);
         };
     }, [
-        uuiContext.uuiLayout,
         openOnHover,
         openOnClick,
         closeOnMouseLeave,
