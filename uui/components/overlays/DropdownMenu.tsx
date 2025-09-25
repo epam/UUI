@@ -39,7 +39,6 @@ export interface IDropdownMenuItemProps extends IDropdownTogglerProps, IHasCapti
 export interface DropdownMenuContainerProps extends VPanelProps, IHasChildren, DropdownBodyProps, Pick<DropdownContainerProps, 'focusLock' | 'maxHeight'> {
     closeOnKey?: React.KeyboardEvent<HTMLElement>['key'];
     minWidth?: number;
-    isOpen?: boolean;
 }
 
 export enum IDropdownControlKeys {
