@@ -15,7 +15,8 @@ import apm from 'elastic-apm-node';
 apm.start({
     serviceName: 'uui-server',
     serverUrl: 'https://apm.app.epam.com',
-    transactionSampleRate: 0.2,
+    transactionSampleRate: 1,
+    logLevel: 'trace',
     serviceVersion: '0.0.1',
     environment: 'production',
     globalLabels: { project: 'epm-uui', service_type: 'other' },
