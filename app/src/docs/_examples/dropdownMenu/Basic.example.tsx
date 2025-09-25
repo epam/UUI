@@ -14,60 +14,86 @@ function DropdownMenuSwitchButtonElement(props: IDropdownMenuItemProps) {
     return <DropdownMenuSwitchButton { ...props } onValueChange={ setSelected } isSelected={ selected } />;
 }
 
-const initialStatusState = [
-    { id: 1, caption: 'Available', checked: false }, { id: 2, caption: 'Busy', checked: false }, { id: 3, caption: 'Do not disturb', checked: false }, { id: 4, caption: 'Be right back', checked: false }, { id: 5, caption: 'Appear away', checked: false },
+const statusOptions = [
+    { id: 1, caption: 'Available' },
+    { id: 2, caption: 'Busy' },
+    { id: 3, caption: 'Do not disturb' },
+    { id: 4, caption: 'Be right back' },
+    { id: 5, caption: 'Appear away' },
 ];
 
-const initialLayerState = [
-    { id: 1, caption: '[Link Button] Tokens', checked: false }, { id: 2, caption: '[User Card] Create as a global component', checked: false }, { id: 3, caption: '[Input] Rework & Improve components', checked: false }, { id: 4, caption: '[Colors] Create accessible palette', checked: false }, { id: 5, caption: '[Colors & Styles] Add Specification', checked: false },
+const layerOptions = [
+    { id: 1, caption: '[Link Button] Tokens' },
+    { id: 2, caption: '[User Card] Create as a global component' },
+    { id: 3, caption: '[Input] Rework & Improve components' },
+    { id: 4, caption: '[Colors] Create accessible palette' },
+    { id: 5, caption: '[Colors & Styles] Add Specification' },
 ];
 
 export default function BasicDropdownMenuExample() {
-    const [status, setStatus] = useState(initialStatusState);
-    const [layer, setLayer] = useState(initialLayerState);
+    const [selectedStatus, setSelectedStatus] = useState<number | null>(null);
+    const [selectedItems, setSelectedItems] = useState<Record<string, Set<number>>>({});
 
-    const setStatusHandler = (id: number, isChecked: boolean) => {
-        setStatus((prevState) =>
-            prevState.map((item) => {
-                item.checked = item.id === id ? !isChecked : false;
-                return item;
-            }));
+    const handleStatusChange = (id: number) => {
+        setSelectedStatus((prev) => prev === id ? null : id);
     };
 
-    const setLayerHandler = (id: number, isActive: boolean) => {
-        setLayer((prevState) =>
-            prevState.map((item) => {
-                item.checked = item.id === id ? !isActive : false;
-                return item;
-            }));
+    const handleItemToggle = (group: string, id: number) => {
+        setSelectedItems((prev) => {
+            const currentSet = prev[group] || new Set<number>();
+            const newSet = new Set(currentSet);
+
+            if (newSet.has(id)) {
+                newSet.delete(id);
+            } else {
+                newSet.add(id);
+            }
+
+            return {
+                ...prev,
+                [group]: newSet,
+            };
+        });
     };
 
-    const getSubmenuLayer = () =>
-        layer.map((item) => <DropdownMenuButton caption={ item.caption } onClick={ () => setLayerHandler(item.id, item.checked) } isActive={ item.checked } />);
+    const getSubmenuLayer = (group: string) =>
+        layerOptions.map((item) => (
+            <DropdownMenuButton
+                key={ item.id }
+                caption={ item.caption }
+                onClick={ () => handleItemToggle(group, item.id) }
+                isActive={ selectedItems[group]?.has(item.id) || false }
+            />
+        ));
 
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
             <DropdownMenuBody { ...props } rawProps={ { style: { maxWidth: '250px', padding: '6px 0' } } }>
                 <DropdownMenuHeader caption="Alex Smith" />
                 <DropdownMenuSplitter />
-                <DropdownMenuButton caption="Profile" />
+                <DropdownMenuButton caption="Profile" href="#" />
                 <DropdownSubMenu caption="Status">
-                    {status.map((item) => (
-                        <DropdownMenuButton caption={ item.caption } onClick={ () => setStatusHandler(item.id, item.checked) } isSelected={ item.checked } />
+                    {statusOptions.map((item) => (
+                        <DropdownMenuButton
+                            key={ item.id }
+                            caption={ item.caption }
+                            onClick={ () => handleStatusChange(item.id) }
+                            isSelected={ selectedStatus === item.id }
+                        />
                     ))}
                 </DropdownSubMenu>
-                <DropdownMenuButton caption="Activities" />
+                <DropdownMenuButton caption="Activities" href="#" />
                 <DropdownSubMenu caption="Tasks">
-                    <DropdownSubMenu caption="Backlog">{getSubmenuLayer()}</DropdownSubMenu>
-                    <DropdownSubMenu caption="To Do">{getSubmenuLayer()}</DropdownSubMenu>
-                    <DropdownSubMenu caption="Doing">{getSubmenuLayer()}</DropdownSubMenu>
-                    <DropdownSubMenu caption="Done">{getSubmenuLayer()}</DropdownSubMenu>
-                    <DropdownSubMenu caption="Closed">{getSubmenuLayer()}</DropdownSubMenu>
+                    <DropdownSubMenu caption="Backlog">{getSubmenuLayer('backlog')}</DropdownSubMenu>
+                    <DropdownSubMenu caption="To Do">{getSubmenuLayer('todo')}</DropdownSubMenu>
+                    <DropdownSubMenu caption="Doing">{getSubmenuLayer('doing')}</DropdownSubMenu>
+                    <DropdownSubMenu caption="Done">{getSubmenuLayer('done')}</DropdownSubMenu>
+                    <DropdownSubMenu caption="Closed">{getSubmenuLayer('closed')}</DropdownSubMenu>
                 </DropdownSubMenu>
                 <DropdownMenuSplitter />
                 <DropdownMenuSwitchButtonElement caption="Notifications" />
                 <DropdownMenuSplitter />
-                <DropdownMenuButton icon={ LogoutIcon } iconPosition="left" caption="Log Out" />
+                <DropdownMenuButton icon={ LogoutIcon } iconPosition="left" caption="Log Out" onClick={ () => null } />
             </DropdownMenuBody>
         );
     };
@@ -96,7 +122,7 @@ export default function BasicDropdownMenuExample() {
     return (
         <>
             <Dropdown
-                renderBody={ (props) => renderDropdownBody(props) }
+                renderBody={ renderDropdownBody }
                 renderTarget={ (props) => (
                     <LinkButton
                         icon={ PersonIcon }
@@ -116,14 +142,12 @@ export default function BasicDropdownMenuExample() {
                     middleware={ [offset(6)] }
                 />
             </ControlGroup>
-            <ControlGroup>
-                <Dropdown
-                    renderBody={ renderThirdDropdownBody }
-                    renderTarget={ (props) => <Button { ...props } fill="outline" icon={ MenuIcon } size="36" isDropdown={ false } /> }
-                    placement="bottom-end"
-                    middleware={ [offset(6)] }
-                />
-            </ControlGroup>
+            <Dropdown
+                renderBody={ renderThirdDropdownBody }
+                renderTarget={ (props) => <Button { ...props } fill="outline" icon={ MenuIcon } size="36" isDropdown={ false } /> }
+                placement="bottom-end"
+                middleware={ [offset(6)] }
+            />
         </>
     );
 }

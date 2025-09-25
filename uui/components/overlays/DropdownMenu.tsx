@@ -39,6 +39,7 @@ export interface IDropdownMenuItemProps extends IDropdownTogglerProps, IHasCapti
 export interface DropdownMenuContainerProps extends VPanelProps, IHasChildren, DropdownBodyProps, Pick<DropdownContainerProps, 'focusLock' | 'maxHeight'> {
     closeOnKey?: React.KeyboardEvent<HTMLElement>['key'];
     minWidth?: number;
+    isOpen?: boolean;
 }
 
 export enum IDropdownControlKeys {
@@ -51,28 +52,37 @@ export enum IDropdownControlKeys {
 }
 
 function DropdownMenuContainer(props: DropdownMenuContainerProps) {
-    const menuRef = useRef<HTMLMenuElement>(null);
+    const menuRef = useRef<HTMLElement>(null);
     const [currentlyFocused, setFocused] = useState<number>(0);
-    const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`)) : [];
+
+    const getMenuItems = (): HTMLElement[] => {
+        if (!menuRef.current) return [];
+        return Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`));
+    };
 
     const changeFocus = (nextFocusedIndex: number) => {
-        if (menuItems.length > 0) {
+        const menuItems = getMenuItems();
+        if (menuItems.length > 0 && nextFocusedIndex >= 0 && nextFocusedIndex < menuItems.length) {
             setFocused(nextFocusedIndex);
-            menuItems[nextFocusedIndex].focus();
+            const targetItem = menuItems[nextFocusedIndex];
+            targetItem.focus();
         }
     };
 
-    const handleArrowKeys = (e: React.KeyboardEvent<HTMLMenuElement>) => {
+    const handleArrowKeys = (e: React.KeyboardEvent<HTMLElement>) => {
+        const menuItems = getMenuItems();
         const lastMenuItemsIndex = menuItems.length - 1;
 
         if (e.key === IDropdownControlKeys.UP_ARROW) {
             changeFocus(currentlyFocused > 0 ? currentlyFocused - 1 : lastMenuItemsIndex);
+            e.stopPropagation(); // TODO: need improvement to track event only for current overlay
             e.preventDefault();
         } else if (e.key === IDropdownControlKeys.DOWN_ARROW) {
             changeFocus(currentlyFocused < lastMenuItemsIndex ? currentlyFocused + 1 : 0);
+            e.stopPropagation(); // TODO: need improvement to track event only for current overlay
             e.preventDefault();
         } else if (e.key === props.closeOnKey && props.onClose) {
-            e.stopPropagation();
+            e.stopPropagation(); // TODO: need improvement to track event only for current overlay
             props.onClose();
         }
     };
