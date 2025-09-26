@@ -71,43 +71,7 @@
     "type": "note-quote",
     "children": [
       {
-        "text": "{",
-        "color": "rgb(36, 36, 36)"
-      },
-      {
-        "text": "\n"
-      },
-      {
-        "text": "  \"mcpServers\": {",
-        "color": "rgb(36, 36, 36)"
-      },
-      {
-        "text": "\n"
-      },
-      {
-        "text": "    \"uui\": {",
-        "color": "rgb(36, 36, 36)"
-      },
-      {
-        "text": "\n"
-      },
-      {
-        "text": "      \"url\": \"https://uui.epam.com/api/mcp\"",
-        "color": "rgb(36, 36, 36)"
-      },
-      {
-        "text": "\n"
-      },
-      {
-        "text": "    }",
-        "color": "rgb(36, 36, 36)"
-      },
-      {
-        "text": "\n"
-      },
-      {
-        "text": "  }\n}",
-        "color": "rgb(36, 36, 36)"
+        "text": "{\n  \"mcpServers\": {\n    \"uui\": {\n      \"url\": \"https://uui.epam.com/api/mcp\"\n    }\n  }\n}"
       }
     ]
   },
