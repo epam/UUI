@@ -10,8 +10,21 @@ import { isDevServer } from './utils/envUtils';
 import actuator from 'express-actuator';
 import staticMiddleware from './static';
 import { getCspHeaderValue } from './utils/cspUtil';
+import apm from 'elastic-apm-node';
+
+apm.start({
+    serviceName: 'uui-server',
+    serverUrl: 'https://apm.app.epam.com',
+    transactionSampleRate: 1,
+    captureBody: 'all',
+    serviceVersion: '0.0.1',
+    environment: 'production',
+    globalLabels: { project: 'epm-uui', service_type: 'other' },
+});
 
 export const app = express();
+
+app.use(apm.middleware.connect());
 
 !isDevServer() && app.use(logger('dev'));
 
