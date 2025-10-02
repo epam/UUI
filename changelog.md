@@ -1,3 +1,8 @@
+# 6.?.? - ??.??.2025
+
+**What's Fixed**
+* [Calendar]: fixed calendar matrix calculation to use locale-specific `firstDayOfWeek` from dayjs instead of hardcoded i18n configuration, ensuring correct calendar layout for any locale.
+
 # 6.3.0 - 26.09.2025
 
 **What's New**
