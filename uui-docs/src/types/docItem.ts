@@ -18,4 +18,5 @@ export interface DocItem {
     parentId?: string;
     order?: number;
     tags?: string[];
+    markIsNew?: boolean;
 }

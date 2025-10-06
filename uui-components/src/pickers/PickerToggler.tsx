@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, cx, IHasRawProps, ICanFocus, isEventTargetInsideClickable, DataRowProps, IHasCaption, IDisableable } from '@epam/uui-core';
+import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, cx, IHasRawProps, isEventTargetInsideClickable, DataRowProps, IHasCaption, IDisableable } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import { i18n } from '../i18n';
 import css from './PickerToggler.module.scss';
@@ -23,7 +23,7 @@ export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, 
 }
 
 export interface PickerTogglerProps<TItem = any, TId = any>
-    extends IPickerToggler<TItem, TId>, ICanFocus<HTMLElement>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
+    extends IPickerToggler<TItem, TId>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
     cancelIcon?: Icon;
     dropdownIcon?: Icon;
     autoFocus?: boolean;
@@ -67,13 +67,13 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     React.useEffect(() => {
         // We need to subscribe on any document clicks, when toggler is in focus to be able to make blur on toggler in case of click outside.
-        inFocus && window.document.addEventListener('click', handleClick);
+        inFocus && window.document.addEventListener('mousedown', handleClick);
 
         if (props.autoFocus && !props.disableSearch && isSearchInToggler) {
             searchInput.current?.focus();
         }
 
-        return () => window.document.removeEventListener('click', handleClick);
+        return () => window.document.removeEventListener('mousedown', handleClick);
     }, [inFocus, handleClick]);
 
     const isActivePlaceholder = (): Boolean => {

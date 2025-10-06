@@ -79,11 +79,21 @@
             color: var(--uui-labeled_input-optional-text);
             margin-inline-start: var(--uui-labeled_input-horizontal-gap);
         }
+
+        :global(.uui-labeled-input-info-icon) {
+            &:last-child {
+                margin-inline-end: var(--uui-focus-outline-width); // to fix focus outline clapping
+            }
+        }
     }
 
     :global(.uui-label-left) {
         :global(.uui-label) {
             margin-inline-end: var(--uui-labeled_input-horizontal-gap);
+        }
+
+        :global(.uui-label):has(:global(.uui-labeled-input-info-icon)) {
+            margin-inline-end: calc(var(--uui-labeled_input-horizontal-gap) - var(--uui-focus-outline-width));
         }
     }
 

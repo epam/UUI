@@ -1,0 +1,68 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To ensure your tooltips are properly accessible, you should do the following:"
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Use a focusable element for the tooltip target. This allows users who rely on a keyboard or screen reader to open the tooltip by focusing on the target element."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Link the tooltip content to the target element using unique IDs. Add the "
+              },
+              {
+                "text": "aria-describedby",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " attribute to your target element, and set its value to match the ID of the tooltip's content."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Provide a fallback description for screen readers using the "
+              },
+              {
+                "text": "aria-description",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " attribute. This is useful for when the tooltip content is not always rendered in the DOM."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

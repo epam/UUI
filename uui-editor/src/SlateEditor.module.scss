@@ -20,6 +20,7 @@
     // reverts https://github.com/ianstormtaylor/slate/pull/5423
     span[data-slate-placeholder='true'] {
         top: initial !important;
+        width: auto !important;
     }
 }
 

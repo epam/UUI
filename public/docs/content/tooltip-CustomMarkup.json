@@ -1,37 +1,18 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "In addition to simple text, you can pass React components directly to the content prop or can provide the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "renderContent",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " callback.",
-            "marks": []
-          }
-        ]
+        "text": "In addition to simple text, you can pass React components directly to the content prop or can provide the "
+      },
+      {
+        "text": "renderContent",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " callback."
       }
     ]
   }
-}
+]

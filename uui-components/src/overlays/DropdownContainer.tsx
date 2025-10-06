@@ -44,11 +44,6 @@ export interface DropdownContainerProps
      * Pass any extra props to the FocusLock wrapper.
      */
     lockProps?: Record<string, any>;
-    /**
-     * Pass true to handle Escape key press and call props.onClose().
-     * If omitted, true value will be used. It's used if focusLock=true.
-     */
-    closeOnEsc?: boolean;
     /** Called on keyDown event in DropdownContainer.
      Can be used to provide your own handlers.
      */
@@ -60,7 +55,6 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
         focusLock = true,
         returnFocus = true,
         persistentFocus = true,
-        closeOnEsc = true,
     } = props;
 
     function renderDropdownContainer() {
@@ -75,7 +69,11 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
                     maxHeight: props.maxHeight,
                     maxWidth: props.maxWidth ?? props.width,
                 } }
-                rawProps={ { tabIndex: -1, ...props.rawProps } }
+                rawProps={ {
+                    tabIndex: -1,
+                    onKeyDown: !focusLock ? props?.onKeyDown : undefined,
+                    ...props.rawProps,
+                } }
             >
                 {props.children}
                 {props.showArrow && (
@@ -85,21 +83,13 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
         );
     }
 
-    const handleEscape = (e: React.KeyboardEvent<HTMLElement>) => {
-        props.onKeyDown?.(e);
-        if (e.key === 'Escape' && closeOnEsc && props.isOpen) {
-            e.preventDefault();
-            props.onClose?.();
-        }
-    };
-
     return focusLock
         ? (
             <FocusLock
                 ref={ ref }
                 returnFocus={ typeof returnFocus === 'function' ? returnFocus : returnFocus && { preventScroll: true } }
                 persistentFocus={ persistentFocus }
-                lockProps={ { ...({ onKeyDown: handleEscape }), ...props.lockProps } }
+                lockProps={ { ...({ onKeyDown: props?.onKeyDown }), ...props.lockProps } }
                 shards={ props.shards }
                 autoFocus={ props.autoFocus || true }
                 as={ props.as }

@@ -99,8 +99,15 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
     };
 
     const renderErrorContent = () => (
-        <Tooltip content={ file.error.message } placement="bottom-start">
-            <div className={ css.errorBlock }>
+        <Tooltip
+            content={ file.error.message }
+            placement="bottom-start"
+        >
+            <div
+                className={ css.errorBlock }
+                aria-description={ file.error.message }
+                aria-label="File Upload Error"
+            >
                 <IconContainer icon={ settings.fileCard.icons.errorIcon } size={ 12 } />
                 {i18n.fileCard.failedUploadErrorMessage}
             </div>

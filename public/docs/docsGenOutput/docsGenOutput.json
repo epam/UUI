@@ -12518,65 +12518,73 @@
       "    virtualTarget?: VirtualElement;",
       "    /** Render callback for the dropdown body */",
       "    renderBody: (props: DropdownBodyProps) => React.ReactNode;",
-      "    /** Call to close the dropdown body */",
+      "    /** Call to close the overlay content */",
       "    onClose?: () => void;",
-      "    /** Disable dropdown opening */",
+      "    /** Disable overlay opening */",
       "    isNotUnfoldable?: boolean;",
-      "    /** zIndex for dropdown body",
+      "    /** zIndex for overlay content",
       "     * By default used value received by LayoutContext",
       "     * */",
       "    zIndex?: number;",
-      "    /** Defines dropdown body placement relative to target */",
+      "    /** Defines overlay content placement relative to target */",
       "    placement?: DropdownPlacement;",
-      "    /** Defines an array of middleware objects that change the positioning of the dropdown body. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}  */",
+      "    /** Defines an array of middleware objects that change the positioning of the overlay content. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}  */",
       "    middleware?: Middleware[];",
-      "    /** Defines how much 'ms' user should hold mouse over target to open the dropdown",
+      "    /** Defines how much 'ms' user should hold mouse over target to open the overlay",
       "     * This prop work only with openOnHover={true}",
       "     * @default 0",
       "     * */",
       "    openDelay?: number;",
-      "    /** Defines after which delay dropdown will be closed, if user leave mouse from target.",
+      "    /** Defines after which delay overlay will be closed, if user leave mouse from target.",
       "     * This prop work only with openOnHover={true}",
       "     * @default 0",
       "     * */",
       "    closeDelay?: number;",
-      "    /** If true, dropdown will be opened by click on toggler.",
+      "    /** If true, overlay will be opened by click on target element.",
       "     * @default true",
       "     * */",
       "    openOnClick?: boolean;",
-      "    /** If true, dropdown will be opened by hover on toggler.",
+      "    /** If true, overlay will be opened by hover on target element.",
       "     * @default false",
       "     * */",
       "    openOnHover?: boolean;",
-      "    /** If true, clicks on target will toggle dropdown open state.",
-      "     * If false, click on target will only open dropdown and won't close it.",
+      "    /** If true, overlay will be opened by focus on target element.",
+      "     * @default false",
+      "     * */",
+      "    openOnFocus?: boolean;",
+      "    /** If true, clicks on target will toggle overlay open state.",
+      "     * If false, click on target will only open overlay and won't close it.",
       "     * @default true",
       "     * */",
       "    closeOnTargetClick?: boolean;",
-      "    /** If true, dropdown will be closed on click outside body or toggler.",
+      "    /** If true, overlay will be closed on click outside content or target element.",
       "     * @default true",
       "     * */",
       "    closeOnClickOutside?: boolean;",
-      "    /** Defined when to close dropdown in case of openOnHover={ true }",
-      "     * toggler — dropdown will be closed when a mouse leaves the target component",
-      "     * boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
-      "     * false — will not close dropdown by mouse move event",
+      "    /** Defined when to close overlay in case of openOnHover={ true }",
+      "     * toggler — overlay will be closed when a mouse leaves the target component",
+      "     * boundary — will not immediately close the overlay when the mouse is within 30px around of the content area",
+      "     * false — will not close overlay by mouse move event",
       "     * @default 'toggler'",
       "     * */",
       "    closeOnMouseLeave?: 'toggler' | 'boundary' | false;",
       "    /**",
-      "     * Node of portal target, where to render the dropdown body.",
+      "     * Node of portal target, where to render the overlay content.",
       "     * By default, will be used global portal node.",
       "     * */",
       "    portalTarget?: HTMLElement;",
       "    /**",
-      "     * Element relative to which dropdown will calculate position",
+      "     * Element relative to which overlay will calculate position",
       "     * */",
       "    boundaryElement?: Boundary;",
-      "    /** Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+      "    /** Pass false, if you do not want to close the overlay in case target element move out of viewport.",
       "     * @default true",
       "     * */",
       "    closeBodyOnTogglerHidden?: boolean;",
+      "    /** Pass false, if you do not want to close the overlay when the Escape key is pressed.",
+      "     * @default true",
+      "     * */",
+      "    closeOnEscape?: boolean;",
       "}"
      ]
     },
@@ -12635,7 +12643,7 @@
       "name": "onClose",
       "comment": {
        "raw": [
-        "Call to close the dropdown body"
+        "Call to close the overlay content"
        ]
       },
       "typeValue": {
@@ -12652,7 +12660,7 @@
       "name": "isNotUnfoldable",
       "comment": {
        "raw": [
-        "Disable dropdown opening"
+        "Disable overlay opening"
        ]
       },
       "typeValue": {
@@ -12669,7 +12677,7 @@
       "name": "zIndex",
       "comment": {
        "raw": [
-        "zIndex for dropdown body",
+        "zIndex for overlay content",
         " By default used value received by LayoutContext"
        ]
       },
@@ -12687,7 +12695,7 @@
       "name": "placement",
       "comment": {
        "raw": [
-        "Defines dropdown body placement relative to target"
+        "Defines overlay content placement relative to target"
        ]
       },
       "typeValue": {
@@ -12718,7 +12726,7 @@
       "name": "middleware",
       "comment": {
        "raw": [
-        "Defines an array of middleware objects that change the positioning of the dropdown body. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}"
+        "Defines an array of middleware objects that change the positioning of the overlay content. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}"
        ]
       },
       "typeValue": {
@@ -12732,7 +12740,7 @@
       "name": "openDelay",
       "comment": {
        "raw": [
-        "Defines how much 'ms' user should hold mouse over target to open the dropdown",
+        "Defines how much 'ms' user should hold mouse over target to open the overlay",
         " This prop work only with openOnHover={true}",
         " @default 0"
        ],
@@ -12754,7 +12762,7 @@
       "name": "closeDelay",
       "comment": {
        "raw": [
-        "Defines after which delay dropdown will be closed, if user leave mouse from target.",
+        "Defines after which delay overlay will be closed, if user leave mouse from target.",
         " This prop work only with openOnHover={true}",
         " @default 0"
        ],
@@ -12776,7 +12784,7 @@
       "name": "openOnClick",
       "comment": {
        "raw": [
-        "If true, dropdown will be opened by click on toggler.",
+        "If true, overlay will be opened by click on target element.",
         " @default true"
        ],
        "tags": {
@@ -12797,7 +12805,28 @@
       "name": "openOnHover",
       "comment": {
        "raw": [
-        "If true, dropdown will be opened by hover on toggler.",
+        "If true, overlay will be opened by hover on target element.",
+        " @default false"
+       ],
+       "tags": {
+        "@default": false
+       }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "openOnFocus",
+      "name": "openOnFocus",
+      "comment": {
+       "raw": [
+        "If true, overlay will be opened by focus on target element.",
         " @default false"
        ],
        "tags": {
@@ -12818,8 +12847,8 @@
       "name": "closeOnTargetClick",
       "comment": {
        "raw": [
-        "If true, clicks on target will toggle dropdown open state.",
-        " If false, click on target will only open dropdown and won't close it.",
+        "If true, clicks on target will toggle overlay open state.",
+        " If false, click on target will only open overlay and won't close it.",
         " @default true"
        ],
        "tags": {
@@ -12840,7 +12869,7 @@
       "name": "closeOnClickOutside",
       "comment": {
        "raw": [
-        "If true, dropdown will be closed on click outside body or toggler.",
+        "If true, overlay will be closed on click outside content or target element.",
         " @default true"
        ],
        "tags": {
@@ -12861,10 +12890,10 @@
       "name": "closeOnMouseLeave",
       "comment": {
        "raw": [
-        "Defined when to close dropdown in case of openOnHover={ true }",
-        " toggler — dropdown will be closed when a mouse leaves the target component",
-        " boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
-        " false — will not close dropdown by mouse move event",
+        "Defined when to close overlay in case of openOnHover={ true }",
+        " toggler — overlay will be closed when a mouse leaves the target component",
+        " boundary — will not immediately close the overlay when the mouse is within 30px around of the content area",
+        " false — will not close overlay by mouse move event",
         " @default 'toggler'"
        ],
        "tags": {
@@ -12890,7 +12919,7 @@
       "name": "portalTarget",
       "comment": {
        "raw": [
-        "Node of portal target, where to render the dropdown body.",
+        "Node of portal target, where to render the overlay content.",
         " By default, will be used global portal node."
        ]
       },
@@ -12905,7 +12934,7 @@
       "name": "boundaryElement",
       "comment": {
        "raw": [
-        "Element relative to which dropdown will calculate position"
+        "Element relative to which overlay will calculate position"
        ]
       },
       "typeValue": {
@@ -12919,7 +12948,28 @@
       "name": "closeBodyOnTogglerHidden",
       "comment": {
        "raw": [
-        "Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+        "Pass false, if you do not want to close the overlay in case target element move out of viewport.",
+        " @default true"
+       ],
+       "tags": {
+        "@default": true
+       }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "closeOnEscape",
+      "name": "closeOnEscape",
+      "comment": {
+       "raw": [
+        "Pass false, if you do not want to close the overlay when the Escape key is pressed.",
         " @default true"
        ],
        "tags": {
@@ -15622,6 +15672,42 @@
       },
       "from": "@epam/uui-core:IClickable",
       "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -17423,7 +17509,7 @@
     "typeValue": {
      "raw": "IDropdownTogglerProps",
      "print": [
-      "interface IDropdownTogglerProps extends IDropdownToggler, IClickable {",
+      "interface IDropdownTogglerProps extends IDropdownToggler, IClickable, ICanFocus<any> {",
       "    /** Called when associated dropdown should open or close  */",
       "    toggleDropdownOpening?: (value: boolean) => void;",
       "    /** Called when component is interacted outside, to close the dropdown */",
@@ -17534,6 +17620,42 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
       "required": false
      }
     ],
@@ -22015,6 +22137,42 @@
       "required": false
      },
      {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
       "uid": "isInvalid",
       "name": "isInvalid",
       "comment": {
@@ -23235,6 +23393,10 @@
       "     * Instead, use tree.getItems(), in the combination with tree.getById(id).",
       "     */",
       "    getItemsAccessor(): IItemsAccessor<TItem, TId>;",
+      "    /**",
+      "     * Indicates if the tree is just created and no data has been set.",
+      "     */",
+      "    isBlank(): boolean;",
       "}"
      ]
     },
@@ -23305,6 +23467,23 @@
       "typeValue": {
        "raw": "() => IItemsAccessor<TItem, TId>",
        "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> IItemsAccessor<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "isBlank",
+      "name": "isBlank",
+      "comment": {
+       "raw": [
+        "Indicates if the tree is just created and no data has been set."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => boolean",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
       },
       "editor": {
        "type": "func"
@@ -40397,7 +40576,7 @@
     "typeValue": {
      "raw": "TooltipCoreProps",
      "print": [
-      "interface TooltipCoreProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, Partial<IControlled<boolean>>, Pick<DropdownProps, 'onClose' | 'middleware' | 'openDelay' | 'closeDelay' | 'closeOnMouseLeave' | 'portalTarget' | 'boundaryElement' | 'closeBodyOnTogglerHidden'> {",
+      "interface TooltipCoreProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, Partial<IControlled<boolean>>, Pick<DropdownProps, 'onClose' | 'middleware' | 'openDelay' | 'closeDelay' | 'closeOnMouseLeave' | 'portalTarget' | 'boundaryElement' | 'closeBodyOnTogglerHidden' | 'closeOnEscape'> {",
       "    /** Content to show in the tooltip (ReactNode) */",
       "    content?: any;",
       "    /** Alternative to 'content' prop, you can pass a render function.",
@@ -40599,7 +40778,7 @@
       "name": "onClose",
       "comment": {
        "raw": [
-        "Call to close the dropdown body"
+        "Call to close the overlay content"
        ]
       },
       "typeValue": {
@@ -40617,7 +40796,7 @@
       "name": "middleware",
       "comment": {
        "raw": [
-        "Defines an array of middleware objects that change the positioning of the dropdown body. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}"
+        "Defines an array of middleware objects that change the positioning of the overlay content. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}"
        ]
       },
       "typeValue": {
@@ -40632,7 +40811,7 @@
       "name": "openDelay",
       "comment": {
        "raw": [
-        "Defines how much 'ms' user should hold mouse over target to open the dropdown",
+        "Defines how much 'ms' user should hold mouse over target to open the overlay",
         " This prop work only with openOnHover={true}",
         " @default 0"
        ],
@@ -40655,7 +40834,7 @@
       "name": "closeDelay",
       "comment": {
        "raw": [
-        "Defines after which delay dropdown will be closed, if user leave mouse from target.",
+        "Defines after which delay overlay will be closed, if user leave mouse from target.",
         " This prop work only with openOnHover={true}",
         " @default 0"
        ],
@@ -40678,10 +40857,10 @@
       "name": "closeOnMouseLeave",
       "comment": {
        "raw": [
-        "Defined when to close dropdown in case of openOnHover={ true }",
-        " toggler — dropdown will be closed when a mouse leaves the target component",
-        " boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
-        " false — will not close dropdown by mouse move event",
+        "Defined when to close overlay in case of openOnHover={ true }",
+        " toggler — overlay will be closed when a mouse leaves the target component",
+        " boundary — will not immediately close the overlay when the mouse is within 30px around of the content area",
+        " false — will not close overlay by mouse move event",
         " @default 'toggler'"
        ],
        "tags": {
@@ -40708,7 +40887,7 @@
       "name": "portalTarget",
       "comment": {
        "raw": [
-        "Node of portal target, where to render the dropdown body.",
+        "Node of portal target, where to render the overlay content.",
         " By default, will be used global portal node."
        ]
       },
@@ -40724,7 +40903,7 @@
       "name": "boundaryElement",
       "comment": {
        "raw": [
-        "Element relative to which dropdown will calculate position"
+        "Element relative to which overlay will calculate position"
        ]
       },
       "typeValue": {
@@ -40739,7 +40918,29 @@
       "name": "closeBodyOnTogglerHidden",
       "comment": {
        "raw": [
-        "Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+        "Pass false, if you do not want to close the overlay in case target element move out of viewport.",
+        " @default true"
+       ],
+       "tags": {
+        "@default": true
+       }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
+     },
+     {
+      "uid": "closeOnEscape",
+      "name": "closeOnEscape",
+      "comment": {
+       "raw": [
+        "Pass false, if you do not want to close the overlay when the Escape key is pressed.",
         " @default true"
        ],
        "tags": {
@@ -41332,10 +41533,6 @@
       "     * State of the dataSource.",
       "     */",
       "    dataSourceState: DataSourceState<TFilter, TId>;",
-      "    /**",
-      "     * Are data loading.",
-      "     */",
-      "    isLoading?: boolean;",
       "}"
      ]
     },
@@ -41367,23 +41564,6 @@
        "html": "DataSourceState<span class=\"token operator\">&lt;</span>TFilter<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
       },
       "required": true
-     },
-     {
-      "uid": "isLoading",
-      "name": "isLoading",
-      "comment": {
-       "raw": [
-        "Are data loading."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
      },
      {
       "uid": "getFilter",
@@ -49135,6 +49315,10 @@
       "    rotate?: '0' | '90cw' | '180' | '90ccw';",
       "    /** Click handler */",
       "    onClick?(e: React.SyntheticEvent<HTMLDivElement>): void;",
+      "    /** Focus handler. To enable focus, remember to pass tabIndex. */",
+      "    onFocus?(e: React.FocusEvent<HTMLDivElement>): void;",
+      "    /** Blur handler. To enable blur, remember to pass tabIndex. */",
+      "    onBlur?(e: React.FocusEvent<HTMLDivElement>): void;",
       "    /** CSS style prop to put on the component */",
       "    style?: React.CSSProperties;",
       "    /** Icon size in pixels (both width and height, as icons are assumed to be square-shaped) */",
@@ -49211,6 +49395,40 @@
       "typeValue": {
        "raw": "(e: React.SyntheticEvent<HTMLDivElement, Event>) => void",
        "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>SyntheticEvent<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token punctuation\">,</span> Event<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Focus handler. To enable focus, remember to pass tabIndex."
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLDivElement, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Blur handler. To enable blur, remember to pass tabIndex."
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLDivElement, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
       },
       "editor": {
        "type": "func"
@@ -49989,11 +50207,6 @@
       "     * Pass any extra props to the FocusLock wrapper.",
       "     */",
       "    lockProps?: Record<string, any>;",
-      "    /**",
-      "     * Pass true to handle Escape key press and call props.onClose().",
-      "     * If omitted, true value will be used. It's used if focusLock=true.",
-      "     */",
-      "    closeOnEsc?: boolean;",
       "    /** Called on keyDown event in DropdownContainer.",
       "     Can be used to provide your own handlers.",
       "     */",
@@ -50156,24 +50369,6 @@
       "typeValue": {
        "raw": "Record<string, any>",
        "html": "Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span>"
-      },
-      "required": false
-     },
-     {
-      "uid": "closeOnEsc",
-      "name": "closeOnEsc",
-      "comment": {
-       "raw": [
-        "Pass true to handle Escape key press and call props.onClose().",
-        " If omitted, true value will be used. It's used if focusLock=true."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "required": false
      },
@@ -51326,6 +51521,42 @@
       "typeValue": {
        "raw": "(e: React.SyntheticEvent<HTMLDivElement, Event>) => void",
        "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>SyntheticEvent<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token punctuation\">,</span> Event<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ControlIconProps",
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Focus handler. To enable focus, remember to pass tabIndex."
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLDivElement, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ControlIconProps",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Blur handler. To enable blur, remember to pass tabIndex."
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLDivElement, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
       },
       "editor": {
        "type": "func"
@@ -59779,7 +60010,7 @@
     "typeValue": {
      "raw": "PickerTogglerProps<TItem, TId>",
      "print": [
-      "interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggler<TItem, TId>, ICanFocus<HTMLElement>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
+      "interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggler<TItem, TId>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
       "    cancelIcon?: Icon;",
       "    dropdownIcon?: Icon;",
       "    autoFocus?: boolean;",
@@ -60166,6 +60397,42 @@
       "required": false
      },
      {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
       "uid": "isInvalid",
       "name": "isInvalid",
       "comment": {
@@ -60286,42 +60553,6 @@
        "html": "<span class=\"token builtin\">any</span>"
       },
       "from": "@epam/uui-core:IHasPlaceholder",
-      "required": false
-     },
-     {
-      "uid": "onFocus",
-      "name": "onFocus",
-      "comment": {
-       "raw": [
-        "Called when component gets input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
-      "required": false
-     },
-     {
-      "uid": "onBlur",
-      "name": "onBlur",
-      "comment": {
-       "raw": [
-        "Called when component looses input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
       "required": false
      },
      {
@@ -63987,7 +64218,7 @@
       "name": "onClose",
       "comment": {
        "raw": [
-        "Call to close the dropdown body"
+        "Call to close the overlay content"
        ]
       },
       "typeValue": {
@@ -64005,7 +64236,7 @@
       "name": "middleware",
       "comment": {
        "raw": [
-        "Defines an array of middleware objects that change the positioning of the dropdown body. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}"
+        "Defines an array of middleware objects that change the positioning of the overlay content. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}"
        ]
       },
       "typeValue": {
@@ -64020,7 +64251,7 @@
       "name": "openDelay",
       "comment": {
        "raw": [
-        "Defines how much 'ms' user should hold mouse over target to open the dropdown",
+        "Defines how much 'ms' user should hold mouse over target to open the overlay",
         " This prop work only with openOnHover={true}",
         " @default 0"
        ],
@@ -64043,7 +64274,7 @@
       "name": "closeDelay",
       "comment": {
        "raw": [
-        "Defines after which delay dropdown will be closed, if user leave mouse from target.",
+        "Defines after which delay overlay will be closed, if user leave mouse from target.",
         " This prop work only with openOnHover={true}",
         " @default 0"
        ],
@@ -64066,10 +64297,10 @@
       "name": "closeOnMouseLeave",
       "comment": {
        "raw": [
-        "Defined when to close dropdown in case of openOnHover={ true }",
-        " toggler — dropdown will be closed when a mouse leaves the target component",
-        " boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
-        " false — will not close dropdown by mouse move event",
+        "Defined when to close overlay in case of openOnHover={ true }",
+        " toggler — overlay will be closed when a mouse leaves the target component",
+        " boundary — will not immediately close the overlay when the mouse is within 30px around of the content area",
+        " false — will not close overlay by mouse move event",
         " @default 'toggler'"
        ],
        "tags": {
@@ -64096,7 +64327,7 @@
       "name": "portalTarget",
       "comment": {
        "raw": [
-        "Node of portal target, where to render the dropdown body.",
+        "Node of portal target, where to render the overlay content.",
         " By default, will be used global portal node."
        ]
       },
@@ -64112,7 +64343,7 @@
       "name": "boundaryElement",
       "comment": {
        "raw": [
-        "Element relative to which dropdown will calculate position"
+        "Element relative to which overlay will calculate position"
        ]
       },
       "typeValue": {
@@ -64127,7 +64358,29 @@
       "name": "closeBodyOnTogglerHidden",
       "comment": {
        "raw": [
-        "Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+        "Pass false, if you do not want to close the overlay in case target element move out of viewport.",
+        " @default true"
+       ],
+       "tags": {
+        "@default": true
+       }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
+     },
+     {
+      "uid": "closeOnEscape",
+      "name": "closeOnEscape",
+      "comment": {
+       "raw": [
+        "Pass false, if you do not want to close the overlay when the Escape key is pressed.",
         " @default true"
        ],
        "tags": {
@@ -76498,25 +76751,6 @@
       "required": false
      },
      {
-      "uid": "closeOnEsc",
-      "name": "closeOnEsc",
-      "comment": {
-       "raw": [
-        "Pass true to handle Escape key press and call props.onClose().",
-        " If omitted, true value will be used. It's used if focusLock=true."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
       "uid": "onKeyDown",
       "name": "onKeyDown",
       "comment": {
@@ -79770,6 +80004,42 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
       "required": false
      },
      {
@@ -91240,6 +91510,42 @@
       "required": false
      },
      {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<any, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
       "uid": "isInvalid",
       "name": "isInvalid",
       "comment": {
@@ -91360,42 +91666,6 @@
        "html": "<span class=\"token builtin\">any</span>"
       },
       "from": "@epam/uui-core:IHasPlaceholder",
-      "required": false
-     },
-     {
-      "uid": "onFocus",
-      "name": "onFocus",
-      "comment": {
-       "raw": [
-        "Called when component gets input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
-      "required": false
-     },
-     {
-      "uid": "onBlur",
-      "name": "onBlur",
-      "comment": {
-       "raw": [
-        "Called when component looses input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
       "required": false
      },
      {
@@ -102312,7 +102582,7 @@
       "name": "onClose",
       "comment": {
        "raw": [
-        "Call to close the dropdown body"
+        "Call to close the overlay content"
        ]
       },
       "typeValue": {
@@ -102330,7 +102600,7 @@
       "name": "middleware",
       "comment": {
        "raw": [
-        "Defines an array of middleware objects that change the positioning of the dropdown body. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}"
+        "Defines an array of middleware objects that change the positioning of the overlay content. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}"
        ]
       },
       "typeValue": {
@@ -102345,7 +102615,7 @@
       "name": "openDelay",
       "comment": {
        "raw": [
-        "Defines how much 'ms' user should hold mouse over target to open the dropdown",
+        "Defines how much 'ms' user should hold mouse over target to open the overlay",
         " This prop work only with openOnHover={true}",
         " @default 0"
        ],
@@ -102368,7 +102638,7 @@
       "name": "closeDelay",
       "comment": {
        "raw": [
-        "Defines after which delay dropdown will be closed, if user leave mouse from target.",
+        "Defines after which delay overlay will be closed, if user leave mouse from target.",
         " This prop work only with openOnHover={true}",
         " @default 0"
        ],
@@ -102391,10 +102661,10 @@
       "name": "closeOnMouseLeave",
       "comment": {
        "raw": [
-        "Defined when to close dropdown in case of openOnHover={ true }",
-        " toggler — dropdown will be closed when a mouse leaves the target component",
-        " boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
-        " false — will not close dropdown by mouse move event",
+        "Defined when to close overlay in case of openOnHover={ true }",
+        " toggler — overlay will be closed when a mouse leaves the target component",
+        " boundary — will not immediately close the overlay when the mouse is within 30px around of the content area",
+        " false — will not close overlay by mouse move event",
         " @default 'toggler'"
        ],
        "tags": {
@@ -102421,7 +102691,7 @@
       "name": "portalTarget",
       "comment": {
        "raw": [
-        "Node of portal target, where to render the dropdown body.",
+        "Node of portal target, where to render the overlay content.",
         " By default, will be used global portal node."
        ]
       },
@@ -102437,7 +102707,7 @@
       "name": "boundaryElement",
       "comment": {
        "raw": [
-        "Element relative to which dropdown will calculate position"
+        "Element relative to which overlay will calculate position"
        ]
       },
       "typeValue": {
@@ -102452,7 +102722,29 @@
       "name": "closeBodyOnTogglerHidden",
       "comment": {
        "raw": [
-        "Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+        "Pass false, if you do not want to close the overlay in case target element move out of viewport.",
+        " @default true"
+       ],
+       "tags": {
+        "@default": true
+       }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
+     },
+     {
+      "uid": "closeOnEscape",
+      "name": "closeOnEscape",
+      "comment": {
+       "raw": [
+        "Pass false, if you do not want to close the overlay when the Escape key is pressed.",
         " @default true"
        ],
        "tags": {
@@ -102702,7 +102994,7 @@
       "name": "onClose",
       "comment": {
        "raw": [
-        "Call to close the dropdown body"
+        "Call to close the overlay content"
        ]
       },
       "typeValue": {
@@ -102720,7 +103012,7 @@
       "name": "middleware",
       "comment": {
        "raw": [
-        "Defines an array of middleware objects that change the positioning of the dropdown body. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}"
+        "Defines an array of middleware objects that change the positioning of the overlay content. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}"
        ]
       },
       "typeValue": {
@@ -102735,7 +103027,7 @@
       "name": "openDelay",
       "comment": {
        "raw": [
-        "Defines how much 'ms' user should hold mouse over target to open the dropdown",
+        "Defines how much 'ms' user should hold mouse over target to open the overlay",
         " This prop work only with openOnHover={true}",
         " @default 0"
        ],
@@ -102758,7 +103050,7 @@
       "name": "closeDelay",
       "comment": {
        "raw": [
-        "Defines after which delay dropdown will be closed, if user leave mouse from target.",
+        "Defines after which delay overlay will be closed, if user leave mouse from target.",
         " This prop work only with openOnHover={true}",
         " @default 0"
        ],
@@ -102781,10 +103073,10 @@
       "name": "closeOnMouseLeave",
       "comment": {
        "raw": [
-        "Defined when to close dropdown in case of openOnHover={ true }",
-        " toggler — dropdown will be closed when a mouse leaves the target component",
-        " boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
-        " false — will not close dropdown by mouse move event",
+        "Defined when to close overlay in case of openOnHover={ true }",
+        " toggler — overlay will be closed when a mouse leaves the target component",
+        " boundary — will not immediately close the overlay when the mouse is within 30px around of the content area",
+        " false — will not close overlay by mouse move event",
         " @default 'toggler'"
        ],
        "tags": {
@@ -102811,7 +103103,7 @@
       "name": "portalTarget",
       "comment": {
        "raw": [
-        "Node of portal target, where to render the dropdown body.",
+        "Node of portal target, where to render the overlay content.",
         " By default, will be used global portal node."
        ]
       },
@@ -102827,7 +103119,7 @@
       "name": "boundaryElement",
       "comment": {
        "raw": [
-        "Element relative to which dropdown will calculate position"
+        "Element relative to which overlay will calculate position"
        ]
       },
       "typeValue": {
@@ -102842,7 +103134,29 @@
       "name": "closeBodyOnTogglerHidden",
       "comment": {
        "raw": [
-        "Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+        "Pass false, if you do not want to close the overlay in case target element move out of viewport.",
+        " @default true"
+       ],
+       "tags": {
+        "@default": true
+       }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
+     },
+     {
+      "uid": "closeOnEscape",
+      "name": "closeOnEscape",
+      "comment": {
+       "raw": [
+        "Pass false, if you do not want to close the overlay when the Escape key is pressed.",
         " @default true"
        ],
        "tags": {
@@ -109064,7 +109378,7 @@
       "name": "onClose",
       "comment": {
        "raw": [
-        "Call to close the dropdown body"
+        "Call to close the overlay content"
        ]
       },
       "typeValue": {
@@ -109082,7 +109396,7 @@
       "name": "middleware",
       "comment": {
        "raw": [
-        "Defines an array of middleware objects that change the positioning of the dropdown body. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}"
+        "Defines an array of middleware objects that change the positioning of the overlay content. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}"
        ]
       },
       "typeValue": {
@@ -109097,7 +109411,7 @@
       "name": "openDelay",
       "comment": {
        "raw": [
-        "Defines how much 'ms' user should hold mouse over target to open the dropdown",
+        "Defines how much 'ms' user should hold mouse over target to open the overlay",
         " This prop work only with openOnHover={true}",
         " @default 0"
        ],
@@ -109120,7 +109434,7 @@
       "name": "closeDelay",
       "comment": {
        "raw": [
-        "Defines after which delay dropdown will be closed, if user leave mouse from target.",
+        "Defines after which delay overlay will be closed, if user leave mouse from target.",
         " This prop work only with openOnHover={true}",
         " @default 0"
        ],
@@ -109143,10 +109457,10 @@
       "name": "closeOnMouseLeave",
       "comment": {
        "raw": [
-        "Defined when to close dropdown in case of openOnHover={ true }",
-        " toggler — dropdown will be closed when a mouse leaves the target component",
-        " boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
-        " false — will not close dropdown by mouse move event",
+        "Defined when to close overlay in case of openOnHover={ true }",
+        " toggler — overlay will be closed when a mouse leaves the target component",
+        " boundary — will not immediately close the overlay when the mouse is within 30px around of the content area",
+        " false — will not close overlay by mouse move event",
         " @default 'toggler'"
        ],
        "tags": {
@@ -109173,7 +109487,7 @@
       "name": "portalTarget",
       "comment": {
        "raw": [
-        "Node of portal target, where to render the dropdown body.",
+        "Node of portal target, where to render the overlay content.",
         " By default, will be used global portal node."
        ]
       },
@@ -109189,7 +109503,7 @@
       "name": "boundaryElement",
       "comment": {
        "raw": [
-        "Element relative to which dropdown will calculate position"
+        "Element relative to which overlay will calculate position"
        ]
       },
       "typeValue": {
@@ -109204,7 +109518,29 @@
       "name": "closeBodyOnTogglerHidden",
       "comment": {
        "raw": [
-        "Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+        "Pass false, if you do not want to close the overlay in case target element move out of viewport.",
+        " @default true"
+       ],
+       "tags": {
+        "@default": true
+       }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
+     },
+     {
+      "uid": "closeOnEscape",
+      "name": "closeOnEscape",
+      "comment": {
+       "raw": [
+        "Pass false, if you do not want to close the overlay when the Escape key is pressed.",
         " @default true"
        ],
        "tags": {
@@ -117090,7 +117426,7 @@
       "name": "onClose",
       "comment": {
        "raw": [
-        "Call to close the dropdown body"
+        "Call to close the overlay content"
        ]
       },
       "typeValue": {
@@ -117108,7 +117444,7 @@
       "name": "middleware",
       "comment": {
        "raw": [
-        "Defines an array of middleware objects that change the positioning of the dropdown body. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}"
+        "Defines an array of middleware objects that change the positioning of the overlay content. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}"
        ]
       },
       "typeValue": {
@@ -117123,7 +117459,7 @@
       "name": "openDelay",
       "comment": {
        "raw": [
-        "Defines how much 'ms' user should hold mouse over target to open the dropdown",
+        "Defines how much 'ms' user should hold mouse over target to open the overlay",
         " This prop work only with openOnHover={true}",
         " @default 0"
        ],
@@ -117146,7 +117482,7 @@
       "name": "closeDelay",
       "comment": {
        "raw": [
-        "Defines after which delay dropdown will be closed, if user leave mouse from target.",
+        "Defines after which delay overlay will be closed, if user leave mouse from target.",
         " This prop work only with openOnHover={true}",
         " @default 0"
        ],
@@ -117169,10 +117505,10 @@
       "name": "closeOnMouseLeave",
       "comment": {
        "raw": [
-        "Defined when to close dropdown in case of openOnHover={ true }",
-        " toggler — dropdown will be closed when a mouse leaves the target component",
-        " boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
-        " false — will not close dropdown by mouse move event",
+        "Defined when to close overlay in case of openOnHover={ true }",
+        " toggler — overlay will be closed when a mouse leaves the target component",
+        " boundary — will not immediately close the overlay when the mouse is within 30px around of the content area",
+        " false — will not close overlay by mouse move event",
         " @default 'toggler'"
        ],
        "tags": {
@@ -117199,7 +117535,7 @@
       "name": "portalTarget",
       "comment": {
        "raw": [
-        "Node of portal target, where to render the dropdown body.",
+        "Node of portal target, where to render the overlay content.",
         " By default, will be used global portal node."
        ]
       },
@@ -117215,7 +117551,7 @@
       "name": "boundaryElement",
       "comment": {
        "raw": [
-        "Element relative to which dropdown will calculate position"
+        "Element relative to which overlay will calculate position"
        ]
       },
       "typeValue": {
@@ -117230,7 +117566,29 @@
       "name": "closeBodyOnTogglerHidden",
       "comment": {
        "raw": [
-        "Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+        "Pass false, if you do not want to close the overlay in case target element move out of viewport.",
+        " @default true"
+       ],
+       "tags": {
+        "@default": true
+       }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
+     },
+     {
+      "uid": "closeOnEscape",
+      "name": "closeOnEscape",
+      "comment": {
+       "raw": [
+        "Pass false, if you do not want to close the overlay when the Escape key is pressed.",
         " @default true"
        ],
        "tags": {
