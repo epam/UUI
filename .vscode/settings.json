@@ -1,9 +1,11 @@
 {
-    "spellright.language": "en",
+    "spellright.language": [
+      "en"
+    ],
     "spellright.documentTypes": [
-        "markdown",
-        "latex",
-        "plaintext"
+      "markdown",
+      "latex",
+      "plaintext"
     ],
     "cSpell.words": [
         "altname",
@@ -112,9 +114,6 @@
     "eslint.format.enable": true,
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "[scss]": {
-      "editor.defaultFormatter": "stylelint.vscode-stylelint"
-    },
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
+        "editor.defaultFormatter": "stylelint.vscode-stylelint"
     }
 }
