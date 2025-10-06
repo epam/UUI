@@ -256,7 +256,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         />
     );
 
-    const getIsEventTargetContainer = (event: React.SyntheticEvent) : boolean => {
+    const getIsEventTargetContainer = (event: React.SyntheticEvent): boolean => {
         const eventTargetElement = event.target as HTMLElement;
 
         return eventTargetElement === containerRef.current;
@@ -367,7 +367,14 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                     )}
                     {props.isDropdown
                         && (!props?.minCharsToSearch || (props?.minCharsToSearch && props.searchPosition === 'body'))
-                        && <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" />}
+                        && (
+                            <IconContainer
+                                icon={ props.dropdownIcon }
+                                flipY={ props.isOpen }
+                                cx="uui-icon-dropdown"
+                                onClick={ togglerPickerOpened }
+                            />
+                        )}
                 </div>
             )}
         </div>
