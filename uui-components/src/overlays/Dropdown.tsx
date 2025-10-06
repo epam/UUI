@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useContext, useState, forwardRef, useRef } from 'react';
 import {
-    useFloating, autoUpdate, flip, shift, useMergeRefs, hide, arrow,
+    useFloating, autoUpdate, flip, shift, useMergeRefs, hide, arrow, useDismiss,
 } from '@floating-ui/react';
 import { FreeFocusInside } from 'react-focus-lock';
 import { isEventTargetInsideClickable, UuiContext } from '@epam/uui-core';
@@ -15,6 +15,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         onValueChange: setControlledOpen,
         isNotUnfoldable,
         openOnHover,
+        openOnFocus,
         openOnClick,
         closeOnMouseLeave,
         closeOnClickOutside,
@@ -31,6 +32,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         placement = 'bottom-start',
         middleware,
         boundaryElement,
+        closeOnEscape = true,
     } = props;
 
     const uuiContext = useContext(UuiContext);
@@ -72,7 +74,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         defaultMiddleware.push(arrow({ element: arrowRef }));
     }
 
-    const { x, y, refs, strategy, placement: finalPlacement, middlewareData, update, isPositioned } = useFloating({
+    const { x, y, refs, strategy, placement: finalPlacement, middlewareData, update, isPositioned, context } = useFloating({
         middleware: defaultMiddleware.concat(middleware || []),
         placement: placement,
         strategy: 'fixed',
@@ -80,6 +82,17 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         onOpenChange: handleOpenedChange,
         whileElementsMounted: autoUpdate,
     });
+
+    const { floating } = useDismiss(
+        context,
+        {
+            enabled: closeOnEscape,
+            escapeKey: closeOnEscape,
+            outsidePress: false,
+            ancestorScroll: false,
+            referencePress: false,
+        },
+    );
 
     // Force update when the virtualTarget changes.
     useEffect(() => {
@@ -120,16 +133,16 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         }, delay);
     };
 
-    const handleMouseEnter = () => {
+    const handleMouseEnter = useCallback(() => {
         clearCloseDropdownTimer();
         if (openDelay) {
             setOpenDropdownTimer();
         } else {
             handleOpenedChange(true);
         }
-    };
+    }, []);
 
-    const handleMouseLeave = () => {
+    const handleMouseLeave = useCallback(() => {
         clearOpenDropdownTimer();
 
         if (closeOnMouseLeave !== 'boundary') {
@@ -140,7 +153,25 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
                 handleOpenedChange(false);
             }
         }
-    };
+    }, [open]);
+
+    const handleFocus = useCallback(() => {
+        clearCloseDropdownTimer();
+        if (openDelay) {
+            setOpenDropdownTimer();
+        } else {
+            handleOpenedChange(true);
+        }
+    }, []);
+
+    const handleBlur = useCallback(() => {
+        clearOpenDropdownTimer();
+        if (closeDelay) {
+            setCloseDropdownTimer(closeDelay);
+        } else {
+            handleOpenedChange(false);
+        }
+    }, []);
 
     const isClientInArea = (e: MouseEvent) => {
         const areaPadding = 30;
@@ -168,10 +199,10 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         );
     };
 
-    const isInteractedOutside = (e: Event) => {
+    const isInteractedOutside = useCallback((e: Event) => {
         if (!isOpened()) return false;
         return getIsInteractedOutside(e);
-    };
+    }, [isOpened()]);
 
     const handleMouseMove = (e: MouseEvent) => {
         if (!bodyNodeRef.current || !targetNodeRef.current) return;
@@ -217,11 +248,11 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         else handleOpenedChange(false);
     }, [onClose, handleOpenedChange]);
 
-    const clickOutsideHandler = (e: Event) => {
+    const clickOutsideHandler = useCallback((e: Event) => {
         if (isInteractedOutside(e)) {
             handleOpenedChange(false);
         }
-    };
+    }, [isInteractedOutside]);
 
     // We'll use this function to get the reference element (either virtual or real)
     const getReferenceElement = () => {
@@ -257,6 +288,8 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         ref: mergedTargetRef,
         toggleDropdownOpening: handleOpenedChange,
         isInteractedOutside: getIsInteractedOutside,
+        onFocus: openOnFocus ? handleFocus : undefined,
+        onBlur: openOnFocus ? handleBlur : undefined,
     }) : null;
 
     // Set the reference element based on virtual or real element
@@ -299,6 +332,29 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     const mergedBodyRef = useMergeRefs([refs.setFloating, bodyNodeRef]);
 
     useEffect(() => {
+        layerRef.current = uuiContext.uuiLayout?.getLayer();
+
+        return () => {
+            layerRef.current && uuiContext.uuiLayout?.releaseLayer(layerRef.current);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (isOpened()) {
+            window.addEventListener('dragstart', clickOutsideHandler);
+
+            if (closeOnClickOutside !== false) {
+                window.addEventListener('click', clickOutsideHandler, true);
+            }
+        }
+
+        return () => {
+            window.removeEventListener('dragstart', clickOutsideHandler);
+            window.removeEventListener('click', clickOutsideHandler, true);
+        };
+    }, [closeOnClickOutside, isOpened()]);
+
+    useEffect(() => {
         if (open && closeOnMouseLeave === 'boundary') {
             window.addEventListener('mousemove', handleMouseMove);
         } else if (closeOnMouseLeave === 'boundary') {
@@ -308,13 +364,9 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
         };
-    }, [open, closeOnMouseLeave, handleMouseMove]);
+    }, [open, closeOnMouseLeave]);
 
     useEffect(() => {
-        layerRef.current = uuiContext.uuiLayout?.getLayer();
-
-        window.addEventListener('dragstart', clickOutsideHandler);
-
         if (openOnHover && !openOnClick) {
             targetNodeRef.current?.addEventListener?.('mouseenter', handleMouseEnter);
 
@@ -323,27 +375,32 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
             }
         }
 
-        if (closeOnClickOutside !== false) {
-            window.addEventListener('click', clickOutsideHandler, true);
-        }
-
         return () => {
-            window.removeEventListener('dragstart', clickOutsideHandler);
             targetNodeRef.current?.removeEventListener?.('mouseenter', handleMouseEnter);
             targetNodeRef.current?.removeEventListener?.('mouseleave', handleMouseLeave);
-            window.removeEventListener('click', clickOutsideHandler, true);
-            layerRef.current && uuiContext.uuiLayout?.releaseLayer(layerRef.current);
         };
     }, [
-        uuiContext.uuiLayout,
         openOnHover,
         openOnClick,
         closeOnMouseLeave,
-        closeOnClickOutside,
-        clickOutsideHandler,
         handleMouseEnter,
         handleMouseLeave,
-        handleMouseMove,
+    ]);
+
+    useEffect(() => {
+        if (openOnFocus) {
+            targetNodeRef.current?.addEventListener?.('focus', handleFocus);
+            targetNodeRef.current?.addEventListener?.('blur', handleBlur);
+        }
+
+        return () => {
+            targetNodeRef.current?.removeEventListener?.('focus', handleFocus);
+            targetNodeRef.current?.removeEventListener?.('blur', handleBlur);
+        };
+    }, [
+        openOnFocus,
+        handleFocus,
+        handleBlur,
     ]);
 
     useLayoutEffect(() => {
@@ -387,6 +444,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
                             className="uui-popper"
                             aria-hidden={ !isOpened() }
                             ref={ mergedBodyRef }
+                            onKeyDown={ floating?.onKeyDown }
                             style={ {
                                 position: strategy,
                                 top: y ?? 0,

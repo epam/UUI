@@ -91,6 +91,7 @@ export default function CitiesTable() {
                 ),
                 width: 54,
                 fix: 'right',
+                alignSelf: 'center',
                 allowResizing: false,
             },
         ],

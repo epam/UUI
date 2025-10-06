@@ -37,7 +37,7 @@ export function CodesandboxLink(props: { raw?: string, dirPath: string[] }) {
             <input type="hidden" name="parameters" value={ codesandboxParameters } />
             <Button
                 cx={ css.externalLink }
-                rawProps={ { type: 'submit' } }
+                rawProps={ { type: 'submit', tabIndex: 0 } }
                 fill="ghost"
                 icon={ CodesandboxIcon }
                 iconPosition="right"

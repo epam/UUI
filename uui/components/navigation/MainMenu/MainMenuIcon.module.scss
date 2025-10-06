@@ -1,3 +1,5 @@
+@use  '../../../assets/styles/effects' as *;
+
 .container {
     height: 60px;
     min-width: 48px;
@@ -18,6 +20,10 @@
         &:active {
             background-color: var(--uui-main_menu-active);
             fill: var(--uui-main_menu-icon-active);
+        }
+
+        &:focus-visible {
+            @include focus-visible-effect(-2px);
         }
     }
 }

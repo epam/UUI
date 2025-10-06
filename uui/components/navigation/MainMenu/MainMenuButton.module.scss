@@ -60,6 +60,10 @@
             color: var(--uui-main_menu-text-hover);
             fill: var(--uui-main_menu-icon-hover);
         }
+
+        &:focus-visible {
+            @include focus-visible-effect(-2px);
+        }
     }
 
     &:global(.uui-active) {

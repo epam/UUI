@@ -34,7 +34,7 @@ function normalizeOffset(offsetValue: OffsetOptions | OutdatedOffset | undefined
 
 export function Tooltip(props: TooltipProps) {
     const {
-        cx: tooltipCX, maxWidth, children, closeOnMouseLeave, rawProps,
+        cx: tooltipCX, maxWidth, children, closeOnMouseLeave, rawProps, closeOnEscape = true,
     } = props;
 
     const isTooltipExist = () => !!props.content || !!props.renderContent;
@@ -85,10 +85,12 @@ export function Tooltip(props: TooltipProps) {
             { ...props }
             renderBody={ (props) => renderTooltip(props) }
             openOnHover={ true }
+            openOnFocus={ true }
             closeOnMouseLeave={ closeOnMouseLeave ?? 'toggler' }
             placement={ placement as Placement }
             middleware={ finalMiddleware }
             renderTarget={ (props: IDropdownTogglerProps) => renderTarget(props) }
+            closeOnEscape={ closeOnEscape }
         />
     );
 }

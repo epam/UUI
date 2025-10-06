@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, FlexRow, IconContainer, RichTextView, Text, Tooltip } from '@epam/uui';
+import { Button, FlexRow, IconButton, RichTextView, Text, Tooltip } from '@epam/uui';
 import { ReactComponent as copyIcon } from '@epam/assets/icons/common/content-link-18.svg';
 import { ReactComponent as plusIcon } from '@epam/assets/icons/common/content-add-fill-18.svg';
 import { ReactComponent as infoIcon } from '@epam/assets/icons/common/notification-info-outline-18.svg';
@@ -15,21 +15,61 @@ export default function TypesTooltipExample() {
 
     return (
         <div className={ css.container }>
-            <Tooltip content="Compact">
-                <Button icon={ copyIcon } caption="Copy" fill="outline" color="primary" cx={ css.firstColumn } onClick={ () => null } />
+            <Tooltip
+                content="Copy to clipboard"
+                rawProps={ { id: 'copyTooltip' } }
+            >
+                <Button
+                    rawProps={ {
+                        'aria-describedby': 'copyTooltip',
+                    } }
+                    icon={ copyIcon }
+                    caption="Copy"
+                    fill="outline"
+                    color="primary"
+                    cx={ css.firstColumn }
+                    onClick={ () => null }
+                />
             </Tooltip>
 
-            <FlexRow alignItems="center" cx={ css.firstColumn }>
+            <FlexRow size={ null } alignItems="center" cx={ css.firstColumn }>
                 <RichTextView>
                     <span className={ css.permissionText }>Permissions</span>
                 </RichTextView>
-                <Tooltip content="Default tooltip. Can be inside as one row as 3 rows of text">
-                    <IconContainer icon={ infoIcon } cx={ css.iconBlue } />
+                <Tooltip
+                    rawProps={ {
+                        id: 'permissionTooltip',
+                    } }
+                    content="Default tooltip. Can be inside as one row as 3 rows of text"
+                >
+                    <IconButton
+                        rawProps={ {
+                            'aria-describedby': 'permissionTooltip',
+                            'aria-label': 'More information about permissions',
+                        } }
+                        icon={ infoIcon }
+                        color="primary"
+                        onClick={ () => null }
+                    />
                 </Tooltip>
             </FlexRow>
 
-            <Tooltip content={ renderTypesMarkup() } color="neutral">
-                <Button icon={ plusIcon } onClick={ () => null } cx={ css.firstColumn } />
+            <Tooltip
+                rawProps={ {
+                    id: 'addTooltip',
+                } }
+                content={ renderTypesMarkup() }
+                color="neutral"
+            >
+                <Button
+                    rawProps={ {
+                        'aria-describedby': 'addTooltip',
+                        'aria-label': 'Add file',
+                    } }
+                    icon={ plusIcon }
+                    onClick={ () => null }
+                    cx={ css.firstColumn }
+                />
             </Tooltip>
 
             <Text fontSize="14" cx={ css.secondColumn }>

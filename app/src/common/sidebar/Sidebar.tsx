@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { DataRowProps, DataSourceState, Link, useUuiContext, useArrayDataSource } from '@epam/uui-core';
 import { DocItem } from '@epam/uui-docs';
-import { SearchInput, Tree } from '@epam/uui';
+import { Badge, SearchInput, Tree } from '@epam/uui';
 import { analyticsEvents } from '../../analyticsEvents';
 import css from './Sidebar.module.scss';
 
@@ -86,6 +86,7 @@ export function Sidebar(props: SidebarProps<DocItem>) {
                     view={ view }
                     size="36"
                     getCaption={ (item) => item.name }
+                    renderAddons={ (item) => item.value.markIsNew && <Badge size="18" caption="New" fill="outline" color="success" /> }
                 />
             </div>
         </aside>
