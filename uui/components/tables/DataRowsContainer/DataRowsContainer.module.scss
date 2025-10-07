@@ -1,6 +1,8 @@
 .listContainer {
     margin-top: 1px;
     isolation: isolate;
+    display: grid;
+    grid-template-rows: 1fr;
 }
 
 .header {
