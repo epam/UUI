@@ -1,12 +1,13 @@
 import React from 'react';
 import {
-    Icon, IDropdownToggler, IHasCaption, IHasIcon, Overwrite, uuiElement, uuiMarkers,
+    Icon, IDropdownToggler, IHasCaption, IHasIcon, Overwrite, uuiElement,
 } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from './CountIndicator';
 import { settings } from '../../settings';
 
 import css from './Tag.module.scss';
+import { ControlIcon } from './ControlIcon';
 
 interface TagMods {
     /**
@@ -59,6 +60,17 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
     const ClearIcon = props.clearIcon ? props.clearIcon : settings.tag.icons.clearIcon;
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : settings.tag.icons.dropdownIcon;
 
+    const icon = (
+        <ControlIcon
+            icon={ props.icon }
+            onClick={ props.onIconClick }
+            isDisabled={ props.isDisabled }
+            rawProps={ {
+                'aria-label': 'Icon in input',
+            } }
+        />
+    );
+
     return (
         <Clickable
             { ...props }
@@ -70,12 +82,7 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
             cx={ styles }
             ref={ ref }
         >
-            { props.icon && props.iconPosition !== 'right' && (
-                <IconContainer
-                    icon={ props.icon }
-                    onClick={ !props.isDisabled ? props.onIconClick : undefined }
-                />
-            ) }
+            { props.iconPosition !== 'right' && icon }
             { props.caption && (
                 <div className={ uuiElement.caption }>
                     { props.caption }
@@ -88,14 +95,19 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
                     caption={ props.count }
                 />
             ) }
-            { props.icon && props.iconPosition === 'right' && (
-                <IconContainer icon={ props.icon } onClick={ !props.isDisabled ? props.onIconClick : undefined } />
-            ) }
+            { props.iconPosition === 'right' && icon }
             { props.isDropdown && (
                 <IconContainer icon={ DropdownIcon } flipY={ props.isOpen } />
             )}
             { props.onClear && !props.isDisabled && (
-                <IconContainer cx={ uuiMarkers.clickable } icon={ ClearIcon } onClick={ props.onClear } />
+                <ControlIcon
+                    cx="uui-icon-cancel"
+                    icon={ ClearIcon }
+                    onClick={ props.onClear }
+                    rawProps={ {
+                        'aria-label': 'Remove tag',
+                    } }
+                />
             ) }
         </Clickable>
     );
