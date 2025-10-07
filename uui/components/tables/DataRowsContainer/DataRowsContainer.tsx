@@ -12,7 +12,7 @@ export interface DataRowsContainerProps<TItem, TId, List extends HTMLDivElement 
     headerRef?: React.MutableRefObject<HTMLDivElement>;
 }
 
-export function DataRowsContainer<TItem, TId, List extends HTMLDivElement = any>({ 
+export function DataRowsContainer<TItem, TId, List extends HTMLDivElement = any>({
     estimatedHeight, listContainerRef, offsetY, rows, renderRow, headerRef,
 }: DataRowsContainerProps<TItem, TId, List>) {
     return (
