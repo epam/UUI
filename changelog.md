@@ -1,3 +1,8 @@
+# ?.?.? - ??.??.2025
+
+**What's Fixed**
+* [LabeledInput]: fixed incorrect prop resolution for `infoIcon`
+
 # 6.3.1 - 07.10.2025
 
 **What's Fixed**
