@@ -1,4 +1,4 @@
-import { Overwrite, withMods } from '@epam/uui-core';
+import { Overwrite, withMods, Icon } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
 import { Tooltip } from '../overlays/Tooltip';
 import { settings } from '../../settings';
@@ -26,11 +26,17 @@ function applyLabeledInputMods(mods: LabeledInputMods) {
     ];
 }
 
+function getInfoIconForSize(size: LabeledInputProps['size']): Icon {
+    return size <= '30'
+        ? settings.labeledInput.icons.fillInfoIcon
+        : settings.labeledInput.icons.infoIcon;
+}
+
 function applyLabeledInputProps(props: LabeledInputProps) {
-    return ({
+    return {
         Tooltip: props.Tooltip || Tooltip,
-        infoIcon: props.infoIcon || props.size <= '30' ? settings.labeledInput.icons.fillInfoIcon : settings.labeledInput.icons.infoIcon,
-    });
+        infoIcon: props.infoIcon || getInfoIconForSize(props.size),
+    };
 }
 
 export const LabeledInput = withMods<uuiComponents.LabeledInputProps, LabeledInputProps>(
