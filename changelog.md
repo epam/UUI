@@ -1,3 +1,8 @@
+# 6.3.1 - 07.10.2025
+
+**What's Fixed**
+* [DataTable]: fixed virtualization height calculation issues causing excessive empty space in tables
+
 # 6.3.0 - 26.09.2025
 
 **What's New**
