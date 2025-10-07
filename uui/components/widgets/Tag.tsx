@@ -5,9 +5,9 @@ import {
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from './CountIndicator';
 import { settings } from '../../settings';
-import { IconButton } from '../buttons/IconButton';
 
 import css from './Tag.module.scss';
+import { ControlIcon } from './ControlIcon';
 
 interface TagMods {
     /**
@@ -60,34 +60,16 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
     const ClearIcon = props.clearIcon ? props.clearIcon : settings.tag.icons.clearIcon;
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : settings.tag.icons.dropdownIcon;
 
-    const getIcon = (): React.ReactNode => {
-        if (!props.icon) {
-            return null;
-        }
-
-        if (
-            !props.onIconClick
-            || props.isDisabled
-        ) {
-            return (
-                <IconContainer
-                    icon={ props.icon }
-                />
-            );
-        }
-
-        return (
-            <IconButton
-                icon={ props.icon }
-                onClick={ props.onIconClick }
-                rawProps={ {
-                    'aria-label': 'Icon in input',
-                } }
-            />
-        );
-    };
-
-    const icon = getIcon();
+    const icon = (
+        <ControlIcon
+            icon={ props.icon }
+            onClick={ props.onIconClick }
+            isDisabled={ props.isDisabled }
+            rawProps={ {
+                'aria-label': 'Icon in input',
+            } }
+        />
+    );
 
     return (
         <Clickable
@@ -118,7 +100,7 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
                 <IconContainer icon={ DropdownIcon } flipY={ props.isOpen } />
             )}
             { props.onClear && !props.isDisabled && (
-                <IconButton
+                <ControlIcon
                     cx="uui-icon-cancel"
                     icon={ ClearIcon }
                     onClick={ props.onClear }

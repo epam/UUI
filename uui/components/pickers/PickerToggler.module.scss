@@ -11,9 +11,6 @@
     --uui-picker_toggler-placeholder-readonly: var(--uui-control-placeholder-disabled);
     --uui-picker_toggler-text: var(--uui-control-text);
     --uui-picker_toggler-text-disabled: var(--uui-control-text-disabled);
-    --uui-picker_toggler-icon-disabled: var(--uui-control-icon-disabled);
-    --uui-picker_toggler-icon-clickable: var(--uui-icon);
-    --uui-picker_toggler-icon-clickable-hover: var(--uui-icon-hover);
 
     // font
     --uui-picker_toggler-font: var(--uui-font);
@@ -109,21 +106,6 @@
         background-color: var(--uui-picker_toggler-bg);
         border-color: var(--uui-picker_toggler-border);
 
-        :global(.-clickable) > :global(.uui-icon),
-        :global(.uui-icon-dropdown) {
-            &:global(.uui-enabled) {
-                fill: var(--uui-picker_toggler-icon-clickable);
-
-                &:hover {
-                    fill: var(--uui-picker_toggler-icon-clickable-hover);
-                }
-            }
-
-            &:global(.uui-disabled) {
-                fill: var(--uui-picker_toggler-icon-disabled);
-            }
-        }
-
         &:hover {
             border-color: var(--uui-picker_toggler-border-hover);
         }
@@ -139,32 +121,10 @@
         border-color: transparent;
         border-radius: 0;
 
-        :global(.uui-picker_toggler-actions) :global(.uui-icon),
-        :global(.-clickable) > :global(.uui-icon) {
-            cursor: pointer;
-
-            &:global(.uui-enabled) {
+        &:not(:hover, :global(.uui-focus), :focus-within),
+        &:global(.uui-disabled) {
+            :global(.uui-icon) {
                 fill: transparent;
-            }
-
-            &:global(.uui-disabled) {
-                fill: transparent;
-            }
-        }
-
-        &:hover, &:global(.uui-focus) {
-            :global(.-clickable) > :global(.uui-icon), :global(.uui-icon-dropdown) {
-                &:global(.uui-enabled) {
-                    fill: var(--uui-picker_toggler-icon-clickable);
-
-                    &:hover {
-                        fill: var(--uui-picker_toggler-icon-clickable-hover);
-                    }
-                }
-
-                &:global(.uui-disabled) {
-                    fill: transparent;
-                }
             }
         }
 
@@ -176,7 +136,6 @@
     &:global(.uui-control-mode-inline) {
         background-color: initial;
         border-color: transparent;
-        fill: var(--uui-picker_toggler-icon-clickable);
 
         &:hover {
             border-color: var(--uui-picker_toggler-border-hover);
@@ -211,7 +170,6 @@
     }
 
     &:global(.uui-disabled) {
-        fill: var(--uui-picker_toggler-icon-disabled);
         @include disabled-input();
 
         :global(.uui-input) {

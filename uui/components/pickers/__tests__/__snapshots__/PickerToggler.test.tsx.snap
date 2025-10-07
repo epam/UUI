@@ -21,7 +21,7 @@ exports[`PickerToggler should render with maximum props 1`] = `
         </div>
         <button
           aria-label="Remove tag"
-          class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root uui-icon-cancel"
+          class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root controlIcon uui-icon-cancel"
           tabindex="0"
           type="button"
         >
@@ -40,7 +40,7 @@ exports[`PickerToggler should render with maximum props 1`] = `
     >
       <button
         aria-label="Clear input"
-        class="uui-button-box uui-enabled -clickable container uui-icon-cancel"
+        class="uui-button-box uui-enabled -clickable container controlIcon uui-icon-cancel"
         tabindex="0"
         type="button"
       >
