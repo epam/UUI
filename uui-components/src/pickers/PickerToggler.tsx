@@ -4,7 +4,6 @@ import { IconContainer } from '../layout';
 import { i18n } from '../i18n';
 import css from './PickerToggler.module.scss';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
-import { IconButton } from '../buttons/IconButton';
 import { flushSync } from 'react-dom';
 import { ControlIcon } from '../widgets/ControlIcon';
 
@@ -253,6 +252,9 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             icon={ props.icon }
             onClick={ props.onIconClick }
             isDisabled={ isPickerDisabled }
+            rawProps={ {
+                'aria-label': 'Icon in input',
+            } }
         />
     );
 
@@ -355,7 +357,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             {!isPickerDisabled && (
                 <div className="uui-picker_toggler-actions">
                     {!props.disableClear && (props.value || props.selectedRowsCount > 0) && (
-                        <IconButton
+                        <ControlIcon
                             cx="uui-icon-cancel"
                             isDisabled={ props.isDisabled }
                             icon={ props.cancelIcon }
@@ -372,6 +374,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                                 icon={ props.dropdownIcon }
                                 flipY={ props.isOpen }
                                 cx="uui-icon-dropdown"
+                                /*
+                                    All clicks on non-interactive elements switch focus to the toggler,
+                                    but in this case it is necessary to toggler the dropdown.
+                                */
                                 onClick={ togglerPickerOpened }
                             />
                         )}

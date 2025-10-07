@@ -1,7 +1,7 @@
+import { IconContainer } from '@epam/uui-components';
 import { cx } from '@epam/uui-core';
 import React from 'react';
 import { IconButton, IconButtonProps } from '../buttons';
-import { IconContainer } from '../layout/IconContainer';
 import css from './ControlIcon.module.scss';
 
 type ControlIconProps = Pick<IconButtonProps, 'cx' | 'icon' | 'isDisabled' | 'onClick' | 'rawProps'>;

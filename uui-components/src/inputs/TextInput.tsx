@@ -2,7 +2,6 @@ import * as React from 'react';
 import {
     Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext,
 } from '@epam/uui-core';
-import { IconButton } from '../buttons/IconButton';
 import { IconContainer } from '../layout';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
 import { ControlIcon } from '../widgets/ControlIcon';
@@ -122,6 +121,9 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
             icon={ props.icon }
             onClick={ props.onIconClick }
             isDisabled={ props.isDisabled || props.isReadonly }
+            rawProps={ {
+                'aria-label': 'Icon in input',
+            } }
         />
     );
     const showIconsOnAction = props.value && !props.isReadonly && !props.isDisabled;
@@ -172,7 +174,7 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
                 <IconContainer cx={ cx('uui-icon-accept') } isDisabled={ props.isDisabled } icon={ props.acceptIcon } onClick={ props.onAccept } rawProps={ { role: 'button' } } />
             )}
             {props.onCancel && showIconsOnAction && (
-                <IconButton
+                <ControlIcon
                     cx="uui-icon-cancel"
                     isDisabled={ props.isDisabled }
                     icon={ props.cancelIcon }
