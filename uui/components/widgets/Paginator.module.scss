@@ -1,9 +1,12 @@
 .root {
     --uui-pagination-font: var(--uui-font);
     --uui-pagination-font-weight: 400;
-    //
+
     display: flex;
     flex-direction: row;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 
     .page {
         --uui-btn-padding: 1px;
