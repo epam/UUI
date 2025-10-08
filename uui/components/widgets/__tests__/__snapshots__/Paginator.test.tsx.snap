@@ -3,115 +3,137 @@
 exports[`Paginator should be rendered correctly 1`] = `
 <DocumentFragment>
   <nav
-    class="root uui-paginator uui-size-24"
+    class="uui-paginator uui-size-24"
     data-my_attr="value"
     id="123"
     role="navigation"
   >
-    <button
-      aria-disabled="true"
-      class="uui-button-box uui-disabled container root uui-button uui-fill-outline uui-color-secondary uui-size-24"
-      tabindex="-1"
-      type="button"
+    <ul
+      class="root"
     >
-      <div
-        class="container uui-icon uui-enabled"
-      >
-        <svg
-          class=""
-        />
-      </div>
-    </button>
-    <button
-      class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
-      tabindex="0"
-      type="button"
-    >
-      <div
-        class="uui-caption"
-      >
-        1
-      </div>
-    </button>
-    <button
-      class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
-      tabindex="0"
-      type="button"
-    >
-      <div
-        class="uui-caption"
-      >
-        2
-      </div>
-    </button>
-    <button
-      class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
-      tabindex="0"
-      type="button"
-    >
-      <div
-        class="uui-caption"
-      >
-        3
-      </div>
-    </button>
-    <button
-      class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
-      tabindex="0"
-      type="button"
-    >
-      <div
-        class="uui-caption"
-      >
-        4
-      </div>
-    </button>
-    <button
-      class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
-      tabindex="0"
-      type="button"
-    >
-      <div
-        class="uui-caption"
-      >
-        5
-      </div>
-    </button>
-    <button
-      class="uui-button-box uui-enabled container root uui-button uui-fill-ghost uui-color-secondary uui-size-24 spacer page"
-      tabindex="-1"
-      type="button"
-    >
-      <div
-        class="uui-caption"
-      >
-        ...
-      </div>
-    </button>
-    <button
-      class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
-      tabindex="0"
-      type="button"
-    >
-      <div
-        class="uui-caption"
-      >
-        10
-      </div>
-    </button>
-    <button
-      class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-24"
-      tabindex="0"
-      type="button"
-    >
-      <div
-        class="container uui-icon uui-enabled"
-      >
-        <svg
-          class=""
-        />
-      </div>
-    </button>
+      <li>
+        <button
+          aria-disabled="true"
+          class="uui-button-box uui-disabled container root uui-button uui-fill-outline uui-color-secondary uui-size-24"
+          tabindex="-1"
+          type="button"
+        >
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            1
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            2
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            3
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            4
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            5
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          class="uui-button-box uui-enabled container root uui-button uui-fill-ghost uui-color-secondary uui-size-24 spacer page"
+          tabindex="-1"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            ...
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            10
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-24"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
+      </li>
+    </ul>
   </nav>
 </DocumentFragment>
 `;
@@ -119,123 +141,145 @@ exports[`Paginator should be rendered correctly 1`] = `
 exports[`Paginator should be rendered correctly when disabled 1`] = `
 <DocumentFragment>
   <nav
-    class="root uui-paginator uui-size-24"
+    class="uui-paginator uui-size-24"
     data-my_attr="value"
     id="123"
     role="navigation"
   >
-    <button
-      aria-disabled="true"
-      class="uui-button-box uui-disabled container root uui-button uui-fill-outline uui-color-secondary uui-size-24"
-      tabindex="-1"
-      type="button"
+    <ul
+      class="root"
     >
-      <div
-        class="container uui-icon uui-enabled"
-      >
-        <svg
-          class=""
-        />
-      </div>
-    </button>
-    <button
-      aria-disabled="true"
-      class="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
-      tabindex="-1"
-      type="button"
-    >
-      <div
-        class="uui-caption"
-      >
-        1
-      </div>
-    </button>
-    <button
-      aria-disabled="true"
-      class="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
-      tabindex="-1"
-      type="button"
-    >
-      <div
-        class="uui-caption"
-      >
-        2
-      </div>
-    </button>
-    <button
-      aria-disabled="true"
-      class="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
-      tabindex="-1"
-      type="button"
-    >
-      <div
-        class="uui-caption"
-      >
-        3
-      </div>
-    </button>
-    <button
-      aria-disabled="true"
-      class="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
-      tabindex="-1"
-      type="button"
-    >
-      <div
-        class="uui-caption"
-      >
-        4
-      </div>
-    </button>
-    <button
-      aria-disabled="true"
-      class="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
-      tabindex="-1"
-      type="button"
-    >
-      <div
-        class="uui-caption"
-      >
-        5
-      </div>
-    </button>
-    <button
-      aria-disabled="true"
-      class="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-secondary uui-size-24 spacer page"
-      tabindex="-1"
-      type="button"
-    >
-      <div
-        class="uui-caption"
-      >
-        ...
-      </div>
-    </button>
-    <button
-      aria-disabled="true"
-      class="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
-      tabindex="-1"
-      type="button"
-    >
-      <div
-        class="uui-caption"
-      >
-        10
-      </div>
-    </button>
-    <button
-      aria-disabled="true"
-      class="uui-button-box uui-disabled container root uui-button uui-fill-outline uui-color-secondary uui-size-24"
-      tabindex="-1"
-      type="button"
-    >
-      <div
-        class="container uui-icon uui-enabled"
-      >
-        <svg
-          class=""
-        />
-      </div>
-    </button>
+      <li>
+        <button
+          aria-disabled="true"
+          class="uui-button-box uui-disabled container root uui-button uui-fill-outline uui-color-secondary uui-size-24"
+          tabindex="-1"
+          type="button"
+        >
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          aria-disabled="true"
+          class="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
+          tabindex="-1"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            1
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          aria-disabled="true"
+          class="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
+          tabindex="-1"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            2
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          aria-disabled="true"
+          class="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
+          tabindex="-1"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            3
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          aria-disabled="true"
+          class="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
+          tabindex="-1"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            4
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          aria-disabled="true"
+          class="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
+          tabindex="-1"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            5
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          aria-disabled="true"
+          class="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-secondary uui-size-24 spacer page"
+          tabindex="-1"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            ...
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          aria-disabled="true"
+          class="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
+          tabindex="-1"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            10
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          aria-disabled="true"
+          class="uui-button-box uui-disabled container root uui-button uui-fill-outline uui-color-secondary uui-size-24"
+          tabindex="-1"
+          type="button"
+        >
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
+      </li>
+    </ul>
   </nav>
 </DocumentFragment>
 `;
