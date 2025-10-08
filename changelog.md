@@ -1,3 +1,9 @@
+# 6.x.x - xx.xx.xxx
+
+**What's Fixed**
+* [Pagination]: pagination elements are not grouped into a list ([#2942](https://github.com/epam/UUI/pull/2942))
+    * Add "Previous page" and "Next page" `aria-label`-s to the previous and next pages respectively
+
 # 6.3.1 - 07.10.2025
 
 **What's Fixed**
