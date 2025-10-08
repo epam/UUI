@@ -33,6 +33,9 @@ export function Paginator(props: PaginatorProps) {
                         isDisabled={ params.isFirst || props.isDisabled }
                         fill="outline"
                         color="secondary"
+                        rawProps={ {
+                            'aria-label': 'Previous page',
+                        } }
                     />
                 </li>
                 {params.pages.map((page, index) => {
@@ -79,6 +82,9 @@ export function Paginator(props: PaginatorProps) {
                         isDisabled={ params.isLast || props.isDisabled }
                         fill="outline"
                         color="secondary"
+                        rawProps={ {
+                            'aria-label': 'Next page',
+                        } }
                     />
                 </li>
             </ul>

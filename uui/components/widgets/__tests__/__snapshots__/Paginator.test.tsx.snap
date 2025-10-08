@@ -14,6 +14,7 @@ exports[`Paginator should be rendered correctly 1`] = `
       <li>
         <button
           aria-disabled="true"
+          aria-label="Previous page"
           class="uui-button-box uui-disabled container root uui-button uui-fill-outline uui-color-secondary uui-size-24"
           tabindex="-1"
           type="button"
@@ -120,6 +121,7 @@ exports[`Paginator should be rendered correctly 1`] = `
       </li>
       <li>
         <button
+          aria-label="Next page"
           class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-24"
           tabindex="0"
           type="button"
@@ -152,6 +154,7 @@ exports[`Paginator should be rendered correctly when disabled 1`] = `
       <li>
         <button
           aria-disabled="true"
+          aria-label="Previous page"
           class="uui-button-box uui-disabled container root uui-button uui-fill-outline uui-color-secondary uui-size-24"
           tabindex="-1"
           type="button"
@@ -266,6 +269,7 @@ exports[`Paginator should be rendered correctly when disabled 1`] = `
       <li>
         <button
           aria-disabled="true"
+          aria-label="Next page"
           class="uui-button-box uui-disabled container root uui-button uui-fill-outline uui-color-secondary uui-size-24"
           tabindex="-1"
           type="button"
