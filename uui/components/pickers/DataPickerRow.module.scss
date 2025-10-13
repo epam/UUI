@@ -11,6 +11,18 @@
         background-color: var(--uui-surface-higher);
     }
 
+    // Show focus outline during keyboard navigation (arrows) or when focused via Tab
+    &:global(.uui-focus.uui-keyboard-focus),
+    &:focus-visible:global(.uui-focus) {
+        @include focus-visible-effect(-2px);
+        border-radius: 0;
+    }
+
+    // Override focus-visible when not focused in state (prevent outline on click)
+    &:focus-visible:not(:global(.uui-focus)) {
+        outline: none;
+    }
+
     &:global(.-clickable) {
         cursor: pointer;
     }
