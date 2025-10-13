@@ -50,6 +50,13 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
         };
     }, [props.onFocus, handleMouseEnter]);
 
+    const handleFocus = () => {
+        // If this row gets focus but is not the focused row, make it focused
+        if (!props.isFocused && props.onFocus) {
+            props.onFocus(props.index);
+        }
+    };
+
     const getSubtitle = ({ path }: DataRowProps<TItem, TId>) => {
         if (!props.dataSourceState?.search) return;
 
@@ -75,7 +82,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
             />
         );
     };
-    
+
     const renderContent = () => {
         let content: React.ReactNode;
 
@@ -133,11 +140,14 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
         <div
             onClick={ clickHandler && ((e) => !isEventTargetInsideClickable(e) && clickHandler(props)) }
+            onFocus={ handleFocus }
+            // onBlur={ handleBlur }
             role="option"
             aria-busy={ props.isLoading }
             aria-posinset={ props.index + 1 }
             aria-checked={ props.checkbox?.isVisible ? props.isChecked : null }
             aria-selected={ props.isSelectable ? props.isSelected : null }
+            tabIndex={ -1 }
             ref={ rowNode }
             className={ cx(
                 css.pickerRow,

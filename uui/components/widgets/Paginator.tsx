@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import type { Overwrite } from '@epam/uui-core';
 import { Paginator as UuiPaginator, PaginatorRenderParams, PaginatorProps as UuiPaginatorProps } from '@epam/uui-components';
-import { Button } from '../buttons';
+import { Button } from '../buttons/Button';
 import { settings } from '../../settings';
 
 import css from './Paginator.module.scss';

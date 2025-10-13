@@ -3,6 +3,7 @@ import {
     cx, DataColumnProps, DataTableHeaderCellProps as UuiCoreDataTableHeaderCellProps, IDropdownTogglerProps, Overwrite, uuiDataTableHeaderCell, uuiMarkers,
 } from '@epam/uui-core';
 import {
+    ControlIcon,
     DataTableCellContainer,
     DataTableHeaderCell as UuiDataTableHeaderCell,
     HeaderCellContentProps,
@@ -49,7 +50,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         </div>
     );
 
-    getColumnCaption = () => {
+    getColumnCaption = (props: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
         const renderTooltip = this.props.column.renderTooltip || this.getTooltipContent;
         const captionCx = cx([
             css.caption,
@@ -58,6 +59,18 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             'uui-typography-inline',
             this.props.size >= '48' && css.truncate,
         ]);
+
+        const handleFilterOpen = (e: React.KeyboardEvent) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                dropdownProps.onClick(e);
+            }
+        };
+
+        const handleSort = (e: React.KeyboardEvent) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                props.toggleSort(e);
+            }
+        };
 
         return (
             <div
@@ -69,17 +82,20 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                     content={ renderTooltip(this.props.column) }
                     cx={ [css.cellTooltip, 'uui-dt-header-tooltip'] }
                     openDelay={ 600 }
+                    closeOnMouseLeave="boundary"
                 >
                     <div key="text" className={ captionCx }>
                         { this.props.column.caption }
                     </div>
                 </Tooltip>
                 { this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) && (
-                    <IconButton
+                    <ControlIcon
                         key="sort"
-                        cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
-                        color={ this.props.sortDirection ? 'neutral' : 'secondary' }
+                        cx={ cx(css.icon, css.sortIcon, !this.props.sortDirection && css.sortInActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
+                        // color={ this.props.sortDirection ? 'neutral' : 'secondary' }
                         icon={ settings.dataTable.icons.header[this.props.sortDirection === 'desc' ? 'descSortIcon' : this.props.sortDirection === 'asc' ? 'ascSortIcon' : 'defaultSortIcon'] }
+                        onKeyDown={ !this.props.column.renderFilter ? handleSort : undefined }
+                        tabIndex={ !this.props.column.renderFilter ? 0 : undefined }
                     />
                 ) }
                 { this.props.isFilterActive && (
@@ -91,11 +107,13 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                     />
                 ) }
                 { this.props.column.renderFilter && (
-                    <IconButton
+                    <ControlIcon
                         key="dropdown"
                         cx={ cx(css.icon, css.dropdownIcon, uuiDataTableHeaderCell.uuiTableHeaderDropdownIcon) }
-                        color="secondary"
                         icon={ settings.dataTable.icons.header[this.state.isDropdownOpen ? 'openedDropdownIcon' : 'dropdownIcon'] }
+                        tabIndex={ 0 }
+                        // onClick={ dropdownProps.onClick }
+                        onKeyDown={ handleFilterOpen }
                     />
                 ) }
             </div>
@@ -115,6 +133,12 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     };
 
     renderFoldAllIcon = () => {
+        const handleFoldAll = (e: React.KeyboardEvent) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                this.props.onFoldAll();
+            }
+        };
+
         if (this.props.isFirstColumn && this.props.showFoldAll) {
             return (
                 <Tooltip content={
@@ -123,11 +147,12 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                         : i18n.tables.columnHeader.collapseAllTooltip
                 }
                 >
-                    <IconButton
-                        color="secondary"
+                    <ControlIcon
                         cx={ cx(css.icon, css.foldAllIcon, uuiDataTableHeaderCell.uuiTableHeaderFoldAllIcon) }
                         icon={ settings.dataTable.icons.header[this.props.areAllFolded ? 'unfoldIcon' : 'foldIcon'] }
                         onClick={ this.props.onFoldAll }
+                        onKeyDown={ handleFoldAll }
+                        tabIndex={ 0 }
                         rawProps={ {
                             'aria-label': this.props.areAllFolded ? 'Expand All' : 'Collapse All',
                             'aria-expanded': !!this.props.areAllFolded,
@@ -209,7 +234,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             >
                 { this.renderHeaderCheckbox() }
                 { this.renderFoldAllIcon() }
-                { this.getColumnCaption() }
+                { this.getColumnCaption(props, dropdownProps) }
                 { isResizable && this.renderResizingMarker(props) }
             </DataTableCellContainer>
         );

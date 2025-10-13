@@ -52,6 +52,14 @@
                 fill: var(--uui-icon-hover);
             }
         }
+
+        .sort-icon.sortInActive {
+            fill: var(--uui-icon-disabled);
+        }
+
+        .dropdown-icon:focus-visible {
+            fill: var(--uui-icon-hover);
+        }
     }
 
     &:global(.uui-resizable) {
@@ -116,7 +124,7 @@
     .fold-all-icon {
         display: flex;
         padding: 0 var(--uui-horizontal-gap) 0 0;
-        align-self: stretch;
+        //align-self: stretch;
 
         &:hover {
             fill: var(--uui-icon-hover);
