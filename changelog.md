@@ -3,6 +3,7 @@
 **What's Fixed**
 * [TimePicker]: fixed `onBlur` event not firing when focus moves from input to dropdown body ([#2936](https://github.com/epam/UUI/issues/2936))
 * [uui-core]: removed `isFocusReceiverInsideFocusLock` helper function that was causing focus management issues in picker components
+* [LabeledInput]: fixed incorrect prop resolution for `infoIcon`
 
 
 # 6.3.1 - 08.10.2025
