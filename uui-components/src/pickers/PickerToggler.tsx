@@ -107,6 +107,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         blur(e);
     };
 
+    /*
+        Depending on `searchPosition`, the focusable element can be either input or its container.
+        So we need to return a correct element to focus for each case.
+    */
     const getFocusableControl = (): HTMLElement | undefined => {
         if (searchInput.current) {
             return searchInput.current;
@@ -211,6 +215,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         const value = props.disableSearch ? null : props.value;
 
         if (!isSearchInToggler && props.pickerMode === 'multi' && props.selectedRowsCount > 0) {
+            // Resetting the ref to make `getFocusableControl` work correctly.
             searchInput.current = undefined;
 
             return null;
@@ -266,12 +271,12 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const getIsNonClickableEventTarget = (event: React.SyntheticEvent): boolean => {
         const eventTargetElement = event.target as HTMLElement;
-        const isWithingContainer = containerRef.current?.contains(eventTargetElement);
+        const isWithinContainer = containerRef.current?.contains(eventTargetElement);
         const isClickable = eventTargetElement.classList.contains(uuiMarkers.clickable);
 
         return (
             (
-                isWithingContainer
+                isWithinContainer
                 && !isClickable
             )
             || getIsEventTargetContainer(event)
@@ -279,7 +284,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     };
 
     const getIsFocusableControlContainer = (): boolean => {
-        return containerRef.current === getFocusableControl();
+        return getFocusableControl() === containerRef.current;
     };
 
     const handleWrapperClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -290,10 +295,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (getIsNonClickableEventTarget(event)) {
             moveFocusToControl();
 
-            if (
-                getIsFocusableControlContainer()
-                && getIsFocusableControlContainer()
-            ) {
+            if (getIsFocusableControlContainer()) {
                 props.onClick?.(event);
             }
         }

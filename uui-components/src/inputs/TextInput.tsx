@@ -69,13 +69,13 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
     };
 
     const moveFocusToInput = (eventTargetElement: HTMLElement): void => {
-        const isWithingContainer = containerRef.current?.contains(eventTargetElement);
         const isContainer = eventTargetElement === containerRef.current;
+        const isWithinContainer = containerRef.current?.contains(eventTargetElement);
         const isClickable = eventTargetElement.classList.contains(uuiMarkers.clickable);
 
         if (
             (
-                isWithingContainer
+                isWithinContainer
                 && !isClickable
             )
             || isContainer
@@ -129,14 +129,13 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
     const showIconsOnAction = props.value && !props.isReadonly && !props.isDisabled;
 
     const handleWrapperClick = (event: React.MouseEvent<HTMLElement>) => {
-        if (
-            props.isReadonly
-            || props.isDisabled
-        ) {
-            return;
-        }
+        const eventTarget = event.target as HTMLElement;
 
-        moveFocusToInput(event.target as HTMLElement);
+        moveFocusToInput(eventTarget);
+
+        if (eventTarget.classList.contains(uuiMarkers.clickable)) {
+            return event.preventDefault();
+        }
 
         props.onClick?.(event);
     };
@@ -161,6 +160,7 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
                 props.isDisabled && uuiMod.disabled,
                 props.isReadonly && uuiMod.readonly,
                 props.isInvalid && uuiMod.invalid,
+                !props.isReadonly && !props.isDisabled && uuiMarkers.clickable,
                 !props.isReadonly && inFocus && uuiMod.focus,
                 props.cx,
             ) }
@@ -175,7 +175,7 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
             )}
             {props.onCancel && showIconsOnAction && (
                 <ControlIcon
-                    cx="uui-icon-cancel"
+                    cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
                     isDisabled={ props.isDisabled }
                     icon={ props.cancelIcon }
                     onClick={ handleCancel }

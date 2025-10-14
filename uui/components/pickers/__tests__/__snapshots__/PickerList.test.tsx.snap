@@ -194,7 +194,7 @@ exports[`PickerList should open body 1`] = `
             style="--uui-flex-row-v-padding: 24px;"
           >
             <div
-              class="container uui-input-box uui-focus root uui-size-36 uui-control-mode-form"
+              class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
               dir="auto"
             >
               <div
