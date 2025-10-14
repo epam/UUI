@@ -8,7 +8,6 @@ exports[`PresetInput should render correctly 1`] = `
   >
     <div
       class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form presetInput"
-      tabindex="-1"
     >
       <input
         class="uui-input"

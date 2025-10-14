@@ -7,10 +7,9 @@ exports[`RangeDataPicker should be rendered if many params defined 1`] = `
   >
     <div
       class="container uui-input-box uui-disabled uui-readonly uui-invalid root uui-size-36 uui-control-mode-form dateInput"
-      tabindex="-1"
     >
       <div
-        class="container uui-icon uui-enabled"
+        class="container uui-icon uui-enabled controlIcon"
       >
         <svg
           class=""
@@ -34,7 +33,6 @@ exports[`RangeDataPicker should be rendered if many params defined 1`] = `
     />
     <div
       class="container uui-input-box uui-disabled uui-readonly uui-invalid root uui-size-36 uui-control-mode-form dateInput"
-      tabindex="-1"
     >
       <input
         aria-disabled="true"
@@ -59,10 +57,9 @@ exports[`RangeDataPicker should be rendered if minimum params and custom format 
   >
     <div
       class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form dateInput"
-      tabindex="-1"
     >
       <div
-        class="container uui-icon uui-enabled"
+        class="container uui-icon uui-enabled controlIcon"
       >
         <svg
           class=""
@@ -81,7 +78,6 @@ exports[`RangeDataPicker should be rendered if minimum params and custom format 
     />
     <div
       class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form dateInput"
-      tabindex="-1"
     >
       <input
         class="uui-input"
