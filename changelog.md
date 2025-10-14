@@ -4,6 +4,12 @@
 * [TimePicker]: fixed `onBlur` event not firing when focus moves from input to dropdown body ([#2936](https://github.com/epam/UUI/issues/2936))
 * [uui-core]: removed `isFocusReceiverInsideFocusLock` helper function that was causing focus management issues in picker components
 
+
+# 6.3.1 - 08.10.2025
+
+**What's Fixed**
+* [DataTable]: fixed virtualization height calculation issues causing excessive empty space in tables
+
 # 6.3.0 - 26.09.2025
 
 **What's New**
