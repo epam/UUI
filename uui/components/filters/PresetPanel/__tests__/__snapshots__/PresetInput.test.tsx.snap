@@ -7,7 +7,7 @@ exports[`PresetInput should render correctly 1`] = `
     style="min-width: 180px; flex-basis: 0px;"
   >
     <div
-      class="container uui-input-box uui-focus root uui-size-36 uui-control-mode-form presetInput"
+      class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form presetInput"
     >
       <input
         class="uui-input"

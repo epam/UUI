@@ -18,6 +18,7 @@
             * `--uui-control_icon-clickable`
             * `--uui-control_icon-clickable-hover`
             * `--uui-control_icon-clickable-active`
+    * Icon set with `icon` property in `TextInput` (and other inputs that use it) is now always displayed in `mode="cell"`, not only on hover
 
 # 6.3.0 - 26.09.2025
 
