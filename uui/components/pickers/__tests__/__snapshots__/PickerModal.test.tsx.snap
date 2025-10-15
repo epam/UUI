@@ -56,6 +56,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           style="--uui-flex-row-v-padding: 24px;"
         >
           <div
+            aria-activedescendant=""
             class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
             dir="auto"
             tabindex="-1"
@@ -68,6 +69,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
               />
             </div>
             <input
+              aria-activedescendant=""
               aria-invalid="false"
               class="uui-input"
               dir="ltr"
@@ -120,6 +122,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     aria-posinset="1"
                     aria-selected="false"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    id="2"
                     role="option"
                   >
                     <div
@@ -159,6 +162,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     aria-posinset="2"
                     aria-selected="false"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    id="3"
                     role="option"
                   >
                     <div
@@ -333,6 +337,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
           style="--uui-flex-row-v-padding: 24px;"
         >
           <div
+            aria-activedescendant=""
             class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
             dir="auto"
             tabindex="-1"
@@ -345,6 +350,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
               />
             </div>
             <input
+              aria-activedescendant=""
               aria-invalid="false"
               class="uui-input"
               dir="ltr"
@@ -420,6 +426,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     aria-checked="false"
                     aria-posinset="1"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    id="12"
                     role="option"
                   >
                     <div
@@ -472,6 +479,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     aria-checked="false"
                     aria-posinset="2"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    id="11"
                     role="option"
                   >
                     <div
@@ -524,6 +532,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     aria-checked="false"
                     aria-posinset="3"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    id="10"
                     role="option"
                   >
                     <div
@@ -576,6 +585,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     aria-checked="false"
                     aria-posinset="4"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    id="9"
                     role="option"
                   >
                     <div
@@ -628,6 +638,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     aria-checked="false"
                     aria-posinset="5"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    id="8"
                     role="option"
                   >
                     <div
@@ -680,6 +691,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     aria-checked="false"
                     aria-posinset="6"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    id="7"
                     role="option"
                   >
                     <div
@@ -732,6 +744,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     aria-checked="false"
                     aria-posinset="7"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    id="6"
                     role="option"
                   >
                     <div
@@ -784,6 +797,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     aria-checked="false"
                     aria-posinset="8"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    id="5"
                     role="option"
                   >
                     <div
@@ -836,6 +850,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     aria-checked="false"
                     aria-posinset="9"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    id="4"
                     role="option"
                   >
                     <div
@@ -888,6 +903,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     aria-checked="false"
                     aria-posinset="10"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    id="3"
                     role="option"
                   >
                     <div
@@ -940,6 +956,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     aria-checked="false"
                     aria-posinset="11"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    id="2"
                     role="option"
                   >
                     <div
@@ -1134,6 +1151,7 @@ exports[`PickerModal should open body 1`] = `
             style="--uui-flex-row-v-padding: 24px;"
           >
             <div
+              aria-activedescendant=""
               class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
               dir="auto"
               tabindex="-1"
@@ -1146,6 +1164,7 @@ exports[`PickerModal should open body 1`] = `
                 />
               </div>
               <input
+                aria-activedescendant=""
                 aria-invalid="false"
                 class="uui-input"
                 dir="ltr"
@@ -1198,6 +1217,7 @@ exports[`PickerModal should open body 1`] = `
                       aria-posinset="1"
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                      id="2"
                       role="option"
                     >
                       <div
@@ -1237,6 +1257,7 @@ exports[`PickerModal should open body 1`] = `
                       aria-posinset="2"
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                      id="3"
                       role="option"
                     >
                       <div

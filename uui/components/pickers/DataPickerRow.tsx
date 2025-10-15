@@ -75,7 +75,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
             />
         );
     };
-    
+
     const renderContent = () => {
         let content: React.ReactNode;
 
@@ -139,6 +139,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
             aria-checked={ props.checkbox?.isVisible ? props.isChecked : null }
             aria-selected={ props.isSelectable ? props.isSelected : null }
             ref={ rowNode }
+            id={ props.rowKey }
             className={ cx(
                 css.pickerRow,
                 'uui-picker_input-row',
