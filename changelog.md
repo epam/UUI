@@ -1,4 +1,4 @@
-# 6.3.2 - 14.10.2025
+# 6.3.3 - 15.10.2025
 
 **What's Fixed**
 * [ScrollBars]: move 'overlayscrollbars' styles import from TS to CSS, to prevent errors during Next.js build
