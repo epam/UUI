@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { IHasCaption, PickerBaseOptions, PickerRenderRowParams } from '@epam/uui-core';
 import { IconContainer, PickerModalArrayProps, PickerModalOptions, PickerModalScalarProps, handleDataSourceKeyboard, usePickerModal } from '@epam/uui-components';
 import { DataPickerRow } from './DataPickerRow';
@@ -98,6 +98,18 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
 
     const dataRows = getRows();
 
+    const focusedRowId = useMemo((): string => {
+        const focusedRow = dataRows.find((row) => {
+            return row.isFocused;
+        });
+
+        if (!focusedRow) {
+            return '';
+        }
+
+        return focusedRow.rowKey;
+    }, [dataRows]);
+
     return (
         <ModalBlocker { ...props }>
             <ModalWindow width={ 600 } height={ 700 } cx={ css.body }>
@@ -119,7 +131,10 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                                 ) }
                             autoFocus={ true }
                             placeholder={ i18n.pickerModal.searchPlaceholder }
-                            rawProps={ { dir: 'auto' } }
+                            rawProps={ {
+                                dir: 'auto',
+                                'aria-activedescendant': focusedRowId,
+                            } }
                         />
                     </FlexRow>
                     {!isSingleSelect() && (
