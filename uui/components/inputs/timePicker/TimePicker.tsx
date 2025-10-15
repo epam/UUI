@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { offset } from '@floating-ui/react';
-import { isFocusReceiverInsideFocusLock } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import type { DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
 import { uuiDayjs } from '../../../helpers/dayJsHelper';
@@ -96,7 +95,6 @@ export function TimePickerComponent(props: TimePickerProps, ref: React.Forwarded
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (isFocusReceiverInsideFocusLock(e)) return;
         onToggle(false);
         props.onBlur?.(e);
 
