@@ -37,6 +37,8 @@ export function MainMenuDropdown(props: MainMenuDropdownProps) {
                 </FocusLock>
             ) }
             placement="bottom-start"
+            // In the case, the default "dialog" role is not applicable.
+            role={ undefined }
         />
     );
 }

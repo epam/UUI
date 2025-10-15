@@ -1,27 +1,84 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MainMenuDropdown should be rendered correctly 1`] = `
-<DocumentFragment>
-  <button
-    aria-expanded="false"
-    class="uui-button-box uui-enabled -clickable root type-primary"
-    tabindex="0"
-    type="button"
+exports[`MainMenuDropdown should be rendered correctly in opened state 1`] = `
+<body>
+  <div>
+    <button
+      aria-expanded="true"
+      class="uui-button-box uui-enabled -clickable root type-primary"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="uui-caption"
+      >
+        Test button
+      </div>
+      <div
+        class="container uui-icon uui-enabled"
+      >
+        <svg
+          class="flipY"
+        />
+      </div>
+    </button>
+  </div>
+  <div
+    aria-hidden="false"
+    class="uui-popper"
+    data-placement="top-start"
+    style="position: fixed; top: 0px; left: 0px; z-index: 2000;"
   >
     <div
-      class="uui-caption"
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-lock-disabled="false"
     >
-      Test button
+      <div
+        class="dropdownBody uui-main_menu-dropdown"
+      >
+        <span
+          class="uui-button-box uui-enabled root type-primary"
+          tabindex="-1"
+        >
+          <div
+            class="uui-caption"
+          >
+            Impact
+          </div>
+        </span>
+        <span
+          class="uui-button-box uui-enabled root type-primary"
+          tabindex="-1"
+        >
+          <div
+            class="uui-caption"
+          >
+            ENGX
+          </div>
+        </span>
+        <span
+          class="uui-button-box uui-enabled root type-primary"
+          tabindex="-1"
+        >
+          <div
+            class="uui-caption"
+          >
+            Cloud
+          </div>
+        </span>
+      </div>
     </div>
     <div
-      class="container uui-icon uui-enabled"
-    >
-      <svg
-        class=""
-      />
-    </div>
-  </button>
-</DocumentFragment>
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</body>
 `;
 
 exports[`MainMenuDropdown should be rendered correctly with minimum props 1`] = `
