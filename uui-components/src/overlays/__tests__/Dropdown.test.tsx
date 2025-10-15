@@ -371,4 +371,15 @@ describe('Dropdown', () => {
             expect(screen.queryByText(BODY_TEXT)).not.toBeInTheDocument();
         });
     });
+
+    test('removes role from body wrapper', async () => {
+        const { target } = await setupUncontrolledDropdownForTests({
+            role: undefined,
+        });
+
+        await user.click(target);
+
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        expect(screen.getByText(BODY_TEXT)).toBeInTheDocument();
+    });
 });
