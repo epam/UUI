@@ -49,6 +49,23 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
         if (e.shiftKey && e.key === 'Tab') e.preventDefault();
     };
 
+    const focusedRowId = useMemo((): string => {
+        // No need to make unnecessary calculations.
+        if (!props.showSearch) {
+            return '';
+        }
+
+        const focusedRow = props.rows.find((row) => {
+            return row.isFocused;
+        });
+
+        if (!focusedRow) {
+            return '';
+        }
+
+        return focusedRow.rowKey;
+    }, [props.showSearch, props.rows]);
+
     const renderEmpty = () => {
         const search = props.value.search;
 
@@ -133,7 +150,10 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
                                 onKeyDown={ searchKeyDown }
                                 size={ searchSize }
                                 debounceDelay={ props.searchDebounceDelay }
-                                rawProps={ { dir: 'auto' } }
+                                rawProps={ {
+                                    dir: 'auto',
+                                    'aria-activedescendant': focusedRowId,
+                                } }
                             />
                         </MoveFocusInside>
                     </FlexCell>

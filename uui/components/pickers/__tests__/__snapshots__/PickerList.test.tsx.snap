@@ -194,6 +194,7 @@ exports[`PickerList should open body 1`] = `
             style="--uui-flex-row-v-padding: 24px;"
           >
             <div
+              aria-activedescendant=""
               class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
               dir="auto"
               tabindex="-1"
@@ -206,6 +207,7 @@ exports[`PickerList should open body 1`] = `
                 />
               </div>
               <input
+                aria-activedescendant=""
                 aria-invalid="false"
                 class="uui-input"
                 dir="ltr"
@@ -258,6 +260,7 @@ exports[`PickerList should open body 1`] = `
                       aria-posinset="1"
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                      id="2"
                       role="option"
                     >
                       <div
@@ -297,6 +300,7 @@ exports[`PickerList should open body 1`] = `
                       aria-posinset="2"
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                      id="3"
                       role="option"
                     >
                       <div
@@ -336,6 +340,7 @@ exports[`PickerList should open body 1`] = `
                       aria-posinset="3"
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                      id="4"
                       role="option"
                     >
                       <div
@@ -375,6 +380,7 @@ exports[`PickerList should open body 1`] = `
                       aria-posinset="4"
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                      id="5"
                       role="option"
                     >
                       <div
@@ -414,6 +420,7 @@ exports[`PickerList should open body 1`] = `
                       aria-posinset="5"
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                      id="6"
                       role="option"
                     >
                       <div
@@ -453,6 +460,7 @@ exports[`PickerList should open body 1`] = `
                       aria-posinset="6"
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                      id="7"
                       role="option"
                     >
                       <div
@@ -492,6 +500,7 @@ exports[`PickerList should open body 1`] = `
                       aria-posinset="7"
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                      id="8"
                       role="option"
                     >
                       <div
@@ -531,6 +540,7 @@ exports[`PickerList should open body 1`] = `
                       aria-posinset="8"
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                      id="9"
                       role="option"
                     >
                       <div
@@ -570,6 +580,7 @@ exports[`PickerList should open body 1`] = `
                       aria-posinset="9"
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                      id="10"
                       role="option"
                     >
                       <div
@@ -609,6 +620,7 @@ exports[`PickerList should open body 1`] = `
                       aria-posinset="10"
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                      id="11"
                       role="option"
                     >
                       <div
@@ -648,6 +660,7 @@ exports[`PickerList should open body 1`] = `
                       aria-posinset="11"
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                      id="12"
                       role="option"
                     >
                       <div

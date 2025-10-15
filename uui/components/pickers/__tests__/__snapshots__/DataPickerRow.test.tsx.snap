@@ -5,6 +5,7 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
   <div
     aria-posinset="2"
     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+    id="test"
     role="option"
   >
     <div
@@ -32,6 +33,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
     aria-posinset="2"
     aria-selected="true"
     class="pickerRow uui-picker_input-row uui-size-48 align-widgets-top uui-focus -clickable"
+    id="test"
     role="option"
     style="--uui-data_picker-horizontal-padding: 24px;"
   >
