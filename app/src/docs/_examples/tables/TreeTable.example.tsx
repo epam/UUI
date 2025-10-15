@@ -44,6 +44,7 @@ export default function TreeTableExample() {
                             caption={ `${location.lat}/${location.lon}` }
                             href={ `https://www.google.com/maps/search/?api=1&query=${location.lat},${location.lon}` }
                             target="_blank"
+                            weight="regular"
                         />
                     ),
                 width: 150,
