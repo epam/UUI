@@ -4,7 +4,7 @@
 * [TimePicker]: fixed `onBlur` event not firing when focus moves from input to dropdown body ([#2936](https://github.com/epam/UUI/issues/2936))
 * [uui-core]: removed `isFocusReceiverInsideFocusLock` helper function that was causing focus management issues in picker components
 * [LabeledInput]: fixed incorrect prop resolution for `infoIcon`
-* [PickerInput]: change value in `aria-haspopup` attribute from "true" to "dialog"
+* [PickerInput]: change value in `aria-haspopup` attribute from "true" to "dialog" ([#2947](https://github.com/epam/UUI/pull/2947))
 
 
 # 6.3.1 - 08.10.2025
