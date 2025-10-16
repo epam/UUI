@@ -7,3 +7,4 @@ export * from './UploadFileToggler';
 export * from './DropSpot';
 export * from './Loaders';
 export * from './Clickable';
+export * from './ControlIcon';

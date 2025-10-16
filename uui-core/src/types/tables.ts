@@ -244,7 +244,7 @@ export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditab
      * Enables collapse/expand all functionality.
      * */
     showFoldAll?: boolean;
-    onConfigButtonClick?: (params: DataTableConfigModalParams) => any;
+    onConfigButtonClick?: () => void;
     renderCell?: (props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode;
     /**
      * Columns group cell render function.

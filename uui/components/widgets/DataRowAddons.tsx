@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { uuiElement, uuiMarkers, DataRowProps, DndEventHandlers, Overwrite } from '@epam/uui-core';
-import { IconContainer, DragHandle } from '@epam/uui-components';
+import { DragHandle, ControlIcon } from '@epam/uui-components';
 import { Checkbox } from '../inputs';
 import type { ControlSize } from '../types';
 import { settings } from '../../settings';
@@ -38,6 +38,8 @@ interface DataRowAddonsCoreProps<TItem, TId> {
      * If omitted, the default implementation with DragHandle component will be rendered.
      */
     renderDragHandle?: (props: DragHandleRenderProps<TItem, TId>) => React.ReactNode;
+    /** If true, folding arrow is focusable */
+    isFoldingFocusable?: boolean;
 }
 
 /**
@@ -66,6 +68,12 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
         );
     };
 
+    const handleFold = (e: React.KeyboardEvent) => {
+        if (props.isFoldingFocusable && e.key === 'Enter') {
+            row.onFold(row);
+        }
+    };
+
     return (
         <>
             {
@@ -91,7 +99,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
                     style={ { marginInlineStart: getIndent(), width: getWidth() } }
                 >
                     {row.isFoldable && (
-                        <IconContainer
+                        <ControlIcon
                             rawProps={ {
                                 'aria-label': row.isFolded ? 'Unfold' : 'Fold',
                                 role: 'button',
@@ -103,7 +111,9 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
                             ] }
                             rotate={ row.isFolded ? '90ccw' : '0' }
                             onClick={ () => row.onFold(row) }
+                            onKeyDown={ handleFold }
                             size={ settings.dataTable.sizes.body.iconMap[props.size || settings.dataTable.sizes.body.row] }
+                            tabIndex={ props.isFoldingFocusable ? 0 : undefined }
                         />
                     )}
                 </div>
