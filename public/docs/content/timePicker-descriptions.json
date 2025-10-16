@@ -1,104 +1,52 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
+        "text": "Timepicker is a UI widget that allows users to select time from a time range. Use Timepicker when you need to provide a simple, user-friendly interface for time selection.\nTimepicker extends a lot of modifiers from "
+      },
+      {
+        "type": "link",
         "data": {},
-        "nodes": [
+        "url": "/documents?category=components&id=textInput&mode=doc&skin=UUI4_promo",
+        "children": [
           {
-            "object": "text",
-            "text": "Timepicker is a UI widget that allows users to select time from a time range. Use Timepicker when you need to provide a simple, user-friendly interface for time selection.\nTimepicker extends a lot of modifiers from ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "/documents?category=components&id=textInput&mode=doc&skin=UUI4_promo"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "TextInput",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", like ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "size",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "mode",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "isDisabled",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "isInvalid",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and others.",
-            "marks": []
+            "text": "TextInput"
           }
         ]
+      },
+      {
+        "text": ", like "
+      },
+      {
+        "text": "size",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "mode",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "isDisabled",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "isInvalid",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and others."
       }
     ]
   }
-}
+]
