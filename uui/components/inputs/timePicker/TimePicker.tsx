@@ -115,6 +115,12 @@ export function TimePickerComponent(props: TimePickerProps, ref: React.Forwarded
         if (e.key === 'Enter') {
             onToggle(true);
         }
+
+        if (e.key === 'Escape' && state.isOpen) {
+            e.preventDefault();
+            e.stopPropagation();
+            onToggle(false);
+        }
     };
 
     const renderInput = (inputProps: IDropdownTogglerProps) => {
@@ -160,6 +166,7 @@ export function TimePickerComponent(props: TimePickerProps, ref: React.Forwarded
                         value={ formatStringTimeToObject(state.value) }
                         rawProps={ props.rawProps?.body }
                         cx={ props.bodyCx }
+
                     />
                 </DropdownContainer>
             )
