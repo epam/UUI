@@ -93,6 +93,7 @@ export default function CloseModifiersExample() {
                 <Button caption="Advanced filter" size="36" { ...togglerProps } />
             ) }
             middleware={ [offset(6)] }
+            closeOnEscape={ false }
             closeOnClickOutside={ false }
             closeOnTargetClick={ false }
         />
