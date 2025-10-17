@@ -11,7 +11,7 @@ export class DropdownObject {
 
     constructor(public page: Page) {
         const wrapper = page.locator('[aria-label="Page Content"][aria-busy="false"]');
-        const target = page.locator('[aria-haspopup="dialog"]');
+        const target = page.locator('[aria-haspopup="true"]');
         const body = page.locator('div[role="dialog"]');
         this.locators = {
             contentWrapper: wrapper,
