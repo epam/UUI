@@ -10,7 +10,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
         class="body"
       >
         <input
-          aria-haspopup="true"
+          aria-haspopup="dialog"
           autocomplete="no"
           class="uui-input singleInput cursorText"
           dir="ltr"
@@ -306,7 +306,7 @@ exports[`PickerInput Rendering should render with minimum props 1`] = `
       class="body"
     >
       <input
-        aria-haspopup="true"
+        aria-haspopup="dialog"
         autocomplete="no"
         class="uui-input singleInput cursorText"
         dir="ltr"
