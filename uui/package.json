@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui",
-  "version": "6.1.7-beta.2",
+  "version": "6.1.7-beta.3",
   "description": "EPAM UUI components set",
   "author": "EPAM",
   "license": "MIT",
@@ -12,9 +12,9 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "6.1.7-beta.2",
-    "@epam/uui-components": "6.1.7-beta.2",
-    "@epam/uui-core": "6.1.7-beta.2",
+    "@epam/assets": "6.1.7-beta.3",
+    "@epam/uui-components": "6.1.7-beta.3",
+    "@epam/uui-core": "6.1.7-beta.3",
     "@floating-ui/react": "0.27.5",
     "classnames": "2.2.6",
     "dayjs": "1.11.12",
