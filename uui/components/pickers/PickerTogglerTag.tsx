@@ -38,7 +38,7 @@ export const PickerTogglerTag = React.forwardRef((props: PickerTogglerTagProps<a
                 closeOnMouseLeave="boundary"
                 cx={ css.tooltip }
             >
-                <Tag ref={ ref } rawProps={ { role: 'option' } } { ...tagProps } />
+                <Tag ref={ ref } rawProps={ { role: 'option' } } { ...tagProps } cx={ css.visibleContent } />
             </Tooltip>
         );
     } else {
