@@ -2,3 +2,10 @@
     overflow-y: auto;
     max-height: 150px;
 }
+
+.visibleContent {
+    > div {
+        overflow: visible !important;
+        width: fit-content;
+    }
+}
