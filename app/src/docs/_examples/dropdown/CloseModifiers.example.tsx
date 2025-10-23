@@ -21,7 +21,7 @@ export default function CloseModifiersExample() {
     const personsDs = useLazyDataSource({ api: loadPersons }, []);
 
     const renderBody = (props: DropdownBodyProps) => (
-        <DropdownContainer { ...props } showArrow={ true } maxWidth={ 420 }>
+        <DropdownContainer { ...props } showArrow={ true } width={ 380 }>
             <Panel background="surface-main">
                 <FlexRow padding="18" vPadding="24" columnGap="12" alignItems="top">
                     <FlexCell grow={ 1 }>

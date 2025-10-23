@@ -1,7 +1,21 @@
 # 6.?.? - ??.??.2025
 
 **What's Fixed**
-* [Calendar]: fixed calendar matrix calculation to use locale-specific `firstDayOfWeek` from dayjs instead of hardcoded i18n configuration, ensuring correct calendar layout for any locale.
+* [TimePicker]: reworked body open/close behavior. Now body opens by input click or enter key press, instead of 'focus' on target and body closed by 'Escape' or click outside, instead of target blur. Added focus lock behavior.
+* [uui-core]: removed `isFocusReceiverInsideFocusLock` helper function that was causing focus management issues in picker components
+* [LabeledInput]: fixed incorrect prop resolution for `infoIcon`
+* [PickerInput]: change value in `aria-haspopup` attribute from "true" to "dialog" ([#2947](https://github.com/epam/UUI/pull/2947))
+* [TextInput]: remove call on onCancel callback on 'Escape' press
+* [Pagination]: pagination elements are not grouped into a list ([#2942](https://github.com/epam/UUI/pull/2942))
+    * Add "Previous page" and "Next page" `aria-label`-s to the previous and next pages respectively
+* [DatePickers]: fixed calendar matrix calculation to use locale-specific `firstDayOfWeek` from dayjs instead of hardcoded i18n configuration, ensuring correct calendar layout for any locale.
+
+
+
+# 6.3.1 - 08.10.2025
+
+**What's Fixed**
+* [DataTable]: fixed virtualization height calculation issues causing excessive empty space in tables
 
 # 6.3.0 - 26.09.2025
 
@@ -16,11 +30,11 @@
 * [ScrollBars][Breaking Changes]: migrated from deprecated `react-custom-scrollbars-2` to modern `overlayscrollbars-react` library to fix multiple issues and improve stability. This migration improved scrollbar styling, expanded API capabilities, but introduced some minor breaking changes, that should not affect common use-cases:
     * base component removed from `@epam/uui-components`, all types moved to `@epam/uui`;
     * Ref API changed from `{ container: HTMLDivElement | undefined }` to `{ container: HTMLElement | null, view: HTMLElement | null }`;
-    * `autoHide` prop changed from `boolean` to string values `('never' | 'scroll' | 'move' | 'leave')`, `autoHideTimeout` & `autoHideDuration` replaced with `autoHideDelay`; 
+    * `autoHide` prop changed from `boolean` to string values `('never' | 'scroll' | 'move' | 'leave')`, `autoHideTimeout` & `autoHideDuration` replaced with `autoHideDelay`;
     * removed render callbacks `renderView, renderTrackHorizontal, renderTrackVertical, renderThumbHorizontal, renderThumbVertical` - now you can customize them via classes and uui css variables;
     * shadows API changed from `hasTopShadow, hasBottomShadow` to `overflowTopEffect, overflowBottomEffect` with `'line' | 'shadow' | 'none'` values. ScrollBars now handle overflow effects internally - if you had custom shadow/border styling, you can remove it and use the new props instead;
     * overflow management centralized: previously each component (DataTable, VirtualList, Modals) had custom shadow implementations, now all use unified ScrollBars system with CSS classes `.-scrolled-top`, `.-scrolled-bottom`, `.-scrolled-left`, `.-scrolled-right`. Removed old shadow classes `uui-shadow-top-visible`, `uui-shadow-bottom-visible` in favor of unified system;
-    * HTML attributes removed from ScrollBars interface - use `rawProps` instead; 
+    * HTML attributes removed from ScrollBars interface - use `rawProps` instead;
     * on macOS scrollbars now also used UUI styles and always visible by default;
     * improved RTL support and performance;
     * fixed issues [#1645](https://github.com/epam/UUI/issues/1645), [#2548](https://github.com/epam/UUI/issues/2548), [#2644](https://github.com/epam/UUI/issues/2644), [#2882](https://github.com/epam/UUI/issues/2882), [#2893](https://github.com/epam/UUI/issues/2893)
