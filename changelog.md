@@ -1,3 +1,4 @@
+
 # 6.?.? - ??.??.2025
 
 **What's Fixed**
@@ -6,6 +7,8 @@
 * [LabeledInput]: fixed incorrect prop resolution for `infoIcon`
 * [PickerInput]: change value in `aria-haspopup` attribute from "true" to "dialog" ([#2947](https://github.com/epam/UUI/pull/2947))
 * [TextInput]: remove call on onCancel callback on 'Escape' press
+* [Pagination]: pagination elements are not grouped into a list ([#2942](https://github.com/epam/UUI/pull/2942))
+    * Add "Previous page" and "Next page" `aria-label`-s to the previous and next pages respectively
 
 
 # 6.3.1 - 08.10.2025
