@@ -1,0 +1,85 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "DatePicker",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " supports locale customization. This is useful for international applications that need to support different regional settings."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To override locale settings in your application:"
+      }
+    ]
+  },
+  {
+    "type": "ordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Import the required dayjs locales:",
+                "uui-richTextEditor-bold": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "import 'dayjs/locale/de'; // German locale\n"
+      },
+      {
+        "text": "import 'dayjs/locale/ar'; // Arabic locale\nimport 'dayjs/locale/fr'; // French locale",
+        "color": "rgb(48, 50, 64)"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "2. "
+      },
+      {
+        "text": "Reset i18n configuration and set locale using uuiDayjs:",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "import { i18n, uuiDayjs } from '@epam/uui-components';\n\n// Reset datePicker configuration\ni18n.datePicker = {};\n\n// Set German locale\nuuiDayjs.dayjs.locale('de');\n\n// Optionally override first day of week (0=Sunday, 1=Monday, 6=Saturday)\n"
+      },
+      {
+        "text": "uuiDayjs.dayjs.updateLocale('de', { weekStart: 1 }); // Monday first",
+        "color": "rgb(48, 50, 64)"
+      }
+    ]
+  },
+  {
+    "type": "note-warning",
+    "children": [
+      {
+        "text": "**Note:** Locale changes affect the entire application globally. Consider the impact on other date components when changing locale settings."
+      }
+    ]
+  }
+]
