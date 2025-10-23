@@ -5,14 +5,6 @@ export function isEventTargetInsideClickable(e: React.SyntheticEvent<Element>): 
     return isAnyParentHasClass(_getEventTarget(e), e.currentTarget, [uuiMarkers.clickable]);
 }
 
-/**
- * This method receives blur event. So, relatedTarget is the element receiving focus.
- * @param e - blur event
- */
-export function isFocusReceiverInsideFocusLock(e: React.FocusEvent<HTMLElement>): boolean {
-    return isAnyParentHasClass(e.relatedTarget, _getEventTarget(e) as Node, [uuiMarkers.lockFocus]);
-}
-
 export function isEventTargetInsideDraggable(e: React.PointerEvent, toElement: Node) {
     return isAnyParentHasClass(_getEventTarget(e), toElement, [uuiMarkers.draggable]);
 }
