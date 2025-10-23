@@ -9,7 +9,6 @@ import css from './TextInput.module.scss';
 import type { JSX } from 'react';
 
 const ENTER = 'Enter';
-const ESCAPE = 'Escape';
 
 export type IRenderInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
@@ -53,7 +52,6 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         props.onKeyDown?.(e);
         if (e.key === ENTER) props.onAccept?.();
-        else if (e.key === ESCAPE) props.onCancel?.();
     };
 
     const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
