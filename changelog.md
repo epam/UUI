@@ -5,6 +5,7 @@
 * [uui-core]: removed `isFocusReceiverInsideFocusLock` helper function that was causing focus management issues in picker components
 * [LabeledInput]: fixed incorrect prop resolution for `infoIcon`
 * [TextInput]: remove call on onCancel callback on 'Escape' press
+* [PickerInput]: fixed an issue where item count text was truncated in isSingleLine mode
 
 
 # 6.3.1 - 08.10.2025
