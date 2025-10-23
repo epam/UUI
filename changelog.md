@@ -1,4 +1,3 @@
-
 # 6.?.? - ??.??.2025
 
 **What's Fixed**
@@ -9,6 +8,8 @@
 * [TextInput]: remove call on onCancel callback on 'Escape' press
 * [Pagination]: pagination elements are not grouped into a list ([#2942](https://github.com/epam/UUI/pull/2942))
     * Add "Previous page" and "Next page" `aria-label`-s to the previous and next pages respectively
+* [DatePickers]: fixed calendar matrix calculation to use locale-specific `firstDayOfWeek` from dayjs instead of hardcoded i18n configuration, ensuring correct calendar layout for any locale.
+
 
 
 # 6.3.1 - 08.10.2025
