@@ -148,7 +148,10 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
         onValueChange(newValue);
     };
 
-    const clearAllowed = !disableClear && !(preventEmptyFromDate && preventEmptyToDate) && (inputValue.from || inputValue.to);
+    const clearAllowed = !disableClear
+        && !(preventEmptyFromDate && preventEmptyToDate)
+        && ((inputValue.from && !preventEmptyFromDate) || (inputValue.to && !preventEmptyToDate));
+
     return (
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
@@ -199,7 +202,10 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
                 isDisabled={ isDisabled }
                 isReadonly={ isReadonly }
                 isDropdown={ false }
-                rawProps={ rawProps?.to }
+                rawProps={ {
+                    ...rawProps?.to,
+                    ...(clearAllowed && { 'aria-label': 'Include CancelIcon' }),
+                } }
                 onClick={ onClick }
                 onKeyDown={ onInputKeyDown }
             />
