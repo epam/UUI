@@ -37,6 +37,7 @@ export interface DataPickerBodyProps<TItem = unknown, TId = unknown> extends Ove
 export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...props }:DataPickerBodyProps<TItem, TId>) {
     const prevProps = usePrevious(props);
     const showSearch = props.showSearch === 'auto' ? props.totalCount > 10 : Boolean(props.showSearch);
+    const [isKeyboardNavigation, setIsKeyboardNavigation] = React.useState(false);
 
     useEffect(() => {
         if (props.rows.length !== prevProps?.rows.length || (!isEqual(prevProps?.value.checked, props.value.checked) && !props.fixedBodyPosition)) {
@@ -46,7 +47,62 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
 
     const searchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         props.onKeyDown?.(e);
-        if (e.shiftKey && e.key === 'Tab') e.preventDefault();
+    };
+
+    const handleVirtualListKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+        // Handle Tab navigation - exit from virtual list
+        if (e.key === 'Tab') {
+            // Immediately reset all visual states when exiting with Tab
+            setIsKeyboardNavigation(false);
+            return;
+        }
+
+        // Handle arrow keys only when virtual list is focused
+        if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            setIsKeyboardNavigation(true);
+            props.onKeyDown?.(e);
+        }
+
+        // Handle Enter key
+        if (e.key === 'Enter') {
+            setIsKeyboardNavigation(true);
+            // Handle Enter directly here to ensure it works
+            const focusedIndex = props.value.focusedIndex;
+            if (focusedIndex !== undefined && focusedIndex >= props.value.topIndex && focusedIndex < props.value.topIndex + props.rows.length) {
+                const focusedRow = props.rows[focusedIndex - props.value.topIndex];
+                const clickHandler = focusedRow.onSelect || focusedRow.onCheck;
+                if (clickHandler) {
+                    clickHandler(focusedRow);
+                    return; // Don't call props.onKeyDown if we handled it
+                }
+            }
+            props.onKeyDown?.(e);
+        }
+    };
+
+    const handleVirtualListFocus = (e: React.FocusEvent<HTMLElement>) => {
+        // Only set keyboard navigation if focus came from keyboard (Tab key)
+        // Check if the focus event was triggered by keyboard navigation
+        const isKeyboardFocus = e.target === e.currentTarget;
+        if (isKeyboardFocus) {
+            setIsKeyboardNavigation(true);
+        }
+    };
+
+    const handleVirtualListBlur = (e: React.FocusEvent<HTMLElement>) => {
+        // Check if focus is moving outside the virtual list
+        const relatedTarget = e.relatedTarget as HTMLElement;
+        const currentTarget = e.currentTarget;
+
+        if (relatedTarget && !currentTarget.contains(relatedTarget)) {
+            // Focus is leaving the virtual list, hide visual focus but keep focusedIndex for navigation "by circle"
+            setIsKeyboardNavigation(false);
+        }
+    };
+
+    const handleVirtualListMouseMove = () => {
+        setIsKeyboardNavigation(false);
     };
 
     const renderEmpty = () => {
@@ -97,7 +153,15 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
     };
 
     const renderRow = (row: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
-        const pickerRowProps = { ...row, getName: props.getName };
+        const pickerRowProps = {
+            ...row,
+            getName: props.getName,
+            cx: cx(
+                row.cx,
+                isKeyboardNavigation && row.isFocused && 'uui-focus',
+                isKeyboardNavigation && row.isFocused && 'uui-keyboard-focus',
+            ),
+        };
 
         return props.renderRow ? (
             props.renderRow(pickerRowProps, dsState)
@@ -118,7 +182,7 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
         ? settings.pickerInput.sizes.body.mobileSearchInput
         : settings.pickerInput.sizes.body.getSearchSize({ pickerSize: props.searchSize });
 
-    const renderedDataRows = useMemo(() => props.rows.map((row) => renderRow(row, props.value)), [props.rows, props.value]);
+    const renderedDataRows = useMemo(() => props.rows.map((row) => renderRow(row, props.value)), [props.rows, props.value, isKeyboardNavigation]);
 
     return (
         <>
@@ -139,33 +203,40 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
                     </FlexCell>
                 </div>
             )}
-            <FlexRow
-                key="body"
-                cx={ cx('uui-picker_input-body') }
-                rawProps={ { style: { maxHeight: props.maxHeight, maxWidth: props.maxWidth }, tabIndex: -1 } }
-            >
-                { props.rows.length === 0 && props.value.topIndex === 0
-                    // We need to also ensure that topIndex === 0, because we can have state were there is no rows but topIndex > 0, in case when we scrolled lover than we have rows
-                    // we fix this state on next render and shouldn't show empty state.
-                    ? renderEmpty() : (
-                        <VirtualList
-                            value={ props.value }
-                            onValueChange={ props.onValueChange }
-                            rows={ renderedDataRows }
-                            rawProps={ {
-                                'aria-multiselectable': props.selectionMode === 'multi' ? true : null,
-                                'aria-orientation': 'vertical',
-                                tabIndex: -1,
-                                ...props.rawProps,
-                            } }
-                            rowsCount={ props.rowsCount }
-                            isLoading={ props.isReloading }
-                            renderBlocker={ settings.pickerInput.renderBlocker }
-                            overflowTopEffect={ showSearch ? 'line' : 'none' }
-                            overflowBottomEffect="line"
-                        />
-                    )}
-            </FlexRow>
+            <MoveFocusInside disabled={ showSearch }>
+                <FlexRow
+                    key="body"
+                    cx={ cx('uui-picker_input-body') }
+                    rawProps={ { style: { maxHeight: props.maxHeight, maxWidth: props.maxWidth }, tabIndex: -1 } }
+                >
+                    { props.rows.length === 0 && props.value.topIndex === 0
+                        // We need to also ensure that topIndex === 0, because we can have state were there is no rows but topIndex > 0, in case when we scrolled lover than we have rows
+                        // we fix this state on next render and shouldn't show empty state.
+                        ? renderEmpty() : (
+                            <VirtualList
+                                value={ props.value }
+                                onValueChange={ props.onValueChange }
+                                rows={ renderedDataRows }
+                                role="listbox"
+                                rawProps={ {
+                                    'aria-multiselectable': props.selectionMode === 'multi' ? true : null,
+                                    'aria-orientation': 'vertical',
+                                    tabIndex: 0,
+                                    onKeyDown: handleVirtualListKeyDown,
+                                    onFocus: handleVirtualListFocus,
+                                    onBlur: handleVirtualListBlur,
+                                    onMouseMove: handleVirtualListMouseMove,
+                                    ...props.rawProps,
+                                } }
+                                rowsCount={ props.rowsCount }
+                                isLoading={ props.isReloading }
+                                renderBlocker={ settings.pickerInput.renderBlocker }
+                                overflowTopEffect={ showSearch ? 'line' : 'none' }
+                                overflowBottomEffect="line"
+                            />
+                        )}
+                </FlexRow>
+            </MoveFocusInside>
         </>
     );
 }
