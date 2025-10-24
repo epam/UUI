@@ -5,6 +5,7 @@
 * [uui-core]: removed `isFocusReceiverInsideFocusLock` helper function that was causing focus management issues in picker components
 * [LabeledInput]: fixed incorrect prop resolution for `infoIcon`
 * [TextInput]: remove call on onCancel callback on 'Escape' press
+* [RangeDatePicker}: added option to display clear icon when at least one date is selected
 
 
 # 6.3.1 - 08.10.2025
