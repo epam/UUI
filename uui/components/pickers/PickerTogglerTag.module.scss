@@ -2,3 +2,7 @@
     overflow-y: auto;
     max-height: 150px;
 }
+
+.noShrink {
+    flex-shrink: 0;
+}
