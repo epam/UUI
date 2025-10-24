@@ -25,18 +25,16 @@ function TREE_SHAKEABLE_INIT() {
                 extended = true;
             }
 
-            if (dayjs.locale() !== i18n.datePicker.locale) {
+            if (i18n.datePicker.locale && dayjs.locale() !== i18n.datePicker.locale) {
                 dayjs.locale(i18n.datePicker.locale);
             }
 
             /**
-             * Currently, locales which starts from Sunday used.
-             * That is why it's safe to set weekStart: 1 for all locales to start for Monday
+             * Update locale settings if provided at the library level.
+             * This allows customizing weekStart and other locale-specific settings.
              */
-            if (dayjs.localeData().firstDayOfWeek() !== 1) {
-                dayjs.updateLocale(i18n.datePicker.locale, {
-                    weekStart: 1,
-                });
+            if (i18n.datePicker.localeUpdate) {
+                dayjs.updateLocale(i18n.datePicker.locale, i18n.datePicker.localeUpdate);
             }
 
             return dayjs;

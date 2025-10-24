@@ -68,7 +68,7 @@ export const personColumns: DataColumnProps<Person, PersonTableRecordId[], DataQ
     }, {
         key: 'managerName',
         caption: 'Manager',
-        render: (p) => <LinkButton caption={ p.managerName } href="#" />,
+        render: (p) => <LinkButton caption={ p.managerName } href="#" weight="regular" />,
         width: 150,
         isSortable: true,
         isFilterActive: (f) => !!f.managerId,
