@@ -69,7 +69,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'managerName',
         caption: 'Manager',
-        render: (p) => <LinkButton caption={ p.managerName } href="#" />,
+        render: (p) => <LinkButton caption={ p.managerName } href="#" weight="regular" />,
         grow: 0,
         width: 120,
         isSortable: true,
