@@ -142,20 +142,6 @@ describe('RangeDataPicker', () => {
         expect(dom.to.value).toBe('');
     });
 
-    it('should change state on picker clear', async () => {
-        const value = {
-            from: '2017-01-22',
-            to: '2017-01-28',
-        };
-        const { mocks } = await setupRangeDatePicker({ value });
-        const clear = screen.getByRole('button');
-        await userEvent.click(clear);
-        expect(mocks.onValueChange).toBeCalledWith({
-            from: null,
-            to: null,
-        });
-    });
-
     it('should open picker on "from" field enter keydown and close on click outside', async () => {
         const { dom, result } = await setupRangeDatePicker({ value: null });
         fireEvent.keyDown(dom.from, { key: 'Enter', code: 'Enter', charCode: 13 });
@@ -517,7 +503,7 @@ describe('RangeDataPicker', () => {
         });
 
         // Clear button should not be present when both preventEmpty props are true
-        const clearButton = screen.queryByAria('label', 'Clear input');
+        const clearButton = screen.queryByAria('label', 'Clear selected date range');
         expect(clearButton).not.toBeInTheDocument();
 
         // Case 1: Clear the 'from' input
@@ -562,7 +548,7 @@ describe('RangeDataPicker', () => {
         });
 
         // Clear button should be present when only one preventEmpty prop is true
-        const clearButton = screen.queryByAria('label', 'Clear input');
+        const clearButton = screen.queryByAria('label', 'Clear selected date range');
         expect(clearButton).toBeInTheDocument();
 
         // Case 1: Clear the 'from' input
@@ -590,6 +576,125 @@ describe('RangeDataPicker', () => {
         expect(mocks.onValueChange).toHaveBeenCalledWith({
             from: '2019-09-10',
             to: null,
+        });
+    });
+
+    describe('clear icon visibility logic', () => {
+        it('should show clear icon when only "from" date is selected and change the status on picker', async () => {
+            const value = {
+                from: '2019-09-10',
+                to: null,
+            };
+            const { mocks } = await setupRangeDatePicker({ value });
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
+            expect(clearButton).toBeInTheDocument();
+            await userEvent.click(clearButton);
+            expect(mocks.onValueChange).toBeCalledWith({
+                from: null,
+                to: null,
+            });
+        });
+
+        it('should show clear icon when only "to" date is selected and change the status on picker', async () => {
+            const value = {
+                from: null,
+                to: '2019-09-15',
+            };
+            const { mocks } = await setupRangeDatePicker({ value });
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
+            expect(clearButton).toBeInTheDocument();
+            await userEvent.click(clearButton);
+            expect(mocks.onValueChange).toBeCalledWith({
+                from: null,
+                to: null,
+            });
+        });
+
+        it('should show clear icon when both dates are selected and change the status on picker', async () => {
+            const value = {
+                from: '2019-09-10',
+                to: '2019-09-15',
+            };
+            const { mocks } = await setupRangeDatePicker({ value });
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
+            expect(clearButton).toBeInTheDocument();
+            await userEvent.click(clearButton);
+            expect(mocks.onValueChange).toBeCalledWith({
+                from: null,
+                to: null,
+            });
+        });
+
+        it('should not show clear icon when no dates are selected', async () => {
+            const value = {
+                from: null,
+                to: null,
+            };
+            await setupRangeDatePicker({ value });
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
+            expect(clearButton).not.toBeInTheDocument();
+        });
+
+        it('should not show clear icon when disableClear is true', async () => {
+            const value = {
+                from: '2019-09-10',
+                to: '2019-09-15',
+            };
+            await setupRangeDatePicker({
+                value,
+                disableClear: true,
+            });
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
+            expect(clearButton).not.toBeInTheDocument();
+        });
+
+        it('should not show clear icon when both preventEmptyFromDate and preventEmptyToDate are true', async () => {
+            const value = {
+                from: '2019-09-10',
+                to: '2019-09-15',
+            };
+            await setupRangeDatePicker({ 
+                value,
+                preventEmptyFromDate: true,
+                preventEmptyToDate: true,
+            });
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
+            expect(clearButton).not.toBeInTheDocument();
+        });
+
+        it('should show clear icon when only one preventEmpty prop is true and change the status on picker', async () => {
+            const value = {
+                from: '2019-09-10',
+                to: '2019-09-15',
+            };
+
+            const { mocks } = await setupRangeDatePicker({
+                value,
+                preventEmptyFromDate: true,
+                preventEmptyToDate: false,
+            });
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
+            expect(clearButton).toBeInTheDocument();
+            await userEvent.click(clearButton);
+            expect(mocks.onValueChange).toBeCalledWith({
+                from: '2019-09-10',
+                to: null,
+            });
+        });
+
+        it('should not show clear icon when only one preventEmpty prop is true and only that value presented', async () => {
+            const value = {
+                from: null,
+                to: '2019-09-15',
+            };
+
+            await setupRangeDatePicker({
+                value,
+                preventEmptyFromDate: false,
+                preventEmptyToDate: true,
+            });
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
+            expect(clearButton).not.toBeInTheDocument();
         });
     });
 });

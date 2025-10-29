@@ -7,6 +7,7 @@ exports[`BurgerSearch should be rendered correctly 1`] = `
     tabindex="-1"
   >
     <div
+      aria-label="Icon in input"
       class="container uui-icon uui-enabled"
     >
       <svg
@@ -30,6 +31,7 @@ exports[`BurgerSearch should be rendered correctly with extra props 1`] = `
     tabindex="-1"
   >
     <div
+      aria-label="Icon in input"
       class="container uui-icon uui-enabled"
     >
       <svg

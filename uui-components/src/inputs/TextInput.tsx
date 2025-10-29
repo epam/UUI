@@ -107,7 +107,13 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
             : props?.rawProps?.dir, // TODO: remove after browser bug fix
     });
 
-    const icon = props.icon && <IconContainer icon={ props.icon } onClick={ props.onIconClick } />;
+    const icon = props.icon && (
+        <IconContainer 
+            icon={ props.icon } 
+            onClick={ props.onIconClick } 
+            rawProps={ { 'aria-label': props.iconLabel || 'Icon in input' } }
+        />
+    );
     const showIconsOnAction = props.value && !props.isReadonly && !props.isDisabled;
 
     return (
