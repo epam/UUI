@@ -503,7 +503,7 @@ describe('RangeDataPicker', () => {
         });
 
         // Clear button should not be present when both preventEmpty props are true
-        const clearButton = screen.queryByAria('label', 'Include CancelIcon');
+        const clearButton = screen.queryByAria('label', 'Clear selected date range');
         expect(clearButton).not.toBeInTheDocument();
 
         // Case 1: Clear the 'from' input
@@ -548,7 +548,7 @@ describe('RangeDataPicker', () => {
         });
 
         // Clear button should be present when only one preventEmpty prop is true
-        const clearButton = screen.queryByAria('label', 'Include CancelIcon').querySelector('svg');
+        const clearButton = screen.queryByAria('label', 'Clear selected date range');
         expect(clearButton).toBeInTheDocument();
 
         // Case 1: Clear the 'from' input
@@ -586,7 +586,7 @@ describe('RangeDataPicker', () => {
                 to: null,
             };
             const { mocks } = await setupRangeDatePicker({ value });
-            const clearButton = screen.queryByAria('label', 'Include CancelIcon').querySelector('svg');
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
             expect(clearButton).toBeInTheDocument();
             await userEvent.click(clearButton);
             expect(mocks.onValueChange).toBeCalledWith({
@@ -601,7 +601,7 @@ describe('RangeDataPicker', () => {
                 to: '2019-09-15',
             };
             const { mocks } = await setupRangeDatePicker({ value });
-            const clearButton = screen.queryByAria('label', 'Include CancelIcon').querySelector('svg');
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
             expect(clearButton).toBeInTheDocument();
             await userEvent.click(clearButton);
             expect(mocks.onValueChange).toBeCalledWith({
@@ -616,7 +616,7 @@ describe('RangeDataPicker', () => {
                 to: '2019-09-15',
             };
             const { mocks } = await setupRangeDatePicker({ value });
-            const clearButton = screen.queryByAria('label', 'Include CancelIcon').querySelector('svg');
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
             expect(clearButton).toBeInTheDocument();
             await userEvent.click(clearButton);
             expect(mocks.onValueChange).toBeCalledWith({
@@ -631,7 +631,7 @@ describe('RangeDataPicker', () => {
                 to: null,
             };
             await setupRangeDatePicker({ value });
-            const clearButton = screen.queryByAria('label', 'Include CancelIcon');
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
             expect(clearButton).not.toBeInTheDocument();
         });
 
@@ -644,7 +644,7 @@ describe('RangeDataPicker', () => {
                 value,
                 disableClear: true,
             });
-            const clearButton = screen.queryByAria('label', 'Include CancelIcon');
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
             expect(clearButton).not.toBeInTheDocument();
         });
 
@@ -658,7 +658,7 @@ describe('RangeDataPicker', () => {
                 preventEmptyFromDate: true,
                 preventEmptyToDate: true,
             });
-            const clearButton = screen.queryByAria('label', 'Include CancelIcon');
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
             expect(clearButton).not.toBeInTheDocument();
         });
 
@@ -673,7 +673,7 @@ describe('RangeDataPicker', () => {
                 preventEmptyFromDate: true,
                 preventEmptyToDate: false,
             });
-            const clearButton = screen.queryByAria('label', 'Include CancelIcon').querySelector('svg');
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
             expect(clearButton).toBeInTheDocument();
             await userEvent.click(clearButton);
             expect(mocks.onValueChange).toBeCalledWith({
@@ -693,7 +693,7 @@ describe('RangeDataPicker', () => {
                 preventEmptyFromDate: false,
                 preventEmptyToDate: true,
             });
-            const clearButton = screen.queryByAria('label', 'Include CancelIcon');
+            const clearButton = screen.queryByAria('label', 'Clear selected date range');
             expect(clearButton).not.toBeInTheDocument();
         });
     });
