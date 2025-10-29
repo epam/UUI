@@ -148,7 +148,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
         onValueChange(newValue);
     };
 
-    const clearAllowed = !disableClear
+    const clearAllowed = !disableClear && !isReadonly && !isDisabled
         && !(preventEmptyFromDate && preventEmptyToDate)
         && ((inputValue.from && !preventEmptyFromDate) || (inputValue.to && !preventEmptyToDate));
 
