@@ -61,6 +61,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
             tabindex="-1"
           >
             <div
+              aria-label="Icon in input"
               class="container uui-icon uui-enabled"
             >
               <svg
@@ -338,6 +339,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
             tabindex="-1"
           >
             <div
+              aria-label="Icon in input"
               class="container uui-icon uui-enabled"
             >
               <svg
@@ -1139,6 +1141,7 @@ exports[`PickerModal should open body 1`] = `
               tabindex="-1"
             >
               <div
+                aria-label="Icon in input"
                 class="container uui-icon uui-enabled"
               >
                 <svg
