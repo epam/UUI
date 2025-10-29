@@ -10,6 +10,7 @@ exports[`RangeDataPicker should be rendered if many params defined 1`] = `
       tabindex="-1"
     >
       <div
+        aria-label="Icon in input"
         class="container uui-icon uui-enabled"
       >
         <svg
@@ -62,6 +63,7 @@ exports[`RangeDataPicker should be rendered if minimum params and custom format 
       tabindex="-1"
     >
       <div
+        aria-label="Icon in input"
         class="container uui-icon uui-enabled"
       >
         <svg
