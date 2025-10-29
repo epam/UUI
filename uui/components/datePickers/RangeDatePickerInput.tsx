@@ -194,6 +194,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
                 value={ inputValue.to || undefined }
                 icon={ clearAllowed && CancelIcon }
                 iconPosition="right"
+                iconLabel="Clear selected date range"
                 onIconClick={ onClear }
                 onValueChange={ (v) => onInputChange(v || '', 'to') }
                 onFocus={ (e) => handleFocus(e, 'to') }
@@ -202,10 +203,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
                 isDisabled={ isDisabled }
                 isReadonly={ isReadonly }
                 isDropdown={ false }
-                rawProps={ {
-                    ...rawProps?.to,
-                    ...(clearAllowed && { 'aria-label': 'Include CancelIcon' }),
-                } }
+                rawProps={ rawProps?.to }
                 onClick={ onClick }
                 onKeyDown={ onInputKeyDown }
             />
