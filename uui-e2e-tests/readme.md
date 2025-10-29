@@ -113,4 +113,7 @@ yarn --cwd uui-e2e-tests local-test-e2e
 ```
 
 ## Misc
-Recommended way to debug tests is to use VSCode extension as described here: https://playwright.dev/docs/getting-started-vscode
+1. To run single test, use `.only` for the test definition:
+    - For screenshot tests: replace `.add` with `.only` in tests definition - uui-e2e-tests/tests/previewTests/preview.e2e.ts
+    - For integration tests: add `.only` for test definition, e.g.: `test.only('pickerInput/LazyTreeInput'...`
+2. Recommended way to debug tests is to use VSCode extension as described here: https://playwright.dev/docs/getting-started-vscode
