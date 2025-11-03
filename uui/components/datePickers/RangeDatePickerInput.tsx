@@ -150,7 +150,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
 
     const clearAllowed = !disableClear && !isReadonly && !isDisabled
         && !(preventEmptyFromDate && preventEmptyToDate)
-        && ((inputValue.from && !preventEmptyFromDate) || (inputValue.to && !preventEmptyToDate));
+        && ((value.from && !preventEmptyFromDate) || (value.to && !preventEmptyToDate));
 
     return (
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
