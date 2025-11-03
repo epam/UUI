@@ -6,6 +6,7 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
     aria-posinset="2"
     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
     role="option"
+    tabindex="-1"
   >
     <div
       class="flexCell rowContent"
@@ -34,6 +35,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
     class="pickerRow uui-picker_input-row uui-size-48 align-widgets-top uui-focus -clickable"
     role="option"
     style="--uui-data_picker-horizontal-padding: 24px;"
+    tabindex="-1"
   >
     <div
       class="flexCell rowContent"

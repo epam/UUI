@@ -1,12 +1,15 @@
-.root {
+@mixin focus-visible-effect($offset: var(--uui-focus-outline-offset)) {
+    outline: var(--uui-focus-outline-width) solid var(--uui-outline-focus);
+    outline-offset: $offset;
+}
+
+.controlIcon {
     --uui-control_icon: var(--uui-control-icon);
     --uui-control_icon-clickable: var(--uui-icon);
     --uui-control_icon-clickable-hover: var(--uui-icon-hover);
     --uui-control_icon-clickable-active: var(--uui-icon-active);
-
-    fill: var(--uui-control_icon);
-    display: flex;
     align-self: center;
+    fill: var(--uui-control_icon);
 
     &:global(.-clickable) {
         fill: var(--uui-control_icon-clickable);
@@ -19,27 +22,13 @@
         &:focus-visible {
             fill: var(--uui-control_icon-clickable-hover);
         }
+    }
 
+    &:global(.-focusable) {
         &:focus-visible {
-            outline: var(--uui-focus-outline-width) solid var(--uui-outline-focus);
-            outline-offset: 0;
+            @include focus-visible-effect(-2);
             border-radius: var(--uui-focus-radius);
+            fill: var(--uui-control_icon-clickable-hover);
         }
     }
-}
-
-.flipY {
-    transform: scale(1, -1);
-}
-
-.rotate-90cw {
-    transform: rotate(90deg);
-}
-
-.rotate-180 {
-    transform: rotate(180deg);
-}
-
-.rotate-90ccw {
-    transform: rotate(-90deg);
 }

@@ -9,7 +9,7 @@ interface DataSourceKeyboardParams {
     searchPosition: PickerInputSearchPosition;
 }
 
-export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: React.KeyboardEvent<HTMLElement>) => {
+export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: React.KeyboardEvent) => {
     const value = params.value;
 
     let focusedIndex = value.focusedIndex || 0;
@@ -27,12 +27,7 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
             break;
         }
         case 'Enter': {
-            // Handle Enter key when search input is focused OR when virtual list is focused
-            // const isSearchInput = (e.target as HTMLInputElement).type === 'search';
-            const isVirtualList = (e.target as HTMLElement).getAttribute('role') === 'listbox'
-                                  || (e.target as HTMLElement).closest('[role="listbox"]');
-
-            if (isVirtualList && value.topIndex <= focusedIndex && focusedIndex <= maxVisibleIndex) {
+            if (value.topIndex <= focusedIndex && focusedIndex <= maxVisibleIndex) {
                 const focusedRow: DataRowProps<any, any> = params.rows[value.focusedIndex - value.topIndex];
                 const clickHandler = focusedRow.onSelect || focusedRow.onCheck;
                 clickHandler && clickHandler(focusedRow);
