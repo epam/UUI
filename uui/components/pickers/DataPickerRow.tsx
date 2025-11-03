@@ -141,7 +141,6 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
         <div
             onClick={ clickHandler && ((e) => !isEventTargetInsideClickable(e) && clickHandler(props)) }
             onFocus={ handleFocus }
-            // onBlur={ handleBlur }
             role="option"
             aria-busy={ props.isLoading }
             aria-posinset={ props.index + 1 }

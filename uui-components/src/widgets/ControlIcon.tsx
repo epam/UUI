@@ -1,71 +1,37 @@
+import { cx, IHasRawProps, uuiMarkers } from '@epam/uui-core';
 import React from 'react';
-import {
-    cx,
-    IAnalyticableClick,
-    IClickable,
-    Icon,
-    IDisableable,
-    IHasCX,
-    IHasRawProps,
-    IHasTabIndex,
-    uuiElement,
-    uuiMarkers,
-    uuiMod,
-} from '@epam/uui-core';
-import { Svg } from './Svg';
+import { IconButton, IconButtonProps } from '../buttons';
+import { IconContainer } from '../layout/IconContainer';
 import css from './ControlIcon.module.scss';
 
-interface ControlIconProps extends IClickable, IAnalyticableClick, IHasTabIndex, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasCX, IDisableable {
-    /** Flips the icon vertically */
-    flipY?: boolean;
-    /** Icon can be a React element (usually an SVG element) */
-    icon?: Icon;
-    /**  */
+type ControlIconProps = Pick<IconButtonProps, 'cx' | 'icon' | 'isDisabled' | 'onClick' | 'rotate' | 'size' | 'tabIndex'>
+& IHasRawProps<React.HTMLAttributes<HTMLDivElement> | React.ButtonHTMLAttributes<HTMLButtonElement>> & {
+    /** Called when keyDown event is fired on component */
     onKeyDown?: (e: React.KeyboardEvent) => void;
-    /** Focus handler. To enable focus, remember to pass tabIndex. */
-    onFocus?(e: React.FocusEvent<HTMLDivElement>): void;
-    /** Blur handler. To enable blur, remember to pass tabIndex. */
-    onBlur?(e: React.FocusEvent<HTMLDivElement>): void;
-    /** Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise')) */
-    rotate?: '0' | '90cw' | '180' | '90ccw';
-    /** Icon size in pixels (both width and height, as icons are assumed to be square-shaped) */
-    size?: number | string;
-    /** Accessible label for the control icon button */
-    ariaLabel?: string;
-}
+};
 
-export const ControlIcon = React.forwardRef<HTMLDivElement, ControlIconProps>((props, ref) => {
-    const isClickable = !props.isDisabled && (props.onClick || props.onKeyDown);
-    const isFocusable = !props.isDisabled && (props.onClick || props.onKeyDown || props.onFocus || props.onBlur);
+export function ControlIcon(props: ControlIconProps): React.ReactNode {
+    const isFocusable = !props.isDisabled && (props.onClick || props.onKeyDown);
+
+    if (!isFocusable) {
+        // No point in rendering the container, if there is nothing in it.
+        if (!props.icon) {
+            return null;
+        }
+
+        return (
+            <IconContainer
+                { ...props }
+                rawProps={ props.rawProps as IHasRawProps<React.HTMLAttributes<HTMLDivElement>> }
+                cx={ cx(css.controlIcon, props.cx) }
+            />
+        );
+    }
 
     return (
-        <div
-            className={ cx(
-                css.root,
-                uuiElement.icon,
-                props.isDisabled ? uuiMod.disabled : uuiMod.enabled,
-                isClickable && uuiMarkers.clickable,
-                props.cx,
-            ) }
-            ref={ ref }
-            onClick={ isClickable ? props.onClick : undefined }
-            onKeyDown={ props.onKeyDown }
-            onFocus={ props.onFocus }
-            onBlur={ props.onBlur }
-            tabIndex={ isFocusable ? props.tabIndex : undefined }
-            { ...props.rawProps }
-            aria-label={ props.ariaLabel }
-        >
-            <Svg
-                svg={ props.icon }
-                width={ props.size }
-                height={ props.size }
-                cx={ cx(props.flipY && css.flipY, props.rotate && css['rotate-' + props.rotate]) }
-                rawProps={ {
-                    'aria-hidden': true,
-                    focusable: false,
-                } }
-            />
-        </div>
+        <IconButton
+            { ...props }
+            cx={ cx(css.controlIcon, props.cx, isFocusable && uuiMarkers.focusable) }
+        />
     );
-});
+}

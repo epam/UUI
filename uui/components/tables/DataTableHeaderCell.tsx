@@ -95,7 +95,6 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                         // color={ this.props.sortDirection ? 'neutral' : 'secondary' }
                         icon={ settings.dataTable.icons.header[this.props.sortDirection === 'desc' ? 'descSortIcon' : this.props.sortDirection === 'asc' ? 'ascSortIcon' : 'defaultSortIcon'] }
                         onKeyDown={ !this.props.column.renderFilter ? handleSort : undefined }
-                        tabIndex={ !this.props.column.renderFilter ? 0 : undefined }
                     />
                 ) }
                 { this.props.isFilterActive && (
@@ -111,8 +110,6 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                         key="dropdown"
                         cx={ cx(css.icon, css.dropdownIcon, uuiDataTableHeaderCell.uuiTableHeaderDropdownIcon) }
                         icon={ settings.dataTable.icons.header[this.state.isDropdownOpen ? 'openedDropdownIcon' : 'dropdownIcon'] }
-                        tabIndex={ 0 }
-                        // onClick={ dropdownProps.onClick }
                         onKeyDown={ handleFilterOpen }
                     />
                 ) }

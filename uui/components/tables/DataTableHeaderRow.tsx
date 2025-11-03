@@ -14,14 +14,6 @@ export const DataTableHeaderRow = withMods<CoreDataTableHeaderRowProps, DataTabl
     uuiDataTableHeaderRow,
     () => [css.root, 'uui-dt-vars'],
     (mods) => {
-        const handleConfig = (e: React.KeyboardEvent) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                // e.stopPropagation();
-                mods.onConfigButtonClick();
-            }
-        };
-
         return ({
             renderCell: (props) => (
                 <DataTableHeaderCell
@@ -45,8 +37,6 @@ export const DataTableHeaderRow = withMods<CoreDataTableHeaderRowProps, DataTabl
                 <ControlIcon
                     key="configuration"
                     onClick={ mods.onConfigButtonClick }
-                    onKeyDown={ handleConfig }
-                    tabIndex={ 0 }
                     size={ settings.dataTable.sizes.header.iconMap[mods.size || settings.dataTable.sizes.header.row] }
                     cx={ ['config-icon'] }
                     icon={ settings.dataTable.icons.header.configIcon }
