@@ -242,7 +242,7 @@ describe('RangeDataPicker', () => {
         const selectedDate = await waitFor(() =>
             within(screen.getByAria('multiselectable', 'true'))
                 .findByAria('selected', 'true'));
-        
+
         expect(selectedDate.textContent).toContain('12');
     });
 
@@ -653,7 +653,7 @@ describe('RangeDataPicker', () => {
                 from: '2019-09-10',
                 to: '2019-09-15',
             };
-            await setupRangeDatePicker({ 
+            await setupRangeDatePicker({
                 value,
                 preventEmptyFromDate: true,
                 preventEmptyToDate: true,
@@ -695,6 +695,111 @@ describe('RangeDataPicker', () => {
             });
             const clearButton = screen.queryByAria('label', 'Clear selected date range');
             expect(clearButton).not.toBeInTheDocument();
+        });
+    });
+
+    describe('preselectedViewDate', () => {
+        it('should display preselectedViewDate month when no dates are selected', async () => {
+            const value: RangeDatePickerValue = {
+                from: null,
+                to: null,
+            };
+            const { dom } = await setupRangeDatePicker({
+                value,
+                preselectedViewDate: '2025-06-15',
+            });
+
+            await userEvent.click(dom.from);
+            expect(screen.getByText('June 2025')).toBeInTheDocument();
+        });
+
+        it('should display from date month when from date is selected', async () => {
+            const value: RangeDatePickerValue = {
+                from: '2017-01-22',
+                to: null,
+            };
+            const { dom } = await setupRangeDatePicker({
+                value,
+                preselectedViewDate: '2025-06-15',
+            });
+
+            await userEvent.click(dom.from);
+            // Should display the month of the from date, not preselectedViewDate
+            expect(screen.getByText('January 2017')).toBeInTheDocument();
+            expect(screen.queryByText('June 2025')).not.toBeInTheDocument();
+        });
+
+        it('should display to date month when only to date is selected', async () => {
+            const value: RangeDatePickerValue = {
+                from: null,
+                to: '2017-03-15',
+            };
+            const { dom } = await setupRangeDatePicker({
+                value,
+                preselectedViewDate: '2025-06-15',
+            });
+
+            await userEvent.click(dom.to);
+            // Should display the month of the to date, not preselectedViewDate
+            expect(screen.getByText('March 2017')).toBeInTheDocument();
+            expect(screen.queryByText('June 2025')).not.toBeInTheDocument();
+        });
+
+        it('should display from date month when both dates are selected and focus is on from', async () => {
+            const value: RangeDatePickerValue = {
+                from: '2017-01-22',
+                to: '2017-03-15',
+            };
+            const { dom } = await setupRangeDatePicker({
+                value,
+                preselectedViewDate: '2025-06-15',
+            });
+
+            await userEvent.click(dom.from);
+            // Should display the month of the from date when focus is on from
+            expect(screen.getByText('January 2017')).toBeInTheDocument();
+            expect(screen.queryByText('June 2025')).not.toBeInTheDocument();
+        });
+
+        it('should update displayed month when preselectedViewDate changes and no dates are selected', async () => {
+            const value: RangeDatePickerValue = {
+                from: null,
+                to: null,
+            };
+            const { result, dom } = await setupRangeDatePicker({
+                value,
+                preselectedViewDate: '2025-06-15',
+            });
+
+            await userEvent.click(dom.from);
+            expect(screen.getByText('June 2025')).toBeInTheDocument();
+
+            await userEvent.click(result.container);
+            result.rerender(<RangeDatePicker
+                format="MMM D, YYYY"
+                value={ { ...value } }
+                preselectedViewDate="2024-03-10"
+                onValueChange={ jest.fn }
+                rawProps={ getRawTestIdProps() }
+            />);
+
+            const from = within(screen.getByTestId('from')).getByRole<HTMLInputElement>('textbox');
+            await userEvent.click(from);
+            expect(screen.getByText('March 2024')).toBeInTheDocument();
+        });
+
+        it('should use current month when preselectedViewDate is not provided and no dates are selected', async () => {
+            const value: RangeDatePickerValue = {
+                from: null,
+                to: null,
+            };
+            const { dom } = await setupRangeDatePicker({
+                value,
+            });
+
+            await userEvent.click(dom.from);
+            const currentMonth = dayjs().format('MMMM YYYY');
+            expect(screen.getByText(currentMonth)).toBeInTheDocument();
         });
     });
 });

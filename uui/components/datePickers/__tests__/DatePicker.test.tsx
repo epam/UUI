@@ -352,4 +352,52 @@ describe('DatePicker', () => {
         // Input should revert to the previous valid value
         expect(dom.input.value).toEqual('Jan 22, 2017');
     });
+
+    describe('preselectedViewDate', () => {
+        it('should display preselectedViewDate month when value is null', async () => {
+            const { dom } = await setupDatePicker({
+                value: null,
+                preselectedViewDate: '2025-06-15',
+            });
+
+            await userEvent.click(dom.input);
+            expect(screen.getByText('June 2025')).toBeInTheDocument();
+        });
+
+        it('should display value month when both value and preselectedViewDate are provided', async () => {
+            const { dom } = await setupDatePicker({
+                value: '2017-01-22',
+                preselectedViewDate: '2025-06-15',
+            });
+
+            await userEvent.click(dom.input);
+            expect(screen.getByText('January 2017')).toBeInTheDocument();
+            expect(screen.queryByText('June 2025')).not.toBeInTheDocument();
+        });
+
+        it('should update displayed month when preselectedViewDate changes and value is null', async () => {
+            const { dom, setProps, result } = await setupDatePicker({
+                value: null,
+                preselectedViewDate: '2025-06-15',
+            });
+
+            await userEvent.click(dom.input);
+            expect(screen.getByText('June 2025')).toBeInTheDocument();
+
+            await userEvent.click(result.container);
+            setProps({ preselectedViewDate: '2024-03-10' });
+            await userEvent.click(dom.input);
+            expect(screen.getByText('March 2024')).toBeInTheDocument();
+        });
+
+        it('should use current month when preselectedViewDate is not provided and value is null', async () => {
+            const { dom } = await setupDatePicker({
+                value: null,
+            });
+
+            await userEvent.click(dom.input);
+            const currentMonth = dayjs().format('MMMM YYYY');
+            expect(screen.getByText(currentMonth)).toBeInTheDocument();
+        });
+    });
 });
