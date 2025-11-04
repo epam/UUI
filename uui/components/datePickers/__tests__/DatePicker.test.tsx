@@ -353,21 +353,21 @@ describe('DatePicker', () => {
         expect(dom.input.value).toEqual('Jan 22, 2017');
     });
 
-    describe('preselectedViewDate', () => {
-        it('should display preselectedViewDate month when value is null', async () => {
+    describe('initialViewDate', () => {
+        it('should display initialViewDate month when value is null', async () => {
             const { dom } = await setupDatePicker({
                 value: null,
-                preselectedViewDate: '2025-06-15',
+                initialViewDate: '2025-06-15',
             });
 
             await userEvent.click(dom.input);
             expect(screen.getByText('June 2025')).toBeInTheDocument();
         });
 
-        it('should display value month when both value and preselectedViewDate are provided', async () => {
+        it('should display value month when both value and initialViewDate are provided', async () => {
             const { dom } = await setupDatePicker({
                 value: '2017-01-22',
-                preselectedViewDate: '2025-06-15',
+                initialViewDate: '2025-06-15',
             });
 
             await userEvent.click(dom.input);
@@ -375,22 +375,22 @@ describe('DatePicker', () => {
             expect(screen.queryByText('June 2025')).not.toBeInTheDocument();
         });
 
-        it('should update displayed month when preselectedViewDate changes and value is null', async () => {
+        it('should update displayed month when initialViewDate changes and value is null', async () => {
             const { dom, setProps, result } = await setupDatePicker({
                 value: null,
-                preselectedViewDate: '2025-06-15',
+                initialViewDate: '2025-06-15',
             });
 
             await userEvent.click(dom.input);
             expect(screen.getByText('June 2025')).toBeInTheDocument();
 
             await userEvent.click(result.container);
-            setProps({ preselectedViewDate: '2024-03-10' });
+            setProps({ initialViewDate: '2024-03-10' });
             await userEvent.click(dom.input);
             expect(screen.getByText('March 2024')).toBeInTheDocument();
         });
 
-        it('should use current month when preselectedViewDate is not provided and value is null', async () => {
+        it('should use current month when initialViewDate is not provided and value is null', async () => {
             const { dom } = await setupDatePicker({
                 value: null,
             });

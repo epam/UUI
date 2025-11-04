@@ -61,7 +61,7 @@ export interface CommonDatePickerProps extends IDisableable,
      * Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM-DD').
      * If not specified, defaults to the current month.
      */
-    preselectedViewDate?: string;
+    initialViewDate?: string;
 }
 
 /**
@@ -229,10 +229,10 @@ export interface RangeDatePickerProps extends
      */
     preventEmptyToDate?: boolean;
     /**
-     * Controls the initially displayed month and year when the picker opens \(format: 'YYYY-MM-DD'\).
+     * Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM-DD').
      * If not specified, defaults to the current month.
      */
-    preselectedViewDate?: string;
+    initialViewDate?: string;
 }
 
 /**

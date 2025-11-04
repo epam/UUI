@@ -103,7 +103,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
                         rawProps={ props.rawProps?.body }
                         preventEmptyToDate={ props.preventEmptyToDate }
                         preventEmptyFromDate={ props.preventEmptyFromDate }
-                        preselectedViewDate={ props.preselectedViewDate }
+                        initialViewDate={ props.initialViewDate }
                     />
                 </FlexRow>
             </DropdownContainer>

@@ -116,32 +116,32 @@ export interface RangeDatePickerBodyValue<TSelection> {
     selectedDate: TSelection;
 }
 
-export interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, Pick<RangeDatePickerProps, 'preventEmptyToDate' | 'preventEmptyFromDate' | 'preselectedViewDate'>, IControlled<RangeDatePickerBodyValue<T>> {
+export interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, Pick<RangeDatePickerProps, 'preventEmptyToDate' | 'preventEmptyFromDate' | 'initialViewDate'>, IControlled<RangeDatePickerBodyValue<T>> {
     renderFooter?(): React.ReactNode;
     isHoliday?: (day: Dayjs) => boolean;
 }
 
 export const RangeDatePickerBody = forwardRef(RangeDatePickerBodyComp);
 
-const getPreselectedViewDate = (selectedDate: RangeDatePickerValue, preselectedViewDate: string | undefined): RangeDatePickerValue => {
+const getInitialViewDate = (selectedDate: RangeDatePickerValue, initialViewDate: string | undefined): RangeDatePickerValue => {
     return selectedDate.from || selectedDate.to ? selectedDate : {
-        from: preselectedViewDate || null,
+        from: initialViewDate || null,
         to: null,
     };
 };
 
 function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePickerValue | null>, ref: React.ForwardedRef<HTMLDivElement>): JSX.Element {
-    const { value: _value, filter, preselectedViewDate: _preselectedViewDate } = props;
+    const { value: _value, filter, initialViewDate: _initialViewDate } = props;
     const {
         selectedDate: _selectedDate, inFocus,
     } = _value;
     const selectedDate = _selectedDate || defaultRangeValue; // also handles null in comparison to default value
-    const preselectedViewDate = getPreselectedViewDate(selectedDate, _preselectedViewDate);
+    const initialViewDate = getInitialViewDate(selectedDate, _initialViewDate);
 
     const [view, setView] = useState<ViewType>('DAY_SELECTION');
     const [disabledPanel, setDisabledPanel] = useState<'left' | 'right' | null>(null);
     const [month, setMonth] = useState(() => {
-        return getDisplayedMonth(preselectedViewDate, inFocus);
+        return getDisplayedMonth(initialViewDate, inFocus);
     });
 
     const getRange = (newValue: string | null) => {
@@ -225,7 +225,7 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
     };
 
     useLayoutEffectSafeForSsr(() => {
-        const monthToSet = getDisplayedMonth(preselectedViewDate, inFocus);
+        const monthToSet = getDisplayedMonth(initialViewDate, inFocus);
         // To avoid re-rendering the body if the current month being displayed is equal to or greater than 1
         const shouldNotIgnoreUpdate = !(uuiDayjs.dayjs(month).isSame(monthToSet, 'month') || uuiDayjs.dayjs(month).add(1, 'month').isSame(monthToSet, 'month'));
         if (shouldNotIgnoreUpdate) {
