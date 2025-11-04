@@ -131,7 +131,6 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
                 title={ props.entityName }
                 onClose={ () => toggleBodyOpening(false) }
                 cx={ [props.bodyCx, 'uui-picker_input-body-wrapper'] }
-                onKeyDown={ onKeyDown }
                 width={ dropdownProps.togglerWidth > minBodyWidth ? dropdownProps.togglerWidth : minBodyWidth }
                 focusLock={ getSearchPosition() === 'body' }
             >

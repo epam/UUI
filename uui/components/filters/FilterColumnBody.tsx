@@ -35,7 +35,7 @@ export function FilterColumnBody(props: IFilterItemBodyProps<any>) {
     };
 
     return (
-        <DropdownContainer style={ { minWidth: '360px' } } cx={ [css.body, UUI_FILTERS_PANEL_ITEM_BODY] } { ...props }>
+        <DropdownContainer style={ { minWidth: '360px' } } cx={ [css.body, UUI_FILTERS_PANEL_ITEM_BODY] } { ...props } focusLock={ false }>
             {renderHeader()}
             <FilterItemBody
                 { ...props }

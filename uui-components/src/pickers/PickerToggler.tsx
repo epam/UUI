@@ -31,7 +31,7 @@ export interface PickerTogglerProps<TItem = any, TId = any>
     isSingleLine?: boolean;
     pickerMode: 'single' | 'multi';
     searchPosition: 'input' | 'body' | 'none';
-    onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
+    onKeyDown?(e: React.KeyboardEvent): void;
     closePickerBody(): void;
     disableSearch?: boolean;
     disableClear?: boolean;
