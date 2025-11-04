@@ -21,6 +21,7 @@
     //
     color: var(--uui-text-primary);
     align-items: center;
+    overflow: hidden;
     padding-inline-start: var(--uui-dt-header-cell-padding-start);
     padding-inline-end: var(--uui-dt-header-cell-padding-end);
     width: 0;
@@ -70,7 +71,6 @@
 
     .caption-wrapper {
         display: flex;
-        overflow: hidden;
         flex: 1 1 0;
         min-width: 0;
 
@@ -123,8 +123,7 @@
 
     .fold-all-icon {
         display: flex;
-        padding: 0 var(--uui-horizontal-gap) 0 0;
-        //align-self: stretch;
+        margin: 0 var(--uui-horizontal-gap) 0 0;
 
         &:hover {
             fill: var(--uui-icon-hover);
