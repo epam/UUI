@@ -32,9 +32,14 @@ export interface DataPickerBodyProps<TItem = unknown, TId = unknown> extends Ove
     showSearch?: boolean | 'auto';
     /** A pure function that gets entity name from entity object */
     getName: (item: TItem) => string;
+    /**
+     * Pass false, to disable search input autofocus
+     * @default true
+     * */
+    autoFocusSearch?: boolean;
 }
 
-export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...props }:DataPickerBodyProps<TItem, TId>) {
+export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, autoFocusSearch = true, ...props }:DataPickerBodyProps<TItem, TId>) {
     const prevProps = usePrevious(props);
     const showSearch = props.showSearch === 'auto' ? props.totalCount > 10 : Boolean(props.showSearch);
     const [isKeyboardNavigation, setIsKeyboardNavigation] = React.useState(false);
@@ -142,28 +147,31 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
         );
     };
 
+    const renderSearchInput = () => {
+        return (
+            <SearchInput
+                placeholder={ i18n.dataPickerBody.searchPlaceholder }
+                value={ props.value.search }
+                onValueChange={ (newVal) => props.onValueChange({ ...props.value, search: newVal }) }
+                onKeyDown={ searchKeyDown }
+                size={ searchSize }
+                debounceDelay={ props.searchDebounceDelay }
+                rawProps={ { dir: 'auto' } }
+            />
+        );
+    };
+
     const searchSize = isMobile()
         ? settings.pickerInput.sizes.body.mobileSearchInput
         : settings.pickerInput.sizes.body.getSearchSize({ pickerSize: props.searchSize });
 
     const renderedDataRows = useMemo(() => props.rows.map((row) => renderRow(row, props.value)), [props.rows, props.value, isKeyboardNavigation]);
-
     return (
         <>
             {showSearch && (
                 <div key="search" className={ cx(css.searchWrapper, 'uui-picker_input-body-search') }>
                     <FlexCell grow={ 1 }>
-                        <MoveFocusInside>
-                            <SearchInput
-                                placeholder={ i18n.dataPickerBody.searchPlaceholder }
-                                value={ props.value.search }
-                                onValueChange={ (newVal) => props.onValueChange({ ...props.value, search: newVal }) }
-                                onKeyDown={ searchKeyDown }
-                                size={ searchSize }
-                                debounceDelay={ props.searchDebounceDelay }
-                                rawProps={ { dir: 'auto' } }
-                            />
-                        </MoveFocusInside>
+                        { autoFocusSearch ? <MoveFocusInside>{ renderSearchInput() }</MoveFocusInside> : renderSearchInput() }
                     </FlexCell>
                 </div>
             )}
