@@ -116,8 +116,8 @@ In general, we follow the ["Fork-and-Pull" Git workflow](https://github.com/susa
 
 ## Developer Guides
 
-- Project overview and monorepo layout: see `dev-docs/overview.md`.
-- Local development workflows (start app, build, tests, bundle size): see `dev-docs/dev-workflows.md`.
-- Editing documentation and Property Explorer: see `dev-docs/uui-documentation.md`.
-- E2E and screenshot testing (Playwright + Preview pages): see `dev-docs/e2e-tests.md`.
-- Release workflow (maintainers): see `dev-docs/release-workflow.md`.
+- Project overview and monorepo layout: see [dev-docs/overview.md](dev-docs/overview.md).
+- Local development workflows (start app, build, tests, bundle size): see [dev-docs/dev-workflows.md](dev-docs/dev-workflows.md).
+- Editing documentation and Property Explorer: see [dev-docs/uui-documentation.md](dev-docs/uui-documentation.md).
+- E2E and screenshot testing (Playwright + Preview pages): see [dev-docs/e2e-tests.md](dev-docs/e2e-tests.md).
+- Release workflow (maintainers): see [dev-docs/release-workflow.md](dev-docs/release-workflow.md).
