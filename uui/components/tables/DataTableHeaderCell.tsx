@@ -130,12 +130,6 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     };
 
     renderFoldAllIcon = () => {
-        const handleFoldAll = (e: React.KeyboardEvent) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                this.props.onFoldAll();
-            }
-        };
-
         if (this.props.isFirstColumn && this.props.showFoldAll) {
             return (
                 <Tooltip content={
@@ -148,8 +142,6 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                         cx={ cx(css.icon, css.foldAllIcon, uuiDataTableHeaderCell.uuiTableHeaderFoldAllIcon) }
                         icon={ settings.dataTable.icons.header[this.props.areAllFolded ? 'unfoldIcon' : 'foldIcon'] }
                         onClick={ this.props.onFoldAll }
-                        onKeyDown={ handleFoldAll }
-                        tabIndex={ 0 }
                         rawProps={ {
                             'aria-label': this.props.areAllFolded ? 'Expand All' : 'Collapse All',
                             'aria-expanded': !!this.props.areAllFolded,
