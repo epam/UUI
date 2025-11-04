@@ -20,6 +20,11 @@ export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControl
      * Manually handles holidays
      */
     isHoliday?: (day: Dayjs) => boolean;
+    /**
+     * Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM').
+     * If not specified, defaults to the current month.
+     */
+    preselectedViewDate?: string;
 }
 
 export const uuiDatePickerBody = {
@@ -29,13 +34,14 @@ export const uuiDatePickerBody = {
 export const DatePickerBody = forwardRef(DatePickerBodyComp);
 
 function DatePickerBodyComp(props: DatePickerBodyProps, ref: React.ForwardedRef<HTMLDivElement>) {
-    const { value, onValueChange } = props;
-    const [month, setMonth] = useState<Dayjs>(getNewMonth(value));
+    const { value, onValueChange, preselectedViewDate: _preselectedViewDate = '' } = props;
+    const preselectedViewDate = value || _preselectedViewDate || '';
+    const [month, setMonth] = useState<Dayjs>(getNewMonth(preselectedViewDate));
     const [view, setView] = useState<ViewType>('DAY_SELECTION');
 
     // sync updated props with internal state
     useEffect(() => {
-        setMonth(getNewMonth(value));
+        setMonth(getNewMonth(preselectedViewDate));
         setView('DAY_SELECTION');
     }, [value, setMonth]);
 

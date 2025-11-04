@@ -56,6 +56,12 @@ export interface CommonDatePickerProps extends IDisableable,
      * CSS class(es) to put on datepicker body
      */
     bodyCx?: CX;
+
+    /**
+     * Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM-DD').
+     * If not specified, defaults to the current month.
+     */
+    preselectedViewDate?: string;
 }
 
 /**
@@ -222,6 +228,11 @@ export interface RangeDatePickerProps extends
      * It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared
      */
     preventEmptyToDate?: boolean;
+    /**
+     * Controls the initially displayed month and year when the picker opens \(format: 'YYYY-MM-DD'\).
+     * If not specified, defaults to the current month.
+     */
+    preselectedViewDate?: string;
 }
 
 /**
