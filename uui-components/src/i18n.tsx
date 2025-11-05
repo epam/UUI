@@ -4,7 +4,8 @@ export const i18n = {
     },
     datePicker: {
         locale: 'en',
-    },
+        localeUpdate: { weekStart: 1 },
+    } as { locale?: string; localeUpdate?: Record<string, unknown> },
     pickerList: {
         rowsSelected: (rows: number) => ` (${rows} selected)`,
         showAll: 'SHOW ALL',

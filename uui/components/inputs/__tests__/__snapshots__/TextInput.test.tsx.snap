@@ -27,6 +27,7 @@ exports[`TextInput should be rendered correctly 2`] = `
       value=""
     />
     <div
+      aria-label="Icon in input"
       class="container uui-icon uui-enabled controlIcon"
     >
       <svg

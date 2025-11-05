@@ -101,6 +101,7 @@ export function FilterPickerBody<TItem, TId>({
                     rawProps={ props.rawProps?.body }
                     highlightSearchMatches={ props.highlightSearchMatches }
                     flattenSearchResults={ view.getConfig().flattenSearchResults }
+                    autoFocusSearch={ false }
                 />
                 {renderFooter()}
             </>

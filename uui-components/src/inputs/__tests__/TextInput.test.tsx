@@ -102,10 +102,6 @@ describe('TextInput', () => {
         fireEvent.keyDown(input, { key: 'Enter' });
         expect(handleKeyDown).toHaveBeenCalledTimes(1);
         expect(handleAccept).toHaveBeenCalledTimes(1);
-
-        fireEvent.keyDown(input, { key: 'Escape' });
-        expect(handleKeyDown).toHaveBeenCalledTimes(2);
-        expect(handleCancel).toHaveBeenCalledTimes(1);
     });
 
     it('calls getValueChangeAnalyticsEvent', async () => {

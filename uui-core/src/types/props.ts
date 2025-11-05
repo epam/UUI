@@ -120,6 +120,9 @@ export interface IHasIcon {
     /** Position of the icon (left of right) */
     iconPosition?: 'left' | 'right';
 
+    /** Accessible label for the icon, used for screen readers */
+    iconLabel?: string;
+
     /** Click handler for the icon */
     onIconClick?(): void;
 }

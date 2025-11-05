@@ -17,6 +17,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
           dir="auto"
         >
           <div
+            aria-label="Icon in input"
             class="container uui-icon uui-enabled controlIcon"
           >
             <svg
@@ -64,19 +65,21 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
           data-overlayscrollbars-contents=""
           data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
           style="padding: 0px 0px 0px 0px;"
-          tabindex="-1"
+          tabindex="0"
         >
           <div
             class="listContainer"
             style="min-height: 7px;"
           >
             <div
+              role="listbox"
               style="margin-top: 0px;"
             >
               <div
                 aria-posinset="1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -115,6 +118,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
                 aria-posinset="2"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -153,6 +157,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
                 aria-posinset="3"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -191,6 +196,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
                 aria-posinset="4"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -229,6 +235,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
                 aria-posinset="5"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -267,6 +274,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
                 aria-posinset="6"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -305,6 +313,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
                 aria-posinset="7"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -343,6 +352,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
                 aria-posinset="8"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -381,6 +391,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
                 aria-posinset="9"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -419,6 +430,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
                 aria-posinset="10"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -457,6 +469,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
                 aria-posinset="11"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -560,19 +573,21 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
           data-overlayscrollbars-contents=""
           data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
           style="padding: 0px 0px 0px 0px;"
-          tabindex="-1"
+          tabindex="0"
         >
           <div
             class="listContainer"
             style="min-height: NaNpx;"
           >
             <div
+              role="listbox"
               style="margin-top: 0px;"
             >
               <div
                 aria-posinset="1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -611,6 +626,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 aria-posinset="2"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -649,6 +665,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 aria-posinset="3"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -687,6 +704,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 aria-posinset="4"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -725,6 +743,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 aria-posinset="5"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -763,6 +782,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 aria-posinset="6"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -801,6 +821,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 aria-posinset="7"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -839,6 +860,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 aria-posinset="8"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -877,6 +899,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 aria-posinset="9"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -915,6 +938,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 aria-posinset="10"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"
@@ -953,6 +977,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 aria-posinset="11"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 role="option"
+                tabindex="-1"
               >
                 <div
                   class="flexCell rowContent"

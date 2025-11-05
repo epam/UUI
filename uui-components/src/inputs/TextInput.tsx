@@ -8,7 +8,6 @@ import { ControlIcon } from '../widgets/ControlIcon';
 import css from './TextInput.module.scss';
 
 const ENTER = 'Enter';
-const ESCAPE = 'Escape';
 
 export type IRenderInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
@@ -55,7 +54,6 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         props.onKeyDown?.(e);
         if (e.key === ENTER) props.onAccept?.();
-        else if (e.key === ESCAPE) props.onCancel?.();
     };
 
     const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -116,14 +114,12 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
             : props?.rawProps?.dir, // TODO: remove after browser bug fix
     });
 
-    const icon = (
+    const icon = props.icon && (
         <ControlIcon
             icon={ props.icon }
             onClick={ props.onIconClick }
             isDisabled={ props.isDisabled || props.isReadonly }
-            rawProps={ {
-                'aria-label': 'Icon in input',
-            } }
+            rawProps={ { 'aria-label': props.iconLabel || 'Icon in input' } }
         />
     );
     const showIconsOnAction = props.value && !props.isReadonly && !props.isDisabled;

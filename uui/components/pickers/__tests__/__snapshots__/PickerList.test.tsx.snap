@@ -198,6 +198,7 @@ exports[`PickerList should open body 1`] = `
               dir="auto"
             >
               <div
+                aria-label="Icon in input"
                 class="container uui-icon uui-enabled controlIcon"
               >
                 <svg
@@ -244,13 +245,14 @@ exports[`PickerList should open body 1`] = `
                 data-overlayscrollbars-contents=""
                 data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
                 style="padding: 0px 0px 0px 0px;"
-                tabindex="-1"
+                tabindex="0"
               >
                 <div
                   class="listContainer"
                   style="min-height: 11px;"
                 >
                   <div
+                    role="listbox"
                     style="margin-top: 0px;"
                   >
                     <div
@@ -258,6 +260,7 @@ exports[`PickerList should open body 1`] = `
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                       role="option"
+                      tabindex="-1"
                     >
                       <div
                         class="flexCell rowContent"
@@ -297,6 +300,7 @@ exports[`PickerList should open body 1`] = `
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                       role="option"
+                      tabindex="-1"
                     >
                       <div
                         class="flexCell rowContent"
@@ -336,6 +340,7 @@ exports[`PickerList should open body 1`] = `
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                       role="option"
+                      tabindex="-1"
                     >
                       <div
                         class="flexCell rowContent"
@@ -375,6 +380,7 @@ exports[`PickerList should open body 1`] = `
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                       role="option"
+                      tabindex="-1"
                     >
                       <div
                         class="flexCell rowContent"
@@ -414,6 +420,7 @@ exports[`PickerList should open body 1`] = `
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                       role="option"
+                      tabindex="-1"
                     >
                       <div
                         class="flexCell rowContent"
@@ -453,6 +460,7 @@ exports[`PickerList should open body 1`] = `
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                       role="option"
+                      tabindex="-1"
                     >
                       <div
                         class="flexCell rowContent"
@@ -492,6 +500,7 @@ exports[`PickerList should open body 1`] = `
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                       role="option"
+                      tabindex="-1"
                     >
                       <div
                         class="flexCell rowContent"
@@ -531,6 +540,7 @@ exports[`PickerList should open body 1`] = `
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                       role="option"
+                      tabindex="-1"
                     >
                       <div
                         class="flexCell rowContent"
@@ -570,6 +580,7 @@ exports[`PickerList should open body 1`] = `
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                       role="option"
+                      tabindex="-1"
                     >
                       <div
                         class="flexCell rowContent"
@@ -609,6 +620,7 @@ exports[`PickerList should open body 1`] = `
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                       role="option"
+                      tabindex="-1"
                     >
                       <div
                         class="flexCell rowContent"
@@ -648,6 +660,7 @@ exports[`PickerList should open body 1`] = `
                       aria-selected="false"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                       role="option"
+                      tabindex="-1"
                     >
                       <div
                         class="flexCell rowContent"
