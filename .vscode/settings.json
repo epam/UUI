@@ -115,6 +115,6 @@
     "eslint.format.enable": true,
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "[scss]": {
-        "editor.defaultFormatter": "stylelint.vscode-stylelint"
+      "editor.defaultFormatter": "stylelint.vscode-stylelint"
     }
 }

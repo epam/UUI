@@ -40,7 +40,7 @@ exports[`PickerToggler should render with maximum props 1`] = `
     >
       <button
         aria-label="Clear input"
-        class="uui-button-box uui-enabled -clickable container controlIcon uui-icon-cancel"
+        class="uui-button-box uui-enabled -clickable container controlIcon uui-icon-cancel -focusable"
         tabindex="0"
         type="button"
       >
@@ -67,7 +67,7 @@ exports[`PickerToggler should render with minimum props 1`] = `
       class="body"
     >
       <input
-        aria-haspopup="true"
+        aria-haspopup="dialog"
         autocomplete="no"
         class="uui-input singleInput"
         dir="auto"

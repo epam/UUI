@@ -6,6 +6,7 @@ exports[`BurgerSearch should be rendered correctly 1`] = `
     class="container uui-input-box -clickable searchInput uui-main_menu-burger-search"
   >
     <div
+      aria-label="Icon in input"
       class="container uui-icon uui-enabled controlIcon"
     >
       <svg
@@ -28,6 +29,7 @@ exports[`BurgerSearch should be rendered correctly with extra props 1`] = `
     class="container uui-input-box -clickable searchInput uui-main_menu-burger-search"
   >
     <div
+      aria-label="Icon in input"
       class="container uui-icon uui-enabled controlIcon"
     >
       <svg

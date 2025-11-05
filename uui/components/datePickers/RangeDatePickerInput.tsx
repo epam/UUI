@@ -1,5 +1,6 @@
 import React, { forwardRef, useEffect, useState, type JSX } from 'react';
 import { IEditable, cx, uuiMod, IHasCX, IClickable, IHasRawProps, RangeDatePickerValue, RangeDatePickerInputType } from '@epam/uui-core';
+import { ReactComponent as CancelIcon } from '@epam/assets/icons/navigation-close-outline.svg';
 import { TextInput } from '../inputs';
 import { toCustomDateRangeFormat, toValueDateRangeFormat, isValidAndInFilter } from './helpers';
 import type { RangeDatePickerProps } from './RangeDatePicker';
@@ -147,7 +148,10 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
         onValueChange(newValue);
     };
 
-    const clearAllowed = !disableClear && !(preventEmptyFromDate && preventEmptyToDate) && inputValue.from && inputValue.to;
+    const clearAllowed = !disableClear && !isReadonly && !isDisabled
+        && !(preventEmptyFromDate && preventEmptyToDate)
+        && ((value.from && !preventEmptyFromDate) || (value.to && !preventEmptyToDate));
+
     return (
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
@@ -188,7 +192,10 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
                 placeholder={ getPlaceholder ? getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
                 size={ size || settings.rangeDatePicker.sizes.default }
                 value={ inputValue.to || undefined }
-                onCancel={ clearAllowed ? onClear : undefined }
+                icon={ clearAllowed && CancelIcon }
+                iconPosition="right"
+                iconLabel="Clear selected date range"
+                onIconClick={ onClear }
                 onValueChange={ (v) => onInputChange(v || '', 'to') }
                 onFocus={ (e) => handleFocus(e, 'to') }
                 onBlur={ (e) => handleBlur(e, 'to') }

@@ -8,7 +8,7 @@
     --uui-control_icon-clickable: var(--uui-icon);
     --uui-control_icon-clickable-hover: var(--uui-icon-hover);
     --uui-control_icon-clickable-active: var(--uui-icon-active);
-
+    align-self: center;
     fill: var(--uui-control_icon);
 
     &:global(.-clickable) {
@@ -22,10 +22,13 @@
         &:focus-visible {
             fill: var(--uui-control_icon-clickable-hover);
         }
+    }
 
+    &:global(.-focusable) {
         &:focus-visible {
-            @include focus-visible-effect(0);
+            @include focus-visible-effect(-2);
             border-radius: var(--uui-focus-radius);
+            fill: var(--uui-control_icon-clickable-hover);
         }
     }
 }
