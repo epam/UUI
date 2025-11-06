@@ -355,9 +355,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             onFocus={ handleWrapperFocus }
             onBlur={ handleBlur }
             onKeyDown={ handleKeyDown }
-            // If search in toggler, we make nested search input focusable, and wrapper not.
-            // It's required that only 1 focusable element in toggler, since if we have more we will go through all of them using tab key
-            tabIndex={ isPickerDisabled || isSearchInToggler ? undefined : 0 }
+            tabIndex={ isPickerDisabled ? undefined : 0 }
             { ...props.rawProps }
         >
             <div className={ cx(css.body, !props.isSingleLine && props.pickerMode !== 'single' && 'uui-picker_toggler-multiline') }>
