@@ -30,7 +30,6 @@
     @include clickable-styles();
 
     & {
-        align-items: center;
         min-height: var(--uui-tag-min-height);
         min-width: var(--uui-tag-min-width);
         column-gap: var(--uui-tag-horizontal-gap);
