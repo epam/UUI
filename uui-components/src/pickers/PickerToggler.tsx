@@ -320,10 +320,11 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             return;
         }
 
-        if (
-            getIsNonClickableEventTarget(event)
-            && getIsFocusableControlContainer()
-        ) {
+        /*
+            For `mode="multi"`, when focusing on a tag's clear button and pressing Enter, we need the tag to be removed.
+            Without this condition, a picker body is opened instead.
+        */
+        if (getIsNonClickableEventTarget(event)) {
             props.onKeyDown?.(event);
         }
     };
