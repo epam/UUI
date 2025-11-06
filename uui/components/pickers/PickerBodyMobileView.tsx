@@ -3,13 +3,13 @@ import type { IDropdownBodyProps, IHasCX, IHasRawProps } from '@epam/uui-core';
 import { isMobile } from '@epam/uui-core';
 import { LinkButton } from '../buttons';
 import { DataPickerMobileHeader } from './DataPickerMobileHeader';
-import { DropdownContainer } from '../overlays';
+import { DropdownContainer, DropdownContainerProps } from '../overlays';
 import { i18n } from '../../i18n';
 import { settings } from '../../settings';
 
 import css from './PickerBodyMobileView.module.scss';
 
-export interface IMobileDropdownWrapperProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IDropdownBodyProps {
+export interface IMobileDropdownWrapperProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IDropdownBodyProps, Pick<DropdownContainerProps, 'shards'> {
     /**
      * Children of the dropdown container.
      */
