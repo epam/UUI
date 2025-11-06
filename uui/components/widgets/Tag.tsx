@@ -2,12 +2,11 @@ import React from 'react';
 import {
     Icon, IDropdownToggler, IHasCaption, IHasIcon, Overwrite, uuiElement,
 } from '@epam/uui-core';
-import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
+import { Clickable, ClickableComponentProps, ControlIcon, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from './CountIndicator';
 import { settings } from '../../settings';
 
 import css from './Tag.module.scss';
-import { ControlIcon } from './ControlIcon';
 
 interface TagMods {
     /**

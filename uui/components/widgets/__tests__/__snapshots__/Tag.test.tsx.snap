@@ -18,7 +18,7 @@ exports[`Tag should be rendered correctly with props 1`] = `
   />
   <button
     aria-label="Icon in input"
-    class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root controlIcon"
+    class="uui-button-box uui-enabled -clickable container controlIcon -focusable"
     tabindex="0"
     type="button"
   >
@@ -42,7 +42,7 @@ exports[`Tag should be rendered correctly with props 1`] = `
   </div>
   <button
     aria-label="Remove tag"
-    class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root controlIcon uui-icon-cancel"
+    class="uui-button-box uui-enabled -clickable container controlIcon uui-icon-cancel -focusable"
     tabindex="0"
     type="button"
   >
