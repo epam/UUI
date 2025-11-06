@@ -21,10 +21,10 @@ export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControl
      */
     isHoliday?: (day: Dayjs) => boolean;
     /**
-     * Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM-DD').
+     * Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM').
      * If not specified, defaults to the current month.
      */
-    initialViewDate?: string;
+    initialViewMonth?: string;
 }
 
 export const uuiDatePickerBody = {
@@ -34,8 +34,8 @@ export const uuiDatePickerBody = {
 export const DatePickerBody = forwardRef(DatePickerBodyComp);
 
 function DatePickerBodyComp(props: DatePickerBodyProps, ref: React.ForwardedRef<HTMLDivElement>) {
-    const { value, onValueChange, initialViewDate: _initialViewDate = '' } = props;
-    const initialViewDate = value || _initialViewDate || '';
+    const { value, onValueChange, initialViewMonth } = props;
+    const initialViewDate = value || (initialViewMonth ? `${initialViewMonth}-01` : '');
     const [month, setMonth] = useState<Dayjs>(getNewMonth(initialViewDate));
     const [view, setView] = useState<ViewType>('DAY_SELECTION');
 

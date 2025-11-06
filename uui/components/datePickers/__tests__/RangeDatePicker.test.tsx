@@ -698,15 +698,15 @@ describe('RangeDataPicker', () => {
         });
     });
 
-    describe('initialViewDate', () => {
-        it('should display initialViewDate month when no dates are selected', async () => {
+    describe('initialViewMonth', () => {
+        it('should display initialViewMonth month when no dates are selected', async () => {
             const value: RangeDatePickerValue = {
                 from: null,
                 to: null,
             };
             const { dom } = await setupRangeDatePicker({
                 value,
-                initialViewDate: '2025-06-15',
+                initialViewMonth: '2025-06',
             });
 
             await userEvent.click(dom.from);
@@ -720,11 +720,11 @@ describe('RangeDataPicker', () => {
             };
             const { dom } = await setupRangeDatePicker({
                 value,
-                initialViewDate: '2025-06-15',
+                initialViewMonth: '2025-06',
             });
 
             await userEvent.click(dom.from);
-            // Should display the month of the from date, not initialViewDate
+            // Should display the month of the from date, not initialViewMonth
             expect(screen.getByText('January 2017')).toBeInTheDocument();
             expect(screen.queryByText('June 2025')).not.toBeInTheDocument();
         });
@@ -736,11 +736,11 @@ describe('RangeDataPicker', () => {
             };
             const { dom } = await setupRangeDatePicker({
                 value,
-                initialViewDate: '2025-06-15',
+                initialViewMonth: '2025-06',
             });
 
             await userEvent.click(dom.to);
-            // Should display the month of the to date, not initialViewDate
+            // Should display the month of the to date, not initialViewMonth
             expect(screen.getByText('March 2017')).toBeInTheDocument();
             expect(screen.queryByText('June 2025')).not.toBeInTheDocument();
         });
@@ -752,7 +752,7 @@ describe('RangeDataPicker', () => {
             };
             const { dom } = await setupRangeDatePicker({
                 value,
-                initialViewDate: '2025-06-15',
+                initialViewMonth: '2025-06',
             });
 
             await userEvent.click(dom.from);
@@ -761,14 +761,14 @@ describe('RangeDataPicker', () => {
             expect(screen.queryByText('June 2025')).not.toBeInTheDocument();
         });
 
-        it('should update displayed month when initialViewDate changes and no dates are selected', async () => {
+        it('should update displayed month when initialViewMonth changes and no dates are selected', async () => {
             const value: RangeDatePickerValue = {
                 from: null,
                 to: null,
             };
             const { result, dom } = await setupRangeDatePicker({
                 value,
-                initialViewDate: '2025-06-15',
+                initialViewMonth: '2025-06',
             });
 
             await userEvent.click(dom.from);
@@ -778,7 +778,7 @@ describe('RangeDataPicker', () => {
             result.rerender(<RangeDatePicker
                 format="MMM D, YYYY"
                 value={ { ...value } }
-                initialViewDate="2024-03-10"
+                initialViewMonth="2024-03"
                 onValueChange={ jest.fn }
                 rawProps={ getRawTestIdProps() }
             />);
@@ -788,7 +788,7 @@ describe('RangeDataPicker', () => {
             expect(screen.getByText('March 2024')).toBeInTheDocument();
         });
 
-        it('should use current month when initialViewDate is not provided and no dates are selected', async () => {
+        it('should use current month when initialViewMonth is not provided and no dates are selected', async () => {
             const value: RangeDatePickerValue = {
                 from: null,
                 to: null,
