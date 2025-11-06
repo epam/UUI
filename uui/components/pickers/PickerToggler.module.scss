@@ -96,6 +96,16 @@
     }
 
     :global(.uui-icon) {
+        /*
+            `Tag` component uses contrast colors for custom icon and clear button. It works fine for standalone tags,
+            but looks inconsistent in picker input.
+            Here, we reset the colors to the values defined in `ControlIcon`.
+        */
+        --uui-control_icon: var(--uui-control-icon);
+        --uui-control_icon-clickable: var(--uui-icon);
+        --uui-control_icon-clickable-hover: var(--uui-icon-hover);
+        --uui-control_icon-clickable-active: var(--uui-icon-active);
+
         svg {
             height: var(--uui-picker_toggler-icon-height);
             width: inherit;
