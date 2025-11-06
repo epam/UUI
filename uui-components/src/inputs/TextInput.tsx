@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
     Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext,
+    isEventTargetInsideClickable,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
@@ -66,10 +67,11 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
         props.onBlur?.(event);
     };
 
-    const moveFocusToInput = (eventTargetElement: HTMLElement): void => {
+    const moveFocusToInput = (event: React.SyntheticEvent<HTMLElement>): void => {
+        const eventTargetElement = event.target as HTMLElement;
         const isContainer = eventTargetElement === containerRef.current;
         const isWithinContainer = containerRef.current?.contains(eventTargetElement);
-        const isClickable = eventTargetElement.classList.contains(uuiMarkers.clickable);
+        const isClickable = isEventTargetInsideClickable(event);
 
         if (
             (
@@ -125,26 +127,13 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
     const showIconsOnAction = props.value && !props.isReadonly && !props.isDisabled;
 
     const handleWrapperClick = (event: React.MouseEvent<HTMLElement>) => {
-        const eventTarget = event.target as HTMLElement;
+        moveFocusToInput(event);
 
-        moveFocusToInput(eventTarget);
-
-        if (eventTarget.classList.contains(uuiMarkers.clickable)) {
+        if (isEventTargetInsideClickable(event)) {
             return event.preventDefault();
         }
 
         props.onClick?.(event);
-    };
-
-    const handleWrapperFocus = (event: React.FocusEvent<HTMLElement>) => {
-        if (
-            props.isReadonly
-            || props.isDisabled
-        ) {
-            return;
-        }
-
-        moveFocusToInput(event.target);
     };
 
     return (
@@ -161,7 +150,6 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
                 props.cx,
             ) }
             onClick={ handleWrapperClick }
-            onFocus={ handleWrapperFocus }
             { ...props.rawProps }
         >
             {props.iconPosition !== 'right' && icon}

@@ -263,16 +263,16 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         />
     );
 
-    const getIsEventTargetContainer = (event: React.SyntheticEvent): boolean => {
+    const getIsEventTargetContainer = (event: React.SyntheticEvent<HTMLElement>): boolean => {
         const eventTargetElement = event.target as HTMLElement;
 
         return eventTargetElement === containerRef.current;
     };
 
-    const getIsNonClickableEventTarget = (event: React.SyntheticEvent): boolean => {
+    const getIsNonClickableEventTarget = (event: React.SyntheticEvent<HTMLElement>): boolean => {
         const eventTargetElement = event.target as HTMLElement;
         const isWithinContainer = containerRef.current?.contains(eventTargetElement);
-        const isClickable = eventTargetElement.classList.contains(uuiMarkers.clickable);
+        const isClickable = isEventTargetInsideClickable(event);
 
         return (
             (
