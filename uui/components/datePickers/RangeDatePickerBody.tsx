@@ -116,7 +116,7 @@ export interface RangeDatePickerBodyValue<TSelection> {
     selectedDate: TSelection;
 }
 
-export interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, Pick<RangeDatePickerProps, 'preventEmptyToDate' | 'preventEmptyFromDate'>, IControlled<RangeDatePickerBodyValue<T>> {
+export interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, Pick<RangeDatePickerProps, 'preventEmptyToDate' | 'preventEmptyFromDate' | 'initialViewMonth'>, IControlled<RangeDatePickerBodyValue<T>> {
     renderFooter?(): React.ReactNode;
     isHoliday?: (day: Dayjs) => boolean;
 }
@@ -124,7 +124,7 @@ export interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, 
 export const RangeDatePickerBody = forwardRef(RangeDatePickerBodyComp);
 
 function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePickerValue | null>, ref: React.ForwardedRef<HTMLDivElement>): JSX.Element {
-    const { value: _value, filter } = props;
+    const { value: _value, filter, initialViewMonth } = props;
     const {
         selectedDate: _selectedDate, inFocus,
     } = _value;
@@ -133,7 +133,7 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
     const [view, setView] = useState<ViewType>('DAY_SELECTION');
     const [disabledPanel, setDisabledPanel] = useState<'left' | 'right' | null>(null);
     const [month, setMonth] = useState(() => {
-        return getDisplayedMonth(selectedDate, inFocus);
+        return getDisplayedMonth(selectedDate, inFocus, initialViewMonth);
     });
 
     const getRange = (newValue: string | null) => {
@@ -217,7 +217,7 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
     };
 
     useLayoutEffectSafeForSsr(() => {
-        const monthToSet = getDisplayedMonth(selectedDate, inFocus);
+        const monthToSet = getDisplayedMonth(selectedDate, inFocus, initialViewMonth);
         // To avoid re-rendering the body if the current month being displayed is equal to or greater than 1
         const shouldNotIgnoreUpdate = !(uuiDayjs.dayjs(month).isSame(monthToSet, 'month') || uuiDayjs.dayjs(month).add(1, 'month').isSame(monthToSet, 'month'));
         if (shouldNotIgnoreUpdate) {
