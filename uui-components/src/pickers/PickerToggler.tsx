@@ -95,10 +95,12 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const handleBlur = (e: React.FocusEvent<HTMLElement>) => {
         /*
-            Handles the case when focus is moved from the input
-            to the picker body when it opens any any interactions happen there.
-            It is necessary to exit because otherwise `isFocus` will be set to `true`
-            (which will trigger `handleClick`) and would close the picker body.
+            There are two cases when the input may become unfocused:
+            1. When user intentionally focuses on something else (for example, clicking on other element)
+            2. The picker's body opens
+
+            Without additional check, the second case will treated as the first one,
+            and the picker's body will be closed immediately after opening.
         */
         if (props.isOpen) {
             return;
@@ -130,8 +132,14 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     const handleCrossIconClick = () => {
         if (props.onClear) {
             /*
-                `flushSync` is necessary for case when the input was hidden, and after the action is appears again.
-                In this case, `moveFocusToControl` should pick it instead of the container.
+                Handles the following scenario:
+                * `pickerMode="multi"`
+                * There are selected options
+                * `searchPosition="none"` (so the input is hidden when there are selected options)
+
+                When user focuses on the picker's clear button and presses Enter, we first need to remove the selected
+                options for the input to appear, and only after that move focus from the button to the input.
+                Without `flushSync`, the updates are batched, and the focus may be "set" to not yet existing input.
             */
             flushSync(() => {
                 props.onClear();
@@ -159,8 +167,9 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 isDisabled: isPickerDisabled || row.isDisabled,
                 onClear: () => {
                     /*
-                        `flushSync` is necessary for case when the input was hidden, and after the action is appears again.
-                        In this case, `moveFocusToControl` should pick it instead of the container.
+                        The same logic about the tasks' order as in `handleCrossIconClick`,
+                        except the input may not appear, because there are selected options still.
+                        `moveFocusToControl` handles this case and moves the focus to the correct element.
                     */
                     flushSync(() => {
                         row.onCheck?.(row);
@@ -321,7 +330,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         }
 
         /*
-            For `mode="multi"`, when focusing on a tag's clear button and pressing Enter, we need the tag to be removed.
+            For `pickerMode="multi"`, when focusing on a tag's clear button and pressing Enter, we need the tag to be removed.
             Without this condition, a picker body is opened instead.
         */
         if (getIsNonClickableEventTarget(event)) {
