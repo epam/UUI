@@ -1,6 +1,7 @@
 ## UUI E2E and screenshot testing
 We use the Playwright framework for E2E and screenshot testing.
 All e2e tests infrastructure and tests definition is placed under `uui-e2e-tests` folder.
+This tests is a part of PR quality gate.
 
 ### Screenshots
 UUI screenshot testing is based on 'Preview' pages that contain components in various variations of props.
