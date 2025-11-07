@@ -72,7 +72,7 @@ export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildr
     const commonProps = {
         className,
         onClick: hasClick ? clickHandler : undefined,
-        onKeyDown: !props.isDisabled && props.onKeyDown,
+        onKeyDown: !props.isDisabled ? props.onKeyDown : undefined,
         tabIndex: getTabIndex(),
         'aria-disabled': props.isDisabled,
         // NOTE: do not use disabled attribute for button because it will prevent all events and broke Tooltip at least
