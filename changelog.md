@@ -10,7 +10,8 @@
 * [Pagination]: pagination elements are not grouped into a list ([#2942](https://github.com/epam/UUI/pull/2942))
   * Add "Previous page" and "Next page" `aria-label`-s to the previous and next pages respectively
 * [DatePickers]: fixed calendar matrix calculation to use locale-specific `firstDayOfWeek` from dayjs instead of hardcoded i18n configuration, ensuring correct calendar layout for any locale.
-* [RangeDatePicker}: added option to display clear icon when at least one date is selected
+* [RangeDatePicker]: added option to display clear icon when at least one date is selected
+* [DatePicker], [RangeDatePicker]: added ability to set the initially displayed month and year in the calendar body when the picker opens via `initialViewMonth` prop
 * Make icons and clear buttons in input accessible via keyboard ([#2845](https://github.com/epam/UUI/pull/2845))
     * Icon set with `icon` property and clear button set with `onClear` property now use a button component with its own CSS variables, which makes some input-specific ones obsolete.
         * The following CSS variables are no longer available:
@@ -30,7 +31,6 @@
             * `--uui-control_icon-clickable-hover`
             * `--uui-control_icon-clickable-active`
     * Icon set with `icon` property in `TextInput` (and other inputs that use it) is now always displayed in `mode="cell"`, not only on hover
-
 
 # 6.3.1 - 08.10.2025
 
