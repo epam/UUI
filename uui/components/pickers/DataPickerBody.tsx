@@ -74,22 +74,25 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, auto
         }
     };
 
+    const {
+        focusedIndex,
+        topIndex,
+    } = props.value;
+
     const focusedRowId = useMemo((): string => {
         // No need to make unnecessary calculations.
         if (!props.showSearch) {
             return '';
         }
 
-        const focusedRow = props.rows.find((row) => {
-            return row.isFocused;
-        });
+        const focusedRow = props.rows.at(focusedIndex - topIndex);
 
         if (!focusedRow) {
             return '';
         }
 
         return focusedRow.rowKey;
-    }, [props.showSearch, props.rows]);
+    }, [props.showSearch, focusedIndex, topIndex]);
 
     const renderEmpty = () => {
         const search = props.value.search;

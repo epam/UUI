@@ -98,17 +98,20 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
 
     const dataRows = getRows();
 
+    const {
+        focusedIndex,
+        topIndex,
+    } = dataSourceState;
+
     const focusedRowId = useMemo((): string => {
-        const focusedRow = dataRows.find((row) => {
-            return row.isFocused;
-        });
+        const focusedRow = dataRows.at(focusedIndex - topIndex);
 
         if (!focusedRow) {
             return '';
         }
 
         return focusedRow.rowKey;
-    }, [dataRows]);
+    }, [focusedIndex, topIndex]);
 
     return (
         <ModalBlocker { ...props }>
