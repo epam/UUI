@@ -117,7 +117,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const handlePickerInputKeyboard = (
         rows: DataRowProps<TItem, TId>[],
-        event: React.KeyboardEvent<HTMLElement>,
+        event: React.KeyboardEvent,
         actualSearch?: string,
     ) => {
         if (props.isDisabled || props.isReadonly) return;

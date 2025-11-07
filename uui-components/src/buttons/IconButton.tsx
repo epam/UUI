@@ -17,6 +17,12 @@ export type IconButtonProps = ClickableComponentProps & Omit<IDropdownToggler, '
      * Pass true to enable dropdown icon.
      */
     showDropdownIcon?: boolean;
+
+    /** Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise')) */
+    rotate?: '0' | '90cw' | '180' | '90ccw';
+
+    /** Called when keyDown event is fired on component */
+    onKeyDown?: (e: React.KeyboardEvent) => void;
 };
 
 export const IconButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, IconButtonProps>((props, ref) => {
@@ -27,7 +33,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
             cx={ [css.container, props.cx] }
             ref={ ref }
         >
-            <IconContainer icon={ props.icon } size={ props.size } />
+            <IconContainer icon={ props.icon } size={ props.size } rotate={ props.rotate } />
             { props.showDropdownIcon && (
                 <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } size={ props.size } />
             ) }

@@ -144,22 +144,6 @@ describe('TimePicker', () => {
         expect(dom.input.value).toEqual('06:23 PM');
     });
 
-    it('should open picker on field focus', async () => {
-        const { dom } = await setupTestComponent({ value: null });
-        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-        fireEvent.focus(dom.input);
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
-    });
-
-    it('should close picker on field blur', async () => {
-        const { dom } = await setupTestComponent({ value: null });
-        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-        fireEvent.focus(dom.input);
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
-        fireEvent.blur(dom.input);
-        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    });
-
     it('should clear input when clear button is clicked', async () => {
         const { dom, mocks } = await setupTestComponent({ value: { hours: 18, minutes: 23 } });
         const clear = screen.getByRole<HTMLButtonElement>('button');
@@ -172,7 +156,7 @@ describe('TimePicker', () => {
     it('should increase and decrease hours when icon-button-up/down is clicked', async () => {
         const { dom } = await setupTestComponent({ value: { hours: 18, minutes: 23 } });
         expect(dom.input.value).toEqual('06:23 PM');
-        fireEvent.focus(dom.input);
+        fireEvent.click(dom.input);
         const picker = await screen.findByRole('dialog');
         expect(picker).toBeDefined();
 
@@ -187,7 +171,7 @@ describe('TimePicker', () => {
     it('should increase and decrease minutes when icon-button-up/down is clicked', async () => {
         const { dom, setProps } = await setupTestComponent({ value: { hours: 18, minutes: 23 } });
         expect(dom.input.value).toEqual('06:23 PM');
-        fireEvent.focus(dom.input);
+        fireEvent.click(dom.input);
         const picker = await screen.findByRole('dialog');
         expect(picker).toBeDefined();
 

@@ -1,9 +1,17 @@
 # 6.?.? - ??.??.2025
 
 **What's Fixed**
-* [TimePicker]: fixed `onBlur` event not firing when focus moves from input to dropdown body ([#2936](https://github.com/epam/UUI/issues/2936))
+* [TimePicker]: reworked body open/close behavior. Now body opens by input click or enter key press, instead of 'focus' on target and body closed by 'Escape' or click outside, instead of target blur. Added focus lock behavior.
 * [uui-core]: removed `isFocusReceiverInsideFocusLock` helper function that was causing focus management issues in picker components
 * [LabeledInput]: fixed incorrect prop resolution for `infoIcon`
+* [PickerInput]: change value in `aria-haspopup` attribute from "true" to "dialog" ([#2947](https://github.com/epam/UUI/pull/2947))
+* [PickerInput]: fixed an issue where item count text was truncated in isSingleLine mode
+* [TextInput]: remove call on onCancel callback on 'Escape' press
+* [Pagination]: pagination elements are not grouped into a list ([#2942](https://github.com/epam/UUI/pull/2942))
+  * Add "Previous page" and "Next page" `aria-label`-s to the previous and next pages respectively
+* [DatePickers]: fixed calendar matrix calculation to use locale-specific `firstDayOfWeek` from dayjs instead of hardcoded i18n configuration, ensuring correct calendar layout for any locale.
+* [RangeDatePicker]: added option to display clear icon when at least one date is selected
+* [DatePicker], [RangeDatePicker]: added ability to set the initially displayed month and year in the calendar body when the picker opens via `initialViewMonth` prop
 * [MainMenuDropdown] Remove `role="dialog"` from dropdown body ([#2948](https://github.com/epam/UUI/pull/2948))
 
 # 6.3.1 - 08.10.2025
