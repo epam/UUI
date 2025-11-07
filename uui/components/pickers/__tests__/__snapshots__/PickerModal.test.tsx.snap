@@ -62,6 +62,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
             tabindex="-1"
           >
             <div
+              aria-label="Icon in input"
               class="container uui-icon uui-enabled"
             >
               <svg
@@ -109,13 +110,14 @@ exports[`PickerModal should be rendered correctly 1`] = `
               data-overlayscrollbars-contents=""
               data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
               style="padding: 0px 0px 0px 0px;"
-              tabindex="-1"
+              tabindex="0"
             >
               <div
                 class="listContainer"
                 style="min-height: 2px;"
               >
                 <div
+                  role="listbox"
                   style="margin-top: 0px;"
                 >
                   <div
@@ -124,6 +126,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="2"
                     role="option"
+                    tabindex="-1"
                   >
                     <div
                       class="flexCell rowContent"
@@ -164,6 +167,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="3"
                     role="option"
+                    tabindex="-1"
                   >
                     <div
                       class="flexCell rowContent"
@@ -343,6 +347,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
             tabindex="-1"
           >
             <div
+              aria-label="Icon in input"
               class="container uui-icon uui-enabled"
             >
               <svg
@@ -413,13 +418,14 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
               data-overlayscrollbars-contents=""
               data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
               style="padding: 0px 0px 0px 0px;"
-              tabindex="-1"
+              tabindex="0"
             >
               <div
                 class="listContainer"
                 style="min-height: 11px;"
               >
                 <div
+                  role="listbox"
                   style="margin-top: 0px;"
                 >
                   <div
@@ -428,6 +434,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="12"
                     role="option"
+                    tabindex="-1"
                   >
                     <div
                       class="flexCell rowContent"
@@ -481,6 +488,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="11"
                     role="option"
+                    tabindex="-1"
                   >
                     <div
                       class="flexCell rowContent"
@@ -534,6 +542,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="10"
                     role="option"
+                    tabindex="-1"
                   >
                     <div
                       class="flexCell rowContent"
@@ -587,6 +596,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="9"
                     role="option"
+                    tabindex="-1"
                   >
                     <div
                       class="flexCell rowContent"
@@ -640,6 +650,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="8"
                     role="option"
+                    tabindex="-1"
                   >
                     <div
                       class="flexCell rowContent"
@@ -693,6 +704,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="7"
                     role="option"
+                    tabindex="-1"
                   >
                     <div
                       class="flexCell rowContent"
@@ -746,6 +758,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="6"
                     role="option"
+                    tabindex="-1"
                   >
                     <div
                       class="flexCell rowContent"
@@ -799,6 +812,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="5"
                     role="option"
+                    tabindex="-1"
                   >
                     <div
                       class="flexCell rowContent"
@@ -852,6 +866,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="4"
                     role="option"
+                    tabindex="-1"
                   >
                     <div
                       class="flexCell rowContent"
@@ -905,6 +920,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="3"
                     role="option"
+                    tabindex="-1"
                   >
                     <div
                       class="flexCell rowContent"
@@ -958,6 +974,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="2"
                     role="option"
+                    tabindex="-1"
                   >
                     <div
                       class="flexCell rowContent"
@@ -1157,6 +1174,7 @@ exports[`PickerModal should open body 1`] = `
               tabindex="-1"
             >
               <div
+                aria-label="Icon in input"
                 class="container uui-icon uui-enabled"
               >
                 <svg
@@ -1204,13 +1222,14 @@ exports[`PickerModal should open body 1`] = `
                 data-overlayscrollbars-contents=""
                 data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
                 style="padding: 0px 0px 0px 0px;"
-                tabindex="-1"
+                tabindex="0"
               >
                 <div
                   class="listContainer"
                   style="min-height: 2px;"
                 >
                   <div
+                    role="listbox"
                     style="margin-top: 0px;"
                   >
                     <div
@@ -1219,6 +1238,7 @@ exports[`PickerModal should open body 1`] = `
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                       id="2"
                       role="option"
+                      tabindex="-1"
                     >
                       <div
                         class="flexCell rowContent"
@@ -1259,6 +1279,7 @@ exports[`PickerModal should open body 1`] = `
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                       id="3"
                       role="option"
+                      tabindex="-1"
                     >
                       <div
                         class="flexCell rowContent"

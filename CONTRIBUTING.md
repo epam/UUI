@@ -24,10 +24,7 @@ Thank you for being a part of our community and making a difference through your
   - [Suggesting For Improvement](#suggesting-for-improvement)
 - [I Want To Submit Changes](#i-want-to-submit-changes)
   - [Creating a Pull Request](#creating-a-pull-request)
-- [Development](#development)
-  - [Project Structure](#project-structure)
-  - [Start the Project](#start-the-project)
-  - [Edit Documentation](#edit-documentation)
+- [Developer Guides](#developer-guides)
 
 ## Legal Notice
 
@@ -109,98 +106,18 @@ In general, we follow the ["Fork-and-Pull" Git workflow](https://github.com/susa
 
 1. Fork and clone the repository and create your branch from the `develop` branch;
 2. Create a branch locally with a succinct but descriptive name;
-3. Run project according the local development [instructions](#development);
-4. If you've fixed a bug or added code that should be tested, add tests;
-5. Ensure the test suite passes (yarn test), update snapshots if needed;
-6. If you make api changes or add new functionality, add example to the documentation and update property explorer page;
+3. Run project according to local development guides (see [Developer Guides](#developer-guides));
+4. If you've fixed a bug or added code that should be tested, add tests (unit and E2E where appropriate);
+5. Ensure the test suite passes (`yarn test`), update snapshots if needed; consider running E2E/screenshot tests (see dev docs);
+6. If you make API changes or add new functionality, add an example to the documentation and update the Property Explorer (see dev docs);
 7. Add your fix short description to the changelog.md;
 8. Commit and push to your fork;
 9. Open a PR in our repository in `develop` branch.
 
+## Developer Guides
 
-## Development
-
-### Project Structure
-
-```
-├── app    # uui.epam.com site codebase
-├── epam-assets    # @epam/assets package
-├── epam-promo    # @epam/promo package
-├── extra    # epam/extra package
-├── loveship    # epam/loveship package    
-├── public    # static files for uui.epam.com site
-├── server    # server for uui.epam.com site
-├── templates    # templates projects fro cra and next.js
-├── test-utils    # common utils for unit tests
-├── uui    # epam/uui package
-├── uui-build    # epam/uui-build package
-├── uui-components    # epam/uui-components package
-├── uui-core    # epam/core package
-├── uui-db    # epam/db package
-├── uui-docs    # epam/docs package
-├── uui-editor    # epam/editor package
-└── uui-timeline    # epam/timeline package
-```
-
-### Start the Project
-
-1. Clone Github repository:
-
-```
-git clone git@github.com:epam/UUI.git
-```
-
-2. Install server dependencies:
-
-```
-cd ./server
-yarn
-```
-3. Go back to the `UUI` folder and run the App:
-
-```
-cd ../
-yarn
-yarn build-server
-yarn start
-```
-
-This will open the uui.epam.com web-site locally, in watch mode.
-
-### Edit Documentation
-In case if you add new functionality or change API, you need to update our Documentation.
-All UUI Documentation is placed on [uui.epam.com](https://uui.epam.com/) website, which sources are in `./app` folder.
-
-Below you can find instructions how to add Doc Example and update component property explorer page.
-
-#### Doc Example
-
-1. Go to `app/src/docs/_examples` and open/add folder of component for which you need to add example;
-2. Add example with the following file name pattern `example-name.example.tsx`;
-3. Go to the `app/src/docs/pages` and find/add appropriate page file and add link your example to doc page:
-    ```
-      { "name": "Basic", "componentPath": "alert/Basic.example.tsx" },
-   ```
-4. If you add the new documents page, change `app/src/documents/structure.ts` file to add your page to the sidebar menu.
-
-#### Property Explorer
-
-We use Property Explorer to be able to test component in different variations of props. You can find Property Explorer tab on the Documentation page of each component.
-
-If you make any component prop changes, you need to update appropriate .doc file, which used for building component property explorer page.
-
-1. Go to the `app/src/docs/explorerConfigs` folder and find/add appropriate config file
-2. Add new prop examples via `prop` method:
-    ```
-       .prop('size', { examples: ['24', '30', '36', '42', '48'] , defaultValue: '36' })
-   ```
-   Some common props interfaces is already implemented, and you can add them via `implements` method:
-    ```
-       .implements([ isDisabledDoc, iCanRedirectDoc, iHasPlaceholder])
-   ```
-
-#### API Block
-
-Component API section generated based on component props interfaces. It's not mandatory to regenerate it locally, because we have it in a deployment steps.
-
-Nevertheless, to update this block, please run `yarn generate-components-api` command in project root.
+- Project overview and monorepo layout: see [dev-docs/overview.md](dev-docs/overview.md).
+- Local development workflows (start app, build, tests, bundle size): see [dev-docs/dev-workflows.md](dev-docs/dev-workflows.md).
+- Editing documentation and Property Explorer: see [dev-docs/uui-documentation.md](dev-docs/uui-documentation.md).
+- E2E and screenshot testing (Playwright + Preview pages): see [dev-docs/e2e-tests.md](dev-docs/e2e-tests.md).
+- Release workflow (maintainers): see [dev-docs/release-workflow.md](dev-docs/release-workflow.md).

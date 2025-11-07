@@ -15,7 +15,7 @@ export interface HeaderCellContentProps extends DndActorRenderParams {
     /** Called during the resizing process */
     onResize: (e: MouseEvent) => void;
     /** Called when sorting */
-    toggleSort: (e: React.MouseEvent) => void;
+    toggleSort: (e: React.SyntheticEvent) => void;
     /** Indicates that resizing process is active */
     isResizing: boolean;
 }
@@ -34,7 +34,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     cellRef = React.createRef<HTMLElement>();
     isRtl = getDir() === 'rtl';
 
-    toggleSort = (e: React.MouseEvent) => {
+    toggleSort = (e: React.SyntheticEvent) => {
         if (isEventTargetInsideClickable(e) || !this.props.column.isSortable) return;
 
         let dir: SortDirection;

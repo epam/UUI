@@ -3,14 +3,14 @@ import css from './IconContainer.module.scss';
 import {
     uuiElement, uuiMod, uuiMarkers, IHasCX, IDisableable, Icon, cx, IHasRawProps, IHasTabIndex,
 } from '@epam/uui-core';
-import { Svg } from '../widgets/Svg';
+import { Svg } from '../widgets';
 
 export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasTabIndex {
     /** Icon to display */
     icon?: Icon;
     /** Flips the icon vertically */
     flipY?: boolean;
-    /** Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise)) */
+    /** Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise')) */
     rotate?: '0' | '90cw' | '180' | '90ccw';
     /** Click handler */
     onClick?(e: React.SyntheticEvent<HTMLDivElement>): void;
