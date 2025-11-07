@@ -211,6 +211,8 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         props.onClick?.();
     };
 
+    const isSearchHidden = !isSearchInToggler && props.pickerMode === 'multi' && props.selectedRowsCount > 0;
+
     const renderInput = () => {
         const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
         let placeholder: string;
@@ -223,7 +225,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         }
         const value = props.disableSearch ? null : props.value;
 
-        if (!isSearchInToggler && props.pickerMode === 'multi' && props.selectedRowsCount > 0) {
+        if (isSearchHidden) {
             // Resetting the ref to make `getFocusableControl` work correctly.
             searchInput.current = undefined;
 
@@ -355,7 +357,14 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             onFocus={ handleWrapperFocus }
             onBlur={ handleBlur }
             onKeyDown={ handleKeyDown }
-            tabIndex={ isPickerDisabled ? undefined : 0 }
+            /*
+                Either container or input should be focusable. Otherwise, a conflict between them may arise.
+                For example, when focusing out of input to the focusable container using Shift + Tab,
+                `handleWrapperFocus` will return the focus to the input, so it will not be possible to leave the toggler.
+                `isSearchHidden` is the same as in `renderInput`.
+                `isSearchInToggler` reflects the condition for focusable input (see condition in its `tabIndex` value).
+            */
+            tabIndex={ isPickerDisabled || (!isSearchHidden && isSearchInToggler) ? undefined : 0 }
             { ...props.rawProps }
         >
             <div className={ cx(css.body, !props.isSingleLine && props.pickerMode !== 'single' && 'uui-picker_toggler-multiline') }>
