@@ -194,7 +194,7 @@ exports[`PickerList should open body 1`] = `
             style="--uui-flex-row-v-padding: 24px;"
           >
             <div
-              aria-activedescendant=""
+              aria-activedescendant="_loading_29"
               class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
               dir="auto"
               tabindex="-1"
@@ -208,7 +208,7 @@ exports[`PickerList should open body 1`] = `
                 />
               </div>
               <input
-                aria-activedescendant=""
+                aria-activedescendant="_loading_29"
                 aria-invalid="false"
                 class="uui-input"
                 dir="ltr"

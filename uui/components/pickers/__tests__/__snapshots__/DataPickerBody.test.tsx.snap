@@ -13,7 +13,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
         data-autofocus-inside="true"
       >
         <div
-          aria-activedescendant=""
+          aria-activedescendant="2"
           class="container uui-input-box -clickable uui-focus root uui-size-48 uui-control-mode-form"
           dir="auto"
           tabindex="-1"
@@ -27,7 +27,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
             />
           </div>
           <input
-            aria-activedescendant=""
+            aria-activedescendant="2"
             class="uui-input"
             dir="ltr"
             inputmode="search"
