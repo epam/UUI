@@ -114,7 +114,18 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         So we need to return a correct element to focus for each case.
     */
     const getFocusableControl = (): HTMLElement | undefined => {
-        if (searchInputRef.current) {
+        if (
+            searchInputRef.current
+            /*
+                Even though the input can be present for `searchPosition` values other than "input",
+                it will be unfocusable, (see condition in its `tabIndex` value).
+                In such cases, we don't need it to receive focus programmatically,
+                because it can create conflicts with container focus.
+                For example, `handleWrapperFocus` will try to move focus from the container to the input on Shift + Tab,
+                so it will not be possible to leave the toggler.
+            */
+            && searchInputRef.current.tabIndex === 0
+        ) {
             return searchInputRef.current;
         }
 
@@ -294,10 +305,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         );
     };
 
-    const getIsFocusableControlContainer = (): boolean => {
-        return getFocusableControl() === containerRef.current;
-    };
-
     const handleWrapperClick = (event: React.MouseEvent<HTMLElement>) => {
         if (isPickerDisabled) {
             return;
@@ -306,7 +313,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (getIsNonClickableEventTarget(event)) {
             moveFocusToControl();
 
-            if (getIsFocusableControlContainer()) {
+            if (getIsEventTargetContainer(event)) {
                 props.onClick?.(event);
             }
         }
@@ -363,6 +370,8 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 `handleWrapperFocus` will return the focus to the input, so it will not be possible to leave the toggler.
                 `isSearchHidden` is the same as in `renderInput`.
                 `isSearchInToggler` reflects the condition for focusable input (see condition in its `tabIndex` value).
+                The difference with condition in `getFocusableControl` is that condition handles case of search OUTSIDE
+                the toggler, and this one handles case of search INSIDE the toggler.
             */
             tabIndex={ isPickerDisabled || (!isSearchHidden && isSearchInToggler) ? undefined : 0 }
             { ...props.rawProps }
