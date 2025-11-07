@@ -47,7 +47,7 @@ export interface PickerTogglerProps<TItem = any, TId = any>
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLDivElement>) {
     const [inFocus, setInFocus] = React.useState<boolean>(false);
 
-    const searchInput = React.useRef<HTMLInputElement>(undefined);
+    const searchInputRef = React.useRef<HTMLInputElement>(undefined);
     const containerRef = React.useRef<HTMLDivElement>(undefined);
 
     React.useImperativeHandle(ref, () => containerRef.current, [containerRef.current]);
@@ -69,7 +69,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         inFocus && window.document.addEventListener('mousedown', handleClick);
 
         if (props.autoFocus && !props.disableSearch && isSearchInToggler) {
-            searchInput.current?.focus();
+            searchInputRef.current?.focus();
         }
 
         return () => window.document.removeEventListener('mousedown', handleClick);
@@ -114,8 +114,8 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         So we need to return a correct element to focus for each case.
     */
     const getFocusableControl = (): HTMLElement | undefined => {
-        if (searchInput.current) {
-            return searchInput.current;
+        if (searchInputRef.current) {
+            return searchInputRef.current;
         }
 
         return containerRef.current;
@@ -227,7 +227,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
         if (isSearchHidden) {
             // Resetting the ref to make `getFocusableControl` work correctly.
-            searchInput.current = undefined;
+            searchInputRef.current = undefined;
 
             return null;
         }
@@ -237,7 +237,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 id={ props?.id }
                 type="search"
                 tabIndex={ isPickerDisabled || !isSearchInToggler ? -1 : 0 } // If search not in toggler, we shouldn't make this input focusable
-                ref={ searchInput }
+                ref={ searchInputRef }
                 aria-haspopup="dialog"
                 autoComplete="no"
                 aria-required={ props.isRequired }
