@@ -5,6 +5,7 @@ exports[`MainMenuDropdown should be rendered correctly in opened state 1`] = `
   <div>
     <button
       aria-expanded="true"
+      aria-haspopup="menu"
       class="uui-button-box uui-enabled -clickable root type-primary"
       tabindex="0"
       type="button"
@@ -39,6 +40,7 @@ exports[`MainMenuDropdown should be rendered correctly in opened state 1`] = `
     >
       <div
         class="dropdownBody uui-main_menu-dropdown"
+        role="menu"
       >
         <span
           class="uui-button-box uui-enabled root type-primary"
@@ -85,6 +87,7 @@ exports[`MainMenuDropdown should be rendered correctly with minimum props 1`] = 
 <DocumentFragment>
   <button
     aria-expanded="false"
+    aria-haspopup="menu"
     class="uui-button-box uui-enabled -clickable root type-primary"
     tabindex="0"
     type="button"
