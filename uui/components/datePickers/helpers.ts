@@ -23,7 +23,16 @@ export const defaultRangeValue: RangeDatePickerValue = {
     to: null,
 };
 
-export const getDisplayedMonth = (selectedDate: RangeDatePickerValue, focus: RangeDatePickerInputType) => {
+export const getDisplayedMonth = (selectedDate: RangeDatePickerValue, focus: RangeDatePickerInputType, initialViewMonth: string | undefined) => {
+    if (selectedDate.from || selectedDate.to) {
+        return getDisplayedMonthBySelection(selectedDate, focus);
+    } else if (initialViewMonth) {
+        return getNewMonth(`${initialViewMonth}-01`);
+    }
+    return uuiDayjs.dayjs();
+};
+
+export const getDisplayedMonthBySelection = (selectedDate: RangeDatePickerValue, focus: RangeDatePickerInputType) => {
     if (selectedDate.from && selectedDate.to && focus) {
         return uuiDayjs.dayjs(selectedDate[focus]);
     } else if (selectedDate.from) {

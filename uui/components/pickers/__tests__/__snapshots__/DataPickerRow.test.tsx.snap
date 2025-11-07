@@ -7,6 +7,7 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
     id="test"
     role="option"
+    tabindex="-1"
   >
     <div
       class="flexCell rowContent"
@@ -36,6 +37,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
     id="test"
     role="option"
     style="--uui-data_picker-horizontal-padding: 24px;"
+    tabindex="-1"
   >
     <div
       class="flexCell rowContent"

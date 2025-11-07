@@ -31,7 +31,7 @@ export interface PickerTogglerProps<TItem = any, TId = any>
     isSingleLine?: boolean;
     pickerMode: 'single' | 'multi';
     searchPosition: 'input' | 'body' | 'none';
-    onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
+    onKeyDown?(e: React.KeyboardEvent): void;
     closePickerBody(): void;
     disableSearch?: boolean;
     disableClear?: boolean;
@@ -176,7 +176,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 type="search"
                 tabIndex={ props.isReadonly || props.isDisabled || !isSearchInToggler ? -1 : 0 } // If search not in toggler, we shouldn't make this input focusable
                 ref={ searchInput }
-                aria-haspopup={ true }
+                aria-haspopup="dialog"
                 autoComplete="no"
                 aria-required={ props.isRequired }
                 aria-disabled={ props.isDisabled }
