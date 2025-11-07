@@ -18,7 +18,10 @@ export function MainMenuDropdown(props: MainMenuDropdownProps) {
                 <MainMenuButton
                     caption={ props.caption }
                     { ...dropdownProps }
-                    rawProps={ props.rawProps }
+                    rawProps={ {
+                        'aria-haspopup': 'menu',
+                        ...props.rawProps,
+                    } }
                     isActive={ props.isActive }
                     isDropdown
                 />
@@ -31,7 +34,10 @@ export function MainMenuDropdown(props: MainMenuDropdownProps) {
                         onKeyDown: (e: KeyboardEvent<HTMLElement>) => handleEscape(e, dropdownBodyProps.onClose, dropdownBodyProps.isOpen),
                     } }
                 >
-                    <div className={ cx(css.dropdownBody, 'uui-main_menu-dropdown', props.cx) }>
+                    <div
+                        className={ cx(css.dropdownBody, 'uui-main_menu-dropdown', props.cx) }
+                        role="menu"
+                    >
                         {props.renderBody({ ...dropdownBodyProps })}
                     </div>
                 </FocusLock>
