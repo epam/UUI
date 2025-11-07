@@ -9,7 +9,7 @@ interface DataSourceKeyboardParams {
     searchPosition: PickerInputSearchPosition;
 }
 
-export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: React.KeyboardEvent<HTMLElement>) => {
+export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: React.KeyboardEvent) => {
     const value = params.value;
 
     let focusedIndex = value.focusedIndex || 0;
@@ -27,10 +27,9 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
             break;
         }
         case 'Enter': {
-            // We should handle Enter key only when search input is focused
-            if ((e.target as HTMLInputElement).type === 'search' && value.topIndex <= focusedIndex && focusedIndex <= maxVisibleIndex) {
+            if (value.topIndex <= focusedIndex && focusedIndex <= maxVisibleIndex) {
                 const focusedRow: DataRowProps<any, any> = params.rows[value.focusedIndex - value.topIndex];
-                const clickHandler = focusedRow.onFold || focusedRow.onSelect || focusedRow.onCheck;
+                const clickHandler = focusedRow.onSelect || focusedRow.onCheck;
                 clickHandler && clickHandler(focusedRow);
             }
             break;
@@ -51,6 +50,22 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
             } else if (focusedIndex < maxVisibleIndex) {
                 focusedIndex++;
             }
+            break;
+        }
+        case 'ArrowLeft': {
+            e.preventDefault();
+            const focusedRow: DataRowProps<any, any> = params.rows[value.focusedIndex - value.topIndex];
+            if (focusedRow.isFolded) break;
+            const clickHandler = focusedRow.onFold;
+            clickHandler && clickHandler(focusedRow);
+            break;
+        }
+        case 'ArrowRight': {
+            e.preventDefault();
+            const focusedRow: DataRowProps<any, any> = params.rows[value.focusedIndex - value.topIndex];
+            if (!focusedRow.isFolded) break;
+            const clickHandler = focusedRow.onFold;
+            clickHandler && clickHandler(focusedRow);
             break;
         }
         default:

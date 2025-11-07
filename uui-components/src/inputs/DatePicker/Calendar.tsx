@@ -1,8 +1,7 @@
 import React, {
     HTMLAttributes, ReactElement,
 } from 'react';
-import { uuiDayjs } from '../../helpers/dayJsHelper';
-import type { Dayjs } from '../../helpers/dayJsHelper';
+import { uuiDayjs, type Dayjs } from '../../helpers';
 import {
     arrayToMatrix, cx, IDisableable, IHasCX, IHasForwardedRef, IHasRawProps, DayProps,
 } from '@epam/uui-core';
@@ -28,10 +27,6 @@ export interface CalendarProps<TSelection> extends IHasCX, IDisableable, IHasRaw
 
 const DAYS_COUNT_IN_WEEK = 7;
 
-const getPrevMonthFromCurrent = (currentDate: Dayjs) => {
-    return currentDate.subtract(1, 'month');
-};
-
 const getDays = (start: number, end: number, date: Dayjs): Dayjs[] => {
     const daysMomentObjects = [];
     for (let i = start; i <= end; i += 1) {
@@ -41,7 +36,9 @@ const getDays = (start: number, end: number, date: Dayjs): Dayjs[] => {
 };
 
 const isHoliday = (day: Dayjs) => {
-    return day.day() === 0 || day.day() === 6;
+    const dayOfWeek = day.day();
+    // Weekend days are typically Saturday and Sunday, regardless of locale's first day of week
+    return dayOfWeek === 0 || dayOfWeek === 6;
 };
 
 function isSelected <T>(day: Dayjs, value: T): boolean {
@@ -90,10 +87,18 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
         });
 
     const getDaysMatrix = (currentDate: Dayjs) => {
-        const dayOfLastWeekInPrevMonth = getPrevMonthFromCurrent(currentDate).endOf('month').day();
+        const firstDayOfMonth = currentDate.startOf('month');
+
+        // Get the first day of week from locale (0 = Sunday, 1 = Monday, etc.)
+        const firstDayOfWeek = uuiDayjs.dayjs.localeData().firstDayOfWeek();
+
+        // Calculate how many empty cells we need at the beginning
+        // We need to adjust the day() value based on the first day of week
+        const dayOfWeek = firstDayOfMonth.day();
+        const emptyCellsCount = (dayOfWeek - firstDayOfWeek + DAYS_COUNT_IN_WEEK) % DAYS_COUNT_IN_WEEK;
 
         // get days of current month
-        const days = Array.from({ length: dayOfLastWeekInPrevMonth }, (_, index) => {
+        const days = Array.from({ length: emptyCellsCount }, (_, index) => {
             return (
                 <div
                     className={ uuiDaySelection.dayCell }
