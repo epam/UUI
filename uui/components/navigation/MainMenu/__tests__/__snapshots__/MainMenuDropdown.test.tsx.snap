@@ -28,6 +28,7 @@ exports[`MainMenuDropdown should be rendered correctly in opened state 1`] = `
     aria-hidden="false"
     class="uui-popper"
     data-placement="top-start"
+    role="dialog"
     style="position: fixed; top: 0px; left: 0px; z-index: 2000;"
   >
     <div

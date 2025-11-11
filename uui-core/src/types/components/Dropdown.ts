@@ -1,4 +1,4 @@
-import React, { AriaRole } from 'react';
+import React from 'react';
 import { Placement, Boundary, Middleware, VirtualElement } from '@floating-ui/react';
 import { IDropdownTogglerProps, IDropdownBodyProps, IControlled } from '../props';
 
@@ -83,10 +83,4 @@ export interface DropdownProps extends Partial<IControlled<boolean>> {
      * @default true
      * */
     closeOnEscape?: boolean;
-    /**
-     * `role` attribute for dropdown body wrapper.
-     * Pass `undefined` explicitly to remove the attribute.
-     * @default 'dialog'
-     * */
-    role?: AriaRole | undefined;
 }
