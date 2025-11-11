@@ -440,12 +440,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
                 <Portal target={ portalTarget }>
                     <FreeFocusInside>
                         <div
-                            role={
-                                // Such check is necessary for case when user passes `undefined` explicitly to remove the attribute,
-                                props.hasOwnProperty('role')
-                                    ? props.role
-                                    : 'dialog'
-                            }
+                            role="dialog"
                             className="uui-popper"
                             aria-hidden={ !isOpened() }
                             ref={ mergedBodyRef }
