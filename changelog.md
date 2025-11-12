@@ -12,6 +12,7 @@
 * [DatePickers]: fixed calendar matrix calculation to use locale-specific `firstDayOfWeek` from dayjs instead of hardcoded i18n configuration, ensuring correct calendar layout for any locale.
 * [RangeDatePicker]: added option to display clear icon when at least one date is selected
 * [DatePicker], [RangeDatePicker]: added ability to set the initially displayed month and year in the calendar body when the picker opens via `initialViewMonth` prop
+* [PickerInput/PickerModal]: fix announcing of a picker item's content in screen readers when the item becomes focused ([#2946](https://github.com/epam/UUI/pull/2946))
 * [MainMenuDropdown] Remove `role="dialog"` from dropdown body ([#2948](https://github.com/epam/UUI/pull/2948))
 
 # 6.3.1 - 08.10.2025
