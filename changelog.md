@@ -13,7 +13,9 @@
 * [RangeDatePicker]: added option to display clear icon when at least one date is selected
 * [DatePicker], [RangeDatePicker]: added ability to set the initially displayed month and year in the calendar body when the picker opens via `initialViewMonth` prop
 * [PickerInput/PickerModal]: fix announcing of a picker item's content in screen readers when the item becomes focused ([#2946](https://github.com/epam/UUI/pull/2946))
-* [MainMenuDropdown] Remove `role="dialog"` from dropdown body ([#2948](https://github.com/epam/UUI/pull/2948))
+* [MainMenu] Improve accessibility of hidden items in "More" menu ([#2948](https://github.com/epam/UUI/pull/2948))
+    * Add `role="menu"` to the container wrapping the list of items
+    * Provide an example in the documentation of how to assigning `role="menuitem"` to the items only when they are present in the menu
 
 # 6.3.1 - 08.10.2025
 
