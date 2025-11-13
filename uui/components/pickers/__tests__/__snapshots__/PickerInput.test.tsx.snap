@@ -87,6 +87,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
                     aria-posinset="1"
                     aria-selected="false"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top uui-focus -clickable"
+                    id="2"
                     role="option"
                     tabindex="-1"
                   >
@@ -127,6 +128,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
                     aria-posinset="2"
                     aria-selected="false"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    id="3"
                     role="option"
                     tabindex="-1"
                   >

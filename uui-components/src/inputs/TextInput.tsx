@@ -114,6 +114,7 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
         dir: props?.rawProps?.dir === 'auto'
             ? browserBugFixDirAuto(props.value || props.placeholder)
             : props?.rawProps?.dir, // TODO: remove after browser bug fix
+        'aria-activedescendant': props.rawProps?.['aria-activedescendant'],
     });
 
     const icon = props.icon && (
