@@ -148,6 +148,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
             aria-selected={ props.isSelectable ? props.isSelected : null }
             tabIndex={ -1 }
             ref={ rowNode }
+            id={ props.rowKey }
             className={ cx(
                 css.pickerRow,
                 'uui-picker_input-row',

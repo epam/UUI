@@ -74,6 +74,26 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, auto
         }
     };
 
+    const {
+        focusedIndex,
+        topIndex,
+    } = props.value;
+
+    const focusedRowId = useMemo((): string => {
+        // No need to make unnecessary calculations.
+        if (!props.showSearch) {
+            return '';
+        }
+
+        const focusedRow = props.rows.at(focusedIndex - topIndex);
+
+        if (!focusedRow) {
+            return '';
+        }
+
+        return focusedRow.rowKey;
+    }, [props.showSearch, focusedIndex, topIndex]);
+
     const renderEmpty = () => {
         const search = props.value.search;
 
@@ -156,7 +176,10 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, auto
                 onKeyDown={ searchKeyDown }
                 size={ searchSize }
                 debounceDelay={ props.searchDebounceDelay }
-                rawProps={ { dir: 'auto' } }
+                rawProps={ {
+                    dir: 'auto',
+                    'aria-activedescendant': focusedRowId,
+                } }
             />
         );
     };

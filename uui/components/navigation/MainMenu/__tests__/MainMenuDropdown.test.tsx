@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
+import { renderSnapshotWithContextAsync, renderWithContextAsync, screen, userEvent } from '@epam/uui-test-utils';
 import { MainMenuDropdown } from '../MainMenuDropdown';
 import { MainMenuButton } from '../MainMenuButton';
 
@@ -9,8 +9,8 @@ describe('MainMenuDropdown', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', async () => {
-        const tree = await renderSnapshotWithContextAsync(
+    it('should be rendered correctly in opened state', async () => {
+        const tree = await renderWithContextAsync(
             <MainMenuDropdown
                 renderBody={ () => {
                     return (
@@ -25,9 +25,14 @@ describe('MainMenuDropdown', () => {
                 estimatedWidth={ 120 }
                 priority={ 6 }
             >
-                
+
             </MainMenuDropdown>,
         );
-        expect(tree).toMatchSnapshot();
+
+        const button = screen.getByRole('button', { name: 'Test button' });
+
+        await userEvent.click(button);
+
+        expect(tree.baseElement).toMatchSnapshot();
     });
 });

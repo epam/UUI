@@ -1,0 +1,89 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Items hidden in the \"More\" menu should have "
+      },
+      {
+        "text": "role=\"menuitem\"",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", while the buttons not hidden in the menu should not have it. To conditionally assign the role, make the following changes:"
+      }
+    ]
+  },
+  {
+    "type": "ordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Provide a generic type to "
+              },
+              {
+                "text": "AdaptiveItemProps",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " to allow passing a role to the items"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "In the \"More\" item's "
+              },
+              {
+                "text": "render",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " function, pass the role when rendering the hidden items ("
+              },
+              {
+                "text": "hiddenItems.render()",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": ")"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Use the role in each item's "
+              },
+              {
+                "text": "render",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " function"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
