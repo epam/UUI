@@ -33,11 +33,13 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         middleware,
         boundaryElement,
         closeOnEscape = true,
+        pinToToggler = true,
     } = props;
 
     const uuiContext = useContext(UuiContext);
 
     const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+    const fixedPositionRef = useRef<{ x: number, y: number } | null>(null);
 
     const open = controlledOpen ?? uncontrolledOpen;
     const setOpen = setControlledOpen ?? setUncontrolledOpen;
@@ -433,6 +435,20 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         updateTogglerSize();
     }
 
+    useEffect(() => {
+        if (!open) {
+            fixedPositionRef.current = null;
+        }
+    }, [open]);
+
+    useEffect(() => {
+        if (!pinToToggler) {
+            if (open && fixedPositionRef.current == null && x && y) {
+                fixedPositionRef.current = { x, y };
+            }
+        }
+    }, [open, x, y, fixedPositionRef, pinToToggler]);
+
     return (
         <>
             {targetElement}
@@ -447,8 +463,8 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
                             onKeyDown={ floating?.onKeyDown }
                             style={ {
                                 position: strategy,
-                                top: y ?? 0,
-                                left: x ?? 0,
+                                top: (!pinToToggler && fixedPositionRef.current != null) ? fixedPositionRef.current.y : (y ?? 0),
+                                left: (!pinToToggler && fixedPositionRef.current != null) ? fixedPositionRef.current.x : (x ?? 0),
                                 zIndex: zIndex != null ? zIndex : layerRef.current?.zIndex,
                             } }
                             data-placement={ finalPlacement }

@@ -83,4 +83,9 @@ export interface DropdownProps extends Partial<IControlled<boolean>> {
      * @default true
      * */
     closeOnEscape?: boolean;
+    /**
+     * If true, dropdown will always follow the toggler (pinned). If false, dropdown will stay at the position where it was first opened (static).
+     * @default true
+     */
+    pinToToggler?: boolean;
 }
