@@ -12,7 +12,7 @@
 * [DatePickers]: fixed calendar matrix calculation to use locale-specific `firstDayOfWeek` from dayjs instead of hardcoded i18n configuration, ensuring correct calendar layout for any locale.
 * [RangeDatePicker]: added option to display clear icon when at least one date is selected
 * [DatePicker], [RangeDatePicker]: added ability to set the initially displayed month and year in the calendar body when the picker opens via `initialViewMonth` prop
-
+* [Dropdown]: added `pinToToggler` prop to control dropdown positioning. When set to `true`, the dropdown stays pinned to the toggler and follows its position. When set to `false`, the dropdown remains static at its initial position after opening. Default is `true`.
 
 # 6.3.1 - 08.10.2025
 
