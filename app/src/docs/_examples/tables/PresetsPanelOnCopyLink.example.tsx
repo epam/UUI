@@ -181,9 +181,7 @@ export default function PresetsPanelExample() {
         svc.uuiNotifications.show(
             (props) => (
                 <SuccessNotification { ...props }>
-                    <div className="uui-presets-panel-notification-text">
-                        Link copied to clipboard
-                    </div>
+                    <Text>Link copied to clipboard</Text>
                 </SuccessNotification>
             ),
             { duration: 3 },
