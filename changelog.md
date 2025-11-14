@@ -17,7 +17,7 @@
     * Add `aria-haspopup="menu"` to the "More" button
     * Add `role="menu"` to the container wrapping the list of items
     * Provide an example in the documentation of how to assign `role="menuitem"` to the items only when they are present in the menu
-* [PresetsPanelOnCopyLink, PresetActionsDropdown]: Fixed unreadable dark text in SuccessNotification after Copy link action under Loveship-Dark theme by replacing `div` with the `Text` component for proper theming and consistency
+* [PresetActionsDropdown]: Fixed unreadable dark text in SuccessNotification after Copy link action under Loveship-Dark theme
 
 # 6.3.1 - 08.10.2025
 
