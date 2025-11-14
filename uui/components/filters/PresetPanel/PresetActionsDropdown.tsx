@@ -7,7 +7,6 @@ import { IconButton } from '../../buttons';
 import { settings } from '../../../settings';
 
 import css from './PresetActionsDropdown.module.scss';
-import { Text } from '../../typography';
 
 interface ITubButtonDropdownProps extends Omit<IPresetsApi, 'presets'> {
     preset: ITablePreset;
@@ -25,7 +24,9 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
             .show(
                 (props) => (
                     <SuccessNotification { ...props }>
-                        <Text>{text}</Text>
+                        <div className="uui-presets-panel-notification-text">
+                            {text}
+                        </div>
                     </SuccessNotification>
                 ),
                 { duration: 3 },
