@@ -372,9 +372,9 @@ describe('Dropdown', () => {
         });
     });
 
-    describe('pinToToggler', () => {
-        it('should follow the toggler when pinToToggler is true (default)', async () => {
-            const { target } = await setupUncontrolledDropdownForTests({ pinToToggler: true });
+    describe('fixedBodyPosition', () => {
+        it('should follow the toggler by default', async () => {
+            const { target } = await setupUncontrolledDropdownForTests({});
             await userEvent.click(target);
             const dialog = screen.getByRole('dialog');
 
@@ -393,8 +393,8 @@ describe('Dropdown', () => {
             expect(target.getBoundingClientRect()).toMatchObject(movedRect);
         });
 
-        it('should stay at the same position when pinToToggler is false', async () => {
-            const { target } = await setupUncontrolledDropdownForTests({ pinToToggler: false });
+        it('should stay at the same position when fixedBodyPosition is true', async () => {
+            const { target } = await setupUncontrolledDropdownForTests({ fixedBodyPosition: true });
             await userEvent.click(target);
             const dialog = screen.getByRole('dialog');
 
