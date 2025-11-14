@@ -17,7 +17,7 @@
     * Add `aria-haspopup="menu"` to the "More" button
     * Add `role="menu"` to the container wrapping the list of items
     * Provide an example in the documentation of how to assign `role="menuitem"` to the items only when they are present in the menu
-* [Dropdown]: added `pinToToggler` prop to control dropdown positioning. When set to `true`, the dropdown stays pinned to the toggler and follows its position. When set to `false`, the dropdown remains static at its initial position after opening. Default is `true`.
+* [Dropdown]: added `fixedBodyPosition` prop to control dropdown positioning. Pass `true` to keep the dropdown list fixed in the position where it was first opened.
 
 # 6.3.1 - 08.10.2025
 
