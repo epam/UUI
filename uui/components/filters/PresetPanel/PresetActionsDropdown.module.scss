@@ -23,6 +23,7 @@
 
 :global(.uui-presets-panel-notification-text) {
     --uui-presets-panel-notification-text-font: var(--uui-text-primary);
+    --uui-presets-panel-notification-text-font-family: var(--uui-font);
     --uui-presets-panel-notification-text-font-size: 14px;
     --uui-presets-panel-notification-text-font-weight: 400;
     --uui-presets-panel-notification-text-font-style: normal;
@@ -30,7 +31,7 @@
     --uui-presets-panel-notification-text-padding: 9px 0;
     //
     color: var(--uui-presets-panel-notification-text-font);
-    font-family: var(--uui-presets-panel-notification-text-font);
+    font-family: var(--uui-presets-panel-notification-text-font-family);
     font-style: var(--uui-presets-panel-notification-text-font-style);
     font-size: var(--uui-presets-panel-notification-text-font-size);
     font-weight: var(--uui-presets-panel-notification-text-font-weight);
