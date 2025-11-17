@@ -687,7 +687,7 @@ describe('PickerInput', () => {
                 fireEvent.click(window.document.body);
                 expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
                 expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
-                const clear = screen.getByRole('button');
+                const clear = screen.getByRole('button', { name: 'Clear input' });
                 fireEvent.click(clear);
                 await waitFor(() => {
                     expect(screen.queryByText('C2')).not.toBeInTheDocument();
@@ -796,7 +796,7 @@ describe('PickerInput', () => {
                     expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
                 });
 
-                const clear = screen.getByRole('button');
+                const clear = screen.getByRole('button', { name: 'Clear input' });
                 fireEvent.click(clear);
                 await waitFor(() => {
                     expect(screen.queryByText('C2')).not.toBeInTheDocument();

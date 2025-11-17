@@ -19,7 +19,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
         >
           <div
             aria-label="Icon in input"
-            class="container uui-icon uui-enabled controlIcon"
+            class="container uui-icon uui-enabled uui-control_icon"
           >
             <svg
               class=""

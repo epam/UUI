@@ -1,53 +1,25 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "SearchInput implements a debounce pattern for the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "onValueChange",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " callback. You can configure the debounce delay by passing the  ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "debounceDelay",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "  props, by default: 500ms.",
-            "marks": []
-          }
-        ]
+        "text": "SearchInput implements a debounce pattern for the "
+      },
+      {
+        "text": "onValueChange",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " callback. You can configure the debounce delay by passing the  "
+      },
+      {
+        "text": "debounceDelay",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "  props, by default: 500ms."
       }
     ]
   }
-}
+]

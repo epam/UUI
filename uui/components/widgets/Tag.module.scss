@@ -49,21 +49,22 @@
         padding-inline-end: var(--uui-tag-caption-horizontal-padding);
     }
 
-    &:global(.uui-button-box) {
-        :global(.uui-icon) {
-            /*
-                Default colors of `ControlIcon` don't match possible colors this component supports.
-                So we use theme-specific contrast colors, and sacrifice subtle changes on hover/focus as a trade-off.
-            */
-            --uui-control_icon: var(--uui-tag-fill);
-            --uui-control_icon-clickable: var(--uui-tag-fill);
-            --uui-control_icon-clickable-hover: var(--uui-tag-fill);
-            --uui-control_icon-clickable-active: var(--uui-tag-fill);
+    :global(.uui-control_icon) {
+        /*
+           Default colors of `ControlIcon` don't match possible colors this component supports.
+           So we use theme-specific contrast colors, and sacrifice subtle changes on hover/focus as a trade-off.
+       */
+        --uui-control_icon: var(--uui-tag-fill);
+        --uui-control_icon-clickable: var(--uui-tag-fill);
+        --uui-control_icon-clickable-hover: var(--uui-tag-fill);
+        --uui-control_icon-clickable-active: var(--uui-tag-fill);
+        --uui-control-icon-disabled: var(--uui-tag-fill);
+    }
 
-            svg {
-                height: var(--uui-tag-icon-height);
-                width: inherit;
-            }
+    :global(.uui-icon) {
+        svg {
+            height: var(--uui-tag-icon-height);
+            width: inherit;
         }
     }
 
@@ -71,6 +72,7 @@
         border-radius: var(--uui-tag-border-radius);
         background-color: var(--uui-tag-bg);
         border: var(--uui-tag-border-width) solid var(--uui-tag-border);
+        fill: var(--uui-tag-fill);
 
         &:global(.-clickable) {
             &:hover, &:active {
