@@ -14,6 +14,7 @@ import { i18n } from '../../i18n';
 import { settings } from '../../settings';
 
 import css from './PickerModal.module.scss';
+import { MoveFocusInside } from 'react-focus-lock';
 
 export type PickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> &
 IHasCaption &
@@ -116,29 +117,30 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
     return (
         <ModalBlocker { ...props }>
             <ModalWindow width={ 600 } height={ 700 } cx={ css.body }>
-                <ModalHeader title={ props.caption || i18n.pickerModal.headerTitle } onClose={ () => props.abort() } />
+                <ModalHeader title={ props.caption || i18n.pickerModal.headerTitle } onClose={ null } />
                 <FlexCell cx={ css.subHeaderWrapper }>
                     <FlexRow vPadding="24">
-                        <SearchInput
-                            { ...dataSourceStateLens.prop('search').toProps() }
-                            onKeyDown={ (e) =>
-                                handleDataSourceKeyboard(
-                                    {
-                                        value: dataSourceState,
-                                        onValueChange: handleDataSourceValueChange,
-                                        listView: view,
-                                        rows: dataRows,
-                                        searchPosition: 'body',
-                                    },
-                                    e,
-                                ) }
-                            autoFocus={ true }
-                            placeholder={ i18n.pickerModal.searchPlaceholder }
-                            rawProps={ {
-                                dir: 'auto',
-                                'aria-activedescendant': focusedRowId,
-                            } }
-                        />
+                        <MoveFocusInside className={ css.search }>
+                            <SearchInput
+                                { ...dataSourceStateLens.prop('search').toProps() }
+                                onKeyDown={ (e) =>
+                                    handleDataSourceKeyboard(
+                                        {
+                                            value: dataSourceState,
+                                            onValueChange: handleDataSourceValueChange,
+                                            listView: view,
+                                            rows: dataRows,
+                                            searchPosition: 'body',
+                                        },
+                                        e,
+                                    ) }
+                                placeholder={ i18n.pickerModal.searchPlaceholder }
+                                rawProps={ {
+                                    dir: 'auto',
+                                    'aria-activedescendant': focusedRowId,
+                                } }
+                            />
+                        </MoveFocusInside>
                     </FlexRow>
                     {!isSingleSelect() && (
                         <Switch
