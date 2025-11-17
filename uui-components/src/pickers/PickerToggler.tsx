@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, cx, IHasRawProps, isEventTargetInsideClickable, DataRowProps, IHasCaption, IDisableable } from '@epam/uui-core';
-import { IconContainer } from '../layout';
 import { i18n } from '../i18n';
 import css from './PickerToggler.module.scss';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
@@ -391,7 +390,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                     {props.isDropdown
                         && (!props?.minCharsToSearch || (props?.minCharsToSearch && props.searchPosition === 'body'))
                         && (
-                            <IconContainer
+                            <ControlIcon
                                 icon={ props.dropdownIcon }
                                 flipY={ props.isOpen }
                                 cx="uui-icon-dropdown"

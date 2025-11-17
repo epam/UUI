@@ -21,6 +21,9 @@ export type IconButtonProps = ClickableComponentProps & Omit<IDropdownToggler, '
     /** Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise')) */
     rotate?: '0' | '90cw' | '180' | '90ccw';
 
+    /** Flips the icon vertically */
+    flipY?: boolean;
+
     /** Called when keyDown event is fired on component */
     onKeyDown?: (e: React.KeyboardEvent) => void;
 };

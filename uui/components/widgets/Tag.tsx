@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Icon, IDropdownToggler, IHasCaption, IHasIcon, Overwrite, uuiElement,
 } from '@epam/uui-core';
-import { Clickable, ClickableComponentProps, ControlIcon, IconContainer } from '@epam/uui-components';
+import { Clickable, ClickableComponentProps, ControlIcon } from '@epam/uui-components';
 import { CountIndicator } from './CountIndicator';
 import { settings } from '../../settings';
 
@@ -96,7 +96,7 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
             ) }
             { props.iconPosition === 'right' && icon }
             { props.isDropdown && (
-                <IconContainer icon={ DropdownIcon } flipY={ props.isOpen } />
+                <ControlIcon icon={ DropdownIcon } flipY={ props.isOpen } />
             )}
             { props.onClear && !props.isDisabled && (
                 <ControlIcon

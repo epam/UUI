@@ -95,7 +95,7 @@
         }
     }
 
-    :global(.uui-icon) {
+    :global(.uui-control_icon) {
         /*
             `Tag` component uses contrast colors for custom icon and clear button. It works fine for standalone tags,
             but looks inconsistent in picker input.
