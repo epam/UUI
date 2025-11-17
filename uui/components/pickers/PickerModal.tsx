@@ -117,7 +117,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
     return (
         <ModalBlocker { ...props }>
             <ModalWindow width={ 600 } height={ 700 } cx={ css.body }>
-                <ModalHeader title={ props.caption || i18n.pickerModal.headerTitle } onClose={ null } />
+                <ModalHeader title={ props.caption || i18n.pickerModal.headerTitle } onClose={ () => props.abort() } />
                 <FlexCell cx={ css.subHeaderWrapper }>
                     <FlexRow vPadding="24">
                         <MoveFocusInside className={ css.search }>
