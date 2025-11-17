@@ -83,4 +83,9 @@ export interface DropdownProps extends Partial<IControlled<boolean>> {
      * @default true
      * */
     closeOnEscape?: boolean;
+    /**
+     * Pass true, if you want to keep the dropdown list fixed in the position where it was first opened.
+     * By default, the dropdown list follows the toggler.
+     */
+    fixedBodyPosition?: boolean;
 }

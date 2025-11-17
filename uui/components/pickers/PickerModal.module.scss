@@ -8,6 +8,10 @@
     margin-bottom: 12px;
 }
 
+.search {
+    flex-grow: 1;
+}
+
 .no-found-modal-container {
     display: flex;
     flex-direction: column;

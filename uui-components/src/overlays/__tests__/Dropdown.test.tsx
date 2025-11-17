@@ -371,4 +371,51 @@ describe('Dropdown', () => {
             expect(screen.queryByText(BODY_TEXT)).not.toBeInTheDocument();
         });
     });
+
+    describe('fixedBodyPosition', () => {
+        it('should follow the toggler by default', async () => {
+            const { target } = await setupUncontrolledDropdownForTests({});
+            await userEvent.click(target);
+            const dialog = screen.getByRole('dialog');
+
+            // Initial position
+            const initialRect = { top: 100, left: 100, width: 50, height: 20, right: 150, bottom: 120, x: 100, y: 100 };
+            const movedRect = { top: 200, left: 200, width: 50, height: 20, right: 250, bottom: 220, x: 200, y: 200 };
+            target.getBoundingClientRect = jest.fn(() => initialRect as DOMRect);
+            dialog.getBoundingClientRect = jest.fn(() => initialRect as DOMRect);
+
+            // Simulate toggler move
+            target.getBoundingClientRect = jest.fn(() => movedRect as DOMRect);
+            window.dispatchEvent(new Event('resize'));
+            await act(async () => { await delay(10); });
+
+            // The dropdown should update its position (simulate style update)
+            expect(target.getBoundingClientRect()).toMatchObject(movedRect);
+        });
+
+        it('should stay at the same position when fixedBodyPosition is true', async () => {
+            const { target } = await setupUncontrolledDropdownForTests({ fixedBodyPosition: true });
+            await userEvent.click(target);
+            const dialog = screen.getByRole('dialog');
+
+            // Initial position
+            const initialRect = { top: 100, left: 100, width: 50, height: 20, right: 150, bottom: 120, x: 100, y: 100 };
+            const movedRect = { top: 200, left: 200, width: 50, height: 20, right: 250, bottom: 220, x: 200, y: 200 };
+            target.getBoundingClientRect = jest.fn(() => initialRect as DOMRect);
+            dialog.getBoundingClientRect = jest.fn(() => initialRect as DOMRect);
+
+            // Save initial style
+            const initialTop = dialog.style.top;
+            const initialLeft = dialog.style.left;
+
+            // Simulate toggler move
+            target.getBoundingClientRect = jest.fn(() => movedRect as DOMRect);
+            window.dispatchEvent(new Event('resize'));
+            await act(async () => { await delay(10); });
+
+            // The dropdown should NOT update its style.top/left
+            expect(dialog.style.top).toBe(initialTop);
+            expect(dialog.style.left).toBe(initialLeft);
+        });
+    });
 });
