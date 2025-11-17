@@ -56,29 +56,35 @@ exports[`PickerModal should be rendered correctly 1`] = `
           style="--uui-flex-row-v-padding: 24px;"
         >
           <div
-            aria-activedescendant="3"
-            class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
-            dir="auto"
+            class="search"
+            data-autofocus-inside="true"
           >
             <div
-              aria-label="Icon in input"
-              class="container uui-icon uui-enabled controlIcon"
+              aria-activedescendant="3"
+              class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
+              dir="auto"
+              tabindex="-1"
             >
-              <svg
-                class=""
+              <div
+                aria-label="Icon in input"
+                class="container uui-icon uui-enabled"
+              >
+                <svg
+                  class=""
+                />
+              </div>
+              <input
+                aria-activedescendant="3"
+                aria-invalid="false"
+                class="uui-input"
+                dir="ltr"
+                inputmode="search"
+                placeholder="Type text for quick search"
+                tabindex="0"
+                type="search"
+                value=""
               />
             </div>
-            <input
-              aria-activedescendant="3"
-              aria-invalid="false"
-              class="uui-input"
-              dir="ltr"
-              inputmode="search"
-              placeholder="Type text for quick search"
-              tabindex="0"
-              type="search"
-              value=""
-            />
           </div>
         </div>
       </div>
@@ -340,29 +346,35 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
           style="--uui-flex-row-v-padding: 24px;"
         >
           <div
-            aria-activedescendant="2"
-            class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
-            dir="auto"
+            class="search"
+            data-autofocus-inside="true"
           >
             <div
-              aria-label="Icon in input"
-              class="container uui-icon uui-enabled controlIcon"
+              aria-activedescendant="2"
+              class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
+              dir="auto"
+              tabindex="-1"
             >
-              <svg
-                class=""
+              <div
+                aria-label="Icon in input"
+                class="container uui-icon uui-enabled"
+              >
+                <svg
+                  class=""
+                />
+              </div>
+              <input
+                aria-activedescendant="2"
+                aria-invalid="false"
+                class="uui-input"
+                dir="ltr"
+                inputmode="search"
+                placeholder="Type text for quick search"
+                tabindex="0"
+                type="search"
+                value=""
               />
             </div>
-            <input
-              aria-activedescendant="2"
-              aria-invalid="false"
-              class="uui-input"
-              dir="ltr"
-              inputmode="search"
-              placeholder="Type text for quick search"
-              tabindex="0"
-              type="search"
-              value=""
-            />
           </div>
         </div>
         <label
@@ -1166,29 +1178,35 @@ exports[`PickerModal should open body 1`] = `
             style="--uui-flex-row-v-padding: 24px;"
           >
             <div
-              aria-activedescendant="_loading_29"
-              class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
-              dir="auto"
+              class="search"
+              data-autofocus-inside="true"
             >
               <div
-                aria-label="Icon in input"
-                class="container uui-icon uui-enabled controlIcon"
+                aria-activedescendant="_loading_29"
+                class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
+                dir="auto"
+                tabindex="-1"
               >
-                <svg
-                  class=""
+                <div
+                  aria-label="Icon in input"
+                  class="container uui-icon uui-enabled"
+                >
+                  <svg
+                    class=""
+                  />
+                </div>
+                <input
+                  aria-activedescendant="_loading_29"
+                  aria-invalid="false"
+                  class="uui-input"
+                  dir="ltr"
+                  inputmode="search"
+                  placeholder="Type text for quick search"
+                  tabindex="0"
+                  type="search"
+                  value=""
                 />
               </div>
-              <input
-                aria-activedescendant="_loading_29"
-                aria-invalid="false"
-                class="uui-input"
-                dir="ltr"
-                inputmode="search"
-                placeholder="Type text for quick search"
-                tabindex="0"
-                type="search"
-                value=""
-              />
             </div>
           </div>
         </div>
