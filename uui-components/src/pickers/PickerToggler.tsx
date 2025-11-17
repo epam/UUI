@@ -251,6 +251,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                     props.pickerMode === 'single' && css.singleInput,
                     props.searchPosition === 'input' && css.cursorText,
                     isActivePlaceholder() && uuiElement.placeholder,
+                    !props.isDisabled && uuiMarkers.clickable,
                 ) }
                 disabled={ props.isDisabled }
                 placeholder={ placeholder }
@@ -289,21 +290,18 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         return (isWithinContainer && !isClickable) || isEventTargetContainer(event);
     };
 
-    const handleWrapperClick = (event: React.MouseEvent<HTMLElement>) => {
+    const handleWrapperClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (isPickerDisabled) {
             return;
         }
 
         if (isNonClickableEventTarget(event)) {
             moveFocusToControl();
-
-            if (isEventTargetContainer(event)) {
-                props.onClick?.(event);
-            }
+            togglerPickerOpened(event);
         }
     };
 
-    const handleWrapperFocus = (event: React.FocusEvent<HTMLElement>) => {
+    const handleWrapperFocus = (event: React.FocusEvent<HTMLDivElement>) => {
         const isFocusFromToggler = containerRef.current?.contains(event.relatedTarget);
 
         if (isPickerDisabled) {
