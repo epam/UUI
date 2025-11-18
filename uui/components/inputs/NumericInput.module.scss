@@ -46,6 +46,15 @@
         }
     }
 
+    &:global(.uui-control-mode-cell) {
+        &:not(:hover, :global(.uui-focus), :focus-within),
+        &:global(.uui-disabled) {
+            :global(.uui-numeric-input-button-group) {
+                fill: transparent;
+            }
+        }
+    }
+
     &:global(.uui-disabled) {
         :global(.uui-numeric-input-button-group) {
             > *:hover, > *:focus {
