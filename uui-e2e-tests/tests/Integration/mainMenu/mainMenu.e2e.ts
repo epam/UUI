@@ -30,12 +30,13 @@ test('mainMenu/Responsive scenario', async ({ pageWrapper }, testInfo) => {
     });
 
     await test.step('Responsive: set small viewport and open burger menu', async () => {
+        const defaultViewportSize = pageWrapper.page.viewportSize();
         await pageWrapper.page.setViewportSize({ width: 500, height: 900 });
         await expectScreenshot(3, 'responsive-burger-visible');
         await mainMenu.clickBurger();
         expect(await mainMenu.isBurgerVisible()).toBe(true);
         await expectScreenshot(4, 'responsive-burger-open');
-        pageWrapper.page.viewportSize();
+        await pageWrapper.page.setViewportSize(defaultViewportSize);
     });
 });
 
@@ -46,6 +47,7 @@ test('mainMenu/ServerBadge', async ({ pageWrapper }, testInfo) => {
         PageObjectConstructor: MainMenuObject,
         testUrl: testPageUrl.serverBadgePreview,
     });
+    const defaultViewportSize = pageWrapper.page.viewportSize();
     await pageWrapper.page.setViewportSize({ width: 640, height: 120 });
     const mainMenu = pageObject as MainMenuObject;
     await expect(mainMenu.locators.serverBadgeLabel).toBeVisible();
@@ -54,5 +56,5 @@ test('mainMenu/ServerBadge', async ({ pageWrapper }, testInfo) => {
     const color = await mainMenu.getServerBadgeColor();
     expect(color).toBeTruthy();
     await expectScreenshot(1, 'serverBadge-smoke');
-    pageWrapper.page.viewportSize();
+    await pageWrapper.page.setViewportSize(defaultViewportSize);
 });

@@ -132,7 +132,8 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
                 onClose={ () => toggleBodyOpening(false) }
                 cx={ [props.bodyCx, 'uui-picker_input-body-wrapper'] }
                 width={ dropdownProps.togglerWidth > minBodyWidth ? dropdownProps.togglerWidth : minBodyWidth }
-                focusLock={ getSearchPosition() === 'body' }
+                focusLock={ true }
+                shards={ getSearchPosition() === 'input' ? [togglerRef] : undefined }
             >
                 <DataPickerBody
                     { ...dropdownProps }

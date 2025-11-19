@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react';
-import { ArrayDataSource, CascadeSelection, LazyDataSource } from '@epam/uui-core';
+import React, { ReactNode, useState } from 'react';
+import { ArrayDataSource, CascadeSelection, LazyDataSource, useArrayDataSource } from '@epam/uui-core';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, waitFor, userEvent, PickerInputTestObject, act,
+    renderWithContextAsync,
 } from '@epam/uui-test-utils';
 import { Modals, PickerToggler } from '@epam/uui-components';
 import { DataPickerRow, FlexCell, PickerItem, Text, Button } from '../../';
@@ -686,7 +687,7 @@ describe('PickerInput', () => {
                 fireEvent.click(window.document.body);
                 expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
                 expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
-                const clear = screen.getByRole('button');
+                const clear = screen.getByRole('button', { name: 'Clear input' });
                 fireEvent.click(clear);
                 await waitFor(() => {
                     expect(screen.queryByText('C2')).not.toBeInTheDocument();
@@ -795,7 +796,7 @@ describe('PickerInput', () => {
                     expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
                 });
 
-                const clear = screen.getByRole('button');
+                const clear = screen.getByRole('button', { name: 'Clear input' });
                 fireEvent.click(clear);
                 await waitFor(() => {
                     expect(screen.queryByText('C2')).not.toBeInTheDocument();
@@ -1682,11 +1683,19 @@ describe('PickerInput', () => {
             const { mocks } = await setupPickerInputForTest({
                 value: undefined,
                 onIconClick: jest.fn(),
-                icon: () => <div data-testid = "test-icon" />,
+                icon: () => {
+                    return null;
+                },
             });
+            const clickableIcon = screen.getByRole(
+                'button',
+                {
+                    name: /icon in input/i,
+                },
+            );
 
-            const iconContainer = screen.getByTestId('test-icon').parentElement as Element;
-            fireEvent.click(iconContainer);
+            await userEvent.click(clickableIcon);
+
             expect(mocks.onIconClick).toBeCalledTimes(1);
         });
 
@@ -1811,7 +1820,10 @@ describe('PickerInput', () => {
                     disableClear: true,
                 });
 
-                fireEvent.click(dom.target);
+                const inputSearch = screen.getByRole('searchbox');
+
+                await userEvent.click(inputSearch);
+
                 const dialog = screen.getByRole('dialog');
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
@@ -1822,16 +1834,15 @@ describe('PickerInput', () => {
             });
 
             it('should not render footer while searching', async () => {
-                const { dom } = await setupPickerInputForTest({
+                await setupPickerInputForTest({
                     value: undefined,
                     selectionMode: 'multi',
                     searchPosition: 'body',
                 });
 
-                // eslint-disable-next-line testing-library/no-unnecessary-act
-                await act(async () => {
-                    fireEvent.click(dom.target);
-                });
+                const inputSearch = screen.getByRole('searchbox');
+
+                await userEvent.click(inputSearch);
 
                 const dialog = screen.getByRole('dialog');
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
@@ -1849,17 +1860,16 @@ describe('PickerInput', () => {
             });
 
             it('should not render footer if there is no selection and no visible rows', async () => {
-                const { dom } = await setupPickerInputForTest({
+                await setupPickerInputForTest({
                     value: undefined,
                     selectionMode: 'multi',
                     searchPosition: 'body',
                     minCharsToSearch: 3, // by picker open there will be no visible rows until 3+ chars will be entered in search
                 });
 
-                // eslint-disable-next-line testing-library/no-unnecessary-act
-                await act(async () => {
-                    fireEvent.click(dom.target);
-                });
+                const inputSearch = screen.getByRole('searchbox');
+
+                await userEvent.click(inputSearch);
 
                 const dialog = screen.getByRole('dialog');
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
@@ -1879,10 +1889,7 @@ describe('PickerInput', () => {
                     minCharsToSearch: 3, // by picker open there will be no visible rows until 3+ chars will be entered in search
                 });
 
-                // eslint-disable-next-line testing-library/no-unnecessary-act
-                await act(async () => {
-                    fireEvent.click(dom.target);
-                });
+                await userEvent.click(dom.target);
 
                 const dialog = screen.getByRole('dialog');
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
@@ -1934,5 +1941,104 @@ describe('PickerInput', () => {
             expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 6]);
         });
         expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'B1']);
+    });
+
+    it('clears input via keyboard using clear button', async () => {
+        function TestComponent(): React.ReactNode {
+            interface Option {
+                id: string;
+                name: string;
+            }
+            const [
+                option,
+                setOption,
+            ] = useState<Option | undefined>(undefined);
+            const dataSource = useArrayDataSource<
+            Option,
+            Option['id'] | undefined,
+            unknown
+            >(
+                {
+                    items: [
+                        {
+                            id: 'option-1',
+                            name: 'Option 1',
+                        },
+                        {
+                            id: 'option-2',
+                            name: 'Option 2',
+                        },
+                    ],
+                },
+                [],
+            );
+
+            return (
+                <PickerInput
+                    dataSource={ dataSource }
+                    value={ option }
+                    onValueChange={ setOption }
+                    selectionMode="single"
+                    valueType="entity"
+                />
+            );
+        }
+
+        await renderWithContextAsync(
+            <TestComponent />,
+        );
+
+        const pickerInput = await screen.findByRole('searchbox');
+        expect(pickerInput).toBeInTheDocument();
+        expect(pickerInput).toHaveValue('');
+        expect(pickerInput).not.toHaveFocus();
+
+        let clearButton = screen.queryByRole(
+            'button',
+            {
+                name: /clear input/i,
+            },
+        );
+        expect(clearButton).not.toBeInTheDocument();
+
+        await userEvent.click(pickerInput);
+        expect(pickerInput).toHaveFocus();
+
+        const firstOption = await screen.findByRole(
+            'option',
+            {
+                name: /option 1/i,
+            },
+        );
+        expect(firstOption).toBeVisible();
+
+        await userEvent.keyboard('{Enter}');
+        expect(pickerInput).toHaveValue('Option 1');
+        expect(pickerInput).toHaveFocus();
+        expect(
+            screen.queryByRole(
+                'option',
+                {
+                    name: /option 1/i,
+                },
+            ),
+        ).not.toBeInTheDocument();
+        clearButton = screen.queryByRole(
+            'button',
+            {
+                name: /clear input/i,
+            },
+        );
+        expect(clearButton).toBeInTheDocument();
+        expect(clearButton).not.toHaveFocus();
+
+        await userEvent.tab();
+        expect(pickerInput).not.toHaveFocus();
+        expect(clearButton).toHaveFocus();
+
+        await userEvent.keyboard('{Enter}');
+        expect(pickerInput).toHaveValue('');
+        expect(pickerInput).toHaveFocus();
+        expect(clearButton).not.toBeInTheDocument();
     });
 });

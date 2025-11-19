@@ -4,11 +4,10 @@ exports[`MainMenuSearch should be rendered correctly with null value 1`] = `
 <DocumentFragment>
   <div
     class="container uui-input-box -clickable searchInput"
-    tabindex="-1"
   >
     <div
       aria-label="Icon in input"
-      class="container uui-icon uui-enabled"
+      class="container uui-icon uui-enabled uui-control_icon"
     >
       <svg
         class=""
@@ -28,11 +27,10 @@ exports[`MainMenuSearch should be rendered correctly with value and extra props 
 <DocumentFragment>
   <div
     class="container uui-input-box -clickable searchInput"
-    tabindex="-1"
   >
     <div
       aria-label="Icon in input"
-      class="container uui-icon uui-enabled"
+      class="container uui-icon uui-enabled uui-control_icon"
     >
       <svg
         class=""

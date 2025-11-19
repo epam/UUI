@@ -1,10 +1,10 @@
-import { cx, IHasRawProps, uuiMarkers } from '@epam/uui-core';
+import { cx, IHasRawProps, uuiMarkers, uuiMod } from '@epam/uui-core';
 import React from 'react';
 import { IconButton, IconButtonProps } from '../buttons';
 import { IconContainer } from '../layout/IconContainer';
 import css from './ControlIcon.module.scss';
 
-type ControlIconProps = Pick<IconButtonProps, 'cx' | 'icon' | 'isDisabled' | 'onClick' | 'rotate' | 'size' | 'tabIndex'>
+type ControlIconProps = Pick<IconButtonProps, 'cx' | 'icon' | 'isDisabled' | 'onClick' | 'rotate' | 'size' | 'tabIndex' | 'flipY'>
 & IHasRawProps<React.HTMLAttributes<HTMLDivElement> | React.ButtonHTMLAttributes<HTMLButtonElement>> & {
     /** Called when keyDown event is fired on component */
     onKeyDown?: (e: React.KeyboardEvent) => void;
@@ -23,7 +23,7 @@ export function ControlIcon(props: ControlIconProps): React.ReactNode {
             <IconContainer
                 { ...props }
                 rawProps={ props.rawProps as IHasRawProps<React.HTMLAttributes<HTMLDivElement>> }
-                cx={ cx(css.controlIcon, props.cx) }
+                cx={ cx('uui-control_icon', props.isDisabled && uuiMod.disabled, props.cx) }
             />
         );
     }
@@ -31,7 +31,7 @@ export function ControlIcon(props: ControlIconProps): React.ReactNode {
     return (
         <IconButton
             { ...props }
-            cx={ cx(css.controlIcon, props.cx, isFocusable && uuiMarkers.focusable) }
+            cx={ cx('uui-control_icon', css.root, props.cx, props.isDisabled && uuiMod.disabled, isFocusable && uuiMarkers.focusable) }
         />
     );
 }
