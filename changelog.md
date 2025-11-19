@@ -17,6 +17,25 @@
     * Add `aria-haspopup="menu"` to the "More" button
     * Add `role="menu"` to the container wrapping the list of items
     * Provide an example in the documentation of how to assign `role="menuitem"` to the items only when they are present in the menu
+* Make icons and clear buttons in input accessible via keyboard ([#2845](https://github.com/epam/UUI/pull/2845))
+    * Icon set with `icon` property and clear button set with `onClear` property now use a button component with its own CSS variables, which makes some input-specific ones obsolete.
+        * The following CSS variables are no longer available:
+            * `TextInput` (and other inputs that use it):
+                * `--uui-text_input-icon`
+                * `--uui-text_input-icon-disabled`
+                * `--uui-text_input-icon-clickable`
+                * `--uui-text_input-icon-clickable-hover`
+                * `--uui-text_input-icon-clickable-active`
+            * `PickerInput`:
+                * `--uui-picker_toggler-icon-disabled`
+                * `--uui-picker_toggler-icon-clickable`
+                * `--uui-picker_toggler-icon-clickable-hover`
+        * The following CSS variables are should be used instead:
+            * `--uui-control_icon`
+            * `--uui-control_icon-clickable`
+            * `--uui-control_icon-clickable-hover`
+            * `--uui-control_icon-clickable-active`
+    * Icon set with `icon` property in `TextInput` (and other inputs that use it) is now always displayed in `mode="cell"`, not only on hover
 * [Dropdown]: added `fixedBodyPosition` prop to control dropdown positioning. Pass `true` to keep the dropdown list fixed in the position where it was first opened.
 * [PresetActionsDropdown]: Fixed unreadable dark text in SuccessNotification after Copy link action under Loveship-Dark theme
 

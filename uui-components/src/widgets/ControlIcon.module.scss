@@ -3,13 +3,14 @@
     outline-offset: $offset;
 }
 
-.controlIcon {
+:global(.uui-control_icon) {
     --uui-control_icon: var(--uui-control-icon);
     --uui-control_icon-clickable: var(--uui-icon);
     --uui-control_icon-clickable-hover: var(--uui-icon-hover);
     --uui-control_icon-clickable-active: var(--uui-icon-active);
     align-self: center;
     fill: var(--uui-control_icon);
+    flex-shrink: 0;
 
     &:global(.-clickable) {
         fill: var(--uui-control_icon-clickable);
@@ -22,6 +23,10 @@
         &:focus-visible {
             fill: var(--uui-control_icon-clickable-hover);
         }
+    }
+
+    &:global(.uui-disabled) {
+        fill: var(--uui-control-icon-disabled);
     }
 
     &:global(.-focusable) {

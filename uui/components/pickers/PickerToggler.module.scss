@@ -11,10 +11,6 @@
     --uui-picker_toggler-placeholder-readonly: var(--uui-control-placeholder-disabled);
     --uui-picker_toggler-text: var(--uui-control-text);
     --uui-picker_toggler-text-disabled: var(--uui-control-text-disabled);
-    --uui-picker_toggler-icon: var(--uui-control-icon);
-    --uui-picker_toggler-icon-disabled: var(--uui-control-icon-disabled);
-    --uui-picker_toggler-icon-clickable: var(--uui-icon);
-    --uui-picker_toggler-icon-clickable-hover: var(--uui-icon-hover);
 
     // font
     --uui-picker_toggler-font: var(--uui-font);
@@ -49,10 +45,6 @@
 
     div:first-child {
         gap: var(--uui-picker_toggler-multiline-gaps);
-
-        :global(.uui-icon):first-child {
-            padding-inline-end: var(--uui-picker_toggler-horizontal-gap);
-        }
     }
 
     :global(.uui-input) {
@@ -103,11 +95,17 @@
         }
     }
 
-    :global(.uui-icon-cancel) {
-        margin-left: var(--uui-picker_toggler-inner-padding);
-    }
+    :global(.uui-control_icon) {
+        /*
+            `Tag` component uses contrast colors for custom icon and clear button. It works fine for standalone tags,
+            but looks inconsistent in picker input.
+            Here, we reset the colors to the values defined in `ControlIcon`.
+        */
+        --uui-control_icon: var(--uui-control-icon);
+        --uui-control_icon-clickable: var(--uui-icon);
+        --uui-control_icon-clickable-hover: var(--uui-icon-hover);
+        --uui-control_icon-clickable-active: var(--uui-icon-active);
 
-    :global(.uui-icon) {
         svg {
             height: var(--uui-picker_toggler-icon-height);
             width: inherit;
@@ -117,21 +115,6 @@
     &:global(.uui-control-mode-form) {
         background-color: var(--uui-picker_toggler-bg);
         border-color: var(--uui-picker_toggler-border);
-        fill: var(--uui-picker_toggler-icon);
-
-        :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
-            &:global(.uui-enabled) {
-                fill: var(--uui-picker_toggler-icon-clickable);
-
-                &:hover {
-                    fill: var(--uui-picker_toggler-icon-clickable-hover);
-                }
-            }
-
-            &:global(.uui-disabled) {
-                fill: var(--uui-picker_toggler-icon-disabled);
-            }
-        }
 
         &:hover {
             border-color: var(--uui-picker_toggler-border-hover);
@@ -147,34 +130,12 @@
         background-color: transparent !important;
         border-color: transparent;
         border-radius: 0;
-        fill: var(--uui-picker_toggler-icon);
 
-        :global(.uui-picker_toggler-actions) :global(.uui-icon),
-        :global(.uui-button-box) :global(.uui-icon):global(.-clickable) {
-            cursor: pointer;
-
-            &:global(.uui-enabled) {
+        &:not(:hover, :global(.uui-focus), :focus-within),
+        &:global(.uui-disabled) {
+            :global(.uui-icon-cancel),
+            :global(.uui-icon-dropdown) {
                 fill: transparent;
-            }
-
-            &:global(.uui-disabled) {
-                fill: transparent;
-            }
-        }
-
-        &:hover, &:global(.uui-focus) {
-            :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
-                &:global(.uui-enabled) {
-                    fill: var(--uui-picker_toggler-icon-clickable);
-
-                    &:hover {
-                        fill: var(--uui-picker_toggler-icon-clickable-hover);
-                    }
-                }
-
-                &:global(.uui-disabled) {
-                    fill: transparent;
-                }
             }
         }
 
@@ -186,7 +147,6 @@
     &:global(.uui-control-mode-inline) {
         background-color: initial;
         border-color: transparent;
-        fill: var(--uui-picker_toggler-icon-clickable);
 
         &:hover {
             border-color: var(--uui-picker_toggler-border-hover);
@@ -221,7 +181,6 @@
     }
 
     &:global(.uui-disabled) {
-        fill: var(--uui-picker_toggler-icon-disabled);
         @include disabled-input();
 
         :global(.uui-input) {

@@ -3,7 +3,7 @@
 exports[`PickerToggler should render with maximum props 1`] = `
 <DocumentFragment>
   <div
-    class="container uui-input-box -clickable uui-has-value root uui-picker_toggler uui-size-48 uui-control-mode-form"
+    class="container uui-input-box uui-has-value root uui-picker_toggler uui-size-48 uui-control-mode-form"
     tabindex="0"
   >
     <div
@@ -19,28 +19,39 @@ exports[`PickerToggler should render with maximum props 1`] = `
         >
           test
         </div>
-        <div
-          class="container uui-icon uui-enabled -clickable -clickable"
+        <button
+          aria-label="Remove tag"
+          class="uui-button-box uui-enabled -clickable container uui-control_icon root uui-icon-cancel -focusable"
+          tabindex="0"
+          type="button"
         >
-          <svg
-            class=""
-          />
-        </div>
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
       </span>
     </div>
     <div
       class="uui-picker_toggler-actions"
     >
-      <div
-        aria-label="Clear"
-        class="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
-        role="button"
-        tabindex="-1"
+      <button
+        aria-label="Clear input"
+        class="uui-button-box uui-enabled -clickable container uui-control_icon root uui-icon-cancel -focusable"
+        tabindex="0"
+        type="button"
       >
-        <svg
-          class=""
-        />
-      </div>
+        <div
+          class="container uui-icon uui-enabled"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </button>
     </div>
   </div>
 </DocumentFragment>
@@ -58,7 +69,7 @@ exports[`PickerToggler should render with minimum props 1`] = `
       <input
         aria-haspopup="dialog"
         autocomplete="no"
-        class="uui-input singleInput"
+        class="uui-input singleInput -clickable"
         dir="auto"
         tabindex="-1"
         type="search"

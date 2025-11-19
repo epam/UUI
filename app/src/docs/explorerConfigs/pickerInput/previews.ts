@@ -33,7 +33,6 @@ const baseMatrix: TMatrixLocal = {
     getName: { values: [(i) => i.level] },
     valueType: { values: ['id'] },
     placeholder: { values: [TEST_DATA.placeholder] },
-    onIconClick: { examples: [TEST_DATA.callback] },
     dataSource: { examples: [TEST_DATA.dsLanguageLevels] },
 };
 const getMultiSelectMatrix = (): TMatrixLocal => {

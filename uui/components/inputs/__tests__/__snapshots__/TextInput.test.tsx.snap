@@ -4,7 +4,6 @@ exports[`TextInput should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
     class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
-    tabindex="-1"
   >
     <input
       class="uui-input"
@@ -20,7 +19,6 @@ exports[`TextInput should be rendered correctly 2`] = `
 <DocumentFragment>
   <div
     class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
-    tabindex="-1"
   >
     <input
       class="uui-input"
@@ -30,14 +28,14 @@ exports[`TextInput should be rendered correctly 2`] = `
     />
     <div
       aria-label="Icon in input"
-      class="container uui-icon uui-enabled"
+      class="container uui-icon uui-enabled uui-control_icon"
     >
       <svg
         class=""
       />
     </div>
     <div
-      class="container uui-icon uui-enabled pointer"
+      class="container uui-icon uui-enabled uui-control_icon pointer uui-icon-dropdown"
     >
       <svg
         class="flipY"
