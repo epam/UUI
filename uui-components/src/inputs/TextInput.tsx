@@ -3,7 +3,6 @@ import {
     Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext,
     isEventTargetInsideClickable,
 } from '@epam/uui-core';
-import { IconContainer } from '../layout';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
 import { ControlIcon } from '../widgets/ControlIcon';
 import css from './TextInput.module.scss';
@@ -156,7 +155,13 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
             {props.iconPosition !== 'right' && icon}
             {props.renderInput ? props.renderInput(getInputProps()) : <input { ...getInputProps() } />}
             {props.onAccept && showIconsOnAction && (
-                <IconContainer cx={ cx('uui-icon-accept') } isDisabled={ props.isDisabled } icon={ props.acceptIcon } onClick={ props.onAccept } rawProps={ { role: 'button' } } />
+                <ControlIcon
+                    cx={ cx('uui-icon-accept') }
+                    isDisabled={ props.isDisabled }
+                    icon={ props.acceptIcon }
+                    onClick={ props.onAccept }
+                    rawProps={ { role: 'button' } }
+                />
             )}
             {props.onCancel && showIconsOnAction && (
                 <ControlIcon

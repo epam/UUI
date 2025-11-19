@@ -10,6 +10,7 @@
     --uui-control_icon-clickable-active: var(--uui-icon-active);
     align-self: center;
     fill: var(--uui-control_icon);
+    flex-shrink: 0;
 
     &:global(.-clickable) {
         fill: var(--uui-control_icon-clickable);
