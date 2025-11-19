@@ -32,7 +32,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
             class="container uui-icon uui-enabled"
           >
             <svg
-              class=""
+              class="flipY"
             />
           </div>
         </button>
