@@ -33,7 +33,7 @@ exports[`IconButton should be rendered correctly with props 1`] = `
       class="container uui-icon uui-enabled"
     >
       <svg
-        class="flipY"
+        class=""
       />
     </div>
   </button>
