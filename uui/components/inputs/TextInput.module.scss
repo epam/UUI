@@ -105,6 +105,7 @@
         &:not(:hover, :global(.uui-focus), :focus-within),
         &:global(.uui-disabled) {
             :global(.uui-icon-cancel),
+            :global(.uui-icon-accept),
             :global(.uui-icon-dropdown) {
                 fill: transparent;
             }
