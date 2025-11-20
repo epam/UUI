@@ -61,10 +61,12 @@
         --uui-control-icon-disabled: var(--uui-tag-fill);
     }
 
-    :global(.uui-icon) {
-        svg {
-            height: var(--uui-tag-icon-height);
-            width: inherit;
+    &:global(.uui-button-box) {
+        :global(.uui-icon) {
+            svg {
+                height: var(--uui-tag-icon-height);
+                width: inherit;
+            }
         }
     }
 
