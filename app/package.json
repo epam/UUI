@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "cross-env PORT=3793 craco start",
+    "start": "cross-env PORT=9009 craco start",
     "start-sd": "cross-env isWrapUuiAppInShadowDom=true craco start",
     "build": "craco build",
     "build-dev": "craco build --app-dev",

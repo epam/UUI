@@ -1,6 +1,6 @@
 ### Start the Project
 
-1. Clone Github repository:
+1. Clone GitHub repository:
 
 ```
 git clone git@github.com:epam/UUI.git
@@ -20,7 +20,7 @@ yarn build-server
 yarn start
 ```
 
-This will open the uui.epam.com web-site locally, in watch mode.
+This will open the uui.epam.com website locally, in watch mode.
 
 ### Build UUI packages
 ```
@@ -67,11 +67,11 @@ To build Themes core css-variables(epam-assets/theme/variables/tokens) from Figm
 2. Run `yarn generate-theme-tokens` command
 
 ### Track bundle sises
-This is nedded to check if current branch changes do not exceed UUI packages sizes baseline.
+This is needed to check if current branch changes do not exceed UUI packages sizes baseline.
 Used to notify if some changes significantly increase package size.
 This is a part of PR quality check.
 
-- To run this check locally run:
+- To run this, check locally run:
 ```
 yarn track-bundle-size
 ```

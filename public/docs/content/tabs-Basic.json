@@ -7,7 +7,7 @@
       },
       {
         "type": "link",
-        "url": "http://localhost:3793/documents?id=tabs",
+        "url": "/documents?id=tabs",
         "target": "_blank",
         "children": [
           {

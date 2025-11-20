@@ -2,7 +2,7 @@
 When you add new functionality or change an API, you need to update our documentation.
 All UUI documentation is published on [uui.epam.com](https://uui.epam.com/); the sources are in the `./app` folder.
 
-Below you can find instructions how to add Doc Example and update component property explorer page.
+Below, you can find instructions on how to add Doc Example and update component property explorer page.
 
 
 ### Add a doc example
@@ -14,7 +14,7 @@ Below you can find instructions how to add Doc Example and update component prop
       { "name": "Basic", "componentPath": "alert/Basic.example.tsx" },
    ```
 4. If you add a new documents page, update `app/src/documents/structure.ts` to add your page to the sidebar menu.
-5. In your browser, open the local environment of the UUI site (http://localhost:3793/), navigate to your page, and add the example description via the RTE field.
+5. In your browser, open the local environment of the UUI site (http://localhost:9009/), navigate to your page, and add the example description via the RTE field.
 
 ### Property Explorer
 
