@@ -45,7 +45,7 @@ export const RangeDatePickerConfig: TDocConfig = {
         doc.merge('getPlaceholder', { examples: getPlaceholderExamples });
         doc.merge('filter', { examples: filterExamples });
         doc.merge('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] });
-        doc.merge('initialViewMonth', { editorType: 'StringEditor', examples: ['2025-10'] });
+        doc.prop('initialViewMonth', { editorType: 'StringEditor', examples: ['2025-10'] });
         doc.merge('rawProps', {
             editorType: 'JsonEditor',
             examples: [
