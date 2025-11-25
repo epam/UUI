@@ -84,10 +84,10 @@ export default function BasicDropdownExample() {
 
                 <div className={ css.divider }></div>
 
-                <FlexRow padding="12" vPadding="24">
+                <FlexRow padding="12" vPadding="18">
                     <Panel background="surface-main">
-                        <FlexRow padding="6">
-                            <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary" fontWeight="600">
+                        <FlexRow size="24">
+                            <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary" fontWeight="700">
                                 Contacts
                             </Text>
                         </FlexRow>
