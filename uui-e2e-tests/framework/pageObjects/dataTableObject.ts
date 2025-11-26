@@ -19,13 +19,13 @@ export class DataTableObject {
     }
 
     async focusFirstElement() {
-        await this.page.press('body', 'Tab');
-        await this.page.press('body', 'Tab');
+        await this.page.keyboard.press('Tab');
+        await this.page.keyboard.press('Tab');
     }
 
     async moveFocusForward(count: number = 1) {
         for (let i = 0; i < count; i++) {
-            await this.page.press('body', 'Tab');
+            await this.page.keyboard.press('Tab');
         }
     }
 
