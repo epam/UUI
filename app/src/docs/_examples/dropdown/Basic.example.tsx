@@ -52,13 +52,13 @@ export default function BasicDropdownExample() {
                                     <Tag fill="outline" color="critical" size="18" caption="Bench" />
                                     <Tag fill="outline" color="info" size="18" caption="Remote" />
                                 </FlexRow>
-                                <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
+                                <Text cx={ css.text } lineHeight="14" fontSize="12" color="secondary">
                                     On vacation from 19 Aug till 26 Aug
                                 </Text>
                             </Panel>
                         </FlexRow>
 
-                        <FlexRow alignItems="center" columnGap="12" padding="6">
+                        <FlexRow alignItems="flex-end" columnGap="12" padding="6" vPadding="12" size="24">
                             <IconButton size="18" icon={ telescopeIcon } color="primary" onClick={ () => null } />
                             <IconButton size="18" icon={ chatIcon } color="primary" onClick={ () => null } />
                             <IconButton size="18" icon={ githubIcon } color="primary" onClick={ () => null } />
@@ -72,7 +72,7 @@ export default function BasicDropdownExample() {
 
                 <FlexRow padding="12" vPadding="18">
                     <Panel background="surface-main">
-                        <FlexRow size="24">
+                        <FlexRow size="24" padding="6">
                             <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary" fontWeight="700">
                                 Contacts
                             </Text>
@@ -140,11 +140,11 @@ export default function BasicDropdownExample() {
                         <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary" fontWeight="600">
                             Reporting to
                         </Text>
-                        <FlexRow columnGap="12" vPadding="12">
+                        <FlexRow columnGap="12" vPadding="18">
                             <Avatar size="42" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
 
-                            <div>
-                                <Text cx={ css.text } lineHeight="24" fontSize="14" color="primary" fontWeight="600">
+                            <div style={ { paddingTop: '4px' } }>
+                                <Text cx={ css.text } lineHeight="22" fontSize="14" color="primary" fontWeight="600">
                                     John Wick
                                 </Text>
                                 <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
@@ -157,7 +157,7 @@ export default function BasicDropdownExample() {
 
                 <div className={ css.divider }></div>
 
-                <FlexRow padding="18" vPadding="24">
+                <FlexRow padding="18" vPadding="18">
                     <LinkButton onClick={ () => {} } caption="Show Reporting Line" size="36" icon={ rightArrIcon } iconPosition="right" />
                 </FlexRow>
             </DropdownContainer>
