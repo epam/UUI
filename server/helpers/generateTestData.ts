@@ -55,7 +55,7 @@ const getLocationTree = cached('locations', async () => {
 const getPersons = cached('persons', async () => {
     const size = 10000;
     const cities: any = await getCities();
-    const c: any = new Chance(1);
+    const c = new Chance(1);
 
     const companies = [
         {
@@ -108,7 +108,7 @@ const getPersons = cached('persons', async () => {
             email,
             employmentStatus: c.bool(),
             firstName,
-            hireDate: c.date({ year: c.year({ min: 2010, max: 2020 }) }) as any,
+            hireDate: c.date({ year: +c.year({ min: 2010, max: 2020 }) }),
             id,
             jobTitle: (jobTitle as any).name,
             jobTitleId: (jobTitle as any).id,
@@ -117,7 +117,7 @@ const getPersons = cached('persons', async () => {
             locationName: (city as any).countryName + ', ' + (city as any).name,
             managerId: (manager as any).id,
             managerName: (manager as any).name,
-            modifiedDate: c.date({ year: c.year({ min: 2018, max: 2020 }) }) as any,
+            modifiedDate: c.date({ year: +c.year({ min: 2018, max: 2020 }) }),
             name: `${firstName} ${lastName}`,
             officeAddress: (office as any).name,
             officeId: (office as any).id,
