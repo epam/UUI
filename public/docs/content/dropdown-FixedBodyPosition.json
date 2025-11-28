@@ -1,0 +1,26 @@
+[
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "In cases when the toggler changes its size (e.g., when selected items are displayed next to it), but you don't want the dropdown body to follow the toggler, use the "
+      },
+      {
+        "text": "fixedBodyPosition",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop. When set to "
+      },
+      {
+        "text": "true",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", the dropdown body will remain fixed at the position where it was first opened, instead of repositioning itself relative to the toggler."
+      }
+    ]
+  }
+]
+
