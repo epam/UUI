@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Dropdown } from '@epam/uui-components';
 import { offset } from '@floating-ui/react';
 import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
-import { LinkButton, Text, FlexRow, DropdownContainer, Tag, Panel, CheckboxGroup, RadioGroup, FlexCell } from '@epam/uui';
+import { LinkButton, Text, FlexRow, DropdownContainer, Tag, Panel, CheckboxGroup, RadioGroup } from '@epam/uui';
 
 const categories = [
     { id: 1, name: 'Design' },
@@ -49,55 +49,51 @@ export default function FixedBodyPositionExample() {
     };
 
     return (
-        <FlexRow columnGap="24" alignItems="center">
-            <FlexCell width="auto">
-                <FlexRow columnGap="12" vPadding="12">
-                    <Text fontSize="14" lineHeight="24" color="primary" fontWeight="600">
-                        fixedBodyPosition:
-                    </Text>
-                    <RadioGroup
-                        name="fixedBodyPosition"
-                        items={ [
-                            { id: true, name: 'true' },
-                            { id: false, name: 'false' },
-                        ] }
-                        value={ fixedBodyPosition }
-                        onValueChange={ setFixedBodyPosition }
-                        direction="vertical"
-                    />
-                </FlexRow>
-            </FlexCell>
-            <FlexCell width="auto">
-                <FlexRow alignItems="center" columnGap="6">
-                    {selectedCategories.length > 0 && (
-                        <>
-                            {selectedCategories.map((categoryId) => {
-                                const category = categories.find((c) => c.id === categoryId);
-                                return category ? (
-                                    <Tag
-                                        key={ categoryId }
-                                        caption={ category.name }
-                                        size="24"
-                                        fill="solid"
-                                        color="info"
-                                        onClear={ (e) => {
-                                            e.stopPropagation();
-                                            setSelectedCategories((prev) => prev.filter((id) => id !== categoryId));
-                                        } }
-                                    />
-                                ) : null;
-                            })}
-                        </>
-                    )}
-                    <Dropdown
-                        renderBody={ (props) => renderDropdownBody(props) }
-                        renderTarget={ (props) => renderTarget(props) }
-                        placement="bottom-start"
-                        fixedBodyPosition={ fixedBodyPosition }
-                        middleware={ [offset(6)] }
-                    />
-                </FlexRow>
-            </FlexCell>
-        </FlexRow>
+        <div>
+            <FlexRow columnGap="12" vPadding="12">
+                <Text fontSize="14" lineHeight="24" color="primary" fontWeight="600">
+                    fixedBodyPosition:
+                </Text>
+                <RadioGroup
+                    name="fixedBodyPosition"
+                    items={ [
+                        { id: true, name: 'true' },
+                        { id: false, name: 'false' },
+                    ] }
+                    value={ fixedBodyPosition }
+                    onValueChange={ setFixedBodyPosition }
+                    direction="horizontal"
+                />
+            </FlexRow>
+            <FlexRow alignItems="center" columnGap="6">
+                {selectedCategories.length > 0 && (
+                    <>
+                        {selectedCategories.map((categoryId) => {
+                            const category = categories.find((c) => c.id === categoryId);
+                            return category ? (
+                                <Tag
+                                    key={ categoryId }
+                                    caption={ category.name }
+                                    size="24"
+                                    fill="solid"
+                                    color="info"
+                                    onClear={ (e) => {
+                                        e.stopPropagation();
+                                        setSelectedCategories((prev) => prev.filter((id) => id !== categoryId));
+                                    } }
+                                />
+                            ) : null;
+                        })}
+                    </>
+                )}
+                <Dropdown
+                    renderBody={ (props) => renderDropdownBody(props) }
+                    renderTarget={ (props) => renderTarget(props) }
+                    placement="bottom-start"
+                    fixedBodyPosition={ fixedBodyPosition }
+                    middleware={ [offset(6)] }
+                />
+            </FlexRow>
+        </div>
     );
 }
