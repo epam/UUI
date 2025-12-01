@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-components",
-  "version": "6.1.5-beta.10",
+  "version": "6.1.5-beta.11",
   "description": "EPAM UUI Components",
   "author": "EPAM",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-core": "6.1.5-beta.10",
+    "@epam/uui-core": "6.1.5-beta.11",
     "@floating-ui/react": "0.27.5",
     "@types/classnames": "2.2.6",
     "@types/react-transition-group": "4.4.12",
