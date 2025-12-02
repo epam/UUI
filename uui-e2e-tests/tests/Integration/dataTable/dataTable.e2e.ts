@@ -2,7 +2,7 @@ import { test } from '../../../framework/fixtures/integrationTestPage/fixture';
 import { setupDocExampleTest } from '../testUtils';
 import { DataTableObject } from '../../../framework/pageObjects/dataTableObject';
 
-test.only('DataTable/TableWithFilters', async ({ pageWrapper }, testInfo) => {
+test('DataTable/TableWithFilters', async ({ pageWrapper }, testInfo) => {
     const { pageObject, expectScreenshot } = await setupDocExampleTest({
         testInfo,
         pageWrapper,
