@@ -1,6 +1,7 @@
 # 6.?.? - ??.??.2025
 
 **What's Fixed**
+* [DataTable]: fixed resizing for right-fixed columns
 * [TimePicker]: reworked body open/close behavior. Now body opens by input click or enter key press, instead of 'focus' on target and body closed by 'Escape' or click outside, instead of target blur. Added focus lock behavior.
 * [uui-core]: removed `isFocusReceiverInsideFocusLock` helper function that was causing focus management issues in picker components
 * [LabeledInput]: fixed incorrect prop resolution for `infoIcon`

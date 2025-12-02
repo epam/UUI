@@ -4630,6 +4630,11 @@
       "     * CSS class(es) to put on datepicker body",
       "     */",
       "    bodyCx?: CX;",
+      "    /**",
+      "     * Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM').",
+      "     * If not specified, defaults to the current month.",
+      "     */",
+      "    initialViewMonth?: string;",
       "}"
      ]
     },
@@ -4795,6 +4800,24 @@
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
+      "required": false
+     },
+     {
+      "uid": "initialViewMonth",
+      "name": "initialViewMonth",
+      "comment": {
+       "raw": [
+        "Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM').",
+        " If not specified, defaults to the current month."
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
       "required": false
      },
      {
@@ -9300,7 +9323,7 @@
       "     * Enables collapse/expand all functionality.",
       "     * */",
       "    showFoldAll?: boolean;",
-      "    onConfigButtonClick?: (params: DataTableConfigModalParams) => any;",
+      "    onConfigButtonClick?: () => void;",
       "    renderCell?: (props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode;",
       "    /**",
       "     * Columns group cell render function.",
@@ -9364,8 +9387,8 @@
       "uid": "onConfigButtonClick",
       "name": "onConfigButtonClick",
       "typeValue": {
-       "raw": "(params: DataTableConfigModalParams) => any",
-       "html": "<span class=\"token punctuation\">(</span>params<span class=\"token operator\">:</span> DataTableConfigModalParams<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span>"
+       "raw": "() => void",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
       },
       "editor": {
        "type": "func"
@@ -11350,6 +11373,25 @@
       "required": false
      },
      {
+      "uid": "initialViewMonth",
+      "name": "initialViewMonth",
+      "comment": {
+       "raw": [
+        "Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM').",
+        " If not specified, defaults to the current month."
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
       "uid": "isDisabled",
       "name": "isDisabled",
       "comment": {
@@ -12585,6 +12627,11 @@
       "     * @default true",
       "     * */",
       "    closeOnEscape?: boolean;",
+      "    /**",
+      "     * Pass true, if you want to keep the dropdown list fixed in the position where it was first opened.",
+      "     * By default, the dropdown list follows the toggler.",
+      "     */",
+      "    fixedBodyPosition?: boolean;",
       "}"
      ]
     },
@@ -12975,6 +13022,24 @@
        "tags": {
         "@default": true
        }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "fixedBodyPosition",
+      "name": "fixedBodyPosition",
+      "comment": {
+       "raw": [
+        "Pass true, if you want to keep the dropdown list fixed in the position where it was first opened.",
+        " By default, the dropdown list follows the toggler."
+       ]
       },
       "typeValue": {
        "raw": "boolean",
@@ -20080,6 +20145,8 @@
       "    icon?: Icon;",
       "    /** Position of the icon (left of right) */",
       "    iconPosition?: 'left' | 'right';",
+      "    /** Accessible label for the icon, used for screen readers */",
+      "    iconLabel?: string;",
       "    /** Click handler for the icon */",
       "    onIconClick?(): void;",
       "}"
@@ -20121,6 +20188,23 @@
         "right",
         "left"
        ]
+      },
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "required": false
      },
@@ -30130,6 +30214,24 @@
       "required": false
      },
      {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
       "uid": "onIconClick",
       "name": "onIconClick",
       "comment": {
@@ -37535,6 +37637,11 @@
       "     * It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared",
       "     */",
       "    preventEmptyToDate?: boolean;",
+      "    /**",
+      "     * Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM').",
+      "     * If not specified, defaults to the current month.",
+      "     */",
+      "    initialViewMonth?: string;",
       "}"
      ]
     },
@@ -37703,6 +37810,24 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "initialViewMonth",
+      "name": "initialViewMonth",
+      "comment": {
+       "raw": [
+        "Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM').",
+        " If not specified, defaults to the current month."
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "required": false
      },
@@ -40411,6 +40536,24 @@
         "right",
         "left"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -46321,6 +46464,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "children",
       "name": "children",
       "comment": {
@@ -47536,6 +47697,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -47607,6 +47786,24 @@
         "right",
         "left"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -48353,7 +48550,10 @@
     "typeValue": {
      "raw": "ClickableComponentProps",
      "print": [
-      "type ClickableComponentProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & IHasRawProps<ClickableRawProps> & {};"
+      "type ClickableComponentProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & IHasRawProps<ClickableRawProps> & {",
+      "    /** Called when keyDown event is fired on component */",
+      "    onKeyDown?: (e: React.KeyboardEvent) => void;",
+      "};"
      ]
     },
     "props": [
@@ -48510,6 +48710,23 @@
        "html": "React<span class=\"token punctuation\">.</span>AnchorHTMLAttributes<span class=\"token operator\">&lt;</span>HTMLAnchorElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>ButtonHTMLAttributes<span class=\"token operator\">&lt;</span>HTMLButtonElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLSpanElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
       },
       "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
       "required": false
      }
     ],
@@ -49311,7 +49528,7 @@
       "    icon?: Icon;",
       "    /** Flips the icon vertically */",
       "    flipY?: boolean;",
-      "    /** Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise)) */",
+      "    /** Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise')) */",
       "    rotate?: '0' | '90cw' | '180' | '90ccw';",
       "    /** Click handler */",
       "    onClick?(e: React.SyntheticEvent<HTMLDivElement>): void;",
@@ -49366,7 +49583,7 @@
       "name": "rotate",
       "comment": {
        "raw": [
-        "Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise))"
+        "Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise'))"
        ]
       },
       "typeValue": {
@@ -50860,7 +51077,7 @@
       "    /** Called during the resizing process */",
       "    onResize: (e: MouseEvent) => void;",
       "    /** Called when sorting */",
-      "    toggleSort: (e: React.MouseEvent) => void;",
+      "    toggleSort: (e: React.SyntheticEvent) => void;",
       "    /** Indicates that resizing process is active */",
       "    isResizing: boolean;",
       "}"
@@ -50927,8 +51144,8 @@
        ]
       },
       "typeValue": {
-       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => void",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>MouseEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> MouseEvent<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+       "raw": "(e: React.SyntheticEvent<Element, Event>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>SyntheticEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> Event<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
       },
       "editor": {
        "type": "func"
@@ -51179,6 +51396,12 @@
       "     * Pass true to enable dropdown icon.",
       "     */",
       "    showDropdownIcon?: boolean;",
+      "    /** Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise')) */",
+      "    rotate?: '0' | '90cw' | '180' | '90ccw';",
+      "    /** Flips the icon vertically */",
+      "    flipY?: boolean;",
+      "    /** Called when keyDown event is fired on component */",
+      "    onKeyDown?: (e: React.KeyboardEvent) => void;",
       "};"
      ]
     },
@@ -51339,6 +51562,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "((e: React.KeyboardEvent<Element>) => void) & ((e: React.KeyboardEvent<Element>) => void)",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">)</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -51420,6 +51661,46 @@
        "type": "bool"
       },
       "required": false
+     },
+     {
+      "uid": "rotate",
+      "name": "rotate",
+      "comment": {
+       "raw": [
+        "Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise'))"
+       ]
+      },
+      "typeValue": {
+       "raw": "'0' | '90cw' | '180' | '90ccw'",
+       "html": "<span class=\"token string\">'0'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'90cw'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'180'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'90ccw'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "0",
+        "180",
+        "90cw",
+        "90ccw"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "flipY",
+      "name": "flipY",
+      "comment": {
+       "raw": [
+        "Flips the icon vertically"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -51491,7 +51772,7 @@
       "name": "rotate",
       "comment": {
        "raw": [
-        "Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise))"
+        "Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise'))"
        ]
       },
       "typeValue": {
@@ -60021,7 +60302,7 @@
       "    isSingleLine?: boolean;",
       "    pickerMode: 'single' | 'multi';",
       "    searchPosition: 'input' | 'body' | 'none';",
-      "    onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;",
+      "    onKeyDown?(e: React.KeyboardEvent): void;",
       "    closePickerBody(): void;",
       "    disableSearch?: boolean;",
       "    disableClear?: boolean;",
@@ -60167,8 +60448,8 @@
       "uid": "onKeyDown",
       "name": "onKeyDown",
       "typeValue": {
-       "raw": "(e: React.KeyboardEvent<HTMLElement>) => void",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>HTMLElement<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
       },
       "editor": {
        "type": "func"
@@ -60591,6 +60872,24 @@
         "right",
         "left"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -63270,7 +63569,7 @@
       "    /** CSS class(es) to put to the HTML Input element */",
       "    inputCx?: CX;",
       "    /** overrides rendering of HTML Input element  */",
-      "    renderInput?: (props: IRenderInputProps) => JSX.Element;",
+      "    renderInput?: (props: IRenderInputProps) => React.JSX.Element;",
       "}"
      ]
     },
@@ -63741,6 +64040,24 @@
         "right",
         "left"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -67056,6 +67373,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -67105,6 +67440,24 @@
       },
       "editor": {
        "type": "component"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -67428,6 +67781,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -67477,6 +67848,24 @@
       },
       "editor": {
        "type": "component"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -67775,6 +68164,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -67846,6 +68253,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -68193,6 +68618,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -68264,6 +68707,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -68563,6 +69024,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -68634,6 +69113,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -70125,6 +70622,11 @@
       "    showSearch?: boolean | 'auto';",
       "    /** A pure function that gets entity name from entity object */",
       "    getName: (item: TItem) => string;",
+      "    /**",
+      "     * Pass false, to disable search input autofocus",
+      "     * @default true",
+      "     * */",
+      "    autoFocusSearch?: boolean;",
       "}"
      ]
     },
@@ -70223,6 +70725,27 @@
        "type": "func"
       },
       "required": true
+     },
+     {
+      "uid": "autoFocusSearch",
+      "name": "autoFocusSearch",
+      "comment": {
+       "raw": [
+        "Pass false, to disable search input autofocus",
+        " @default true"
+       ],
+       "tags": {
+        "@default": true
+       }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
      },
      {
       "uid": "searchSize",
@@ -72098,6 +72621,24 @@
       "required": false
      },
      {
+      "uid": "isFoldingFocusable",
+      "name": "isFoldingFocusable",
+      "comment": {
+       "raw": [
+        "If true, folding arrow is focusable"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui:DataRowAddonsCoreProps",
+      "required": false
+     },
+     {
       "uid": "size",
       "name": "size",
       "comment": {
@@ -73645,8 +74186,8 @@
       "uid": "onConfigButtonClick",
       "name": "onConfigButtonClick",
       "typeValue": {
-       "raw": "(params: DataTableConfigModalParams) => any",
-       "html": "<span class=\"token punctuation\">(</span>params<span class=\"token operator\">:</span> DataTableConfigModalParams<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span>"
+       "raw": "() => void",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
       },
       "editor": {
        "type": "func"
@@ -75863,6 +76404,11 @@
       "     * Manually handles holidays",
       "     */",
       "    isHoliday?: (day: Dayjs) => boolean;",
+      "    /**",
+      "     * Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM').",
+      "     * If not specified, defaults to the current month.",
+      "     */",
+      "    initialViewMonth?: string;",
       "}"
      ]
     },
@@ -75881,6 +76427,24 @@
       },
       "editor": {
        "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "initialViewMonth",
+      "name": "initialViewMonth",
+      "comment": {
+       "raw": [
+        "Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM').",
+        " If not specified, defaults to the current month."
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "required": false
      },
@@ -76319,6 +76883,25 @@
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "initialViewMonth",
+      "name": "initialViewMonth",
+      "comment": {
+       "raw": [
+        "Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM').",
+        " If not specified, defaults to the current month."
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
       "from": "@epam/uui-core:CommonDatePickerProps",
       "required": false
      },
@@ -79383,6 +79966,48 @@
       "required": false
      },
      {
+      "uid": "rotate",
+      "name": "rotate",
+      "comment": {
+       "raw": [
+        "Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise'))"
+       ]
+      },
+      "typeValue": {
+       "raw": "'0' | '90cw' | '180' | '90ccw'",
+       "html": "<span class=\"token string\">'0'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'90cw'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'180'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'90ccw'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "0",
+        "180",
+        "90cw",
+        "90ccw"
+       ]
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "((e: React.KeyboardEvent<Element>) => void) & ((e: React.KeyboardEvent<Element>) => void)",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">)</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -79491,6 +80116,24 @@
       "comment": {
        "raw": [
         "Pass true to enable dropdown icon."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "flipY",
+      "name": "flipY",
+      "comment": {
+       "raw": [
+        "Flips the icon vertically"
        ]
       },
       "typeValue": {
@@ -79660,6 +80303,48 @@
       "required": false
      },
      {
+      "uid": "rotate",
+      "name": "rotate",
+      "comment": {
+       "raw": [
+        "Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise'))"
+       ]
+      },
+      "typeValue": {
+       "raw": "'0' | '90cw' | '180' | '90ccw'",
+       "html": "<span class=\"token string\">'0'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'90cw'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'180'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'90ccw'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "0",
+        "180",
+        "90cw",
+        "90ccw"
+       ]
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "((e: React.KeyboardEvent<Element>) => void) & ((e: React.KeyboardEvent<Element>) => void)",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">)</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -79768,6 +80453,24 @@
       "comment": {
        "raw": [
         "Pass true to enable dropdown icon."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "flipY",
+      "name": "flipY",
+      "comment": {
+       "raw": [
+        "Flips the icon vertically"
        ]
       },
       "typeValue": {
@@ -80099,6 +80802,24 @@
       "required": false
      },
      {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
       "uid": "onIconClick",
       "name": "onIconClick",
       "comment": {
@@ -80239,7 +80960,7 @@
     "typeValue": {
      "raw": "IMobileDropdownWrapperProps",
      "print": [
-      "interface IMobileDropdownWrapperProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IDropdownBodyProps {",
+      "interface IMobileDropdownWrapperProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IDropdownBodyProps, Pick<DropdownContainerProps, 'shards'> {",
       "    /**",
       "     * Children of the dropdown container.",
       "     */",
@@ -80573,6 +81294,21 @@
        ]
       },
       "from": "@epam/uui-core:IDropdownBodyProps",
+      "required": false
+     },
+     {
+      "uid": "shards",
+      "name": "shards",
+      "comment": {
+       "raw": [
+        "Shards forms a scattered lock, same as `group` does, but in more \"low\" and controlled way"
+       ]
+      },
+      "typeValue": {
+       "raw": "(HTMLElement | React.RefObject<any>)[]",
+       "html": "<span class=\"token punctuation\">(</span>HTMLElement <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+      },
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      }
     ],
@@ -81378,6 +82114,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -81449,6 +82203,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -81800,6 +82572,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -81871,6 +82661,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -82453,6 +83261,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -82537,6 +83363,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -82837,6 +83681,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -82908,6 +83770,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -83663,6 +84543,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -87035,6 +87933,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -91296,8 +92212,8 @@
       "uid": "onKeyDown",
       "name": "onKeyDown",
       "typeValue": {
-       "raw": "(e: React.KeyboardEvent<HTMLElement>) => void",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>HTMLElement<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
       },
       "editor": {
        "type": "func"
@@ -91726,6 +92642,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -92161,6 +93095,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -92317,6 +93269,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -93747,7 +94717,7 @@
     "typeValue": {
      "raw": "RangeDatePickerBodyProps<T>",
      "print": [
-      "interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, Pick<RangeDatePickerProps, 'preventEmptyToDate' | 'preventEmptyFromDate'>, IControlled<RangeDatePickerBodyValue<T>> {",
+      "interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, Pick<RangeDatePickerProps, 'preventEmptyToDate' | 'preventEmptyFromDate' | 'initialViewMonth'>, IControlled<RangeDatePickerBodyValue<T>> {",
       "    renderFooter?(): React.ReactNode;",
       "    isHoliday?: (day: Dayjs) => boolean;",
       "}"
@@ -93897,6 +94867,25 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "initialViewMonth",
+      "name": "initialViewMonth",
+      "comment": {
+       "raw": [
+        "Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM').",
+        " If not specified, defaults to the current month."
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
@@ -94679,6 +95668,25 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "initialViewMonth",
+      "name": "initialViewMonth",
+      "comment": {
+       "raw": [
+        "Controls the initially displayed month and year when the picker opens (format: 'YYYY-MM').",
+        " If not specified, defaults to the current month."
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
@@ -96407,6 +97415,24 @@
       "required": false
      },
      {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
       "uid": "onIconClick",
       "name": "onIconClick",
       "comment": {
@@ -98022,6 +99048,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -98093,6 +99137,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -98470,6 +99532,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -98541,6 +99621,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -99287,6 +100385,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -99358,6 +100474,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -99694,6 +100828,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -99765,6 +100917,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -101020,6 +102190,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -103779,6 +104967,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -103814,6 +105020,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -105436,6 +106660,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -105485,6 +106727,24 @@
       },
       "editor": {
        "type": "component"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -105810,6 +107070,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -105881,6 +107159,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -106777,6 +108073,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "((e: React.KeyboardEvent<Element>) => void) & ((e: React.KeyboardEvent<Element>) => void)",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">)</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -106818,6 +108132,48 @@
       "comment": {
        "raw": [
         "Pass true to enable dropdown icon."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "rotate",
+      "name": "rotate",
+      "comment": {
+       "raw": [
+        "Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise'))"
+       ]
+      },
+      "typeValue": {
+       "raw": "'0' | '90cw' | '180' | '90ccw'",
+       "html": "<span class=\"token string\">'0'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'90cw'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'180'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'90ccw'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "0",
+        "180",
+        "90cw",
+        "90ccw"
+       ]
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "flipY",
+      "name": "flipY",
+      "comment": {
+       "raw": [
+        "Flips the icon vertically"
        ]
       },
       "typeValue": {
@@ -107151,6 +108507,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -107222,6 +108596,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -108621,6 +110013,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -108692,6 +110102,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -110064,6 +111492,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -110113,6 +111559,24 @@
       },
       "editor": {
        "type": "component"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -110838,6 +112302,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -110873,6 +112355,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -111370,6 +112870,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -111441,6 +112959,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -112119,6 +113655,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -112168,6 +113722,24 @@
       },
       "editor": {
        "type": "component"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -112493,6 +114065,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -112564,6 +114154,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -113508,6 +115116,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "((e: React.KeyboardEvent<Element>) => void) & ((e: React.KeyboardEvent<Element>) => void)",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">)</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -113549,6 +115175,48 @@
       "comment": {
        "raw": [
         "Pass true to enable dropdown icon."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "rotate",
+      "name": "rotate",
+      "comment": {
+       "raw": [
+        "Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise'))"
+       ]
+      },
+      "typeValue": {
+       "raw": "'0' | '90cw' | '180' | '90ccw'",
+       "html": "<span class=\"token string\">'0'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'90cw'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'180'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'90ccw'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "0",
+        "180",
+        "90cw",
+        "90ccw"
+       ]
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "flipY",
+      "name": "flipY",
+      "comment": {
+       "raw": [
+        "Flips the icon vertically"
        ]
       },
       "typeValue": {
@@ -113880,6 +115548,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -113951,6 +115637,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false
@@ -116665,6 +118369,24 @@
       "required": false
      },
      {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called when keyDown event is fired on component"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -116736,6 +118458,24 @@
         "left",
         "right"
        ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconLabel",
+      "name": "iconLabel",
+      "comment": {
+       "raw": [
+        "Accessible label for the icon, used for screen readers"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "@epam/uui-core:IHasIcon",
       "required": false

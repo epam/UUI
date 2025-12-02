@@ -63,12 +63,14 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         const handleFilterOpen = (e: React.KeyboardEvent) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 dropdownProps.onClick(e);
+                e.preventDefault();
             }
         };
 
         const handleSort = (e: React.KeyboardEvent) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 props.toggleSort(e);
+                e.preventDefault();
             }
         };
 
@@ -92,7 +94,6 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                     <ControlIcon
                         key="sort"
                         cx={ cx(css.icon, css.sortIcon, !this.props.sortDirection && css.sortInActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
-                        // color={ this.props.sortDirection ? 'neutral' : 'secondary' }
                         icon={ settings.dataTable.icons.header[this.props.sortDirection === 'desc' ? 'descSortIcon' : this.props.sortDirection === 'asc' ? 'ascSortIcon' : 'defaultSortIcon'] }
                         onKeyDown={ !this.props.column.renderFilter ? handleSort : undefined }
                     />
