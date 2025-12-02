@@ -4,9 +4,6 @@ import { DataColumnProps, useLazyDataSource, useUuiContext, TableFiltersConfig, 
 import { Text, DataTable, Panel, FlexRow, Badge, BadgeProps, defaultPredicates } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
-import utc from 'dayjs/plugin/utc';
-
-dayjs.extend(utc);
 
 const personColumns: DataColumnProps<Person, number>[] = [
     {
@@ -55,14 +52,14 @@ const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'birthDate',
         caption: 'Birth date',
-        render: (p) => p?.birthDate && <Text>{dayjs.utc(p.birthDate).format('MMM D, YYYY')}</Text>,
+        render: (p) => p?.birthDate && <Text>{dayjs(p.birthDate).format('MMM D, YYYY')}</Text>,
         width: 120,
         isSortable: true,
     },
     {
         key: 'hireDate',
         caption: 'Hire date',
-        render: (p) => p?.hireDate && <Text>{dayjs.utc(p.hireDate).format('MMM D, YYYY')}</Text>,
+        render: (p) => p?.hireDate && <Text>{dayjs(p.hireDate).format('MMM D, YYYY')}</Text>,
         width: 120,
         isSortable: true,
     },
