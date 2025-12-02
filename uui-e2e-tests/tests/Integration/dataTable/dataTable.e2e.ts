@@ -32,8 +32,9 @@ test('DataTable/TableWithFilters', async ({ pageWrapper }, testInfo) => {
         await expectScreenshot(4, 'focus-columns-sorting');
     });
 
-    await test.step('Toggle sorting', async () => {
-        await pageObject.page.keyboard.press('Space');
+    await test.step('Toggle sorting to descending value', async () => {
+        await pageObject.page.keyboard.press('Space'); // toggle to asc
+        await pageObject.page.keyboard.press('Space'); // toggle to desc
         await pageObject.expectRowNameInViewport('Zachary van Kesteren');
         await expectScreenshot(5, 'toggler-column-sorting');
     });
