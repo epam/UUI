@@ -32,7 +32,7 @@ export const DatePickerConfig: TDocConfig = {
         doc.merge('renderDay', { examples: renderCustomDayExample });
         doc.merge('renderFooter', { examples: renderFooter });
         doc.merge('filter', { examples: [{ name: 'Filter before current day', value: (day: any) => day.valueOf() >= uuiDayjs.dayjs().subtract(1, 'day').valueOf() }] });
-        doc.prop('initialViewMonth', { editorType: 'StringEditor', examples: ['2025-10'] });
+        doc.merge('initialViewMonth', { editorType: 'StringEditor', examples: ['2025-10'] });
     },
     preview: (docPreview: DocPreviewBuilder<uui.DatePickerProps>) => {
         const TEST_DATA = {
