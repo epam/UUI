@@ -10,6 +10,7 @@
         { "name": "Set delay for dropdown body opening or closing", "componentPath": "dropdown/DelayForOpenAndClose.example.tsx" },
         { "name": "Handle dropdown state by yourself", "componentPath": "dropdown/HandleStateByYourself.example.tsx" },
         { "name": "Virtual element positioned at a specific point on canvas", "componentPath": "dropdown/VirtualElementCanvas.example.tsx" },
-        { "name": "Create a virtual element that positions the dropdown at mouse coordinates", "componentPath": "dropdown/VirtualElementOnMouseCoordinates.example.tsx" }
+        { "name": "Create a virtual element that positions the dropdown at mouse coordinates", "componentPath": "dropdown/VirtualElementOnMouseCoordinates.example.tsx" },
+        { "name": "Fixed body position when toggler changes size", "componentPath": "dropdown/FixedBodyPosition.example.tsx" }
     ]
 }
