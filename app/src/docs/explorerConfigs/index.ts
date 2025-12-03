@@ -30,7 +30,7 @@ export * from './LinkButtonConfig';
 export * from './TextConfig';
 export * from './TextInputConfig';
 export * from './TagConfig';
-export * from './SpinnerConfig';
+export * from './LoaderConfig';
 export * from './RatingConfig';
 export * from './RadioInputConfig';
 export * from './StatusIndicatorConfig';

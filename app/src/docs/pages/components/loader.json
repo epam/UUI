@@ -1,0 +1,12 @@
+{
+    "id": "loader",
+    "name": "Loader",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "loader-descriptions" },
+        { "name": "Circle Loader", "componentPath": "loader/CircleLoader.example.tsx" },
+        { "name": "Waver Loader", "componentPath": "loader/WaverLoader.example.tsx" }
+    ]
+}
+
+

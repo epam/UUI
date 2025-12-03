@@ -30,7 +30,7 @@ import { LinkButtonConfig } from './LinkButtonConfig';
 import { TextConfig } from './TextConfig';
 import { TextInputConfig } from './TextInputConfig';
 import { TagConfig } from './TagConfig';
-import { SpinnerConfig } from './SpinnerConfig';
+import { LoaderConfig } from './LoaderConfig';
 import { RatingConfig } from './RatingConfig';
 import { RadioInputConfig } from './RadioInputConfig';
 import { StatusIndicatorConfig } from './StatusIndicatorConfig';
@@ -85,7 +85,7 @@ export const explorerConfigs = [
     TextConfig,
     TextInputConfig,
     TagConfig,
-    SpinnerConfig,
+    LoaderConfig,
     RatingConfig,
     RadioInputConfig,
     StatusIndicatorConfig,

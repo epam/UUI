@@ -4,9 +4,9 @@ import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
 import { TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 
-export const SpinnerConfig: TDocConfig = {
-    id: 'spinner',
-    name: 'Spinner',
+export const LoaderConfig: TDocConfig = {
+    id: 'loader',
+    name: 'Loader',
     contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
     bySkin: {
         [TSkin.UUI]: { type: '@epam/uui:SpinnerProps', component: uui.Spinner },
