@@ -72,15 +72,15 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     });
 
     useLayoutEffectSafeForSsr(() => {
-        if (!scrollContainer.current || !listContainer.current) return;
+        // Set listOffset only for the first time on list initialization
+        if (!scrollContainer.current || !listContainer.current || listOffset !== undefined) return;
         const { top: scrollContainerTop, bottom } = scrollContainer.current.getBoundingClientRect();
         const { top: listContainerTop } = listContainer.current.getBoundingClientRect();
         if (bottom === scrollContainerTop) return;
 
         const newListOffset = listContainerTop - scrollContainerTop;
-        if (newListOffset !== listOffset) {
-            setListOffset(newListOffset);
-        }
+
+        setListOffset(newListOffset);
     });
 
     const getTopIndexAndVisibleCountOnScroll = React.useCallback(() => {
