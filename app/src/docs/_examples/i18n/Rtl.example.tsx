@@ -31,7 +31,7 @@ export default function RtlExample() {
         <FlexCell grow={ 1 }>
             { renderToolbar() }
 
-            <div dir={ dir }>
+            <div dir={ dir } key={ dir }>
                 <RichTextView>
                     <h3>{ texts[dir].title }</h3>
                 </RichTextView>
@@ -53,7 +53,7 @@ export default function RtlExample() {
                                 id="country"
                                 placeholder={ texts[dir].countryPlaceholder }
                                 onValueChange={ (inputValue) => lens.set({ countryId: inputValue as string, city: null }) }
-                                rawProps={ { body: { dir: 'rtl' } } }
+                                rawProps={ { body: { dir: dir } } }
                             />
                         </LabeledInput>
                     </FlexCell>
