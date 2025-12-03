@@ -41,6 +41,7 @@ import RatingDocItem from '../../docs/pages/components/rating.json';
 import SearchInputDocItem from '../../docs/pages/components/searchInput.json';
 import SliderDocItem from '../../docs/pages/components/slider.json';
 import SliderRatingDocItem from '../../docs/pages/components/sliderRating.json';
+import SpinnerDocItem from '../../docs/pages/components/spinner.json';
 import SwitchDocItem from '../../docs/pages/components/switch.json';
 import TabButtonDocItem from '../../docs/pages/components/tabButton.json';
 import TagDocItem from '../../docs/pages/components/tag.json';
@@ -84,7 +85,6 @@ export const componentsStructure: DocItem[] = orderBy<DocItem>(
         BadgeDocItem,
         BlockerDocItem,
         ButtonDocItem,
-        LoaderDocItem,
         CheckboxDocItem,
         CheckboxGroupDocItem,
         ControlGroupDocItem,
@@ -105,6 +105,7 @@ export const componentsStructure: DocItem[] = orderBy<DocItem>(
         StatusIndicatorDocItem,
         LabeledInputDocItem,
         LinkButtonDocItem,
+        LoaderDocItem,
         MainMenuDocItem,
         ModalsDocItem,
         MultiSwitchDocItem,
@@ -122,6 +123,7 @@ export const componentsStructure: DocItem[] = orderBy<DocItem>(
         SearchInputDocItem,
         SliderDocItem,
         SliderRatingDocItem,
+        SpinnerDocItem,
         SwitchDocItem,
         TabButtonDocItem,
         { id: 'tables', name: 'Data Tables', parentId: 'components', tags: ['table'] },
