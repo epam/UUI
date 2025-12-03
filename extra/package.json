@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-extra",
-  "version": "6.3.1",
+  "version": "6.3.2-alpha.0",
   "description": "EPAM UUI components set branded with 'loveship' style",
   "author": "EPAM",
   "license": "MIT",
@@ -11,9 +11,9 @@
     "build": "ts-node ../uui-build/ts/scripts/buildUuiModule.ts"
   },
   "dependencies": {
-    "@epam/loveship": "6.3.1",
-    "@epam/promo": "6.3.1",
-    "@epam/uui-core": "6.3.1",
+    "@epam/loveship": "6.3.2-alpha.0",
+    "@epam/promo": "6.3.2-alpha.0",
+    "@epam/uui-core": "6.3.2-alpha.0",
     "immutable": "3.8.2"
   },
   "peerDependencies": {
