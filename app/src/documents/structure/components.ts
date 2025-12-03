@@ -26,6 +26,7 @@ import CountIndicatorDocItem from '../../docs/pages/components/countIndicator.js
 import StatusIndicatorDocItem from '../../docs/pages/components/statusIndicator.json';
 import LabeledInputDocItem from '../../docs/pages/components/labeledInput.json';
 import LinkButtonDocItem from '../../docs/pages/components/linkButton.json';
+import LoaderDocItem from '../../docs/pages/components/loader.json';
 import MainMenuDocItem from '../../docs/pages/components/mainMenu.json';
 import ModalsDocItem from '../../docs/pages/components/modals.json';
 import MultiSwitchDocItem from '../../docs/pages/components/multiSwitch.json';
@@ -40,7 +41,6 @@ import RatingDocItem from '../../docs/pages/components/rating.json';
 import SearchInputDocItem from '../../docs/pages/components/searchInput.json';
 import SliderDocItem from '../../docs/pages/components/slider.json';
 import SliderRatingDocItem from '../../docs/pages/components/sliderRating.json';
-import SpinnerDocItem from '../../docs/pages/components/spinner.json';
 import SwitchDocItem from '../../docs/pages/components/switch.json';
 import TabButtonDocItem from '../../docs/pages/components/tabButton.json';
 import TagDocItem from '../../docs/pages/components/tag.json';
@@ -84,6 +84,7 @@ export const componentsStructure: DocItem[] = orderBy<DocItem>(
         BadgeDocItem,
         BlockerDocItem,
         ButtonDocItem,
+        LoaderDocItem,
         CheckboxDocItem,
         CheckboxGroupDocItem,
         ControlGroupDocItem,
@@ -121,7 +122,6 @@ export const componentsStructure: DocItem[] = orderBy<DocItem>(
         SearchInputDocItem,
         SliderDocItem,
         SliderRatingDocItem,
-        SpinnerDocItem,
         SwitchDocItem,
         TabButtonDocItem,
         { id: 'tables', name: 'Data Tables', parentId: 'components', tags: ['table'] },

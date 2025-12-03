@@ -1,9 +1,0 @@
-{
-    "id": "spinner",
-    "name": "Spinner",
-    "parentId": "components",
-    "examples": [
-        { "descriptionPath": "spinner-descriptions" },
-        { "name": "Basic", "componentPath": "spinner/Basic.example.tsx" }
-    ]
-}
