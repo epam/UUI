@@ -1,0 +1,17 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "For selecting year and month without a specific day, we recommend using two separate "
+      },
+      {
+        "text": "PickerInput",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " components: one for month and one for year. This provides a better UX pattern compared to using a full DatePicker when day selection is not needed."
+      }
+    ]
+  }
+]
