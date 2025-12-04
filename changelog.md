@@ -40,6 +40,7 @@
 * [Dropdown]: added `fixedBodyPosition` prop to control dropdown positioning. Pass `true` to keep the dropdown list fixed in the position where it was first opened.
 * [Dropdown]: add example for fixed body position when toggler changes place
 * [PresetActionsDropdown]: Fixed unreadable dark text in SuccessNotification after Copy link action under Loveship-Dark theme
+* [Loader]: added Loader examples in the documentation
 
 # 6.3.1 - 08.10.2025
 

@@ -26,6 +26,7 @@ import CountIndicatorDocItem from '../../docs/pages/components/countIndicator.js
 import StatusIndicatorDocItem from '../../docs/pages/components/statusIndicator.json';
 import LabeledInputDocItem from '../../docs/pages/components/labeledInput.json';
 import LinkButtonDocItem from '../../docs/pages/components/linkButton.json';
+import LoaderDocItem from '../../docs/pages/components/loader.json';
 import MainMenuDocItem from '../../docs/pages/components/mainMenu.json';
 import ModalsDocItem from '../../docs/pages/components/modals.json';
 import MultiSwitchDocItem from '../../docs/pages/components/multiSwitch.json';
@@ -104,6 +105,7 @@ export const componentsStructure: DocItem[] = orderBy<DocItem>(
         StatusIndicatorDocItem,
         LabeledInputDocItem,
         LinkButtonDocItem,
+        LoaderDocItem,
         MainMenuDocItem,
         ModalsDocItem,
         MultiSwitchDocItem,
