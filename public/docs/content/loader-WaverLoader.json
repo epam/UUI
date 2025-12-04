@@ -1,0 +1,23 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To create Waver Loader, use the "
+      },
+      {
+        "type": "link",
+        "data": {},
+        "url": "/documents?category=components&id=spinner&mode=doc&skin=UUI4_promo",
+        "children": [
+          {
+            "text": "Spinner"
+          }
+        ]
+      },
+      {
+        "text": " component"
+      }
+    ]
+  }
+]
