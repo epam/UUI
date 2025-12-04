@@ -60,18 +60,28 @@ To generate the metadata which is used to build PE pages and API blocks
 yarn generate-components-api
 ```
 
+### Update icon set
+To update uui icons based on new icons set from figma
+
+1. Past new icons set into `icons-source`(create if not exist) folder in the root of the project
+2. Then run command:
+```
+yarn process-icons
+```
+This will update icons into `epam-assets/icons`
+
 ### Generate themes core tokens
 To build Themes core css-variables(epam-assets/theme/variables/tokens) from Figma JSON
 
 1. Place exported from Figma file `Theme.json` into `public/docs/figmaTokensGen` folder
 2. Run `yarn generate-theme-tokens` command
 
-### Track bundle sises
+### Track bundle sizes
 This is needed to check if current branch changes do not exceed UUI packages sizes baseline.
 Used to notify if some changes significantly increase package size.
 This is a part of PR quality check.
 
-- To run this, check locally run:
+- To run this check locally run:
 ```
 yarn track-bundle-size
 ```
@@ -80,7 +90,3 @@ yarn track-bundle-size
 ```
 yarn track-bundle-size-override
 ```
-
-
-
-
