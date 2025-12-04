@@ -39,6 +39,7 @@
     * Icon set with `icon` property in `TextInput` (and other inputs that use it) is now always displayed in `mode="cell"`, not only on hover
 * [Dropdown]: added `fixedBodyPosition` prop to control dropdown positioning. Pass `true` to keep the dropdown list fixed in the position where it was first opened.
 * [PresetActionsDropdown]: Fixed unreadable dark text in SuccessNotification after Copy link action under Loveship-Dark theme
+* [Loader]: added Loader examples in the documentation
 
 # 6.3.1 - 08.10.2025
 
