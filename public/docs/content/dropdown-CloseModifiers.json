@@ -1,0 +1,68 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "By default, the dropdown body will close when a user clicks outside of it, presses the Escape key, or clicks on the target. However, you may want to disable this behavior to prevent unexpected user data loss and instead allow the user to close it with a manual action, which often includes a confirmation."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To disable the default close behavior, you can set the "
+      },
+      {
+        "text": "closeOnClickOutside",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "closeOnEscape",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", and "
+      },
+      {
+        "text": "closeOnTargetClick",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " props to "
+      },
+      {
+        "text": "false",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". "
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Additionally, to close the dropdown from within its body, you can use the "
+      },
+      {
+        "text": "onClose",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " function, which is passed as a parameter in the "
+      },
+      {
+        "text": "renderBody",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " callback."
+      }
+    ]
+  }
+]

@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, cx, IHasRawProps, ICanFocus, isEventTargetInsideClickable, DataRowProps, IHasCaption, IDisableable } from '@epam/uui-core';
-import { IconContainer } from '../layout';
+import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, cx, IHasRawProps, isEventTargetInsideClickable, DataRowProps, IHasCaption, IDisableable } from '@epam/uui-core';
 import { i18n } from '../i18n';
 import css from './PickerToggler.module.scss';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
+import { flushSync } from 'react-dom';
+import { ControlIcon } from '../widgets/ControlIcon';
 
 export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, IDisableable {
     /** DataRowProps object of the rendered item */
@@ -20,7 +21,7 @@ export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, 
 }
 
 export interface PickerTogglerProps<TItem = any, TId = any>
-    extends IPickerToggler<TItem, TId>, ICanFocus<HTMLElement>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
+    extends IPickerToggler<TItem, TId>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
     cancelIcon?: Icon;
     dropdownIcon?: Icon;
     autoFocus?: boolean;
@@ -31,7 +32,7 @@ export interface PickerTogglerProps<TItem = any, TId = any>
     isSingleLine?: boolean;
     pickerMode: 'single' | 'multi';
     searchPosition: 'input' | 'body' | 'none';
-    onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
+    onKeyDown?(e: React.KeyboardEvent): void;
     closePickerBody(): void;
     disableSearch?: boolean;
     disableClear?: boolean;
@@ -42,15 +43,16 @@ export interface PickerTogglerProps<TItem = any, TId = any>
     id?: string;
 }
 
-function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
+function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLDivElement>) {
     const [inFocus, setInFocus] = React.useState<boolean>(false);
 
-    const toggleContainer = React.useRef<HTMLDivElement>(undefined);
-    const searchInput = React.useRef<HTMLInputElement>(undefined);
+    const searchInputRef = React.useRef<HTMLInputElement>(undefined);
+    const containerRef = React.useRef<HTMLDivElement>(undefined);
 
-    React.useImperativeHandle(ref, () => toggleContainer.current, [toggleContainer.current]);
+    React.useImperativeHandle(ref, () => containerRef.current, [containerRef.current]);
 
     const isSearchInToggler = props.searchPosition === 'input';
+    const isPickerDisabled = Boolean(props.isDisabled || props.isReadonly);
 
     const handleClick = React.useCallback(
         (event: Event) => {
@@ -63,13 +65,13 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     React.useEffect(() => {
         // We need to subscribe on any document clicks, when toggler is in focus to be able to make blur on toggler in case of click outside.
-        inFocus && window.document.addEventListener('click', handleClick);
+        inFocus && window.document.addEventListener('mousedown', handleClick);
 
         if (props.autoFocus && !props.disableSearch && isSearchInToggler) {
-            searchInput.current?.focus();
+            searchInputRef.current?.focus();
         }
 
-        return () => window.document.removeEventListener('click', handleClick);
+        return () => window.document.removeEventListener('mousedown', handleClick);
     }, [inFocus, handleClick]);
 
     const isActivePlaceholder = (): Boolean => {
@@ -91,29 +93,63 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLElement>) => {
+        /*
+            There are two cases when the input may become unfocused:
+            1. When a user intentionally focuses on something else (for example, clicking on another element)
+            2. The picker's body opens
+
+            Without additional check, the second case will treat as the first one,
+            and the picker's body will be closed immediately after opening.
+        */
         if (props.isOpen) {
-            // If picker opened and search inside input, we lock focus on toggler.
-            // In case, when search inside body, we need to highlight toggler like in focus state, even when focus was moved to the body. So we do nothing in this case.
-            if (isSearchInToggler) {
-                searchInput.current?.focus();
-            }
-        } else {
-            // If picker closed, we perform blur event as usual.
-            blur(e);
+            return;
         }
+
+        blur(e);
+    };
+
+    /*
+        Depending on `searchPosition`, the focusable element can be either input or its container.
+        So we need to return a correct element to focus for each case.
+    */
+    const getFocusableControl = (): HTMLElement | undefined => {
+        if (isSearchInToggler) {
+            return searchInputRef.current;
+        }
+
+        return containerRef.current;
+    };
+
+    const moveFocusToControl = () => {
+        const focusableControl = getFocusableControl();
+
+        focusableControl?.focus();
+
+        setInFocus(true);
     };
 
     const handleCrossIconClick = () => {
         if (props.onClear) {
-            props.onClear();
-            props.onValueChange('');
+            /*
+                Handles the following scenario:
+                * `pickerMode="multi"`
+                * There are selected options
+                * `searchPosition="none"` (so the input is hidden when there are selected options)
+
+                When user focuses on the picker's clear button and presses Enter, we first need to remove the selected
+                options for the input to appear, and only after that move focus from the button to the input.
+                Without `flushSync`, the updates are batched, and the focus may be "set" to not yet existing input.
+            */
+            flushSync(() => {
+                props.onClear();
+                props.onValueChange('');
+            });
         }
-        // When we click on the cross it disappears from the DOM and focus is passed to the Body. So in this case we have to return focus on the toggleContainer by hand.
-        toggleContainer.current?.focus();
+        // When we click on the cross, it disappears from the DOM and focus is passed to the Body. So in this case we have to return focus on the control by hand.
+        moveFocusToControl();
     };
 
     const renderItems = () => {
-        const isPickerDisabled = props.isDisabled || props.isReadonly;
         let areAllDisabled = isPickerDisabled;
         const displayedRows = props.selectedRowsCount > props.maxItems ? props.selection.slice(0, props.maxItems) : props.selection;
         const collapsedRows = props.selection?.slice(props.maxItems);
@@ -129,9 +165,17 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 isCollapsed: false,
                 isDisabled: isPickerDisabled || row.isDisabled,
                 onClear: () => {
-                    row.onCheck?.(row);
-                    // When we delete item it disappears from the DOM and focus is passed to the Body. So in this case we have to return focus on the toggleContainer by hand.
-                    toggleContainer.current?.focus();
+                    /*
+                        The same logic about the tasks' order as in `handleCrossIconClick`,
+                        except the input may not appear, because there are selected options still.
+                        `moveFocusToControl` handles this case and moves the focus to the correct element.
+                    */
+                    flushSync(() => {
+                        row.onCheck?.(row);
+                    });
+                    // When we delete item, it disappears from the DOM and focus is passed to the Body.
+                    // So in this case, we have to return focus on the control by hand.
+                    moveFocusToControl();
                 },
             };
 
@@ -154,6 +198,21 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         return tags;
     };
 
+    const shouldToggleBody = (e: React.MouseEvent<HTMLDivElement>): boolean => {
+        const isInteractionDisabled = isPickerDisabled || isEventTargetInsideClickable(e);
+        const shouldOpenWithMinCharsToSearch = (inFocus && props.value && (props.minCharsToSearch && props.searchPosition === 'input'));
+        const isPickerOpenWithSearchInInput = (props.isOpen && props.searchPosition === 'input' && (e.target as HTMLInputElement).tagName === 'INPUT');
+        return !(isInteractionDisabled || shouldOpenWithMinCharsToSearch || isPickerOpenWithSearchInInput);
+    };
+
+    const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        if (!shouldToggleBody(e)) return;
+        props.onClick?.();
+    };
+
+    const isSearchHidden = !isSearchInToggler && props.pickerMode === 'multi' && props.selectedRowsCount > 0;
+
     const renderInput = () => {
         const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
         let placeholder: string;
@@ -166,7 +225,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         }
         const value = props.disableSearch ? null : props.value;
 
-        if (!isSearchInToggler && props.pickerMode === 'multi' && props.selectedRowsCount > 0) {
+        if (isSearchHidden) {
+            // Resetting the ref to make `getFocusableControl` work correctly.
+            searchInputRef.current = undefined;
+
             return null;
         }
 
@@ -174,9 +236,9 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             <input
                 id={ props?.id }
                 type="search"
-                tabIndex={ props.isReadonly || props.isDisabled || !isSearchInToggler ? -1 : 0 } // If search not in toggler, we shouldn't make this input focusable
-                ref={ searchInput }
-                aria-haspopup={ true }
+                tabIndex={ isPickerDisabled || !isSearchInToggler ? -1 : 0 } // If search not in toggler, we shouldn't make this input focusable
+                ref={ searchInputRef }
+                aria-haspopup="dialog"
                 autoComplete="no"
                 aria-required={ props.isRequired }
                 aria-disabled={ props.isDisabled }
@@ -188,59 +250,122 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                     props.pickerMode === 'single' && css.singleInput,
                     props.searchPosition === 'input' && css.cursorText,
                     isActivePlaceholder() && uuiElement.placeholder,
+                    !props.isDisabled && uuiMarkers.clickable,
                 ) }
                 disabled={ props.isDisabled }
                 placeholder={ placeholder }
                 value={ value || '' }
                 readOnly={ props.isReadonly || props.disableSearch }
                 onChange={ (e) => props.onValueChange?.(e.target.value) }
+                onKeyDown={ props.onKeyDown }
                 dir={ browserBugFixDirAuto(value || placeholder) } // TODO: remove after browser bug fix
+                onClick={ togglerPickerOpened }
             />
         );
     };
 
-    const shouldToggleBody = (e: React.MouseEvent<HTMLDivElement>): boolean => {
-        const isInteractionDisabled = (props.isDisabled || props.isReadonly || isEventTargetInsideClickable(e));
-        const shouldOpenWithMinCharsToSearch = (inFocus && props.value && (props.minCharsToSearch && props.searchPosition === 'input'));
-        const isPickerOpenWithSearchInInput = (props.isOpen && props.searchPosition === 'input' && (e.target as HTMLInputElement).tagName === 'INPUT');
-        return !(isInteractionDisabled || shouldOpenWithMinCharsToSearch || isPickerOpenWithSearchInInput);
-    };
-
-    const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
-        e.preventDefault();
-        if (!shouldToggleBody(e)) return;
-        toggleContainer.current.focus();
-        props.onClick?.();
-    };
-
-    const icon = props.icon && (
-        <IconContainer
+    const icon = (
+        <ControlIcon
             icon={ props.icon }
             onClick={ props.onIconClick }
+            isDisabled={ isPickerDisabled }
+            rawProps={ {
+                'aria-label': 'Icon in input',
+            } }
         />
     );
 
+    const isEventTargetContainer = (event: React.SyntheticEvent<HTMLElement>): boolean => {
+        const eventTargetElement = event.target as HTMLElement;
+
+        return eventTargetElement === containerRef.current;
+    };
+
+    const isNonClickableEventTarget = (event: React.SyntheticEvent<HTMLElement>): boolean => {
+        const eventTargetElement = event.target as HTMLElement;
+        const isWithinContainer = containerRef.current?.contains(eventTargetElement);
+        const isClickable = isEventTargetInsideClickable(event);
+
+        return (isWithinContainer && !isClickable) || isEventTargetContainer(event);
+    };
+
+    const handleWrapperClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        if (isPickerDisabled) {
+            return;
+        }
+
+        if (isNonClickableEventTarget(event)) {
+            moveFocusToControl();
+            togglerPickerOpened(event);
+        }
+    };
+
+    const handleWrapperFocus = (event: React.FocusEvent<HTMLDivElement>) => {
+        const isFocusFromToggler = containerRef.current?.contains(event.relatedTarget);
+
+        if (isPickerDisabled) {
+            return;
+        }
+
+        // If focus came from child inside toggler(shift + tab),
+        // we just need to leave it on container, without moving it to the search input
+        if (isFocusFromToggler) {
+            setInFocus(true);
+            return;
+        }
+
+        if (isNonClickableEventTarget(event)) {
+            moveFocusToControl();
+
+            if (isEventTargetContainer(event)) {
+                props.onFocus?.(event);
+            }
+        }
+    };
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+        if (isPickerDisabled) {
+            return;
+        }
+
+        /*
+            For `pickerMode="multi"`, when focusing on a tag's clear button and pressing Enter, we need the tag to be removed.
+            Without this condition, a picker body is opened instead.
+        */
+        if (isNonClickableEventTarget(event)) {
+            props.onKeyDown?.(event);
+        }
+    };
+
+    const isContainerFocusable = !isPickerDisabled && (!isSearchInToggler || (props.pickerMode === 'multi' && props.selectedRowsCount > 0));
+
     return (
         <div
-            onClick={ togglerPickerOpened }
-            ref={ toggleContainer }
+            ref={ containerRef }
             className={ cx(
                 css.container,
                 uuiElement.inputBox,
                 props.isDisabled && uuiMod.disabled,
                 props.isReadonly && uuiMod.readonly,
                 props.isInvalid && uuiMod.invalid,
-                !props.isReadonly && !props.isDisabled && props.onClick && uuiMarkers.clickable,
                 !props.isReadonly && !props.isDisabled && inFocus && uuiMod.focus,
                 props.selection?.length > 0 && uuiMarkers.hasValue,
                 props.cx,
             ) }
-            onFocus={ handleFocus }
+            onClick={ handleWrapperClick }
+            onFocus={ handleWrapperFocus }
             onBlur={ handleBlur }
-            // If search in toggler, we make nested search input focusable, and wrapper not.
-            // It's required that only 1 focusable element in toggler, since if we have more we will go through all of them using tab key
-            tabIndex={ props.isReadonly || props.isDisabled || isSearchInToggler ? undefined : 0 }
-            onKeyDown={ props.onKeyDown }
+            onKeyDown={ handleKeyDown }
+            /*
+                Either container or input should be focusable. Otherwise, a conflict between them may arise.
+                For example, when focusing out of input to the focusable container using Shift + Tab,
+                `handleWrapperFocus` will return the focus to the input, so it will not be possible to leave the toggler.
+                `isSearchHidden` is the same as in `renderInput`.
+                `isSearchInToggler` reflects the condition for focusable input (see condition in its `tabIndex` value).
+                The difference with condition in `getFocusableControl` is that condition handles case of search OUTSIDE
+                the toggler, and this one handles case of search INSIDE the toggler.
+            */
+            tabIndex={ isContainerFocusable ? 0 : undefined }
             { ...props.rawProps }
         >
             <div className={ cx(css.body, !props.isSingleLine && props.pickerMode !== 'single' && 'uui-picker_toggler-multiline') }>
@@ -249,21 +374,33 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 {renderInput()}
                 {props.iconPosition === 'right' && icon}
             </div>
-            {!props.isDisabled && !props.isReadonly && (
+            {!isPickerDisabled && (
                 <div className="uui-picker_toggler-actions">
                     {!props.disableClear && (props.value || props.selectedRowsCount > 0) && (
-                        <IconContainer
-                            cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
+                        <ControlIcon
+                            cx="uui-icon-cancel"
                             isDisabled={ props.isDisabled }
                             icon={ props.cancelIcon }
-                            tabIndex={ -1 }
                             onClick={ handleCrossIconClick }
-                            rawProps={ { role: 'button', 'aria-label': 'Clear' } }
+                            rawProps={ {
+                                'aria-label': 'Clear input',
+                            } }
                         />
                     )}
                     {props.isDropdown
                         && (!props?.minCharsToSearch || (props?.minCharsToSearch && props.searchPosition === 'body'))
-                        && <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" />}
+                        && (
+                            <ControlIcon
+                                icon={ props.dropdownIcon }
+                                flipY={ props.isOpen }
+                                cx="uui-icon-dropdown"
+                                /*
+                                    All clicks on non-interactive elements switch focus to the toggler,
+                                    but in this case it is necessary to toggler the dropdown.
+                                */
+                                onClick={ togglerPickerOpened }
+                            />
+                        )}
                 </div>
             )}
         </div>

@@ -1,9 +1,11 @@
 {
-    "spellright.language": "en",
+    "spellright.language": [
+      "en"
+    ],
     "spellright.documentTypes": [
-        "markdown",
-        "latex",
-        "plaintext"
+      "markdown",
+      "latex",
+      "plaintext"
     ],
     "cSpell.words": [
         "altname",
@@ -102,6 +104,7 @@
     "less.lint.emptyRules": "ignore",
     "scss.lint.emptyRules": "ignore",
     "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit",
         "source.fixAll.stylelint": "explicit"
     },
     "stylelint.validate": [
@@ -113,8 +116,5 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "[scss]": {
       "editor.defaultFormatter": "stylelint.vscode-stylelint"
-    },
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
     }
 }

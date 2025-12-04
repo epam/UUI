@@ -9,6 +9,8 @@
         { "name": "Render footer", "componentPath": "datePicker/Footer.example.tsx" },
         { "name": "Disable dates", "componentPath": "datePicker/Filter.example.tsx" },
         { "name": "Prevent from being empty", "componentPath": "datePicker/PreventEmpty.example.tsx" },
-        { "name": "Customize day render", "componentPath": "datePicker/CustomRenderDay.example.tsx" }
+        { "name": "Customize day render", "componentPath": "datePicker/CustomRenderDay.example.tsx" },
+        { "name": "Select only year and month", "componentPath": "datePicker/YearMonthSelect.example.tsx" },
+        { "name": "Locale override", "descriptionPath": "datePicker-local-override" }
     ]
 }

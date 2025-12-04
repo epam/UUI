@@ -124,6 +124,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                     isHoliday={ props.isHoliday }
                     renderDay={ props.renderDay }
                     rawProps={ props.rawProps?.body }
+                    initialViewMonth={ props.initialViewMonth }
                 />
                 {props.renderFooter?.()}
             </DropdownContainer>

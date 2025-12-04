@@ -15,7 +15,10 @@ type ClickableForwardedRef = HTMLButtonElement | HTMLAnchorElement | HTMLSpanEle
 export type ClickableRawProps = React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement> | React.HTMLAttributes<HTMLSpanElement>;
 
 export type ClickableComponentProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX
-& ICanRedirect & IHasRawProps<ClickableRawProps> & {};
+& ICanRedirect & IHasRawProps<ClickableRawProps> & {
+    /** Called when keyDown event is fired on component */
+    onKeyDown?: (e: React.KeyboardEvent) => void;
+};
 
 export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildren<ClickableComponentProps & ClickableType>>((props, ref) => {
     const context = useUuiContext();
@@ -24,26 +27,29 @@ export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildr
     const hasClick = Boolean(!props.isDisabled && (props.link || props.onClick || props.clickAnalyticsEvent));
 
     const clickHandler = (e: React.MouseEvent) => {
-        if (!isEventTargetInsideClickable(e) && !props.isDisabled) {
-            if (props.onClick) {
-                props.onClick(e);
-            }
-
-            if (!!props.link) {
-                if (props.target) { // if target _blank we should not invoke redirect
-                    return;
-                }
-
-                e.preventDefault();
-                context.uuiRouter.redirect(props.link);
-            }
-
-            context.uuiAnalytics.sendEvent(props.clickAnalyticsEvent);
+        if (isEventTargetInsideClickable(e) && !props.isDisabled) {
+            e.preventDefault(); // If it was click on another clickable element, we should also make preventDefault, to disable redirect by href attribute
+            return;
         }
+
+        if (props.onClick) {
+            props.onClick(e);
+        }
+
+        if (!!props.link) {
+            if (props.target) { // if target _blank we should not invoke redirect
+                return;
+            }
+
+            e.preventDefault();
+            context.uuiRouter.redirect(props.link);
+        }
+
+        context.uuiAnalytics.sendEvent(props.clickAnalyticsEvent);
     };
 
     const getTabIndex = () => {
-        if (!props.tabIndex && (props.isDisabled || (!props.onClick && !props.link && !props.href))) {
+        if (!props.tabIndex && (props.isDisabled || (!props.onClick && !props.onKeyDown && !props.link && !props.href))) {
             return -1;
         }
 
@@ -66,6 +72,7 @@ export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildr
     const commonProps = {
         className,
         onClick: hasClick ? clickHandler : undefined,
+        onKeyDown: !props.isDisabled ? props.onKeyDown : undefined,
         tabIndex: getTabIndex(),
         'aria-disabled': props.isDisabled,
         // NOTE: do not use disabled attribute for button because it will prevent all events and broke Tooltip at least

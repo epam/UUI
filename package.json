@@ -11,8 +11,6 @@
     "build": "lerna run build",
     "build-dev": "cd ./app && yarn build-dev",
     "build-modules": "lerna run build",
-    "build-server-helpers": "tsc --esModuleInterop uui-core/src/data/querying/getFilterPredicate.ts --outDir ./server/helpers/",
-    "copy-to-template": "node uui-build/scripts/copyToTemplate",
     "eslint": "cross-env LINT_SCRIPT=true yarn --cwd uui-build lint --eslint",
     "eslint-fix": "yarn eslint --fix",
     "generate-components-api": "yarn --cwd uui-build generate-components-api",

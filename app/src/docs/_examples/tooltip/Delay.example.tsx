@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, FlexRow, Panel, Tooltip, Text } from '@epam/uui';
+import { Avatar, Panel, Tooltip, Text, LinkButton } from '@epam/uui';
 import css from './DelayExample.module.scss';
 
 export default function TriggerConfigurationWithDelayExample() {
@@ -9,28 +9,38 @@ export default function TriggerConfigurationWithDelayExample() {
                 Project Team
             </Text>
             <Tooltip content="Experiance Designer" openDelay={ 250 }>
-                <FlexRow columnGap="6" size="24">
-                    <Avatar size="18" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
-                    <Text fontSize="14" lineHeight="24" cx={ css.text }>
-                        Ann Zaharova
-                    </Text>
-                </FlexRow>
+                <LinkButton
+                    icon={
+                        () => <Avatar size="18" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
+                    }
+                    caption="Ann Zaharova"
+                    href="#"
+                    size="30"
+                    rawProps={ {
+                        'aria-describedby': '',
+                        'aria-description': 'Experiance Designer',
+                    } }
+                />
             </Tooltip>
             <Tooltip content="Experiance Designer" openDelay={ 250 }>
-                <FlexRow columnGap="6" size="24">
-                    <Avatar size="18" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
-                    <Text fontSize="14" lineHeight="24" cx={ css.text }>
-                        Alexander Sozonov
-                    </Text>
-                </FlexRow>
+                <LinkButton
+                    icon={
+                        () => <Avatar size="18" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
+                    }
+                    caption="Alexander Sozonov"
+                    href="#"
+                    size="30"
+                />
             </Tooltip>
             <Tooltip content="Experiance Designer" openDelay={ 250 }>
-                <FlexRow columnGap="6" size="24">
-                    <Avatar size="18" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
-                    <Text fontSize="14" lineHeight="24" cx={ css.text }>
-                        Peter Drummer
-                    </Text>
-                </FlexRow>
+                <LinkButton
+                    icon={
+                        () => <Avatar size="18" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
+                    }
+                    caption="Peter Drummer"
+                    href="#"
+                    size="30"
+                />
             </Tooltip>
         </Panel>
     );

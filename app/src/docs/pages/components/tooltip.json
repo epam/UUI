@@ -7,6 +7,7 @@
         { "name": "Types", "componentPath": "tooltip/Types.example.tsx" },
         { "name": "Variants (Styles)", "componentPath": "tooltip/Variants.example.tsx" },
         { "name": "Tooltip placement", "componentPath": "tooltip/Placement.example.tsx" },
+        { "name": "Accessibility", "componentPath": "tooltip/Accessibility.example.tsx" },
         { "name": "Custom markup", "componentPath": "tooltip/CustomMarkup.example.tsx" },
         { "name": "Tooltip with delay", "componentPath": "tooltip/Delay.example.tsx" },
         { "name": "Tooltip with icon", "componentPath": "tooltip/WithIcon.example.tsx" },

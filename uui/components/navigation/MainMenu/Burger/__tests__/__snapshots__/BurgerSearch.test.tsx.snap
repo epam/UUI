@@ -4,10 +4,10 @@ exports[`BurgerSearch should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
     class="container uui-input-box -clickable searchInput uui-main_menu-burger-search"
-    tabindex="-1"
   >
     <div
-      class="container uui-icon uui-enabled"
+      aria-label="Icon in input"
+      class="container uui-icon uui-enabled uui-control_icon"
     >
       <svg
         class=""
@@ -27,10 +27,10 @@ exports[`BurgerSearch should be rendered correctly with extra props 1`] = `
 <DocumentFragment>
   <div
     class="container uui-input-box -clickable searchInput uui-main_menu-burger-search"
-    tabindex="-1"
   >
     <div
-      class="container uui-icon uui-enabled"
+      aria-label="Icon in input"
+      class="container uui-icon uui-enabled uui-control_icon"
     >
       <svg
         class=""

@@ -36,11 +36,13 @@ import LockContextDocItem from '../../docs/pages/contexts/lockContext.json';
 import InternationalizationDocItem from '../../docs/pages/advanced/internationalization.json';
 import DragAndDropDocItem from '../../docs/pages/advanced/dragAndDrop.json';
 import LensesDocItem from '../../docs/pages/advanced/lenses.json';
+import AIToolsItem from '../../docs/pages/AITools.json';
 
 export const items: DocItem[] = [
     OverviewDocItem,
     GettingStartedDocItem,
     CoreConceptsDocItem,
+    AIToolsItem,
     { id: 'forDesigners', name: 'For Designers' },
     { id: 'gettingStartedForDesigners', name: 'Getting Started', renderContent: () => <DownloadsDoc />, parentId: 'forDesigners' },
     { id: 'guidelines', name: 'Guidelines', parentId: 'forDesigners' },

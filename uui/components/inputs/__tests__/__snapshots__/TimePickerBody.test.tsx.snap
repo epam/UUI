@@ -22,7 +22,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
           />
         </div>
         <div
-          class="container uui-input-box -clickable uui-timepicker-input"
+          class="container uui-input-box uui-readonly uui-numeric-input-without-arrows uui-timepicker-input"
           tabindex="-1"
         >
           <input
@@ -31,22 +31,11 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
             max="12"
             min="1"
             placeholder="12"
-            tabindex="0"
+            readonly=""
+            tabindex="-1"
             type="number"
             value=""
           />
-          <div
-            class="uui-numeric-input-button-group"
-          >
-            <div
-              class="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-              role="button"
-            />
-            <div
-              class="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-              role="button"
-            />
-          </div>
         </div>
         <div
           aria-label="Decrement hours"
@@ -73,7 +62,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
           />
         </div>
         <div
-          class="container uui-input-box -clickable uui-timepicker-input"
+          class="container uui-input-box uui-readonly uui-numeric-input-without-arrows uui-timepicker-input"
           tabindex="-1"
         >
           <input
@@ -82,22 +71,11 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
             max="59"
             min="0"
             placeholder="30"
-            tabindex="0"
+            readonly=""
+            tabindex="-1"
             type="number"
             value=""
           />
-          <div
-            class="uui-numeric-input-button-group"
-          >
-            <div
-              class="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-              role="button"
-            />
-            <div
-              class="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-              role="button"
-            />
-          </div>
         </div>
         <div
           aria-label="Decrement minutes"
@@ -125,7 +103,6 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
       </div>
       <div
         class="container uui-input-box uui-readonly uui-timepicker-input"
-        tabindex="-1"
       >
         <input
           class="uui-input"
@@ -171,7 +148,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
           />
         </div>
         <div
-          class="container uui-input-box -clickable uui-timepicker-input"
+          class="container uui-input-box uui-readonly uui-numeric-input-without-arrows uui-timepicker-input"
           tabindex="-1"
         >
           <input
@@ -180,22 +157,11 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
             max="12"
             min="0"
             placeholder="12"
-            tabindex="0"
+            readonly=""
+            tabindex="-1"
             type="number"
             value=""
           />
-          <div
-            class="uui-numeric-input-button-group"
-          >
-            <div
-              class="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-              role="button"
-            />
-            <div
-              class="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-              role="button"
-            />
-          </div>
         </div>
         <div
           aria-label="Decrement hours"
@@ -222,7 +188,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
           />
         </div>
         <div
-          class="container uui-input-box -clickable uui-timepicker-input"
+          class="container uui-input-box uui-readonly uui-numeric-input-without-arrows uui-timepicker-input"
           tabindex="-1"
         >
           <input
@@ -231,22 +197,11 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
             max="59"
             min="0"
             placeholder="30"
-            tabindex="0"
+            readonly=""
+            tabindex="-1"
             type="number"
             value=""
           />
-          <div
-            class="uui-numeric-input-button-group"
-          >
-            <div
-              class="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-              role="button"
-            />
-            <div
-              class="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-              role="button"
-            />
-          </div>
         </div>
         <div
           aria-label="Decrement minutes"
@@ -274,7 +229,6 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
       </div>
       <div
         class="container uui-input-box uui-readonly uui-timepicker-input"
-        tabindex="-1"
       >
         <input
           class="uui-input"
