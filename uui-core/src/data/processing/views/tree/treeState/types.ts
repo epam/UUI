@@ -1,3 +1,4 @@
+import { FetchingOptions } from '../../../../../services';
 import { CascadeSelection, DataSourceState, IImmutableMap, IMap, SortConfig, SortedPatchByParentId, SortingOption, PatchOptions as PatchConfig } from '../../../../../types';
 import { LazyListViewProps } from '../../types';
 import { ItemsMap } from '../ItemsMap';
@@ -9,7 +10,7 @@ export interface LoadAllConfig {
 }
 
 export interface LoadTreeOptions<TItem, TId, TFilter>
-    extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'getChildCount' | 'filter' | 'fetchStrategy' | 'flattenSearchResults'> {
+    extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'getChildCount' | 'filter' | 'fetchStrategy' | 'flattenSearchResults'>, FetchingOptions {
     loadAllChildren?(id: TId): LoadAllConfig;
     isLoadStrict?: boolean;
     isFolded?: (item: TItem) => boolean;

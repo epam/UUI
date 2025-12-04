@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { DataSourceState, LazyDataSourceApi, DataQueryFilter, Lens, useLazyDataSource } from '@epam/uui-core';
+import { DataSourceState, LazyDataSourceApi, DataQueryFilter, Lens, useLazyDataSource, useAbortController } from '@epam/uui-core';
 import { DbContext } from '@epam/uui-db';
 import { Person } from '@epam/uui-docs';
 import { FlexRow, FlexCell, FlexSpacer, Button, SuccessNotification, ErrorNotification, Text, SearchInput } from '@epam/loveship';
@@ -71,8 +71,10 @@ export function DbDemoImpl() {
 
     const lens = Lens.onEditable<DataSourceState>({ value, onValueChange });
 
-    dbRef.jobTitlesLoader.load({});
-    dbRef.departmentsLoader.load({});
+    const { getAbortSignal } = useAbortController();
+
+    dbRef.jobTitlesLoader.load({ signal: getAbortSignal() });
+    dbRef.departmentsLoader.load({ signal: getAbortSignal() });
 
     const dataSource = useLazyDataSource({
         api,

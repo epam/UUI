@@ -26,6 +26,7 @@ export function DemoTablePaged() {
             filter: request.filter,
             page: request.page,
             pageSize: request.pageSize,
+            signal: request.signal,
         });
 
         result.count = result.items.length;

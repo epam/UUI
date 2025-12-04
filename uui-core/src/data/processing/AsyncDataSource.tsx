@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { FetchingOptions } from '../../services';
 import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
 import { useForceUpdate } from '../../hooks';
 import { DataSourceState, IDataSourceView, SetDataSourceState } from '../../types';
@@ -10,7 +11,7 @@ import { ItemsStatusCollector } from './views/tree/ItemsStatusCollector';
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends AsyncListViewProps<TItem, TId, TFilter> {}
 
 export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends ArrayDataSource<TItem, TId> {
-    api: () => Promise<TItem[]> = null;
+    api: (options: FetchingOptions) => Promise<TItem[]> = null;
     itemsStatusCollector: ItemsStatusCollector<TItem, TId, TFilter>;
 
     constructor(props: AsyncDataSourceProps<TItem, TId, TFilter>) {
@@ -23,18 +24,10 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         this.itemsStatusCollector = new ItemsStatusCollector(newMap(params), params);
     }
 
-    private _cache: Promise<TItem[]>;
-    private get cache(): Promise<TItem[]> {
-        return this._cache;
-    }
-
-    private set cache(_cache: Promise<TItem[]> | null) {
-        this._cache = _cache;
-    }
-    
-    private cachedApi = async () => {
+    private cache: Promise<TItem[]>;
+    private cachedApi = async (options: FetchingOptions) => {
         if (!this.cache) {
-            this.cache = this.api();
+            this.cache = this.api(options);
         }
 
         return this.cache;
@@ -89,10 +82,11 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             setDataSourceState: onValueChange,
         }, [...deps, this]);
 
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const clearCacheAndReload = useCallback(() => {
             this.cache = null;
             reload();
-        }, [reload, this]);
+        }, [reload]);
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {

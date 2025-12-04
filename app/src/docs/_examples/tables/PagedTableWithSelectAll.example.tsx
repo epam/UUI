@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest, useUuiContext, LazyDataSourceApi, ICheckable } from '@epam/uui-core';
+import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest, useUuiContext, LazyDataSourceApi, ICheckable, useAbortController } from '@epam/uui-core';
 import { DataTable, Panel, Text, Paginator, FlexRow, FlexSpacer } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
@@ -44,16 +44,18 @@ export default function PagedTableWithSelectAll() {
         [svc.api.demo],
     );
 
+    const { getAbortSignal } = useAbortController();
+    
     const selectAll = useCallback(async (shouldSelectAll: boolean) => {
         if (!shouldSelectAll) {
             setState((current) => ({ ...current, checked: [] }));
             return;
         }
         const { page, pageSize, ...stateWithoutPaging } = state;
-        const allRecords = await api(stateWithoutPaging);
+        const allRecords = await api({ ...stateWithoutPaging, signal: getAbortSignal() });
 
         setState((current) => ({ ...current, checked: allRecords.items.map((item) => item.id) }));
-    }, [api, state]);
+    }, [api, getAbortSignal, state]);
 
     const dataSource = useLazyDataSource<Person, number, unknown>({
         api,

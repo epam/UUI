@@ -2,6 +2,7 @@ import { ICheckable } from './props';
 import { DataRowOptions, DataRowProps } from './dataRows';
 import { IImmutableMap, IMap } from './objects';
 import { PatchOrderingType } from '../data';
+import { FetchingOptions } from '../services';
 
 export interface SearchConfig<TItem> {
     /**
@@ -398,7 +399,7 @@ export interface LazyDataSourceApiRequestRange {
 
 /** Defines input arguments for Lazy Data Source APIs */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export interface LazyDataSourceApiRequest<TItem, TId = any, TFilter = {}> {
+export interface LazyDataSourceApiRequest<TItem, TId = any, TFilter = {}> extends FetchingOptions {
     /**
      * The filter object, by which data should be filtered.
      * It is a merged result of filters from DataSourceState and LazyDataSourceProps.
@@ -502,5 +503,5 @@ export type LazyDataSourceApi<TItem, TId, TFilter> = (
     /** Defines input arguments for Lazy Data Source APIs */
     request: LazyDataSourceApiRequest<TItem, TId, TFilter>,
     /** Defines the context of API request. */
-    context?: LazyDataSourceApiRequestContext<TItem, TId>
+    context?: LazyDataSourceApiRequestContext<TItem, TId>,
 ) => Promise<LazyDataSourceApiResponse<TItem>>;

@@ -23,6 +23,7 @@ export class FetchingHelper {
                 filter: options.filter,
                 page: dataSourceState.page,
                 pageSize: dataSourceState.pageSize,
+                signal: options.signal,
             },
         );
 
@@ -226,7 +227,7 @@ export class FetchingHelper {
                 break;
             } else {
                 const ids = Array.from(missingIds);
-                const response = await options.api({ ids });
+                const response = await options.api({ ids, signal: options.signal });
                 if (response.items.length !== ids.length) {
                     console.error(`LazyTree: api does not returned requested items. Check that you handle 'ids' argument correctly.
                         Read more here: https://github.com/epam/UUI/issues/89`);
@@ -330,6 +331,7 @@ export class FetchingHelper {
                 page: dataSourceState.page,
                 pageSize: dataSourceState.pageSize,
                 cursor: prevCursor,
+                signal: options.signal,
             },
             requestContext,
         );

@@ -88,7 +88,7 @@ export class GroupingConfigBuilder<
     }
 
     async idsApi(
-        ids: ToUnion<ComplexId<TGroups, TId, TGroupBy>>[][],
+        { ids, signal }: { ids: ToUnion<ComplexId<TGroups, TId, TGroupBy>>[][], signal: AbortSignal },
         groupBy: GroupByForType<TGroups, TGroupBy, keyof TGroups> | GroupByForType<TGroups, TGroupBy, keyof TGroups> [],
         context?: LazyDataSourceApiRequestContext<
         ToUnion<TGroupsWithMeta<TGroups, TId, TGroupBy>>,
@@ -106,7 +106,7 @@ export class GroupingConfigBuilder<
         const response: LazyDataSourceApiResponse<ToUnion<TGroupsWithMeta<TGroups, TId, TGroupBy>>> = { items: [] };
 
         const promises = typesToLoad.map(async (type) => {
-            const idsRequest: LazyDataSourceApiRequest<any, any, TFilter[keyof TGroups]> = { ids: idsByType[type] };
+            const idsRequest: LazyDataSourceApiRequest<any, any, TFilter[keyof TGroups]> = { ids: idsByType[type], signal };
             const apiResponse = await this.api(type, idsRequest);
             response.items = [...response.items, ...apiResponse.items];
         });

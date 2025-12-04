@@ -91,7 +91,7 @@ export function LocationsTable() {
 
     const { data: tree = blankTree, isFetching } = useQuery<Tree, Error, Tree, LocationsQueryKey>({
         queryKey: [LOCATIONS_QUERY, tableState],
-        queryFn: async ({ queryKey: [, dataSourceState] }) => {
+        queryFn: async ({ queryKey: [, dataSourceState], signal }) => {
             const prevTree = queryClient.getQueryData<Tree>([LOCATIONS_QUERY]) ?? blankTree;
             const { loadedItems, byParentId, nodeInfoById } = await UUITree.load<Location, string>({
                 tree: prevTree,
@@ -99,6 +99,7 @@ export function LocationsTable() {
                 getChildCount: (l) => l.childCount,
                 isFolded,
                 dataSourceState,
+                signal,
             });
 
             return prevTree.update(loadedItems, byParentId, nodeInfoById);
