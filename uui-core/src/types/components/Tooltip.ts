@@ -12,7 +12,7 @@ export type OutdatedOffset = [number | null | undefined, number | null | undefin
 
 export interface TooltipCoreProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
     Partial<IControlled<boolean>>, Pick<DropdownProps, 'onClose' | 'middleware' | 'openDelay' |
-    'closeDelay' | 'closeOnMouseLeave' | 'portalTarget' | 'boundaryElement' | 'closeBodyOnTogglerHidden'> {
+    'closeDelay' | 'closeOnMouseLeave' | 'portalTarget' | 'boundaryElement' | 'closeBodyOnTogglerHidden' | 'closeOnEscape'> {
     /** Content to show in the tooltip (ReactNode) */
     content?: any;
 

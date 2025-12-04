@@ -4,15 +4,15 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
 <body>
   <div>
     <div
-      class="container uui-input-box -clickable root uui-picker_toggler uui-size-36 uui-control-mode-form"
+      class="container uui-input-box root uui-picker_toggler uui-size-36 uui-control-mode-form"
     >
       <div
         class="body"
       >
         <input
-          aria-haspopup="true"
+          aria-haspopup="dialog"
           autocomplete="no"
-          class="uui-input singleInput cursorText"
+          class="uui-input singleInput cursorText -clickable"
           dir="ltr"
           placeholder="Please select "
           tabindex="0"
@@ -23,13 +23,19 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
       <div
         class="uui-picker_toggler-actions"
       >
-        <div
-          class="container uui-icon uui-enabled uui-icon-dropdown"
+        <button
+          class="uui-button-box uui-enabled -clickable container uui-control_icon root uui-icon-dropdown -focusable"
+          tabindex="0"
+          type="button"
         >
-          <svg
-            class="flipY"
-          />
-        </div>
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class="flipY"
+            />
+          </div>
+        </button>
       </div>
     </div>
   </div>
@@ -73,20 +79,23 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
               data-overlayscrollbars-contents=""
               data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
               style="padding: 0px 0px 0px 0px;"
-              tabindex="-1"
+              tabindex="0"
             >
               <div
                 class="listContainer"
                 style="min-height: 2px;"
               >
                 <div
+                  role="listbox"
                   style="margin-top: 0px;"
                 >
                   <div
                     aria-posinset="1"
                     aria-selected="false"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top uui-focus -clickable"
+                    id="2"
                     role="option"
+                    tabindex="-1"
                   >
                     <div
                       class="flexCell rowContent"
@@ -125,7 +134,9 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
                     aria-posinset="2"
                     aria-selected="false"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    id="3"
                     role="option"
+                    tabindex="-1"
                   >
                     <div
                       class="flexCell rowContent"
@@ -229,7 +240,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
 exports[`PickerInput Rendering should render with maximum props 1`] = `
 <DocumentFragment>
   <div
-    class="container uui-input-box -clickable uui-has-value root uui-picker_toggler uui-size-48 uui-control-mode-form"
+    class="container uui-input-box uui-has-value root uui-picker_toggler uui-size-48 uui-control-mode-form"
     tabindex="0"
   >
     <div
@@ -245,13 +256,20 @@ exports[`PickerInput Rendering should render with maximum props 1`] = `
         >
           A1
         </div>
-        <div
-          class="container uui-icon uui-enabled -clickable -clickable"
+        <button
+          aria-label="Remove tag"
+          class="uui-button-box uui-enabled -clickable container uui-control_icon root uui-icon-cancel -focusable"
+          tabindex="0"
+          type="button"
         >
-          <svg
-            class=""
-          />
-        </div>
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
       </span>
       <span
         class="uui-button-box uui-enabled root uui-size-36 uui-color-neutral uui-fill-solid uui-tag"
@@ -263,35 +281,52 @@ exports[`PickerInput Rendering should render with maximum props 1`] = `
         >
           A1+
         </div>
-        <div
-          class="container uui-icon uui-enabled -clickable -clickable"
+        <button
+          aria-label="Remove tag"
+          class="uui-button-box uui-enabled -clickable container uui-control_icon root uui-icon-cancel -focusable"
+          tabindex="0"
+          type="button"
         >
-          <svg
-            class=""
-          />
-        </div>
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
       </span>
     </div>
     <div
       class="uui-picker_toggler-actions"
     >
-      <div
-        aria-label="Clear"
-        class="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
-        role="button"
-        tabindex="-1"
+      <button
+        aria-label="Clear input"
+        class="uui-button-box uui-enabled -clickable container uui-control_icon root uui-icon-cancel -focusable"
+        tabindex="0"
+        type="button"
       >
-        <svg
-          class=""
-        />
-      </div>
-      <div
-        class="container uui-icon uui-enabled uui-icon-dropdown"
+        <div
+          class="container uui-icon uui-enabled"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </button>
+      <button
+        class="uui-button-box uui-enabled -clickable container uui-control_icon root uui-icon-dropdown -focusable"
+        tabindex="0"
+        type="button"
       >
-        <svg
-          class=""
-        />
-      </div>
+        <div
+          class="container uui-icon uui-enabled"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </button>
     </div>
   </div>
 </DocumentFragment>
@@ -300,15 +335,15 @@ exports[`PickerInput Rendering should render with maximum props 1`] = `
 exports[`PickerInput Rendering should render with minimum props 1`] = `
 <DocumentFragment>
   <div
-    class="container uui-input-box -clickable root uui-picker_toggler uui-size-36 uui-control-mode-form"
+    class="container uui-input-box root uui-picker_toggler uui-size-36 uui-control-mode-form"
   >
     <div
       class="body"
     >
       <input
-        aria-haspopup="true"
+        aria-haspopup="dialog"
         autocomplete="no"
-        class="uui-input singleInput cursorText"
+        class="uui-input singleInput cursorText -clickable"
         dir="ltr"
         placeholder="Please select "
         tabindex="0"
@@ -319,13 +354,19 @@ exports[`PickerInput Rendering should render with minimum props 1`] = `
     <div
       class="uui-picker_toggler-actions"
     >
-      <div
-        class="container uui-icon uui-enabled uui-icon-dropdown"
+      <button
+        class="uui-button-box uui-enabled -clickable container uui-control_icon root uui-icon-dropdown -focusable"
+        tabindex="0"
+        type="button"
       >
-        <svg
-          class=""
-        />
-      </div>
+        <div
+          class="container uui-icon uui-enabled"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </button>
     </div>
   </div>
 </DocumentFragment>

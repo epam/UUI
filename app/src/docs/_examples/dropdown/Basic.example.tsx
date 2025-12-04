@@ -1,23 +1,23 @@
 import React from 'react';
 import { Dropdown, FlexSpacer } from '@epam/uui-components';
 import { offset } from '@floating-ui/react';
-import { Badge, Panel, Text, FlexRow, LinkButton, DropdownContainer, IconButton, FlexCell, IconContainer, Avatar } from '@epam/uui';
+import { Panel, Text, FlexRow, LinkButton, DropdownContainer, IconButton, FlexCell, IconContainer, Avatar } from '@epam/uui';
 import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
 import css from './BasicExample.module.scss';
 import { ReactComponent as pinIcon } from '@epam/assets/icons/action-pin_on-fill.svg';
 import { ReactComponent as aimIcon } from '@epam/assets/icons/action-target-fill.svg';
-import { ReactComponent as notificationIcon } from '@epam/assets/icons/notification-done-outline.svg';
 import { ReactComponent as telescopeIcon } from '@epam/assets/icons/internal_logo/telescope-fill.svg';
-import { ReactComponent as chatIcon } from '@epam/assets/icons/communication-chat-fill.svg';
+import { ReactComponent as chatIcon } from '@epam/assets/icons/external_logo/microsoft_teams-fill.svg';
+import { ReactComponent as teamsIcon } from '@epam/assets/icons/external_logo/microsoft_teams-outline.svg';
 import { ReactComponent as githubIcon } from '@epam/assets/icons/external_logo/github-fill.svg';
-import { ReactComponent as skypeIcon } from '@epam/assets/icons/external_logo/skype-fill.svg';
 import { ReactComponent as instaIcon } from '@epam/assets/icons/external_logo/instagram-outline.svg';
 import { ReactComponent as shareIcon } from '@epam/assets/icons/action-social_share-outline.svg';
 import { ReactComponent as phoneIcon } from '@epam/assets/icons/communication-phone-outline.svg';
-import { ReactComponent as mailIcon } from '@epam/assets/icons/communication-mail-fill.svg';
+import { ReactComponent as mailIcon } from '@epam/assets/icons/communication-mail-outline.svg';
 import { ReactComponent as inIcon } from '@epam/assets/icons/external_logo/linkedin-outline.svg';
-import { ReactComponent as geoIcon } from '@epam/assets/icons/action-map_pin-fill.svg';
+import { ReactComponent as geoIcon } from '@epam/assets/icons/action-map_pin-outline.svg';
 import { ReactComponent as rightArrIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
+import { Tag } from '@epam/electric';
 
 export default function BasicDropdownExample() {
     const renderDropdownBody = (props: DropdownBodyProps) => {
@@ -48,38 +48,38 @@ export default function BasicDropdownExample() {
                         <FlexRow padding="6">
                             <Panel background="surface-main">
                                 <FlexRow alignItems="center" columnGap="6">
-                                    <Badge cx={ css.badge } color="success" size="24" icon={ notificationIcon } caption="Available" />
-                                    <Badge cx={ css.badge } color="warning" size="24" caption="Bench" />
-                                    <Badge cx={ css.badge } color="info" size="24" caption="Remote" />
+                                    <Tag fill="outline" color="success" size="18" caption="Available" />
+                                    <Tag fill="outline" color="critical" size="18" caption="Bench" />
+                                    <Tag fill="outline" color="info" size="18" caption="Remote" />
                                 </FlexRow>
-                                <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
+                                <Text cx={ css.text } lineHeight="14" fontSize="12" color="secondary">
                                     On vacation from 19 Aug till 26 Aug
                                 </Text>
                             </Panel>
+                        </FlexRow>
+
+                        <FlexRow alignItems="flex-end" columnGap="12" padding="6" vPadding="12" size="24">
+                            <IconButton size="18" icon={ telescopeIcon } color="primary" onClick={ () => null } />
+                            <IconButton size="18" icon={ chatIcon } color="primary" onClick={ () => null } />
+                            <IconButton size="18" icon={ githubIcon } color="primary" onClick={ () => null } />
+                            <IconButton size="18" icon={ instaIcon } color="primary" onClick={ () => null } />
+                            <IconButton size="18" icon={ shareIcon } color="primary" onClick={ () => null } />
                         </FlexRow>
                     </Panel>
                 </FlexRow>
 
                 <div className={ css.divider }></div>
 
-                <FlexRow padding="12" vPadding="24">
+                <FlexRow padding="12" vPadding="18">
                     <Panel background="surface-main">
-                        <FlexRow alignItems="center" columnGap="12" padding="6">
-                            <IconButton size="18" icon={ telescopeIcon } color="primary" onClick={ () => null } />
-                            <IconButton size="18" icon={ chatIcon } color="primary" onClick={ () => null } />
-                            <IconButton size="18" icon={ githubIcon } color="primary" onClick={ () => null } />
-                            <IconButton size="18" icon={ skypeIcon } color="primary" onClick={ () => null } />
-                            <IconButton size="18" icon={ instaIcon } color="primary" onClick={ () => null } />
-                            <IconButton size="18" icon={ shareIcon } color="primary" onClick={ () => null } />
-                        </FlexRow>
-                        <FlexRow padding="6">
-                            <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
+                        <FlexRow size="24" padding="6">
+                            <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary" fontWeight="700">
                                 Contacts
                             </Text>
                         </FlexRow>
 
                         <FlexCell width="100%">
-                            <FlexRow columnGap="6" alignItems="center" padding="6">
+                            <FlexRow columnGap="12" alignItems="center" padding="6">
                                 <IconContainer size={ 18 } icon={ phoneIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {
@@ -87,19 +87,21 @@ export default function BasicDropdownExample() {
                                     } }
                                     size="36"
                                     caption="+3809324353424"
+                                    weight="regular"
                                 />
                             </FlexRow>
-                            <FlexRow columnGap="6" alignItems="center" padding="6">
-                                <IconContainer size={ 18 } icon={ chatIcon } cx={ css.iconGray50 } />
+                            <FlexRow columnGap="12" alignItems="center" padding="6">
+                                <IconContainer size={ 18 } icon={ teamsIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {
                                         /* redirect implementation */
                                     } }
                                     size="36"
                                     caption="x43059"
+                                    weight="regular"
                                 />
                             </FlexRow>
-                            <FlexRow columnGap="6" alignItems="center" padding="6">
+                            <FlexRow columnGap="12" alignItems="center" padding="6">
                                 <IconContainer size={ 18 } icon={ mailIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {
@@ -107,9 +109,10 @@ export default function BasicDropdownExample() {
                                     } }
                                     size="36"
                                     caption="user@epam.com"
+                                    weight="regular"
                                 />
                             </FlexRow>
-                            <FlexRow columnGap="6" alignItems="bottom" padding="6">
+                            <FlexRow columnGap="12" alignItems="bottom" padding="6">
                                 <IconContainer size={ 18 } icon={ inIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {
@@ -117,9 +120,10 @@ export default function BasicDropdownExample() {
                                     } }
                                     size="36"
                                     caption="https://www.linkedin.com/fakeid/..."
+                                    weight="regular"
                                 />
                             </FlexRow>
-                            <FlexRow columnGap="6" alignItems="center" padding="6">
+                            <FlexRow columnGap="12" alignItems="center" padding="6">
                                 <IconContainer size={ 18 } icon={ geoIcon } cx={ css.iconGray50 } />
                                 <Text fontSize="14" lineHeight="18" color="primary" cx={ css.text }>
                                     Gratkorn, Austria UTC+01:00 | 16:54
@@ -133,14 +137,14 @@ export default function BasicDropdownExample() {
 
                 <FlexRow padding="18" vPadding="24">
                     <Panel background="surface-main">
-                        <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
+                        <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary" fontWeight="600">
                             Reporting to
                         </Text>
-                        <FlexRow columnGap="12" vPadding="12">
+                        <FlexRow columnGap="12" vPadding="18">
                             <Avatar size="42" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
 
-                            <div>
-                                <Text cx={ css.text } lineHeight="24" fontSize="14" color="primary" fontWeight="600">
+                            <div style={ { paddingTop: '4px' } }>
+                                <Text cx={ css.text } lineHeight="22" fontSize="14" color="primary" fontWeight="600">
                                     John Wick
                                 </Text>
                                 <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
@@ -153,7 +157,7 @@ export default function BasicDropdownExample() {
 
                 <div className={ css.divider }></div>
 
-                <FlexRow padding="18" vPadding="24">
+                <FlexRow padding="18" vPadding="18">
                     <LinkButton onClick={ () => {} } caption="Show Reporting Line" size="36" icon={ rightArrIcon } iconPosition="right" />
                 </FlexRow>
             </DropdownContainer>

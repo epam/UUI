@@ -15,10 +15,6 @@
     --uui-text_input-placeholder-readonly: var(--uui-control-placeholder-disabled);
     --uui-text_input-text: var(--uui-control-text);
     --uui-text_input-text-disabled: var(--uui-control-text-disabled);
-    --uui-text_input-icon: var(--uui-control-icon);
-    --uui-text_input-icon-disabled: var(--uui-control-icon-disabled);
-    --uui-text_input-icon-clickable: var(--uui-icon);
-    --uui-text_input-icon-clickable-hover: var(--uui-icon-hover);
 
     // font
     --uui-text_input-font: var(--uui-font);
@@ -36,7 +32,6 @@
     --uui-text_input-font-size: var(--uui-font-size);
 
     //
-    fill: var(--uui-text_input-icon);
     border-style: solid;
     box-sizing: border-box;
     min-width: var(--uui-text_input-min-width);
@@ -81,14 +76,6 @@
         background-color: var(--uui-text_input-bg);
         border-color: var(--uui-text_input-border);
 
-        :global(.-clickable) {
-            fill: var(--uui-text_input-icon-clickable);
-
-            &:hover {
-                fill: var(--uui-text_input-icon-clickable-hover);
-            }
-        }
-
         &:hover {
             border-color: var(--uui-text_input-border-hover);
         }
@@ -101,14 +88,6 @@
     &:global(.uui-control-mode-inline) {
         background-color: transparent;
         border-color: transparent;
-
-        :global(.-clickable) {
-            fill: var(--uui-text_input-icon-clickable);
-
-            &:hover {
-                fill: var(--uui-text_input-icon-clickable-hover);
-            }
-        }
 
         &:hover {
             border-color: var(--uui-text_input-border-hover);
@@ -123,17 +102,12 @@
         background-color: transparent !important;
         border-color: transparent;
 
-        :global(.-clickable) {
-            fill: transparent;
-        }
-
-        &:hover {
-            :global(.-clickable) {
-                fill: var(--uui-text_input-icon-clickable);
-
-                &:hover {
-                    fill: var(--uui-text_input-icon-clickable-hover);
-                }
+        &:not(:hover, :global(.uui-focus), :focus-within),
+        &:global(.uui-disabled) {
+            :global(.uui-icon-cancel),
+            :global(.uui-icon-accept),
+            :global(.uui-icon-dropdown) {
+                fill: transparent;
             }
         }
     }
@@ -147,7 +121,6 @@
 
     &:global(.uui-readonly) {
         color: var(--uui-text_input-text);
-        fill: var(--uui-text_input-icon);
         pointer-events: none;
 
         :global(.uui-input) {
@@ -165,7 +138,6 @@
 
     &:global(.uui-disabled) {
         color: var(--uui-text_input-text-disabled);
-        fill: var(--uui-text_input-icon-disabled);
         pointer-events: none;
 
         :global(.uui-input) {

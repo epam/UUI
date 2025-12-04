@@ -4,7 +4,6 @@ exports[`TimePicker should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
     class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form root timepickerInput"
-    tabindex="-1"
   >
     <input
       class="uui-input"
@@ -21,7 +20,6 @@ exports[`TimePicker should be rendered correctly with disableClear property 1`] 
 <DocumentFragment>
   <div
     class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form root timepickerInput"
-    tabindex="-1"
   >
     <input
       class="uui-input"
@@ -38,7 +36,6 @@ exports[`TimePicker should be rendered correctly with full props 1`] = `
 <DocumentFragment>
   <div
     class="container uui-input-box uui-disabled root uui-size-36 uui-control-mode-form root timepickerInput"
-    tabindex="-1"
   >
     <input
       aria-disabled="true"

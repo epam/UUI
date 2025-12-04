@@ -1,0 +1,117 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You can customize how a dropdown opens and closes using the following props:"
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "openOnClick",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": ": This is the default behavior. It opens the dropdown when you click the target."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "openOnHover",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": ": This opens the dropdown when you hover over the target, similar to a tooltip. When using this prop, you can also customize when the dropdown closes by using the "
+              },
+              {
+                "text": "closeOnMouseLeave",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " prop with the following values:"
+              }
+            ]
+          },
+          {
+            "type": "unordered-list",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "type": "list-item-child",
+                    "children": [
+                      {
+                        "text": "toggler: The dropdown will close when your mouse leaves the target component."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "type": "list-item-child",
+                    "children": [
+                      {
+                        "text": "boundary: The dropdown will not close immediately. It stays open as long as the mouse is within 30 pixels of the dropdown body."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "type": "list-item-child",
+                    "children": [
+                      {
+                        "text": "false: The dropdown will not close due to a mouse move event."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "openOnFocus",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": ": This opens the dropdown when the target element is focused. This is generally used to make tooltips accessible with a keyboard. Note, that this option can't be used with focus-lock, to prevent focus loop."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

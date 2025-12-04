@@ -1,31 +1,86 @@
-# 6.xx.xx - xx.xx.2025
+# 6.?.? - ??.??.2025
+
+**What's Fixed**
+* [DataTable]: fixed resizing for right-fixed columns
+* [TimePicker]: reworked body open/close behavior. Now body opens by input click or enter key press, instead of 'focus' on target and body closed by 'Escape' or click outside, instead of target blur. Added focus lock behavior.
+* [uui-core]: removed `isFocusReceiverInsideFocusLock` helper function that was causing focus management issues in picker components
+* [LabeledInput]: fixed incorrect prop resolution for `infoIcon`
+* [PickerInput]: change value in `aria-haspopup` attribute from "true" to "dialog" ([#2947](https://github.com/epam/UUI/pull/2947))
+* [PickerInput]: fixed an issue where item count text was truncated in isSingleLine mode
+* [TextInput]: remove call on onCancel callback on 'Escape' press
+* [Pagination]: pagination elements are not grouped into a list ([#2942](https://github.com/epam/UUI/pull/2942))
+  * Add "Previous page" and "Next page" `aria-label`-s to the previous and next pages respectively
+* [DatePickers]: fixed calendar matrix calculation to use locale-specific `firstDayOfWeek` from dayjs instead of hardcoded i18n configuration, ensuring correct calendar layout for any locale.
+* [RangeDatePicker]: added option to display clear icon when at least one date is selected
+* [DatePicker], [RangeDatePicker]: added ability to set the initially displayed month and year in the calendar body when the picker opens via `initialViewMonth` prop
+* [PickerInput/PickerModal]: fix announcing of a picker item's content in screen readers when the item becomes focused ([#2946](https://github.com/epam/UUI/pull/2946))
+* [MainMenu] Improve accessibility of hidden items in "More" menu ([#2948](https://github.com/epam/UUI/pull/2948))
+    * Add `aria-haspopup="menu"` to the "More" button
+    * Add `role="menu"` to the container wrapping the list of items
+    * Provide an example in the documentation of how to assign `role="menuitem"` to the items only when they are present in the menu
+* Make icons and clear buttons in input accessible via keyboard ([#2845](https://github.com/epam/UUI/pull/2845))
+    * Icon set with `icon` property and clear button set with `onClear` property now use a button component with its own CSS variables, which makes some input-specific ones obsolete.
+        * The following CSS variables are no longer available:
+            * `TextInput` (and other inputs that use it):
+                * `--uui-text_input-icon`
+                * `--uui-text_input-icon-disabled`
+                * `--uui-text_input-icon-clickable`
+                * `--uui-text_input-icon-clickable-hover`
+                * `--uui-text_input-icon-clickable-active`
+            * `PickerInput`:
+                * `--uui-picker_toggler-icon-disabled`
+                * `--uui-picker_toggler-icon-clickable`
+                * `--uui-picker_toggler-icon-clickable-hover`
+        * The following CSS variables are should be used instead:
+            * `--uui-control_icon`
+            * `--uui-control_icon-clickable`
+            * `--uui-control_icon-clickable-hover`
+            * `--uui-control_icon-clickable-active`
+    * Icon set with `icon` property in `TextInput` (and other inputs that use it) is now always displayed in `mode="cell"`, not only on hover
+* [Dropdown]: added `fixedBodyPosition` prop to control dropdown positioning. Pass `true` to keep the dropdown list fixed in the position where it was first opened.
+* [Dropdown]: add example for fixed body position when toggler changes place
+* [PresetActionsDropdown]: Fixed unreadable dark text in SuccessNotification after Copy link action under Loveship-Dark theme
+* [Loader]: added Loader examples in the documentation
+
+# 6.3.1 - 08.10.2025
+
+**What's Fixed**
+* [DataTable]: fixed virtualization height calculation issues causing excessive empty space in tables
+
+# 6.3.0 - 26.09.2025
 
 **What's New**
-* [TabList] Create the component ([#2857](https://github.com/epam/UUI/pull/2857))
-* [TabButton] Activate tab button by pressing "Space" key ([#2857](https://github.com/epam/UUI/pull/2857))
+* [Tabs]: added new component ([#2857](https://github.com/epam/UUI/pull/2857))
+* [TabButton]: added activation of tab button by pressing "Space" key ([#2857](https://github.com/epam/UUI/pull/2857))
 * [FiltersPanel]: added 'disableClear' and 'filter' props for picker filters
 * [ApiContext][Breaking Change]:
     * ApiContext no longer supports auth recovery via the 'message' event; it now uses the 'storage' event instead;
         - To switch to the handling via `localStorage` replace code of `apiReloginPath` endpoint to `<html><script>window.localStorage.setItem("uui-auth-recovery-success", "true"); window.close();</script></html>`
     * The 'opener' is cleared when the auth recovery popup is opened
+* [ScrollBars][Breaking Changes]: migrated from deprecated `react-custom-scrollbars-2` to modern `overlayscrollbars-react` library to fix multiple issues and improve stability. This migration improved scrollbar styling, expanded API capabilities, but introduced some minor breaking changes, that should not affect common use-cases:
+    * base component removed from `@epam/uui-components`, all types moved to `@epam/uui`;
+    * Ref API changed from `{ container: HTMLDivElement | undefined }` to `{ container: HTMLElement | null, view: HTMLElement | null }`;
+    * `autoHide` prop changed from `boolean` to string values `('never' | 'scroll' | 'move' | 'leave')`, `autoHideTimeout` & `autoHideDuration` replaced with `autoHideDelay`;
+    * removed render callbacks `renderView, renderTrackHorizontal, renderTrackVertical, renderThumbHorizontal, renderThumbVertical` - now you can customize them via classes and uui css variables;
+    * shadows API changed from `hasTopShadow, hasBottomShadow` to `overflowTopEffect, overflowBottomEffect` with `'line' | 'shadow' | 'none'` values. ScrollBars now handle overflow effects internally - if you had custom shadow/border styling, you can remove it and use the new props instead;
+    * overflow management centralized: previously each component (DataTable, VirtualList, Modals) had custom shadow implementations, now all use unified ScrollBars system with CSS classes `.-scrolled-top`, `.-scrolled-bottom`, `.-scrolled-left`, `.-scrolled-right`. Removed old shadow classes `uui-shadow-top-visible`, `uui-shadow-bottom-visible` in favor of unified system;
+    * HTML attributes removed from ScrollBars interface - use `rawProps` instead;
+    * on macOS scrollbars now also used UUI styles and always visible by default;
+    * improved RTL support and performance;
+    * fixed issues [#1645](https://github.com/epam/UUI/issues/1645), [#2548](https://github.com/epam/UUI/issues/2548), [#2644](https://github.com/epam/UUI/issues/2644), [#2882](https://github.com/epam/UUI/issues/2882), [#2893](https://github.com/epam/UUI/issues/2893)
+* [Dropdown]: dropdown body now closed by Escape key press by default, to ensure proper accessibility compliance. Added `closeOnEscape` prop (default: true) to change this behavior.
+* [DropdownContainer][Breaking Change]: `closeOnEsc` prop is removed. Use `closeOnEscape` prop on `Dropdown` instead. Replace `<DropdownContainer closeOnEsc={false} />` with `<Dropdown closeOnEscape={false}><DropdownContainer /></Dropdown>` if needed.
+* [Tooltip]: now tooltip body opens by target element focus and disappears on blur or Escape key press to ensure proper accessibility compliance.  Added `closeOnEscape` prop (default: true).
 * [DataTable]: add support of columns configuration modal for table with grouped columns
-* [ScrollBars]: migrated from deprecated `react-custom-scrollbars-2` to modern `overlayscrollbars-react` library to fix multiple issues and improve stability. This migration improved scrollbar styling, expanded API capabilities, but introduced breaking changes:
-    * [Breaking Change] base component removed from `@epam/uui-components`, all types moved to `@epam/uui`;
-    * [Breaking Change] Ref API changed from `{ container: HTMLDivElement | undefined }` to `{ container: HTMLElement | null, view: HTMLElement | null }`;
-    * [Breaking Change] `autoHide` prop changed from `boolean` to string values `('never' | 'scroll' | 'move' | 'leave')`, `autoHideTimeout` & `autoHideDuration` replaced with `autoHideDelay`;
-    * [Breaking Change] removed render callbacks `renderView, renderTrackHorizontal, renderTrackVertical, renderThumbHorizontal, renderThumbVertical` - now you can customize them via classes and uui css variables;
-    * [Breaking Change] shadows API changed from `hasTopShadow, hasBottomShadow` to `overflowTopEffect, overflowBottomEffect` with `'line' | 'shadow' | 'none'` values. ScrollBars now handle overflow effects internally - if you had custom shadow/border styling, you can remove it and use the new props instead;
-    * overflow management centralized: previously each component (DataTable, VirtualList, Modals) had custom shadow implementations, now all use unified ScrollBars system with automatic CSS classes `.-scrolled-top`, `.-scrolled-bottom`, `.-scrolled-left`, `.-scrolled-right`. Removed old shadow classes `uui-shadow-top-visible`, `uui-shadow-bottom-visible` in favor of unified system;
-    * [Breaking Change] HTML attributes removed from ScrollBars interface - use `rawProps` instead;
-    * [Breaking Change] on macOS scrollbars now use custom UUI styling and behavior by default instead of native system scrollbars - use `autoHide` prop to control visibility;
-    * added RTL support and performance optimizations (ResizeObserver, passive listeners);
 
 **What's Fixed**
 * [useForm]: improved router block removal on discard and custom beforeLeave for close action. Rework useLock to unblock router immediately, rather than on next render
-* [Modals]: fixed incorrect order of abort() calls when pressing ESC with nested modals — now only the topmost modal responds to ESC key ([#2873](https://github.com/epam/UUI/issues/2873))
+* [Modals]: fixed incorrect order of `abort()` calls when pressing ESC with nested modals — now only the topmost modal responds to ESC key ([#2873](https://github.com/epam/UUI/issues/2873))
 * [Text]: changed `fontSize` and `lineHeight` props typings from strict string literal to more common `number | string` type, to support varied customization cases
 * [RangeDatePicker]: undefined value in preset range now applies like an empty date, not the current one ([#2879](https://github.com/epam/UUI/issues/2879))
-* [ScrollBars]: fixed issues [#1645](https://github.com/epam/UUI/issues/1645), [#2548](https://github.com/epam/UUI/issues/2548), [#2644](https://github.com/epam/UUI/issues/2644), [#2882](https://github.com/epam/UUI/issues/2882), [#2893](https://github.com/epam/UUI/issues/2893)
+* [TimePicker]: disabled time editing in time picker body
+* [Dropdown]: fixed `zIndex` recalculation on dropdown update
+* [DataTable]: fixed preventing row redirect in case of click on `-clickable` element inside this row
 
 # 6.2.0 - 05.08.2025
 **What's New**

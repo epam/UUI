@@ -9,6 +9,24 @@
         padding-inline-end: calc(var(--uui-horizontal-padding) - var(--uui-border-width));
         min-width: 40px;
 
+        :global(.uui-input.uui-value-in-placeholder) {
+            &::placeholder {
+                color: inherit;
+            }
+        }
+
+        :global(.uui-icon) svg {
+            margin-top: -2px;
+        }
+
+        :global(.uui-numeric-input-button-group) {
+            fill: var(--uui-numeric_input-icon-clickable);
+
+            > * {
+                height: calc((var(--uui-size) - (var(--uui-border-width) * 2)) / 2);
+            }
+        }
+
         :global(.uui-numeric-input-up-button) {
             transform: rotate(180deg);
 
@@ -26,20 +44,13 @@
                 }
             }
         }
+    }
 
-        :global(.uui-input.uui-value-in-placeholder) {
-            &::placeholder {
-                color: inherit;
-            }
-        }
-
-        :global(.uui-icon) svg {
-            margin-top: -2px;
-        }
-
-        :global(.uui-numeric-input-button-group) {
-            > * {
-                height: calc((var(--uui-size) - (var(--uui-border-width) * 2)) / 2);
+    &:global(.uui-control-mode-cell) {
+        &:not(:hover, :global(.uui-focus), :focus-within),
+        &:global(.uui-disabled) {
+            :global(.uui-numeric-input-button-group) {
+                fill: transparent;
             }
         }
     }

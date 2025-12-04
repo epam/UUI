@@ -120,6 +120,9 @@ export interface IHasIcon {
     /** Position of the icon (left of right) */
     iconPosition?: 'left' | 'right';
 
+    /** Accessible label for the icon, used for screen readers */
+    iconLabel?: string;
+
     /** Click handler for the icon */
     onIconClick?(): void;
 }
@@ -291,7 +294,7 @@ export interface IDropdownToggler {
     isDropdown?: boolean;
 }
 
-export interface IDropdownTogglerProps extends IDropdownToggler, IClickable {
+export interface IDropdownTogglerProps extends IDropdownToggler, IClickable, ICanFocus<any> {
     /** Called when associated dropdown should open or close  */
     toggleDropdownOpening?: (value: boolean) => void;
     /** Called when component is interacted outside, to close the dropdown */

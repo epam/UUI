@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { offset } from '@floating-ui/react';
-import { isFocusReceiverInsideFocusLock } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
-import type { DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
+import { DropdownBodyProps, IDropdownTogglerProps } from '@epam/uui-core';
 import { uuiDayjs } from '../../../helpers/dayJsHelper';
 import { DropdownContainer } from '../../overlays/DropdownContainer';
 import { TextInput } from '../TextInput';
@@ -11,6 +10,7 @@ import { EditMode } from '../../types';
 import type { TimePickerProps, TimePickerValue } from './types';
 import { formatTime, getMeridian, parseTimeNumbers } from './parseTimeHelper';
 import css from './TimePicker.module.scss';
+import isEqual from 'react-fast-compare';
 
 const DEFAULT_MODE = EditMode.FORM;
 
@@ -29,6 +29,8 @@ export function TimePickerComponent(props: TimePickerProps, ref: React.Forwarded
             inputValue: valueToTimeString(props.value, props.format),
         },
     );
+
+    const targetRef = React.useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         if (valueToTimeString(props.value, props.format) !== state.value) {
@@ -63,7 +65,11 @@ export function TimePickerComponent(props: TimePickerProps, ref: React.Forwarded
 
     const saveTime = (newTime: string) => {
         setState((prevState) => ({ ...prevState, inputValue: newTime }));
-        props.onValueChange(formatStringTimeToObject(newTime));
+        const newValue = formatStringTimeToObject(newTime);
+
+        if (!isEqual(props.value, newValue)) {
+            props.onValueChange(formatStringTimeToObject(newTime));
+        }
     };
 
     const getTimeFromInputValue = (newValue: string) => {
@@ -80,7 +86,6 @@ export function TimePickerComponent(props: TimePickerProps, ref: React.Forwarded
     };
 
     const handleFocus = (e: React.FocusEvent<HTMLElement>) => {
-        onToggle(true);
         props.onFocus?.(e);
     };
 
@@ -96,8 +101,6 @@ export function TimePickerComponent(props: TimePickerProps, ref: React.Forwarded
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (isFocusReceiverInsideFocusLock(e)) return;
-        onToggle(false);
         props.onBlur?.(e);
 
         if (state.value === '' || state.inputValue === '') {
@@ -108,11 +111,22 @@ export function TimePickerComponent(props: TimePickerProps, ref: React.Forwarded
         state.value && state.inputValue && saveTime(state.value);
     };
 
-    const renderInput = (inputProps: IDropdownToggler) => {
+    const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            onToggle(true);
+        }
+
+        if (e.key === 'Escape' && state.isOpen) {
+            e.preventDefault();
+            e.stopPropagation();
+            onToggle(false);
+        }
+    };
+
+    const renderInput = (inputProps: IDropdownTogglerProps) => {
         return (
             <TextInput
                 { ...inputProps }
-                onClick={ null }
                 size={ props.size }
                 isDisabled={ props.isDisabled }
                 isReadonly={ props.isReadonly }
@@ -121,12 +135,21 @@ export function TimePickerComponent(props: TimePickerProps, ref: React.Forwarded
                 value={ state.inputValue }
                 onValueChange={ handleInputChange }
                 onCancel={ !props.disableClear && onClear }
+                onKeyDown={ onKeyDown }
                 onFocus={ handleFocus }
                 onBlur={ handleBlur }
                 isDropdown={ false }
                 placeholder={ props.placeholder ? props.placeholder : getFormat() }
                 mode={ props.mode || DEFAULT_MODE }
                 rawProps={ props.rawProps?.input }
+                ref={ (node) => {
+                    targetRef.current = node;
+                    if (typeof inputProps.ref === 'function') {
+                        inputProps.ref(node);
+                    } else if (inputProps.ref && 'current' in inputProps.ref) {
+                        inputProps.ref.current = node;
+                    }
+                } }
             />
         );
     };
@@ -136,13 +159,14 @@ export function TimePickerComponent(props: TimePickerProps, ref: React.Forwarded
 
         return (
             !props.isDisabled && !props.isReadonly && (
-                <DropdownContainer { ...bodyProps } focusLock={ false }>
+                <DropdownContainer { ...bodyProps } shards={ [targetRef] }>
                     <TimePickerBody
                         { ...timePickerBodyProps }
                         onValueChange={ handleBodyValueChange }
                         value={ formatStringTimeToObject(state.value) }
                         rawProps={ props.rawProps?.body }
                         cx={ props.bodyCx }
+
                     />
                 </DropdownContainer>
             )

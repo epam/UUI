@@ -7,7 +7,8 @@
         { "name": "Basic", "componentPath": "mainMenu/Basic.example.tsx" },
         { "name": "Responsive", "componentPath": "mainMenu/Responsive.example.tsx" },
         { "name": "Light menu (Electric)", "componentPath": "mainMenu/LightElectric.example.tsx", "themes": ["electric"] },
-        { "name": "Light menu (Loveship)", "componentPath": "mainMenu/LightLoveship.example.tsx", "themes": ["loveship"] }
+        { "name": "Light menu (Loveship)", "componentPath": "mainMenu/LightLoveship.example.tsx", "themes": ["loveship"] },
+        { "name": "\"More\" menu accessibility", "componentPath": "mainMenu/MoreMenuAccessibility.example.tsx" }
     ],
     "tags": ["MainMenu"]
 }

@@ -15,26 +15,39 @@ exports[`Tag should be rendered correctly with props 1`] = `
     class="uui-button-box uui-enabled -clickable root uui-size-36 uui-color-neutral uui-fill-solid uui-tag"
     tabindex="0"
     type="button"
+  />
+  <button
+    aria-label="Icon in input"
+    class="uui-button-box uui-enabled -clickable container uui-control_icon root -focusable"
+    tabindex="0"
+    type="button"
   >
     <div
-      class="container uui-icon uui-enabled -clickable"
+      class="container uui-icon uui-enabled"
     >
       <svg
         class=""
       />
     </div>
+  </button>
+  <div
+    class="uui-caption"
+  >
+    Test badge
+  </div>
+  <div
+    class="root uui-count_indicator uui-size-18 uui-color-white"
+  >
+    12
+  </div>
+  <button
+    aria-label="Remove tag"
+    class="uui-button-box uui-enabled -clickable container uui-control_icon root uui-icon-cancel -focusable"
+    tabindex="0"
+    type="button"
+  >
     <div
-      class="uui-caption"
-    >
-      Test badge
-    </div>
-    <div
-      class="root uui-count_indicator uui-size-18 uui-color-white"
-    >
-      12
-    </div>
-    <div
-      class="container uui-icon uui-enabled -clickable -clickable"
+      class="container uui-icon uui-enabled"
     >
       <svg
         class=""

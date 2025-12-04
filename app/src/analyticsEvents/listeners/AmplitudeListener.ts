@@ -15,6 +15,7 @@ export class AmplitudeListener implements IAnalyticsListener {
 
         ampClient.init(this.ampCode, undefined, {
             cookieOptions: { domain: 'uui.epam.com' },
+            autocapture: true,
         });
 
         return ampClient;

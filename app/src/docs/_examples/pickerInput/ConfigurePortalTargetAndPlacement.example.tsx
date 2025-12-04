@@ -21,7 +21,6 @@ export default function ConfigurePortalTargetAndPlacement() {
             { ...props }
             showArrow={ true }
             maxWidth={ 360 }
-            closeOnEsc={ false }
             shards={ [portalTargetRef] }
         >
             <Panel background="surface-main">
@@ -54,7 +53,10 @@ export default function ConfigurePortalTargetAndPlacement() {
 
     return (
         <div>
-            <Dropdown renderBody={ renderDropdownBody } renderTarget={ (props: IDropdownToggler) => <Button caption="Click to open" { ...props } /> } />
+            <Dropdown
+                renderBody={ renderDropdownBody }
+                renderTarget={ (props: IDropdownToggler) => <Button caption="Click to open" { ...props } /> }
+            />
         </div>
     );
 }

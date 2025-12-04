@@ -32,11 +32,17 @@ export interface DataPickerBodyProps<TItem = unknown, TId = unknown> extends Ove
     showSearch?: boolean | 'auto';
     /** A pure function that gets entity name from entity object */
     getName: (item: TItem) => string;
+    /**
+     * Pass false, to disable search input autofocus
+     * @default true
+     * */
+    autoFocusSearch?: boolean;
 }
 
-export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...props }:DataPickerBodyProps<TItem, TId>) {
+export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, autoFocusSearch = true, ...props }:DataPickerBodyProps<TItem, TId>) {
     const prevProps = usePrevious(props);
     const showSearch = props.showSearch === 'auto' ? props.totalCount > 10 : Boolean(props.showSearch);
+    const [isKeyboardNavigation, setIsKeyboardNavigation] = React.useState(false);
 
     useEffect(() => {
         if (props.rows.length !== prevProps?.rows.length || (!isEqual(prevProps?.value.checked, props.value.checked) && !props.fixedBodyPosition)) {
@@ -46,8 +52,47 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
 
     const searchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         props.onKeyDown?.(e);
-        if (e.shiftKey && e.key === 'Tab') e.preventDefault();
     };
+
+    const handleVirtualListFocus = (e: React.FocusEvent<HTMLElement>) => {
+        // Only set keyboard navigation if focus came from keyboard (Tab key)
+        // Check if the focus event was triggered by keyboard navigation
+        const isKeyboardFocus = e.target === e.currentTarget;
+        if (isKeyboardFocus) {
+            setIsKeyboardNavigation(true);
+        }
+    };
+
+    const handleVirtualListBlur = (e: React.FocusEvent<HTMLElement>) => {
+        // Check if focus is moving outside the virtual list
+        const relatedTarget = e.relatedTarget as HTMLElement;
+        const currentTarget = e.currentTarget;
+
+        if (relatedTarget && !currentTarget.contains(relatedTarget)) {
+            // Focus is leaving the virtual list, hide visual focus but keep focusedIndex for navigation "by circle"
+            setIsKeyboardNavigation(false);
+        }
+    };
+
+    const {
+        focusedIndex,
+        topIndex,
+    } = props.value;
+
+    const focusedRowId = useMemo((): string => {
+        // No need to make unnecessary calculations.
+        if (!props.showSearch) {
+            return '';
+        }
+
+        const focusedRow = props.rows.at(focusedIndex - topIndex);
+
+        if (!focusedRow) {
+            return '';
+        }
+
+        return focusedRow.rowKey;
+    }, [props.showSearch, focusedIndex, topIndex]);
 
     const renderEmpty = () => {
         const search = props.value.search;
@@ -97,7 +142,15 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
     };
 
     const renderRow = (row: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
-        const pickerRowProps = { ...row, getName: props.getName };
+        const pickerRowProps = {
+            ...row,
+            getName: props.getName,
+            cx: cx(
+                row.cx,
+                isKeyboardNavigation && row.isFocused && 'uui-focus',
+                isKeyboardNavigation && row.isFocused && 'uui-keyboard-focus',
+            ),
+        };
 
         return props.renderRow ? (
             props.renderRow(pickerRowProps, dsState)
@@ -114,28 +167,34 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
         );
     };
 
+    const renderSearchInput = () => {
+        return (
+            <SearchInput
+                placeholder={ i18n.dataPickerBody.searchPlaceholder }
+                value={ props.value.search }
+                onValueChange={ (newVal) => props.onValueChange({ ...props.value, search: newVal }) }
+                onKeyDown={ searchKeyDown }
+                size={ searchSize }
+                debounceDelay={ props.searchDebounceDelay }
+                rawProps={ {
+                    dir: 'auto',
+                    'aria-activedescendant': focusedRowId,
+                } }
+            />
+        );
+    };
+
     const searchSize = isMobile()
         ? settings.pickerInput.sizes.body.mobileSearchInput
         : settings.pickerInput.sizes.body.getSearchSize({ pickerSize: props.searchSize });
 
-    const renderedDataRows = useMemo(() => props.rows.map((row) => renderRow(row, props.value)), [props.rows, props.value]);
-
+    const renderedDataRows = useMemo(() => props.rows.map((row) => renderRow(row, props.value)), [props.rows, props.value, isKeyboardNavigation]);
     return (
         <>
             {showSearch && (
                 <div key="search" className={ cx(css.searchWrapper, 'uui-picker_input-body-search') }>
                     <FlexCell grow={ 1 }>
-                        <MoveFocusInside>
-                            <SearchInput
-                                placeholder={ i18n.dataPickerBody.searchPlaceholder }
-                                value={ props.value.search }
-                                onValueChange={ (newVal) => props.onValueChange({ ...props.value, search: newVal }) }
-                                onKeyDown={ searchKeyDown }
-                                size={ searchSize }
-                                debounceDelay={ props.searchDebounceDelay }
-                                rawProps={ { dir: 'auto' } }
-                            />
-                        </MoveFocusInside>
+                        { autoFocusSearch ? <MoveFocusInside>{ renderSearchInput() }</MoveFocusInside> : renderSearchInput() }
                     </FlexCell>
                 </div>
             )}
@@ -152,10 +211,15 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
                             value={ props.value }
                             onValueChange={ props.onValueChange }
                             rows={ renderedDataRows }
+                            role="listbox"
                             rawProps={ {
                                 'aria-multiselectable': props.selectionMode === 'multi' ? true : null,
                                 'aria-orientation': 'vertical',
-                                tabIndex: -1,
+                                tabIndex: 0,
+                                onKeyDown: props.onKeyDown,
+                                onFocus: handleVirtualListFocus,
+                                onBlur: handleVirtualListBlur,
+                                // onMouseMove: handleVirtualListMouseMove,
                                 ...props.rawProps,
                             } }
                             rowsCount={ props.rowsCount }

@@ -2,7 +2,7 @@ import React, { useContext, useImperativeHandle, useMemo, useRef, type JSX } fro
 import { Middleware, offset } from '@floating-ui/react';
 import {
     DropdownBodyProps, IEditableDebouncer, PickerInputElement, isMobile, Overwrite,
-    PickerInputBaseProps, UuiContext, mobilePositioning,
+    PickerInputBaseProps, UuiContext, mobilePositioning, type DropdownProps,
 } from '@epam/uui-core';
 import { PickerTogglerRenderItemParams, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
 import { Dropdown } from '../overlays/Dropdown';
@@ -18,7 +18,7 @@ export interface PickerInputModsOverride {}
 
 interface PickerInputMods extends SizeMod {}
 
-export type PickerInputProps<TItem, TId> = Overwrite<PickerInputMods, PickerInputModsOverride> & IHasEditMode & PickerInputBaseProps<TItem, TId> & {
+export type PickerInputProps<TItem, TId> = Overwrite<PickerInputMods, PickerInputModsOverride> & IHasEditMode & PickerInputBaseProps<TItem, TId> & Pick<DropdownProps, 'closeBodyOnTogglerHidden'> & {
     /**
      * Render callback for picker toggler selection tag
      * If omitted, default `PickerTogglerTag` component will be rendered
@@ -131,9 +131,9 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
                 title={ props.entityName }
                 onClose={ () => toggleBodyOpening(false) }
                 cx={ [props.bodyCx, 'uui-picker_input-body-wrapper'] }
-                onKeyDown={ onKeyDown }
                 width={ dropdownProps.togglerWidth > minBodyWidth ? dropdownProps.togglerWidth : minBodyWidth }
-                focusLock={ getSearchPosition() === 'body' }
+                focusLock={ true }
+                shards={ getSearchPosition() === 'input' ? [togglerRef] : undefined }
             >
                 <DataPickerBody
                     { ...dropdownProps }
@@ -174,7 +174,7 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
             onValueChange={ !props.isDisabled && toggleBodyOpening }
             placement={ props.dropdownPlacement }
             middleware={ middleware }
-            closeBodyOnTogglerHidden={ !isMobile() }
+            closeBodyOnTogglerHidden={ isMobile() ? false : props.closeBodyOnTogglerHidden }
             portalTarget={ props.portalTarget }
             ref={ togglerRef }
         />

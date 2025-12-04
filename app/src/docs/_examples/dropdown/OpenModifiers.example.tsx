@@ -5,10 +5,10 @@ import { Button, Text, FlexRow, DropdownContainer, FlexCell, Avatar } from '@epa
 import css from './HandleStateExample.module.scss';
 import { offset } from '@floating-ui/react';
 
-export default function CloseOpenModifiersExample() {
+export default function OpenModifiersExample() {
     const renderDropdownBody = (props: DropdownContainerProps) => {
         return (
-            <DropdownContainer vPadding="24" padding="18" { ...props }>
+            <DropdownContainer focusLock={ false } vPadding="24" padding="18" { ...props }>
                 <FlexRow alignItems="center" columnGap="12">
                     <Avatar size="48" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
 
@@ -27,6 +27,14 @@ export default function CloseOpenModifiersExample() {
 
     return (
         <div>
+            <FlexRow vPadding="12" columnGap="12">
+                <Dropdown
+                    renderBody={ (props) => renderDropdownBody(props) }
+                    renderTarget={ (props: IDropdownToggler) => <Button caption="Click to open" { ...props } /> }
+                    middleware={ [offset(6)] }
+                />
+            </FlexRow>
+
             <FlexRow columnGap="12">
                 <Dropdown
                     renderBody={ (props) => renderDropdownBody({ ...props, focusLock: false }) }
@@ -55,14 +63,8 @@ export default function CloseOpenModifiersExample() {
             <FlexRow vPadding="12" columnGap="12">
                 <Dropdown
                     renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Click to open(Don't close on click outside)" { ...props } /> }
-                    closeOnClickOutside={ false }
-                    middleware={ [offset(6)] }
-                />
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Click to open(Don't close on target click)" { ...props } /> }
-                    closeOnTargetClick={ false }
+                    renderTarget={ (props: IDropdownToggler) => <Button caption="Focus to open" { ...props } /> }
+                    openOnFocus={ true }
                     middleware={ [offset(6)] }
                 />
             </FlexRow>

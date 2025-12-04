@@ -15,7 +15,7 @@ export interface HeaderCellContentProps extends DndActorRenderParams {
     /** Called during the resizing process */
     onResize: (e: MouseEvent) => void;
     /** Called when sorting */
-    toggleSort: (e: React.MouseEvent) => void;
+    toggleSort: (e: React.SyntheticEvent) => void;
     /** Indicates that resizing process is active */
     isResizing: boolean;
 }
@@ -34,7 +34,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     cellRef = React.createRef<HTMLElement>();
     isRtl = getDir() === 'rtl';
 
-    toggleSort = (e: React.MouseEvent) => {
+    toggleSort = (e: React.SyntheticEvent) => {
         if (isEventTargetInsideClickable(e) || !this.props.column.isSortable) return;
 
         let dir: SortDirection;
@@ -77,8 +77,14 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             // How much mouse was moved after resize is started
             let widthDelta = e.clientX - this.state.resizeStartX;
 
+            if (this.props.column.fix === 'right') {
+                // Invert direction for right fixed column,
+                // since resize marker is rendered at the left part of the columns in this case
+                widthDelta = -widthDelta;
+            }
+
             // In RTL mode, the general behavior of widthDelta needs to be inverted.
-            // Except for right-fixed columns, where behavior remains as in LTR mode.
+            // For right-fixed columns revert back to normal behavior.
             if (this.isRtl) {
                 widthDelta = -widthDelta; // Invert direction for RTL
             }
