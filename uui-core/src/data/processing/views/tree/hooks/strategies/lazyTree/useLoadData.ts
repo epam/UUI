@@ -1,4 +1,5 @@
 import { useCallback, useRef } from 'react';
+import { FetchingOptions } from '../../../../../../../services';
 import { CascadeSelectionTypes, DataSourceState, LazyDataSourceApi } from '../../../../../../../types';
 import isEqual from 'react-fast-compare';
 import { TreeState } from '../../../treeState';
@@ -33,6 +34,15 @@ interface LoadMissingOptions<TItem, TId, TFilter> {
     loadAllChildren?(id: TId): LoadAllConfig;
     isLoadStrict?: boolean;
     dataSourceState?: DataSourceState<TFilter, TId>;
+    fetchingOptions: FetchingOptions;
+}
+
+interface LoadMissingOptionsOnCheck<TItem, TId> {
+    tree: TreeState<TItem, TId>;
+    id: TId;
+    isChecked: boolean;
+    isRoot: boolean;
+    fetchingOptions: FetchingOptions;
 }
 
 export function useLoadData<TItem, TId, TFilter = any>(
@@ -48,6 +58,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
         loadAllChildren = () => ({ nestedChildren: true, children: false }),
         isLoadStrict,
         dataSourceState,
+        fetchingOptions,
     }: LoadMissingOptions<TItem, TId, TFilter>): Promise<LoadResult<TItem, TId>> => {
         const loadingTree = tree;
         const completeDsState = { ...props.dataSourceState, ...dataSourceState };
@@ -65,6 +76,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
                         ...props.dataSourceState?.filter,
                         ...dataSourceState?.filter,
                     },
+                    ...fetchingOptions,
                 },
                 dataSourceState: completeDsState,
             });
@@ -91,6 +103,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
         loadAllChildren,
         isLoadStrict,
         dataSourceState,
+        fetchingOptions,
     }: LoadMissingOptions<TItem, TId, TFilter>): Promise<LoadResult<TItem, TId>> => {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
         if (!promiseInProgressRef.current || abortInProgress) {
@@ -98,21 +111,21 @@ export function useLoadData<TItem, TId, TFilter = any>(
         }
 
         promiseInProgressRef.current = promiseInProgressRef.current.then(({ tree: currentTree }) =>
-            loadMissingImpl({ tree: currentTree, using, loadAllChildren, isLoadStrict, dataSourceState }));
+            loadMissingImpl({ tree: currentTree, using, loadAllChildren, isLoadStrict, dataSourceState, fetchingOptions }));
 
         return promiseInProgressRef.current;
     }, [loadMissingImpl]);
 
-    const loadMissingOnCheck = useCallback(async (currentTree: TreeState<TItem, TId>, id: TId, isChecked: boolean, isRoot: boolean) => {
+    const loadMissingOnCheck = useCallback(async ({ tree, id, isRoot, isChecked, fetchingOptions }: LoadMissingOptionsOnCheck<TItem, TId>) => {
         const isImplicitMode = cascadeSelection === CascadeSelectionTypes.IMPLICIT;
 
         if (!cascadeSelection && !isRoot) {
-            return currentTree;
+            return tree;
         }
 
-        const parents = Tree.getParents(id, currentTree.full);
+        const parents = Tree.getParents(id, tree.full);
         const { tree: treeWithMissingRecords } = await loadMissing({
-            tree: currentTree,
+            tree: tree,
             // If cascadeSelection is implicit and the element is unchecked, it is necessary to load all children
             // of all parents of the unchecked element to be checked explicitly. Only one layer of each parent should be loaded.
             // Otherwise, should be loaded only checked element and all its nested children.
@@ -130,7 +143,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
                     return { ...loadAllConfig, children: itemId === ROOT_ID || parents.some((parent) => isEqual(parent, itemId)) };
                 }
 
-                const { ids } = currentTree.full.getItems(undefined);
+                const { ids } = tree.full.getItems(undefined);
                 const rootIsNotLoaded = ids.length === 0;
 
                 const shouldLoadChildrenAfterSearch = (!!props.dataSourceState.search?.length
@@ -153,6 +166,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
             isLoadStrict: true,
             dataSourceState: { search: null },
             using: 'full',
+            fetchingOptions,
         });
 
         return treeWithMissingRecords;

@@ -4,7 +4,7 @@ import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import { useFoldingService } from '../../../../dataRows/services';
 import { useLoadData } from './useLoadData';
 import { UseTreeResult } from '../../types';
-import { useDataSourceStateWithDefaults, useSelectedOnlyTree, useItemsStorage, usePatchTree, useItemsStatusCollector, useActualItemsStorage } from '../../common';
+import { useDataSourceStateWithDefaults, useSelectedOnlyTree, useItemsStorage, usePatchTree, useItemsStatusCollector, useActualItemsStorage, useAbortController } from '../../common';
 import { TreeState } from '../../../treeState';
 import { useLazyFetchingAdvisor } from './useLazyFetchingAdvisor';
 import { isSelectedOrCheckedChanged } from '../checked';
@@ -67,6 +67,8 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         setTreeWithData(blankTree);
     }, [blankTree]);
 
+    const { getAbortSignal } = useAbortController();
+
     const { loadMissing, loadMissingOnCheck } = useLoadData({
         api,
         filter,
@@ -79,7 +81,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     });
 
     const loadMissingRecordsOnCheck = useCallback(async (id: TId, isChecked: boolean, isRoot: boolean) => {
-        const newTree = await loadMissingOnCheck(tree, id, isChecked, isRoot);
+        const newTree = await loadMissingOnCheck({ tree, id, isChecked, isRoot, fetchingOptions: { signal: getAbortSignal() } });
         if (tree !== treeWithData || tree !== newTree) {
             setTreeWithData(newTree);
         }
@@ -107,6 +109,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                     visibleCount: 0,
                     topIndex: 0,
                 },
+                fetchingOptions: { signal: getAbortSignal() },
             })
                 .then(({ isUpdated, isOutdated, tree: newTree }) => {
                     if (!isOutdated && (isUpdated || newTree !== treeWithDataActual)) {
@@ -139,6 +142,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                 tree: currentTree,
                 using: 'visible',
                 abortInProgress: shouldRefetch,
+                fetchingOptions: { signal: getAbortSignal() },
             })
                 .then(({ isUpdated, isOutdated, tree: newTree }) => {
                     if (!isOutdated && (isUpdated || newTree !== treeWithDataActual)) {

@@ -7,7 +7,7 @@ import { NotificationOperation } from '../services/NotificationContext';
 import { ModalOperation } from '../services/ModalContext';
 import { LayoutLayer } from '../services/LayoutContext';
 
-import { FileUploadOptions, FileUploadResponse } from '../services/ApiContext';
+import { FetchingOptions, FileUploadOptions, FileUploadResponse } from '../services/ApiContext';
 
 export interface IBaseContext<TState = {}> {
     /** Add your handler, which will be called on context updates */
@@ -168,7 +168,7 @@ export interface ApiCallInfo {
     dismissError(): void;
 }
 
-export interface ApiCallOptions<ResponseData = any> {
+export interface ApiCallOptions<ResponseData = any> extends FetchingOptions {
 
     /** Native fetch method options  */
     fetchOptions?: RequestInit;

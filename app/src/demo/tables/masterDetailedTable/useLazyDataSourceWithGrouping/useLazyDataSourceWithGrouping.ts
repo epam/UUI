@@ -35,7 +35,7 @@ export function useLazyDataSourceWithGrouping<
 
         const { ids, ...rq } = request;
         if (ids != null) {
-            return config.idsApi(ids, groupBy, ctx);
+            return config.idsApi({ ids, signal: rq.signal }, groupBy, ctx);
         }
 
         const pathIds = ctx?.parentId ?? [];

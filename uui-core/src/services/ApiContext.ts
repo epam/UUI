@@ -19,6 +19,10 @@ export class ApiCallError extends Error {
     }
 }
 
+export interface FetchingOptions {
+    signal: AbortSignal;
+}
+
 export interface FileUploadOptions {
     /** Called during the file uploading, used to track upload progress */
     onProgress?: (progress: number) => any;
@@ -196,6 +200,7 @@ export class ApiContext extends BaseContext implements IApiContext {
                 body: call.requestData && JSON.stringify(call.requestData),
                 credentials: 'include',
                 ...fetchOptions,
+                signal: call.options?.signal,
                 headers,
             },
         )

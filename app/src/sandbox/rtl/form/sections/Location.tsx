@@ -20,7 +20,7 @@ export function LocationSection({ lens }: { lens: ILens<PersonLocation> }) {
 
     const countriesDS = useAsyncDataSource<Country, string, unknown>(
         {
-            api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r) => r.items),
+            api: (options) => svc.api.demo.countries({ sorting: [{ field: 'name' }], signal: options.signal }).then((r) => r.items),
         },
         [],
     );

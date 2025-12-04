@@ -11,7 +11,7 @@ export default function ProductTable() {
     const dataSource = useAsyncDataSource<Product, number, unknown>(
         {
             // Provide api which returns Promise with items for table. If you want to pass just array of items, look to the ArrayDataSource
-            api: () => svc.api.demo.products({}).then((r: any) => r.items),
+            api: (options) => svc.api.demo.products(options).then((r: any) => r.items),
             getId: (p) => p.ProductID, // Default: p => p.id
         },
         [],

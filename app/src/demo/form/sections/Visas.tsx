@@ -20,7 +20,7 @@ export function VisasSection({ lens }: { lens: ILens<PersonTravelVisas>; }) {
     
     const countriesDS = useAsyncDataSource<Country, string, unknown>(
         {
-            api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r) => r.items),
+            api: (options) => svc.api.demo.countries({ sorting: [{ field: 'name' }], ...options }).then((r) => r.items),
         },
         [],
     );
