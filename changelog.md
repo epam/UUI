@@ -42,6 +42,11 @@
 * [PresetActionsDropdown]: Fixed unreadable dark text in SuccessNotification after Copy link action under Loveship-Dark theme
 * [Loader]: added Loader examples in the documentation
 
+# 6.3.3 - 15.10.2025
+
+**What's Fixed**
+* [ScrollBars]: move 'overlayscrollbars' styles import from TS to CSS, to prevent errors during Next.js build
+
 # 6.3.1 - 08.10.2025
 
 **What's Fixed**

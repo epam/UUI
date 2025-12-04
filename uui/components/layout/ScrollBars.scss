@@ -1,0 +1,3 @@
+@use 'sass:meta';
+
+@include meta.load-css('overlayscrollbars/styles/overlayscrollbars.css');
