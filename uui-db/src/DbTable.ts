@@ -31,7 +31,7 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
         }
 
         if (!q) {
-            this.q = {};
+            this.q = { signal: null };
         }
     }
 

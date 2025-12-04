@@ -10,7 +10,7 @@ export default function AsyncPickerInputExample() {
 
     const locationsDataSource = useAsyncDataSource<Location, string, unknown>(
         {
-            api: () => svc.api.demo.locations({}).then((res) => res.items),
+            api: (options) => svc.api.demo.locations(options).then((res) => res.items),
             // Turn off the 'SelectAll' button
             selectAll: false,
         },

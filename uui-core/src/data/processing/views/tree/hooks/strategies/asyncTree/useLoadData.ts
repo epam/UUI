@@ -3,10 +3,11 @@ import { DataSourceState, IImmutableMap, IMap, LazyDataSourceApi } from '../../.
 import { TreeState } from '../../../treeState';
 import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import { isQueryChanged } from '../lazyTree/helpers';
-import { useItemsStatusCollector } from '../../common';
+import { useAbortController, useItemsStatusCollector } from '../../common';
 import { getSelectedAndChecked } from '../../../treeStructure';
 import { NOT_FOUND_RECORD } from '../../../constants';
 import { ItemsStatuses } from '../types';
+import { FetchingOptions } from '../../../../../../../services';
 
 export interface LoadResult<TItem, TId> {
     isUpdated: boolean;
@@ -64,6 +65,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const loadData = useCallback(async (
         sourceTree: TreeState<TItem, TId>,
         dsState: DataSourceState<TFilter, TId> = {},
+        fetchingOptions: FetchingOptions,
     ): Promise<LoadResult<TItem, TId>> => {
         const loadingTree = sourceTree;
         const { checked, ...partialDsState } = dsState;
@@ -75,6 +77,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
                     filter: {
                         ...dsState?.filter,
                     },
+                    ...fetchingOptions,
                 },
                 dataSourceState: partialDsState,
             });
@@ -115,6 +118,8 @@ export function useLoadData<TItem, TId, TFilter = any>(
         }
     }, [...deps]);
 
+    const { getAbortSignal } = useAbortController();
+
     useEffect(() => {
         if (shouldLoad) {
             setIsFetching(true);
@@ -122,7 +127,8 @@ export function useLoadData<TItem, TId, TFilter = any>(
                 setIsLoading(true);
             }
             const checked = getSelectedAndChecked(dataSourceState, patch);
-            loadData(tree, dataSourceState)
+
+            loadData(tree, dataSourceState, { signal: getAbortSignal() })
                 .then(({ isOutdated, isUpdated, tree: newTree }) => {
                     if (isUpdated && !isOutdated) {
                         setLoadedTree(newTree);
