@@ -37,7 +37,7 @@ export type FilterPredicate<TField> = {
 
 export type FilterPredicateName = keyof FilterPredicate<any>;
 
-export interface DataQuery<T> extends Pick<LazyDataSourceApiRequest<T>, 'sorting' | 'range' | 'search'> {
+export interface DataQuery<T> extends Pick<LazyDataSourceApiRequest<T>, 'sorting' | 'range' | 'search' | 'signal'> {
     /** The filter object value with predicates, by which data should be filtered. */
     filter?: DataQueryFilter<T>;
 }

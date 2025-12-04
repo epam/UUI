@@ -24,7 +24,7 @@ implements ILoadingTracker<TRequest, TResponse> {
         const {
             filter, sorting, search, range, ...unknownFields
         } = request;
-        const options: DataQuery<TItem> = {};
+        const options: DataQuery<TItem> = { signal: null };
 
         if (filter) {
             options.filter = filter;
