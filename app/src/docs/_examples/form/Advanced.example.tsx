@@ -60,7 +60,7 @@ export default function AdvancedFormExample() {
 
     const countriesDataSource = useAsyncDataSource(
         {
-            api: (options) => svc.api.demo.countries({ sorting: [{ field: 'name' }], signal: options.signal }).then((r) => r.items),
+            api: (options) => svc.api.demo.countries({ sorting: [{ field: 'name' }] }, options).then((r) => r.items),
         },
         [],
     );

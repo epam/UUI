@@ -8,7 +8,7 @@ export default function AsyncDataSourceDataExample() {
 
     const [value, onValueChange] = useState<DataSourceState>({});
     const dataSource = useAsyncDataSource({
-        api: (options) => svc.api.demo.countries(options).then((res) => res.items),
+        api: (options) => svc.api.demo.countries({}, options).then((res) => res.items),
     }, []);
     
     return (

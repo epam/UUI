@@ -52,9 +52,9 @@ export function DbDemoImpl() {
                     filter: { groupBy: 'jobTitle' },
                     search: null,
                     itemsRequest: { filter: rq.filter, search: rq.search },
-                } as any);
+                } as any, { signal: ctx.signal });
             } else {
-                const result = await svc.api.demo.persons({ ...rq, filter: { ...rq.filter, jobTitleId: ctx.parentId } });
+                const result = await svc.api.demo.persons({ ...rq, filter: { ...rq.filter, jobTitleId: ctx.parentId } }, { signal: ctx.signal });
                 dbRef.commitFetch({ persons: result.items });
                 result.items = result.items.map((i) => dbRef.db.persons.byId(dbRef.idMap.serverToClient('persons', i.id)));
                 return result;
@@ -73,8 +73,8 @@ export function DbDemoImpl() {
 
     const { getAbortSignal } = useAbortController();
 
-    dbRef.jobTitlesLoader.load({ signal: getAbortSignal() });
-    dbRef.departmentsLoader.load({ signal: getAbortSignal() });
+    dbRef.jobTitlesLoader.load({}, { signal: getAbortSignal() });
+    dbRef.departmentsLoader.load({}, { signal: getAbortSignal() });
 
     const dataSource = useLazyDataSource({
         api,
