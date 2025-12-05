@@ -9,6 +9,7 @@ import { getFilters } from './filters';
 import {
     useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset,
     DataQueryFilter, useLazyDataSource,
+    LazyDataSourceApiRequestContext,
 } from '@epam/uui-core';
 import { FilteredTableFooter } from './FilteredTableFooter';
 import { Person } from '@epam/uui-docs';
@@ -46,8 +47,8 @@ export function FilteredTable() {
         onPresetDelete: svc.api.presets.deletePreset,
     });
 
-    const api = useCallback(async (rq: LazyDataSourceApiRequest<{}>) => {
-        const result = await svc.api.demo.personsPaged(rq);
+    const api = useCallback(async (rq: LazyDataSourceApiRequest<{}>, ctx: LazyDataSourceApiRequestContext<unknown, unknown>) => {
+        const result = await svc.api.demo.personsPaged(rq, { signal: ctx.signal });
         result.count = result.items.length;
         result.from = 0;
         return result;

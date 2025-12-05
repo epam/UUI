@@ -103,7 +103,7 @@ export function ProjectTableDemo() {
             type: 'lazy',
             api: (rq, ctx) => {
                 const filter = { parentId: ctx?.parentId };
-                return svc.api.demo.projectTasks({ ...rq, filter });
+                return svc.api.demo.projectTasks({ ...rq, filter }, ctx);
             },
             dataSourceState: tableState,
             setDataSourceState: setTableState,
