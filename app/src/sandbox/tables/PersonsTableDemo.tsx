@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FlexRow, FlexCell, FlexSpacer, Text, PickerInput, Button, SearchInput, DataTable, DataTableRow } from '@epam/loveship';
 import { Person } from '@epam/uui-docs';
-import { DataSourceState, useArrayDataSource, LazyDataSourceApiRequest, LazyDataSourceApiResponse, Lens, DataColumnProps, LazyDataSourceApi, useTree, useDataRows } from '@epam/uui-core';
+import { DataSourceState, useArrayDataSource, LazyDataSourceApiRequest, LazyDataSourceApiResponse, Lens, DataColumnProps, LazyDataSourceApi, useTree, useDataRows, LazyDataSourceApiRequestContext } from '@epam/uui-core';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType, PersonsApiResponse, PersonsSummary, PersonsTableState } from './types';
 import { svc } from '../../services';
 import { getColumns } from './columns';
@@ -62,10 +62,10 @@ export function PersonsTableDemo() {
             const response: LazyDataSourceApiResponse<PersonTableRecord> = { items: [] };
 
             const promises = typesToLoad.map(async (type) => {
-                const idsRequest: LazyDataSourceApiRequest<any, any> = { ids: idsByType[type], signal: request.signal };
+                const idsRequest: LazyDataSourceApiRequest<any, any> = { ids: idsByType[type] };
                 const apiRequest = type === 'Person' ? svc.api.demo.persons : type === 'PersonEmploymentGroup' ? svc.api.demo.personGroups : type === 'Location' ? svc.api.demo.locations : null;
 
-                const apiResponse = await apiRequest(idsRequest);
+                const apiResponse = await apiRequest(idsRequest, { signal: ctx.signal });
                 response.items = [...response.items, ...apiResponse.items];
             });
 
@@ -81,7 +81,7 @@ export function PersonsTableDemo() {
             setSummary({ totalCount, totalSalary });
         };
 
-        const getPersons = async (personRequest: LazyDataSourceApiRequest<Person, number>) => {
+        const getPersons = async (personRequest: LazyDataSourceApiRequest<Person, number>, context: LazyDataSourceApiRequestContext<Person, number>) => {
             if (groupBy && !ctx.parent) {
                 const personGroupsResponse = await svc.api.demo.personGroups({
                     ...personRequest,
@@ -89,25 +89,25 @@ export function PersonsTableDemo() {
                     search: null,
                     itemsRequest: { filter, search: personRequest.search },
                     ids,
-                } as any);
+                } as any, { signal: context.signal });
                 updateSummary(personGroupsResponse as PersonsApiResponse);
                 return personGroupsResponse;
             } else {
-                const personsResponse = await svc.api.demo.persons(personRequest);
+                const personsResponse = await svc.api.demo.persons(personRequest, context);
                 updateSummary(personsResponse as PersonsApiResponse);
                 return personsResponse;
             }
         };
 
         if (request.search) {
-            return getPersons({ ...rq, filter });
+            return getPersons({ ...rq, filter }, { signal: ctx.signal });
         } else if (groupBy === 'location') {
             if (!ctx.parent) {
-                return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true } }, signal: request.signal });
+                return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true } } }, { signal: ctx.signal });
             } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
-                return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id }, signal: request.signal });
+                return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id } }, { signal: ctx.signal });
             } else {
-                return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id }, signal: request.signal });
+                return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id } }, { signal: ctx.signal });
             }
         } else if (groupBy && !ctx.parent) {
             return getPersons({
@@ -116,10 +116,10 @@ export function PersonsTableDemo() {
                 search: null,
                 itemsRequest: { filter, search: rq.search },
                 ids,
-            } as any);
+            } as any, { signal: ctx.signal });
         } else {
             const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
-            return getPersons({ ...rq, filter: { ...filter, ...parentFilter } });
+            return getPersons({ ...rq, filter: { ...filter, ...parentFilter } }, { signal: ctx.signal });
         }
     };
 

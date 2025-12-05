@@ -66,7 +66,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
     const { tree: treeWithData, itemsStatusCollector, isLoading, isFetching } = useLoadData({
         getId,
         complexIds,
-        api: (options) => props.api(options).then((items) => ({ items })),
+        api: (_, options) => props.api(options).then((items) => ({ items })),
         tree: incommingTree,
         dataSourceState: {
             visibleCount: dataSourceState.visibleCount,

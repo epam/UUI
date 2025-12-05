@@ -11,7 +11,7 @@ export function runDataQuery<TItem extends { id: any }>(
     searchBy?: (item: TItem) => string[],
 ):LazyDataSourceApiResponse<TItem> {
     let items = allItems || [];
-    request = request || { signal: null };
+    request = request || {};
 
     if (request.ids) {
         return {

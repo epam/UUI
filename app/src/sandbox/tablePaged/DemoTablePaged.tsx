@@ -21,13 +21,12 @@ export function DemoTablePaged() {
         setTableState({ ...tableState, page: 1, pageSize: 100 });
     }, []);
 
-    const api: LazyDataSourceApi<Person, number, Person> = useCallback(async (request) => {
+    const api: LazyDataSourceApi<Person, number, Person> = useCallback(async (request, ctx) => {
         const result = await svc.api.demo.personsPaged({
             filter: request.filter,
             page: request.page,
             pageSize: request.pageSize,
-            signal: request.signal,
-        });
+        }, ctx);
 
         result.count = result.items.length;
         result.from = 0;

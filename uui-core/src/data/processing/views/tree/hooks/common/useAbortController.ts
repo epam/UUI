@@ -12,6 +12,10 @@ export const useAbortController = () => {
     }, [abortControllerRef.current]);
 
     useEffect(() => {
+        if (!abortControllerRef.current) {
+            abortControllerRef.current = new AbortController();
+        }
+
         return () => {
             if (abortControllerRef.current && !abortControllerRef.current.signal.aborted) {
                 abortControllerRef.current.abort();
