@@ -10,13 +10,13 @@ export default function GetRowOptionsExample() {
     const [productsIDs, setProductsIDs] = useState<number[]>([3, 4]);
 
     const productsDataSource = useAsyncDataSource<Product, Product['ProductID'], unknown>({
-        api: (options) => svc.api.demo.products(options).then((r: any) => r.items),
+        api: (options) => svc.api.demo.products({}, options).then((r: any) => r.items),
         getId: (item) => item.ProductID,
     }, []);
 
     const locationsDataSource = useAsyncDataSource<Location, string, unknown>(
         {
-            api: (options) => svc.api.demo.locations(options).then(({ items }) => items),
+            api: (options) => svc.api.demo.locations({}, options).then(({ items }) => items),
             getId: (item) => item.id,
         },
         [],

@@ -9,7 +9,7 @@ export default function LazyDataSourceDataExample() {
 
     const [value, onValueChange] = useState<DataSourceState>({});
     const dataSource = useLazyDataSource<City, string, DataQueryFilter<City>>({
-        api: (req) => svc.api.demo.cities(req),
+        api: (req, ctx) => svc.api.demo.cities(req, ctx),
     }, []);
     
     return (

@@ -18,7 +18,7 @@ export function LocationSection({ lens }: { lens: ILens<PersonLocation>; }) {
 
     const countriesDS = useAsyncDataSource<Country, string, unknown>(
         {
-            api: (fetchingOptions) => svc.api.demo.countries({ sorting: [{ field: 'name' }], ...fetchingOptions })
+            api: (options) => svc.api.demo.countries({ sorting: [{ field: 'name' }] }, options)
                 .then((r) => r.items),
         },
         [],
