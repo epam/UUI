@@ -11,10 +11,10 @@ export interface Person {
     lastName: string;
     modifiedDate: string;
     avatarUrl: string;
-    birthDate?: Date;
+    birthDate?: string;
     departmentId: number;
     departmentName: string;
-    hireDate?: Date;
+    hireDate?: string;
     jobTitleId?: number;
     jobTitle?: string;
     titleLevel?: string;
