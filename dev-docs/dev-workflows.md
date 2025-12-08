@@ -90,3 +90,15 @@ yarn track-bundle-size
 ```
 yarn track-bundle-size-override
 ```
+
+### Run Next.js demo app
+If you need to test how UUI works into next.js environment, you can use the following demo app. 
+For more details read readme.md into next-demo folders.
+
+```
+//Run next with app router 
+yarn next-app:dev
+
+//Run next with pages router 
+yarn next-pages:dev
+```
