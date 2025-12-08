@@ -112,6 +112,13 @@ yarn --cwd uui-e2e-tests local-test-e2e-deps-install
 yarn --cwd uui-e2e-tests local-test-e2e
 ```
 
+## Troubleshooting
+
+### Issue: [WebServer] Server is not available hostname:9009
+This issue related to the EPAM Firewall settings:
+Please create the support request to adjust the rules - https://support.epam.com/ess?id=sc_cat_item&sys_id=74ba748547ba9190ed13b2bd436d4394&name=EndpointFirewallRuleManagement.
+
+
 ## Misc
 1. To run single test, use `.only` for the test definition:
     - For screenshot tests: replace `.add` with `.only` in tests definition - uui-e2e-tests/tests/previewTests/preview.e2e.ts
