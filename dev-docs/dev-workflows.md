@@ -93,7 +93,7 @@ yarn track-bundle-size-override
 
 ### Run Next.js demo app
 If you need to test how UUI works into next.js environment, you can use the following demo app. 
-For more details read readme.md into next-demo folders.
+For more details, read readme.md into next-demo folders.
 
 ```
 //Run next with app router 
