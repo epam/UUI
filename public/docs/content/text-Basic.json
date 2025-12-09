@@ -4,17 +4,14 @@
     "data": {},
     "children": [
       {
-        "text": "By default, the Text component is designed to align text by its baseline with other components of the same size. For this purpose, it has a ",
-        "color": "rgb(48, 50, 64)"
+        "text": "By default, the Text component is designed to align text by its baseline with other components of the same size. For this purpose, it has a "
       },
       {
         "text": "size",
-        "uui-richTextEditor-code": true,
-        "color": "rgb(48, 50, 64)"
+        "uui-richTextEditor-code": true
       },
       {
-        "text": " prop that defines the height of the text block according to the pattern: vertical padding + line height = size value. This ensures that all texts—including standalone Text components, button captions, and text input placeholders—are on the same baseline.",
-        "color": "rgb(48, 50, 64)"
+        "text": " prop that defines the height of the text block according to the pattern: vertical padding + line height = size value. This ensures that all texts—including standalone Text components, button captions, and text input placeholders—are on the same baseline."
       }
     ]
   }

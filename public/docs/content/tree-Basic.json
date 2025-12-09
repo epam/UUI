@@ -71,11 +71,7 @@
         "uui-richTextEditor-code": true
       },
       {
-        "text": " handlers, and selection will not work. Folding "
-      },
-      {
-        "text": "is activated automatically if there are references to the parent id in children. Read more in ",
-        "color": "rgb(17, 17, 17)"
+        "text": " handlers, and selection will not work. Folding is activated automatically if there are references to the parent id in children. Read more in "
       },
       {
         "type": "link",
@@ -88,7 +84,6 @@
         ]
       },
       {
-        "color": "rgb(17, 17, 17)",
         "text": " section"
       }
     ]
