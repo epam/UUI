@@ -41,6 +41,7 @@
 * [Dropdown]: add example for fixed body position when toggler changes place
 * [PresetActionsDropdown]: Fixed unreadable dark text in SuccessNotification after Copy link action under Loveship-Dark theme
 * [Loader]: added Loader examples in the documentation
+* [Error Pages] updated SVG images for 403, 404, 500, 503 error pages
 
 # 6.3.1 - 08.10.2025
 
