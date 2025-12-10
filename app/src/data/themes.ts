@@ -10,6 +10,7 @@ export interface ThemeBaseParams extends Partial<CustomThemeManifest> {
 
 export const builtInThemes: ThemeBaseParams[] = [
     { id: BuiltInTheme.electric, name: 'Electric' },
+    { id: BuiltInTheme.electric_dark, name: 'Electric Dark' },
     { id: BuiltInTheme.loveship, name: 'Loveship Light' },
     { id: BuiltInTheme.loveship_dark, name: 'Loveship Dark' },
     { id: BuiltInTheme.fresh_4px, name: 'Fresh Light 4px', settings: settings_4px, propsOverride: propsOverride_4px, css: null },
