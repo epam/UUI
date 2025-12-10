@@ -3,7 +3,7 @@ name: qa
 # Controls when the action will run.
 on:
     push:
-        branches: [ feature/icons-for-theming ]
+        branches: [ add-electric_dark ]
     # Allows you to run this workflow manually from the Actions tab
     workflow_dispatch:
 
