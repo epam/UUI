@@ -24,7 +24,7 @@ export function DataTableCell<TItem, TId, TCellValue>(initialProps : DataTableCe
     const props = { ...initialProps };
 
     if (props.isFirstColumn) {
-        props.addons = <DataRowAddons size={ props.size } { ...props } isFoldingFocusable />;
+        props.addons = <DataRowAddons size={ props.size } { ...props } />;
     }
 
     props.renderPlaceholder = props.renderPlaceholder
