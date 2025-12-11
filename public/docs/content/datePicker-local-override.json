@@ -42,11 +42,7 @@
     "type": "note-quote",
     "children": [
       {
-        "text": "import 'dayjs/locale/de'; // German locale\n"
-      },
-      {
-        "text": "import 'dayjs/locale/ar'; // Arabic locale\nimport 'dayjs/locale/fr'; // French locale",
-        "color": "rgb(48, 50, 64)"
+        "text": "import 'dayjs/locale/de'; // German locale\nimport 'dayjs/locale/ar'; // Arabic locale\nimport 'dayjs/locale/fr'; // French locale"
       }
     ]
   },
@@ -66,11 +62,7 @@
     "type": "note-quote",
     "children": [
       {
-        "text": "import { i18n, uuiDayjs } from '@epam/uui-components';\n\n// Reset datePicker configuration\ni18n.datePicker = {};\n\n// Set German locale\nuuiDayjs.dayjs.locale('de');\n\n// Optionally override first day of week (0=Sunday, 1=Monday, 6=Saturday)\n"
-      },
-      {
-        "text": "uuiDayjs.dayjs.updateLocale('de', { weekStart: 1 }); // Monday first",
-        "color": "rgb(48, 50, 64)"
+        "text": "import { i18n, uuiDayjs } from '@epam/uui-components';\n\n// Reset datePicker configuration\ni18n.datePicker = {};\n\n// Set German locale\nuuiDayjs.dayjs.locale('de');\n\n// Optionally override first day of week (0=Sunday, 1=Monday, 6=Saturday)\nuuiDayjs.dayjs.updateLocale('de', { weekStart: 1 }); // Monday first"
       }
     ]
   },

@@ -42,7 +42,7 @@ export function AppView({ children }: PropsWithChildren) {
     }, [services.uuiAnalytics]);
 
     return (
-        (<UuiContext value={services}>
+        (<UuiContext.Provider value={services}>
             <AppHeader />
             <SideBar />
             <div className='mainContainer'>
@@ -52,6 +52,6 @@ export function AppView({ children }: PropsWithChildren) {
             <Snackbar />
             <Modals />
             <DragGhost />
-        </UuiContext>)
+        </UuiContext.Provider>)
     );
 }
