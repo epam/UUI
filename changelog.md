@@ -44,7 +44,7 @@
 * [Dropdown]: added `fixedBodyPosition` prop to control dropdown positioning. Pass `true` to keep the dropdown list fixed in the position where it was first opened.
 * [Dropdown]: add example for fixed body position when toggler changes place
 * [PresetActionsDropdown]: Fixed unreadable dark text in SuccessNotification after Copy link action under Loveship-Dark theme
-* [Blocker]: change blocker background color
+* [Blocker]: change blocker background color and animation
 
 # 6.3.3 - 15.10.2025
 
