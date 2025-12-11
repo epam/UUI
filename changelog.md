@@ -46,6 +46,8 @@
 * [PresetActionsDropdown]: Fixed unreadable dark text in SuccessNotification after Copy link action under Loveship-Dark theme
 * [TimePicker]: Fixed invalid value reset in case if previous value was empty
 * [Blocker]: change blocker background color and animation
+* [Error Pages] updated SVG images for 403, 404, 500, 503 error pages
+
 
 # 6.3.3 - 15.10.2025
 
