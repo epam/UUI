@@ -52,14 +52,14 @@ export const GROUPS_CONFIG: Record<string, TMainGroupConfig> = {
     core: {
         title: 'Core',
         condition: (token) => {
-            return token.id.indexOf('core/') === 0;
+            return token.id.includes('core/') && !token.id.includes('core/sizes');
         },
         showInnerGroupTitle: true,
         getInnerGroupId: getInnerGroupIdLevel2,
     },
     fallback: {
         title: '',
-        condition: () => true,
+        condition: (token) => !token.id.includes('core/sizes'),
         showInnerGroupTitle: true,
         getInnerGroupId: getInnerGroupIdLevel2,
     },

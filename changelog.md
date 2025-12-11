@@ -1,4 +1,8 @@
 # 6.?.? - ??.??.2025
+**What's New**
+* Added electric dark theme. Add import `import '@epam/assets/css/theme/theme_electric_dark.css';` to connect.
+  * `--uui-surface-sunken` variable removed from all themes, use `--uui-surface-highest` instead
+
 
 **What's Fixed**
 * [DataTable]: fixed resizing for right-fixed columns
@@ -40,7 +44,7 @@
 * [Dropdown]: added `fixedBodyPosition` prop to control dropdown positioning. Pass `true` to keep the dropdown list fixed in the position where it was first opened.
 * [Dropdown]: add example for fixed body position when toggler changes place
 * [PresetActionsDropdown]: Fixed unreadable dark text in SuccessNotification after Copy link action under Loveship-Dark theme
-* [Loader]: added Loader examples in the documentation
+* [Blocker]: change blocker background color and animation
 
 # 6.3.3 - 15.10.2025
 
