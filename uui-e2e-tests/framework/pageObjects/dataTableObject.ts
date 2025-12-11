@@ -25,6 +25,27 @@ export class DataTableObject {
         await this.pressTab(2);
     }
 
+    getSelectAllCheckbox() {
+        const table = this.locators.table;
+        return table.getByLabel('Select All');
+    }
+
+    async clickSelectAllCheckbox() {
+        const selectAllCheckbox = this.getSelectAllCheckbox();
+        await expect(selectAllCheckbox).toBeInViewport();
+        await selectAllCheckbox.click();
+    }
+
+    async waitSelectAllCheckboxToBeChecked() {
+        const selectAllCheckbox = this.getSelectAllCheckbox().getByRole('checkbox');
+        await expect(selectAllCheckbox).toHaveAttribute('aria-checked', 'true');
+    }
+
+    async waitSelectAllCheckboxToBeNotChecked() {
+        const selectAllCheckbox = this.getSelectAllCheckbox().getByRole('checkbox');
+        await expect(selectAllCheckbox).toHaveAttribute('aria-checked', 'false');
+    }
+
     async moveFocusForward(count: number = 1) {
         await this.pressTab(count);
     }
