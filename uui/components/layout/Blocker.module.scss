@@ -1,6 +1,5 @@
 .root {
-    --uui-blocker-bg: #FFFFFF;
-    --uui-blocker-bg-with-opacity: #FFFFFFB3;
+    --uui-blocker-bg-with-opacity: rgb(from var(--uui-surface-main) r g b / 70%);
 
     &:global(.uui-blocker-container) {
         :global(.uui-blocker) {
@@ -9,22 +8,22 @@
         }
 
         :global(.uui-blocker-enter) {
-            background-color: var(--uui-blocker-bg);
+            background-color: var(--uui-blocker-bg-with-opacity);
         }
 
         :global(.uui-blocker-enter-active) {
             background-color: var(--uui-blocker-bg-with-opacity);
-            transition: opacity 1000ms ease-out, background-color 2000ms ease-out;
+            transition: opacity 1000ms ease-out;
         }
 
         :global(.uui-blocker-exit) {
             background-color: var(--uui-blocker-bg-with-opacity);
             pointer-events: none;
-            transition: opacity 200ms ease-out, background-color 200ms ease-out;
+            transition: opacity 200ms ease-out;
         }
 
         :global(.uui-blocker-exit-active) {
-            background-color: var(--uui-blocker-bg);
+            background-color: var(--uui-blocker-bg-with-opacity);
         }
     }
 }

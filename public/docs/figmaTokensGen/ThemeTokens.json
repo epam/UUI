@@ -4369,7 +4369,7 @@
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#242636"
+            "value": "#1D1E26"
           },
           "valueDirect": {
             "alias": [
@@ -4379,7 +4379,7 @@
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#242636"
+            "value": "#1D1E26"
           }
         },
         "Loveship-Dark": {
@@ -4401,7 +4401,7 @@
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#242636"
+            "value": "#1D1E26"
           }
         },
         "Promo": {
@@ -4445,7 +4445,7 @@
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#242636"
+            "value": "#1D1E26"
           }
         },
         "Electric-Dark": {
@@ -4467,7 +4467,7 @@
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#242636"
+            "value": "#1D1E26"
           }
         }
       }
@@ -4718,27 +4718,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-30",
-                "cssVar": "--uui-neutral-30",
+                "id": "core/neutral/neutral-40",
+                "cssVar": "--uui-neutral-40",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night300",
-                "cssVar": "--night300",
+                "id": "palette/night/night400",
+                "cssVar": "--night400",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#E1E3EB"
+            "value": "#CED0DB"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-30",
-                "cssVar": "--uui-neutral-30",
+                "id": "core/neutral/neutral-40",
+                "cssVar": "--uui-neutral-40",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#E1E3EB"
+            "value": "#CED0DB"
           }
         },
         "Loveship-Dark": {
@@ -4772,54 +4772,54 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-30",
-                "cssVar": "--uui-neutral-30",
+                "id": "core/neutral/neutral-40",
+                "cssVar": "--uui-neutral-40",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/gray/gray30",
-                "cssVar": "--gray30",
+                "id": "palette/gray/gray40",
+                "cssVar": "--gray40",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#E1E3EB"
+            "value": "#CED0DB"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-30",
-                "cssVar": "--uui-neutral-30",
+                "id": "core/neutral/neutral-40",
+                "cssVar": "--uui-neutral-40",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#E1E3EB"
+            "value": "#CED0DB"
           }
         },
         "Electric-Light": {
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-30",
-                "cssVar": "--uui-neutral-30",
+                "id": "core/neutral/neutral-40",
+                "cssVar": "--uui-neutral-40",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night300",
-                "cssVar": "--night300",
+                "id": "palette/night/night400",
+                "cssVar": "--night400",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#E1E3EB"
+            "value": "#CED0DB"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-30",
-                "cssVar": "--uui-neutral-30",
+                "id": "core/neutral/neutral-40",
+                "cssVar": "--uui-neutral-40",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#E1E3EB"
+            "value": "#CED0DB"
           }
         },
         "Electric-Dark": {
@@ -11130,7 +11130,7 @@
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#F4B83A"
+            "value": "#F1A105"
           },
           "valueDirect": {
             "alias": [
@@ -11250,7 +11250,7 @@
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#FFD57F"
+            "value": "#F4B83A"
           },
           "valueDirect": {
             "alias": [
@@ -11370,7 +11370,7 @@
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#FFDF9E"
+            "value": "#FFD06D"
           },
           "valueDirect": {
             "alias": [
@@ -11414,7 +11414,7 @@
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#FFA366"
+            "value": "#BD5800"
           },
           "valueDirect": {
             "alias": [
@@ -12840,7 +12840,7 @@
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#F4B83A"
+            "value": "#F1A105"
           },
           "valueDirect": {
             "alias": [
@@ -21035,7 +21035,7 @@
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#242636"
+            "value": "#1D1E26"
           }
         },
         "Promo": {
@@ -21901,7 +21901,7 @@
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#242636"
+            "value": "#1D1E26"
           }
         }
       }
@@ -23260,7 +23260,7 @@
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#FFDF9E"
+            "value": "#FFD06D"
           },
           "valueDirect": {
             "alias": [
@@ -23314,7 +23314,7 @@
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#FFA366"
+            "value": "#BD5800"
           },
           "valueDirect": {
             "alias": [
@@ -40759,11 +40759,11 @@
         "Loveship-Light": {
           "valueChain": {
             "alias": [],
-            "value": "#242636"
+            "value": "#1D1E26"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#242636"
+            "value": "#1D1E26"
           }
         },
         "Loveship-Dark": {
@@ -41359,11 +41359,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#F4B83A"
+            "value": "#F1A105"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#F4B83A"
+            "value": "#F1A105"
           }
         },
         "Electric-Light": {
@@ -41409,11 +41409,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#FFD57F"
+            "value": "#F4B83A"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#FFD57F"
+            "value": "#F4B83A"
           }
         },
         "Electric-Light": {
@@ -41459,21 +41459,21 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#FFDF9E"
+            "value": "#FFD06D"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#FFDF9E"
+            "value": "#FFD06D"
           }
         },
         "Electric-Light": {
           "valueChain": {
             "alias": [],
-            "value": "#FFA366"
+            "value": "#BD5800"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#FFA366"
+            "value": "#BD5800"
           }
         },
         "Electric-Dark": {
