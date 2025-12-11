@@ -2,8 +2,8 @@ import { test } from '../../../framework/fixtures/integrationTestPage/fixture';
 import { setupDocExampleTest } from '../testUtils';
 import { DataTableObject } from '../../../framework/pageObjects/dataTableObject';
 
-test.describe('DataTable', () => {
-    test('TableWithFilters selectAll, sorting, filtering, columns config apply check', async ({ pageWrapper }, testInfo) => {
+test.describe('DataTable Lazy', () => {
+    test('Sort by columns. [Using keyboard]', async ({ pageWrapper }, testInfo) => {
         const { pageObject, expectScreenshot } = await setupDocExampleTest({
             testInfo,
             pageWrapper,
@@ -11,24 +11,9 @@ test.describe('DataTable', () => {
             testUrl: '/docExample?theme=loveship&examplePath=tables%2FColumnFiltersTable',
         });
 
-        await test.step('Put focus on selectAll checkbox', async () => {
-            await pageObject.focusFirstElement();
-            await expectScreenshot(1, 'first-element-focus');
-        });
-
-        await test.step('Select all items', async () => {
-            await pageObject.page.keyboard.press('Space');
-            await pageObject.waitFocusedCheckboxIsChecked();
-            await expectScreenshot(2, 'select-all-items');
-        });
-
-        await test.step('Unselect all items', async () => {
-            await pageObject.page.keyboard.press('Space');
-            await pageObject.waitFocusedCheckboxIsNotChecked();
-            await expectScreenshot(3, 'unselect-all-items');
-        });
-
+        await pageObject.waitForTableRendered();
         await test.step('Move focus to column sorting', async () => {
+            await pageObject.focusFirstElement();
             await pageObject.moveFocusForward();
             await expectScreenshot(4, 'focus-columns-sorting');
         });

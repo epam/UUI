@@ -1,9 +1,9 @@
 import { Locator, Page } from '@playwright/test';
+import type { Link } from '@epam/uui-core';
 import { TClip, TEngine } from '../../types';
-import { PlayWrightInterfaceName } from '../../constants';
 import { slowTestExpectTimeout } from '../../../playwright.config';
 import { CdpSessionWrapper } from '../previewPage/cdpSessionWrapper';
-import type { Link } from '@epam/uui-core';
+import { queryToSearch } from '../../utils/queryToSearch';
 
 export interface IScreenshotOptions {
     fullPage?: boolean;
@@ -68,37 +68,9 @@ export abstract class AbsPage {
 
     protected async _clientRedirect(link: Link) {
         await this.page.mouse.move(0, 0);
-        await this.page.evaluate(async (_params: string) => {
-            const [p, i] = _params.split('[||||]');
-            // @ts-ignore Reason: this specific code will be run in context of web page
-            const globalObj = window as any;
-            const waitForInterface = () => {
-                return new Promise<any>((resolve, reject) => {
-                    const get = () => globalObj[i];
-                    if (get()) {
-                        resolve(get());
-                    } else {
-                        const MAX_ATTEMPTS = 5;
-                        let _attempts = 0;
-                        const _intervalId = globalObj.setInterval(() => {
-                            _attempts++;
-                            if (get()) {
-                                globalObj.clearInterval(_intervalId);
-                                resolve(get());
-                            } else if (_attempts === MAX_ATTEMPTS) {
-                                globalObj.clearInterval(_intervalId);
-                                reject(new Error(`Unable to find window.${i} global variable after ${_attempts} attempts.`));
-                            }
-                        }, 500);
-                    }
-                });
-            };
-            const playWrightInterface = await waitForInterface();
-            playWrightInterface.clientRedirect(p);
-        }, [jsonStringify(link), PlayWrightInterfaceName].join('[||||]'));
+   
+        const params = link.query ? queryToSearch(link.query) : link.search;
+        await this.page.goto(`${link.pathname}${params?.length ? `?${params}` : ''}`);
+        await this.page.waitForFunction(() => document.fonts.ready);
     }
-}
-
-function jsonStringify(json: object) {
-    return JSON.stringify(json, undefined, 1);
 }

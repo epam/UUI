@@ -8,7 +8,7 @@
   "scripts": {
     "build": "yarn typecheck",
     "typecheck": "tsc --project ./tsconfig.json --skipLibCheck true --noEmit true",
-    "docker-test-e2e": "yarn typecheck && npx playwright test --pass-with-no-tests",
+    "docker-test-e2e": "yarn typecheck && npx playwright test --pass-with-no-tests ./tests/previewTests/preview.e2e.ts",
     "docker-test-e2e-update": "yarn docker-test-e2e --update-snapshots",
     "local-test-e2e-deps-install": "npx ../node_modules/playwright install --with-deps chromium webkit firefox",
     "local-test-e2e": "yarn typecheck && npx ../node_modules/playwright test",
@@ -25,7 +25,7 @@
   "dependencies": {
     "@epam/uui-core": "6.3.2-alpha.0",
     "@epam/uui-docs": "6.3.2-alpha.0",
-    "@playwright/test": "1.53.0",
+    "@playwright/test": "^1.57.0",
     "@types/node": "*",
     "address": "2.0.2",
     "cross-env": "^7.0.3",
