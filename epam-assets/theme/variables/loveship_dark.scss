@@ -251,11 +251,6 @@
         }
     }
 
-    .uui-blocker-container {
-        --uui-blocker-bg: var(--uui-surface-main);
-        --uui-blocker-bg-with-opacity: #303240CC;
-    }
-
     /* Badge */
 
     .uui-badge {
@@ -712,7 +707,7 @@
     }
 
     .uui-dt-vars {
-        --uui-dt-header-row-bg: var(--uui-surface-sunken);
+        --uui-dt-header-row-bg: var(--uui-surface-highest);
     }
 
     .uui-filters-panel-item-toggler {

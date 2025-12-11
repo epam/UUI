@@ -135,6 +135,20 @@ async function createRollupConfigForModule(options) {
                 autoModules: true,
                 extract: path.resolve(outDir, EXTRACTED_CSS_FILE_NAME),
                 to: `${outDir}/${EXTRACTED_CSS_FILE_NAME}`,
+                // Ensure Dart Sass can resolve package imports like 'overlayscrollbars/...'
+                use: [
+                    [
+                        'sass',
+                        {
+                            includePaths: [
+                                path.resolve(moduleRootDir, 'node_modules'),
+                                path.resolve(moduleRootDir, '../node_modules'),
+                                path.resolve(process.cwd(), 'node_modules'),
+                                'node_modules',
+                            ],
+                        },
+                    ],
+                ],
             }),
             annotatePureFunctionCallsPlugin({
                 sourcemap: true,

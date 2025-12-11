@@ -3,6 +3,7 @@ import { Text, TextInput, TextArea } from '@epam/loveship';
 import { DemoDbRef } from './state';
 import { IEditable, DataQueryFilter, DataColumnProps } from '@epam/uui-core';
 import { Person, PersonEmploymentGroup } from '@epam/uui-docs';
+import dayjs from 'dayjs';
 
 export function getColumns(dbRef: DemoDbRef) {
     function fieldLens<TField extends keyof Person>(fieldName: TField, person: Person): IEditable<Person[TField]> {
@@ -43,13 +44,13 @@ export function getColumns(dbRef: DemoDbRef) {
         }, {
             key: 'birthDate',
             caption: 'Birth Date',
-            render: (r) => <Text>{r?.birthDate?.toLocaleDateString()}</Text>,
+            render: (r) => <Text>{ dayjs(r?.birthDate).format('MMM D, YYYY')}</Text>,
             width: 120,
             isSortable: true,
         }, {
             key: 'hireDate',
             caption: 'Hire Date',
-            render: (r) => <Text>{r?.hireDate?.toLocaleDateString()}</Text>,
+            render: (r) => <Text>{dayjs(r?.hireDate).format('MMM D, YYYY')}</Text>,
             width: 120,
             isSortable: true,
         }, {

@@ -10,8 +10,8 @@ import cx from 'classnames';
 import { useOverlayScrollbars } from 'overlayscrollbars-react';
 import type { ScrollbarsAutoHideBehavior } from 'overlayscrollbars';
 import { IHasCX, IHasRawProps, useScrollShadows } from '@epam/uui-core';
-import 'overlayscrollbars/styles/overlayscrollbars.css';
 import css from './ScrollBars.module.scss';
+import './ScrollBars.scss';
 
 export type ScrollbarsApi = {
     /** Reference to the scrollbar container element */
