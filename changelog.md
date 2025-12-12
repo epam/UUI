@@ -1,29 +1,9 @@
-# 6.?.? - ??.??.2025
+# 6.4.0 - ??.??.2025
 **What's New**
 * Added electric dark theme. Add import `import '@epam/assets/css/theme/theme_electric_dark.css';` to connect.
   * `--uui-surface-sunken` variable removed from all themes, use `--uui-surface-highest` instead
-
-
-**What's Fixed**
-* [DataTable]: fixed resizing for right-fixed columns
-* [TimePicker]: reworked body open/close behavior. Now body opens by input click or enter key press, instead of 'focus' on target and body closed by 'Escape' or click outside, instead of target blur. Added focus lock behavior.
-* [uui-core]: removed `isFocusReceiverInsideFocusLock` helper function that was causing focus management issues in picker components
-* [LabeledInput]: fixed incorrect prop resolution for `infoIcon`
-* [PickerInput]: change value in `aria-haspopup` attribute from "true" to "dialog" ([#2947](https://github.com/epam/UUI/pull/2947))
-* [PickerInput]: fixed an issue where item count text was truncated in isSingleLine mode
-* [TextInput]: remove call on onCancel callback on 'Escape' press
-* [Pagination]: pagination elements are not grouped into a list ([#2942](https://github.com/epam/UUI/pull/2942))
-  * Add "Previous page" and "Next page" `aria-label`-s to the previous and next pages respectively
-* [DatePickers]: fixed calendar matrix calculation to use locale-specific `firstDayOfWeek` from dayjs instead of hardcoded i18n configuration, ensuring correct calendar layout for any locale.
-* [RangeDatePicker]: added option to display clear icon when at least one date is selected
-* [DatePicker], [RangeDatePicker]: added ability to set the initially displayed month and year in the calendar body when the picker opens via `initialViewMonth` prop
-* [PickerInput/PickerModal]: fix announcing of a picker item's content in screen readers when the item becomes focused ([#2946](https://github.com/epam/UUI/pull/2946))
-* [MainMenu] Improve accessibility of hidden items in "More" menu ([#2948](https://github.com/epam/UUI/pull/2948))
-    * Add `aria-haspopup="menu"` to the "More" button
-    * Add `role="menu"` to the container wrapping the list of items
-    * Provide an example in the documentation of how to assign `role="menuitem"` to the items only when they are present in the menu
-* Make icons and clear buttons in input accessible via keyboard ([#2845](https://github.com/epam/UUI/pull/2845))
-    * Icon set with `icon` property and clear button set with `onClear` property now use a button component with its own CSS variables, which makes some input-specific ones obsolete.
+* Make clickable icons and clear buttons accessible via keyboard ([#2845](https://github.com/epam/UUI/pull/2845)). Now it's possible to put focus on them while keyboard navigation.
+    * Icon provided by `icon` property and clear button now is button component(ControlIcon) with its own CSS variables, which makes some input-specific ones obsolete.
         * The following CSS variables are no longer available:
             * `TextInput` (and other inputs that use it):
                 * `--uui-text_input-icon`
@@ -40,13 +20,35 @@
             * `--uui-control_icon-clickable`
             * `--uui-control_icon-clickable-hover`
             * `--uui-control_icon-clickable-active`
-    * Icon set with `icon` property in `TextInput` (and other inputs that use it) is now always displayed in `mode="cell"`, not only on hover
+    * Icon provided with `icon` property in `TextInput` (and other inputs that use it) is now always displayed in `mode="cell"`, not only on hover
+* [DataTable]: improved accessibility: actions in table header, row checkbox, row folding now is reachable from keyboard.
+* [PickerInput]: improved accessibility: now it's possible to fold/unfold items by right/left arrows and put focus on items list and navigate by items with keyboard (previously it was possible only when search in focus).
+* [MainMenu] Improve accessibility of hidden items in "More" menu ([#2948](https://github.com/epam/UUI/pull/2948))
+    * Add `aria-haspopup="menu"` to the "More" button
+    * Add `role="menu"` to the container wrapping the list of items
+    * Provide an example in the documentation of how to assign `role="menuitem"` to the items only when they are present in the menu
+* [DatePicker], [RangeDatePicker]: added ability to set the initially displayed month and year in the calendar body when the picker opens via `initialViewMonth` prop
+
+
+**What's Fixed**
+* [DataTable]: fixed resizing for right-fixed columns
+* [TimePicker]: reworked body open/close behavior. Now body opens by input click or enter key press, instead of 'focus' on target and body closed by 'Escape' or click outside, instead of target blur. Added focus lock behavior.
+* [uui-core]: removed `isFocusReceiverInsideFocusLock` helper function that was causing focus management issues in picker components
+* [LabeledInput]: fixed incorrect prop resolution for `infoIcon`
+* [PickerInput]: change value in `aria-haspopup` attribute from "true" to "dialog" ([#2947](https://github.com/epam/UUI/pull/2947))
+* [PickerInput]: fixed an issue where item count text was truncated in isSingleLine mode
+* [TextInput]: remove call of onCancel callback on 'Escape' press
+* [Pagination]: pagination elements are not grouped into a list ([#2942](https://github.com/epam/UUI/pull/2942))
+  * Add "Previous page" and "Next page" `aria-label`-s to the previous and next pages respectively
+* [DatePickers]: fixed calendar matrix calculation to use locale-specific `firstDayOfWeek` from dayjs instead of hardcoded i18n configuration, ensuring correct calendar layout for any locale.
+* [RangeDatePicker]: display clear icon when at least one date is selected
+* [PickerInput/PickerModal]: fix announcing of a picker item's content in screen readers when the item becomes focused ([#2946](https://github.com/epam/UUI/pull/2946))
 * [Dropdown]: added `fixedBodyPosition` prop to control dropdown positioning. Pass `true` to keep the dropdown list fixed in the position where it was first opened.
 * [Dropdown]: add example for fixed body position when toggler changes place
 * [PresetActionsDropdown]: Fixed unreadable dark text in SuccessNotification after Copy link action under Loveship-Dark theme
 * [TimePicker]: Fixed invalid value reset in case if previous value was empty
 * [Blocker]: change blocker background color and animation
-* [Error Pages] updated SVG images for 403, 404, 500, 503 error pages
+* [Error Pages] updated error images according to the design
 
 
 # 6.3.3 - 15.10.2025
