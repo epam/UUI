@@ -6,6 +6,10 @@
     display: flex;
     flex: 1 1 0;
     flex-direction: column;
+
+    :global(.uui-data_table) {
+        flex: 1;
+    }
 }
 
 .notLimitedHeightContainer {
@@ -36,4 +40,15 @@
 
 .weekend-day {
     background-color: var(--uui-surface-highest);
+}
+
+.details {
+    padding-left: 54px;
+    line-height: 24px;
+    letter-spacing: 0;
+    background: var(--uui-surface-main);
+}
+
+.row-with-details {
+    border-bottom: 1px solid var(--uui-dt-border);
 }

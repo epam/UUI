@@ -49,6 +49,7 @@
 * [TimePicker]: Fixed invalid value reset in case if previous value was empty
 * [Blocker]: change blocker background color and animation
 * [Error Pages] updated error images according to the design
+* [DataTable]: fixed 'Not found' block alignment to center
 
 
 # 6.3.3 - 15.10.2025
