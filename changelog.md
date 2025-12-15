@@ -1,4 +1,5 @@
-# 6.4.0 - ??.??.2025
+# 6.4.0 - 15.12.2025
+
 **What's New**
 * Added electric dark theme. Add import `import '@epam/assets/css/theme/theme_electric_dark.css';` to connect.
   * `--uui-surface-sunken` variable removed from all themes, use `--uui-surface-highest` instead
@@ -28,6 +29,8 @@
     * Add `role="menu"` to the container wrapping the list of items
     * Provide an example in the documentation of how to assign `role="menuitem"` to the items only when they are present in the menu
 * [DatePicker], [RangeDatePicker]: added ability to set the initially displayed month and year in the calendar body when the picker opens via `initialViewMonth` prop
+* [Dropdown]: added `fixedBodyPosition` prop to control dropdown positioning. Pass `true` to keep the dropdown list fixed in the position where it was first opened.
+
 
 
 **What's Fixed**
@@ -43,7 +46,6 @@
 * [DatePickers]: fixed calendar matrix calculation to use locale-specific `firstDayOfWeek` from dayjs instead of hardcoded i18n configuration, ensuring correct calendar layout for any locale.
 * [RangeDatePicker]: display clear icon when at least one date is selected
 * [PickerInput/PickerModal]: fix announcing of a picker item's content in screen readers when the item becomes focused ([#2946](https://github.com/epam/UUI/pull/2946))
-* [Dropdown]: added `fixedBodyPosition` prop to control dropdown positioning. Pass `true` to keep the dropdown list fixed in the position where it was first opened.
 * [Dropdown]: add example for fixed body position when toggler changes place
 * [PresetActionsDropdown]: Fixed unreadable dark text in SuccessNotification after Copy link action under Loveship-Dark theme
 * [TimePicker]: Fixed invalid value reset in case if previous value was empty
