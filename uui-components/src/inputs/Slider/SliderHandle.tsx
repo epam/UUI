@@ -33,7 +33,7 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
     const arrowRef = React.useRef<HTMLDivElement | null>(null);
     const updateTimeoutRef = React.useRef<number>(null);
 
-    const { refs, floatingStyles } = useFloating({
+    const { refs, floatingStyles, placement } = useFloating({
         placement: 'top',
         middleware: [
             arrow({ element: arrowRef }),
@@ -118,13 +118,16 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
                     ref={ refs.setFloating }
                     style={ floatingStyles }
                     className={ cx(propsCx, css.container, uuiElement.tooltipContainer, css.tooltipWrapper) }
+                    data-placement={ placement }
                 >
-                    <div className={ uuiElement.tooltipBody }>{tooltipContent}</div>
+                    <div className={ cx(uuiElement.tooltipBody, css.tooltipBodyWithArrow) }>
+                        { tooltipContent }
+                    </div>
                     <div ref={ arrowRef } className={ uuiElement.tooltipArrow } />
                 </div>
             </Portal>
         );
-    }, [showTooltip, isActive, isHovered, floatingStyles, tooltipContent, propsCx, refs.setFloating]);
+    }, [showTooltip, isActive, isHovered, floatingStyles, tooltipContent, propsCx, refs.setFloating, placement]);
 
     const setRefs = React.useCallback(
         (node: HTMLDivElement | null) => {
