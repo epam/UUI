@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { DataColumnProps, DataSourceState, DataTableRowProps, useArrayDataSource } from '@epam/uui-core';
 import { DataTable, DataTableRow, Panel, Text } from '@epam/uui';
 import { demoData, FeatureClass } from '@epam/uui-docs';
-import css from './TableWithExpandableRows.module.scss';
+import css from './TablesExamples.module.scss';
 
 interface DataSourceStateWithExpanded<TId, TFilter = any> extends DataSourceState<TFilter, TId> {
     expanded?: Record<string, boolean>;
