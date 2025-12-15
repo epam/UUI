@@ -12,20 +12,13 @@ interface IFixtureBuilderParams<TPageWrapper> {
 export function buildFixture<TPageWrapper extends AbsPage>(builderParams: IFixtureBuilderParams<TPageWrapper>) {
     const { initialUrl, PageWrapperConstructor, extraStyles } = builderParams;
     return baseTest.extend<{ pageWrapper: TPageWrapper }>({
-        pageWrapper: async ({ browser }, use, { project }) => {
+        pageWrapper: async ({ page }, use, { project }) => {
             const engine = project.name as TEngine;
-            const context = await browser.newContext({ bypassCSP: true });
-            let pageWrapper: TPageWrapper | undefined;
-            try {
-                const page = await context.newPage();
-                await mockApi(page);
-                pageWrapper = new PageWrapperConstructor({ page, engine, initialUrl, extraStyles });
-                await pageWrapper!.openInitialPage();
-                await use(pageWrapper!);
-            } finally {
-                pageWrapper && await pageWrapper.close();
-                await context.close();
-            }
+            await mockApi(page);
+            const pageWrapper = new PageWrapperConstructor({ page, engine, initialUrl, extraStyles });
+            await pageWrapper!.openInitialPage();
+            await use(pageWrapper!);
         },
+        bypassCSP: true,
     });
 }
