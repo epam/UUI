@@ -13,9 +13,9 @@ export class DataTableObject {
         };
     }
 
-    async expectRowNameInViewport(text: string) {
-        const firstDataRow = this.getTableRows().first();
-        const nameCell = this.getTableRowCell(firstDataRow).first();
+    async expectRowNameInViewport(text: string, first: boolean = true) {
+        const dataRow = first ? this.getTableRows().first() : this.getTableRows();
+        const nameCell = dataRow.filter({ has: this.page.getByRole('cell', { name: text }) });
 
         await expect(nameCell).toContainText(text, { useInnerText: true });
     }
@@ -25,6 +25,12 @@ export class DataTableObject {
         await this.pressTab(2);
     }
 
+    async scrollScreen(screens: number = 1) {
+        for (let i = 0; i <= screens - 1; i++) {
+            await this.locators.table.evaluate((e) => e.scrollBy(0, 1000));
+        }
+    }
+    
     getTableRows() {
         return this.locators.table.locator('[role="row"]:not(.uui-table-header-row)');
     }
@@ -95,6 +101,16 @@ export class DataTableObject {
         }
     }
 
+    async expectOptionInMultiPickerFilterModal(option: string) {
+        const locator = this.getFilterModalMultiPickerOptionsLocator();
+        const optionLocator = locator.filter({ hasText: option });
+        await expect(optionLocator).toBeVisible();
+    }
+
+    async fillWithKeyboard(search: string) {
+        await this.locators.pageContent.pressSequentially(search);
+    }
+    
     async searchInFilterModal(search: string) {
         await this.expectMultiPickerFilterModalToBeOpened();
         const filterModal = this.getFilterModal();
@@ -117,6 +133,22 @@ export class DataTableObject {
 
     async moveFocusForward(count: number = 1) {
         await this.pressTab(count);
+    }
+
+    async moveFocusBackward(count: number = 1) {
+        await this.pressShiftTab(count);
+    }
+
+    async pressEnter() {
+        await this.locators.pageContent.press('Enter');
+    }
+
+    async pressArrowDown() {
+        await this.locators.pageContent.press('ArrowDown');
+    }
+    
+    async pressEsc() {
+        await this.locators.pageContent.press('Escape');
     }
 
     async waitFocusedCheckboxIsChecked() {
@@ -165,6 +197,12 @@ export class DataTableObject {
     private async pressTab(times: number) {
         for (let i = 0; i < times; i++) {
             await this.locators.pageContent.press('Tab');
+        }
+    }
+    
+    private async pressShiftTab(times: number) {
+        for (let i = 0; i < times; i++) {
+            await this.locators.pageContent.press('Shift+Tab');
         }
     }
 }
