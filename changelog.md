@@ -1,3 +1,11 @@
+# 6.x.x - xx.xx.2025
+
+**What's New**
+
+**What's Fixed**
+* [NumericInput]: use 'any' value for step prop by default
+
+
 # 6.4.0 - 15.12.2025
 
 **What's New**
