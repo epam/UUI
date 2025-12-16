@@ -82,7 +82,7 @@ export class DataTableObject {
         const list = this.getFilterModalMultiPickerList();
         await expect(list).toBeVisible();
     }
-    
+
     async checkFilterOptionsInMultiPickerFilterModal(options: string[]) {
         const locator = this.getFilterModalMultiPickerOptionsLocator();
         for (const option of options) {
@@ -93,6 +93,16 @@ export class DataTableObject {
             
             await expect(optionLocator).toHaveAttribute('aria-checked', 'true');
         }
+    }
+
+    async searchInFilterModal(search: string) {
+        await this.expectMultiPickerFilterModalToBeOpened();
+        const filterModal = this.getFilterModal();
+        const searchInput = filterModal.getByPlaceholder('search');
+        
+        await expect(searchInput).toBeVisible();
+        
+        searchInput.fill(search);
     }
 
     async waitSelectAllCheckboxToBeChecked() {
@@ -117,6 +127,30 @@ export class DataTableObject {
     async waitFocusedCheckboxIsNotChecked() {
         const focusedLocator = this.page.locator(':focus');
         await expect(focusedLocator).toHaveAttribute('aria-checked', 'false');
+    }
+
+    async applyIsNotFilter() {
+        await this.expectMultiPickerFilterModalToBeOpened();
+        const filterModal = this.getFilterModal();
+        const isNotButton = filterModal.getByRole('tablist').getByRole('tab', { name: 'is not' });
+
+        await isNotButton.click();
+    }
+
+    async clickOnGteInFilterModal() {
+        const filterModal = this.getFilterModal();
+        const gteButton = filterModal.getByRole('tablist').getByRole('tab', { name: '≥' });
+        await expect(gteButton).toBeInViewport();
+
+        await gteButton.click();
+    }
+
+    async fillNumericFilterInput(input: string) {
+        const filterModal = this.getFilterModal();
+        const numericInput = filterModal.getByPlaceholder('Enter a number');
+        await expect(numericInput).toBeInViewport();
+
+        await numericInput.fill(input);
     }
 
     async waitForTableRendered() {
