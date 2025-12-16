@@ -8,7 +8,8 @@ import { BuiltInTheme, ThemeId } from '@epam/uui-docs';
  * Make sure they are updated when modes in "public/docs/figmaTokensGen/Theme.json" are changed.
  */
 const THEME_MAP: Record<ThemeId, TFigmaThemeName | undefined> = {
-    [BuiltInTheme.electric]: 'Electric',
+    [BuiltInTheme.electric]: 'Electric-Light',
+    [BuiltInTheme.electric_dark]: 'Electric-Dark',
     [BuiltInTheme.promo]: 'Promo',
     [BuiltInTheme.loveship]: 'Loveship-Light',
     [BuiltInTheme.loveship_dark]: 'Loveship-Dark',
