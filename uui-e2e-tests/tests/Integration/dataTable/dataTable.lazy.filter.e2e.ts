@@ -123,7 +123,7 @@ test.describe('DataTable Lazy: Filters', () => {
             await pageObject.moveFocusForward(2);
             await pageObject.pressEnter();
             await expectScreenshot(6, 'job-title-filters-search-in-filter-filled');
-            
+
             await pageObject.pressEsc();
 
             await pageObject.expectRowNameInViewport('Aaron Bravo');
@@ -133,7 +133,7 @@ test.describe('DataTable Lazy: Filters', () => {
         await test.step('Filter by Salary', async () => {
             await pageObject.moveFocusBackward();
             await pageObject.pressEnter();
-            
+
             await expectScreenshot(8, 'numberic-range-picker-filter-modal-opened');
             await pageObject.moveFocusForward(5);
 
@@ -142,7 +142,7 @@ test.describe('DataTable Lazy: Filters', () => {
 
             await pageObject.fillWithKeyboard('1500');
             await expectScreenshot(9, 'salary-filter-gte-input-filled');
-            
+
             await pageObject.pressEsc();
 
             await pageObject.expectRowNameInViewport('Anthony Gautier');
