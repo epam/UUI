@@ -23,6 +23,7 @@
 
 :global(.uui-error-title) {
     font-family: var(--uui-font);
+    font-weight: 600;
     font-size: 30px;
     line-height: 36px;
     text-align: center;
@@ -53,18 +54,22 @@
     margin-top: 18px;
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 720px), screen and (max-height: 760px) {
+    :global(.uui-error-content) {
+        padding: 18px;
+    }
+
     :global(.uui-error-image) {
         flex: 1 1 200px;
         width: 400px;
     }
 
     :global(.uui-error-title) {
-        font-weight: 400;
+        font-weight: 600;
         font-size: 24px;
         line-height: 30px;
         margin-top: 48px;
-        max-width: 460px;
+        max-width: 540px;
     }
 
     :global(.uui-error-subtitle) {
@@ -73,5 +78,16 @@
 
     :global(.uui-error-support-link) {
         max-width: 460px;
+    }
+}
+
+@media screen and (max-height: 720px) {
+    .container {
+        min-height: 480px;
+    }
+
+    :global(.uui-error-image) {
+        flex: 1 1 200px;
+        width: 320px;
     }
 }

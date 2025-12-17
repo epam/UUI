@@ -20,4 +20,6 @@ Use `yarn release-beta` instead of `yarn release`. This will create a release wi
    - revert new version tags(run both)
      - local: git tag -d <tag_name(v5.7.0)>
      - remote: git push --delete origin <tag_name(v5.7.0)>
-2. For NPM login, run `npm login` command in terminal and follow the steps (https://docs.npmjs.com/cli/v9/commands/npm-login)
+2. For NPM login with MFA you should generate Access Token(can be done in NPM profile) and login with command:
+   `npm config set //registry.npmjs.org/:_authToken=your_token`
+ 

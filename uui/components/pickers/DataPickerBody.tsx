@@ -219,7 +219,6 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, auto
                                 onKeyDown: props.onKeyDown,
                                 onFocus: handleVirtualListFocus,
                                 onBlur: handleVirtualListBlur,
-                                // onMouseMove: handleVirtualListMouseMove,
                                 ...props.rawProps,
                             } }
                             rowsCount={ props.rowsCount }
