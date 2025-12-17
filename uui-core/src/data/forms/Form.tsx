@@ -14,7 +14,9 @@ export interface FormSaveResponse<T> {
 }
 
 export interface FormProps<T> {
-    /** Current value of the form state */
+    /** Initial Form value
+     * If changed after initialization, form will be reverted to the new value
+     * */
     value: T;
 
     /**
