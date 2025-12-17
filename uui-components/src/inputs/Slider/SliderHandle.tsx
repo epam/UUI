@@ -31,9 +31,9 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
     const [isHovered, setIsHovered] = React.useState(false);
     const sliderHandleRef = React.useRef<HTMLDivElement | null>(null);
     const arrowRef = React.useRef<HTMLDivElement | null>(null);
-    const updateTimeoutRef = React.useRef<number>(null);
+    const updateTooltipRafRef = React.useRef<number | null>(null);
 
-    const { refs, floatingStyles, placement } = useFloating({
+    const { refs, floatingStyles, placement, update } = useFloating({
         placement: 'top',
         middleware: [
             arrow({ element: arrowRef }),
@@ -45,12 +45,14 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
     React.useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             if (isActive) {
-                if (updateTimeoutRef.current) {
-                    window.clearTimeout(updateTimeoutRef.current);
+                onUpdate(e.clientX);
+
+                if (updateTooltipRafRef.current === null) {
+                    updateTooltipRafRef.current = requestAnimationFrame(() => {
+                        update();
+                        updateTooltipRafRef.current = null;
+                    });
                 }
-                updateTimeoutRef.current = window.setTimeout(() => {
-                    onUpdate(e.clientX);
-                }, 16);
             }
         };
 
@@ -74,15 +76,16 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
         sliderHandleRef.current?.addEventListener('mouseleave', handleMouseLeave);
 
         return () => {
-            if (updateTimeoutRef.current) {
-                window.clearTimeout(updateTimeoutRef.current);
+            if (updateTooltipRafRef.current !== null) {
+                cancelAnimationFrame(updateTooltipRafRef.current);
+                updateTooltipRafRef.current = null;
             }
             document.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseup', handleMouseUp);
             sliderHandleRef.current?.removeEventListener('mouseenter', handleMouseEnter);
             sliderHandleRef.current?.removeEventListener('mouseleave', handleMouseLeave);
         };
-    }, [isActive, onUpdate, handleActiveState]);
+    }, [isActive, onUpdate, handleActiveState, update]);
 
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
         e.preventDefault();
