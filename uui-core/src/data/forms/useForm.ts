@@ -150,9 +150,9 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
     useEffect(() => {
         if (!isEqual(props.value, prevFormValue.current)) {
             resetForm({
-                ...formState.current,
+                ...initialForm.current,
                 form: props.value,
-                formHistory: formState.current.isChanged ? formState.current.formHistory : [props.value],
+                formHistory: [props.value],
             });
             prevFormValue.current = props.value;
         }
