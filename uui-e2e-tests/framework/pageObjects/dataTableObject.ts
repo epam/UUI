@@ -30,11 +30,11 @@ export class DataTableObject {
             await this.locators.table.evaluate((e) => e.scrollBy(0, 1000));
         }
     }
-    
+
     getTableRows() {
         return this.locators.table.locator('[role="row"]:not(.uui-table-header-row)');
     }
-    
+
     getTableRowCell(tableRow: Locator) {
         return tableRow.locator('[role="cell"]');
     }
@@ -50,12 +50,12 @@ export class DataTableObject {
     }
 
     getFilterModal() {
-        return this.page.getByRole('dialog');
+        return this.page.getByRole('dialog').locator('[aria-modal="true"]');
     }
 
     getFilterModalMultiPickerList() {
         const filterModal = this.getFilterModal();
-        
+
         return filterModal.locator('[aria-multiselectable="true"]');
     }
 
@@ -94,9 +94,9 @@ export class DataTableObject {
         for (const option of options) {
             const optionLocator = locator.filter({ hasText: option });
             await expect(optionLocator).toBeVisible();
-            
+
             optionLocator.click();
-            
+
             await expect(optionLocator).toHaveAttribute('aria-checked', 'true');
         }
     }
@@ -110,14 +110,14 @@ export class DataTableObject {
     async fillWithKeyboard(search: string) {
         await this.locators.pageContent.pressSequentially(search);
     }
-    
+
     async searchInFilterModal(search: string) {
         await this.expectMultiPickerFilterModalToBeOpened();
         const filterModal = this.getFilterModal();
         const searchInput = filterModal.getByPlaceholder('search');
-        
+
         await expect(searchInput).toBeVisible();
-        
+
         searchInput.fill(search);
     }
 
@@ -146,7 +146,7 @@ export class DataTableObject {
     async pressArrowDown() {
         await this.locators.pageContent.press('ArrowDown');
     }
-    
+
     async pressEsc() {
         await this.locators.pageContent.press('Escape');
     }
@@ -199,7 +199,7 @@ export class DataTableObject {
             await this.locators.pageContent.press('Tab');
         }
     }
-    
+
     private async pressShiftTab(times: number) {
         for (let i = 0; i < times; i++) {
             await this.locators.pageContent.press('Shift+Tab');

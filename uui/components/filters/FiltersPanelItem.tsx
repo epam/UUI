@@ -130,6 +130,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         return isPickersType ? (
             <PickerBodyMobileView
                 { ...dropdownProps }
+                rawProps={ { ...dropdownProps.arrowProps, 'aria-modal': true } }
                 cx={ [css.body, UUI_FILTERS_PANEL_ITEM_BODY] }
                 title={ props.title }
                 width={ settings.filtersPanel.sizes.pickerBodyMinWidth }
@@ -145,7 +146,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 />
             </PickerBodyMobileView>
         ) : (
-            <DropdownContainer cx={ [css.body, UUI_FILTERS_PANEL_ITEM_BODY] } { ...dropdownProps }>
+            <DropdownContainer cx={ [css.body, UUI_FILTERS_PANEL_ITEM_BODY] } { ...dropdownProps } rawProps={ { ...dropdownProps.arrowProps, 'aria-modal': true } }>
                 { renderHeader(hideHeaderTitle) }
                 <FilterItemBody
                     { ...props }
