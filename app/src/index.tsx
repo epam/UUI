@@ -21,6 +21,7 @@ import '@epam/assets/theme/theme_fresh_4px.scss';
 import '@epam/assets/theme/theme_electric.scss';
 import '@epam/assets/theme/theme_eduverse_light.scss';
 import '@epam/assets/theme/theme_eduverse_dark.scss';
+import '@epam/assets/theme/theme_electric_dark.scss';
 import './index.module.scss';
 
 i18n.errorHandler.supportMessage = (

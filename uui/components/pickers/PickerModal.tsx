@@ -114,6 +114,19 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
         return focusedRow.rowKey;
     }, [focusedIndex, topIndex]);
 
+    const onKeyDownHandler = (e: React.KeyboardEvent) => {
+        handleDataSourceKeyboard(
+            {
+                value: dataSourceState,
+                onValueChange: handleDataSourceValueChange,
+                listView: view,
+                rows: dataRows,
+                searchPosition: 'body',
+            },
+            e,
+        );
+    };
+
     return (
         <ModalBlocker { ...props }>
             <ModalWindow width={ 600 } height={ 700 } cx={ css.body }>
@@ -123,17 +136,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                         <MoveFocusInside className={ css.search }>
                             <SearchInput
                                 { ...dataSourceStateLens.prop('search').toProps() }
-                                onKeyDown={ (e) =>
-                                    handleDataSourceKeyboard(
-                                        {
-                                            value: dataSourceState,
-                                            onValueChange: handleDataSourceValueChange,
-                                            listView: view,
-                                            rows: dataRows,
-                                            searchPosition: 'body',
-                                        },
-                                        e,
-                                    ) }
+                                onKeyDown={ onKeyDownHandler }
                                 placeholder={ i18n.pickerModal.searchPlaceholder }
                                 rawProps={ {
                                     dir: 'auto',
@@ -163,6 +166,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                     renderRow={ renderRow }
                     renderEmpty={ renderNotFound }
                     size={ settings.pickerInput.sizes.body.row }
+                    onKeyDown={ onKeyDownHandler }
                 />
                 <ModalFooter>
                     {props.renderFooter ? props.renderFooter(getFooterProps()) : renderFooter()}

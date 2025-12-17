@@ -1,8 +1,9 @@
 @use '~@epam/promo/assets/styles/colors.scss' as *;
 
 .layout {
+    background-color: var(--uui-neutral-90);
+    border: 1px solid var(--uui-divider-light);
     display: flex;
-    background-color: #303240;
     flex-shrink: 0;
 
     .footer {

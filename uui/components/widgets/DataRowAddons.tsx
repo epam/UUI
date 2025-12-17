@@ -38,8 +38,6 @@ interface DataRowAddonsCoreProps<TItem, TId> {
      * If omitted, the default implementation with DragHandle component will be rendered.
      */
     renderDragHandle?: (props: DragHandleRenderProps<TItem, TId>) => React.ReactNode;
-    /** If true, folding arrow is focusable */
-    isFoldingFocusable?: boolean;
 }
 
 /**
@@ -69,7 +67,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
     };
 
     const handleFold = (e: React.KeyboardEvent) => {
-        if (props.isFoldingFocusable && e.key === 'Enter') {
+        if (e.key === 'Enter') {
             row.onFold(row);
         }
     };
@@ -113,7 +111,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
                             onClick={ () => row.onFold(row) }
                             onKeyDown={ handleFold }
                             size={ settings.dataTable.sizes.body.iconMap[props.size || settings.dataTable.sizes.body.row] }
-                            tabIndex={ props.isFoldingFocusable ? 0 : undefined }
+                            tabIndex={ props.tabIndex }
                         />
                     )}
                 </div>
