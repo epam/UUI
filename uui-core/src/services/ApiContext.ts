@@ -195,7 +195,7 @@ export class ApiContext extends BaseContext implements IApiContext {
             .catch((e: Error) => {
                 if (e?.name === 'AbortError') {
                     this.removeFromQueue(call);
-                    return;
+                    throw e;
                 }
                 if (call.attemptsCount < 2) {
                     this.handleApiError(call, 'connection-lost');
