@@ -85,6 +85,7 @@ function createTestsForSingleComponentId(builderParams: { componentId: TComponen
                 if (ctx.shouldSkipTest(testName)) {
                     return;
                 }
+
                 const testFn = matrix.only ? previewPageTest.only : previewPageTest;
 
                 testFn(testName, async ({ pageWrapper, browserName }) => {
