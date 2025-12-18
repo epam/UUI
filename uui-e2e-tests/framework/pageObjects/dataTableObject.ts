@@ -74,9 +74,18 @@ export class DataTableObject {
         await selectAllCheckbox.click();
     }
 
+    getColumnTooltip(title: string) {
+        return this.page.getByRole('dialog').filter({ hasText: title });
+    }
+
     async openFilterModal(column: string) {
         const columnHeaderCell = this.getColumnHeaderCell(column);
         await expect(columnHeaderCell).toBeInViewport();
+        const title = columnHeaderCell.getByText(column);
+        await title.hover();
+
+        const tooltip = this.getColumnTooltip(column);
+        await expect(tooltip).toBeInViewport();
 
         await columnHeaderCell.click();
 
