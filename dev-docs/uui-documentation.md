@@ -53,3 +53,72 @@ You still need to create an `explorerConfig` and connect it to the doc page. Som
 The Component API section is generated based on component prop interfaces. You don't need to regenerate it locally — it's part of the deployment steps.
 
 To update this block locally, run `yarn generate-components-api` in the project root.
+
+### Use external theme
+UUI documentation allows you to connect external themes (not stored into UUI repo).
+
+1. Add a `uui-custom-themes` object to `localStorage` containing a list of URLs for custom themes:
+    ```
+        localStorage.setItem(
+        'uui-custom-themes', 
+            JSON.stringify({
+                customThemes: [
+                    "https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/themes/custom-theme-1",
+                    "https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/themes/custom-theme-2",
+                ]
+            })
+        )
+    ```
+   
+2. The custom theme URL must serve a theme manifest file at the path /theme-manifest.json. 
+   This manifest should adhere to the following structure:
+   ```
+       export interface IThemeManifest {
+           /*
+            * Unique ID of the custom theme.
+            */
+           id: string;
+   
+           /*
+            * Theme display name. Visible to end users in theme selector.
+            */
+           name: string;
+   
+            /* A list of CSS files required for this theme.
+             * Example: ['custom-theme-1.css']
+             * These CSS files should be served relative to the custom theme URL 
+             * (e.g., '/custom-theme-1.css').
+             */
+           css: string[];
+   
+            /* A settings file to customize the default sizing of UUI components.
+             * Example: 'custom-theme-settings.json'
+             * This JSON file should be served relative to the custom theme URL 
+             * (e.g., '/custom-theme-settings.json').
+             */
+           settings?: string | null;
+   
+           /*
+            * Any overrides for the "property explorer"
+            */
+           propsOverride?: {
+               [typeRef: `${string}:${string}`]: {
+                   [propName: string]: IThemeManifestPropOverride;
+               }
+           };
+       }
+    
+       export interface IThemeManifestPropOverride {
+           editor: {
+               type: 'oneOf',
+               options: (string | number)[],
+           },
+           comment?: {
+               tags?: {
+               '@default': string
+               }
+           },
+       }
+   ```
+   
+Note: The recommended way to store theme artifacts is via a CDN, as they are purely static files.

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { IModal } from '@epam/uui-core';
 import { demoData } from '@epam/uui-docs';
@@ -23,10 +25,7 @@ export function BasicModalExample(modalProps: IModal<string | boolean>) {
                         title='Simple modal example '
                         onClose={() => modalProps.abort()}
                     />
-                    <ScrollBars
-                        hasTopShadow
-                        hasBottomShadow
-                    >
+                    <ScrollBars>
                         <FlexRow padding='24'>
                             <Text size='36'>
                                 {' '}

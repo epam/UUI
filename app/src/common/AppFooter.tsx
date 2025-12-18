@@ -10,7 +10,7 @@ const EPAM_LINK = 'https://www.epam.com';
 const footerLinks = {
     resources: { caption: 'Resources',
         links: [
-            { href: 'https://uui.epam.com/documents', name: 'Docs' },
+            { href: 'https://uui.epam.com/documents?id=overview', name: 'Docs' },
             { href: 'https://uui.epam.com/documents?category=components&id=accordion', name: 'Components' },
             { href: 'https://uui.epam.com/demo', name: 'Examples' },
         ] },

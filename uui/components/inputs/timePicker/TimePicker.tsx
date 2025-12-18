@@ -15,7 +15,7 @@ import isEqual from 'react-fast-compare';
 const DEFAULT_MODE = EditMode.FORM;
 
 const valueToTimeString = (value: TimePickerValue, format: TimePickerProps['format']) => {
-    if (value === null) return null;
+    if (value === null || (value?.hours === null && value?.minutes === null)) return null;
     return uuiDayjs.dayjs()
         .set(value)
         .format(format === 24 ? 'HH:mm' : 'hh:mm A');
@@ -57,6 +57,7 @@ export function TimePickerComponent(props: TimePickerProps, ref: React.Forwarded
 
     const onClear = () => {
         props.onValueChange(null);
+        setState((prevState) => ({ ...prevState, value: null, inputValue: null }));
     };
 
     const onToggle = (value: boolean) => {
@@ -106,9 +107,9 @@ export function TimePickerComponent(props: TimePickerProps, ref: React.Forwarded
         if (state.value === '' || state.inputValue === '') {
             props.onValueChange(null);
             setState((prevState) => ({ ...prevState, value: null, inputValue: null }));
+        } else {
+            saveTime(state.value);
         }
-
-        state.value && state.inputValue && saveTime(state.value);
     };
 
     const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

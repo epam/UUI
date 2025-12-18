@@ -1,5 +1,6 @@
 export enum BuiltInTheme {
     electric = 'electric',
+    electric_dark = 'electric_dark',
     loveship = 'loveship',
     loveship_dark = 'loveship_dark',
     promo = 'promo',
