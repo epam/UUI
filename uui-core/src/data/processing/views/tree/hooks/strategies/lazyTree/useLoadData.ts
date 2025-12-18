@@ -1,5 +1,4 @@
 import { useCallback, useRef } from 'react';
-import { FetchingOptions } from '../../../../../../../services';
 import { CascadeSelectionTypes, DataSourceState, LazyDataSourceApi } from '../../../../../../../types';
 import isEqual from 'react-fast-compare';
 import { TreeState } from '../../../treeState';
@@ -8,6 +7,7 @@ import { LazyTreeProps } from './types';
 import { CommonTreeConfig } from '../types';
 import { ROOT_ID } from '../../../constants';
 import { LoadAllConfig, TreeStructureId } from '../../../treeState/types';
+import { useAbortController } from '../../common';
 
 export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
     Pick<LazyTreeProps<TItem, TId, TFilter>, 'getChildCount'>,
@@ -34,7 +34,6 @@ interface LoadMissingOptions<TItem, TId, TFilter> {
     loadAllChildren?(id: TId): LoadAllConfig;
     isLoadStrict?: boolean;
     dataSourceState?: DataSourceState<TFilter, TId>;
-    fetchingOptions: FetchingOptions;
 }
 
 interface LoadMissingOptionsOnCheck<TItem, TId> {
@@ -42,7 +41,6 @@ interface LoadMissingOptionsOnCheck<TItem, TId> {
     id: TId;
     isChecked: boolean;
     isRoot: boolean;
-    fetchingOptions: FetchingOptions;
 }
 
 export function useLoadData<TItem, TId, TFilter = any>(
@@ -52,13 +50,14 @@ export function useLoadData<TItem, TId, TFilter = any>(
 
     const promiseInProgressRef = useRef<Promise<LoadResult<TItem, TId>>>(undefined);
 
+    const { getAbortSignal } = useAbortController();
+
     const loadMissingImpl = useCallback(async ({
         using,
         tree,
         loadAllChildren = () => ({ nestedChildren: true, children: false }),
         isLoadStrict,
         dataSourceState,
-        fetchingOptions,
     }: LoadMissingOptions<TItem, TId, TFilter>): Promise<LoadResult<TItem, TId>> => {
         const loadingTree = tree;
         const completeDsState = { ...props.dataSourceState, ...dataSourceState };
@@ -76,7 +75,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
                         ...props.dataSourceState?.filter,
                         ...dataSourceState?.filter,
                     },
-                    ...fetchingOptions,
+                    signal: getAbortSignal(),
                 },
                 dataSourceState: completeDsState,
             });
@@ -94,7 +93,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
             console.error('LazyListView: Error while loading items.', e);
             return { isUpdated: false, isOutdated: false, tree: loadingTree };
         }
-    }, [isFolded, api, filter, props.dataSourceState]);
+    }, [isFolded, api, filter, props.dataSourceState, getAbortSignal]);
 
     const loadMissing = useCallback(({
         tree,
@@ -103,7 +102,6 @@ export function useLoadData<TItem, TId, TFilter = any>(
         loadAllChildren,
         isLoadStrict,
         dataSourceState,
-        fetchingOptions,
     }: LoadMissingOptions<TItem, TId, TFilter>): Promise<LoadResult<TItem, TId>> => {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
         if (!promiseInProgressRef.current || abortInProgress) {
@@ -111,12 +109,12 @@ export function useLoadData<TItem, TId, TFilter = any>(
         }
 
         promiseInProgressRef.current = promiseInProgressRef.current.then(({ tree: currentTree }) =>
-            loadMissingImpl({ tree: currentTree, using, loadAllChildren, isLoadStrict, dataSourceState, fetchingOptions }));
+            loadMissingImpl({ tree: currentTree, using, loadAllChildren, isLoadStrict, dataSourceState }));
 
         return promiseInProgressRef.current;
     }, [loadMissingImpl]);
 
-    const loadMissingOnCheck = useCallback(async ({ tree, id, isRoot, isChecked, fetchingOptions }: LoadMissingOptionsOnCheck<TItem, TId>) => {
+    const loadMissingOnCheck = useCallback(async ({ tree, id, isRoot, isChecked }: LoadMissingOptionsOnCheck<TItem, TId>) => {
         const isImplicitMode = cascadeSelection === CascadeSelectionTypes.IMPLICIT;
 
         if (!cascadeSelection && !isRoot) {
@@ -166,7 +164,6 @@ export function useLoadData<TItem, TId, TFilter = any>(
             isLoadStrict: true,
             dataSourceState: { search: null },
             using: 'full',
-            fetchingOptions,
         });
 
         return treeWithMissingRecords;

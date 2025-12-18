@@ -11,7 +11,6 @@ import {
     usePatchTree,
     useItemsStatusCollector,
     useActualItemsStorage,
-    useAbortController,
 } from '../../common';
 import { TreeState } from '../../../treeState';
 import { useLazyFetchingAdvisor } from './useLazyFetchingAdvisor';
@@ -104,8 +103,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         setTreeWithData(blankTree);
     }, [blankTree]);
 
-    const { getAbortSignal } = useAbortController();
-
     const { loadMissing, loadMissingOnCheck } = useLoadData({
         api,
         filter,
@@ -124,7 +121,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                 id,
                 isChecked,
                 isRoot,
-                fetchingOptions: { signal: getAbortSignal() },
             });
             if (tree !== treeWithData || tree !== newTree) {
                 setTreeWithData(newTree);
@@ -165,7 +161,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                     visibleCount: 0,
                     topIndex: 0,
                 },
-                fetchingOptions: { signal: getAbortSignal() },
             }).then(({ isUpdated, isOutdated, tree: newTree }) => {
                 if (!isOutdated && (isUpdated || newTree !== treeWithDataActual)) {
                     setTreeWithData(newTree);
@@ -208,7 +203,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                 tree: currentTree,
                 using: 'visible',
                 abortInProgress: shouldRefetch,
-                fetchingOptions: { signal: getAbortSignal() },
             })
                 .then(({ isUpdated, isOutdated, tree: newTree }) => {
                     if (!isOutdated && (isUpdated || newTree !== treeWithDataActual)) {
