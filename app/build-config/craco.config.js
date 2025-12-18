@@ -1,4 +1,5 @@
 const { whenDev, whenProd } = require('@craco/craco');
+const path = require('path');
 const {
     changeRuleByTestAttr, makeSlashesPlatformSpecific,
     changePluginByName, removeRuleByTestAttr,
@@ -90,6 +91,24 @@ function configureWebpack(config, { paths }) {
     changeRuleByTestAttr(config, /\.(scss|sass)$/, (prev) => {
         normalizeUse(prev);
         addShadowRootSupportToUse(prev);
+        if (prev.use) {
+            prev.use.forEach((u) => {
+                if (u.loader && u.loader.indexOf(makeSlashesPlatformSpecific('/sass-loader/')) !== -1) {
+                    u.options = {
+                        ...u.options,
+                        sassOptions: {
+                            ...(u.options && u.options.sassOptions),
+                            includePaths: [
+                                path.resolve(process.cwd(), 'node_modules'),
+                                path.resolve(process.cwd(), '../node_modules'),
+                                path.resolve(__dirname, '../../node_modules'),
+                                'node_modules',
+                            ],
+                        },
+                    };
+                }
+            });
+        }
         return prev;
     });
     changeRuleByTestAttr(config, /\.css$/, (prev) => {
@@ -111,6 +130,20 @@ function configureWebpack(config, { paths }) {
                     if (u.loader.indexOf(makeSlashesPlatformSpecific('/css-loader/')) !== -1) {
                         // Need camelCase export to keep existing UUI code working
                         u.options.modules.exportLocalsConvention = 'camelCase';
+                    }
+                    if (u.loader.indexOf(makeSlashesPlatformSpecific('/sass-loader/')) !== -1) {
+                        u.options = {
+                            ...u.options,
+                            sassOptions: {
+                                ...(u.options && u.options.sassOptions),
+                                includePaths: [
+                                    path.resolve(process.cwd(), 'node_modules'),
+                                    path.resolve(process.cwd(), '../node_modules'),
+                                    path.resolve(__dirname, '../../node_modules'),
+                                    'node_modules',
+                                ],
+                            },
+                        };
                     }
                 }
             });

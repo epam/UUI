@@ -5,3 +5,4 @@ This package is a part of [EPAM UUI](https://github.com/epam/UUI) library.
 `@epam/assets` contains UUI assets, such as:
 - icons set
 - themes and their fonts 
+- scss folder - legacy helpers and mixins for backward compatibility

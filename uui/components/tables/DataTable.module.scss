@@ -11,6 +11,13 @@
     //
     background: var(--uui-dt-bg);
 
+    &:global(.uui-data_table) {
+        [role='table'] {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
     &:global(.-scrolled-left) {
         :global(.uui-scroll-shadow-left) {
             opacity: 1;

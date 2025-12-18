@@ -227,7 +227,7 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
                 onBlur={ handleBlur }
                 min={ min }
                 max={ max }
-                step={ step }
+                step={ step || 'any' }
                 id={ props.id }
                 ref={ inputRef }
             />

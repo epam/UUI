@@ -8,6 +8,7 @@ const { logger } = require('../utils/loggerUtils');
 const modulesNameMap = {
     'epam-assets': 'assets',
     'epam-promo': 'promo',
+    loveship: 'loveship',
     uui: 'uui',
     'uui-components': 'uui-components',
     'uui-editor': 'uui-editor',

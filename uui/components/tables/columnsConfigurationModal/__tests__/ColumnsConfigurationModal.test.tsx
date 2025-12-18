@@ -71,7 +71,13 @@ describe('ColumnsConfigurationModal', () => {
     it('should disable Apply button if all columns are hidden', async () => {
         const defaultConfig = getColumnsConfig(mockHiddenColumns, {});
         await renderWithContextAsync(
-            <ColumnsConfigurationModal { ...modalProps } columns={ mockHiddenColumns } columnsConfig={ defaultConfig } defaultConfig={ defaultConfig } />,
+            <ColumnsConfigurationModal
+                { ...modalProps }
+                key={ modalProps.key }
+                columns={ mockHiddenColumns }
+                columnsConfig={ defaultConfig }
+                defaultConfig={ defaultConfig }
+            />,
         );
         const applyBtn = await screen.findByRole('button', { name: 'Apply' });
         expect(applyBtn).toHaveClass('uui-disabled');
