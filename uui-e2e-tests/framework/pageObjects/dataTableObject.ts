@@ -13,9 +13,9 @@ export class DataTableObject {
         };
     }
 
-    async expectRowNameInViewport(text: string) {
-        const firstDataRow = this.locators.table.locator('[role="row"]:not(.uui-table-header-row)').first();
-        const nameCell = firstDataRow.locator('[role="cell"]').first();
+    async expectRowNameInViewport(text: string, first: boolean = true) {
+        const dataRow = first ? this.getTableRows().first() : this.getTableRows();
+        const nameCell = dataRow.filter({ has: this.page.getByRole('cell', { name: text }) });
 
         await expect(nameCell).toContainText(text, { useInnerText: true });
     }
@@ -25,8 +25,139 @@ export class DataTableObject {
         await this.pressTab(2);
     }
 
+    async scrollScreen(screens: number = 1) {
+        for (let i = 0; i <= screens - 1; i++) {
+            await this.locators.table.evaluate((e) => e.scrollBy(0, 1000));
+        }
+    }
+
+    getTableRows() {
+        return this.locators.table.locator('[role="row"]:not(.uui-table-header-row)');
+    }
+
+    getTableRowCell(tableRow: Locator) {
+        return tableRow.locator('[role="cell"]');
+    }
+
+    getSelectAllCheckbox() {
+        const table = this.locators.table;
+        return table.getByLabel('Select All');
+    }
+
+    getColumnHeaderCell(columnName: string) {
+        const table = this.locators.table;
+        return table.getByRole('columnheader', { name: columnName });
+    }
+
+    getFilterModal() {
+        return this.page.getByRole('dialog').locator('[aria-modal="true"]');
+    }
+
+    getFilterModalMultiPickerList() {
+        const filterModal = this.getFilterModal();
+
+        return filterModal.locator('[aria-multiselectable="true"]');
+    }
+
+    getFilterModalMultiPickerOptionsLocator() {
+        const list = this.getFilterModalMultiPickerList();
+        return list.getByRole('option');
+    }
+
+    async closeFilterModal() {
+        await this.locators.pageContent.click({ position: { x: 10, y: 5 } });
+    }
+
+    async clickSelectAllCheckbox() {
+        const selectAllCheckbox = this.getSelectAllCheckbox();
+        await expect(selectAllCheckbox).toBeInViewport();
+        await selectAllCheckbox.click();
+    }
+
+    getColumnTooltip(title: string) {
+        return this.page.getByRole('dialog').filter({ hasText: title });
+    }
+
+    async openFilterModal(column: string) {
+        const columnHeaderCell = this.getColumnHeaderCell(column);
+        await expect(columnHeaderCell).toBeInViewport();
+        const title = columnHeaderCell.getByText(column);
+        await title.hover();
+
+        const tooltip = this.getColumnTooltip(column);
+        await expect(tooltip).toBeInViewport();
+
+        await columnHeaderCell.click();
+
+        const filterModal = this.getFilterModal();
+        await expect(filterModal).toBeVisible();
+    }
+
+    async expectMultiPickerFilterModalToBeOpened() {
+        const list = this.getFilterModalMultiPickerList();
+        await expect(list).toBeVisible();
+    }
+
+    async checkFilterOptionsInMultiPickerFilterModal(options: string[]) {
+        const locator = this.getFilterModalMultiPickerOptionsLocator();
+        for (const option of options) {
+            const optionLocator = locator.filter({ hasText: option });
+            await expect(optionLocator).toBeVisible();
+
+            optionLocator.click();
+
+            await expect(optionLocator).toHaveAttribute('aria-checked', 'true');
+        }
+    }
+
+    async expectOptionInMultiPickerFilterModal(option: string) {
+        const locator = this.getFilterModalMultiPickerOptionsLocator();
+        const optionLocator = locator.filter({ hasText: option });
+        await expect(optionLocator).toBeVisible();
+    }
+
+    async fillWithKeyboard(search: string) {
+        await this.locators.pageContent.pressSequentially(search);
+    }
+
+    async searchInFilterModal(search: string) {
+        await this.expectMultiPickerFilterModalToBeOpened();
+        const filterModal = this.getFilterModal();
+        const searchInput = filterModal.getByPlaceholder('search');
+
+        await expect(searchInput).toBeVisible();
+
+        searchInput.fill(search);
+    }
+
+    async waitSelectAllCheckboxToBeChecked() {
+        const selectAllCheckbox = this.getSelectAllCheckbox().getByRole('checkbox');
+        await expect(selectAllCheckbox).toHaveAttribute('aria-checked', 'true');
+    }
+
+    async waitSelectAllCheckboxToBeNotChecked() {
+        const selectAllCheckbox = this.getSelectAllCheckbox().getByRole('checkbox');
+        await expect(selectAllCheckbox).toHaveAttribute('aria-checked', 'false');
+    }
+
     async moveFocusForward(count: number = 1) {
         await this.pressTab(count);
+    }
+
+    async moveFocusBackward(count: number = 1) {
+        await this.pressShiftTab(count);
+    }
+
+    async pressEnter() {
+        await this.locators.pageContent.press('Enter');
+    }
+
+    async pressArrowDown() {
+        await this.locators.pageContent.press('ArrowDown');
+    }
+
+    async pressEsc() {
+        await this.locators.pageContent.press('Escape');
     }
 
     async waitFocusedCheckboxIsChecked() {
@@ -37,6 +168,30 @@ export class DataTableObject {
     async waitFocusedCheckboxIsNotChecked() {
         const focusedLocator = this.page.locator(':focus');
         await expect(focusedLocator).toHaveAttribute('aria-checked', 'false');
+    }
+
+    async applyIsNotFilter() {
+        await this.expectMultiPickerFilterModalToBeOpened();
+        const filterModal = this.getFilterModal();
+        const isNotButton = filterModal.getByRole('tablist').getByRole('tab', { name: 'is not' });
+
+        await isNotButton.click();
+    }
+
+    async clickOnGteInFilterModal() {
+        const filterModal = this.getFilterModal();
+        const gteButton = filterModal.getByRole('tablist').getByRole('tab', { name: '≥' });
+        await expect(gteButton).toBeInViewport();
+
+        await gteButton.click();
+    }
+
+    async fillNumericFilterInput(input: string) {
+        const filterModal = this.getFilterModal();
+        const numericInput = filterModal.getByPlaceholder('Enter a number');
+        await expect(numericInput).toBeInViewport();
+
+        await numericInput.fill(input);
     }
 
     async waitForTableRendered() {
@@ -51,6 +206,12 @@ export class DataTableObject {
     private async pressTab(times: number) {
         for (let i = 0; i < times; i++) {
             await this.locators.pageContent.press('Tab');
+        }
+    }
+
+    private async pressShiftTab(times: number) {
+        for (let i = 0; i < times; i++) {
+            await this.locators.pageContent.press('Shift+Tab');
         }
     }
 }
