@@ -123,6 +123,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             return (
                 <Checkbox
                     size={ settings.dataTable.sizes.body.checkboxMap[this.props.size] }
+                    rawProps={ { 'aria-label': 'Select All' } }
                     { ...this.props.selectAll }
                     cx={ cx(css.checkbox, uuiDataTableHeaderCell.uuiTableHeaderCheckbox) }
                 />

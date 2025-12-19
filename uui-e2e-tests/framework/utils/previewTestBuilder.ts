@@ -1,4 +1,4 @@
-import { test } from '../fixtures/previewPage/fixture';
+import { previewPageTest } from '../../framework/fixtures';
 import { TEngine, TKnownCompId, TMatrixFull, TMatrixMinimal, TTheme } from '../types';
 import { TComponentId, THEMES, TPreviewIdByComponentId } from '../data/testData';
 import { formatTestName } from './previewTestNameUtils';
@@ -85,11 +85,12 @@ function createTestsForSingleComponentId(builderParams: { componentId: TComponen
                 if (ctx.shouldSkipTest(testName)) {
                     return;
                 }
-                const testFn = matrix.only ? test.only : test;
+
+                const testFn = matrix.only ? previewPageTest.only : previewPageTest;
 
                 testFn(testName, async ({ pageWrapper, browserName }) => {
                     if (matrix.onlyChromium) {
-                        test.skip(browserName !== TEngine.chromium, `This test is "${TEngine.chromium}"-only`);
+                        previewPageTest.skip(browserName !== TEngine.chromium, `This test is "${TEngine.chromium}"-only`);
                     }
                     await pageWrapper.clientRedirect(pageParams);
                     if (matrix.onBeforeExpect) {
