@@ -52,7 +52,7 @@ export default function PagedTableWithSelectAll() {
             return;
         }
         const { page, pageSize, ...stateWithoutPaging } = state;
-        const allRecords = await api({ ...stateWithoutPaging, signal: getAbortSignal() });
+        const allRecords = await api(stateWithoutPaging, { signal: getAbortSignal() });
 
         setState((current) => ({ ...current, checked: allRecords.items.map((item) => item.id) }));
     }, [api, getAbortSignal, state]);
