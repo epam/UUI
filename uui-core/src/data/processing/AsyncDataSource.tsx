@@ -22,12 +22,44 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         const params = { getId: this.getId, complexIds: this.props.complexIds };
         this.api = props.api;
         this.itemsStatusCollector = new ItemsStatusCollector(newMap(params), params);
+        this._signals = new Set();
     }
 
-    private cache: Promise<TItem[]>;
+    private _abortController: AbortController;
+    private _signals: Set<AbortSignal>;
+
+    private _cache: Promise<TItem[]>;
+    private get cache(): Promise<TItem[]> {
+        return this._cache;
+    }
+
+    private set cache(_cache: Promise<TItem[]> | null) {
+        this._cache = _cache;
+    }
+    
     private cachedApi = async (options: FetchingOptions) => {
+        const signal = options?.signal;
+        if (signal) {
+            if (!signal.onabort) {
+                signal.onabort = () => {
+                    let areAllAborted = false;
+                    this._signals.forEach((s) => {
+                        if (signal === s || s.aborted) {
+                            areAllAborted = true;
+                        }
+                    });
+                
+                    if (areAllAborted) {
+                        this._abortController.abort();
+                    }
+                };
+            }
+
+            this._signals.add(signal);
+        }
+
         if (!this.cache) {
-            this.cache = this.api(options);
+            this.cache = this.api({ signal: this._abortController.signal });
         }
 
         return this.cache;
@@ -47,6 +79,9 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
 
     reload() {
         this.cache = null;
+        this._signals = new Set();
+        this._abortController = new AbortController();
+
         this.setProps({ ...this.props, items: [] });
         const params = { getId: this.getId, complexIds: this.props.complexIds };
         this.itemsStorage = new ItemsStorage({ items: [], params });
@@ -86,7 +121,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         const clearCacheAndReload = useCallback(() => {
             this.cache = null;
             reload();
-        }, [reload]);
+        }, [reload, this]);
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
