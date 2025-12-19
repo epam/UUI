@@ -8,7 +8,7 @@
   "scripts": {
     "build": "yarn typecheck",
     "typecheck": "tsc --project ./tsconfig.json --skipLibCheck true --noEmit true",
-    "docker-test-e2e": "yarn typecheck && npx playwright test --pass-with-no-tests ./tests/previewTests/preview.e2e.ts",
+    "docker-test-e2e": "yarn typecheck && npx playwright test --pass-with-no-tests",
     "docker-test-e2e-update": "yarn docker-test-e2e --update-snapshots",
     "local-test-e2e-deps-install": "npx ../node_modules/playwright install --with-deps chromium webkit firefox",
     "local-test-e2e": "yarn typecheck && npx ../node_modules/playwright test",
