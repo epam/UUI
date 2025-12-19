@@ -9,12 +9,12 @@
         }
 
         .tooltipBodyWithArrow::after {
-            bottom: calc(-1 * var(--uui-slider-scale-height));
+            bottom: -6px;
             left: 50%;
             transform: translateX(-50%);
-            border-left: var(--uui-slider-scale-height) solid transparent;
-            border-right: var(--uui-slider-scale-height) solid transparent;
-            border-top: var(--uui-slider-scale-height) solid var(--uui-slider-tooltip-bg);
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid var(--uui-slider-tooltip-bg);
         }
     }
 
@@ -26,12 +26,12 @@
         }
 
         .tooltipBodyWithArrow::after {
-            top: calc(-1 * var(--uui-slider-scale-height));
+            top: -6px;
             left: 50%;
             transform: translateX(-50%);
-            border-left: var(--uui-slider-scale-height) solid transparent;
-            border-right: var(--uui-slider-scale-height) solid transparent;
-            border-bottom: var(--uui-slider-scale-height) solid var(--uui-slider-tooltip-bg);
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 6px solid var(--uui-slider-tooltip-bg);
         }
     }
 
@@ -43,12 +43,12 @@
         }
 
         .tooltipBodyWithArrow::after {
-            right: calc(-1 * var(--uui-slider-scale-height));
+            right: -6px;
             top: 50%;
             transform: translateY(-50%);
-            border-top: var(--uui-slider-scale-height) solid transparent;
-            border-bottom: var(--uui-slider-scale-height) solid transparent;
-            border-left: var(--uui-slider-scale-height) solid var(--uui-slider-tooltip-bg);
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-left: 6px solid var(--uui-slider-tooltip-bg);
         }
     }
 
@@ -60,12 +60,12 @@
         }
 
         .tooltipBodyWithArrow::after {
-            left: calc(-1 * var(--uui-slider-scale-height));
+            left: -6px;
             top: 50%;
             transform: translateY(-50%);
-            border-top: var(--uui-slider-scale-height) solid transparent;
-            border-bottom: var(--uui-slider-scale-height) solid transparent;
-            border-right: var(--uui-slider-scale-height) solid var(--uui-slider-tooltip-bg);
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-right: 6px solid var(--uui-slider-tooltip-bg);
         }
     }
 }
