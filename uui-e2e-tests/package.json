@@ -25,7 +25,7 @@
   "dependencies": {
     "@epam/uui-core": "6.4.0",
     "@epam/uui-docs": "6.4.0",
-    "@playwright/test": "1.53.0",
+    "@playwright/test": "1.57.0",
     "@types/node": "*",
     "address": "2.0.2",
     "cross-env": "^7.0.3",

@@ -1,4 +1,4 @@
-import { test } from '../../../framework/fixtures/integrationTestPage/fixture';
+import { test } from '../../../framework/fixtures';
 import { PickerInputObject } from '../../../framework/pageObjects/pickerInputObject';
 import { setupDocExampleTest } from '../testUtils';
 

@@ -50,6 +50,8 @@ function main() {
             '--cap-add',
             'SYS_ADMIN',
             '-it',
+            '--rm',
+            '--init',
             '--network',
             'host',
             '--ipc',
