@@ -20,7 +20,13 @@ export class ApiCallError extends Error {
     }
 }
 
+/**
+ * Options which are passed to the HTTP request.
+ */
 export interface FetchingOptions {
+    /**
+     * Signal of request aborting.
+     */
     signal: AbortSignal;
 }
 
