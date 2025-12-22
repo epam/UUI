@@ -3,16 +3,15 @@ import { DataColumnProps, useAsyncDataSource, useUuiContext } from '@epam/uui-co
 import { DataTable, Panel, Text } from '@epam/uui';
 import { Product } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
-import { Button } from '@epam/uui';
 
-function ProductTable() {
+export default function ProductTable() {
     const svc = useUuiContext();
     const [value, onValueChange] = useState({});
 
     const dataSource = useAsyncDataSource<Product, number, unknown>(
         {
             // Provide api which returns Promise with items for table. If you want to pass just array of items, look to the ArrayDataSource
-            api: (options) => svc.api.demo.products({}, options).then((r: any) => r.items),
+            api: (options) => svc.api.demo.products(options).then((r: any) => r.items),
             getId: (p) => p.ProductID, // Default: p => p.id
         },
         [],
@@ -85,16 +84,5 @@ function ProductTable() {
                 headerTextCase="upper"
             />
         </Panel>
-    );
-}
-
-export default function T() {
-    const [isVisible, show] = useState(false);
-
-    return (
-        <div>
-            <Button caption="Show/Hide" onClick={ () => show((c) => !c) } />
-            { isVisible && <ProductTable />}
-        </div>
     );
 }
