@@ -75,14 +75,12 @@ import { DbTable } from '..';
 
         b.add('IxSet - with indexes', () => {
             const set = blankIxSet.with(testPersons);
-            const abortController = new AbortController();
-            return () => set.query({ filter: { departmentId: 5 }, sorting: [{ field: 'name' }], signal: abortController.signal });
+            return () => set.query({ filter: { departmentId: 5 }, sorting: [{ field: 'name' }] });
         }),
 
         b.add('IxSet - no indexes', () => {
-            const abortController = new AbortController();
             const set = blankIxSetNoIndex.with(testPersons);
-            return () => set.query({ filter: { departmentId: 5 }, sorting: [{ field: 'name' }], signal: abortController.signal });
+            return () => set.query({ filter: { departmentId: 5 }, sorting: [{ field: 'name' }] });
         }),
 
         b.add('DbTable - no index', () => {
