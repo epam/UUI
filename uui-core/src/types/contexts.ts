@@ -7,7 +7,7 @@ import { NotificationOperation } from '../services/NotificationContext';
 import { ModalOperation } from '../services/ModalContext';
 import { LayoutLayer } from '../services/LayoutContext';
 
-import { FetchingOptions, FileUploadOptions, FileUploadResponse } from '../services/ApiContext';
+import { FileUploadOptions, FileUploadResponse } from '../services/ApiContext';
 
 export interface IBaseContext<TState = {}> {
     /** Add your handler, which will be called on context updates */
@@ -132,7 +132,7 @@ export interface IErrorContext extends IBaseContext {
 }
 
 export type ApiStatus = 'idle' | 'running' | 'error' | 'recovery';
-export type ApiRecoveryReason = 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance' | null;
+export type ApiRecoveryReason = 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance' | 'abort-signal' | null;
 
 type ApiCallStatus = 'scheduled' | 'running' | 'error';
 
@@ -156,8 +156,13 @@ export interface ApiCallInfo {
         /** Request error message */
         errorMessage?: string;
     };
+
+    /** Request error */
+    error?: Error;
+
     /** Request error status */
     errorStatus?: number;
+
     /** Timestamp of request start */
     startedAt?: Date;
     /** Timestamp of request finish */
@@ -168,7 +173,7 @@ export interface ApiCallInfo {
     dismissError(): void;
 }
 
-export interface ApiCallOptions<ResponseData = any> extends FetchingOptions {
+export interface ApiCallOptions<ResponseData = any> {
 
     /** Native fetch method options  */
     fetchOptions?: RequestInit;
