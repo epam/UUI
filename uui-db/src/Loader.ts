@@ -1,4 +1,4 @@
-import { FetchingOptions } from 'uui-core';
+import { FetchingOptions } from '@epam/uui-core';
 import { DbRef } from './DbRef';
 import {
     DbPatch, DbTablesSet, LoadingState, ILoadingTracker,
