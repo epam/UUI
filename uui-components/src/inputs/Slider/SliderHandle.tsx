@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { IHasCX, uuiElement, cx, IHasRawProps } from '@epam/uui-core';
+import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import css from './SliderHandle.module.scss';
-import { useFloating, arrow, autoUpdate } from '@floating-ui/react';
-import { Portal } from '../../overlays';
+import { useFloating, arrow, autoUpdate, offset } from '@floating-ui/react';
+import { DropdownContainer, Portal } from '../../overlays';
 import { uuiSlider } from './SliderBase';
 
 interface SliderHandleProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -33,13 +33,15 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
     const arrowRef = React.useRef<HTMLDivElement | null>(null);
     const updateTooltipRafRef = React.useRef<number | null>(null);
 
-    const { refs, floatingStyles, placement, update } = useFloating({
+    const { refs, floatingStyles, placement, middlewareData, update } = useFloating({
         placement: 'top',
         middleware: [
             arrow({ element: arrowRef }),
+            offset({ mainAxis: 12 }),
         ],
-        whileElementsMounted: autoUpdate,
         open: showTooltip && (isActive || isHovered),
+        strategy: 'fixed',
+        whileElementsMounted: autoUpdate,
     });
 
     React.useEffect(() => {
@@ -114,20 +116,32 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
 
     const tooltip = React.useMemo(() => {
         if (!showTooltip || (!isActive && !isHovered)) return null;
+        const arrowProps = {
+            ref: arrowRef,
+            style: middlewareData.arrow
+                ? {
+                    top: middlewareData.arrow.y,
+                    left: middlewareData.arrow.x,
+                }
+                : { },
+        };
 
         return (
             <Portal>
-                <div
+                <DropdownContainer
+                    focusLock={ false }
+                    showArrow={ true }
+                    maxWidth={ 100 }
                     ref={ refs.setFloating }
                     style={ floatingStyles }
-                    className={ cx(propsCx, css.container, uuiElement.tooltipContainer, css.tooltipWrapper) }
-                    data-placement={ placement }
+                    cx={ css.container }
+                    placement={ placement }
+                    arrowProps={ arrowProps }
                 >
-                    <div className={ cx(uuiElement.tooltipBody, css.tooltipBodyWithArrow) }>
+                    <div role="tooltip" className="uui-tooltip-body">
                         { tooltipContent }
                     </div>
-                    <div ref={ arrowRef } className={ uuiElement.tooltipArrow } />
-                </div>
+                </DropdownContainer>
             </Portal>
         );
     }, [showTooltip, isActive, isHovered, floatingStyles, tooltipContent, propsCx, refs.setFloating, placement]);
