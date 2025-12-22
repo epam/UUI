@@ -2,7 +2,7 @@
 .root {}
 
 [data-placement^='right'] {
-    :global(.uui-popover-arrow) {
+    &:global(.uui-popover-arrow) {
         right: 100%;
         // fix white line when zoomed
         margin-right: -1px;
@@ -15,7 +15,7 @@
 }
 
 [data-placement^='left'] {
-    :global(.uui-popover-arrow) {
+    &:global(.uui-popover-arrow) {
         left: 100%;
         margin-left: -1px;
 
@@ -26,7 +26,7 @@
 }
 
 [data-placement^='top'] {
-    :global(.uui-popover-arrow) {
+    &:global(.uui-popover-arrow) {
         top: 100%;
         margin-top: -1px;
 
@@ -37,7 +37,7 @@
 }
 
 [data-placement^='bottom'] {
-    :global(.uui-popover-arrow) {
+    &:global(.uui-popover-arrow) {
         bottom: 100%;
         margin-bottom: -1px;
 
