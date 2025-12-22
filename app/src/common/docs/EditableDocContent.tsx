@@ -69,7 +69,7 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
             '/api/get-doc-content',
             'POST',
             { name: this.props.fileName },
-            { signal: this.abortController.signal },
+            { fetchOptions: { signal: this.abortController.signal } },
         )
             .then((res) => {
                 this.setState((prevState) => ({
@@ -91,7 +91,7 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
         svc.uuiApi.processRequest('/api/save-doc-content', 'POST', {
             name: this.props.fileName,
             content: content,
-        });
+        }).catch(() => {});
     };
 
     render() {
