@@ -23,6 +23,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         this.api = props.api;
         this.itemsStatusCollector = new ItemsStatusCollector(newMap(params), params);
         this._signals = new Set();
+        this._abortController = new AbortController();
     }
 
     private _abortController: AbortController;
@@ -51,6 +52,8 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
                 
                     if (areAllAborted) {
                         this._abortController.abort();
+                        this.cache = null;
+                        this._abortController = new AbortController();
                     }
                 };
             }

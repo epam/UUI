@@ -133,9 +133,16 @@ export class ApiContext extends BaseContext implements IApiContext {
     private handleApiError(call: ApiCall, reason?: ApiRecoveryReason) {
         const error = new ApiCallError(call);
 
-        if (call.options?.errorHandling === 'manual' && !(reason === 'auth-lost' || reason === 'connection-lost')) {
+        if (call.options?.errorHandling === 'manual' && !(reason === 'auth-lost' || reason === 'connection-lost' || reason === 'abort-signal')) {
             this.removeFromQueue(call);
             call.reject(error);
+            return;
+        }
+
+        if (reason === 'abort-signal') {
+            call.status = 'error';
+            this.setStatus('error');
+            call.reject(call.error);
             return;
         }
 
@@ -185,17 +192,16 @@ export class ApiContext extends BaseContext implements IApiContext {
                 body: call.requestData && JSON.stringify(call.requestData),
                 credentials: 'include',
                 ...fetchOptions,
-                signal: call.options?.signal,
                 headers,
             },
         )
             .then((response) => {
                 this.handleResponse(call, response);
             })
-            .catch((e: Error) => {
-                if (e?.name === 'AbortError') {
+            .catch((error: Error) => {
+                if (error?.name === 'AbortError') {
                     this.removeFromQueue(call);
-                    throw e;
+                    this.handleApiError({ ...call, error }, 'abort-signal');
                 }
                 if (call.attemptsCount < 2) {
                     this.handleApiError(call, 'connection-lost');

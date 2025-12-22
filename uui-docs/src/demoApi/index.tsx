@@ -10,9 +10,9 @@ export function getDemoApi(processRequest: IProcessRequest, origin: string = '')
     function lazyApi<TEntity, TId>(name: string) {
         return (
             rq: LazyDataSourceApiRequest<TEntity, TId, DataQueryFilter<TEntity>>,
-            { signal }: LazyDataSourceApiRequestContext<TEntity, TId>,
+            context: LazyDataSourceApiRequestContext<TEntity, TId>,
         ) => {
-            return processRequest<LazyDataSourceApiResponse<TEntity>>(origin.concat('/api/').concat(name), 'POST', rq, { signal });
+            return processRequest<LazyDataSourceApiResponse<TEntity>>(origin.concat('/api/').concat(name), 'POST', rq, { fetchOptions: context });
         };
     }
 
@@ -26,13 +26,13 @@ export function getDemoApi(processRequest: IProcessRequest, origin: string = '')
     ): Promise<LazyDataSourceApiResponse<models.PersonLocationGroup>>;
     function personGroups(
         request: unknown,
-        { signal }: LazyDataSourceApiRequestContext<unknown, unknown>,
+        context: LazyDataSourceApiRequestContext<unknown, unknown>,
     ) {
         return processRequest(
             origin.concat('/api/personGroups'),
             'POST',
             request,
-            { signal },
+            { fetchOptions: context },
         );
     }
 
@@ -52,7 +52,7 @@ export function getDemoApi(processRequest: IProcessRequest, origin: string = '')
             rq: LazyDataSourceApiRequest<models.Person, number, DataQueryFilter<models.Person>>,
             ctx: LazyDataSourceApiRequestContext<models.Person, number>,
         ) =>
-            processRequest<LazyDataSourceApiResponse<models.Person>>(origin.concat('/api/persons-paged'), 'POST', rq, { signal: ctx.signal }),
+            processRequest<LazyDataSourceApiResponse<models.Person>>(origin.concat('/api/persons-paged'), 'POST', rq, { fetchOptions: ctx }),
         personGroups,
         departments: lazyApi<models.Department, number>('departments'),
         jobTitles: lazyApi<models.JobTitle, number>('jobTitles'),

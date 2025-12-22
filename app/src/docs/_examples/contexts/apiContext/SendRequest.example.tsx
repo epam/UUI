@@ -15,8 +15,10 @@ export default function SendRequestExample() {
         'POST',
         { payload: {} },
         {
-            fetchOptions: { /* native Fetch method options */ },
-            signal: getAbortSignal(),
+            fetchOptions: {
+                /* native Fetch method options */
+                signal: getAbortSignal(),
+            },
         },
     );
 }
