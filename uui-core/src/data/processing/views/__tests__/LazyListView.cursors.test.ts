@@ -129,12 +129,14 @@ describe('LazyListView - cursors support', () => {
         });
         testApi.mockClear();
 
-        view = hookResult.result.current;
-        expectViewToLookLike(view, [
-            { id: 100, isFoldable: true, isFolded: true },
-            { id: 200, isFoldable: false },
-            { id: 300, isFoldable: true, isFolded: true },
-        ]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100, isFoldable: true, isFolded: true },
+                { id: 200, isFoldable: false },
+                { id: 300, isFoldable: true, isFolded: true },
+            ]);
+        });
 
         // Load more rows
 
