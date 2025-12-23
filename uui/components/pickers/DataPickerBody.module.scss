@@ -1,5 +1,11 @@
 @use  '../../assets/styles/index' as *;
 
+.root {
+    [role=listbox] {
+        min-width: 0;
+    }
+}
+
 :global(.uui-picker_input-body) {
     --uui-picker_input-selected_mark: var(--uui-info-50);
     --uui-data_picker_body-no-data-vertical-padding: 20px;
