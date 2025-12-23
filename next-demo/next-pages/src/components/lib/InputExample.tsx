@@ -12,6 +12,7 @@ import {
 import React, { useCallback, useState } from 'react';
 import {
     LazyDataSourceApiRequest,
+    LazyDataSourceApiRequestContext,
     useArrayDataSource,
     useLazyDataSource,
     useUuiContext,
@@ -80,8 +81,8 @@ export function InputExample() {
     const svc = useUuiContext<TApi, AppContextType>();
 
     const loadPersons = useCallback(
-        (request: LazyDataSourceApiRequest<Person, number>) => {
-            return svc.api.demo.persons(request);
+        (request: LazyDataSourceApiRequest<Person, number>, ctx: LazyDataSourceApiRequestContext<Person, number>) => {
+            return svc.api.demo.persons(request, ctx);
         },
         [svc.api.demo]
     );
