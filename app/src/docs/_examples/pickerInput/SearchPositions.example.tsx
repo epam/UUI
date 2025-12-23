@@ -1,14 +1,14 @@
 import React, { useCallback, useState } from 'react';
 import { FlexRow, PickerInput, FlexCell } from '@epam/uui';
-import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { LazyDataSourceApiRequest, LazyDataSourceApiRequestContext, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 
 export default function SearchPositionsExample() {
     const svc = useUuiContext();
     const [value, onValueChange] = useState<number[]>();
 
-    const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>) => {
-        return svc.api.demo.persons(request);
+    const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>, ctx: LazyDataSourceApiRequestContext<Person, number>) => {
+        return svc.api.demo.persons(request, ctx);
     }, []);
 
     const dataSource = useLazyDataSource({ api: loadPersons }, []);

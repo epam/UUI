@@ -77,9 +77,9 @@ export default function TableCollapseExample() {
 
     const locationsDS = useAsyncDataSource<Location, string, Location>(
         {
-            api: () =>
+            api: (options) =>
                 svc.api.demo
-                    .locations({})
+                    .locations({}, options)
                     .then((r: LazyDataSourceApiResponse<Location>) => r.items),
         },
         [],
