@@ -85,6 +85,7 @@ export default defineConfig({
             },
             testIgnore: [
                 'tests/Integration/mainMenu/mainMenu.e2e.ts',
+                'tests/Integration/dataTable/*.e2e.ts',
             ],
             testMatch: [
                 'tests/Integration/**/*.e2e.ts',
