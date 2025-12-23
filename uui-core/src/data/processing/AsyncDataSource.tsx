@@ -39,27 +39,24 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
     }
     
     private cachedApi = async (options: FetchingOptions) => {
-        const signal = options?.signal;
-        if (signal) {
-            if (!signal.onabort) {
-                signal.onabort = () => {
-                    let areAllAborted = false;
-                    this._signals.forEach((s) => {
-                        if (signal === s || s.aborted) {
-                            areAllAborted = true;
-                        }
-                    });
-                
-                    if (areAllAborted) {
-                        this._abortController.abort();
-                        this.cache = null;
-                        this._abortController = new AbortController();
+        if (!options.signal.onabort) {
+            options.signal.onabort = () => {
+                let areAllAborted = false;
+                this._signals.forEach((s) => {
+                    if (options.signal === s || s.aborted) {
+                        areAllAborted = true;
                     }
-                };
-            }
-
-            this._signals.add(signal);
+                });
+                
+                if (areAllAborted) {
+                    this._abortController.abort();
+                    this.cache = null;
+                    this._abortController = new AbortController();
+                }
+            };
         }
+
+        this._signals.add(options.signal);
 
         if (!this.cache) {
             this.cache = this.api({ signal: this._abortController.signal });
