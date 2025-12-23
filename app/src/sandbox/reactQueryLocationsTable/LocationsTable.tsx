@@ -73,7 +73,7 @@ export function LocationsTable() {
 
     const api: LazyDataSourceApi<Location, string, unknown> = (request, ctx) => {
         const filter = { parentId: ctx?.parentId };
-        return svc.api.demo.locations({ ...request, filter });
+        return svc.api.demo.locations({ ...request, filter }, ctx);
     };
     
     const { isFolded } = useFoldingService<Location, string>({
