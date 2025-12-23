@@ -104,12 +104,14 @@ export function useLoadData<TItem, TId, TFilter = any>(
         dataSourceState,
     }: LoadMissingOptions<TItem, TId, TFilter>): Promise<LoadResult<TItem, TId>> => {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
-        if (!promiseInProgressRef.current || abortInProgress) {
+        if (abortInProgress && promiseInProgressRef.current) {
             promiseInProgressRef.current = Promise.resolve({ isUpdated: false, isOutdated: false, tree });
         }
 
-        promiseInProgressRef.current = promiseInProgressRef.current.then(({ tree: currentTree }) =>
-            loadMissingImpl({ tree: currentTree, using, loadAllChildren, isLoadStrict, dataSourceState }));
+        promiseInProgressRef.current = promiseInProgressRef.current
+            ? promiseInProgressRef.current.then(({ tree: currentTree }) =>
+                loadMissingImpl({ tree: currentTree, using, loadAllChildren, isLoadStrict, dataSourceState }))
+            : loadMissingImpl({ tree, using, loadAllChildren, isLoadStrict, dataSourceState });
 
         return promiseInProgressRef.current;
     }, [loadMissingImpl]);
