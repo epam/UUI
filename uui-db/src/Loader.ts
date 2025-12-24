@@ -57,7 +57,7 @@ export class Loader<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
         return state.promise;
     }
 
-    public load = (inputRequest: TRequest, fetchingOptions: FetchingOptions) => {
+    public load = (inputRequest: TRequest, fetchingOptions?: FetchingOptions) => {
         const result: LoaderResult<TRequest> = {
             isComplete: this.loaded.diff(inputRequest) == null,
             isLoading: false,
