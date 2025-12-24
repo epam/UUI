@@ -37,7 +37,7 @@ export function useCascadeSelection({
     const loadMissingRecordsOnCheck = useCallback(async (id: string, isChecked: boolean, isRoot: boolean) => {
         return await queryClient.fetchQuery<Tree, Error, Tree, LocationsSelectionKey>({
             queryKey: [LOCATIONS_SELECTION_QUERY, dataSourceState, isFolded, cascadeSelection],
-            queryFn: async ({ queryKey: [, _dataSourceState, _isFolded, _cascadeSelection] }) => {
+            queryFn: async ({ queryKey: [, _dataSourceState, _isFolded, _cascadeSelection], signal }) => {
                 const prevTree = queryClient.getQueryData<Tree>([LOCATIONS_SELECTION_QUERY]) ?? blankTree;
                 const result = await UUITree.loadMissingOnCheck<Location, string, unknown>({
                     checkedId: id,
@@ -49,6 +49,7 @@ export function useCascadeSelection({
                     cascadeSelection: _cascadeSelection,
                     isFolded: _isFolded,
                     dataSourceState: _dataSourceState,
+                    signal,
                 });
 
                 if (isTree(result)) {

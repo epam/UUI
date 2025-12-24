@@ -1,6 +1,7 @@
 import isEqual from 'react-fast-compare';
 import { CascadeSelection, CascadeSelectionTypes, DataRowPathItem, DataSourceState, IMap, LazyDataSourceApi } from '../../../../types';
 import { ITree } from './ITree';
+import { FetchingOptions } from '../../../../services';
 import { FULLY_LOADED, NOT_FOUND_RECORD, ROOT_ID } from './constants';
 import { FetchingHelper } from './treeStructure/helpers/FetchingHelper';
 import type { ITreeNodeInfo, ITreeParams } from './treeStructure/types';
@@ -9,7 +10,7 @@ import { ItemsMap } from './ItemsMap';
 import { ItemsAccessor } from './ItemsAccessor';
 import { newMap } from './helpers';
 
-export interface LoadOptions<TItem, TId, TFilter = any> {
+export interface LoadOptions<TItem, TId, TFilter = any> extends FetchingOptions {
     tree: ITree<TItem, TId>;
     api: LazyDataSourceApi<TItem, TId, TFilter>;
     getChildCount?(item: TItem): number;
@@ -175,6 +176,7 @@ export class Tree {
         getChildCount,
         isFolded,
         filter,
+        signal,
     }: LoadOptions<TItem, TId, TFilter>): Promise<ITreeLoadResult<TItem, TId>> {
         return await FetchingHelper.load<TItem, TId, TFilter>({
             tree,
@@ -183,6 +185,7 @@ export class Tree {
                 getChildCount,
                 isFolded,
                 filter: { ...dataSourceState?.filter, ...filter },
+                signal,
             },
             dataSourceState,
         });
@@ -199,6 +202,7 @@ export class Tree {
         isRoot,
         isChecked,
         checkedId,
+        signal,
     }: LoadMissingOnCheckOptions<TItem, TId, TFilter>): Promise<ITree<TItem, TId> | ITreeLoadResult<TItem, TId>> {
         const isImplicitMode = cascadeSelection === CascadeSelectionTypes.IMPLICIT;
 
@@ -244,6 +248,7 @@ export class Tree {
                     return { children: shouldLoadAllChildren, nestedChildren: !shouldLoadChildrenAfterSearch };
                 },
                 isLoadStrict: true,
+                signal,
             },
             dataSourceState: { ...dataSourceState, search: null },
         });

@@ -2,6 +2,7 @@ import { ICheckable } from './props';
 import { DataRowOptions, DataRowProps } from './dataRows';
 import { IImmutableMap, IMap } from './objects';
 import { PatchOrderingType } from '../data';
+import { FetchingOptions } from '../services';
 
 export interface SearchConfig<TItem> {
     /**
@@ -488,7 +489,7 @@ export interface LazyDataSourceApiResponse<TItem> {
 }
 
 /** Defines the context of API request. E.g. parent if we require to retrieve sub-list of the tree */
-export interface LazyDataSourceApiRequestContext<TItem, TId> {
+export interface LazyDataSourceApiRequestContext<TItem, TId> extends FetchingOptions {
     /**
      * The ID of the parent item whose children are being requested.
      * Used for lazy-loading data in tree lists.
@@ -503,5 +504,5 @@ export type LazyDataSourceApi<TItem, TId, TFilter> = (
     /** Defines input arguments for Lazy Data Source APIs */
     request: LazyDataSourceApiRequest<TItem, TId, TFilter>,
     /** Defines the context of API request. */
-    context?: LazyDataSourceApiRequestContext<TItem, TId>
+    context: LazyDataSourceApiRequestContext<TItem, TId>,
 ) => Promise<LazyDataSourceApiResponse<TItem>>;

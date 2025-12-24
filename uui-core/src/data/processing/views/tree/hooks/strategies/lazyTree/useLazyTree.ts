@@ -4,39 +4,70 @@ import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import { useFoldingService } from '../../../../dataRows/services';
 import { useLoadData } from './useLoadData';
 import { UseTreeResult } from '../../types';
-import { useDataSourceStateWithDefaults, useSelectedOnlyTree, useItemsStorage, usePatchTree, useItemsStatusCollector, useActualItemsStorage } from '../../common';
+import {
+    useDataSourceStateWithDefaults,
+    useSelectedOnlyTree,
+    useItemsStorage,
+    usePatchTree,
+    useItemsStatusCollector,
+    useActualItemsStorage,
+} from '../../common';
 import { TreeState } from '../../../treeState';
 import { useLazyFetchingAdvisor } from './useLazyFetchingAdvisor';
 import { isSelectedOrCheckedChanged } from '../checked';
 
 export function useLazyTree<TItem, TId, TFilter = any>(
-    { flattenSearchResults = true, ...restProps }: LazyTreeProps<TItem, TId, TFilter>,
+    {
+        flattenSearchResults = true,
+        ...restProps
+    }: LazyTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ): UseTreeResult<TItem, TId, TFilter> {
     const props = { flattenSearchResults, ...restProps };
     const {
-        filter, backgroundReload, showSelectedOnly,
-        isFoldedByDefault, getId, getParentId, setDataSourceState,
-        cascadeSelection, getRowOptions, rowOptions, selectAll, fetchStrategy,
-        getChildCount, itemsStatusMap, complexIds, patch, isDeleted, getNewItemPosition, sortBy,
-        fixItemBetweenSortings, getItemTemporaryOrder,
+        filter,
+        backgroundReload,
+        showSelectedOnly,
+        isFoldedByDefault,
+        getId,
+        getParentId,
+        setDataSourceState,
+        cascadeSelection,
+        getRowOptions,
+        rowOptions,
+        selectAll,
+        fetchStrategy,
+        getChildCount,
+        itemsStatusMap,
+        complexIds,
+        patch,
+        isDeleted,
+        getNewItemPosition,
+        sortBy,
+        fixItemBetweenSortings,
+        getItemTemporaryOrder,
     } = props;
 
-    const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
+    const dataSourceState = useDataSourceStateWithDefaults({
+        dataSourceState: props.dataSourceState,
+    });
     const { itemsMap, setItems } = useItemsStorage({
         itemsMap: props.itemsMap,
         setItems: props.setItems,
         params: { getId, complexIds },
     });
 
-    const itemsStatusCollector = useItemsStatusCollector({
-        itemsStatusCollector: props.itemsStatusCollector,
-        itemsStatusMap,
-        complexIds,
-        getId,
-        dataSourceState,
-        patch,
-    }, [itemsStatusMap, props.itemsStatusCollector]);
+    const itemsStatusCollector = useItemsStatusCollector(
+        {
+            itemsStatusCollector: props.itemsStatusCollector,
+            itemsStatusMap,
+            complexIds,
+            getId,
+            dataSourceState,
+            patch,
+        },
+        [itemsStatusMap, props.itemsStatusCollector],
+    );
 
     const api = useMemo(
         () => itemsStatusCollector.watch(props.api),
@@ -44,7 +75,12 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     );
 
     const blankTree = useMemo(
-        () => TreeState.blank({ getId, getParentId, getChildCount, complexIds }, itemsMap, setItems),
+        () =>
+            TreeState.blank(
+                { getId, getParentId, getChildCount, complexIds },
+                itemsMap,
+                setItems,
+            ),
         deps,
     );
 
@@ -78,27 +114,45 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         cascadeSelection,
     });
 
-    const loadMissingRecordsOnCheck = useCallback(async (id: TId, isChecked: boolean, isRoot: boolean) => {
-        const newTree = await loadMissingOnCheck(tree, id, isChecked, isRoot);
-        if (tree !== treeWithData || tree !== newTree) {
-            setTreeWithData(newTree);
-        }
+    const loadMissingRecordsOnCheck = useCallback(
+        async (id: TId, isChecked: boolean, isRoot: boolean) => {
+            const newTree = await loadMissingOnCheck({
+                tree,
+                id,
+                isChecked,
+                isRoot,
+            });
+            if (tree !== treeWithData || tree !== newTree) {
+                setTreeWithData(newTree);
+            }
 
-        return newTree.full;
-    }, [loadMissingOnCheck, setTreeWithData, treeWithData]);
+            return newTree.full;
+        },
+        [loadMissingOnCheck, setTreeWithData, treeWithData],
+    );
 
-    const { shouldRefetch, shouldLoad, shouldFetch, shouldReload, updatedAt } = useLazyFetchingAdvisor({
-        dataSourceState,
-        filter,
-        forceReload: isForceReload,
-        backgroundReload,
-        showSelectedOnly,
-    }, [...deps]);
+    const { shouldRefetch, shouldLoad, shouldFetch, shouldReload, updatedAt } = useLazyFetchingAdvisor(
+        {
+            dataSourceState,
+            filter,
+            forceReload: isForceReload,
+            backgroundReload,
+            showSelectedOnly,
+        },
+        [...deps],
+    );
 
-    const treeWithDataActual = useActualItemsStorage({ tree: treeWithData, setItems, itemsMap });
+    const treeWithDataActual = useActualItemsStorage({
+        tree: treeWithData,
+        setItems,
+        itemsMap,
+    });
 
     useEffect(() => {
-        if (showSelectedOnly && isSelectedOrCheckedChanged(dataSourceState, prevDataSourceState)) {
+        if (
+            showSelectedOnly
+      && isSelectedOrCheckedChanged(dataSourceState, prevDataSourceState)
+        ) {
             loadMissing({
                 tree: treeWithDataActual,
                 using: 'full',
@@ -107,14 +161,19 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                     visibleCount: 0,
                     topIndex: 0,
                 },
-            })
-                .then(({ isUpdated, isOutdated, tree: newTree }) => {
-                    if (!isOutdated && (isUpdated || newTree !== treeWithDataActual)) {
-                        setTreeWithData(newTree);
-                    }
-                });
+            }).then(({ isUpdated, isOutdated, tree: newTree }) => {
+                if (!isOutdated && (isUpdated || newTree !== treeWithDataActual)) {
+                    setTreeWithData(newTree);
+                }
+            });
         }
-    }, [showSelectedOnly, dataSourceState.checked, dataSourceState.selectedId, shouldRefetch, updatedAt]);
+    }, [
+        showSelectedOnly,
+        dataSourceState.checked,
+        dataSourceState.selectedId,
+        shouldRefetch,
+        updatedAt,
+    ]);
 
     useEffect(() => {
         if (showSelectedOnly) {
@@ -124,7 +183,12 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         let currentTree = treeWithDataActual;
         if (shouldRefetch) {
             setIsFetching(true);
-            currentTree = treeWithDataActual.clearStructure({ getId, getParentId, getChildCount, complexIds });
+            currentTree = treeWithDataActual.clearStructure({
+                getId,
+                getParentId,
+                getChildCount,
+                complexIds,
+            });
         }
 
         if (shouldLoad) {
@@ -144,7 +208,8 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                     if (!isOutdated && (isUpdated || newTree !== treeWithDataActual)) {
                         setTreeWithData(newTree);
                     }
-                }).finally(() => {
+                })
+                .finally(() => {
                     setIsFetching(false);
                     setIsLoading(false);
                     if (isForceReload === true) {
@@ -161,10 +226,13 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         updatedAt,
     ]);
 
-    const treeWithSelectedOnly = useSelectedOnlyTree({
-        tree: treeWithDataActual,
-        dataSourceState,
-    }, [treeWithDataActual]);
+    const treeWithSelectedOnly = useSelectedOnlyTree(
+        {
+            tree: treeWithDataActual,
+            dataSourceState,
+        },
+        [treeWithDataActual],
+    );
 
     const { tree, applyPatch } = usePatchTree({
         tree: treeWithSelectedOnly,

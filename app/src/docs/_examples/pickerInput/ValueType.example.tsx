@@ -1,14 +1,14 @@
 import React, { useState, useCallback } from 'react';
 import { Text, PickerInput, FlexCell } from '@epam/uui';
-import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { LazyDataSourceApiRequest, LazyDataSourceApiRequestContext, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 
 export default function ValueTypeExamplePicker() {
     const svc = useUuiContext();
     const [value, onValueChange] = useState<Person[]>([]);
 
-    const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>) => {
-        return svc.api.demo.persons(request);
+    const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>, ctx: LazyDataSourceApiRequestContext<Person, number>) => {
+        return svc.api.demo.persons(request, ctx);
     }, []);
 
     const dataSource = useLazyDataSource({ api: loadPersons }, []);

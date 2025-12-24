@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest, useUuiContext, LazyDataSourceApi, ICheckable } from '@epam/uui-core';
+import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest, useUuiContext, ICheckable, LazyDataSourceApiRequestContext, LazyDataSourceApiResponse } from '@epam/uui-core';
 import { DataTable, Panel, Text, Paginator, FlexRow, FlexSpacer } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
@@ -33,12 +33,12 @@ export default function PagedTableWithSelectAll() {
         [],
     );
 
-    const api: LazyDataSourceApi<Person, number, unknown> = useCallback(
-        async (rq: LazyDataSourceApiRequest<{}>) => {
+    const api = useCallback(
+        async (rq: LazyDataSourceApiRequest<{}>, ctx?: LazyDataSourceApiRequestContext<{}, number>): Promise<LazyDataSourceApiResponse<Person>> => {
             const result = await svc.api.demo.personsPaged({
                 ...rq,
                 filter: { departmentId: 13 }, // to get less results and non round-numbered number of people
-            });
+            }, ctx);
             return result;
         },
         [svc.api.demo],

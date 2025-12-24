@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { PickerInput, DropdownContainer, FlexCell, FlexRow, Button, Dropdown, Text, Panel } from '@epam/uui';
-import { IDropdownToggler, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { IDropdownToggler, LazyDataSourceApiRequest, LazyDataSourceApiRequestContext, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import { DropdownBodyProps } from '@epam/uui-core';
 import css from './PickerInputInDropdown.module.scss';
@@ -10,8 +10,8 @@ export default function ConfigurePortalTargetAndPlacement() {
     const [value, onValueChange] = useState<number[]>([]);
     const portalTargetRef = useRef<HTMLDivElement>(null);
 
-    const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>) => {
-        return svc.api.demo.persons(request);
+    const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>, ctx: LazyDataSourceApiRequestContext<Person, number>) => {
+        return svc.api.demo.persons(request, ctx);
     }, []);
 
     const dataSource = useLazyDataSource({ api: loadPersons }, []);

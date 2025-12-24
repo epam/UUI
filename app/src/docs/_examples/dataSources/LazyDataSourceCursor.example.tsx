@@ -9,7 +9,7 @@ export default function LazyDataSourceDataExample() {
 
     const [value, onValueChange] = useState<DataSourceState>({});
     const dataSource = useLazyDataSource<City, string, DataQueryFilter<City>>({
-        api: async (req) => {
+        api: async (req, ctx) => {
             // We emulate server cursor-based API here.
             // Usually this done at server, and you need to pass cursor as is.
 
@@ -32,7 +32,7 @@ export default function LazyDataSourceDataExample() {
 
             request.sorting = [{ field: 'name', direction: 'asc' }];
 
-            const response = await svc.api.demo.cities(request);
+            const response = await svc.api.demo.cities(request, ctx);
 
             if (response.items.length > 0) {
                 // store last item's name as cursor

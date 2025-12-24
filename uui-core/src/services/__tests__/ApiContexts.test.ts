@@ -440,7 +440,9 @@ describe('ApiContext', () => {
         global.fetch = fetchMock as any;
 
         const abortController = new AbortController();
+        expect.assertions(2);
 
+        // eslint-disable-next-line jest/valid-expect-in-promise
         context.processRequest<TestData>(
             'path',
             'POST',
@@ -450,7 +452,10 @@ describe('ApiContext', () => {
                     signal: abortController.signal,
                 },
             },
-        );
+        ).catch((e) => {
+            // eslint-disable-next-line jest/no-conditional-expect
+            expect(e).toEqual(new DOMException('Aborted', 'AbortError'));
+        });
 
         await delay(1);
 

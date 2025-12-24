@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { FlexCell, PickerInput, SearchInput, FlexRow } from '@epam/uui';
-import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { LazyDataSourceApiRequest, LazyDataSourceApiRequestContext, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { City } from '@epam/uui-docs';
 import css from './TogglerConfiguration.module.scss';
 
@@ -8,8 +8,8 @@ export default function PickerTogglerConfigurationExample() {
     const svc = useUuiContext();
     const [value, onValueChange] = useState<string[]>(['625144', '703448', '756135', '2950159']);
 
-    const loadCities = useCallback((request: LazyDataSourceApiRequest<City, string>) => {
-        return svc.api.demo.cities(request);
+    const loadCities = useCallback((request: LazyDataSourceApiRequest<City, string>, context: LazyDataSourceApiRequestContext<City, string>) => {
+        return svc.api.demo.cities(request, context);
     }, []);
 
     const dataSource = useLazyDataSource({ api: loadCities }, []);

@@ -76,7 +76,7 @@ export function IntroBlock() {
             api: (request, ctx) => {
                 const { search } = request;
                 const filter = search ? {} : { parentId: ctx?.parentId };
-                return svc.api.demo.locations({ ...request, search, filter });
+                return svc.api.demo.locations({ ...request, search, filter }, ctx);
             },
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,

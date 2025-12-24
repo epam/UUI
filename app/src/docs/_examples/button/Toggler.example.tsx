@@ -1,15 +1,15 @@
 import React, { useCallback, useState } from 'react';
 import { Button, Tooltip, PickerInput, DropdownMenuBody, DropdownMenuButton } from '@epam/uui';
 import { Dropdown } from '@epam/uui-components';
-import { useLazyDataSource, LazyDataSourceApiRequest, useUuiContext } from '@epam/uui-core';
+import { useLazyDataSource, LazyDataSourceApiRequest, useUuiContext, LazyDataSourceApiRequestContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 
 export default function ButtonAsToggler() {
     const svc = useUuiContext();
     const [value, onValueChange] = useState<number[]>();
 
-    const personsApi = useCallback((request: LazyDataSourceApiRequest<Person, number>) => {
-        return svc.api.demo.persons(request);
+    const personsApi = useCallback((request: LazyDataSourceApiRequest<Person, number>, ctx: LazyDataSourceApiRequestContext<Person, number>) => {
+        return svc.api.demo.persons(request, ctx);
     }, []);
 
     const dataSource = useLazyDataSource({ api: personsApi }, []);

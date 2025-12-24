@@ -7,6 +7,7 @@ import { ItemsMap } from '../../ItemsMap';
 import { ITree } from '../../ITree';
 import { NOT_FOUND_RECORD } from '../../constants';
 import { IItemsAccessor, ITreeParams } from '../types';
+import { FetchingOptions } from '../../../../../../services';
 
 export interface ActForCheckableOptions<TItem, TId> {
     tree: ITree<TItem, TId>;
@@ -59,7 +60,7 @@ export interface ClearAllOptions<TItem, TId> {
     isCheckable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
 }
 
-export interface LoadAllTreeOptions<TItem, TId, TFilter> extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'filter'> {}
+export interface LoadAllTreeOptions<TItem, TId, TFilter> extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'filter'>, FetchingOptions {}
 
 export interface LoadAllOptions<TItem, TId, TFilter = any> {
     treeStructure: TreeStructure<TItem, TId>;

@@ -12,7 +12,7 @@ export default function DisableVirtualizationExample() {
 
     const dataSource = useAsyncDataSource<Product, number, unknown>(
         {
-            api: () => svc.api.demo.products({}).then((r: any) => r.items),
+            api: (options) => svc.api.demo.products({}, options).then((r: any) => r.items),
             getId: (p) => p.ProductID, // Default: p => p.id
         },
         [],

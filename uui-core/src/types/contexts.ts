@@ -132,7 +132,7 @@ export interface IErrorContext extends IBaseContext {
 }
 
 export type ApiStatus = 'idle' | 'running' | 'error' | 'recovery';
-export type ApiRecoveryReason = 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance' | null;
+export type ApiRecoveryReason = 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance' | 'abort-signal' | null;
 
 type ApiCallStatus = 'scheduled' | 'running' | 'error';
 
@@ -156,8 +156,13 @@ export interface ApiCallInfo {
         /** Request error message */
         errorMessage?: string;
     };
+
+    /** Request error */
+    error?: Error;
+
     /** Request error status */
     errorStatus?: number;
+
     /** Timestamp of request start */
     startedAt?: Date;
     /** Timestamp of request finish */

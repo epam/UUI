@@ -7,6 +7,7 @@ import { LazyTreeProps } from './types';
 import { CommonTreeConfig } from '../types';
 import { ROOT_ID } from '../../../constants';
 import { LoadAllConfig, TreeStructureId } from '../../../treeState/types';
+import { useAbortController } from '../../common';
 
 export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
     Pick<LazyTreeProps<TItem, TId, TFilter>, 'getChildCount'>,
@@ -35,12 +36,21 @@ interface LoadMissingOptions<TItem, TId, TFilter> {
     dataSourceState?: DataSourceState<TFilter, TId>;
 }
 
+interface LoadMissingOptionsOnCheck<TItem, TId> {
+    tree: TreeState<TItem, TId>;
+    id: TId;
+    isChecked: boolean;
+    isRoot: boolean;
+}
+
 export function useLoadData<TItem, TId, TFilter = any>(
     props: UseLoadDataProps<TItem, TId, TFilter>,
 ) {
     const { api, filter, isFolded, cascadeSelection } = props;
 
     const promiseInProgressRef = useRef<Promise<LoadResult<TItem, TId>>>(undefined);
+
+    const { getAbortSignal } = useAbortController();
 
     const loadMissingImpl = useCallback(async ({
         using,
@@ -65,6 +75,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
                         ...props.dataSourceState?.filter,
                         ...dataSourceState?.filter,
                     },
+                    signal: getAbortSignal(),
                 },
                 dataSourceState: completeDsState,
             });
@@ -82,7 +93,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
             console.error('LazyListView: Error while loading items.', e);
             return { isUpdated: false, isOutdated: false, tree: loadingTree };
         }
-    }, [isFolded, api, filter, props.dataSourceState]);
+    }, [isFolded, api, filter, props.dataSourceState, getAbortSignal]);
 
     const loadMissing = useCallback(({
         tree,
@@ -93,26 +104,28 @@ export function useLoadData<TItem, TId, TFilter = any>(
         dataSourceState,
     }: LoadMissingOptions<TItem, TId, TFilter>): Promise<LoadResult<TItem, TId>> => {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
-        if (!promiseInProgressRef.current || abortInProgress) {
+        if (abortInProgress && promiseInProgressRef.current) {
             promiseInProgressRef.current = Promise.resolve({ isUpdated: false, isOutdated: false, tree });
         }
 
-        promiseInProgressRef.current = promiseInProgressRef.current.then(({ tree: currentTree }) =>
-            loadMissingImpl({ tree: currentTree, using, loadAllChildren, isLoadStrict, dataSourceState }));
+        promiseInProgressRef.current = promiseInProgressRef.current
+            ? promiseInProgressRef.current.then(({ tree: currentTree }) =>
+                loadMissingImpl({ tree: currentTree, using, loadAllChildren, isLoadStrict, dataSourceState }))
+            : loadMissingImpl({ tree, using, loadAllChildren, isLoadStrict, dataSourceState });
 
         return promiseInProgressRef.current;
     }, [loadMissingImpl]);
 
-    const loadMissingOnCheck = useCallback(async (currentTree: TreeState<TItem, TId>, id: TId, isChecked: boolean, isRoot: boolean) => {
+    const loadMissingOnCheck = useCallback(async ({ tree, id, isRoot, isChecked }: LoadMissingOptionsOnCheck<TItem, TId>) => {
         const isImplicitMode = cascadeSelection === CascadeSelectionTypes.IMPLICIT;
 
         if (!cascadeSelection && !isRoot) {
-            return currentTree;
+            return tree;
         }
 
-        const parents = Tree.getParents(id, currentTree.full);
+        const parents = Tree.getParents(id, tree.full);
         const { tree: treeWithMissingRecords } = await loadMissing({
-            tree: currentTree,
+            tree: tree,
             // If cascadeSelection is implicit and the element is unchecked, it is necessary to load all children
             // of all parents of the unchecked element to be checked explicitly. Only one layer of each parent should be loaded.
             // Otherwise, should be loaded only checked element and all its nested children.
@@ -130,7 +143,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
                     return { ...loadAllConfig, children: itemId === ROOT_ID || parents.some((parent) => isEqual(parent, itemId)) };
                 }
 
-                const { ids } = currentTree.full.getItems(undefined);
+                const { ids } = tree.full.getItems(undefined);
                 const rootIsNotLoaded = ids.length === 0;
 
                 const shouldLoadChildrenAfterSearch = (!!props.dataSourceState.search?.length
