@@ -50,7 +50,7 @@ export class DataTableObject {
     }
 
     getFilterModal() {
-        return this.page.getByRole('dialog').locator('[aria-modal="true"]');
+        return this.page.getByRole('dialog').locator('[aria-modal="true"]').first();
     }
 
     getFilterModalMultiPickerList() {
