@@ -40,6 +40,9 @@ export const DataTableHeaderRow = withMods<CoreDataTableHeaderRowProps, DataTabl
                     size={ settings.dataTable.sizes.header.iconMap[mods.size || settings.dataTable.sizes.header.row] }
                     cx={ ['config-icon'] }
                     icon={ settings.dataTable.icons.header.configIcon }
+                    rawProps={ {
+                        'aria-label': 'Configure columns',
+                    } }
                 />
             ),
         });

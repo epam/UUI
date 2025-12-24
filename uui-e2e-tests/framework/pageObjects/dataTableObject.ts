@@ -79,6 +79,13 @@ export class DataTableObject {
     }
 
     async openFilterModal(column: string) {
+        await this.clickOnColumnHeader(column);
+
+        const filterModal = this.getFilterModal();
+        await expect(filterModal).toBeInViewport();
+    }
+
+    async clickOnColumnHeader(column: string) {
         const columnHeaderCell = this.getColumnHeaderCell(column);
         await expect(columnHeaderCell).toBeInViewport();
         const title = columnHeaderCell.getByText(column);
@@ -88,9 +95,6 @@ export class DataTableObject {
         await expect(tooltip).toBeInViewport();
 
         await columnHeaderCell.click();
-
-        const filterModal = this.getFilterModal();
-        await expect(filterModal).toBeVisible();
     }
 
     async expectMultiPickerFilterModalToBeOpened() {
@@ -104,10 +108,45 @@ export class DataTableObject {
             const optionLocator = locator.filter({ hasText: option });
             await expect(optionLocator).toBeVisible();
 
-            optionLocator.click();
+            await optionLocator.click();
 
             await expect(optionLocator).toHaveAttribute('aria-checked', 'true');
         }
+    }
+
+    async applyDescSortingInFilterModal() {
+        const filterModal = this.getFilterModal();
+
+        const descButton = filterModal
+            .getByRole('menuitem', { name: 'Sort Descending' });
+
+        await expect(descButton).toBeVisible();
+
+        await descButton.click();
+    }
+
+    getColumnsConfigModal() {
+        return this.page.getByRole('dialog').filter({ hasText: 'Configure columns' });
+    }
+
+    async openColumnsConfigModal() {
+        const table = this.locators.table;
+        const columnsConfigButton = table.getByLabel('Configure columns');
+        await expect(columnsConfigButton).toBeVisible();
+
+        await columnsConfigButton.click();
+
+        const columnsConfigModal = this.getColumnsConfigModal();
+        await expect(columnsConfigModal).toBeVisible();
+    }
+
+    async hideColumn(column: string) {
+        const columnsConfigModal = this.getColumnsConfigModal();
+
+        const columnOption = columnsConfigModal.locator('label').filter({ hasText: column });
+        await expect(columnOption).toBeVisible();
+
+        await columnOption.click();
     }
 
     async expectOptionInMultiPickerFilterModal(option: string) {
@@ -127,7 +166,7 @@ export class DataTableObject {
 
         await expect(searchInput).toBeVisible();
 
-        searchInput.fill(search);
+        await searchInput.fill(search);
     }
 
     async waitSelectAllCheckboxToBeChecked() {
