@@ -1,11 +1,10 @@
 import React from 'react';
 import { LinkButton, Text } from '@epam/uui';
-import { useUuiContext, useAbortController } from '@epam/uui-core';
+import { useUuiContext } from '@epam/uui-core';
 
 export default function ErrorHandlingTypesExample() {
     const svc = useUuiContext();
     const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
-    const { getAbortSignal } = useAbortController();
     
     return (
         <div>
@@ -17,14 +16,14 @@ export default function ErrorHandlingTypesExample() {
 
             <Text>Notification:</Text>
             <LinkButton
-                onClick={ () => svc.uuiApi.processRequest(ORIGIN.concat(`api/error/status/${403}`), 'POST', null, { errorHandling: 'notification', fetchOptions: { signal: getAbortSignal() } }).catch(() => {}) }
+                onClick={ () => svc.uuiApi.processRequest(ORIGIN.concat(`api/error/status/${403}`), 'POST', null, { errorHandling: 'notification' }).catch(() => {}) }
                 caption="403 (notification)"
                 size="30"
             />
 
             <Text>Manual:</Text>
             <LinkButton
-                onClick={ () => svc.uuiApi.processRequest(ORIGIN.concat(`api/error/status/${405}`), 'POST', null, { errorHandling: 'manual', fetchOptions: { signal: getAbortSignal() } }).catch(() => alert('Error occurred')) }
+                onClick={ () => svc.uuiApi.processRequest(ORIGIN.concat(`api/error/status/${405}`), 'POST', null, { errorHandling: 'manual' }).catch(() => alert('Error occurred')) }
                 caption="405 (manual)"
                 size="30"
 
