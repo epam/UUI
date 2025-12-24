@@ -1,0 +1,554 @@
+{
+  "config": {
+    "configFile": "/Users/Yaroslav_Kuznietsov/projects/UUI/playwright.config.ts",
+    "rootDir": "/Users/Yaroslav_Kuznietsov/projects/UUI",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 3600000,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "tests/.report/report",
+          "open": "on-failure"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "tests/.report/report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/Yaroslav_Kuznietsov/projects/UUI/tests/.report/results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/Yaroslav_Kuznietsov/projects/UUI",
+        "testIgnore": [],
+        "testMatch": [
+          "tests/previewTests/*.e2e.ts",
+          "tests/Integration/**/*.e2e.ts"
+        ],
+        "timeout": 50000
+      },
+      {
+        "outputDir": "/Users/Yaroslav_Kuznietsov/projects/UUI/tests/.report/results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/Yaroslav_Kuznietsov/projects/UUI",
+        "testIgnore": [],
+        "testMatch": [
+          "tests/previewTests/*.e2e.ts"
+        ],
+        "timeout": 50000
+      },
+      {
+        "outputDir": "/Users/Yaroslav_Kuznietsov/projects/UUI/tests/.report/results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/Yaroslav_Kuznietsov/projects/UUI",
+        "testIgnore": [
+          "tests/Integration/mainMenu/mainMenu.e2e.ts",
+          "tests/Integration/dataTable/*.e2e.ts"
+        ],
+        "testMatch": [
+          "tests/Integration/**/*.e2e.ts"
+        ],
+        "timeout": 50000
+      }
+    ],
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "changed",
+    "updateSourceMethod": "overwrite",
+    "version": "1.57.0",
+    "workers": 1,
+    "webServer": {
+      "command": "yarn print-error \"Server is not available http://localhost:9009\"",
+      "url": "http://localhost:9009",
+      "reuseExistingServer": true
+    }
+  },
+  "suites": [
+    {
+      "title": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.filter.e2e.ts",
+      "file": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.filter.e2e.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "DataTable Lazy: Filters",
+          "file": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.filter.e2e.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Apply multiPicker filters",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 150000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 15629,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Filter by Job Title",
+                          "duration": 2256
+                        },
+                        {
+                          "title": "Filter by Job Title [exclude]",
+                          "duration": 2784
+                        },
+                        {
+                          "title": "Filter by Job Title using search",
+                          "duration": 2849
+                        },
+                        {
+                          "title": "Filter by Salary",
+                          "duration": 1824
+                        }
+                      ],
+                      "startTime": "2025-12-24T14:02:06.402Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3856777371e5fd9357aa-00c460f08607beb95c95",
+              "file": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.filter.e2e.ts",
+              "line": 6,
+              "column": 9
+            },
+            {
+              "title": "Apply multiPicker filters [Using keyboard]",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 150000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11712,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Filter by Job Title",
+                          "duration": 1288
+                        },
+                        {
+                          "title": "Filter by Job Title [exclude]",
+                          "duration": 1709
+                        },
+                        {
+                          "title": "Filter by Job Title using search",
+                          "duration": 1913
+                        },
+                        {
+                          "title": "Filter by Salary",
+                          "duration": 1070
+                        }
+                      ],
+                      "startTime": "2025-12-24T14:02:22.132Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3856777371e5fd9357aa-18197be45c5661a0d2e1",
+              "file": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.filter.e2e.ts",
+              "line": 69,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.scrolling.e2e.ts",
+      "file": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.scrolling.e2e.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "DataTable Lazy: Scrolling",
+          "file": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.scrolling.e2e.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Load extra data with scroll",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 150000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6915,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Scroll",
+                          "duration": 848
+                        }
+                      ],
+                      "startTime": "2025-12-24T14:02:33.858Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d4c7f6022a3a28fac487-e514983dc0ee7d8ca7b1",
+              "file": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.scrolling.e2e.ts",
+              "line": 6,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.select.e2e.ts",
+      "file": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.select.e2e.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "DataTable Lazy: Select All",
+          "file": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.select.e2e.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Select All/Unselect All.",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 150000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8052,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Select all items",
+                          "duration": 771
+                        },
+                        {
+                          "title": "Unselect all items",
+                          "duration": 420
+                        }
+                      ],
+                      "startTime": "2025-12-24T14:02:40.790Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "9e63321f039dd64f55ca-6e4beb2dc89f395bc9c1",
+              "file": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.select.e2e.ts",
+              "line": 6,
+              "column": 9
+            },
+            {
+              "title": "Select All/Unselect All. [Using keyboard]",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 150000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7418,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Put focus on selectAll checkbox",
+                          "duration": 185
+                        },
+                        {
+                          "title": "Select all items",
+                          "duration": 709
+                        },
+                        {
+                          "title": "Unselect all items",
+                          "duration": 343
+                        }
+                      ],
+                      "startTime": "2025-12-24T14:02:48.855Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "9e63321f039dd64f55ca-0fe8db99f7498f5ed557",
+              "file": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.select.e2e.ts",
+              "line": 28,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.sort.e2e.ts",
+      "file": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.sort.e2e.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "DataTable Lazy: Sorting",
+          "file": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.sort.e2e.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Sort by columns.",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 150000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12993,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Toggle sorting to asc/des values",
+                          "duration": 3897
+                        },
+                        {
+                          "title": "Open filter modal on next column filter",
+                          "duration": 1848
+                        },
+                        {
+                          "title": "Open columns config modal",
+                          "duration": 260
+                        },
+                        {
+                          "title": "Hide salary column from columns config modal",
+                          "duration": 229
+                        },
+                        {
+                          "title": "Close columns config modal",
+                          "duration": 161
+                        }
+                      ],
+                      "startTime": "2025-12-24T14:02:56.292Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a70b8b6c0c763d5c8e9e-6af0f48a0de8a46b649f",
+              "file": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.sort.e2e.ts",
+              "line": 6,
+              "column": 9
+            },
+            {
+              "title": "Sort by columns. [Using keyboard]",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 150000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9790,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Move focus to column sorting",
+                          "duration": 184
+                        },
+                        {
+                          "title": "Toggle sorting to descending value",
+                          "duration": 601
+                        },
+                        {
+                          "title": "Move focus on next column filter",
+                          "duration": 156
+                        },
+                        {
+                          "title": "Open column filter",
+                          "duration": 318
+                        },
+                        {
+                          "title": "Toggle sorting from column filter",
+                          "duration": 506
+                        },
+                        {
+                          "title": "Choose Success filter option",
+                          "duration": 378
+                        },
+                        {
+                          "title": "Close filter by Esc",
+                          "duration": 169
+                        },
+                        {
+                          "title": "Open columns config modal",
+                          "duration": 290
+                        },
+                        {
+                          "title": "Hide salary column from columns config modal",
+                          "duration": 363
+                        },
+                        {
+                          "title": "Close columns config modal",
+                          "duration": 145
+                        },
+                        {
+                          "title": "Select first and second row",
+                          "duration": 557
+                        }
+                      ],
+                      "startTime": "2025-12-24T14:03:09.337Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a70b8b6c0c763d5c8e9e-e5033d99828dcab92cf2",
+              "file": "uui-e2e-tests/tests/Integration/dataTable/dataTable.lazy.sort.e2e.ts",
+              "line": 59,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-12-24T14:02:02.674Z",
+    "duration": 76491.8459999999,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
