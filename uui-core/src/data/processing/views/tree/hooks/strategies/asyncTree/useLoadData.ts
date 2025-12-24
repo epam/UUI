@@ -7,7 +7,6 @@ import { useAbortController, useItemsStatusCollector } from '../../common';
 import { getSelectedAndChecked } from '../../../treeStructure';
 import { NOT_FOUND_RECORD } from '../../../constants';
 import { ItemsStatuses } from '../types';
-import { FetchingOptions } from '../../../../../../../services';
 
 export interface LoadResult<TItem, TId> {
     isUpdated: boolean;
@@ -57,14 +56,17 @@ export function useLoadData<TItem, TId, TFilter = any>(
         [itemsStatusMap, externalItemsStatusCollector],
     );
 
+    const { getAbortSignal } = useAbortController();
+
     const loadData = async (
         sourceTree: TreeState<TItem, TId>,
         dsState: DataSourceState<TFilter, TId> = {},
-        fetchingOptions: FetchingOptions,
     ): Promise<LoadResult<TItem, TId>> => {
         const loadingTree = sourceTree;
         const { checked, ...partialDsState } = dsState;
         try {
+            const signal = getAbortSignal();
+
             const newTreePromise = sourceTree.loadAll<TFilter>({
                 using: partialDsState.search ? 'visible' : undefined,
                 options: {
@@ -72,7 +74,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
                     filter: {
                         ...dsState?.filter,
                     },
-                    ...fetchingOptions,
+                    signal,
                 },
                 dataSourceState: partialDsState,
             });
@@ -113,8 +115,6 @@ export function useLoadData<TItem, TId, TFilter = any>(
         }
     }, [...deps]);
 
-    const { getAbortSignal } = useAbortController();
-
     useEffect(() => {
         if (shouldLoad) {
             setIsFetching(true);
@@ -123,7 +123,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
             }
             const checked = getSelectedAndChecked(dataSourceState, patch);
 
-            loadData(tree, dataSourceState, { signal: getAbortSignal() })
+            loadData(tree, dataSourceState)
                 .then(({ isOutdated, isUpdated, tree: newTree }) => {
                     if (isUpdated && !isOutdated) {
                         setLoadedTree(newTree);
