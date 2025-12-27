@@ -1,10 +1,13 @@
 import { Locator, Page, expect } from '@playwright/test';
 
-export class DataTableObject {
+export abstract class DataTableObject {
     public readonly locators: {
         pageContent: Locator;
         table: Locator;
     };
+
+    protected abstract getDefaultFirstRowText(): string;
+    public static testUrl: string;
 
     constructor(public page: Page) {
         this.locators = {
@@ -225,6 +228,15 @@ export class DataTableObject {
         await gteButton.click();
     }
 
+    async unfold(rowName: string) {
+        const row = this.getTableRows().filter({ hasText: rowName });
+        const foldArrow = row.getByLabel('Fold');
+
+        await expect(foldArrow).toBeVisible();
+
+        await foldArrow.click();
+    }
+
     async fillNumericFilterInput(input: string) {
         const filterModal = this.getFilterModal();
         const numericInput = filterModal.getByPlaceholder('Enter a number');
@@ -239,7 +251,7 @@ export class DataTableObject {
 
         await expect(this.locators.table).toBeVisible();
         await expect(firstDataRow).toBeVisible();
-        await expect(firstCell).toContainText('Aaron Benoît', { useInnerText: true });
+        await expect(firstCell).toContainText(this.getDefaultFirstRowText(), { useInnerText: true });
     }
 
     private async pressTab(times: number) {
