@@ -134,6 +134,7 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
                 width={ dropdownProps.togglerWidth > minBodyWidth ? dropdownProps.togglerWidth : minBodyWidth }
                 focusLock={ true }
                 shards={ getSearchPosition() === 'input' ? [togglerRef] : undefined }
+                rawProps={ { 'aria-modal': true } }
             >
                 <DataPickerBody
                     { ...dropdownProps }

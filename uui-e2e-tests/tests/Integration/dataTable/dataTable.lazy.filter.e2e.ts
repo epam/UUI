@@ -1,4 +1,4 @@
-import { DataTableObject } from '../../../framework/pageObjects';
+import { ColumnFiltersDataTableObject } from '../../../framework/pageObjects';
 import { test } from '../../../framework/fixtures';
 import { setupDocExampleTest } from '../testUtils';
 
@@ -7,8 +7,8 @@ test.describe('DataTable Lazy: Filters', () => {
         const { pageObject, expectScreenshot } = await setupDocExampleTest({
             testInfo,
             pageWrapper,
-            PageObjectConstructor: DataTableObject,
-            testUrl: '/docExample?theme=loveship&examplePath=tables%2FColumnFiltersTable',
+            PageObjectConstructor: ColumnFiltersDataTableObject,
+            testUrl: ColumnFiltersDataTableObject.testUrl,
         });
 
         await pageObject.waitForTableRendered();
@@ -70,7 +70,7 @@ test.describe('DataTable Lazy: Filters', () => {
         const { pageObject, expectScreenshot } = await setupDocExampleTest({
             testInfo,
             pageWrapper,
-            PageObjectConstructor: DataTableObject,
+            PageObjectConstructor: ColumnFiltersDataTableObject,
             testUrl: '/docExample?theme=loveship&examplePath=tables%2FColumnFiltersTable',
         });
 

@@ -30,6 +30,7 @@ exports[`ColumnHeaderDropdown should be rendered correctly 1`] = `
     style="position: fixed; top: -1px; left: 0px; z-index: 2000;"
   >
     <div
+      aria-modal="true"
       class="uui-dropdown-body -lock-focus root container container"
       style="min-width: 280px; max-width: auto;"
       tabindex="-1"

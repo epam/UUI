@@ -64,10 +64,10 @@ function filterAndSort(request: any, allItems: any, typeName: any) {
 function group(request: any, allItems: any, typeName: any, getGroupId: any = (groupId: any) => groupId) {
     request = request || {};
 
-    const { search, filter: { groupBy, ...filter } = { groupBy: undefined }, ...groupingRequest } = request;
+    const { search, filter: { groupBy, ...filter } = { groupBy: undefined }, sorting, ...groupingRequest } = request;
 
     let groups: any[] = [];
-    const items = filterAndSort({ search, filter }, allItems, typeName).items;
+    const items = filterAndSort({ sorting, search, filter }, allItems, typeName).items;
     const groupIdFieldName = `${groupBy}Id`;
     const grouped = _.groupBy(items, groupIdFieldName);
 

@@ -35,7 +35,7 @@ const getLocationTree = cached('locations', async () => {
         ...c, id: c.id, name: c.name, type: 'city', parentId: c.country,
     })));
     list = list.concat(countries.map((c: any) => ({
-        id: c.id, name: c.name, type: 'country', parentId: `c-${c.continent}`,
+        id: c.id, name: c.name, countryName: c.name, type: 'country', parentId: `c-${c.continent}`,
     })));
     list.forEach((l: any) => { l.__typename = 'Location'; });
 
