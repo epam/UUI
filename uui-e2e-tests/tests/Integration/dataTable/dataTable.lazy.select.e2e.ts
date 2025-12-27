@@ -1,14 +1,14 @@
 import { test } from '../../../framework/fixtures';
 import { setupDocExampleTest } from '../testUtils';
-import { DataTableObject } from '../../../framework/pageObjects/dataTableObject';
+import { ColumnFiltersDataTableObject } from '../../../framework/pageObjects';
 
 test.describe('DataTable Lazy: Select All', () => {
     test('Select All/Unselect All.', async ({ pageWrapper }, testInfo) => {
         const { pageObject, expectScreenshot } = await setupDocExampleTest({
             testInfo,
             pageWrapper,
-            PageObjectConstructor: DataTableObject,
-            testUrl: '/docExample?theme=loveship&examplePath=tables%2FColumnFiltersTable',
+            PageObjectConstructor: ColumnFiltersDataTableObject,
+            testUrl: ColumnFiltersDataTableObject.testUrl,
         });
 
         await pageObject.waitForTableRendered();
@@ -29,8 +29,8 @@ test.describe('DataTable Lazy: Select All', () => {
         const { pageObject, expectScreenshot } = await setupDocExampleTest({
             testInfo,
             pageWrapper,
-            PageObjectConstructor: DataTableObject,
-            testUrl: '/docExample?theme=loveship&examplePath=tables%2FColumnFiltersTable',
+            PageObjectConstructor: ColumnFiltersDataTableObject,
+            testUrl: ColumnFiltersDataTableObject.testUrl,
         });
 
         await pageObject.waitForTableRendered();
