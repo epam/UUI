@@ -35,7 +35,7 @@ const ColumnHeaderDropdownImpl: React.FC<ColumnHeaderDropdownProps> = (props) =>
                     maxWidth="auto"
                     title={ props.title }
                     onClose={ closeDropdown }
-                    rawProps={ { ...dropdownProps.arrowProps, 'aria-modal': true } }
+                    rawProps={ { 'aria-modal': true } }
                 >
                     {props.isSortable && <SortingPanel sortDirection={ props.sortDirection } onSort={ props.onSort } />}
                     {props.renderFilter(dropdownProps)}
