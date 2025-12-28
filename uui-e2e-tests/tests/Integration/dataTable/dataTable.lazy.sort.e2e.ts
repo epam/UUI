@@ -42,31 +42,31 @@ test.describe('DataTable Lazy: Sorting', () => {
         await test.step('Move focus to column sorting', async () => {
             await pageObject.focusFirstElement();
             await pageObject.moveFocusForward();
-            await expectScreenshot(4, 'focus-columns-sorting');
+            await expectScreenshot(1, 'focus-columns-sorting');
         });
 
         await test.step('Toggle sorting to descending value', async () => {
             await pageObject.page.keyboard.press('Space'); // toggle to asc
             await pageObject.page.keyboard.press('Space'); // toggle to desc
             await pageObject.expectRowNameInViewport('Zachary van Kesteren');
-            await expectScreenshot(5, 'toggler-column-sorting');
+            await expectScreenshot(2, 'toggler-column-sorting');
         });
 
         await test.step('Move focus on next column filter', async () => {
             await pageObject.moveFocusForward();
-            await expectScreenshot(6, 'focus-column-filter');
+            await expectScreenshot(3, 'focus-column-filter');
         });
 
         await test.step('Open column filter', async () => {
             await pageObject.page.keyboard.press('Enter');
-            await expectScreenshot(7, 'open-column-filter');
+            await expectScreenshot(4, 'open-column-filter');
         });
 
         await test.step('Toggle sorting from column filter', async () => {
             await pageObject.moveFocusForward(); // Move focus to the Descending sort
             await pageObject.page.keyboard.press('Enter');
             await pageObject.expectRowNameInViewport('Lillie Marchal');
-            await expectScreenshot(8, 'toggler-sorting-from-column-filter');
+            await expectScreenshot(5, 'toggler-sorting-from-column-filter');
         });
 
         await test.step('Choose Success filter option', async () => {
@@ -74,12 +74,12 @@ test.describe('DataTable Lazy: Sorting', () => {
             await pageObject.page.keyboard.press('ArrowDown');
             await pageObject.page.keyboard.press('Enter');
             await pageObject.expectRowNameInViewport('Joshua Munoz');
-            await expectScreenshot(9, 'choose-Success-filter-option');
+            await expectScreenshot(6, 'choose-Success-filter-option');
         });
 
         await test.step('Close filter by Esc', async () => {
             await pageObject.page.keyboard.press('Escape');
-            await expectScreenshot(10, 'close-filter');
+            await expectScreenshot(7, 'close-filter');
         });
 
         await test.step('Open columns config modal', async () => {
@@ -87,7 +87,7 @@ test.describe('DataTable Lazy: Sorting', () => {
 
             await pageObject.page.keyboard.press('Space'); // Open modal
 
-            await expectScreenshot(11, 'open-column-config');
+            await expectScreenshot(8, 'open-column-config');
         });
 
         await test.step('Hide salary column from columns config modal', async () => {
@@ -95,13 +95,13 @@ test.describe('DataTable Lazy: Sorting', () => {
 
             await pageObject.page.keyboard.press('Space'); // Open modal
 
-            await expectScreenshot(12, 'hide-salary-column');
+            await expectScreenshot(9, 'hide-salary-column');
         });
 
         await test.step('Close columns config modal', async () => {
             await pageObject.page.keyboard.press('Escape'); // Close modal
 
-            await expectScreenshot(13, 'close-column-config');
+            await expectScreenshot(10, 'close-column-config');
         });
 
         await test.step('Select first and second row', async () => {
@@ -114,7 +114,7 @@ test.describe('DataTable Lazy: Sorting', () => {
             await pageObject.page.keyboard.press('Space'); // Select second item
             await pageObject.waitFocusedCheckboxIsChecked();
 
-            await expectScreenshot(14, 'select-rows');
+            await expectScreenshot(11, 'select-rows');
         });
     });
 });
@@ -176,7 +176,7 @@ test.describe('DataTable Lazy Tree: Sorting', () => {
             await pageObject.clickOnColumnHeader('Name');
 
             await pageObject.expectRowNameInViewport('South America');
-            await expectScreenshot(1, 'toggler-column-sorting');
+            await expectScreenshot(1, 'tree-toggler-column-sorting');
         });
 
         await test.step('Toggle sorting to descending value on the country column', async () => {
@@ -184,7 +184,7 @@ test.describe('DataTable Lazy Tree: Sorting', () => {
             await pageObject.clickOnColumnHeader('Country');
 
             await pageObject.expectRowNameInViewport('Africa');
-            await expectScreenshot(2, 'toggler-column-sorting-country');
+            await expectScreenshot(2, 'tree-toggler-column-sorting-country');
             await pageObject.unfold('Africa');
 
             const row = pageObject.getTableRows().nth(1);
