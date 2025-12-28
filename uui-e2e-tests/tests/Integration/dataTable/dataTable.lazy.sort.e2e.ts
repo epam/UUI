@@ -136,6 +136,8 @@ test.describe('DataTable Lazy Tree: Sorting', () => {
 
         await test.step('Toggle sorting to descending value', async () => {
             await pageObject.page.keyboard.press('Space'); // toggle to asc
+            await pageObject.expectRowNameInViewport('Africa');
+
             await pageObject.page.keyboard.press('Space'); // toggle to desc
             await pageObject.expectRowNameInViewport('South America');
             await expectScreenshot(2, 'tree-using-keyboard-toggler-column-sorting');
