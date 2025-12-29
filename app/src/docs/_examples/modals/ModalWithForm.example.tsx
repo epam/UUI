@@ -17,7 +17,7 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
 
     const countriesDataSource = useAsyncDataSource(
         {
-            api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: LazyDataSourceApiResponse<Country>) => r.items),
+            api: (options) => svc.api.demo.countries({ sorting: [{ field: 'name' }] }, options).then((r: LazyDataSourceApiResponse<Country>) => r.items),
         },
         [],
     );
