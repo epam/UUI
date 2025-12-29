@@ -1,6 +1,6 @@
 .container {
-    --uui-slider-tooltip-bg: var(--uui-secondary-70);
-    --uui-slider-tooltip-text: var(--uui-secondary-5);
+    --uui-slider-tooltip-bg: var(--uui-neutral-80);
+    --uui-slider-tooltip-text: var(--uui-neutral-5);
     --uui-slider-tooltip-border: var(--uui-slider-tooltip-bg);
 
     --uui-slider-font: var(--uui-font);
@@ -15,7 +15,7 @@
 
     pointer-events: none;
 
-    :global(.uui-tooltip-body) {
+    :global(.uui-slider-tooltip-body) {
         background-color: var(--uui-slider-tooltip-bg);
         padding: var(--uui-slider-tooltip-vertical-padding) var(--uui-slider-tooltip-horizontal-padding);
         color: var(--uui-slider-tooltip-text);

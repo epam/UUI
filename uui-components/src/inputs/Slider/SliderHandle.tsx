@@ -138,7 +138,7 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
                     placement={ placement }
                     arrowProps={ arrowProps }
                 >
-                    <div role="tooltip" className="uui-tooltip-body">
+                    <div role="tooltip" className="uui-slider-tooltip-body">
                         { tooltipContent }
                     </div>
                 </DropdownContainer>
