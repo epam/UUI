@@ -230,11 +230,13 @@ export abstract class DataTableObject {
 
     async unfold(rowName: string) {
         const row = this.getTableRows().filter({ hasText: rowName });
-        const foldArrow = row.getByLabel('Fold');
+        const unfoldArrow = row.getByLabel('Unfold', { exact: true });
 
+        await expect(unfoldArrow).toBeVisible();
+
+        await unfoldArrow.click();
+        const foldArrow = row.getByLabel('Fold', { exact: true });
         await expect(foldArrow).toBeVisible();
-
-        await foldArrow.click();
     }
 
     async fillNumericFilterInput(input: string) {
