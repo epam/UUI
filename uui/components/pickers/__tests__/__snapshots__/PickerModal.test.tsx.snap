@@ -449,6 +449,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
                       <label
+                        aria-label="Select"
                         class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                       >
                         <div
@@ -503,6 +504,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
                       <label
+                        aria-label="Select"
                         class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                       >
                         <div
@@ -557,6 +559,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
                       <label
+                        aria-label="Select"
                         class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                       >
                         <div
@@ -611,6 +614,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
                       <label
+                        aria-label="Select"
                         class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                       >
                         <div
@@ -665,6 +669,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
                       <label
+                        aria-label="Select"
                         class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                       >
                         <div
@@ -719,6 +724,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
                       <label
+                        aria-label="Select"
                         class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                       >
                         <div
@@ -773,6 +779,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
                       <label
+                        aria-label="Select"
                         class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                       >
                         <div
@@ -827,6 +834,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
                       <label
+                        aria-label="Select"
                         class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                       >
                         <div
@@ -881,6 +889,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
                       <label
+                        aria-label="Select"
                         class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                       >
                         <div
@@ -935,6 +944,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
                       <label
+                        aria-label="Select"
                         class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                       >
                         <div
@@ -989,6 +999,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
                       <label
+                        aria-label="Select"
                         class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                       >
                         <div
