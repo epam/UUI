@@ -18,7 +18,7 @@ test('DataTable: Pinned rows.', async ({ pageWrapper }, testInfo) => {
     });
 
     await test.step('Scroll', async () => {
-        await pageObject.scrollScreen();
+        await pageObject.scrollScreen(500);
         await pageObject.expectRowNameInViewport('Namibe', false);
         await expectScreenshot(2, 'pinned-rows-africa-angola');
     });

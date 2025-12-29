@@ -13,7 +13,7 @@ test.describe('DataTable Lazy: Scrolling', () => {
 
         await pageObject.waitForTableRendered();
         await test.step('Scroll', async () => {
-            await pageObject.scrollScreen(2);
+            await pageObject.scrollScreen();
             await pageObject.expectRowNameInViewport('Abbie Matsui', false);
 
             await expectScreenshot(1, 'loaded data');
