@@ -30,7 +30,13 @@ const ColumnHeaderDropdownImpl: React.FC<ColumnHeaderDropdownProps> = (props) =>
         <Dropdown
             renderTarget={ props.renderTarget }
             renderBody={ (dropdownProps) => (
-                <PickerBodyMobileView width={ 280 } maxWidth="auto" title={ props.title } onClose={ closeDropdown }>
+                <PickerBodyMobileView
+                    width={ 280 }
+                    maxWidth="auto"
+                    title={ props.title }
+                    onClose={ closeDropdown }
+                    rawProps={ { 'aria-modal': true } }
+                >
                     {props.isSortable && <SortingPanel sortDirection={ props.sortDirection } onSort={ props.onSort } />}
                     {props.renderFilter(dropdownProps)}
                 </PickerBodyMobileView>
