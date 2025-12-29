@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { DataSourceState, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
+import { DataSourceState, LazyDataSourceApiRequest, LazyDataSourceApiRequestContext, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { DataSourceViewer } from '@epam/uui-docs';
 import { FlexRow, Paginator, Panel } from '@epam/promo';
 import { Person } from '@epam/uui-docs';
@@ -13,13 +13,13 @@ export default function DataSourceStatePageExample() {
         pageSize: 10,
     });
 
-    const api = useCallback(async (rq: LazyDataSourceApiRequest<{}>) => {
+    const api = useCallback(async (rq: LazyDataSourceApiRequest<{}>, ctx: LazyDataSourceApiRequestContext<unknown, unknown>) => {
         const result = await svc.api.demo.personsPaged({
             ...rq,
             filter: rq.filter || {},
             page: rq.page,
             pageSize: rq.pageSize,
-        });
+        }, { signal: ctx.signal });
 
         return {
             ...result,

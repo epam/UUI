@@ -5,7 +5,7 @@ import { useUuiContext } from '@epam/uui-core';
 export default function ErrorHandlingTypesExample() {
     const svc = useUuiContext();
     const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
-
+    
     return (
         <div>
             <Text>Page:</Text>

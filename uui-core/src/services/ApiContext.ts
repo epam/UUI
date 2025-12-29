@@ -20,6 +20,16 @@ export class ApiCallError extends Error {
     }
 }
 
+/**
+ * Options which are passed to the HTTP request.
+ */
+export interface FetchingOptions {
+    /**
+     * Signal of request aborting.
+     */
+    signal: AbortSignal;
+}
+
 export interface FileUploadOptions {
     /** Called during the file uploading, used to track upload progress */
     onProgress?: (progress: number) => any;
@@ -129,9 +139,16 @@ export class ApiContext extends BaseContext implements IApiContext {
     private handleApiError(call: ApiCall, reason?: ApiRecoveryReason) {
         const error = new ApiCallError(call);
 
-        if (call.options?.errorHandling === 'manual' && !(reason === 'auth-lost' || reason === 'connection-lost')) {
+        if (call.options?.errorHandling === 'manual' && !(reason === 'auth-lost' || reason === 'connection-lost' || reason === 'abort-signal')) {
             this.removeFromQueue(call);
             call.reject(error);
+            return;
+        }
+
+        if (reason === 'abort-signal') {
+            call.status = 'error';
+            this.setStatus('error');
+            call.reject(call.error);
             return;
         }
 
@@ -187,10 +204,10 @@ export class ApiContext extends BaseContext implements IApiContext {
             .then((response) => {
                 this.handleResponse(call, response);
             })
-            .catch((e: Error) => {
-                if (e?.name === 'AbortError') {
+            .catch((error: Error) => {
+                if (error?.name === 'AbortError') {
                     this.removeFromQueue(call);
-                    return;
+                    this.handleApiError({ ...call, error }, 'abort-signal');
                 }
                 if (call.attemptsCount < 2) {
                     this.handleApiError(call, 'connection-lost');

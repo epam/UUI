@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { FetchingOptions } from '../../services';
 import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
 import { useForceUpdate } from '../../hooks';
 import { DataSourceState, IDataSourceView, SetDataSourceState } from '../../types';
@@ -10,7 +11,7 @@ import { ItemsStatusCollector } from './views/tree/ItemsStatusCollector';
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends AsyncListViewProps<TItem, TId, TFilter> {}
 
 export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends ArrayDataSource<TItem, TId> {
-    api: () => Promise<TItem[]> = null;
+    api: (options: FetchingOptions) => Promise<TItem[]> = null;
     itemsStatusCollector: ItemsStatusCollector<TItem, TId, TFilter>;
 
     constructor(props: AsyncDataSourceProps<TItem, TId, TFilter>) {
@@ -21,7 +22,12 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         const params = { getId: this.getId, complexIds: this.props.complexIds };
         this.api = props.api;
         this.itemsStatusCollector = new ItemsStatusCollector(newMap(params), params);
+        this._signals = new Set();
+        this._abortController = new AbortController();
     }
+
+    private _abortController: AbortController;
+    private _signals: Set<AbortSignal>;
 
     private _cache: Promise<TItem[]>;
     private get cache(): Promise<TItem[]> {
@@ -32,9 +38,28 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         this._cache = _cache;
     }
     
-    private cachedApi = async () => {
+    private cachedApi = async (options: FetchingOptions) => {
+        if (!options.signal.onabort) {
+            options.signal.onabort = () => {
+                let areAllAborted = false;
+                this._signals.forEach((s) => {
+                    if (options.signal === s || s.aborted) {
+                        areAllAborted = true;
+                    }
+                });
+                
+                if (areAllAborted) {
+                    this._abortController.abort();
+                    this.cache = null;
+                    this._abortController = new AbortController();
+                }
+            };
+        }
+
+        this._signals.add(options.signal);
+
         if (!this.cache) {
-            this.cache = this.api();
+            this.cache = this.api({ signal: this._abortController.signal });
         }
 
         return this.cache;
@@ -54,6 +79,9 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
 
     reload() {
         this.cache = null;
+        this._signals = new Set();
+        this._abortController = new AbortController();
+
         this.setProps({ ...this.props, items: [] });
         const params = { getId: this.getId, complexIds: this.props.complexIds };
         this.itemsStorage = new ItemsStorage({ items: [], params });
@@ -89,6 +117,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             setDataSourceState: onValueChange,
         }, [...deps, this]);
 
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const clearCacheAndReload = useCallback(() => {
             this.cache = null;
             reload();
