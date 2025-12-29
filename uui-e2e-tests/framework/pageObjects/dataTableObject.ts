@@ -239,6 +239,35 @@ export abstract class DataTableObject {
         await expect(foldArrow).toBeVisible();
     }
 
+    async clickOnCheckbox(rowName: string) {
+        const checkbox = this.getRowCheckbox(rowName);
+
+        await checkbox.click();
+    }
+
+    async waitForCheckboxToBeChecked(rowName: string) {
+        const checkbox = this.getRowCheckbox(rowName).getByRole('checkbox');
+
+        await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+    }
+
+    async waitForCheckboxToBeUnchecked(rowName: string) {
+        const checkbox = this.getRowCheckbox(rowName).getByRole('checkbox');
+
+        await expect(checkbox).toHaveAttribute('aria-checked', 'false');
+    }
+
+    async waitForCheckboxToBeMixed(rowName: string) {
+        const checkbox = this.getRowCheckbox(rowName).getByRole('checkbox');
+
+        await expect(checkbox).toHaveAttribute('aria-checked', 'mixed');
+    }
+
+    getRowCheckbox(rowName: string) {
+        const row = this.getTableRows().filter({ hasText: new RegExp(`^${rowName}`, 'gi') });
+        return row.getByLabel('Select', { exact: true });
+    }
+
     async fillNumericFilterInput(input: string) {
         const filterModal = this.getFilterModal();
         const numericInput = filterModal.getByPlaceholder('Enter a number');
