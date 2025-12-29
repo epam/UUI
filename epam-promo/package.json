@@ -1,6 +1,6 @@
 {
   "name": "@epam/promo",
-  "version": "6.4.1-beta.0",
+  "version": "6.4.0",
   "description": "EPAM UUI4 components set",
   "author": "EPAM",
   "license": "MIT",
@@ -12,10 +12,10 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "6.4.1-beta.0",
-    "@epam/uui": "6.4.1-beta.0",
-    "@epam/uui-components": "6.4.1-beta.0",
-    "@epam/uui-core": "6.4.1-beta.0",
+    "@epam/assets": "6.4.0",
+    "@epam/uui": "6.4.0",
+    "@epam/uui-components": "6.4.0",
+    "@epam/uui-core": "6.4.0",
     "@types/classnames": "2.2.6",
     "classnames": "2.2.6"
   },
