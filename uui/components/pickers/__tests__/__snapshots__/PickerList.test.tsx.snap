@@ -230,7 +230,7 @@ exports[`PickerList should open body 1`] = `
           tabindex="-1"
         >
           <div
-            class="root scrollContainer uui-scroll-bars uui-line-bottom"
+            class="root scrollContainer root uui-scroll-bars uui-line-bottom"
             data-overlayscrollbars="host"
             data-overlayscrollbars-initialize=""
           >

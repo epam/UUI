@@ -6,6 +6,7 @@ export const getRecoveryMessageConfig: () => Record<ApiRecoveryReason, { title: 
     'connection-lost': i18n.errorHandler.recoveryMessageConfig['connection-lost'],
     maintenance: i18n.errorHandler.recoveryMessageConfig.maintenance,
     'server-overload': i18n.errorHandler.recoveryMessageConfig['server-overload'],
+    'abort-signal': { title: 'abort signal', subtitle: 'abort signal' },
 });
 
 export const getErrorPageConfig = () => ({

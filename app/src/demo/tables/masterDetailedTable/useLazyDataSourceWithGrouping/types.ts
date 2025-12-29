@@ -61,7 +61,7 @@ type ApiType<
     TGroupBy extends BaseGroupBy<TGroups>
 > = (
     request: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter[TType]>['api']>[0],
-    context?: Parameters<LazyDataSourceProps<TGroups[keyof TGroups], TId[TType], TFilter[TType]>['api']>[1],
+    context: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter[TType]>['api']>[1],
 ) => ReturnType<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter[TType]>['api']>;
 
 type GetRowOptionsType<

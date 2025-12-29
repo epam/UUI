@@ -17,22 +17,22 @@ const dataSourcesMap: any = {
 const getDataSourceExamples = (ctx: IDocBuilderGenCtx) => {
     dataSourcesMap.languages = dataSourcesMap.languages
         || new AsyncDataSource({
-            api: () => ctx.demoApi.languages({}).then((r) => r.items),
+            api: (options) => ctx.demoApi.languages({}, options).then((r) => r.items),
         });
     dataSourcesMap.cities = dataSourcesMap.cities
         || new AsyncDataSource({
-            api: () => ctx.demoApi.cities({ sorting: [{ field: 'name' }] }).then((r) => r.items),
+            api: (options) => ctx.demoApi.cities({ sorting: [{ field: 'name' }] }, options).then((r) => r.items),
         });
     dataSourcesMap.languages = dataSourcesMap.languages
         || new AsyncDataSource({
-            api: () => ctx.demoApi.languages({}).then((r) => r.items),
+            api: (options) => ctx.demoApi.languages({}, options).then((r) => r.items),
         });
     dataSourcesMap.lazyLocations = dataSourcesMap.lazyLocations
         || new LazyDataSource({
             api: (request, context) => {
                 const { search } = request;
                 const filter = search ? {} : { parentId: context?.parentId };
-                return ctx.demoApi.locations({ ...request, search, filter });
+                return ctx.demoApi.locations({ ...request, search, filter }, context);
             },
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
@@ -41,14 +41,14 @@ const getDataSourceExamples = (ctx: IDocBuilderGenCtx) => {
 
     dataSourcesMap.locations = dataSourcesMap.locations
         || new AsyncDataSource({
-            api: () => ctx.demoApi.locations({}).then((r) => r.items),
+            api: (options) => ctx.demoApi.locations({}, options).then((r) => r.items),
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
         });
 
     dataSourcesMap.persons = dataSourcesMap.persons
         || new LazyDataSource({
-            api: (rq) => ctx.demoApi.persons({ ...rq, sorting: [{ field: 'name' }] }),
+            api: (rq, context) => ctx.demoApi.persons({ ...rq, sorting: [{ field: 'name' }] }, context),
         });
 
     return [
