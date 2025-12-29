@@ -30,7 +30,7 @@ export abstract class DataTableObject {
 
     async scrollScreen(screens: number = 1) {
         for (let i = 0; i <= screens - 1; i++) {
-            await this.locators.table.evaluate((e) => e.scrollBy(0, 1000));
+            await this.locators.table.evaluate((e) => e.scrollBy(0, 500));
         }
     }
 
