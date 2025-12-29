@@ -13,7 +13,7 @@ export default function LazyTreeSearch() {
             api: (request, ctx) => {
                 const { search } = request;
                 const filter = search ? {} : { parentId: ctx?.parentId };
-                return svc.api.demo.locations({ ...request, search, filter });
+                return svc.api.demo.locations({ ...request, search, filter }, ctx);
             },
             cascadeSelection: true,
             getId: (i) => i.id,
@@ -31,12 +31,12 @@ export default function LazyTreeSearch() {
                 if (search && ctx.parentId) { // >1 level, search
                     return Promise.resolve({ items: ctx.parent.children });
                 } else if (search) {
-                    const tree = svc.api.demo.locationsSearch({ ...request, search });
+                    const tree = svc.api.demo.locationsSearch({ ...request, search }, ctx);
                     return tree;
                 }
 
                 const filter = { parentId: ctx?.parentId };
-                return svc.api.demo.locations({ ...request, filter });
+                return svc.api.demo.locations({ ...request, filter }, ctx);
             },
             flattenSearchResults: false,
             cascadeSelection: true,

@@ -17,7 +17,7 @@ export function LanguagesSection({ lens }: { lens: ILens<PersonLanguageInfo[]> }
 
     const languageDataSource = useAsyncDataSource(
         {
-            api: () => svc.api.demo.languages({}).then((r) => r.items),
+            api: (options) => svc.api.demo.languages({}, options).then((r) => r.items),
         },
         [],
     );

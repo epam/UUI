@@ -212,6 +212,7 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, auto
                             onValueChange={ props.onValueChange }
                             rows={ renderedDataRows }
                             role="listbox"
+                            cx={ css.root }
                             rawProps={ {
                                 'aria-multiselectable': props.selectionMode === 'multi' ? true : null,
                                 'aria-orientation': 'vertical',

@@ -54,7 +54,7 @@ export default function TableWithPinnedRows() {
     const dataSource = useLazyDataSource<Location, string, unknown>({
         api: (request, ctx) => {
             const filter = { parentId: ctx?.parentId };
-            return svc.api.demo.locations({ ...request, filter });
+            return svc.api.demo.locations({ ...request, filter }, ctx);
         },
         getParentId: ({ parentId }) => parentId,
         getChildCount: (l) => l.childCount,

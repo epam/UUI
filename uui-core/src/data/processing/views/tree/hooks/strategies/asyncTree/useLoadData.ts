@@ -3,7 +3,7 @@ import { DataSourceState, IImmutableMap, IMap, LazyDataSourceApi } from '../../.
 import { TreeState } from '../../../treeState';
 import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import { isQueryChanged } from '../lazyTree/helpers';
-import { useItemsStatusCollector } from '../../common';
+import { useAbortController, useItemsStatusCollector } from '../../common';
 import { getSelectedAndChecked } from '../../../treeStructure';
 import { NOT_FOUND_RECORD } from '../../../constants';
 import { ItemsStatuses } from '../types';
@@ -56,6 +56,8 @@ export function useLoadData<TItem, TId, TFilter = any>(
         [itemsStatusMap, externalItemsStatusCollector],
     );
 
+    const { getAbortSignal } = useAbortController();
+
     const loadData = async (
         sourceTree: TreeState<TItem, TId>,
         dsState: DataSourceState<TFilter, TId> = {},
@@ -63,6 +65,8 @@ export function useLoadData<TItem, TId, TFilter = any>(
         const loadingTree = sourceTree;
         const { checked, ...partialDsState } = dsState;
         try {
+            const signal = getAbortSignal();
+
             const newTreePromise = sourceTree.loadAll<TFilter>({
                 using: partialDsState.search ? 'visible' : undefined,
                 options: {
@@ -70,6 +74,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
                     filter: {
                         ...dsState?.filter,
                     },
+                    signal,
                 },
                 dataSourceState: partialDsState,
             });
@@ -117,6 +122,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
                 setIsLoading(true);
             }
             const checked = getSelectedAndChecked(dataSourceState, patch);
+
             loadData(tree, dataSourceState)
                 .then(({ isOutdated, isUpdated, tree: newTree }) => {
                     if (isUpdated && !isOutdated) {

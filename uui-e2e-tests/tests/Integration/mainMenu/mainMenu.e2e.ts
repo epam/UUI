@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '../../../framework/fixtures/integrationTestPage/fixture';
+import { test } from '../../../framework/fixtures';
 import { MainMenuObject } from '../../../framework/pageObjects/mainMenuObject';
 import { setupDocExampleTest } from '../testUtils';
 
