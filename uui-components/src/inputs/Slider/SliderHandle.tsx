@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { IHasCX, uuiElement, cx, IHasRawProps } from '@epam/uui-core';
+import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import css from './SliderHandle.module.scss';
-import { useFloating, arrow, autoUpdate } from '@floating-ui/react';
-import { Portal } from '../../overlays';
+import { useFloating, arrow, autoUpdate, offset } from '@floating-ui/react';
+import { DropdownContainer, Portal } from '../../overlays';
 import { uuiSlider } from './SliderBase';
 
 interface SliderHandleProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -31,26 +31,30 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
     const [isHovered, setIsHovered] = React.useState(false);
     const sliderHandleRef = React.useRef<HTMLDivElement | null>(null);
     const arrowRef = React.useRef<HTMLDivElement | null>(null);
-    const updateTimeoutRef = React.useRef<number>(null);
+    const updateTooltipRafRef = React.useRef<number | null>(null);
 
-    const { refs, floatingStyles } = useFloating({
+    const { refs, floatingStyles, placement, middlewareData, update } = useFloating({
         placement: 'top',
         middleware: [
             arrow({ element: arrowRef }),
+            offset({ mainAxis: 12 }),
         ],
-        whileElementsMounted: autoUpdate,
         open: showTooltip && (isActive || isHovered),
+        strategy: 'fixed',
+        whileElementsMounted: autoUpdate,
     });
 
     React.useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             if (isActive) {
-                if (updateTimeoutRef.current) {
-                    window.clearTimeout(updateTimeoutRef.current);
+                onUpdate(e.clientX);
+
+                if (updateTooltipRafRef.current === null) {
+                    updateTooltipRafRef.current = requestAnimationFrame(() => {
+                        update();
+                        updateTooltipRafRef.current = null;
+                    });
                 }
-                updateTimeoutRef.current = window.setTimeout(() => {
-                    onUpdate(e.clientX);
-                }, 16);
             }
         };
 
@@ -74,15 +78,16 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
         sliderHandleRef.current?.addEventListener('mouseleave', handleMouseLeave);
 
         return () => {
-            if (updateTimeoutRef.current) {
-                window.clearTimeout(updateTimeoutRef.current);
+            if (updateTooltipRafRef.current !== null) {
+                cancelAnimationFrame(updateTooltipRafRef.current);
+                updateTooltipRafRef.current = null;
             }
             document.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseup', handleMouseUp);
             sliderHandleRef.current?.removeEventListener('mouseenter', handleMouseEnter);
             sliderHandleRef.current?.removeEventListener('mouseleave', handleMouseLeave);
         };
-    }, [isActive, onUpdate, handleActiveState]);
+    }, [isActive, onUpdate, handleActiveState, update]);
 
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
         e.preventDefault();
@@ -111,20 +116,35 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
 
     const tooltip = React.useMemo(() => {
         if (!showTooltip || (!isActive && !isHovered)) return null;
+        const arrowProps = {
+            ref: arrowRef,
+            style: middlewareData.arrow
+                ? {
+                    top: middlewareData.arrow.y,
+                    left: middlewareData.arrow.x,
+                }
+                : { },
+        };
 
         return (
             <Portal>
-                <div
+                <DropdownContainer
+                    focusLock={ false }
+                    showArrow={ true }
+                    maxWidth={ 100 }
                     ref={ refs.setFloating }
                     style={ floatingStyles }
-                    className={ cx(propsCx, css.container, uuiElement.tooltipContainer, css.tooltipWrapper) }
+                    cx={ css.container }
+                    placement={ placement }
+                    arrowProps={ arrowProps }
                 >
-                    <div className={ uuiElement.tooltipBody }>{tooltipContent}</div>
-                    <div ref={ arrowRef } className={ uuiElement.tooltipArrow } />
-                </div>
+                    <div role="tooltip" className="uui-slider-tooltip-body">
+                        { tooltipContent }
+                    </div>
+                </DropdownContainer>
             </Portal>
         );
-    }, [showTooltip, isActive, isHovered, floatingStyles, tooltipContent, propsCx, refs.setFloating]);
+    }, [showTooltip, isActive, isHovered, floatingStyles, tooltipContent, propsCx, refs.setFloating, placement]);
 
     const setRefs = React.useCallback(
         (node: HTMLDivElement | null) => {
