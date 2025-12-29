@@ -488,6 +488,15 @@
         --uui-tooltip-text: var(--uui-neutral-70);
     }
 
+
+    /* Slider */
+
+    .uui-slider-tooltip-body {
+        --uui-slider-tooltip-bg: var(--uui-neutral-10);
+        --uui-slider-tooltip-text: var(--uui-neutral-70);
+    }
+
+
     /* CountIndicator */
 
     .uui-count_indicator:is(.uui-color-neutral, .uui-color-gray, .uui-color-info, .uui-color-sky, .uui-color-grass, .uui-color-success, .uui-color-critical, .uui-color-fire, .uui-color-warning, .uui-color-sun) {
