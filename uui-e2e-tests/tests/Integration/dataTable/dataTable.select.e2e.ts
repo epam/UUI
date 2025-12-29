@@ -107,16 +107,41 @@ test.describe('DataTable: Select', () => {
         });
 
         await test.step('Unselect all items', async () => {
-            await pageObject.moveFocusBackward();
-            await pageObject.moveFocusBackward();
-            await pageObject.moveFocusBackward();
-            await pageObject.moveFocusBackward();
-            await pageObject.moveFocusBackward();
-            await pageObject.moveFocusBackward();
+            await pageObject.moveFocusBackward(6);
 
             await pageObject.page.keyboard.press('Space');
             await pageObject.waitFocusedCheckboxIsNotChecked();
             await expectScreenshot(3, 'tree-keyboard-unselect-all-items');
+        });
+    });
+
+    test('Tree: Cascade selection', async ({ pageWrapper }, testInfo) => {
+        const { pageObject, expectScreenshot } = await setupDocExampleTest({
+            testInfo,
+            pageWrapper,
+            PageObjectConstructor: LocationsDataTableObject,
+            testUrl: LocationsDataTableObject.testUrl,
+        });
+
+        await pageObject.waitForTableRendered();
+        await test.step('Select item', async () => {
+            await pageObject.clickOnCheckbox('Africa');
+            await pageObject.waitForCheckboxToBeChecked('Africa');
+
+            await expectScreenshot(1, 'tree-check');
+        });
+
+        await test.step('Unfold first row', async () => {
+            await pageObject.unfold('Africa');
+
+            await expectScreenshot(2, 'tree-unfolded-africa');
+        });
+
+        await test.step('Unselect all items', async () => {
+            await pageObject.clickOnCheckbox('Algeria');
+            await pageObject.waitForCheckboxToBeUnchecked('Algeria');
+            await pageObject.waitForCheckboxToBeMixed('Africa');
+            await expectScreenshot(3, 'tree-africa-parially-checked');
         });
     });
 });
