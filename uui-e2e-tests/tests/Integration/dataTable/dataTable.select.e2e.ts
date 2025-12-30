@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from '../../../framework/fixtures';
 import { setupDocExampleTest } from '../testUtils';
-import { ColumnFiltersDataTableObject, LocationsDataTableObject } from '../../../framework/pageObjects';
+import { ColumnFiltersDataTableObject, LazyDataTableObject, LocationsDataTableObject } from '../../../framework/pageObjects';
 
 test.describe('DataTable: Select', () => {
     test('Select All/Unselect All.', async ({ pageWrapper }, testInfo) => {
@@ -142,6 +142,58 @@ test.describe('DataTable: Select', () => {
             await pageObject.waitForCheckboxToBeUnchecked('Algeria');
             await pageObject.waitForCheckboxToBeMixed('Africa');
             await expectScreenshot(3, 'tree-africa-parially-checked');
+        });
+    });
+
+    test('Selection with disabled rows', async ({ pageWrapper }, testInfo) => {
+        const { pageObject, expectScreenshot } = await setupDocExampleTest({
+            testInfo,
+            pageWrapper,
+            PageObjectConstructor: LazyDataTableObject,
+            testUrl: LazyDataTableObject.testUrl,
+        });
+
+        await pageObject.waitForTableRendered();
+        await test.step('Select first item', async () => {
+            await pageObject.clickOnCheckbox('225284');
+            await pageObject.waitForCheckboxToBeChecked('225284');
+
+            await expectScreenshot(1, 'lazy-check-single-row');
+        });
+
+        await test.step('Try to select disabled item', async () => {
+            await pageObject.waitForCheckboxToBeDisabled('2625070');
+
+            await expectScreenshot(2, 'lazy-disabled-row-try-to-check');
+        });
+    });
+
+    test('Selection with disabled rows [Using keyboard]', async ({ pageWrapper }, testInfo) => {
+        const { pageObject, expectScreenshot } = await setupDocExampleTest({
+            testInfo,
+            pageWrapper,
+            PageObjectConstructor: LazyDataTableObject,
+            testUrl: LazyDataTableObject.testUrl,
+        });
+
+        await pageObject.waitForTableRendered();
+        await test.step('Select first item', async () => {
+            await pageObject.focusFirstElement();
+            await pageObject.moveFocusForward(5);
+            await pageObject.page.keyboard.press('Space');
+
+            await pageObject.waitForCheckboxToBeChecked('225284');
+
+            await expectScreenshot(1, 'keyboard-lazy-check-single-row');
+        });
+
+        await test.step('Move focus forward with keyboard to skip disabled checkbox', async () => {
+            await pageObject.moveFocusForward();
+            await pageObject.page.keyboard.press('Space');
+
+            await pageObject.waitForCheckboxToBeChecked('2747351');
+
+            await expectScreenshot(2, 'keyboard-skip-disabled-checkbox-with-focus');
         });
     });
 });
