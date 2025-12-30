@@ -1,3 +1,4 @@
+import { FetchingOptions } from '../../../../../../..//services';
 import {
     BaseDataSourceConfig,
     DataSourceState, FlattenSearchResultsConfig, IMap, LazyDataSourceApi,
@@ -129,7 +130,7 @@ export interface AsyncDataSourceConfig<TItem> {
      * This api called only once during the initialization and assumed to return the full amount of data.
      * For lazy loading cases, use LazyDataSource
      */
-    api(): Promise<TItem[]>;
+    api(options: FetchingOptions): Promise<TItem[]>;
 }
 
 export interface ArrayDataSourceConfig<TItem> {

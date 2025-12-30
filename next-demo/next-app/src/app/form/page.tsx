@@ -451,7 +451,7 @@ const Languages = ({
 
     const languageDataSource = useAsyncDataSource(
         {
-            api: () => svc.api.demo.languages({}).then((r) => r.items),
+            api: (options) => svc.api.demo.languages({}, options).then((r) => r.items),
         },
         []
     );
@@ -815,9 +815,9 @@ const DemoForm = () => {
 
     const countriesDS = useAsyncDataSource<Country, string, unknown>(
         {
-            api: () =>
+            api: (options) =>
                 svc.api.demo
-                    .countries({ sorting: [{ field: 'name' }] })
+                    .countries({ sorting: [{ field: 'name' }] }, options)
                     .then((r) => r.items),
         },
         []

@@ -1,10 +1,11 @@
+import { FetchingOptions } from '@epam/uui-core';
 import { DbRef } from './DbRef';
 import {
     DbPatch, DbTablesSet, LoadingState, ILoadingTracker,
 } from './types';
 
 export interface LoaderOptions<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
-    api: (request: TRequest) => Promise<TResult>;
+    api: (request: TRequest, fetchingOptions: FetchingOptions) => Promise<TResult>;
     convertToPatch?: (result: TResult) => DbPatch<TTables>;
     postProcess?: (patch: DbPatch<TTables>) => DbPatch<TTables>;
     clientToServerRequest?: (request: TRequest) => TRequest;
@@ -28,14 +29,14 @@ export class Loader<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
         this.loadedAndLoading = getTracker();
     }
 
-    private loadImpl(state: LoaderResult<TRequest>) {
+    private loadImpl(state: LoaderResult<TRequest>, fetchingOptions: FetchingOptions) {
         this.loadedAndLoading.append(state.missing);
         state.isLoading = true;
         let serverRequest = state.missing;
         if (this.options.clientToServerRequest) {
             serverRequest = this.options.clientToServerRequest(serverRequest);
         }
-        state.promise = this.options.api(serverRequest).then((result) => {
+        state.promise = this.options.api(serverRequest, fetchingOptions).then((result) => {
             this.loaded.append(state.missing, result);
             this.loadedAndLoading.append(state.missing, result);
             state.missing = null;
@@ -56,7 +57,7 @@ export class Loader<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
         return state.promise;
     }
 
-    public load = (inputRequest: TRequest) => {
+    public load = (inputRequest: TRequest, fetchingOptions?: FetchingOptions) => {
         const result: LoaderResult<TRequest> = {
             isComplete: this.loaded.diff(inputRequest) == null,
             isLoading: false,
@@ -68,7 +69,7 @@ export class Loader<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
 
         result.reload = () => {
             result.missing = inputRequest;
-            this.loadImpl(result);
+            this.loadImpl(result, fetchingOptions);
         };
 
         if (result.isComplete) {
@@ -88,7 +89,7 @@ export class Loader<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
                 return result;
             } else {
                 // Something requested is not loaded, nor being loaded. Need to perform a new request.
-                this.loadImpl(result);
+                this.loadImpl(result, fetchingOptions);
                 return result;
             }
         }

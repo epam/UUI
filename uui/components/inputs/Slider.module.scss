@@ -1,5 +1,4 @@
 .root {
-    --uui-slider-tooltip-bg: var(--uui-color-70);
     --uui-slider-tooltip-bg-hover: var(--uui-primary-20);
     --uui-slider-line-bg: var(--uui-neutral-30);
     --uui-slider-line-filled-bg: var(--uui-primary-50);
@@ -9,34 +8,14 @@
     --uui-slider-dot-border: var(--uui-neutral-30);
     --uui-slider-dot-border-hover: var(--uui-primary-20);
     --uui-slider-handle-bg: var(--uui-primary-50);
-    --uui-slider-shadow: var(--uui-shadow-level-1);
     --uui-slider-scale-text: var(--uui-text-primary);
 
     --uui-slider-font: var(--uui-font);
     --uui-slider-font-weight: 400;
 
-    --uui-slider-tooltip-font-size: 14px;
-    --uui-slider-tooltip-line-height: 14px;
-    --uui-slider-tooltip-vertical-padding: 0;
-    --uui-slider-tooltip-horizontal-padding: 10px;
     --uui-slider-scale-number-font-size: 11px;
     --uui-slider-scale-dot-size: 7px;
     --uui-slider-scale-height: 6px;
-
-    :global(.uui-tooltip-body) {
-        background-color: var(--uui-slider-tooltip-bg);
-        padding: var(--uui-slider-tooltip-vertical-padding) var(--uui-slider-tooltip-horizontal-padding);
-        color: white;
-        line-height: var(--uui-slider-tooltip-line-height);
-        font-size: var(--uui-slider-tooltip-font-size);
-        font-family: var(--uui-slider-font);
-        font-weight: var(--uui-slider-font-weight);
-        box-shadow: var(--uui-slider-shadow);
-    }
-
-    :global(.uui-tooltip-arrow) {
-        border: 5px solid transparent;
-    }
 
     :global(.uui-slider-scale-number) {
         font-size: var(--uui-slider-scale-number-font-size);
