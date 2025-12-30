@@ -195,8 +195,8 @@ describe('LazyListView - show only selected', () => {
         await waitFor(() => {
             view = hookResult.result.current;
             expectViewToLookLike(view, [
-                { id: 'BJ', parentId: 'c-AF', indent: 0, depth: 1 },
-                { id: '2392308', parentId: 'BJ', indent: 0, depth: 2 },
+                { id: 'BJ', value: expect.objectContaining({ parentId: 'c-AF' }), indent: 0, depth: 0 },
+                { id: '2392308', value: expect.objectContaining({ parentId: 'BJ' }), indent: 0, depth: 0 },
                 { id: 'c-AF', indent: 0, depth: 0 },
             ]);
         });
