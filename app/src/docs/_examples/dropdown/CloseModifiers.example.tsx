@@ -3,7 +3,7 @@ import {
     Button, DatePicker, Dropdown, DropdownContainer, FlexCell, FlexRow, LabeledInput, PickerInput, TimePicker,
     TimePickerValue, Panel, Text,
 } from '@epam/uui';
-import { DropdownBodyProps, IDropdownToggler, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { DropdownBodyProps, IDropdownToggler, LazyDataSourceApiRequest, LazyDataSourceApiRequestContext, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import { offset } from '@floating-ui/react';
 
@@ -14,8 +14,8 @@ export default function CloseModifiersExample() {
     const [createdWhenDate, setCreatedWhenDate] = useState<string>('');
     const [createdWhenTime, setCreatedWhenTime] = useState<TimePickerValue | null>(null);
 
-    const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>) => {
-        return svc.api.demo.persons(request);
+    const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>, ctx: LazyDataSourceApiRequestContext<Person, number>) => {
+        return svc.api.demo.persons(request, ctx);
     }, [svc]);
 
     const personsDs = useLazyDataSource({ api: loadPersons }, []);

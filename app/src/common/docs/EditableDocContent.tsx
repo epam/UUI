@@ -91,7 +91,7 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
         svc.uuiApi.processRequest('/api/save-doc-content', 'POST', {
             name: this.props.fileName,
             content: content,
-        });
+        }).catch(() => {});
     };
 
     render() {

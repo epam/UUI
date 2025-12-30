@@ -1,4 +1,4 @@
-# 6.x.x - xx.xx.2025
+# 6.4.1 - 29.12.2025
 
 **What's New**
 
@@ -6,6 +6,7 @@
 * [NumericInput]: use 'any' value for step prop by default
 * [useForm]: fixed form revet on value prop change. Before it remained previous `isChanged` and form history values
 * [PickerInput]: fixed possibility to truncate long text in custom picker row
+* [Slider]: fixed tooltip styles and freezes on change
 
 
 # 6.4.0 - 15.12.2025
