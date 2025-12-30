@@ -251,6 +251,12 @@ export abstract class DataTableObject {
         await expect(checkbox).toHaveAttribute('aria-checked', 'true');
     }
 
+    async waitForCheckboxToBeDisabled(rowName: string) {
+        const checkbox = this.getRowCheckbox(rowName).getByRole('checkbox');
+
+        await expect(checkbox).toHaveAttribute('aria-disabled', 'true');
+    }
+
     async waitForCheckboxToBeUnchecked(rowName: string) {
         const checkbox = this.getRowCheckbox(rowName).getByRole('checkbox');
 
