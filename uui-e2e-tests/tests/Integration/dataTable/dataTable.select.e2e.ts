@@ -137,7 +137,7 @@ test.describe('DataTable: Select', () => {
             await expectScreenshot(2, 'tree-unfolded-africa');
         });
 
-        await test.step('Unselect all items', async () => {
+        await test.step('Unselect child row', async () => {
             await pageObject.clickOnCheckbox('Algeria');
             await pageObject.waitForCheckboxToBeUnchecked('Algeria');
             await pageObject.waitForCheckboxToBeMixed('Africa');
