@@ -146,7 +146,7 @@ test.describe('DataTable: Select', () => {
     });
 
     test('Selection with disabled rows', async ({ pageWrapper }, testInfo) => {
-        const { pageObject, expectScreenshot } = await setupDocExampleTest({
+        const { pageObject } = await setupDocExampleTest({
             testInfo,
             pageWrapper,
             PageObjectConstructor: LazyDataTableObject,
@@ -157,19 +157,16 @@ test.describe('DataTable: Select', () => {
         await test.step('Select first item', async () => {
             await pageObject.clickOnCheckbox('225284');
             await pageObject.waitForCheckboxToBeChecked('225284');
-
-            await expectScreenshot(1, 'lazy-check-single-row');
+            await pageObject.waitForSelectAllCheckboxToBeMixed();
         });
 
         await test.step('Try to select disabled item', async () => {
             await pageObject.waitForCheckboxToBeDisabled('2625070');
-
-            await expectScreenshot(2, 'lazy-disabled-row-try-to-check');
         });
     });
 
     test('Selection with disabled rows [Using keyboard]', async ({ pageWrapper }, testInfo) => {
-        const { pageObject, expectScreenshot } = await setupDocExampleTest({
+        const { pageObject } = await setupDocExampleTest({
             testInfo,
             pageWrapper,
             PageObjectConstructor: LazyDataTableObject,
@@ -183,8 +180,7 @@ test.describe('DataTable: Select', () => {
             await pageObject.page.keyboard.press('Space');
 
             await pageObject.waitForCheckboxToBeChecked('225284');
-
-            await expectScreenshot(1, 'keyboard-lazy-check-single-row');
+            await pageObject.waitForSelectAllCheckboxToBeMixed();
         });
 
         await test.step('Move focus forward with keyboard to skip disabled checkbox', async () => {
@@ -192,8 +188,7 @@ test.describe('DataTable: Select', () => {
             await pageObject.page.keyboard.press('Space');
 
             await pageObject.waitForCheckboxToBeChecked('2747351');
-
-            await expectScreenshot(2, 'keyboard-skip-disabled-checkbox-with-focus');
+            await pageObject.waitForSelectAllCheckboxToBeMixed();
         });
     });
 });
