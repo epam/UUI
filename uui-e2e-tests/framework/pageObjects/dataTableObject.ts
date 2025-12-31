@@ -24,7 +24,6 @@ export abstract class DataTableObject {
     }
 
     async focusFirstElement() {
-        await this.waitForTableRendered();
         await this.pressTab(2);
     }
 
@@ -247,6 +246,30 @@ export abstract class DataTableObject {
         const checkbox = this.getRowCheckbox(rowName).getByRole('checkbox');
 
         await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+    }
+
+    async waitForSelectAllCheckboxToBeMixed() {
+        const selectAllCheckbox = this.getSelectAllCheckbox().getByRole('checkbox');
+
+        await expect(selectAllCheckbox).toHaveAttribute('aria-checked', 'mixed');
+    }
+
+    async waitForSelectAllCheckboxToBeChecked() {
+        const selectAllCheckbox = this.getSelectAllCheckbox().getByRole('checkbox');
+
+        await expect(selectAllCheckbox).toHaveAttribute('aria-checked', 'true');
+    }
+
+    async waitForSelectAllCheckboxToBeUnchecked() {
+        const selectAllCheckbox = this.getSelectAllCheckbox().getByRole('checkbox');
+
+        await expect(selectAllCheckbox).toHaveAttribute('aria-checked', 'false');
+    }
+
+    async waitForCheckboxToBeDisabled(rowName: string) {
+        const checkbox = this.getRowCheckbox(rowName).getByRole('checkbox');
+
+        await expect(checkbox).toHaveAttribute('aria-disabled', 'true');
     }
 
     async waitForCheckboxToBeUnchecked(rowName: string) {

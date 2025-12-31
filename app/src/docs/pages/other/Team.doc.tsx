@@ -15,7 +15,7 @@ export const team = [
         link: 'https://telescope.epam.com/who/Yakov_Zhmourov',
     }, {
         name: 'Ilya Gorchakov',
-        position: 'Project Coordinator',
+        position: 'Delivery Manager',
         isDefault: true,
         src: 'https://static.cdn.epam.com/avatar/72202efb63166eb10120ad041f4f676c.jpg',
         link: 'https://telescope.epam.com/who/Ilya_Gorchakov',

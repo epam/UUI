@@ -50,7 +50,7 @@ export default function BasicAdaptivePanelExample() {
     ];
 
     return (
-        <FlexCell grow={ 1 }>
+        <FlexCell grow={ 1 } style={ { padding: 12 } }>
             <Slider value={ width } onValueChange={ setWidth } min={ 0 } max={ 100 } step={ 1 } />
 
             <div style={ { width: `${width}%`, marginTop: 12 } }>
