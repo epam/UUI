@@ -8,7 +8,7 @@ export default function BasicPickerListExample() {
     const [countries, setCountries] = useState<string[]>(['GM', 'UA']);
     const locationsDataSource = useAsyncDataSource<Country, string, unknown>(
         {
-            api: () => svc.api.demo.countries({}).then((res: any) => res.items),
+            api: (options) => svc.api.demo.countries({}, options).then((res: any) => res.items),
         },
         [],
     );

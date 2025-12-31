@@ -10,7 +10,7 @@ export default function ArrayLinkedPickers() {
 
     const countryDataSource = useAsyncDataSource<Country, string, unknown>(
         {
-            api: () => svc.api.demo.countries({}).then((r: any) => r.items),
+            api: (options) => svc.api.demo.countries({}, options).then((r: any) => r.items),
         },
         [],
     );

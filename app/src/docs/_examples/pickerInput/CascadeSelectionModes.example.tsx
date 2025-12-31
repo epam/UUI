@@ -24,7 +24,7 @@ export default function CascadeSelectionModesExample() {
                 const { search } = request;
                 // and since parentId is meaningful value, it is required to exclude it from the filter.
                 const filter = search ? {} : { parentId: ctx?.parentId };
-                return svc.api.demo.locations({ ...request, search, filter });
+                return svc.api.demo.locations({ ...request, search, filter }, ctx);
             },
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,

@@ -1,35 +1,51 @@
 .container {
+    --uui-slider-tooltip-bg: var(--uui-neutral-80);
+    --uui-slider-tooltip-text: var(--uui-neutral-5);
+    --uui-slider-tooltip-border: var(--uui-slider-tooltip-bg);
+
+    --uui-slider-font: var(--uui-font);
+    --uui-slider-font-weight: 400;
+
+    --uui-slider-tooltip-font-size: 12px;
+    --uui-slider-tooltip-line-height: 18px;
+
+    --uui-slider-tooltip-vertical-padding: 3px;
+    --uui-slider-tooltip-horizontal-padding: 12px;
+    --uui-slider-tooltip-border-radius: 3px;
+
     pointer-events: none;
 
-    &[data-placement^='top'] {
-        .tooltip-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    :global(.uui-slider-tooltip-body) {
+        background-color: var(--uui-slider-tooltip-bg);
+        padding: var(--uui-slider-tooltip-vertical-padding) var(--uui-slider-tooltip-horizontal-padding);
+        color: var(--uui-slider-tooltip-text);
+        line-height: var(--uui-slider-tooltip-line-height);
+        font-size: var(--uui-slider-tooltip-font-size);
+        font-family: var(--uui-slider-font), serif;
+        font-weight: var(--uui-slider-font-weight);
+        border-radius: var(--uui-slider-tooltip-border-radius);
+        border: 1px solid var(--uui-slider-tooltip-border);
     }
 
-    &[data-placement^='bottom'] {
-        .tooltip-wrapper {
-            display: flex;
-            flex-direction: column-reverse;
-            align-items: center;
-        }
+    :global(.uui-tooltip-arrow) {
+        border: 5px solid transparent;
     }
 
-    &[data-placement^='left'] {
-        .tooltip-wrapper {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
+    :global(.uui-popover-arrow) {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        overflow: hidden;
     }
 
-    &[data-placement^='right'] {
-        .tooltip-wrapper {
-            display: flex;
-            flex-direction: row-reverse;
-            align-items: center;
-        }
+    :global(.uui-popover-arrow)::after {
+        content: '';
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background-color: var(--uui-slider-tooltip-bg);
+        border-bottom: 1px solid var(--uui-slider-tooltip-border);
+        border-right: 1px solid var(--uui-slider-tooltip-border);
+        box-sizing: border-box;
     }
 }

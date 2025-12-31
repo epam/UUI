@@ -10,7 +10,7 @@ export default function BasicPickerModal() {
 
     const dataSource = useAsyncDataSource<Location, string, unknown>(
         {
-            api: () => svc.api.demo.locations({}).then((res: { items: any; }) => res.items),
+            api: (options) => svc.api.demo.locations({}, options).then((res: { items: any; }) => res.items),
         },
         [],
     );

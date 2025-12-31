@@ -52,7 +52,7 @@ describe('LazyListView - show only selected', () => {
             expect(apiMock).toBeCalledTimes(1);
         });
 
-        expect(apiMock).toBeCalledWith({ ids: ['BJ', 'c-AF', 'DZ'] }, undefined);
+        expect(apiMock).toBeCalledWith({ ids: ['BJ', 'c-AF', 'DZ'] }, { signal: new AbortController().signal });
     });
 
     it('should load only selected item if showSelectedOnly = true', async () => {
@@ -80,7 +80,7 @@ describe('LazyListView - show only selected', () => {
             expect(apiMock).toBeCalledTimes(1);
         });
 
-        expect(apiMock).toBeCalledWith({ ids: ['c-EU'] }, undefined);
+        expect(apiMock).toBeCalledWith({ ids: ['c-EU'] }, { signal: new AbortController().signal });
     });
 
     it('should load checked and selected items if showSelectedOnly = true', async () => {
@@ -109,7 +109,7 @@ describe('LazyListView - show only selected', () => {
             expect(apiMock).toBeCalledTimes(1);
         });
 
-        expect(apiMock).toBeCalledWith({ ids: ['BJ', 'c-AF', 'DZ', 'c-EU'] }, undefined);
+        expect(apiMock).toBeCalledWith({ ids: ['BJ', 'c-AF', 'DZ', 'c-EU'] }, { signal: new AbortController().signal });
     });
 
     it('should load checked and selected items and their parents if showSelectedOnly = false', async () => {
@@ -142,11 +142,11 @@ describe('LazyListView - show only selected', () => {
             {
                 filter: {}, page: undefined, pageSize: undefined, range: { count: 3, from: 0 }, search: undefined, sorting: undefined,
             },
-            { parent: null, parentId: null },
+            { parent: null, parentId: null, signal: new AbortController().signal },
         );
 
-        expect(apiMock).toHaveBeenCalledWith({ ids: ['BJ', '2392308', '2474506'] }, undefined);
-        expect(apiMock).toHaveBeenCalledWith({ ids: ['DZ'] }, undefined);
+        expect(apiMock).toHaveBeenCalledWith({ ids: ['BJ', '2392308', '2474506'] }, { signal: new AbortController().signal });
+        expect(apiMock).toHaveBeenCalledWith({ ids: ['DZ'] }, { signal: new AbortController().signal });
 
         await waitFor(() => {
             const view = hookResult.result.current;
@@ -448,7 +448,7 @@ describe('LazyListView - show only selected', () => {
             '2391895',
             '2391893',
             '2391455',
-        ] }, undefined);
+        ] }, { signal: new AbortController().signal });
 
         await waitFor(() => {
             const view = hookResult.result.current;
