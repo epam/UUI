@@ -12,6 +12,7 @@ test.describe('DataTable Lazy: Filters', () => {
         });
 
         await pageObject.waitForTableRendered();
+
         await test.step('Filter by Job Title', async () => {
             await pageObject.openFilterModal('Title');
 

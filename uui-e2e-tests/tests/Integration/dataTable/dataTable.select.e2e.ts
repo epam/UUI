@@ -13,6 +13,7 @@ test.describe('DataTable: Select', () => {
         });
 
         await pageObject.waitForTableRendered();
+
         await test.step('Select all items', async () => {
             await pageObject.clickSelectAllCheckbox();
             await pageObject.waitSelectAllCheckboxToBeChecked();

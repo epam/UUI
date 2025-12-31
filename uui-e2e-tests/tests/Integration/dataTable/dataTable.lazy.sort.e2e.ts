@@ -13,6 +13,7 @@ test.describe('DataTable Lazy: Sorting', () => {
         });
 
         await pageObject.waitForTableRendered();
+
         await test.step('Toggle sorting to descending value', async () => {
             await pageObject.clickOnColumnHeader('Name');
             await pageObject.clickOnColumnHeader('Name');
@@ -129,6 +130,7 @@ test.describe('DataTable Lazy Tree: Sorting', () => {
         });
 
         await pageObject.waitForTableRendered();
+
         await test.step('Move focus to column sorting', async () => {
             await pageObject.focusFirstElement();
             await expectScreenshot(1, 'tree-using-keyboard-focus-columns-sorting');

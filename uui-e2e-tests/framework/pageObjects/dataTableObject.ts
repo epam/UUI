@@ -307,6 +307,7 @@ export abstract class DataTableObject {
         await expect(this.locators.table).toBeVisible();
         await expect(firstDataRow).toBeVisible();
         await expect(firstCell).toContainText(this.getDefaultFirstRowText(), { useInnerText: true });
+        await this.page.waitForTimeout(1000);
     }
 
     private async pressTab(times: number) {
