@@ -1,3 +1,4 @@
+import { expect } from '@playwright/test';
 import { ColumnFiltersDataTableObject } from '../../../framework/pageObjects';
 import { test } from '../../../framework/fixtures';
 import { setupDocExampleTest } from '../testUtils';
@@ -77,6 +78,9 @@ test.describe('DataTable Lazy: Filters', () => {
 
         await pageObject.waitForTableRendered();
         await test.step('Filter by Job Title', async () => {
+            const columnHeaderCell = pageObject.getColumnHeaderCell('Title');
+            await expect(columnHeaderCell).toBeInViewport();
+
             await pageObject.focusFirstElement();
             await pageObject.moveFocusForward(4);
             await expectScreenshot(1, 'focus-job-title-columns-sorting');

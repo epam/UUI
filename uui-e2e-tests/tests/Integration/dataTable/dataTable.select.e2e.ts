@@ -37,7 +37,8 @@ test.describe('DataTable: Select', () => {
 
         await pageObject.waitForTableRendered();
         await test.step('Put focus on selectAll checkbox', async () => {
-            pageObject.page.waitForTimeout(5000);
+            const selectAllCheckbox = pageObject.getSelectAllCheckbox();
+            await expect(selectAllCheckbox).toBeInViewport();
 
             await pageObject.focusFirstElement();
             await expectScreenshot(1, 'first-element-focus');
