@@ -41,6 +41,9 @@ test.describe('DataTable Lazy: Sorting', () => {
 
         await pageObject.waitForTableRendered();
         await test.step('Move focus to column sorting', async () => {
+            const columnHeaderCell = pageObject.getColumnHeaderCell('Name');
+            await expect(columnHeaderCell).toBeInViewport();
+
             await pageObject.focusFirstElement();
             await pageObject.moveFocusForward();
             await expectScreenshot(1, 'using-keyboard-focus-columns-sorting');
