@@ -24,7 +24,6 @@ export abstract class DataTableObject {
     }
 
     async focusFirstElement() {
-        await this.waitForTableRendered();
         await this.pressTab(2);
     }
 
@@ -230,11 +229,66 @@ export abstract class DataTableObject {
 
     async unfold(rowName: string) {
         const row = this.getTableRows().filter({ hasText: rowName });
-        const foldArrow = row.getByLabel('Fold');
+        const unfoldArrow = row.getByLabel('Unfold', { exact: true });
 
+        await expect(unfoldArrow).toBeVisible();
+
+        await unfoldArrow.click();
+        const foldArrow = row.getByLabel('Fold', { exact: true });
         await expect(foldArrow).toBeVisible();
+    }
 
-        await foldArrow.click();
+    async clickOnCheckbox(rowName: string) {
+        const checkbox = this.getRowCheckbox(rowName);
+
+        await checkbox.click();
+    }
+
+    async waitForCheckboxToBeChecked(rowName: string) {
+        const checkbox = this.getRowCheckbox(rowName).getByRole('checkbox');
+
+        await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+    }
+
+    async waitForSelectAllCheckboxToBeMixed() {
+        const selectAllCheckbox = this.getSelectAllCheckbox().getByRole('checkbox');
+
+        await expect(selectAllCheckbox).toHaveAttribute('aria-checked', 'mixed');
+    }
+
+    async waitForSelectAllCheckboxToBeChecked() {
+        const selectAllCheckbox = this.getSelectAllCheckbox().getByRole('checkbox');
+
+        await expect(selectAllCheckbox).toHaveAttribute('aria-checked', 'true');
+    }
+
+    async waitForSelectAllCheckboxToBeUnchecked() {
+        const selectAllCheckbox = this.getSelectAllCheckbox().getByRole('checkbox');
+
+        await expect(selectAllCheckbox).toHaveAttribute('aria-checked', 'false');
+    }
+
+    async waitForCheckboxToBeDisabled(rowName: string) {
+        const checkbox = this.getRowCheckbox(rowName).getByRole('checkbox');
+
+        await expect(checkbox).toHaveAttribute('aria-disabled', 'true');
+    }
+
+    async waitForCheckboxToBeUnchecked(rowName: string) {
+        const checkbox = this.getRowCheckbox(rowName).getByRole('checkbox');
+
+        await expect(checkbox).toHaveAttribute('aria-checked', 'false');
+    }
+
+    async waitForCheckboxToBeMixed(rowName: string) {
+        const checkbox = this.getRowCheckbox(rowName).getByRole('checkbox');
+
+        await expect(checkbox).toHaveAttribute('aria-checked', 'mixed');
+    }
+
+    getRowCheckbox(rowName: string) {
+        const row = this.getTableRows().filter({ hasText: new RegExp(`^${rowName}`, 'gi') });
+        return row.getByLabel('Select', { exact: true });
     }
 
     async fillNumericFilterInput(input: string) {

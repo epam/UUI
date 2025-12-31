@@ -88,6 +88,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
                     onValueChange={ () => row.onCheck?.(row) }
                     isDisabled={ row.checkbox.isDisabled }
                     isInvalid={ row.checkbox.isInvalid }
+                    rawProps={ { 'aria-label': 'Select' } }
                 />
             )}
             {row.indent > 0 && (
