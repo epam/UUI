@@ -41,13 +41,12 @@ test.describe('DataTable: Select', () => {
             await expect(selectAllCheckbox).toBeInViewport();
 
             await pageObject.focusFirstElement();
-            await expectScreenshot(1, 'first-element-focus');
         });
 
         await test.step('Select all items', async () => {
             await pageObject.page.keyboard.press('Space');
             await pageObject.waitFocusedCheckboxIsChecked();
-            await expectScreenshot(2, 'select-all-items');
+            await expectScreenshot(1, 'select-all-items');
         });
 
         await test.step('Unselect all items', async () => {

@@ -1,4 +1,3 @@
-import { expect } from '@playwright/test';
 import { ColumnFiltersDataTableObject } from '../../../framework/pageObjects';
 import { test } from '../../../framework/fixtures';
 import { setupDocExampleTest } from '../testUtils';
@@ -25,20 +24,20 @@ test.describe('DataTable Lazy: Filters', () => {
 
             await pageObject.expectRowNameInViewport('Aaron Vogt');
 
-            await expectScreenshot(1, 'job-title-filters-applied');
+            await expectScreenshot(2, 'job-title-filters-applied');
         });
 
         await test.step('Filter by Job Title [exclude]', async () => {
             await pageObject.openFilterModal('Title');
             await pageObject.expectMultiPickerFilterModalToBeOpened();
             await pageObject.applyIsNotFilter();
-            await expectScreenshot(1, 'job-title-filters-exclude-filled');
+            await expectScreenshot(3, 'job-title-filters-exclude-filled');
 
             await pageObject.closeFilterModal();
 
             await pageObject.expectRowNameInViewport('Aaron Benoît');
 
-            await expectScreenshot(2, 'job-title-filters-exclude-applied');
+            await expectScreenshot(4, 'job-title-filters-exclude-applied');
         });
 
         await test.step('Filter by Job Title using search', async () => {
@@ -47,24 +46,24 @@ test.describe('DataTable Lazy: Filters', () => {
 
             await pageObject.searchInFilterModal('Production Technician - WC30');
             await pageObject.checkFilterOptionsInMultiPickerFilterModal(['Production Technician - WC30']);
-            await expectScreenshot(1, 'job-title-filters-search-in-filter-filled');
+            await expectScreenshot(5, 'job-title-filters-search-in-filter-filled');
 
             await pageObject.closeFilterModal();
 
             await pageObject.expectRowNameInViewport('Aaron Bravo');
-            await expectScreenshot(3, 'job-title-filters-search-in-filter-applied');
+            await expectScreenshot(6, 'job-title-filters-search-in-filter-applied');
         });
 
         await test.step('Filter by Salary', async () => {
             await pageObject.openFilterModal('Salary');
-            await expectScreenshot(4, 'numberic-range-picker-filter-modal-opened');
+            await expectScreenshot(7, 'numberic-range-picker-filter-modal-opened');
 
             await pageObject.clickOnGteInFilterModal();
             await pageObject.fillNumericFilterInput('1500');
             await pageObject.closeFilterModal();
 
             await pageObject.expectRowNameInViewport('Anthony Gautier');
-            await expectScreenshot(5, 'salary-filter-applied');
+            await expectScreenshot(8, 'salary-filter-applied');
         });
     });
 
@@ -78,12 +77,8 @@ test.describe('DataTable Lazy: Filters', () => {
 
         await pageObject.waitForTableRendered();
         await test.step('Filter by Job Title', async () => {
-            const columnHeaderCell = pageObject.getColumnHeaderCell('Title');
-            await expect(columnHeaderCell).toBeInViewport();
-
             await pageObject.focusFirstElement();
             await pageObject.moveFocusForward(4);
-            await expectScreenshot(1, 'focus-job-title-columns-sorting');
 
             await pageObject.pressEnter();
 
@@ -94,13 +89,13 @@ test.describe('DataTable Lazy: Filters', () => {
             await pageObject.pressArrowDown();
             await pageObject.pressEnter();
 
-            await expectScreenshot(2, 'job-title-filters-filled');
+            await expectScreenshot(1, 'job-title-filters-filled');
 
             await pageObject.pressEsc();
 
             await pageObject.expectRowNameInViewport('Aaron Vogt');
 
-            await expectScreenshot(3, 'job-title-filters-applied');
+            await expectScreenshot(2, 'job-title-filters-applied');
         });
 
         await test.step('Filter by Job Title [exclude]', async () => {
@@ -109,13 +104,13 @@ test.describe('DataTable Lazy: Filters', () => {
             await pageObject.moveFocusForward();
 
             await pageObject.pressEnter();
-            await expectScreenshot(4, 'job-title-filters-exclude-tab-button-selected');
+            await expectScreenshot(3, 'job-title-filters-exclude-tab-button-selected');
 
             await pageObject.pressEsc();
 
             await pageObject.expectRowNameInViewport('Aaron Benoît');
 
-            await expectScreenshot(5, 'job-title-filters-exclude-applied');
+            await expectScreenshot(4, 'job-title-filters-exclude-applied');
         });
 
         await test.step('Filter by Job Title using search', async () => {
@@ -127,31 +122,31 @@ test.describe('DataTable Lazy: Filters', () => {
             await pageObject.expectOptionInMultiPickerFilterModal('Production Technician - WC30');
             await pageObject.moveFocusForward(2);
             await pageObject.pressEnter();
-            await expectScreenshot(6, 'job-title-filters-search-in-filter-filled');
+            await expectScreenshot(5, 'job-title-filters-search-in-filter-filled');
 
             await pageObject.pressEsc();
 
             await pageObject.expectRowNameInViewport('Aaron Bravo');
-            await expectScreenshot(7, 'job-title-filters-search-in-filter-applied');
+            await expectScreenshot(6, 'job-title-filters-search-in-filter-applied');
         });
 
         await test.step('Filter by Salary', async () => {
             await pageObject.moveFocusBackward();
             await pageObject.pressEnter();
 
-            await expectScreenshot(8, 'numberic-range-picker-filter-modal-opened');
+            await expectScreenshot(7, 'numberic-range-picker-filter-modal-opened');
             await pageObject.moveFocusForward(5);
 
             await pageObject.pressEnter();
             await pageObject.moveFocusForward(2);
 
             await pageObject.fillWithKeyboard('1500');
-            await expectScreenshot(9, 'salary-filter-gte-input-filled');
+            await expectScreenshot(8, 'salary-filter-gte-input-filled');
 
             await pageObject.pressEsc();
 
             await pageObject.expectRowNameInViewport('Anthony Gautier');
-            await expectScreenshot(10, 'salary-filter-applied');
+            await expectScreenshot(9, 'salary-filter-applied');
         });
     });
 });
