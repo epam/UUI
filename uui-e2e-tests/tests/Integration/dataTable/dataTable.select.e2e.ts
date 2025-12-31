@@ -37,6 +37,7 @@ test.describe('DataTable: Select', () => {
 
         await pageObject.waitForTableRendered();
         await test.step('Put focus on selectAll checkbox', async () => {
+            pageObject.page.waitForLoadState('networkidle');
             await pageObject.focusFirstElement();
             await expectScreenshot(1, 'first-element-focus');
         });
