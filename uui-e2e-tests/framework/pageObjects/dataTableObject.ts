@@ -27,10 +27,8 @@ export abstract class DataTableObject {
         await this.pressTab(2);
     }
 
-    async scrollScreen(screens: number = 1) {
-        for (let i = 0; i <= screens - 1; i++) {
-            await this.locators.table.evaluate((e) => e.scrollBy(0, 1000));
-        }
+    async scrollScreen(height = 1000) {
+        await this.locators.table.evaluate((e, h) => e.scrollBy(0, h), height);
     }
 
     getTableRows() {
