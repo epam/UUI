@@ -32,7 +32,7 @@ export interface NumericInputProps
     downIcon?: Icon;
 
     /** Increase/decrease step on up/down icons clicks and up/down arrow keys */
-    step?: number;
+    step?: number | 'any';
 
     /** CSS classes to put directly on the Input element */
     inputCx?: CX;
@@ -90,6 +90,7 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
     const min = initialMin ?? 0;
     const max = initialMax ?? Number.MAX_SAFE_INTEGER;
     const formatOptions = initialFormatOptions ?? { maximumFractionDigits: 0 };
+    const stepValue = step === 'any' ? 1 : step ?? 1;
 
     const placeholderValue = React.useMemo(() => {
         if (typeof value === 'number') {
@@ -144,13 +145,13 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
     };
 
     const handleIncreaseValue = () => {
-        let newValue = getCalculatedValue({ value, step, action: 'incr' });
+        let newValue = getCalculatedValue({ value, step: stepValue, action: 'incr' });
         newValue = getMinMaxValidatedValue({ value: newValue, min, max });
         props.onValueChange(newValue);
     };
 
     const handleDecreaseValue = () => {
-        let newValue = getCalculatedValue({ value, step, action: 'decr' });
+        let newValue = getCalculatedValue({ value, step: stepValue, action: 'decr' });
         newValue = getMinMaxValidatedValue({ value: newValue, min, max });
         props.onValueChange(newValue);
     };
@@ -227,7 +228,7 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
                 onBlur={ handleBlur }
                 min={ min }
                 max={ max }
-                step={ step || 'any' }
+                step={ step === undefined ? 'any' : step }
                 id={ props.id }
                 ref={ inputRef }
             />
