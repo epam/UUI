@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-components",
-  "version": "6.1.5-beta.15",
+  "version": "6.1.5-beta.16",
   "description": "EPAM UUI Components",
   "author": "EPAM",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-core": "6.1.5-beta.15",
+    "@epam/uui-core": "6.1.5-beta.16",
     "@floating-ui/react": "0.27.5",
     "@types/classnames": "2.2.6",
     "@types/react-transition-group": "4.4.12",
@@ -32,7 +32,7 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "8248a65ee62b2a6b3fb065327869cc6f7d756698",
+  "gitHead": "178002f97ea09b203c5f18e50911b966d8c5fc9e",
   "publishConfig": {
     "directory": "build"
   }
