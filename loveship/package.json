@@ -1,6 +1,6 @@
 {
   "name": "@epam/loveship",
-  "version": "6.1.5-beta.15",
+  "version": "6.1.5-beta.16",
   "description": "EPAM UUI components set branded with 'loveship' style",
   "author": "EPAM",
   "license": "MIT",
@@ -12,10 +12,10 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "6.1.5-beta.15",
-    "@epam/uui": "6.1.5-beta.15",
-    "@epam/uui-components": "6.1.5-beta.15",
-    "@epam/uui-core": "6.1.5-beta.15",
+    "@epam/assets": "6.1.5-beta.16",
+    "@epam/uui": "6.1.5-beta.16",
+    "@epam/uui-components": "6.1.5-beta.16",
+    "@epam/uui-core": "6.1.5-beta.16",
     "@types/classnames": "2.2.6",
     "classnames": "2.2.6"
   },
@@ -27,7 +27,7 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "8248a65ee62b2a6b3fb065327869cc6f7d756698",
+  "gitHead": "178002f97ea09b203c5f18e50911b966d8c5fc9e",
   "publishConfig": {
     "directory": "build"
   }

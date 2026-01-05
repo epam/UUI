@@ -1,6 +1,6 @@
 {
   "name": "@epam/draft-rte",
-  "version": "6.1.5-beta.15",
+  "version": "6.1.5-beta.16",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
@@ -11,10 +11,10 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "6.1.5-beta.15",
-    "@epam/loveship": "6.1.5-beta.15",
-    "@epam/uui-components": "6.1.5-beta.15",
-    "@epam/uui-core": "6.1.5-beta.15",
+    "@epam/assets": "6.1.5-beta.16",
+    "@epam/loveship": "6.1.5-beta.16",
+    "@epam/uui-components": "6.1.5-beta.16",
+    "@epam/uui-core": "6.1.5-beta.16",
     "@types/draft-js": "0.10.23",
     "classnames": "^2.2.6",
     "draft-convert": "^2.1.2",
@@ -33,7 +33,7 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "8248a65ee62b2a6b3fb065327869cc6f7d756698",
+  "gitHead": "178002f97ea09b203c5f18e50911b966d8c5fc9e",
   "publishConfig": {
     "directory": "build"
   }
