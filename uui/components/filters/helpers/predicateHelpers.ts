@@ -24,12 +24,12 @@ export const normalizeFilterWithPredicates = <TFilter,>(filter: TFilter) => {
                 delete filter[key];
             }
             if ('inRange' in filterValue) {
-                if (!filterValue.inRange || (!filterValue.inRange.from && !filterValue.inRange.to)) {
+                if (!filterValue.inRange || (filterValue.inRange.from == null && filterValue.inRange.to == null)) {
                     delete filter[key];
                 }
             }
             if ('notInRange' in filterValue) {
-                if (!filterValue.notInRange || (!filterValue.notInRange.from && !filterValue.notInRange.to)) {
+                if (!filterValue.notInRange || (filterValue.notInRange.from == null && filterValue.notInRange.to == null)) {
                     delete filter[key];
                 }
             }
