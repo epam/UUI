@@ -1,5 +1,28 @@
 import type { DataQueryFilter, FilterPredicate } from '@epam/uui-core';
 
+interface RangeValue {
+    from?: string | number | null;
+    to?: string | number | null;
+}
+
+/**
+ * Checks if the value is a range object with at least one boundary property defined
+ */
+export const isValidRangeValue = (range: RangeValue | null | undefined): boolean => {
+    return range != null && (range.from != null || range.to != null);
+};
+
+export const isFilledArray = (arr: any): boolean => {
+    return Array.isArray(arr) && arr.length > 0;
+};
+
+export const hasSomeNullishProp = (obj: Record<string, unknown>): boolean => {
+    return Object.keys(obj).some((prop) => obj[prop] == null);
+};
+
+const isValidArrayValue = isFilledArray;
+const hasSomeNullishPredicate = hasSomeNullishProp;
+
 export const normalizeFilterWithPredicates = <TFilter,>(filter: TFilter) => {
     if (!filter) {
         return {};
@@ -17,27 +40,21 @@ export const normalizeFilterWithPredicates = <TFilter,>(filter: TFilter) => {
             if ('from' in filterValue && 'to' in filterValue) {
                 continue;
             }
-            if ('in' in filterValue && (!Array.isArray(filterValue.in) || !filterValue.in.length)) {
+            if ('in' in filterValue && !isValidArrayValue(filterValue.in)) {
                 delete filter[key];
             }
-            if ('nin' in filterValue && (!Array.isArray(filterValue.nin) || !filterValue.nin.length)) {
+            if ('nin' in filterValue && !isValidArrayValue(filterValue.nin)) {
                 delete filter[key];
             }
-            if ('inRange' in filterValue) {
-                if (!filterValue.inRange || (filterValue.inRange.from == null && filterValue.inRange.to == null)) {
-                    delete filter[key];
-                }
+            if ('inRange' in filterValue && !isValidRangeValue(filterValue.inRange)) {
+                delete filter[key];
             }
-            if ('notInRange' in filterValue) {
-                if (!filterValue.notInRange || (filterValue.notInRange.from == null && filterValue.notInRange.to == null)) {
-                    delete filter[key];
-                }
+            if ('notInRange' in filterValue && !isValidRangeValue(filterValue.notInRange)) {
+                delete filter[key];
             }
-            Object.keys(filterValue).forEach((predicate) => {
-                if (filterValue[predicate] === null || filterValue[predicate] === undefined) {
-                    delete filter[key];
-                }
-            });
+            if (hasSomeNullishPredicate(filterValue)) {
+                delete filter[key];
+            }
         }
     }
     return result;
