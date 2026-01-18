@@ -1,3 +1,11 @@
+# 6.x.x - xx.xx.2026
+
+**What's New**
+
+**What's Fixed**
+* [DataTable, FiltersPanel]: fixed issue when not possible to type 0-based value (ie 0, 0.12, 0.8, etc) at empty in-range filter
+
+
 # 6.4.1 - 29.12.2025
 
 **What's New**
