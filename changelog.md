@@ -5,7 +5,7 @@
 **What's Fixed**
 * [RangeDatePicker]: clicking on a disabled date clears the input
 * [DataTable, FiltersPanel]: fixed issue when not possible to type 0-based value (ie 0, 0.12, 0.8, etc) at empty in-range filter
-
+* [TimePicker]: fixed an unnecessary side effect for onValueChange if the Dropdown was closed with a default state.
 
 # 6.4.1 - 29.12.2025
 
