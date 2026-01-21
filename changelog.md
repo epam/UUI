@@ -1,3 +1,10 @@
+# 6.4.x - xx.xx.2026
+
+**What's New**
+
+**What's Fixed**
+* [RangeDatePicker]: clicking on a disabled date clears the input
+
 # 6.4.1 - 29.12.2025
 
 **What's New**

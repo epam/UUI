@@ -200,6 +200,37 @@ describe('RangeDataPicker', () => {
         expect(dom.to.value).toBe('');
     });
 
+    it('should not reset invalid "from" value onBlur if no changes are made and filter is applied', async () => {
+        const value: RangeDatePickerValue = {
+            from: '2019-10-07',
+            to: null,
+        };
+        const { dom, result } = await setupRangeDatePicker({ value, filter: (date) => dayjs(date).isAfter('2023-01-01') });
+
+        await userEvent.click(dom.from);
+        expect(dom.from).toHaveFocus();
+        expect(dom.from.value).toBe('Oct 7, 2019');
+
+        await userEvent.click(result.container);
+        expect(dom.from).not.toHaveFocus();
+        expect(dom.from.value).toBe('Oct 7, 2019');
+    });
+
+    it('should not reset invalid "to" value onBlur if no changes are made and filter is applied', async () => {
+        const value: RangeDatePickerValue = {
+            from: null,
+            to: '2019-10-07',
+        };
+        const { dom, result } = await setupRangeDatePicker({ value, filter: (date) => dayjs(date).isAfter('2023-01-01') });
+        await userEvent.click(dom.to);
+        expect(dom.to).toHaveFocus();
+        expect(dom.to.value).toBe('Oct 7, 2019');
+
+        await userEvent.click(result.container);
+        expect(dom.to).not.toHaveFocus();
+        expect(dom.to.value).toBe('Oct 7, 2019');
+    });
+
     it('should set new value when new value typed in input', async () => {
         const value: RangeDatePickerValue = {
             from: null,

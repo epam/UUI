@@ -102,6 +102,11 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>, inputType: 'from' | 'to') => {
         onBlurInput?.(event, inputType);
 
+        const formattedValue = toCustomDateRangeFormat(value, format);
+        if (inputValue[inputType] === formattedValue[inputType]) {
+            return; // No changes made to this field, skip validation
+        }
+
         const canBeEmpty = {
             from: !preventEmptyFromDate,
             to: !preventEmptyToDate,
