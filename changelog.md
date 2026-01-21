@@ -1,3 +1,10 @@
+# 6.?.? - ??.??.2026
+
+**What's New**
+* [ScrollBars]: added `elementEvents` property - the given Event(s) from the elements with the given selector(s) will trigger an update. Useful for everything the MutationObserver and ResizeObserver can't detect.
+
+**What's Fixed**
+
 # 6.4.1 - 29.12.2025
 
 **What's New**
