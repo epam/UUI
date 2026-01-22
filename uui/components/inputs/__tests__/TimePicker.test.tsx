@@ -153,6 +153,18 @@ describe('TimePicker', () => {
         expect(mocks.onValueChange).toHaveBeenCalledWith(null);
     });
 
+    it('should not change null value to object with null properties on blur', async () => {
+        const { dom, mocks } = await setupTestComponent({ value: null });
+        expect(dom.input.value).toEqual('');
+
+        fireEvent.focus(dom.input);
+        fireEvent.blur(dom.input);
+
+        expect(mocks.onValueChange).toHaveBeenCalledWith(null);
+        expect(mocks.onValueChange).not.toHaveBeenCalledWith({ hours: null, minutes: null });
+        expect(dom.input.value).toEqual('');
+    });
+
     it('should increase and decrease hours when icon-button-up/down is clicked', async () => {
         const { dom } = await setupTestComponent({ value: { hours: 18, minutes: 23 } });
         expect(dom.input.value).toEqual('06:23 PM');

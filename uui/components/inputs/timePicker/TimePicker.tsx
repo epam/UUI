@@ -104,7 +104,7 @@ export function TimePickerComponent(props: TimePickerProps, ref: React.Forwarded
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         props.onBlur?.(e);
 
-        if (state.value === '' || state.inputValue === '') {
+        if (state.value === '' || state.inputValue === '' || state.value === null) {
             props.onValueChange(null);
             setState((prevState) => ({ ...prevState, value: null, inputValue: null }));
         } else {
