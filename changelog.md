@@ -1,6 +1,7 @@
 # 6.4.x - xx.xx.2026
 
 **What's New**
+* [TimePicker] improve value applying logic and arrow control behavior (([#2953](https://github.com/epam/UUI/pull/2953)))
 
 **What's Fixed**
 * [RangeDatePicker]: clicking on a disabled date clears the input
