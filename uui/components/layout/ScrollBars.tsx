@@ -3,12 +3,13 @@ import React, {
     ReactNode,
     useEffect,
     useImperativeHandle,
+    useMemo,
     useRef,
     useState,
 } from 'react';
 import cx from 'classnames';
 import { useOverlayScrollbars } from 'overlayscrollbars-react';
-import type { ScrollbarsAutoHideBehavior } from 'overlayscrollbars';
+import type { Options, ScrollbarsAutoHideBehavior } from 'overlayscrollbars';
 import { IHasCX, IHasRawProps, useScrollShadows } from '@epam/uui-core';
 import css from './ScrollBars.module.scss';
 import './ScrollBars.scss';
@@ -53,6 +54,11 @@ export type ScrollbarProps = IHasCX & IHasRawProps<React.HTMLAttributes<HTMLDivE
      * @default 'none'
      */
     overflowBottomEffect?: 'line' | 'shadow' | 'none';
+    /**
+     * The given Event(s) from the elements with the given selector(s) will trigger an update.
+     * Useful for cases where OverlayScrollbars' default logic does not detect changes, such as shadow DOM size changes.
+     */
+    elementEvents?: Options['update']['elementEvents']
     children?: ReactNode | undefined;
 };
 
@@ -69,11 +75,10 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
         children,
         overflowTopEffect = 'none',
         overflowBottomEffect = 'none',
-
         onScroll,
-
         autoHide = 'never',
         autoHideDelay,
+        elementEvents,
         rawProps,
         ...rest
     } = props;
@@ -81,13 +86,22 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
         host: null,
         viewport: null,
     });
-
     const hostRef = useRef<HTMLDivElement | null>(null);
     const viewportRef = useRef<HTMLElement | null>(null);
-    const containerRef = useRef<HTMLElement | null>(null);
+
+    const elementEventsEffective = useMemo<[elementSelector: string, eventNames: string][]>(() => {
+        const result: [elementSelector: string, eventNames: string][] = [['img', 'load']]; // this is default
+        if (elementEvents && elementEvents.length > 0) {
+            result.push(...elementEvents);
+        }
+        return result;
+    }, [elementEvents]);
 
     const [initialize, osInstance] = useOverlayScrollbars({
         options: {
+            update: {
+                elementEvents: elementEventsEffective,
+            },
             scrollbars: {
                 theme: 'uui-scroll-bars',
                 autoHide: autoHide,
@@ -134,7 +148,7 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
 
     useImperativeHandle(ref, (): ScrollbarsApi => {
         return {
-            container: containerRef.current,
+            container: hostRef.current,
             view: viewportRef.current,
         };
     }, []);
