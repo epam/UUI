@@ -195,4 +195,16 @@ describe('TimePicker', () => {
         fireEvent.click(decreaseMinutesButton);
         expect(dom.input.value).toEqual('06:23 PM');
     });
+
+    it('should call onValueChange immediately when valid time is entered', async () => {
+        const { mocks, dom } = await setupTestComponent({ value: { hours: 18, minutes: 23 } });
+        expect(dom.input.value).toEqual('06:23 PM');
+
+        fireEvent.click(dom.input);
+        fireEvent.change(dom.input, { target: { value: '06:24 PM' } });
+        expect(mocks.onValueChange).toHaveBeenCalledWith({ hours: 18, minutes: 24 });
+
+        fireEvent.change(dom.input, { target: { value: '0624 PM' } });
+        expect(mocks.onValueChange).toHaveBeenCalledTimes(1);
+    });
 });
