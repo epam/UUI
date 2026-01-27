@@ -309,6 +309,22 @@ describe('DatePicker', () => {
         expect(mocks.onValueChange).not.toHaveBeenCalledWith(null);
     });
 
+    it('should not fire onValueChange when value is "" and the same on blur', async () => {
+        const {
+            dom, mocks, result,
+        } = await setupDatePicker({
+            value: '',
+        });
+        expect(dom.input.value).toEqual('');
+
+        await userEvent.type(dom.input, '2019-10-47');
+        expect(dom.input.value).toEqual('2019-10-47');
+
+        await userEvent.click(result.container);
+        expect(dom.input.value).toEqual('');
+        expect(mocks.onValueChange).not.toHaveBeenCalledWith(null);
+    });
+
     it('should fire onValuChange event clearing input manually', async () => {
         const {
             dom: { input }, mocks, result,
