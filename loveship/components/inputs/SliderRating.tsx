@@ -154,6 +154,13 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
         }
     }
 
+    handleValueChange = (value: number) => {
+        if (this.props.withoutNa && value === 0) {
+            return;
+        }
+        this.props.onValueChange(value);
+    };
+
     render() {
         return (
             <div className={ css.container } { ...this.props.rawProps }>
@@ -164,6 +171,7 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
                     renderRating={ this.renderRating }
                     { ...this.props }
                     value={ this.props.value === 0 ? null : this.props.value }
+                    onValueChange={ this.handleValueChange }
                     cx={ css.baseRatingContainer }
                 />
                 {!this.props.withoutNa && <div className={ css.naIconContainer }>{this.renderNa()}</div>}
