@@ -2,6 +2,8 @@
 
 **What's New**
 * [TimePicker] improve value applying logic and arrow control behavior (([#2953](https://github.com/epam/UUI/pull/2953)))
+* Uploaded new version of icons pack:
+  * icons added: editor-dropdown-outline, editor-radio-fill, navigation-forward-outline
 
 **What's Fixed**
 * [RangeDatePicker]: clicking on a disabled date clears the input
