@@ -11,6 +11,8 @@
   The given Event(s) from the elements with the given selector(s) will trigger an update.
   Useful for cases where OverlayScrollbars' default logic does not detect changes, such as shadow DOM size changes.
 * [SliderRating]: fixed issue where clicking before slider start could set '0' value, bypassing 'n/a' button restriction when `withoutNa` prop is true
+* [Date Picker]: prevent redundant DatePicker value updates on blur which caused tab order cycling inside dropdowns
+
 
 # 6.4.1 - 29.12.2025
 
