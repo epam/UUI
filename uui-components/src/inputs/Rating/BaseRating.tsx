@@ -85,8 +85,8 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
 
     getRatingFromWidth(width: number): number {
         const step = this.props.step || 1;
-
-        return step * Math.ceil(width / this.getMarkWidth()) + (this.props.from - step);
+        const calculatedRating = step * Math.ceil(width / this.getMarkWidth()) + (this.props.from - step);
+        return Math.max(calculatedRating, this.props.from);
     }
 
     onPointerMove(e: React.PointerEvent<HTMLDivElement>) {
@@ -130,12 +130,18 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
 
     onPointerUp(e: React.PointerEvent<HTMLDivElement>) {
         const width = e.pageX - this.getContainerOffsetLeft();
+        if (width < 0) {
+            return;
+        }
         this.props.onValueChange(this.checkRating(this.getRatingFromWidth(width)));
     }
 
     onTouchEnd(e: React.TouchEvent<HTMLDivElement>) {
         const touch = e.changedTouches[0];
         const width = touch.pageX - this.getContainerOffsetLeft();
+        if (width < 0) {
+            return;
+        }
         this.props.onValueChange(this.checkRating(this.getRatingFromWidth(width)));
     }
 

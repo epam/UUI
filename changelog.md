@@ -7,9 +7,10 @@
 * [RangeDatePicker]: clicking on a disabled date clears the input
 * [DataTable, FiltersPanel]: fixed issue when not possible to type 0-based value (ie 0, 0.12, 0.8, etc) at empty in-range filter
 * [TimePicker]: fixed an unnecessary side effect for onValueChange if the Dropdown was closed with a default state.
-* [ScrollBars]: added `elementEvents` property. 
+* [ScrollBars]: added `elementEvents` property.
   The given Event(s) from the elements with the given selector(s) will trigger an update.
   Useful for cases where OverlayScrollbars' default logic does not detect changes, such as shadow DOM size changes.
+* [SliderRating]: fixed issue where clicking before slider start could set '0' value, bypassing 'n/a' button restriction when `withoutNa` prop is true
 
 # 6.4.1 - 29.12.2025
 
