@@ -41,7 +41,9 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
     }, [value, setInputValue]);
 
     const onValueChange = (newValue: string | null) => {
-        if (value !== newValue) {
+        const isValueChanged = (value || '') !== (newValue || '');
+
+        if (isValueChanged) {
             props.onValueChange(newValue);
 
             if (props.getValueChangeAnalyticsEvent) {
@@ -113,7 +115,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
         );
     };
 
-    const renderBody = useMemo(() => (renderProps: DropdownBodyProps) => {
+    const renderBody = useMemo(() => function (renderProps: DropdownBodyProps) {
         return (
             <DropdownContainer { ...renderProps }>
                 <DatePickerBody
