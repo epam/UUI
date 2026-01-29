@@ -37,6 +37,11 @@ yarn test
 //or watch mode
 yarn test-watch
 ```
+**Note for Windows users:** If you encounter errors when running tests, try using reduced worker count:
+```
+yarn run test --maxWorkers=2 --testTimeout=10000
+```
+You can increase `maxWorkers` up to 4 if needed.
 ------
 
 Update snapshots:
@@ -92,13 +97,13 @@ yarn track-bundle-size-override
 ```
 
 ### Run Next.js demo app
-If you need to test how UUI works into next.js environment, you can use the following demo app. 
+If you need to test how UUI works into next.js environment, you can use the following demo app.
 For more details, read readme.md into next-demo folders.
 
 ```
-//Run next with app router 
+//Run next with app router
 yarn next-app:dev
 
-//Run next with pages router 
+//Run next with pages router
 yarn next-pages:dev
 ```
