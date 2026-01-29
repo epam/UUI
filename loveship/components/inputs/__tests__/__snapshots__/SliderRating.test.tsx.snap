@@ -1,0 +1,806 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SliderRating Edge cases should handle from=2 correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      aria-valuemax="5"
+      aria-valuemin="2"
+      aria-valuenow="3"
+      class="container containerReadonly baseRatingContainer"
+      role="slider"
+      tabindex="0"
+    >
+      <div
+        class="scale size-18 shortScale"
+      >
+        <div
+          class="container uui-icon uui-enabled scaleIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+      <div
+        class="tooltipsBox"
+      >
+        <div
+          class="tooltipsBoxItem"
+          style="left: -1px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 0px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 1px; top: 0px; height: 18px;"
+        />
+      </div>
+      <div
+        class="handler size-18"
+        style="left: 0px;"
+      >
+        <div
+          class="container uui-icon uui-enabled handlerIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="naIconContainer"
+    >
+      <div
+        class="container uui-icon uui-enabled naIcon size-18 disabled"
+      >
+        <svg
+          class=""
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SliderRating should be rendered correctly in disabled mode 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      aria-valuemax="5"
+      aria-valuemin="1"
+      aria-valuenow="2"
+      class="container uui-disabled containerReadonly baseRatingContainer"
+      role="slider"
+      tabindex="0"
+    >
+      <div
+        class="scale size-18"
+      >
+        <div
+          class="container uui-icon uui-enabled scaleIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+      <div
+        class="tooltipsBox"
+      >
+        <div
+          class="tooltipsBoxItem"
+          style="left: -1px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 0px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 1px; top: 0px; height: 18px;"
+        />
+      </div>
+      <div
+        class="handler size-18"
+        style="left: 0px;"
+      >
+        <div
+          class="container uui-icon uui-enabled handlerIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="naIconContainer"
+    >
+      <div
+        class="container uui-icon uui-enabled naIcon size-18 disabled"
+      >
+        <svg
+          class=""
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SliderRating should be rendered correctly in readonly mode 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      aria-valuemax="5"
+      aria-valuemin="1"
+      aria-valuenow="4"
+      class="container containerReadonly baseRatingContainer"
+      role="slider"
+      tabindex="0"
+    >
+      <div
+        class="scale size-18"
+      >
+        <div
+          class="container uui-icon uui-enabled scaleIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+      <div
+        class="tooltipsBox"
+      >
+        <div
+          class="tooltipsBoxItem"
+          style="left: -1px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 0px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 1px; top: 0px; height: 18px;"
+        />
+      </div>
+      <div
+        class="handler size-18"
+        style="left: 0px;"
+      >
+        <div
+          class="container uui-icon uui-enabled handlerIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="naIconContainer"
+    >
+      <div
+        class="container uui-icon uui-enabled naIcon size-18 disabled"
+      >
+        <svg
+          class=""
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SliderRating should be rendered correctly with all props 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      aria-valuemax="5"
+      aria-valuemin="1"
+      aria-valuenow="4"
+      class="container baseRatingContainer"
+      role="slider"
+      tabindex="0"
+    >
+      <div
+        class="scale size-24"
+      >
+        <div
+          class="container uui-icon uui-enabled scaleIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+      <div
+        class="tooltipsBox"
+      >
+        <div
+          class="tooltipsBoxItem"
+          style="left: -1px; top: 0px; height: 24px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 0px; top: 0px; height: 24px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 1px; top: 0px; height: 24px;"
+        />
+      </div>
+      <div
+        class="handler size-24"
+        style="left: 0px;"
+      >
+        <div
+          class="container uui-icon uui-enabled handlerIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="naIconContainer"
+    >
+      <div
+        class="container uui-icon uui-enabled -clickable naIcon size-24"
+      >
+        <svg
+          class=""
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SliderRating should be rendered correctly with custom renderTooltip 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      aria-valuemax="5"
+      aria-valuemin="1"
+      aria-valuenow="3"
+      class="container baseRatingContainer"
+      role="slider"
+      tabindex="0"
+    >
+      <div
+        class="scale size-18"
+      >
+        <div
+          class="container uui-icon uui-enabled scaleIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+      <div
+        class="tooltipsBox"
+      >
+        <div
+          class="tooltipsBoxItem"
+          style="left: -1px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 0px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 1px; top: 0px; height: 18px;"
+        />
+      </div>
+      <div
+        class="handler size-18"
+        style="left: 0px;"
+      >
+        <div
+          class="container uui-icon uui-enabled handlerIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="naIconContainer"
+    >
+      <div
+        class="container uui-icon uui-enabled -clickable naIcon size-18"
+      >
+        <svg
+          class=""
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SliderRating should be rendered correctly with from=2 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      aria-valuemax="5"
+      aria-valuemin="2"
+      aria-valuenow="3"
+      class="container baseRatingContainer"
+      role="slider"
+      tabindex="0"
+    >
+      <div
+        class="scale size-18 shortScale"
+      >
+        <div
+          class="container uui-icon uui-enabled scaleIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+      <div
+        class="tooltipsBox"
+      >
+        <div
+          class="tooltipsBoxItem"
+          style="left: -1px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 0px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 1px; top: 0px; height: 18px;"
+        />
+      </div>
+      <div
+        class="handler size-18"
+        style="left: 0px;"
+      >
+        <div
+          class="container uui-icon uui-enabled handlerIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="naIconContainer"
+    >
+      <div
+        class="container uui-icon uui-enabled -clickable naIcon size-18"
+      >
+        <svg
+          class=""
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SliderRating should be rendered correctly with minimum props 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      aria-valuemax="5"
+      aria-valuemin="1"
+      aria-valuenow="3"
+      class="container baseRatingContainer"
+      role="slider"
+      tabindex="0"
+    >
+      <div
+        class="scale size-18"
+      >
+        <div
+          class="container uui-icon uui-enabled scaleIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+      <div
+        class="tooltipsBox"
+      >
+        <div
+          class="tooltipsBoxItem"
+          style="left: -1px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 0px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 1px; top: 0px; height: 18px;"
+        />
+      </div>
+      <div
+        class="handler size-18"
+        style="left: 0px;"
+      >
+        <div
+          class="container uui-icon uui-enabled handlerIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="naIconContainer"
+    >
+      <div
+        class="container uui-icon uui-enabled -clickable naIcon size-18"
+      >
+        <svg
+          class=""
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SliderRating should be rendered correctly with readonly and value 0 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      aria-valuemax="5"
+      aria-valuemin="1"
+      aria-valuenow="0"
+      class="container containerReadonly baseRatingContainer"
+      role="slider"
+      tabindex="0"
+    >
+      <div
+        class="scale size-18"
+      >
+        <div
+          class="container uui-icon uui-enabled scaleIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+      <div
+        class="tooltipsBox"
+      >
+        <div
+          class="tooltipsBoxItem"
+          style="left: -1px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 0px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 1px; top: 0px; height: 18px;"
+        />
+      </div>
+      <div
+        class="handler size-18 hidden"
+        style="left: 0px;"
+      >
+        <div
+          class="container uui-icon uui-enabled handlerIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="naIconContainer"
+    >
+      <div
+        class="container uui-icon uui-enabled naIcon size-18 disabled"
+      >
+        <svg
+          class=""
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SliderRating should be rendered correctly with size 24 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      aria-valuemax="5"
+      aria-valuemin="1"
+      aria-valuenow="3"
+      class="container baseRatingContainer"
+      role="slider"
+      tabindex="0"
+    >
+      <div
+        class="scale size-24"
+      >
+        <div
+          class="container uui-icon uui-enabled scaleIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+      <div
+        class="tooltipsBox"
+      >
+        <div
+          class="tooltipsBoxItem"
+          style="left: -1px; top: 0px; height: 24px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 0px; top: 0px; height: 24px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 1px; top: 0px; height: 24px;"
+        />
+      </div>
+      <div
+        class="handler size-24"
+        style="left: 0px;"
+      >
+        <div
+          class="container uui-icon uui-enabled handlerIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="naIconContainer"
+    >
+      <div
+        class="container uui-icon uui-enabled -clickable naIcon size-24"
+      >
+        <svg
+          class=""
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SliderRating should be rendered correctly with tooltipColor 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      aria-valuemax="5"
+      aria-valuemin="1"
+      aria-valuenow="3"
+      class="container baseRatingContainer"
+      role="slider"
+      tabindex="0"
+    >
+      <div
+        class="scale size-18"
+      >
+        <div
+          class="container uui-icon uui-enabled scaleIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+      <div
+        class="tooltipsBox"
+      >
+        <div
+          class="tooltipsBoxItem"
+          style="left: -1px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 0px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 1px; top: 0px; height: 18px;"
+        />
+      </div>
+      <div
+        class="handler size-18"
+        style="left: 0px;"
+      >
+        <div
+          class="container uui-icon uui-enabled handlerIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="naIconContainer"
+    >
+      <div
+        class="container uui-icon uui-enabled -clickable naIcon size-18"
+      >
+        <svg
+          class=""
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SliderRating should be rendered correctly with value 0 (NotAvailable) 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      aria-valuemax="5"
+      aria-valuemin="1"
+      aria-valuenow="0"
+      class="container baseRatingContainer"
+      role="slider"
+      tabindex="0"
+    >
+      <div
+        class="scale size-18"
+      >
+        <div
+          class="container uui-icon uui-enabled scaleIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+      <div
+        class="tooltipsBox"
+      >
+        <div
+          class="tooltipsBoxItem"
+          style="left: -1px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 0px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 1px; top: 0px; height: 18px;"
+        />
+      </div>
+      <div
+        class="handler size-18 hidden"
+        style="left: 0px;"
+      >
+        <div
+          class="container uui-icon uui-enabled handlerIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="naIconContainer"
+    >
+      <div
+        class="container uui-icon uui-enabled -clickable naIcon size-18"
+      >
+        <svg
+          class=""
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SliderRating should be rendered correctly without NotAvailable option 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      aria-valuemax="5"
+      aria-valuemin="1"
+      aria-valuenow="3"
+      class="container baseRatingContainer"
+      role="slider"
+      tabindex="0"
+    >
+      <div
+        class="scale size-18"
+      >
+        <div
+          class="container uui-icon uui-enabled scaleIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+      <div
+        class="tooltipsBox"
+      >
+        <div
+          class="tooltipsBoxItem"
+          style="left: -1px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 0px; top: 0px; height: 18px;"
+        />
+        <div
+          class="tooltipsBoxItem"
+          style="left: 1px; top: 0px; height: 18px;"
+        />
+      </div>
+      <div
+        class="handler size-18"
+        style="left: 0px;"
+      >
+        <div
+          class="container uui-icon uui-enabled handlerIcon"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

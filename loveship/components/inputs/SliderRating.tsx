@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import cx from 'classnames';
 import { BaseRating, IconContainer } from '@epam/uui-components';
 import { Icon, IEditable, IHasRawProps } from '@epam/uui-core';
@@ -48,16 +48,37 @@ export interface SliderRatingProps<TValue> extends IEditable<TValue>, IHasRawPro
      * Icon click handler.
      */
     getHandlerIcon?: (value: number) => Icon;
-    /*
-    * Defines Tooltip color.
-    */
+    /**
+     * Defines Tooltip color.
+     */
     tooltipColor?: 'white' | 'fire' | 'gray';
 }
 
 const maxValue = 5;
 
-export class SliderRating extends React.Component<SliderRatingProps<number>> {
-    handlerWidth: number;
+interface SliderRatingState {
+    tooltipContent: React.ReactNode | string | null;
+}
+
+export class SliderRating extends React.Component<SliderRatingProps<number>, SliderRatingState> {
+    handlerWidth: number = 0;
+    tooltipBoxRef = React.createRef<HTMLDivElement>();
+    markWidth: number = 0;
+    numberOfMarks: number = 0;
+
+    constructor(props: SliderRatingProps<number>) {
+        super(props);
+        const isReadonly = props.isReadonly || props.isDisabled;
+        const initialContent = isReadonly ? null : this.getTooltipContent(props.value || 0);
+        this.state = {
+            tooltipContent: initialContent,
+        };
+    }
+
+    getTooltipContent = (value: number): React.ReactNode | string => {
+        return this.props.renderTooltip ? this.props.renderTooltip(value) : `${value}`;
+    };
+
     getScaleIcon = (rating: number) => {
         switch (rating) {
             case 1:
@@ -102,9 +123,82 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
         return left;
     };
 
-    renderTooltipBox(rating: number) {
-        const tooltipContent = this.props.renderTooltip ? this.props.renderTooltip(rating) : `${rating}`;
-        return <TooltipBox tooltipColor={ this.props.tooltipColor } content={ tooltipContent } size={ this.props.size || '18' } />;
+    getDotValueFromPosition = (clientX: number): number | null => {
+        if (!this.tooltipBoxRef.current || !this.markWidth || !this.numberOfMarks || this.numberOfMarks <= 1) {
+            return null;
+        }
+
+        const rect = this.tooltipBoxRef.current.getBoundingClientRect();
+        const relativeX = clientX - rect.left;
+        const from = this.props.from || 1;
+        const stepWidth = (this.markWidth * this.numberOfMarks) / (this.numberOfMarks - 1);
+        const threshold = Math.min(this.markWidth / 3, stepWidth / 4);
+
+        // Calculate which dot index the mouse is closest to
+        const dotIndex = Math.round(relativeX / stepWidth);
+
+        // Check if dotIndex is valid and if we're close enough to the dot
+        if (dotIndex >= 0 && dotIndex < this.numberOfMarks) {
+            const distance = Math.abs(relativeX - dotIndex * stepWidth);
+            if (distance <= threshold) {
+                return from + dotIndex;
+            }
+        }
+
+        return null;
+    };
+
+    handleTooltipBoxMouseMove = (clientX: number) => {
+        const isReadonly = this.props.isReadonly || this.props.isDisabled;
+
+        if (isReadonly) {
+            const dotValue = this.getDotValueFromPosition(clientX);
+            if (dotValue !== null) {
+                const newContent = this.getTooltipContent(dotValue);
+                this.setState({ tooltipContent: newContent });
+            } else {
+                this.setState({ tooltipContent: null });
+            }
+        }
+    };
+
+    componentDidUpdate(prevProps: SliderRatingProps<number>) {
+        // Reset tooltip content when switching between readonly/edit modes
+        const isReadonly = this.props.isReadonly || this.props.isDisabled;
+        const wasReadonly = prevProps.isReadonly || prevProps.isDisabled;
+
+        if (wasReadonly !== isReadonly) {
+            if (isReadonly) {
+                this.setState({ tooltipContent: null });
+            } else {
+                const rating = this.props.value || 0;
+                this.setState({ tooltipContent: this.getTooltipContent(rating) });
+            }
+        }
+    }
+
+    renderTooltipBox(rating: number, markWidth: number, numberOfMarks: number) {
+        const isReadonly = this.props.isReadonly || this.props.isDisabled;
+
+        this.markWidth = markWidth;
+        this.numberOfMarks = numberOfMarks;
+
+        let tooltipContent: React.ReactNode | string | null | undefined;
+        if (isReadonly) {
+            tooltipContent = this.state.tooltipContent !== null ? this.state.tooltipContent : null;
+        } else {
+            tooltipContent = this.getTooltipContent(rating);
+        }
+
+        return (
+            <TooltipBox
+                tooltipColor={ this.props.tooltipColor }
+                content={ tooltipContent }
+                size={ this.props.size || '18' }
+                onMouseMove={ this.handleTooltipBoxMouseMove }
+                tooltipBoxRef={ this.tooltipBoxRef }
+            />
+        );
     }
 
     renderRating = (sliderRating: number, markWidth: number, numberOfMarks: number) => {
@@ -119,7 +213,7 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
                 <div className={ cx(css.scale, css[`size-${size}`], from === 2 && css.shortScale) }>
                     <IconContainer cx={ css.scaleIcon } icon={ this.props.getScaleIcon ? this.props.getScaleIcon(rating) : this.getScaleIcon(rating) } />
                 </div>
-                {this.renderTooltipBox(rating)}
+                {this.renderTooltipBox(rating, markWidth, numberOfMarks)}
                 <div
                     className={ cx(css.handler, css[`size-${size}`], !rating && css.hidden) }
                     style={ { left: left } }
@@ -127,8 +221,15 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
                         this.handlerWidth = handler && handler.offsetWidth;
                     } }
                 >
-                    <Tooltip color={ this.props.tooltipColor } cx={ css.tooltip } content={ this.props.renderTooltip ? this.props.renderTooltip(rating) : `${rating}` }>
-                        <IconContainer cx={ css.handlerIcon } icon={ this.props.getHandlerIcon ? this.props.getHandlerIcon(rating) : this.getHandlerIcon(rating) } />
+                    <Tooltip color={ this.props.tooltipColor } cx={ css.tooltip } content={ this.getTooltipContent(rating) }>
+                        <IconContainer
+                            cx={ css.handlerIcon }
+                            icon={
+                                this.props.getHandlerIcon
+                                    ? this.props.getHandlerIcon(rating)
+                                    : (this.getHandlerIcon(rating) || ActiveMarkGreenIcon)
+                            }
+                        />
                     </Tooltip>
                 </div>
             </>
@@ -183,18 +284,25 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
 type TooltipBoxProps = {
     size: string;
     tooltipColor: 'white' | 'fire' | 'gray';
-    content: React.ReactNode | string;
+    content: React.ReactNode | string | null | undefined;
+    onMouseMove: (clientX: number) => void;
+    tooltipBoxRef: React.RefObject<HTMLDivElement>;
 };
 
 function TooltipBox(props: TooltipBoxProps) {
-    const { content, size, tooltipColor } = props;
-    const tooltipBoxRef = useRef<HTMLDivElement>(null);
+    const { content, size, tooltipColor, onMouseMove, tooltipBoxRef } = props;
     const [left, setLeft] = useState<number>(0);
 
     const topPosition = tooltipBoxRef.current?.getBoundingClientRect().y || 0;
 
+    const handleMouseMove = (event: React.MouseEvent) => {
+        const clientX = event.clientX;
+        setLeft(clientX);
+        onMouseMove(clientX);
+    };
+
     return (
-        <div className={ css.tooltipsBox } ref={ tooltipBoxRef } onMouseMove={ (event: React.MouseEvent) => setLeft(event.clientX) }>
+        <div className={ css.tooltipsBox } ref={ tooltipBoxRef } onMouseMove={ handleMouseMove }>
             <Tooltip color={ tooltipColor } placement="top" content={ content } cx={ css.tooltip }>
                 <div
                     className={ css.tooltipsBoxItem }
