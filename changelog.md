@@ -1,19 +1,20 @@
 # 6.4.x - xx.xx.2026
 
 **What's New**
-* [TimePicker] improve value applying logic and arrow control behavior (([#2953](https://github.com/epam/UUI/pull/2953)))
+* [TimePicker] improve value applying logic and arrow control behavior ([#2953](https://github.com/epam/UUI/pull/2953))
 * Uploaded new version of icons pack:
   * icons added: editor-dropdown-outline, editor-radio-fill, navigation-forward-outline
 
 **What's Fixed**
 * [RangeDatePicker]: clicking on a disabled date clears the input
-* [DataTable, FiltersPanel]: fixed issue when not possible to type 0-based value (ie 0, 0.12, 0.8, etc) at empty in-range filter
+* [DataTable, FiltersPanel]: fixed issue when not possible to type 0-based value (ie 0, 0.12, 0.8, etc) at empty in-range filter ([#2902](https://github.com/epam/UUI/issues/2902))
 * [TimePicker]: fixed an unnecessary side effect for onValueChange if the Dropdown was closed with a default state.
 * [ScrollBars]: added `elementEvents` property.
   The given Event(s) from the elements with the given selector(s) will trigger an update.
   Useful for cases where OverlayScrollbars' default logic does not detect changes, such as shadow DOM size changes.
 * [SliderRating]: fixed issue where clicking before slider start could set '0' value, bypassing 'n/a' button restriction when `withoutNa` prop is true
 * [Date Picker]: prevent redundant DatePicker value updates on blur which caused tab order cycling inside dropdowns
+* [Burger]: fixed issue when burger content area not being scrollable ([#2977](https://github.com/epam/UUI/issues/2977), case 1)
 
 
 # 6.4.1 - 29.12.2025
