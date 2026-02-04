@@ -256,14 +256,14 @@ export class TreeState<TItem, TId> {
     public buildSelectedOnly(checkedIds: TId[]) {
         const foundIds = (checkedIds ?? [])
             .filter((id) => this.getById(id) !== NOT_FOUND_RECORD);
-
-        const byParentId = newMap<TId, TId[]>(this.selectedOnly.getParams());
-        const nodeInfoById = newMap<TId, ITreeNodeInfo>(this.selectedOnly.getParams());
+        const newParams = { ...this.selectedOnly.getParams(), getParentId: (): undefined => undefined };
+        const byParentId = newMap<TId, TId[]>(newParams);
+        const nodeInfoById = newMap<TId, ITreeNodeInfo>(newParams);
         byParentId.set(undefined, foundIds);
         nodeInfoById.set(undefined, { count: foundIds.length });
 
         const newSelectedOnly = TreeStructure.create(
-            this.selectedOnly.getParams(),
+            newParams,
             ItemsAccessor.toItemsAccessor(this.itemsMap),
             byParentId,
             nodeInfoById,

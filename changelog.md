@@ -1,4 +1,4 @@
-# 6.4.2 - 04.02.2026
+# 6.4.3 - 04.02.2026
 
 **What's New**
 * [TimePicker] improve value applying logic and arrow control behavior ([#2953](https://github.com/epam/UUI/issues/2953))
@@ -20,11 +20,9 @@
 
 # 6.4.1 - 29.12.2025
 
-**What's New**
-
 **What's Fixed**
 * [NumericInput]: use 'any' value for step prop by default
-* [useForm]: fixed form revet on value prop change. Before it remained previous `isChanged` and form history values
+* [useForm]: fixed form revert on value prop change. Before it remained previous `isChanged` and form history values
 * [PickerInput]: fixed possibility to truncate long text in custom picker row
 * [Slider]: fixed tooltip styles and freezes on change
 
