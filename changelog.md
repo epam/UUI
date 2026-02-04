@@ -1,4 +1,4 @@
-# 6.4.2 - 04.02.2026
+# 6.4.3 - 04.02.2026
 
 **What's New**
 * [TimePicker] improve value applying logic and arrow control behavior ([#2953](https://github.com/epam/UUI/issues/2953))
