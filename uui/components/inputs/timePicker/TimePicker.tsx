@@ -98,13 +98,17 @@ export function TimePickerComponent(props: TimePickerProps, ref: React.Forwarded
             if (isTimeValid(result)) {
                 setState((prevState) => ({ ...prevState, value: result }));
             }
+            // save time immediately if the input value is valid
+            if (isTimeValid(newValue)) {
+                saveTime(newValue);
+            }
         }
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         props.onBlur?.(e);
 
-        if (state.value === '' || state.inputValue === '') {
+        if (state.value === '' || state.inputValue === '' || state.value === null) {
             props.onValueChange(null);
             setState((prevState) => ({ ...prevState, value: null, inputValue: null }));
         } else {
@@ -144,6 +148,8 @@ export function TimePickerComponent(props: TimePickerProps, ref: React.Forwarded
                 mode={ props.mode || DEFAULT_MODE }
                 rawProps={ props.rawProps?.input }
                 ref={ (node) => {
+                    if (!node) return;
+
                     targetRef.current = node;
                     if (typeof inputProps.ref === 'function') {
                         inputProps.ref(node);

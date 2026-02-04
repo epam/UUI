@@ -75,6 +75,7 @@
         top: 0;
         width: 300px;
         background: var(--uui-burger_menu-item);
+        overflow-y: auto;
         transform: translateX(-100px);
 
         &:global(.uui-burger-items-visible) {
