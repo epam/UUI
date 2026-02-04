@@ -30,7 +30,7 @@ const parseQuery = (link: Link): Link => {
  * Source: https://github.com/vercel/next.js/blob/031cf7009239be5ebccd8f72418adfd2bb4af5c8/packages/next/src/shared/lib/router/router.ts#L657
  * This type is compatible with both versions of Next.js: v13 and v14.
  */
-type TNext14Router = {
+export type TNext14Router = {
     pathname: string,
     basePath: string,
     query: any,
