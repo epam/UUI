@@ -296,4 +296,6 @@ export interface CommonContexts<TApi, TAppContext> extends UuiContexts {
     uuiApp: TAppContext;
     /** React router history instance */
     history?: IHistory4;
+    /** Shadow root host. If not provided, FocusLock will use document.activeElement as the active element. */
+    shadowRootHost?: ShadowRoot;
 }
