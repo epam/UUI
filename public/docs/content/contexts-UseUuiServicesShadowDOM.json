@@ -1,0 +1,10 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Example how to assemble UUI context with app hosted in Shadow DOM."
+      }
+    ]
+  }
+]
