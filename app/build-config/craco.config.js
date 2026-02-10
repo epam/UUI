@@ -165,6 +165,8 @@ function configureWebpack(config, { paths }) {
 
     changePluginByName(config, 'HtmlWebpackPlugin', (plugin) => {
         plugin.userOptions.isWrapUuiAppInShadowDom = isWrapUuiAppInShadowDom;
+        // Template receives plugin.options, not userOptions (options is a copy made at plugin construction time)
+        plugin.options.isWrapUuiAppInShadowDom = isWrapUuiAppInShadowDom;
     });
     changePluginByName(config, 'ForkTsCheckerWebpackPlugin', (plugin) => {
         // custom formatter can be removed when next bug is fixed:

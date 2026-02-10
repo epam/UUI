@@ -3,6 +3,7 @@ import FocusLock from 'react-focus-lock';
 import {
     uuiElement, IHasCX, IHasChildren, cx, IHasRawProps, uuiMarkers, IHasForwardedRef, IDropdownBodyProps,
     IHasStyleAttrs,
+    useUuiContext,
 } from '@epam/uui-core';
 import { VPanel } from '../layout/flexItems/VPanel';
 import PopoverArrow from './PopoverArrow';
@@ -57,6 +58,8 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
         persistentFocus = true,
     } = props;
 
+    const { shadowRootHost } = useUuiContext();
+
     function renderDropdownContainer() {
         return (
             <VPanel
@@ -91,8 +94,9 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
                 persistentFocus={ persistentFocus }
                 lockProps={ { ...({ onKeyDown: props?.onKeyDown }), ...props.lockProps } }
                 shards={ props.shards }
-                autoFocus={ props.autoFocus || true }
+                autoFocus={ props.autoFocus ?? true }
                 as={ props.as }
+                shadowRootHost={ shadowRootHost }
             >
                 {renderDropdownContainer()}
             </FocusLock>
