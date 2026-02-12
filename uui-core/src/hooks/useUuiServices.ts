@@ -22,13 +22,11 @@ export interface UseUuiServicesProps<TApi, TAppContext> extends UuiServicesProps
     appContext?: TAppContext;
     /** Instance of the router */
     router: IRouterContext;
-    /** Shadow root host. If not provided, FocusLock will use document.activeElement as the active element. */
-    shadowRootHost?: ShadowRoot;
 }
 
 function createServices<TApi, TAppContext>(props: UseUuiServicesProps<TApi, TAppContext>) {
     const {
-        router, appContext, apiDefinition, apiReloginPath, apiServerUrl, apiPingPath, fetch, shadowRootHost,
+        router, appContext, apiDefinition, apiReloginPath, apiServerUrl, apiPingPath, fetch,
     } = props;
 
     const uuiLayout = new LayoutContext();
@@ -59,7 +57,6 @@ function createServices<TApi, TAppContext>(props: UseUuiServicesProps<TApi, TApp
         uuiRouter: router,
         uuiLocks,
         uuiApp: appContext || ({} as TAppContext),
-        shadowRootHost,
     };
     return {
         services,
