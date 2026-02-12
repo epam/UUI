@@ -83,7 +83,6 @@ function UuiEnhancedApp() {
         router,
         apiReloginPath: 'api/auth/login',
         apiPingPath: 'api/auth/ping',
-        shadowRootHost: document.getElementById('root')?.shadowRoot,
     });
 
     useEffect(() => {
