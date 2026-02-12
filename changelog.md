@@ -1,3 +1,11 @@
+#6.4.x - xx.xx.2026
+
+**What's New**
+* [DropdownContainer]: add Shadow DOM support. All elements that use `DropdownContainer` will correctly handle focus lock
+
+**What's Fixed**
+* [DropdownContainer]: fixed `autoFocus` always being `true` even when `false` is passed through params
+
 # 6.4.2 - 04.02.2026
 
 **What's New**
