@@ -1,5 +1,7 @@
 import express from 'express';
 import path from 'path';
+import crypto from 'crypto';
+import fs from 'fs';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from 'cors';
@@ -32,11 +34,14 @@ app.use(cookieParser());
 app.use(cors({ credentials: false }));
 
 app.use((req, res, next) => {
+    const nonce = crypto.randomBytes(16).toString('base64');
+    res.locals.cspNonce = nonce;
+
     res.set('X-XSS-Protection', '1; mode=block');
     res.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains');
-    res.set('x-frame-options', 'SAMEORIGIN');
+    res.set('X-Frame-Options', 'SAMEORIGIN');
     res.set('X-Content-Type-Options', 'nosniff');
-    res.set('Content-Security-Policy', getCspHeaderValue(isDevServer()));
+    res.set('Content-Security-Policy', getCspHeaderValue(isDevServer(), nonce));
     res.removeHeader('X-Powered-By');
 
     next();
@@ -52,8 +57,14 @@ app.use(staticMiddleware);
 if (!isDevServer()) {
     app.get('*', function response(req, res) {
         const indexPath = path.resolve(__dirname, '../../app/build/index.html');
+        const nonce = res.locals.cspNonce as string;
+
+        let html = fs.readFileSync(indexPath, 'utf-8');
+        html = html.replace(/<script(?=\s|>)/g, `<script nonce="${nonce}"`);
+        html = html.replace(/<style(?=\s|>)/g, `<style nonce="${nonce}"`);
+
         res.set('Cache-Control', 'no-cache');
-        res.sendFile(indexPath);
+        res.type('html').send(html);
     });
     app.listen(5000, () => {
         // eslint-disable-next-line no-console
