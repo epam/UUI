@@ -40,11 +40,11 @@ const CONNECT_ORIGINS = [
  */
 export function getCspHeaderValue(isDevServer: boolean, nonce?: string) {
     const scriptNonce = nonce ? `'nonce-${nonce}'` : '';
-    const styleNonce = nonce ? `'nonce-${nonce}'` : '';
 
     const styleSrc = [
         "'self'",
-        styleNonce,
+        // Note: nonce is NOT used for style-src - it would disable 'unsafe-inline',
+        // but inline styles via style={} or element.style.xxx cannot use nonce
         isDevServer && CUSTOM_THEME_ASSETS.LOCAL,
         CUSTOM_THEME_ASSETS.CLOUDFLARE_PAGES,
         'https://*.epam.com',
