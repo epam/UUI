@@ -61,7 +61,6 @@ if (!isDevServer()) {
 
         let html = fs.readFileSync(indexPath, 'utf-8');
         html = html.replace(/<script(?=\s|>)/g, `<script nonce="${nonce}"`);
-        html = html.replace(/<style(?=\s|>)/g, `<style nonce="${nonce}"`);
 
         res.set('Cache-Control', 'no-cache');
         res.type('html').send(html);
