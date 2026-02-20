@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { codesandboxService } from '../../data/service';
 import { Button } from '@epam/uui';
 import css from './CodesandboxLink.module.scss';
@@ -8,40 +8,54 @@ import { ReactComponent as CodesandboxIcon } from '../../icons/social-network-co
 
 export function CodesandboxLink(props: { raw?: string, dirPath: string[] }) {
     const { raw, dirPath } = props;
-    const [codesandboxParameters, setCodesandboxParameters] = useState<string>();
+    const [isLoading, setIsLoading] = useState(false);
     const codesandboxLink = codesandboxService.getCodesandboxLink();
 
-    useEffect(() => {
-        if (!raw) {
+    const handleOpenInCodesandbox = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!codesandboxLink || !raw || isLoading) {
             return;
         }
-        let destroyed = false;
-        loadStylesheetsCode(raw, dirPath)
-            .then((stylesheets) => {
-                if (destroyed) { return; }
-                const params = codesandboxService.getCodesandboxParameters(raw, stylesheets);
-                setCodesandboxParameters(params);
-            })
-            .catch((err) => console.error(err));
-        return () => {
-            destroyed = true;
-        };
-    }, [raw, dirPath]);
 
-    if (!codesandboxLink || !codesandboxParameters) {
+        setIsLoading(true);
+        try {
+            const stylesheets = await loadStylesheetsCode(raw, dirPath);
+            const codesandboxParameters = codesandboxService.getCodesandboxParameters(raw, stylesheets);
+
+            const apiUrl = codesandboxLink.replace('?query=', '?json=1&query=');
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `parameters=${encodeURIComponent(codesandboxParameters)}`,
+            });
+
+            const result = await response.json();
+            if (result.sandbox_id) {
+                window.open(`https://codesandbox.io/p/sandbox/${result.sandbox_id}`, '_blank');
+            } else {
+                console.error('[CodeSandbox] Error:', result.error || 'Unknown error');
+            }
+        } catch (error) {
+            console.error('[CodeSandbox] Failed to create sandbox:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    if (!codesandboxLink || !raw) {
         return null;
     }
 
     return (
-        <form action={ codesandboxLink } method="POST" target="_blank">
-            <input type="hidden" name="parameters" value={ codesandboxParameters } />
+        <form onSubmit={ handleOpenInCodesandbox }>
             <Button
                 cx={ css.externalLink }
                 rawProps={ { type: 'submit', tabIndex: 0 } }
                 fill="ghost"
                 icon={ CodesandboxIcon }
                 iconPosition="right"
-                caption="Open in Codesandbox"
+                caption={ isLoading ? 'Processing...' : 'Open in Codesandbox' }
+                isDisabled={ isLoading }
             />
         </form>
     );
