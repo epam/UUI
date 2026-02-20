@@ -24,6 +24,7 @@ const CONNECT_ORIGINS = [
     'https://*.analytics.google.com',
     'https://*.googletagmanager.com',
     'https://cookie-cdn.cookiepro.com',
+    'https://codesandbox.io',
     'https://geolocation.onetrust.com/',
     'https://privacyportal.cookiepro.com/',
     'https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-coy.min.css.map',
@@ -80,7 +81,7 @@ export function getCspHeaderValue(isDevServer: boolean, nonce?: string) {
     return [
         "default-src 'none'",
         "base-uri 'self'",
-        "form-action 'self'",
+        "form-action 'self' https://codesandbox.io",
         "frame-ancestors 'self'",
         "object-src 'none'",
         `script-src ${scriptSrc}`,
