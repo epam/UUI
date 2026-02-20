@@ -80,7 +80,7 @@ export function getCspHeaderValue(isDevServer: boolean, nonce?: string) {
     return [
         "default-src 'none'",
         "base-uri 'self'",
-        "form-action 'self'",
+        "form-action 'self' https://codesandbox.io",
         "frame-ancestors 'self'",
         "object-src 'none'",
         `script-src ${scriptSrc}`,
