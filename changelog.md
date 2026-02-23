@@ -1,3 +1,14 @@
+# 6.4.x - xx.xx.2026
+
+**What's New**
+* [DropdownMenu]:
+    * `IDropdownMenuItemProps` now extends `IHasRawProps`; use `rawProps` to pass any HTML attributes to the menu item element.
+    * Menu arrow-key navigation now includes all roles starting with `menuitem` (e.g. `menuitem`, `menuitemradio`, `menuitemcheckbox`).
+
+**What's Fixed**
+* [SortingPanel]: Sort options in the column header dropdown are exposed as `role="menuitemradio"` with `aria-checked`, so screen readers announce the selected sort direction ([#2992](https://github.com/epam/UUI/issues/2992) Case 2).
+* [DataTable]: Table accepts `rawProps` for additional ARIA/HTML attributes (e.g. `aria-label` for table name); `role`, `aria-colcount`, and `aria-rowcount` remain controlled by the component. ([#2992](https://github.com/epam/UUI/issues/2992) Case 3)
+
 # 6.4.3 - 04.02.2026
 
 **What's New**

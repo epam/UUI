@@ -20,6 +20,7 @@ import {
     getDir,
     uuiMarkers,
     isEventTargetInsideClickable,
+    IHasRawProps,
 } from '@epam/uui-core';
 import { Text, Anchor, IconContainer, Dropdown, FlexSpacer } from '@epam/uui-components';
 import type { DropdownContainerProps } from '@epam/uui-components';
@@ -30,7 +31,16 @@ import { settings } from '../../settings';
 
 import css from './DropdownMenu.module.scss';
 
-export interface IDropdownMenuItemProps extends IDropdownTogglerProps, IHasCaption, IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick {
+export interface IDropdownMenuItemProps
+    extends
+    IDropdownTogglerProps,
+    IHasCaption,
+    IHasIcon,
+    ICanRedirect,
+    IHasCX,
+    IDisableable,
+    IAnalyticableClick,
+    IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     isSelected?: boolean;
     isActive?: boolean;
     indent?: boolean;
@@ -56,7 +66,7 @@ function DropdownMenuContainer(props: DropdownMenuContainerProps) {
 
     const getMenuItems = (): HTMLElement[] => {
         if (!menuRef.current) return [];
-        return Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`));
+        return Array.from(menuRef.current.querySelectorAll(`[role^="menuitem"]:not(.${uuiMod.disabled})`));
     };
 
     const changeFocus = (nextFocusedIndex: number) => {
@@ -174,7 +184,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             cx={ cx(css.link, itemClassNames) }
             link={ link }
             href={ href }
-            rawProps={ { role: 'menuitem', tabIndex: isDisabled ? -1 : 0 } }
+            rawProps={ { role: 'menuitem', tabIndex: isDisabled ? -1 : 0, ...props.rawProps } }
             onClick={ handleClick }
             isDisabled={ isDisabled }
             target={ target }
@@ -189,6 +199,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             className={ itemClassNames }
             onClick={ handleClick } // update flex row data
             ref={ ref }
+            { ...props.rawProps }
         >
             { getMenuButtonContent() }
             { isSelected && (
