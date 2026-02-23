@@ -118,7 +118,7 @@ export abstract class DataTableObject {
         const filterModal = this.getFilterModal();
 
         const descButton = filterModal
-            .getByRole('menuitem', { name: 'Sort Descending' });
+            .getByRole('menuitemradio', { name: 'Sort Descending' });
 
         await expect(descButton).toBeVisible();
 
