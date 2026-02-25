@@ -16,7 +16,7 @@ import { i18n as uuiI18n } from '../../../i18n';
 import { settings } from '../../../settings';
 
 import css from './ColumnsConfigurationModal.module.scss';
-import { DataTableProps } from '../DataTable';
+import type { DataTableProps } from '../DataTable';
 
 export interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends Pick<DataTableProps<TItem, TId>, 'columnGroups'>, IModal<ColumnsConfig> {
     columnsConfig?: ColumnsConfig;

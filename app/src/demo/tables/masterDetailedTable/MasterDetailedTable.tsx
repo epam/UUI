@@ -117,6 +117,7 @@ export function MasterDetailedTable() {
                     showColumnsConfig={ true }
                     allowColumnsResizing
                     allowColumnsReordering
+                    rawProps={ { 'aria-label': 'Users Dashboard' } }
                     { ...view.getListProps() }
                 />
             </div>

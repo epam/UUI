@@ -40,8 +40,9 @@ exports[`ColumnHeaderDropdown should be rendered correctly 1`] = `
         style="min-width: 0; flex-basis: 0px;"
       >
         <div
+          aria-checked="true"
           class="itemRoot uui-active -clickable"
-          role="menuitem"
+          role="menuitemradio"
           tabindex="0"
         >
           <button
@@ -64,8 +65,9 @@ exports[`ColumnHeaderDropdown should be rendered correctly 1`] = `
           </div>
         </div>
         <div
+          aria-checked="false"
           class="itemRoot -clickable"
-          role="menuitem"
+          role="menuitemradio"
           tabindex="0"
         >
           <button
