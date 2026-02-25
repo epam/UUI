@@ -53,10 +53,9 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     const layerRef = useRef<LayoutLayer | null>(null);
     const openDropdownTimerIdRef = useRef<NodeJS.Timeout | null>(null);
     const closeDropdownTimerIdRef = useRef<NodeJS.Timeout | null>(null);
+    const isTargetHoveredRef = useRef<boolean | null>(null);
 
-    const isOpened = useCallback(() => {
-        return open;
-    }, [open]);
+    const isOpened = useCallback(() => open, [open]);
 
     const handleOpenedChange = useCallback((newOpened: boolean) => {
         setOpen(newOpened);
@@ -136,6 +135,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     };
 
     const handleMouseEnter = useCallback(() => {
+        isTargetHoveredRef.current = true;
         clearCloseDropdownTimer();
         if (openDelay) {
             setOpenDropdownTimer();
@@ -145,6 +145,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     }, []);
 
     const handleMouseLeave = useCallback(() => {
+        isTargetHoveredRef.current = false;
         clearOpenDropdownTimer();
 
         if (closeOnMouseLeave !== 'boundary') {
@@ -166,7 +167,16 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         }
     }, []);
 
-    const handleBlur = useCallback(() => {
+    const handleBlur = useCallback((e: FocusEvent | React.FocusEvent<HTMLElement>) => {
+        if (isTargetHoveredRef.current) return;
+
+        const relatedTarget = e.relatedTarget as Node | null;
+        const isFocusWithinTarget = relatedTarget && (targetNodeRef.current?.contains(relatedTarget) || bodyNodeRef.current?.contains(relatedTarget));
+
+        if (isFocusWithinTarget) {
+            return;
+        }
+
         clearOpenDropdownTimer();
         if (closeDelay) {
             setCloseDropdownTimer(closeDelay);
@@ -391,13 +401,13 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
 
     useEffect(() => {
         if (openOnFocus) {
-            targetNodeRef.current?.addEventListener?.('focus', handleFocus);
-            targetNodeRef.current?.addEventListener?.('blur', handleBlur);
+            targetNodeRef.current?.addEventListener?.('focusin', handleFocus);
+            targetNodeRef.current?.addEventListener?.('focusout', handleBlur);
         }
 
         return () => {
-            targetNodeRef.current?.removeEventListener?.('focus', handleFocus);
-            targetNodeRef.current?.removeEventListener?.('blur', handleBlur);
+            targetNodeRef.current?.removeEventListener?.('focusin', handleFocus);
+            targetNodeRef.current?.removeEventListener?.('focusout', handleBlur);
         };
     }, [
         openOnFocus,
