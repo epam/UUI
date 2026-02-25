@@ -7,8 +7,11 @@
 
 **What's Fixed**
 * [SortingPanel]: Sort options in the column header dropdown are exposed as `role="menuitemradio"` with `aria-checked`, so screen readers announce the selected sort direction ([#2992](https://github.com/epam/UUI/issues/2992) Case 2).
-* [DataTable]: Table accepts `rawProps` for additional ARIA/HTML attributes (e.g. `aria-label` for table name); `role`, `aria-colcount`, and `aria-rowcount` remain controlled by the component. ([#2992](https://github.com/epam/UUI/issues/2992) Case 3)
+* [DataTable]:
+    * Table accepts `rawProps` for additional ARIA/HTML attributes (e.g. `aria-label` for table name); `role`, `aria-colcount`, and `aria-rowcount` remain controlled by the component. ([#2992](https://github.com/epam/UUI/issues/2992) Case 3)
+    * Fixed Property Explorer by providing values for properties that are not automatically resolved ([#2832](https://github.com/epam/UUI/issues/2832))
 * [Tooltip]: fixed tooltip not showing on keyboard focus for complex elements with focusable children (e.g. Switch) ([#2959](https://github.com/epam/UUI/issues/2959))
+
 
 # 6.4.3 - 04.02.2026
 
