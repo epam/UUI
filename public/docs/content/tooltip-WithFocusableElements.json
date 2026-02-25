@@ -1,0 +1,41 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Tooltip can be applied to focusable elements directly or to a wrapper that contains focusable children. In both cases, the tooltip will appear on hover and when the element receives focus."
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Focusable element as target — the tooltip opens when the element itself is focused or hovered."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Wrapper with focusable children — the tooltip opens when any focusable child inside the wrapper receives focus, and stays open while focus moves between children."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
