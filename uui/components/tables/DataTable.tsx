@@ -3,6 +3,7 @@ import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions,
     DataSourceListProps, DataColumnProps, cx, TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData, Overwrite,
     DataColumnGroupProps, IHasCX,
+    IHasRawProps,
 } from '@epam/uui-core';
 import { IconContainer, DataTableSelectionProvider, DataTableFocusManager, DataTableFocusProvider } from '@epam/uui-components';
 import { useColumnsWithFilters } from '../../helpers';
@@ -20,7 +21,9 @@ import { settings } from '../../settings';
 import './variables.scss';
 import css from './DataTable.module.scss';
 
-interface DataTableCoreProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, IHasCX, DataSourceListProps, DataTableColumnsConfigOptions, Pick<VirtualListProps, 'onScroll'> {
+type DataTableRawProps = IHasRawProps<Exclude<React.HTMLAttributes<HTMLDivElement>, 'role' | 'aria-colcount' | 'aria-rowcount'>>;
+
+interface DataTableCoreProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, IHasCX, DataSourceListProps, DataTableColumnsConfigOptions, Pick<VirtualListProps, 'onScroll'>, DataTableRawProps {
     /** Callback to get rows that will be rendered in table */
     getRows?(): DataRowProps<TItem, TId>[];
 
@@ -199,6 +202,7 @@ export function DataTable<TItem, TId>(props: DataTableProps<TItem, TId>) {
         role: 'table',
         'aria-colcount': columns.length,
         'aria-rowcount': props.rowsCount,
+        ...props.rawProps,
     };
 
     return (

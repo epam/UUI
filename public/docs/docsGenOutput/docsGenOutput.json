@@ -1,5 +1,5 @@
 {
- "version": "6.3.2-alpha.0",
+ "version": "6.4.3",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -189,6 +189,8 @@
       "        /** Request error message */",
       "        errorMessage?: string;",
       "    };",
+      "    /** Request error */",
+      "    error?: Error;",
       "    /** Request error status */",
       "    errorStatus?: number;",
       "    /** Timestamp of request start */",
@@ -333,6 +335,20 @@
       "typeValue": {
        "raw": "{ errorMessage?: string | undefined; }",
        "html": "<span class=\"token punctuation\">{</span> errorMessage<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span>"
+      },
+      "required": false
+     },
+     {
+      "uid": "error",
+      "name": "error",
+      "comment": {
+       "raw": [
+        "Request error"
+       ]
+      },
+      "typeValue": {
+       "raw": "Error",
+       "html": "Error"
       },
       "required": false
      },
@@ -703,9 +719,9 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "null | 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance'",
+     "raw": "null | 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance' | 'abort-signal'",
      "print": [
-      "type ApiRecoveryReason = 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance' | null;"
+      "type ApiRecoveryReason = 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance' | 'abort-signal' | null;"
      ]
     }
    }
@@ -2293,8 +2309,8 @@
        ]
       },
       "typeValue": {
-       "raw": "() => Promise<TItem[]>",
-       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token operator\">></span>"
+       "raw": "(options: FetchingOptions) => Promise<TItem[]>",
+       "html": "<span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> FetchingOptions<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token operator\">></span>"
       },
       "editor": {
        "type": "func"
@@ -2732,8 +2748,8 @@
        ]
       },
       "typeValue": {
-       "raw": "() => Promise<TItem[]>",
-       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token operator\">></span>"
+       "raw": "(options: FetchingOptions) => Promise<TItem[]>",
+       "html": "<span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> FetchingOptions<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token operator\">></span>"
       },
       "editor": {
        "type": "func"
@@ -13395,6 +13411,56 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:FetchingOptions": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "FetchingOptions",
+     "nameFull": "FetchingOptions"
+    },
+    "src": "uui-core/src/services/ApiContext.ts",
+    "comment": {
+     "raw": [
+      "Options which are passed to the HTTP request."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "FetchingOptions",
+     "print": [
+      "/**",
+      " * Options which are passed to the HTTP request.",
+      " */",
+      "interface FetchingOptions {",
+      "    /**",
+      "     * Signal of request aborting.",
+      "     */",
+      "    signal: AbortSignal;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "signal",
+      "name": "signal",
+      "comment": {
+       "raw": [
+        "Signal of request aborting."
+       ]
+      },
+      "typeValue": {
+       "raw": "AbortSignal",
+       "html": "AbortSignal"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:FileUploadOptions": {
    "summary": {
     "module": "@epam/uui-core",
@@ -14646,7 +14712,9 @@
      "raw": "FormProps<T>",
      "print": [
       "interface FormProps<T> {",
-      "    /** Current value of the form state */",
+      "    /** Initial Form value",
+      "     * If changed after initialization, form will be reverted to the new value",
+      "     * */",
       "    value: T;",
       "    /**",
       "     * Render the form body, provided by form state",
@@ -14708,7 +14776,8 @@
       "name": "value",
       "comment": {
        "raw": [
-        "Current value of the form state"
+        "Initial Form value",
+        " If changed after initialization, form will be reverted to the new value"
        ]
       },
       "typeValue": {
@@ -15336,8 +15405,8 @@
        ]
       },
       "typeValue": {
-       "raw": "null | 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance'",
-       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token string\">'auth-lost'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'connection-lost'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'server-overload'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'maintenance'</span>"
+       "raw": "null | 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance' | 'abort-signal'",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token string\">'auth-lost'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'connection-lost'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'server-overload'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'maintenance'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'abort-signal'</span>"
       },
       "typeValueRef": "@epam/uui-core:ApiRecoveryReason",
       "editor": {
@@ -15347,6 +15416,7 @@
         "connection-lost",
         "server-overload",
         "maintenance",
+        "abort-signal",
         null
        ]
       },
@@ -24557,7 +24627,7 @@
       "/** Defines input arguments for Lazy Data Source APIs */",
       "request: LazyDataSourceApiRequest<TItem, TId, TFilter>, ",
       "/** Defines the context of API request. */",
-      "context?: LazyDataSourceApiRequestContext<TItem, TId>) => Promise<LazyDataSourceApiResponse<TItem>>;"
+      "context: LazyDataSourceApiRequestContext<TItem, TId>) => Promise<LazyDataSourceApiResponse<TItem>>;"
      ]
     }
    }
@@ -24788,7 +24858,7 @@
      "raw": "LazyDataSourceApiRequestContext<TItem, TId>",
      "print": [
       "/** Defines the context of API request. E.g. parent if we require to retrieve sub-list of the tree */",
-      "interface LazyDataSourceApiRequestContext<TItem, TId> {",
+      "interface LazyDataSourceApiRequestContext<TItem, TId> extends FetchingOptions {",
       "    /**",
       "     * The ID of the parent item whose children are being requested.",
       "     * Used for lazy-loading data in tree lists.",
@@ -24828,6 +24898,21 @@
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> TItem"
       },
       "required": false
+     },
+     {
+      "uid": "signal",
+      "name": "signal",
+      "comment": {
+       "raw": [
+        "Signal of request aborting."
+       ]
+      },
+      "typeValue": {
+       "raw": "AbortSignal",
+       "html": "AbortSignal"
+      },
+      "from": "@epam/uui-core:FetchingOptions",
+      "required": true
      }
     ],
     "propsFromUnion": false
@@ -41879,7 +41964,8 @@
       "name": "value",
       "comment": {
        "raw": [
-        "Current value of the form state"
+        "Initial Form value",
+        " If changed after initialization, form will be reverted to the new value"
        ]
       },
       "typeValue": {
@@ -43549,8 +43635,8 @@
        ]
       },
       "typeValue": {
-       "raw": "() => Promise<TItem[]>",
-       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token operator\">></span>"
+       "raw": "(options: FetchingOptions) => Promise<TItem[]>",
+       "html": "<span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> FetchingOptions<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token operator\">></span>"
       },
       "editor": {
        "type": "func"
@@ -50842,7 +50928,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
+      "from": "@epam/uui-components:ReactFocusLockProps",
       "required": false
      },
      {
@@ -50857,7 +50943,7 @@
        "raw": "string | React.ComponentClass<Record<string, any> & { children: React.ReactNode; }, any> | React.FunctionComponent<Record<string, any> & { children: React.ReactNode; }>",
        "html": "<span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span> children<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>ReactNode<span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span> children<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>ReactNode<span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token operator\">></span>"
       },
-      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
+      "from": "@epam/uui-components:ReactFocusLockProps",
       "required": false
      },
      {
@@ -50872,7 +50958,7 @@
        "raw": "(HTMLElement | React.RefObject<any>)[]",
        "html": "<span class=\"token punctuation\">(</span>HTMLElement <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
-      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
+      "from": "@epam/uui-components:ReactFocusLockProps",
       "required": false
      },
      {
@@ -50892,7 +50978,7 @@
        "raw": "boolean | FocusOptions | (returnTo: Element) => boolean | FocusOptions",
        "html": "<span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> FocusOptions <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>returnTo<span class=\"token operator\">:</span> Element<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> FocusOptions"
       },
-      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
+      "from": "@epam/uui-components:ReactFocusLockProps",
       "required": false
      }
     ],
@@ -66460,6 +66546,17 @@
     "exported": false
    }
   },
+  "@epam/uui-components:ReactFocusLockProps": {
+   "summary": {
+    "module": "@epam/uui-components",
+    "typeName": {
+     "name": "ReactFocusLockProps",
+     "nameFull": "ReactFocusLockProps<ChildrenType, LockProps>"
+    },
+    "src": "uui-components/node_modules/react-focus-lock/dist/cjs/interfaces.d.ts",
+    "exported": false
+   }
+  },
   "@epam/uui-components:SelectionManager": {
    "summary": {
     "module": "@epam/uui-components",
@@ -72621,24 +72718,6 @@
       "required": false
      },
      {
-      "uid": "isFoldingFocusable",
-      "name": "isFoldingFocusable",
-      "comment": {
-       "raw": [
-        "If true, folding arrow is focusable"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui:DataRowAddonsCoreProps",
-      "required": false
-     },
-     {
       "uid": "size",
       "name": "size",
       "comment": {
@@ -75208,6 +75287,21 @@
       "required": false
      },
      {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>",
+       "html": "React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
       "uid": "size",
       "name": "size",
       "comment": {
@@ -77587,7 +77681,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
+      "from": "@epam/uui-components:ReactFocusLockProps",
       "required": false
      },
      {
@@ -77602,7 +77696,7 @@
        "raw": "string | React.ComponentClass<Record<string, any> & { children: React.ReactNode; }, any> | React.FunctionComponent<Record<string, any> & { children: React.ReactNode; }>",
        "html": "<span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span> children<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>ReactNode<span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span> children<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>ReactNode<span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token operator\">></span>"
       },
-      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
+      "from": "@epam/uui-components:ReactFocusLockProps",
       "required": false
      },
      {
@@ -77617,7 +77711,7 @@
        "raw": "(HTMLElement | React.RefObject<any>)[]",
        "html": "<span class=\"token punctuation\">(</span>HTMLElement <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
-      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
+      "from": "@epam/uui-components:ReactFocusLockProps",
       "required": false
      },
      {
@@ -77637,7 +77731,7 @@
        "raw": "boolean | FocusOptions | (returnTo: Element) => boolean | FocusOptions",
        "html": "<span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> FocusOptions <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>returnTo<span class=\"token operator\">:</span> Element<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> FocusOptions"
       },
-      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
+      "from": "@epam/uui-components:ReactFocusLockProps",
       "required": false
      },
      {
@@ -80560,7 +80654,7 @@
     "typeValue": {
      "raw": "IDropdownMenuItemProps",
      "print": [
-      "interface IDropdownMenuItemProps extends IDropdownTogglerProps, IHasCaption, IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick {",
+      "interface IDropdownMenuItemProps extends IDropdownTogglerProps, IHasCaption, IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
       "    isSelected?: boolean;",
       "    isActive?: boolean;",
       "    indent?: boolean;",
@@ -80940,6 +81034,21 @@
       },
       "from": "@epam/uui-core:IAnalyticableClick",
       "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>",
+       "html": "React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -81308,7 +81417,7 @@
        "raw": "(HTMLElement | React.RefObject<any>)[]",
        "html": "<span class=\"token punctuation\">(</span>HTMLElement <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
-      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
+      "from": "@epam/uui-components:ReactFocusLockProps",
       "required": false
      }
     ],
@@ -96680,6 +96789,11 @@
       "     * @default 'none'",
       "     */",
       "    overflowBottomEffect?: 'line' | 'shadow' | 'none';",
+      "    /**",
+      "     * The given Event(s) from the elements with the given selector(s) will trigger an update.",
+      "     * Useful for cases where OverlayScrollbars' default logic does not detect changes, such as shadow DOM size changes.",
+      "     */",
+      "    elementEvents?: Options['update']['elementEvents'];",
       "    children?: ReactNode | undefined;",
       "};"
      ]
@@ -96840,6 +96954,21 @@
         "line",
         "shadow"
        ]
+      },
+      "required": false
+     },
+     {
+      "uid": "elementEvents",
+      "name": "elementEvents",
+      "comment": {
+       "raw": [
+        "The given Event(s) from the elements with the given selector(s) will trigger an update.",
+        " Useful for cases where OverlayScrollbars' default logic does not detect changes, such as shadow DOM size changes."
+       ]
+      },
+      "typeValue": {
+       "raw": "null | [elementSelector: string, eventNames: string][]",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">[</span>elementSelector<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> eventNames<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "required": false
      },
@@ -117758,9 +117887,9 @@
       "     * Icon click handler.",
       "     */",
       "    getHandlerIcon?: (value: number) => Icon;",
-      "    /*",
-      "    * Defines Tooltip color.",
-      "    */",
+      "    /**",
+      "     * Defines Tooltip color.",
+      "     */",
       "    tooltipColor?: 'white' | 'fire' | 'gray';",
       "}"
      ]
@@ -117891,6 +118020,11 @@
      {
       "uid": "tooltipColor",
       "name": "tooltipColor",
+      "comment": {
+       "raw": [
+        "Defines Tooltip color."
+       ]
+      },
       "typeValue": {
        "raw": "'fire' | 'white' | 'gray'",
        "html": "<span class=\"token string\">'fire'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'white'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'gray'</span>"
@@ -120555,17 +120689,6 @@
       " ```"
      ]
     },
-    "exported": false
-   }
-  },
-  "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps": {
-   "summary": {
-    "module": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts",
-    "typeName": {
-     "name": "ReactFocusLockProps",
-     "nameFull": "ReactFocusLockProps<ChildrenType, LockProps>"
-    },
-    "src": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts",
     "exported": false
    }
   },
