@@ -282,6 +282,8 @@ interface IDropdownMenuSwitchButton extends IHasCX, IHasCaption, IHasIcon, IDisa
 export function DropdownMenuSwitchButton(props: IDropdownMenuSwitchButton) {
     const context = useContext(UuiContext);
 
+    const switchRef = useRef<HTMLLabelElement>(null);
+
     const {
         icon, caption, isDisabled, isSelected, onValueChange,
     } = props;
@@ -298,6 +300,12 @@ export function DropdownMenuSwitchButton(props: IDropdownMenuSwitchButton) {
         }
     };
 
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        const isSwitchClicked = switchRef.current?.contains(event.target as Node);
+        if (isSwitchClicked) return;
+        onHandleValueChange(!isSelected);
+    };
+
     return (
         <div
             className={ cx(
@@ -306,7 +314,7 @@ export function DropdownMenuSwitchButton(props: IDropdownMenuSwitchButton) {
                 isDisabled && uuiMod.disabled,
                 (!isDisabled || onValueChange) && uuiMarkers.clickable,
             ) }
-            onClick={ () => onHandleValueChange(!isSelected) }
+            onClick={ handleClick }
             role="menuitem"
             onKeyDown={ handleKeySelect }
             tabIndex={ isDisabled ? -1 : 0 }
@@ -314,7 +322,7 @@ export function DropdownMenuSwitchButton(props: IDropdownMenuSwitchButton) {
             { icon && <IconContainer icon={ icon } cx={ css.iconBefore } /> }
             <Text>{ caption }</Text>
             <FlexSpacer />
-            <Switch value={ isSelected } tabIndex={ -1 } onValueChange={ onHandleValueChange } />
+            <Switch value={ isSelected } tabIndex={ -1 } onValueChange={ onHandleValueChange } ref={ switchRef } />
         </div>
     );
 }

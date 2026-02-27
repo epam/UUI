@@ -6,6 +6,7 @@
     * Menu arrow-key navigation now includes all roles starting with `menuitem` (e.g. `menuitem`, `menuitemradio`, `menuitemcheckbox`).
 
 **What's Fixed**
+* [DropdownMenuSwitchButton]: prevent calling `onValueChange` multiple times on Switch click ([#3045](https://github.com/epam/UUI/issues/3045))
 * [SortingPanel]: Sort options in the column header dropdown are exposed as `role="menuitemradio"` with `aria-checked`, so screen readers announce the selected sort direction ([#2992](https://github.com/epam/UUI/issues/2992) Case 2).
 * [DataTable]:
     * Table accepts `rawProps` for additional ARIA/HTML attributes (e.g. `aria-label` for table name); `role`, `aria-colcount`, and `aria-rowcount` remain controlled by the component. ([#2992](https://github.com/epam/UUI/issues/2992) Case 3)
