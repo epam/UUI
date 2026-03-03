@@ -1,6 +1,6 @@
 ---
 name: uui-documentation
-description: Helps update UUI documentation, add doc examples, configure Property Explorer, and manage component API documentation. Use when adding documentation examples, updating Property Explorer configs, generating API references, or working with UUI documentation site.
+description: Helps update UUI documentation, add doc examples, configure Property Explorer, and manage component API documentation. Use when adding documentation examples, updating Property Explorer configs, generating API references, working with UUI documentation site, or when adding/removing/modifying public props on component interfaces.
 ---
 
 # UUI Documentation
@@ -73,7 +73,7 @@ Component API section is auto-generated from prop interfaces.
 yarn generate-components-api
 ```
 
-Note: This is part of deployment steps, usually not needed locally.
+**Important:** You **must** run this command whenever public props are added, removed, or modified on any component interface (in `uui-core`, `uui-components`, or `uui`). Without this step, new or changed props will not appear in the Property Explorer or API docs.
 
 ## External Themes
 

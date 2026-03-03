@@ -67,6 +67,11 @@ Use descriptive branch names following these patterns:
   - `fix: correct date formatting`
   - `docs: update README`
   - `refactor: simplify component logic`
+- **Before committing:** Always show the proposed commit message to the user and wait for approval before running `git commit`. Do not commit automatically.
+- **Shell compatibility:** Do not use bash-only syntax (heredoc `<<'EOF'`, `&&` chaining). Use multiple `-m` flags for multi-line commits:
+  ```bash
+  git commit -m "subject line" -m "body line 1" -m "body line 2"
+  ```
 
 ## PR Requirements
 
