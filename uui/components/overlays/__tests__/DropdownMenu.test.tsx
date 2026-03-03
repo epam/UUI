@@ -1,8 +1,18 @@
 import React from 'react';
 import {
-    DropdownMenuBody, DropdownMenuButton, DropdownSubMenu, DropdownMenuSplitter, DropdownMenuHeader,
+    DropdownMenuBody,
+    DropdownMenuButton,
+    DropdownSubMenu,
+    DropdownMenuSplitter,
+    DropdownMenuHeader,
+    DropdownMenuSwitchButton,
 } from '../';
-import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
+import {
+    fireEvent,
+    renderSnapshotWithContextAsync,
+    renderWithContextAsync,
+    screen,
+} from '@epam/uui-test-utils';
 import { settings } from '../../../settings';
 
 const icon = settings.dropdownMenu.icons.dropdownIcon;
@@ -20,5 +30,26 @@ describe('DropdownMenu', () => {
             </DropdownMenuBody>,
         );
         expect(tree).toMatchSnapshot();
+    });
+
+    describe('DropdownMenuSwitchButton', () => {
+        it('should call onValueChange once when Switch is clicked (no double fire from row click)', async () => {
+            const onValueChange = jest.fn();
+            await renderWithContextAsync(
+                <DropdownMenuBody onClose={ () => {} }>
+                    <DropdownMenuSwitchButton
+                        caption="Notifications"
+                        isSelected={ false }
+                        onValueChange={ onValueChange }
+                    />
+                </DropdownMenuBody>,
+            );
+
+            // click on the real switch element, not the row
+            fireEvent.click(screen.getByRole('switch'));
+
+            expect(onValueChange).toHaveBeenCalledTimes(1);
+            expect(onValueChange).toHaveBeenCalledWith(true);
+        });
     });
 });
