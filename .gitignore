@@ -28,7 +28,6 @@ coverage
 .vscode/settings.json
 .cursorrules
 .cursorignore
-.cursor/
 
 # next.js
 .next/

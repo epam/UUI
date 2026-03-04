@@ -1,6 +1,7 @@
 # 6.4.x - xx.xx.2026
 
 **What's New**
+* Added Cursor AI integration with skills and developer documentation to improve AI-assisted development workflow.
 * [DropdownMenu]:
     * `IDropdownMenuItemProps` now extends `IHasRawProps`; use `rawProps` to pass any HTML attributes to the menu item element.
     * Menu arrow-key navigation now includes all roles starting with `menuitem` (e.g. `menuitem`, `menuitemradio`, `menuitemcheckbox`).

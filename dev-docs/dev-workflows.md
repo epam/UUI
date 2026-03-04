@@ -96,6 +96,29 @@ yarn track-bundle-size
 yarn track-bundle-size-override
 ```
 
+### AI-Powered IDE Setup (Optional)
+
+If you use an AI-powered IDE (Cursor, Windsurf, Cline, etc.), a **GitHub MCP server** enables the AI agent to fetch issues, create PRs, and interact with GitHub directly.
+
+Add a GitHub MCP server to your IDE's **global** MCP config (not project-level, to avoid token conflicts). Refer to your IDE's documentation for the config file location.
+
+**Example MCP server config:**
+
+```json
+{
+  "mcpServers": {
+    "github": {
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer <your-github-copilot-token>"
+      }
+    }
+  }
+}
+```
+
+Without it, the agent falls back to web fetching for GitHub issues (works for public repos only).
+
 ### Run Next.js demo app
 If you need to test how UUI works into next.js environment, you can use the following demo app.
 For more details, read readme.md into next-demo folders.
