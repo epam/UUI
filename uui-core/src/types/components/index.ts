@@ -6,3 +6,4 @@ export * from './LabeledInput';
 export * from './DatePickers';
 export * from './Tooltip';
 export * from './Dropdown';
+export * from './NumericInput';

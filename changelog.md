@@ -5,6 +5,7 @@
 * [DropdownMenu]:
     * `IDropdownMenuItemProps` now extends `IHasRawProps`; use `rawProps` to pass any HTML attributes to the menu item element.
     * Menu arrow-key navigation now includes all roles starting with `menuitem` (e.g. `menuitem`, `menuitemradio`, `menuitemcheckbox`).
+* [FiltersPanel]: Added support `min`/`max`/`step` props at numeric filter config ([#3034](https://github.com/epam/UUI/issues/3034]))
 
 **What's Fixed**
 * [DropdownMenuSwitchButton]: prevent calling `onValueChange` multiple times on Switch click ([#3045](https://github.com/epam/UUI/issues/3045))
