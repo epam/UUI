@@ -44,6 +44,12 @@ export const TooltipConfig: TDocConfig = {
             ],
         });
         doc.merge('middleware', { examples: [{ name: '[offset(25)]', value: [offset(25)] }] });
+        doc.merge('fallbackPlacements', {
+            examples: [
+                { name: '[top, bottom]', value: ['top', 'bottom'] },
+                { name: '[left, right]', value: ['left', 'right'] },
+            ],
+        });
         doc.merge('color', {
             editorType: getColorPickerComponent({
                 ...COLOR_MAP,
