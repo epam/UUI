@@ -1,5 +1,5 @@
 import React from 'react';
-import { DropdownBodyProps, isMobile } from '@epam/uui-core';
+import { DropdownBodyProps, isMobile, NumericInputCoreProps } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
 import { NumericInput } from '../inputs';
 import { FlexCell, FlexRow } from '../layout';
@@ -20,7 +20,7 @@ interface INumericRangeValue {
     to: number | null;
 }
 
-interface IFilterNumericBodyProps extends DropdownBodyProps {
+interface IFilterNumericBodyProps extends DropdownBodyProps, NumericInputCoreProps {
     /**
      * Called when numeric body value needs to be changed
      */
@@ -35,7 +35,8 @@ interface IFilterNumericBodyProps extends DropdownBodyProps {
     selectedPredicate?: string;
 }
 
-export function FilterNumericBody(props: IFilterNumericBodyProps) {
+export function FilterNumericBody({ min, max, step, ...props }: IFilterNumericBodyProps) {
+    const numericInputProps = { min, max, step };
     const isInRangePredicate = props?.selectedPredicate === 'inRange' || props?.selectedPredicate === 'notInRange';
     const isWrongRange = (from: number | undefined, to: number | undefined) => {
         if (!to && to !== 0) return false;
@@ -109,6 +110,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
                             onValueChange={ rangeValueHandler('from') }
                             placeholder="Min"
                             formatOptions={ { maximumFractionDigits: 2 } }
+                            { ...numericInputProps }
                         />
                     </FlexCell>
                     <FlexCell width="100%">
@@ -119,6 +121,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
                             placeholder="Max"
                             formatOptions={ { maximumFractionDigits: 2 } }
                             isInvalid={ isWrongRange(value?.from, value?.to) }
+                            { ...numericInputProps }
                         />
                     </FlexCell>
                 </FlexRow>
@@ -142,6 +145,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
                         onValueChange={ props.onValueChange }
                         placeholder="Enter a number"
                         formatOptions={ { maximumFractionDigits: 2 } }
+                        { ...numericInputProps }
                     />
                 </FlexCell>
             </FlexRow>

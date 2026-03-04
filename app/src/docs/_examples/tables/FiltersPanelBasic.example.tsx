@@ -147,6 +147,9 @@ export default function FiltersPanelExample() {
             title: 'Salary',
             type: 'numeric',
             predicates: defaultPredicates.numeric,
+            min: 100,
+            max: 1000,
+            step: 100,
         },
         {
             field: 'productionCategory',
