@@ -2,12 +2,14 @@
 
 **What's New**
 * Added Cursor AI integration with skills and developer documentation to improve AI-assisted development workflow.
+* [Dropdown]: added `fallbackPlacements` prop to customize alternative placements when preferred placement doesn't fit
 * [DropdownMenu]:
     * `IDropdownMenuItemProps` now extends `IHasRawProps`; use `rawProps` to pass any HTML attributes to the menu item element.
     * Menu arrow-key navigation now includes all roles starting with `menuitem` (e.g. `menuitem`, `menuitemradio`, `menuitemcheckbox`).
 
 **What's Fixed**
 * [DropdownMenuSwitchButton]: prevent calling `onValueChange` multiple times on Switch click ([#3045](https://github.com/epam/UUI/issues/3045))
+* [Dropdown]: fixed unexpected placement change from top/bottom to left/right when content doesn't fit the available space. Affects `Tooltip`, `DatePicker`, `PickerInput`, and other components built on `Dropdown` ([#3016](https://github.com/epam/UUI/issues/3016))
 * [SortingPanel]: Sort options in the column header dropdown are exposed as `role="menuitemradio"` with `aria-checked`, so screen readers announce the selected sort direction ([#2992](https://github.com/epam/UUI/issues/2992) Case 2).
 * [DataTable]:
     * Table accepts `rawProps` for additional ARIA/HTML attributes (e.g. `aria-label` for table name); `role`, `aria-colcount`, and `aria-rowcount` remain controlled by the component. ([#2992](https://github.com/epam/UUI/issues/2992) Case 3)

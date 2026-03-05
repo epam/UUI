@@ -26,6 +26,11 @@ export interface DropdownProps extends Partial<IControlled<boolean>> {
     zIndex?: number;
     /** Defines overlay content placement relative to target */
     placement?: DropdownPlacement;
+    /** Defines the list of alternative placements to try when the preferred placement doesn't fit.
+     * By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.
+     * See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}
+     */
+    fallbackPlacements?: DropdownPlacement[];
     /** Defines an array of middleware objects that change the positioning of the overlay content. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}  */
     middleware?: Middleware[];
     /** Defines how much 'ms' user should hold mouse over target to open the overlay

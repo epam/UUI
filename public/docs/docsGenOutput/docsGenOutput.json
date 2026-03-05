@@ -12586,6 +12586,11 @@
       "    zIndex?: number;",
       "    /** Defines overlay content placement relative to target */",
       "    placement?: DropdownPlacement;",
+      "    /** Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+      "     * By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+      "     * See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}",
+      "     */",
+      "    fallbackPlacements?: DropdownPlacement[];",
       "    /** Defines an array of middleware objects that change the positioning of the overlay content. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}  */",
       "    middleware?: Middleware[];",
       "    /** Defines how much 'ms' user should hold mouse over target to open the overlay",
@@ -12781,6 +12786,22 @@
         "left-start",
         "left-end"
        ]
+      },
+      "required": false
+     },
+     {
+      "uid": "fallbackPlacements",
+      "name": "fallbackPlacements",
+      "comment": {
+       "raw": [
+        "Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+        " By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+        " See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}"
+       ]
+      },
+      "typeValue": {
+       "raw": "Placement[]",
+       "html": "Placement<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "required": false
      },
@@ -40804,7 +40825,7 @@
     "typeValue": {
      "raw": "TooltipCoreProps",
      "print": [
-      "interface TooltipCoreProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, Partial<IControlled<boolean>>, Pick<DropdownProps, 'onClose' | 'middleware' | 'openDelay' | 'closeDelay' | 'closeOnMouseLeave' | 'portalTarget' | 'boundaryElement' | 'closeBodyOnTogglerHidden' | 'closeOnEscape'> {",
+      "interface TooltipCoreProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, Partial<IControlled<boolean>>, Pick<DropdownProps, 'onClose' | 'middleware' | 'openDelay' | 'closeDelay' | 'closeOnMouseLeave' | 'portalTarget' | 'boundaryElement' | 'closeBodyOnTogglerHidden' | 'closeOnEscape' | 'fallbackPlacements'> {",
       "    /** Content to show in the tooltip (ReactNode) */",
       "    content?: any;",
       "    /** Alternative to 'content' prop, you can pass a render function.",
@@ -41181,6 +41202,23 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
+     },
+     {
+      "uid": "fallbackPlacements",
+      "name": "fallbackPlacements",
+      "comment": {
+       "raw": [
+        "Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+        " By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+        " See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}"
+       ]
+      },
+      "typeValue": {
+       "raw": "Placement[]",
+       "html": "Placement<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
@@ -64796,6 +64834,23 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
+     },
+     {
+      "uid": "fallbackPlacements",
+      "name": "fallbackPlacements",
+      "comment": {
+       "raw": [
+        "Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+        " By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+        " See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}"
+       ]
+      },
+      "typeValue": {
+       "raw": "Placement[]",
+       "html": "Placement<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
@@ -104099,6 +104154,23 @@
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
+     },
+     {
+      "uid": "fallbackPlacements",
+      "name": "fallbackPlacements",
+      "comment": {
+       "raw": [
+        "Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+        " By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+        " See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}"
+       ]
+      },
+      "typeValue": {
+       "raw": "Placement[]",
+       "html": "Placement<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -104508,6 +104580,23 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
+     },
+     {
+      "uid": "fallbackPlacements",
+      "name": "fallbackPlacements",
+      "comment": {
+       "raw": [
+        "Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+        " By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+        " See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}"
+       ]
+      },
+      "typeValue": {
+       "raw": "Placement[]",
+       "html": "Placement<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
@@ -111132,6 +111221,23 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
+     },
+     {
+      "uid": "fallbackPlacements",
+      "name": "fallbackPlacements",
+      "comment": {
+       "raw": [
+        "Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+        " By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+        " See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}"
+       ]
+      },
+      "typeValue": {
+       "raw": "Placement[]",
+       "html": "Placement<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
@@ -119497,6 +119603,23 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
+     },
+     {
+      "uid": "fallbackPlacements",
+      "name": "fallbackPlacements",
+      "comment": {
+       "raw": [
+        "Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+        " By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+        " See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}"
+       ]
+      },
+      "typeValue": {
+       "raw": "Placement[]",
+       "html": "Placement<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false

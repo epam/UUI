@@ -30,6 +30,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         zIndex,
         portalTarget,
         placement = 'bottom-start',
+        fallbackPlacements,
         middleware,
         boundaryElement,
         closeOnEscape = true,
@@ -66,7 +67,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     }, [setOpen]);
 
     const defaultMiddleware = [
-        flip({ fallbackPlacements: getFallbackPlacements(placement) }),
+        flip({ fallbackPlacements: fallbackPlacements ?? getFallbackPlacements(placement) }),
         shift({ boundary: boundaryElement, rootBoundary: 'viewport' }),
         hide(),
     ];
