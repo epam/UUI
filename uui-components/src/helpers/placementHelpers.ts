@@ -34,15 +34,14 @@ export const getFallbackPlacements = (inputPlacement: Placement): Placement[] =>
     const oppositeDir = ALL_PLACEMENTS.filter((p) => p.startsWith(oppositeDirection));
     const otherDir = ALL_PLACEMENTS.filter((p) => !p.startsWith(direction) && !p.startsWith(oppositeDirection));
 
-    const fallbacks: Placement[] = [];
-    const addUnique = (p: Placement) => {
-        if (!fallbacks.includes(p)) fallbacks.push(p);
-    };
-
-    sameDir.forEach(addUnique);
-    addUnique(getOppositePlacement(inputPlacement));
-    oppositeDir.forEach(addUnique);
-    otherDir.forEach(addUnique);
+    const fallbacks: Placement[] = [
+        ...new Set([
+            ...sameDir,
+            getOppositePlacement(inputPlacement),
+            ...oppositeDir,
+            ...otherDir,
+        ]),
+    ];
 
     return fallbacks;
 };
