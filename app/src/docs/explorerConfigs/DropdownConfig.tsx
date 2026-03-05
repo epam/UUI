@@ -23,6 +23,12 @@ export const DropdownConfig: TDocConfig = {
         doc.merge('closeOnTargetClick', { remountOnChange: true });
         doc.merge('closeOnMouseLeave', { remountOnChange: true });
         doc.merge('middleware', { examples: [{ name: '[offset(6)]', value: [offset(6)] }] });
+        doc.merge('fallbackPlacements', {
+            examples: [
+                { name: '[top, bottom]', value: ['top', 'bottom'] },
+                { name: '[left, right]', value: ['left', 'right'] },
+            ],
+        });
         doc.merge('virtualTarget', {
             examples: [
                 {

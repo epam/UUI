@@ -69,9 +69,9 @@ export function Tooltip(props: TooltipProps) {
         offset(normalizeOffset(props.offset)),
     ];
 
-    let placement;
+    let placement: Placement | undefined;
 
-    if (props.placement && props.placement === 'auto') {
+    if (props.placement === 'auto') {
         middleware.push(autoPlacement());
     } else {
         placement = props.placement || 'top';
@@ -87,7 +87,7 @@ export function Tooltip(props: TooltipProps) {
             openOnHover={ true }
             openOnFocus={ true }
             closeOnMouseLeave={ closeOnMouseLeave ?? 'toggler' }
-            placement={ placement as Placement }
+            placement={ placement }
             middleware={ finalMiddleware }
             renderTarget={ (props: IDropdownTogglerProps) => renderTarget(props) }
             closeOnEscape={ closeOnEscape }
