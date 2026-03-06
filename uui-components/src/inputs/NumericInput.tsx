@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon,
     uuiMod, uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, ICanFocus, uuiMarkers, getMinMaxValidatedValue,
-    getSeparatedValue, useUuiContext, i18n, preventDefaultIfTargetFocused,
+    getSeparatedValue, useUuiContext, i18n, preventDefaultIfTargetFocused, NumericInputCoreProps,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import css from './NumericInput.module.scss';
@@ -15,30 +15,16 @@ export interface NumericInputProps
     IHasPlaceholder,
     ICanBeReadonly,
     IAnalyticableOnChange<number>,
-    IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
-    /** Maximum value (default is Number.MAX_SAFE_INTEGER) */
-    max?: number;
-
-    /**
-     * Minimum value (default is 0)
-     * @default 0
-     */
-    min?: number;
-
+    IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
+    NumericInputCoreProps {
     /** Overrides the up/increase icon */
     upIcon?: Icon;
 
     /** Overrides the down/decrease icon */
     downIcon?: Icon;
 
-    /** Increase/decrease step on up/down icons clicks and up/down arrow keys */
-    step?: number;
-
     /** CSS classes to put directly on the Input element */
     inputCx?: CX;
-
-    /** HTML ID */
-    id?: string;
 
     /** Turn off up/down (increase/decrease) buttons */
     disableArrows?: boolean;
