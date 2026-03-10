@@ -182,10 +182,6 @@
     }
 }
 
-.sr-only {
-    @include sr-only();
-}
-
 .cell-tooltip-wrapper {
     --uui-dt-header-cell-tooltip-caption-font-size: 14px;
     --uui-dt-header-cell-tooltip-caption-font-weight: 600;
