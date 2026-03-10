@@ -76,6 +76,7 @@ const TREE_SHAKEABLE_INIT = () => ({
         columnHeader: {
             collapseAllTooltip: 'Collapse All',
             expandAllTooltip: 'Expand All',
+            filterActiveLabel: 'filter active',
         },
     },
     pickerFilterHeader: {
