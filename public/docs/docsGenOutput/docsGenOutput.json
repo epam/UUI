@@ -18487,7 +18487,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'filter' | 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch' | 'disableClear'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & { type: 'datePicker'; renderFooter?: ((props: FilterDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'renderDay' | 'preventEmptyToDate' | 'preventEmptyFromDate'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; renderFooter?: ((props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
+     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'filter' | 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch' | 'disableClear'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & { type: 'datePicker'; renderFooter?: ((props: FilterDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<NumericInputCoreProps, 'max' | 'min' | 'step'> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'renderDay' | 'preventEmptyToDate' | 'preventEmptyFromDate'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; renderFooter?: ((props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
       "type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> & IEditable<any> & IDropdownBodyProps & {",
       "    /** Name of currently selected predicate */",
@@ -19170,6 +19170,64 @@
        "type": "component"
       },
       "from": "@epam/uui-core:DatePickerFilterConfig",
+      "required": false
+     },
+     {
+      "uid": "max",
+      "name": "max",
+      "comment": {
+       "raw": [
+        "Maximum value (default is Number.MAX_SAFE_INTEGER)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "min",
+      "name": "min",
+      "comment": {
+       "raw": [
+        "Minimum value (default is 0)",
+        " @default 0"
+       ],
+       "tags": {
+        "@default": 0
+       }
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "step",
+      "name": "step",
+      "comment": {
+       "raw": [
+        "Increase/decrease step on up/down icons clicks and up/down arrow keys"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
       "required": false
      },
      {
@@ -27326,6 +27384,113 @@
         "top-center",
         "bot-center"
        ]
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:NumericInputCoreProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "NumericInputCoreProps",
+     "nameFull": "NumericInputCoreProps"
+    },
+    "src": "uui-core/src/types/components/NumericInput.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "NumericInputCoreProps",
+     "print": [
+      "interface NumericInputCoreProps {",
+      "    /** Maximum value (default is Number.MAX_SAFE_INTEGER) */",
+      "    max?: number;",
+      "    /**",
+      "     * Minimum value (default is 0)",
+      "     * @default 0",
+      "     */",
+      "    min?: number;",
+      "    /** Increase/decrease step on up/down icons clicks and up/down arrow keys */",
+      "    step?: number;",
+      "    /** HTML ID */",
+      "    id?: string;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "max",
+      "name": "max",
+      "comment": {
+       "raw": [
+        "Maximum value (default is Number.MAX_SAFE_INTEGER)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "min",
+      "name": "min",
+      "comment": {
+       "raw": [
+        "Minimum value (default is 0)",
+        " @default 0"
+       ],
+       "tags": {
+        "@default": 0
+       }
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "step",
+      "name": "step",
+      "comment": {
+       "raw": [
+        "Increase/decrease step on up/down icons clicks and up/down arrow keys"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "HTML ID"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "required": false
      }
@@ -40036,6 +40201,64 @@
       "required": false
      },
      {
+      "uid": "max",
+      "name": "max",
+      "comment": {
+       "raw": [
+        "Maximum value (default is Number.MAX_SAFE_INTEGER)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "min",
+      "name": "min",
+      "comment": {
+       "raw": [
+        "Minimum value (default is 0)",
+        " @default 0"
+       ],
+       "tags": {
+        "@default": 0
+       }
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "step",
+      "name": "step",
+      "comment": {
+       "raw": [
+        "Increase/decrease step on up/down icons clicks and up/down arrow keys"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
       "uid": "type_3",
       "name": "type",
       "comment": {
@@ -50966,7 +51189,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -50981,7 +51204,7 @@
        "raw": "string | React.ComponentClass<Record<string, any> & { children: React.ReactNode; }, any> | React.FunctionComponent<Record<string, any> & { children: React.ReactNode; }>",
        "html": "<span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span> children<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>ReactNode<span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span> children<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>ReactNode<span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token operator\">></span>"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -50996,7 +51219,7 @@
        "raw": "(HTMLElement | React.RefObject<any>)[]",
        "html": "<span class=\"token punctuation\">(</span>HTMLElement <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -51016,7 +51239,7 @@
        "raw": "boolean | FocusOptions | (returnTo: Element) => boolean | FocusOptions",
        "html": "<span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> FocusOptions <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>returnTo<span class=\"token operator\">:</span> Element<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> FocusOptions"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      }
     ],
@@ -57878,24 +58101,13 @@
     "typeValue": {
      "raw": "NumericInputProps",
      "print": [
-      "interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
-      "    /** Maximum value (default is Number.MAX_SAFE_INTEGER) */",
-      "    max?: number;",
-      "    /**",
-      "     * Minimum value (default is 0)",
-      "     * @default 0",
-      "     */",
-      "    min?: number;",
+      "interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, NumericInputCoreProps {",
       "    /** Overrides the up/increase icon */",
       "    upIcon?: Icon;",
       "    /** Overrides the down/decrease icon */",
       "    downIcon?: Icon;",
-      "    /** Increase/decrease step on up/down icons clicks and up/down arrow keys */",
-      "    step?: number;",
       "    /** CSS classes to put directly on the Input element */",
       "    inputCx?: CX;",
-      "    /** HTML ID */",
-      "    id?: string;",
       "    /** Turn off up/down (increase/decrease) buttons */",
       "    disableArrows?: boolean;",
       "    /** Align text inside the component. Useful for tables (in cell-mode) - to align numbers in table column */",
@@ -57918,44 +58130,6 @@
      ]
     },
     "props": [
-     {
-      "uid": "max",
-      "name": "max",
-      "comment": {
-       "raw": [
-        "Maximum value (default is Number.MAX_SAFE_INTEGER)"
-       ]
-      },
-      "typeValue": {
-       "raw": "number",
-       "html": "<span class=\"token builtin\">number</span>"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": "min",
-      "name": "min",
-      "comment": {
-       "raw": [
-        "Minimum value (default is 0)",
-        " @default 0"
-       ],
-       "tags": {
-        "@default": 0
-       }
-      },
-      "typeValue": {
-       "raw": "number",
-       "html": "<span class=\"token builtin\">number</span>"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
      {
       "uid": "upIcon",
       "name": "upIcon",
@@ -57991,23 +58165,6 @@
       "required": false
      },
      {
-      "uid": "step",
-      "name": "step",
-      "comment": {
-       "raw": [
-        "Increase/decrease step on up/down icons clicks and up/down arrow keys"
-       ]
-      },
-      "typeValue": {
-       "raw": "number",
-       "html": "<span class=\"token builtin\">number</span>"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
       "uid": "inputCx",
       "name": "inputCx",
       "comment": {
@@ -58020,23 +58177,6 @@
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
-      "required": false
-     },
-     {
-      "uid": "id",
-      "name": "id",
-      "comment": {
-       "raw": [
-        "HTML ID"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
       "required": false
      },
      {
@@ -58358,6 +58498,82 @@
        "html": "React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
       },
       "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "max",
+      "name": "max",
+      "comment": {
+       "raw": [
+        "Maximum value (default is Number.MAX_SAFE_INTEGER)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "min",
+      "name": "min",
+      "comment": {
+       "raw": [
+        "Minimum value (default is 0)",
+        " @default 0"
+       ],
+       "tags": {
+        "@default": 0
+       }
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "step",
+      "name": "step",
+      "comment": {
+       "raw": [
+        "Increase/decrease step on up/down icons clicks and up/down arrow keys"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "HTML ID"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
       "required": false
      }
     ],
@@ -66598,17 +66814,6 @@
      "nameFull": "GroupedDataColumnProps"
     },
     "src": "uui-components/src/table/columnsConfigurationModal/types.ts",
-    "exported": false
-   }
-  },
-  "@epam/uui-components:ReactFocusLockProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "ReactFocusLockProps",
-     "nameFull": "ReactFocusLockProps<ChildrenType, LockProps>"
-    },
-    "src": "uui-components/node_modules/react-focus-lock/dist/cjs/interfaces.d.ts",
     "exported": false
    }
   },
@@ -77736,7 +77941,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -77751,7 +77956,7 @@
        "raw": "string | React.ComponentClass<Record<string, any> & { children: React.ReactNode; }, any> | React.FunctionComponent<Record<string, any> & { children: React.ReactNode; }>",
        "html": "<span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span> children<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>ReactNode<span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span> children<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>ReactNode<span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token operator\">></span>"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -77766,7 +77971,7 @@
        "raw": "(HTMLElement | React.RefObject<any>)[]",
        "html": "<span class=\"token punctuation\">(</span>HTMLElement <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -77786,7 +77991,7 @@
        "raw": "boolean | FocusOptions | (returnTo: Element) => boolean | FocusOptions",
        "html": "<span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> FocusOptions <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>returnTo<span class=\"token operator\">:</span> Element<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> FocusOptions"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -81472,7 +81677,7 @@
        "raw": "(HTMLElement | React.RefObject<any>)[]",
        "html": "<span class=\"token punctuation\">(</span>HTMLElement <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
-      "from": "@epam/uui-components:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      }
     ],
@@ -86514,46 +86719,6 @@
     },
     "props": [
      {
-      "uid": "max",
-      "name": "max",
-      "comment": {
-       "raw": [
-        "Maximum value (default is Number.MAX_SAFE_INTEGER)"
-       ]
-      },
-      "typeValue": {
-       "raw": "number",
-       "html": "<span class=\"token builtin\">number</span>"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:NumericInputProps",
-      "required": false
-     },
-     {
-      "uid": "min",
-      "name": "min",
-      "comment": {
-       "raw": [
-        "Minimum value (default is 0)",
-        " @default 0"
-       ],
-       "tags": {
-        "@default": 0
-       }
-      },
-      "typeValue": {
-       "raw": "number",
-       "html": "<span class=\"token builtin\">number</span>"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:NumericInputProps",
-      "required": false
-     },
-     {
       "uid": "upIcon",
       "name": "upIcon",
       "comment": {
@@ -86590,24 +86755,6 @@
       "required": false
      },
      {
-      "uid": "step",
-      "name": "step",
-      "comment": {
-       "raw": [
-        "Increase/decrease step on up/down icons clicks and up/down arrow keys"
-       ]
-      },
-      "typeValue": {
-       "raw": "number",
-       "html": "<span class=\"token builtin\">number</span>"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:NumericInputProps",
-      "required": false
-     },
-     {
       "uid": "inputCx",
       "name": "inputCx",
       "comment": {
@@ -86620,24 +86767,6 @@
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:NumericInputProps",
-      "required": false
-     },
-     {
-      "uid": "id",
-      "name": "id",
-      "comment": {
-       "raw": [
-        "HTML ID"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
       "from": "@epam/uui-components:NumericInputProps",
       "required": false
      },
@@ -86965,6 +87094,82 @@
        "html": "React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
       },
       "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "max",
+      "name": "max",
+      "comment": {
+       "raw": [
+        "Maximum value (default is Number.MAX_SAFE_INTEGER)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "min",
+      "name": "min",
+      "comment": {
+       "raw": [
+        "Minimum value (default is 0)",
+        " @default 0"
+       ],
+       "tags": {
+        "@default": 0
+       }
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "step",
+      "name": "step",
+      "comment": {
+       "raw": [
+        "Increase/decrease step on up/down icons clicks and up/down arrow keys"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "HTML ID"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
       "required": false
      },
      {
@@ -108450,20 +108655,17 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines component size.",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
+        "Defines component size. Promo adds size 18 for compact layouts."
+       ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'",
-       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'42'</span>"
+       "raw": "'36' | '48' | '18' | '24' | '30' | '42'",
+       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'42'</span>"
       },
       "editor": {
        "type": "oneOf",
        "options": [
+        "18",
         "24",
         "30",
         "36",
@@ -108471,7 +108673,7 @@
         "48"
        ]
       },
-      "from": "@epam/uui:LinkButtonMods",
+      "from": "@epam/promo:IconButtonMods",
       "required": false
      }
     ],
@@ -120812,6 +121014,17 @@
       " ```"
      ]
     },
+    "exported": false
+   }
+  },
+  "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps": {
+   "summary": {
+    "module": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts",
+    "typeName": {
+     "name": "ReactFocusLockProps",
+     "nameFull": "ReactFocusLockProps<ChildrenType, LockProps>"
+    },
+    "src": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts",
     "exported": false
    }
   },
