@@ -260,14 +260,14 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     * Ref ensures onClose always runs the latest callback (avoids stale closure when bodyProps.onClose
     * is called from a stale render). See https://github.com/epam/UUI/issues/3011
     */
-    const onCloseHanlderRef = useRef<DropdownProps['onClose']>(null);
+    const onCloseHandlerRef = useRef<DropdownProps['onClose']>(null);
 
     const onCloseHandler = useCallback(() => {
         if (onClose) onClose();
         else handleOpenedChange(false);
     }, [onClose, handleOpenedChange]);
 
-    onCloseHanlderRef.current = onCloseHandler;
+    onCloseHandlerRef.current = onCloseHandler;
 
     const clickOutsideHandler = useCallback((e: Event) => {
         if (isInteractedOutside(e)) {
@@ -325,7 +325,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     }, [virtualTarget, refs.setPositionReference, update]);
 
     const body = useMemo(() => renderBody({
-        onClose: () => onCloseHanlderRef.current(),
+        onClose: () => onCloseHandlerRef.current(),
         togglerWidth: togglerWidthRef.current,
         togglerHeight: togglerHeightRef.current,
         scheduleUpdate: update,
@@ -340,7 +340,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         placement: finalPlacement,
     }), [
         renderBody,
-        onCloseHanlderRef.current,
+        onCloseHandlerRef.current,
         togglerWidthRef.current,
         togglerHeightRef.current,
         update,
