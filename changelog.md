@@ -9,6 +9,7 @@
 * [FiltersPanel]: Added support `min`/`max`/`step` props at numeric filter config ([#3034](https://github.com/epam/UUI/issues/3034]))
 
 **What's Fixed**
+* [Dropdown]: fixed stale closure in onClose and onValueChange callbacks ([#3011](https://github.com/epam/UUI/issues/3011))
 * [DropdownMenuSwitchButton]: prevent calling `onValueChange` multiple times on Switch click ([#3045](https://github.com/epam/UUI/issues/3045))
 * [Dropdown]: fixed unexpected placement change from top/bottom to left/right when content doesn't fit the available space. Affects `Tooltip`, `DatePicker`, `PickerInput`, and other components built on `Dropdown` ([#3016](https://github.com/epam/UUI/issues/3016))
 * [SortingPanel]: Sort options in the column header dropdown are exposed as `role="menuitemradio"` with `aria-checked`, so screen readers announce the selected sort direction ([#2992](https://github.com/epam/UUI/issues/2992) Case 2).

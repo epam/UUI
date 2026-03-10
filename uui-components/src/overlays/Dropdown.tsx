@@ -256,16 +256,24 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         return undefined;
     }, [openOnClick, openOnHover, handleTargetClick]);
 
+    /*
+    * Ref ensures onClose always runs the latest callback (avoids stale closure when bodyProps.onClose
+    * is called from a stale render). See https://github.com/epam/UUI/issues/3011
+    */
+    const onCloseHanlderRef = useRef<DropdownProps['onClose']>(null);
+
     const onCloseHandler = useCallback(() => {
         if (onClose) onClose();
         else handleOpenedChange(false);
     }, [onClose, handleOpenedChange]);
 
+    onCloseHanlderRef.current = onCloseHandler;
+
     const clickOutsideHandler = useCallback((e: Event) => {
         if (isInteractedOutside(e)) {
             handleOpenedChange(false);
         }
-    }, [isInteractedOutside]);
+    }, [isInteractedOutside, handleOpenedChange]);
 
     // We'll use this function to get the reference element (either virtual or real)
     const getReferenceElement = () => {
@@ -317,7 +325,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     }, [virtualTarget, refs.setPositionReference, update]);
 
     const body = useMemo(() => renderBody({
-        onClose: onCloseHandler,
+        onClose: () => onCloseHanlderRef.current(),
         togglerWidth: togglerWidthRef.current,
         togglerHeight: togglerHeightRef.current,
         scheduleUpdate: update,
@@ -332,7 +340,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         placement: finalPlacement,
     }), [
         renderBody,
-        onCloseHandler,
+        onCloseHanlderRef.current,
         togglerWidthRef.current,
         togglerHeightRef.current,
         update,
@@ -365,7 +373,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
             window.removeEventListener('dragstart', clickOutsideHandler);
             window.removeEventListener('click', clickOutsideHandler, true);
         };
-    }, [closeOnClickOutside, isOpened()]);
+    }, [closeOnClickOutside, clickOutsideHandler, isOpened()]);
 
     useEffect(() => {
         if (open && closeOnMouseLeave === 'boundary') {
