@@ -1,2 +1,2 @@
 export * from './useVirtualList';
-export type { UseVirtualListProps } from './types';
+export type { UseVirtualListProps, VirtualRowInfo } from './types';

@@ -51,6 +51,17 @@ describe('getUpdatedRowHeights', () => {
 
         expect(getUpdatedRowHeights(virtualListInfo)).toEqual([6, 7, 10, 5, 5, 5, 5, 5]);
     });
+
+    it('should include gap in row height if virtualRowInfo is provided', () => {
+        const listContainer = createListContainer([80, 80, 80], { rowMargin: 4 });
+        const virtualListInfo = {
+            ...creaateVirtualListInfo(listContainer, { topIndex: 0 }, []),
+            virtualRowInfo: {
+                gap: 4,
+            },
+        };
+        expect(getUpdatedRowHeights(virtualListInfo)).toEqual([88, 88, 88]);
+    });
 });
 
 describe('getAverageRowHeight', () => {
