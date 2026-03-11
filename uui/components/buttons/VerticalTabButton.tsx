@@ -117,6 +117,7 @@ function VerticalTabButtonComponent<TItem, TId>(
             onClick={ props.onClick || props.onFold }
             rawProps={ {
                 role: 'tab',
+                'aria-selected': isActive,
                 ...props.rawProps,
             } }
             cx={ styles }

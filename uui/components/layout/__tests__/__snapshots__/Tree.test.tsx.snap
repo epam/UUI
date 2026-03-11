@@ -263,6 +263,7 @@ Object {
                 style="margin-top: 0px;"
               >
                 <button
+                  aria-selected="false"
                   class="uui-button-box uui-enabled -clickable root uui-vertical-tab-button uui-size-36 noLeftPadding onlyFoldable uui-no-left-icon uui-no-right-icon"
                   role="tab"
                   tabindex="0"
@@ -366,6 +367,7 @@ Object {
               style="margin-top: 0px;"
             >
               <button
+                aria-selected="false"
                 class="uui-button-box uui-enabled -clickable root uui-vertical-tab-button uui-size-36 noLeftPadding onlyFoldable uui-no-left-icon uui-no-right-icon"
                 role="tab"
                 tabindex="0"
