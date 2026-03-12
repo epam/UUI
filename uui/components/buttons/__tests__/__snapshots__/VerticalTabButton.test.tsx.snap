@@ -3,6 +3,7 @@
 exports[`VerticalTabButton should be rendered correctly 1`] = `
 <DocumentFragment>
   <span
+    aria-selected="false"
     class="uui-button-box uui-enabled root uui-vertical-tab-button uui-size-48 uui-no-left-icon uui-no-right-icon"
     role="tab"
     tabindex="-1"
@@ -14,6 +15,7 @@ exports[`VerticalTabButton should be rendered correctly with props 1`] = `
 <DocumentFragment>
   <button
     aria-disabled="false"
+    aria-selected="true"
     class="uui-button-box uui-enabled -clickable root uui-vertical-tab-button uui-size-48 uui-active uui-has-left-icon uui-no-right-icon"
     role="tab"
     tabindex="0"
