@@ -1,6 +1,7 @@
 # 6.4.x - xx.xx.2026
 
 **What's New**
+* [RangeDatePicker]: added mobile view with Modal for date range selection on mobile devices
 * Added Cursor AI integration with skills and developer documentation to improve AI-assisted development workflow.
 * [Dropdown]: added `fallbackPlacements` prop to customize alternative placements when preferred placement doesn't fit
 * [DropdownMenu]:

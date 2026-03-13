@@ -1,0 +1,25 @@
+@use  '../../assets/styles/index' as *;
+
+.root {
+    --uui-rdtp-separator-margin: calc(var(--uui-grid-unit) * 2);
+    --uui-rdtp-separator-color: var(--uui-text-tertiary);
+    --uui-rdtp-mobile-selector-font-size: 28px;
+
+    .header {
+        flex-direction: column;
+        column-gap: var(--uui-grid-unit);
+
+        .range-selector {
+            --uui-font-size: var(--uui-rdtp-mobile-selector-font-size);
+        }
+
+        .header-range-separator {
+            margin: 0 var(--uui-rdtp-separator-margin);
+            color: var(--uui-rdtp-separator-color);
+        }
+    }
+
+    .body {
+        overflow-y: auto;
+    }
+}

@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, type JSX } from 'react';
+import React, { forwardRef, useEffect, useState, type JSX } from 'react';
 import cx from 'classnames';
 import {
     IControlled,
@@ -7,6 +7,7 @@ import {
     RangeDatePickerInputType,
     RangeDatePickerValue,
     RangeDatePickerProps, useLayoutEffectSafeForSsr,
+    isMobile,
 } from '@epam/uui-core';
 import { uuiDaySelection, Day } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
@@ -132,9 +133,16 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
 
     const [view, setView] = useState<ViewType>('DAY_SELECTION');
     const [disabledPanel, setDisabledPanel] = useState<'left' | 'right' | null>(null);
-    const [month, setMonth] = useState(() => {
-        return getDisplayedMonth(selectedDate, inFocus, initialViewMonth);
-    });
+    const [month, setMonth] = useState(() => getDisplayedMonth(selectedDate, inFocus, initialViewMonth));
+
+    const isMobileView = isMobile();
+
+    useEffect(() => {
+        if (isMobileView && selectedDate[inFocus]) {
+            setMonth(getDisplayedMonth(selectedDate, inFocus, initialViewMonth));
+            setView('DAY_SELECTION');
+        }
+    }, [selectedDate, inFocus, initialViewMonth]);
 
     const getRange = (newValue: string | null) => {
         if (!filter || filter(uuiDayjs.dayjs(newValue))) {
@@ -233,7 +241,7 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
             aria-multiselectable="true"
         >
             <FlexRow
-                cx={ [view === 'DAY_SELECTION' && css.daySelection, css.container] }
+                cx={ [view === 'DAY_SELECTION' && css.daySelection, isMobileView && css.mobile, css.container] }
                 alignItems="top"
             >
                 <FlexCell width="auto">
@@ -258,25 +266,28 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
                                 isHoliday={ props.isHoliday }
                                 renderDay={ props.renderDay || renderDay }
                                 isDisabled={ disabledPanel === 'left' }
+                                size={ isMobileView ? '48' : undefined }
                             />
-                            <StatelessDatePickerBody
-                                key="date-picker-body-right"
-                                cx={ cx(css.toPicker) }
-                                { ...to }
-                                onValueChange={ (v) => onBodyValueChange(v) }
-                                onMonthChange={ (m) => {
-                                    setMonth(m.subtract(1, 'month'));
-                                } }
-                                onViewChange={ (v) => {
-                                    setView(v);
-                                    setDisabledPanel(v !== 'DAY_SELECTION' ? 'left' : null);
-                                } }
-                                filter={ props.filter }
-                                renderDay={ props.renderDay || renderDay }
-                                isHoliday={ props.isHoliday }
-                                isDisabled={ disabledPanel === 'right' }
-                            />
-                            {view !== 'DAY_SELECTION' && (
+                            {!isMobileView && (
+                                <StatelessDatePickerBody
+                                    key="date-picker-body-right"
+                                    cx={ cx(css.toPicker) }
+                                    { ...to }
+                                    onValueChange={ (v) => onBodyValueChange(v) }
+                                    onMonthChange={ (m) => {
+                                        setMonth(m.subtract(1, 'month'));
+                                    } }
+                                    onViewChange={ (v) => {
+                                        setView(v);
+                                        setDisabledPanel(v !== 'DAY_SELECTION' ? 'left' : null);
+                                    } }
+                                    filter={ props.filter }
+                                    renderDay={ props.renderDay || renderDay }
+                                    isHoliday={ props.isHoliday }
+                                    isDisabled={ disabledPanel === 'right' }
+                                />
+                            )}
+                            {!isMobileView && view !== 'DAY_SELECTION' && (
                                 <div
                                     style={ {
                                         left: disabledPanel === 'right' ? '50%' : undefined,

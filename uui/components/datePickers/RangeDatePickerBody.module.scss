@@ -97,7 +97,7 @@
 }
 
 .container {
-    &.day-selection {
+    &.day-selection:not(.mobile) {
         .from-picker {
             :global(.uui-datepicker-header-nav-icon-right) {
                 visibility: hidden;

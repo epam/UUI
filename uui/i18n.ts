@@ -42,6 +42,11 @@ const TREE_SHAKEABLE_INIT = () => ({
     rangeDatePicker: {
         pickerPlaceholderFrom: 'From',
         pickerPlaceholderTo: 'To',
+        mobileModalTitle: 'Select date range',
+        mobileModalStartPlaceholder: 'Start',
+        mobileModalEndPlaceholder: 'End',
+        mobileModalCancel: 'Cancel',
+        mobileModalApply: 'Apply',
     },
     tables: {
         noResultsBlock: {

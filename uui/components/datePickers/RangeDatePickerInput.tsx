@@ -48,6 +48,11 @@ export interface RangeDatePickerInputProps
      Can be used to provide your own handlers.
      */
     onKeyDown?(e: React.KeyboardEvent<HTMLDivElement>): void;
+
+    /**
+     * Called when the icon is clicked
+     */
+    onIconClick?: () => void;
 }
 
 export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerInputProps>(({
@@ -67,6 +72,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
     getPlaceholder,
     filter,
     onKeyDown,
+    onIconClick,
     preventEmptyFromDate,
     preventEmptyToDate,
     id,
@@ -188,6 +194,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
                 isDropdown={ false }
                 rawProps={ rawProps?.from }
                 onClick={ onClick }
+                onIconClick={ onIconClick }
                 onKeyDown={ onInputKeyDown }
                 id={ id }
             />
