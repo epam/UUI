@@ -44987,8 +44987,10 @@
       "     * Selector to get rows container node.",
       "     */",
       "    rowsSelector?: string;",
-      "    /** Known row dimensions. When provided, skips DOM measurement for better scroll performance on uniform lists. */",
-      "    virtualRowInfo?: VirtualRowInfo;",
+      "    /** Row height in px. When set, skips getBoundingClientRect measurement. */",
+      "    rowHeight?: number;",
+      "    /** Vertical spacing between rows in px (e.g. flex gap, or grid gap). */",
+      "    rowGap?: number;",
       "}"
      ]
     },
@@ -45085,16 +45087,36 @@
       "required": false
      },
      {
-      "uid": "virtualRowInfo",
-      "name": "virtualRowInfo",
+      "uid": "rowHeight",
+      "name": "rowHeight",
       "comment": {
        "raw": [
-        "Known row dimensions. When provided, skips DOM measurement for better scroll performance on uniform lists."
+        "Row height in px. When set, skips getBoundingClientRect measurement."
        ]
       },
       "typeValue": {
-       "raw": "VirtualRowInfo",
-       "html": "VirtualRowInfo"
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "rowGap",
+      "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Vertical spacing between rows in px (e.g. flex gap, or grid gap)."
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
       },
       "required": false
      },
@@ -45854,74 +45876,6 @@
        "type": "number"
       },
       "from": "@epam/uui-core:VirtualListRange",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-core:VirtualRowInfo": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "VirtualRowInfo",
-     "nameFull": "VirtualRowInfo"
-    },
-    "src": "uui-core/src/hooks/useVirtualList/types.ts",
-    "comment": {
-     "raw": [
-      "Known virtual row dimensions. When provided, skips DOM measurement for better scroll performance on uniform lists."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "VirtualRowInfo",
-     "print": [
-      "/** Known virtual row dimensions. When provided, skips DOM measurement for better scroll performance on uniform lists. */",
-      "interface VirtualRowInfo {",
-      "    /** Row height in px. When set, skips getBoundingClientRect measurement. */",
-      "    height?: number;",
-      "    /** Vertical spacing between rows in px (e.g. flex gap, or grid gap). */",
-      "    gap?: number;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "height",
-      "name": "height",
-      "comment": {
-       "raw": [
-        "Row height in px. When set, skips getBoundingClientRect measurement."
-       ]
-      },
-      "typeValue": {
-       "raw": "number",
-       "html": "<span class=\"token builtin\">number</span>"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": "gap",
-      "name": "gap",
-      "comment": {
-       "raw": [
-        "Vertical spacing between rows in px (e.g. flex gap, or grid gap)."
-       ]
-      },
-      "typeValue": {
-       "raw": "number",
-       "html": "<span class=\"token builtin\">number</span>"
-      },
-      "editor": {
-       "type": "number"
-      },
       "required": false
      }
     ],
@@ -79945,6 +79899,32 @@
       "required": false
      },
      {
+      "uid": "rowGap",
+      "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number | '6' | '12' | '18' | '36' | '24'",
+       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token string\">'6'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'12'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
+      "from": "@epam/uui:FlexRowMods",
+      "required": false
+     },
+     {
       "uid": "spacing",
       "name": "spacing",
       "comment": {
@@ -80076,32 +80056,6 @@
       "comment": {
        "raw": [
         "Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
-       ]
-      },
-      "typeValue": {
-       "raw": "number | '6' | '12' | '18' | '36' | '24'",
-       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token string\">'6'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'12'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span>"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18",
-        "24",
-        "36"
-       ],
-       "scalarTypeOption": "number"
-      },
-      "from": "@epam/uui:FlexRowMods",
-      "required": false
-     },
-     {
-      "uid": "rowGap",
-      "name": "rowGap",
-      "comment": {
-       "raw": [
-        "Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
        ]
       },
       "typeValue": {
@@ -100461,6 +100415,32 @@
       "required": false
      },
      {
+      "uid": "rowGap",
+      "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number | '6' | '12' | '18' | '36' | '24'",
+       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token string\">'6'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'12'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
+      "from": "@epam/uui:FlexRowMods",
+      "required": false
+     },
+     {
       "uid": "spacing",
       "name": "spacing",
       "comment": {
@@ -100592,32 +100572,6 @@
       "comment": {
        "raw": [
         "Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
-       ]
-      },
-      "typeValue": {
-       "raw": "number | '6' | '12' | '18' | '36' | '24'",
-       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token string\">'6'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'12'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span>"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18",
-        "24",
-        "36"
-       ],
-       "scalarTypeOption": "number"
-      },
-      "from": "@epam/uui:FlexRowMods",
-      "required": false
-     },
-     {
-      "uid": "rowGap",
-      "name": "rowGap",
-      "comment": {
-       "raw": [
-        "Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
        ]
       },
       "typeValue": {
@@ -106043,16 +105997,37 @@
       "required": false
      },
      {
-      "uid": "virtualRowInfo",
-      "name": "virtualRowInfo",
+      "uid": "rowHeight",
+      "name": "rowHeight",
       "comment": {
        "raw": [
-        "Known row dimensions. When provided, skips DOM measurement for better scroll performance on uniform lists."
+        "Row height in px. When set, skips getBoundingClientRect measurement."
        ]
       },
       "typeValue": {
-       "raw": "VirtualRowInfo",
-       "html": "VirtualRowInfo"
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:UseVirtualListProps",
+      "required": false
+     },
+     {
+      "uid": "rowGap",
+      "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Vertical spacing between rows in px (e.g. flex gap, or grid gap)."
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
       },
       "from": "@epam/uui-core:UseVirtualListProps",
       "required": false

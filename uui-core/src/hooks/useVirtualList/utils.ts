@@ -1,22 +1,28 @@
 import type { ScrollToConfig, VirtualListState } from '../../types';
-import { RowsInfo, VirtualListInfo, VirtualRowInfo } from './types';
+import { RowsInfo, VirtualListInfo } from './types';
 
-const getFullRowHeight = (node: Element, rowInfo: VirtualRowInfo | undefined): number => {
-    const height = rowInfo?.height ?? node.getBoundingClientRect().height ?? 0;
-    const gap = rowInfo?.gap ?? 0;
+const getFullRowHeight = (node: Element, rowHeight: number | undefined, rowGap: number | undefined): number => {
+    const height = rowHeight ?? node.getBoundingClientRect().height ?? 0;
+    const gap = rowGap ?? 0;
     return height + gap;
 };
 
 export const getUpdatedRowHeights = (virtualListInfo: VirtualListInfo) => {
     const newRowHeights = [...virtualListInfo.rowHeights];
-    const { listContainer, rowsSelector, virtualRowInfo } = virtualListInfo;
+    const { listContainer, rowsSelector, rowHeight, rowGap } = virtualListInfo;
     const rows = rowsSelector
         ? listContainer.querySelectorAll(rowsSelector)
         : listContainer.children;
+    const rowsCount = rows.length;
 
     Array.from<Element>(rows).forEach((node, index) => {
         const topIndex = virtualListInfo.value.topIndex || 0;
-        const height = getFullRowHeight(node, virtualRowInfo);
+        const isLastRow = rowsCount - 1 === index;
+        const height = getFullRowHeight(
+            node,
+            rowHeight,
+            isLastRow ? 0 : rowGap,
+        );
         if (!height) return;
         newRowHeights[topIndex + index] = height;
     });

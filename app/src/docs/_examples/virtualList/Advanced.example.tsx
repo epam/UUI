@@ -46,9 +46,7 @@ export default function AdvancedVirtualList() {
         value,
         onValueChange,
         rowsCount: getListProps().rowsCount,
-        virtualRowInfo: {
-            gap: 4,
-        },
+        rowGap: 4,
     });
 
     return (

@@ -38,8 +38,11 @@ export interface UseVirtualListProps extends IEditable<VirtualListState> {
      */
     rowsSelector?: string;
 
-    /** Known row dimensions. When provided, skips DOM measurement for better scroll performance on uniform lists. */
-    virtualRowInfo?: VirtualRowInfo;
+    /** Row height in px. When set, skips getBoundingClientRect measurement. */
+    rowHeight?: number;
+
+    /** Vertical spacing between rows in px (e.g. flex gap, or grid gap). */
+    rowGap?: number;
 }
 
 export interface RowsInfo {
@@ -47,14 +50,6 @@ export interface RowsInfo {
     rowHeights: number[];
     rowOffsets: number[];
     averageRowHeight?: number;
-}
-
-/** Known virtual row dimensions. When provided, skips DOM measurement for better scroll performance on uniform lists. */
-export interface VirtualRowInfo {
-    /** Row height in px. When set, skips getBoundingClientRect measurement. */
-    height?: number;
-    /** Vertical spacing between rows in px (e.g. flex gap, or grid gap). */
-    gap?: number;
 }
 
 export interface VirtualListInfo {
@@ -70,5 +65,6 @@ export interface VirtualListInfo {
     estimatedHeight?: number;
     averageRowHeight?: number;
     rowsSelector?: string;
-    virtualRowInfo?: VirtualRowInfo;
+    rowHeight?: number;
+    rowGap?: number;
 }
