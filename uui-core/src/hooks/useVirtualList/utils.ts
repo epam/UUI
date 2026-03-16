@@ -4,7 +4,7 @@ import { RowsInfo, VirtualListInfo, VirtualRowInfo } from './types';
 const getFullRowHeight = (node: Element, rowInfo: VirtualRowInfo | undefined): number => {
     const height = rowInfo?.height ?? node.getBoundingClientRect().height ?? 0;
     const gap = rowInfo?.gap ?? 0;
-    return height + gap * 2;
+    return height + gap;
 };
 
 export const getUpdatedRowHeights = (virtualListInfo: VirtualListInfo) => {

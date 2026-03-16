@@ -60,7 +60,7 @@ describe('getUpdatedRowHeights', () => {
                 gap: 4,
             },
         };
-        expect(getUpdatedRowHeights(virtualListInfo)).toEqual([88, 88, 88]);
+        expect(getUpdatedRowHeights(virtualListInfo)).toEqual([84, 84, 84]);
     });
 });
 

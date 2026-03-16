@@ -53,7 +53,7 @@ export interface RowsInfo {
 export interface VirtualRowInfo {
     /** Row height in px. When set, skips getBoundingClientRect measurement. */
     height?: number;
-    /** Vertical spacing between rows in px (e.g. margin, flex gap, or grid gap). Per-side value; total per row is gap × 2. */
+    /** Vertical spacing between rows in px (e.g. flex gap, or grid gap). */
     gap?: number;
 }
 
