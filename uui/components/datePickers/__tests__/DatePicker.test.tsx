@@ -293,6 +293,23 @@ describe('DatePicker', () => {
         expect(mocks.onValueChange).toHaveBeenCalledTimes(1);
     });
 
+    it('should preserve value on blur when using dddd format and user did not change input', async () => {
+        const {
+            dom: { input }, mocks, result,
+        } = await setupDatePicker({
+            value: '2024-10-17',
+            format: 'dddd, D MMMM YYYY',
+        });
+
+        expect(input.value).toEqual('Thursday, 17 October 2024');
+
+        await userEvent.click(input); // focus on input
+        await userEvent.click(result.container); // blur without changing
+
+        expect(input.value).toEqual('Thursday, 17 October 2024');
+        expect(mocks.onValueChange).not.toHaveBeenCalled();
+    });
+
     it('should not fire onValueChange when value is null and the same on blur', async () => {
         const {
             dom, mocks, result,
