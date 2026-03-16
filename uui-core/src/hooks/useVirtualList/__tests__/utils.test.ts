@@ -53,7 +53,7 @@ describe('getUpdatedRowHeights', () => {
     });
 
     it('should include gap in row height if virtualRowInfo is provided', () => {
-        const listContainer = createListContainer([80, 80, 80], { rowMargin: 4 });
+        const listContainer = createListContainer([80, 80, 80]);
         const virtualListInfo = {
             ...creaateVirtualListInfo(listContainer, { topIndex: 0 }, []),
             virtualRowInfo: {
@@ -61,6 +61,19 @@ describe('getUpdatedRowHeights', () => {
             },
         };
         expect(getUpdatedRowHeights(virtualListInfo)).toEqual([84, 84, 84]);
+    });
+
+    it('shouldn\'t call getBoundingClientRect if height is provided in virtualRowInfo', () => {
+        const listContainer = createListContainer([80, 80, 80]);
+        const spy = jest.spyOn(listContainer.children[0], 'getBoundingClientRect');
+        const virtualListInfo = {
+            ...creaateVirtualListInfo(listContainer, { topIndex: 0 }, []),
+            virtualRowInfo: {
+                height: 80,
+            },
+        };
+        expect(getUpdatedRowHeights(virtualListInfo)).toEqual([80, 80, 80]);
+        expect(spy).not.toHaveBeenCalled();
     });
 });
 

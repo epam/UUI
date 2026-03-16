@@ -7,16 +7,9 @@ export const createScrollContainer = ({ scrollTop, clientHeight }: { scrollTop?:
     return scrollContainer;
 };
 
-export interface CreateListContainerOptions {
-    /** Vertical margin for each row (applied to top and bottom). Default 0. */
-    rowMargin?: number;
-}
-
 export const createListContainer = (
     heights: number[],
-    options: CreateListContainerOptions = {},
 ) => {
-    const { rowMargin = 0 } = options;
     const listContainer = document.createElement('div');
     listContainer.style.height = '100%';
 
@@ -27,10 +20,6 @@ export const createListContainer = (
         element.setAttribute('role', 'row');
         element.textContent = `${height}`;
         element.style.height = `${height}px`;
-        if (rowMargin > 0) {
-            element.style.marginTop = `${rowMargin}px`;
-            element.style.marginBottom = `${rowMargin}px`;
-        }
         element.getBoundingClientRect = () => ({
             width: 0,
             height,
