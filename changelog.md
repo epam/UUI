@@ -11,6 +11,7 @@
     * [IconButton]: add '18' size ([#2943](https://github.com/epam/UUI/issues/2943]))
 
 **What's Fixed**
+* [DatePicker]: fixed value disappearing on blur when using formats with day name (e.g. `dddd, D MMMM YYYY`) ([#2560](https://github.com/epam/UUI/issues/2560))
 * [uui-core]: fix double decoding in `searchToQuery` helper ([#3058](https://github.com/epam/UUI/issues/3058)).
 * [Dropdown]: fixed stale closure in onClose and onValueChange callbacks ([#3011](https://github.com/epam/UUI/issues/3011))
 * [VerticalTabButton]: added `aria-selected` attribute so screen readers announce the selected tab state ([#2742](https://github.com/epam/UUI/issues/2742))
