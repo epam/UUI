@@ -17,6 +17,7 @@
     padding: 0;
     margin: 0;
     display: grid;
+    gap: 4px;
     place-items: center;
 }
 
@@ -28,7 +29,6 @@
     flex-direction: column;
     text-align: center;
     justify-content: center;
-    margin: 0.25em 0;
     padding: 0.125em;
     border: 1px solid var(--uui-control-border);
 }

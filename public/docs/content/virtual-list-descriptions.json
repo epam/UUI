@@ -91,5 +91,13 @@
         "text": " detects, that there's enough space for more items."
       }
     ]
+  },
+  {
+    "type": "note-warning",
+    "children": [
+      {
+        "text": "Avoid using marginTop/marginBottom on row content because of margin collapsing—row height calculation can become inaccurate. Prefer wrapping each row in a container and using padding, or use CSS gap with flex or grid for row spacing. When using gap, pass the same value in virtualRowInfo.gap so the list can account for it in scroll and row position calculations."
+      }
+    ]
   }
 ]

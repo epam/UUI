@@ -37,6 +37,12 @@ export interface UseVirtualListProps extends IEditable<VirtualListState> {
      * Selector to get rows container node.
      */
     rowsSelector?: string;
+
+    /** Row height in px. When set, skips getBoundingClientRect measurement. */
+    rowHeight?: number;
+
+    /** Vertical spacing between rows in px (e.g. flex gap, or grid gap). */
+    rowGap?: number;
 }
 
 export interface RowsInfo {
@@ -59,4 +65,6 @@ export interface VirtualListInfo {
     estimatedHeight?: number;
     averageRowHeight?: number;
     rowsSelector?: string;
+    rowHeight?: number;
+    rowGap?: number;
 }

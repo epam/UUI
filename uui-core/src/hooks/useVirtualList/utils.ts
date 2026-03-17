@@ -1,16 +1,28 @@
 import type { ScrollToConfig, VirtualListState } from '../../types';
 import { RowsInfo, VirtualListInfo } from './types';
 
+const getFullRowHeight = (node: Element, rowHeight: number | undefined, rowGap: number | undefined): number => {
+    const height = rowHeight ?? node.getBoundingClientRect().height ?? 0;
+    const gap = rowGap ?? 0;
+    return height + gap;
+};
+
 export const getUpdatedRowHeights = (virtualListInfo: VirtualListInfo) => {
     const newRowHeights = [...virtualListInfo.rowHeights];
-    const { listContainer, rowsSelector } = virtualListInfo;
+    const { listContainer, rowsSelector, rowHeight, rowGap } = virtualListInfo;
     const rows = rowsSelector
         ? listContainer.querySelectorAll(rowsSelector)
         : listContainer.children;
+    const rowsCount = rows.length;
 
     Array.from<Element>(rows).forEach((node, index) => {
         const topIndex = virtualListInfo.value.topIndex || 0;
-        const { height } = node.getBoundingClientRect();
+        const isLastRow = rowsCount - 1 === index;
+        const height = getFullRowHeight(
+            node,
+            rowHeight,
+            isLastRow ? 0 : rowGap,
+        );
         if (!height) return;
         newRowHeights[topIndex + index] = height;
     });
@@ -113,7 +125,7 @@ const getRealBottomIndex = ({ rowsCount, scrollContainer, rowOffsets, value: { t
     let bottomIndex = topIndex;
     const containerScrollTop = scrollContainer?.scrollTop ?? 0;
 
-    const containerScrollBottom = containerScrollTop + scrollContainer?.clientHeight ?? 0;
+    const containerScrollBottom = containerScrollTop + (scrollContainer?.clientHeight ?? 0);
     while (bottomIndex < rowsCount && rowOffsets[bottomIndex] < containerScrollBottom) {
         bottomIndex++;
     }

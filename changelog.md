@@ -6,6 +6,7 @@
 * [DropdownMenu]:
     * `IDropdownMenuItemProps` now extends `IHasRawProps`; use `rawProps` to pass any HTML attributes to the menu item element.
     * Menu arrow-key navigation now includes all roles starting with `menuitem` (e.g. `menuitem`, `menuitemradio`, `menuitemcheckbox`).
+* [useVirtualList]: Added optional `virtualRowInfo` prop. When `height` is provided, skips `getBoundingClientRect` measurement; when `gap` is provided, uses it for vertical spacing between rows (flex/grid gap). Improves scroll performance on lists with uniform row sizing.
 * [FiltersPanel]: Added support `min`/`max`/`step` props at numeric filter config ([#3034](https://github.com/epam/UUI/issues/3034]))
   * [Promo]:
     * [IconButton]: add '18' size ([#2943](https://github.com/epam/UUI/issues/2943]))
