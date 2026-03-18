@@ -1,9 +1,10 @@
 import { useCallback, useMemo } from 'react';
-import { DataRowPathItem, DataRowProps } from '../../../../types';
+import { DataRowMap, DataRowPathItem, DataRowProps } from '../../../../types';
 import { CheckingService, FocusService, FoldingService, SelectingService } from './services';
 import { idToKey } from '../helpers';
 import { CommonTreeConfig } from '../tree/hooks/strategies/types/common';
 import { ITree, Tree } from '../tree';
+import { NodeStats } from './stats';
 
 export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<CheckingService<TItem, TId>, 'clearAllChecked' | 'handleSelectAll'>,
     FocusService,
@@ -40,12 +41,21 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         getEstimatedChildrenCount,
     }: UseDataRowPropsProps<TItem, TId, TFilter>,
 ) {
-    const updateRowOptions = useCallback((row: DataRowProps<TItem, TId>) => {
+    const updateRowOptions = useCallback((row: DataRowProps<TItem, TId>, rowsMap: DataRowMap<TItem, TId>, stats: NodeStats) => {
         const externalRowOptions = (getRowOptions && !row.isLoading)
             ? getRowOptions(row.value, row.index)
             : {};
 
         const fullRowOptions = { ...rowOptions, ...externalRowOptions };
+
+        const shouldReserveCheckboxSpace = stats.hasFoldableRows && (stats.hasRootCheckbox || row.path?.some((p) => rowsMap[idToKey(p.id)]?.checkbox?.isVisible));
+
+        if (shouldReserveCheckboxSpace) {
+            fullRowOptions.checkbox = {
+                ...fullRowOptions.checkbox,
+                reserveSpace: shouldReserveCheckboxSpace,
+            };
+        }
 
         const estimatedChildrenCount = getEstimatedChildrenCount(row.id);
         row.isFoldable = false;
@@ -91,7 +101,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         handleOnFold,
     ]);
 
-    const getRowProps = useCallback((item: TItem, index: number): DataRowProps<TItem, TId> => {
+    const getRowProps = useCallback((item: TItem, index: number, rowsMap: DataRowMap<TItem, TId>, stats: NodeStats): DataRowProps<TItem, TId> => {
         const id = getId(item);
         const key = idToKey(id);
         const path = Tree.getPathById(id, tree);
@@ -107,7 +117,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
             path,
         } as DataRowProps<TItem, TId>;
 
-        return updateRowOptions(rowProps);
+        return updateRowOptions(rowProps, rowsMap, stats);
     }, [getId, tree, updateRowOptions]);
 
     const getEmptyRowProps = useCallback((id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> => {

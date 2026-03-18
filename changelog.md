@@ -8,8 +8,12 @@
     * Menu arrow-key navigation now includes all roles starting with `menuitem` (e.g. `menuitem`, `menuitemradio`, `menuitemcheckbox`).
 * [useVirtualList]: Added optional `virtualRowInfo` prop. When `height` is provided, skips `getBoundingClientRect` measurement; when `gap` is provided, uses it for vertical spacing between rows (flex/grid gap). Improves scroll performance on lists with uniform row sizing.
 * [FiltersPanel]: Added support `min`/`max`/`step` props at numeric filter config ([#3034](https://github.com/epam/UUI/issues/3034]))
-  * [Promo]:
+* [Promo]:
     * [IconButton]: add '18' size ([#2943](https://github.com/epam/UUI/issues/2943]))
+* [DataRowOptions]: Added `reserveSpace` property to checkbox configuration
+  - When set and `checkbox.isVisible` is `false`, reserves space for the checkbox in the row
+  - Automatically calculated for tree-like data structures to maintain consistent alignment
+
 
 **What's Fixed**
 * [TimePicker]: fixed inconsistent time format between input field and dropdown - both now display hours and minutes with leading zeros (e.g., 01:00 AM) ([#2910](https://github.com/epam/UUI/issues/2910))
@@ -22,6 +26,7 @@
 * [DataTable]:
     * Table accepts `rawProps` for additional ARIA/HTML attributes (e.g. `aria-label` for table name); `role`, `aria-colcount`, and `aria-rowcount` remain controlled by the component. ([#2992](https://github.com/epam/UUI/issues/2992) Case 3)
     * Fixed Property Explorer by providing values for properties that are not automatically resolved ([#2832](https://github.com/epam/UUI/issues/2832))
+    * Fixed tree table indentation when child rows have no checkbox: child rows now reserve consistent checkbox space for alignment ([#2844](https://github.com/epam/UUI/issues/2844))
 * [Tooltip]: fixed tooltip not showing on keyboard focus for complex elements with focusable children (e.g. Switch) ([#2959](https://github.com/epam/UUI/issues/2959))
 
 
