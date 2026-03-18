@@ -72,6 +72,7 @@ export function TimePickerBody(props: TimePickerBodyProps) {
                                 .set(props.value)
                                 .format(MAX_HOURS === FORMAT_12H ? 'hh' : 'HH'))
                         }
+                        formatValue={ (v) => String(v).padStart(2, '0') }
                         isReadonly={ true }
                         min={ MIN_HOURS }
                         max={ MAX_HOURS }
@@ -96,6 +97,7 @@ export function TimePickerBody(props: TimePickerBodyProps) {
                         cx={ uuiTimePicker.input }
                         onValueChange={ onMinutesChange }
                         value={ +uuiDayjs.dayjs().set(props.value).format('m') }
+                        formatValue={ (v) => String(v).padStart(2, '0') }
                         isReadonly={ true }
                         min={ MIN_MINUTES }
                         max={ MAX_MINUTES }

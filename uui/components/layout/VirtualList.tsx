@@ -24,7 +24,7 @@ interface BaseVirtualListProps
     extends IHasCX,
     IEditable<VirtualListState>,
     IHasRawProps<HTMLAttributes<HTMLDivElement>>,
-    Pick<UseVirtualListProps, 'rowsCount' | 'rowsSelector' | 'onScroll'>,
+    Pick<UseVirtualListProps, 'rowsCount' | 'rowsSelector' | 'onScroll' | 'rowHeight' | 'rowGap'>,
     Pick<ScrollbarProps, 'overflowTopEffect' | 'overflowBottomEffect'> {
     /** HTML role attribute to place on list container */
     role?: React.HTMLAttributes<HTMLDivElement>['role'];
@@ -48,6 +48,8 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
         onScroll: props.onScroll,
         rowsCount: props.rowsCount,
         rowsSelector: props.rowsSelector,
+        rowHeight: props.rowHeight,
+        rowGap: props.rowGap,
     });
 
     React.useImperativeHandle(ref, () => scrollContainerRef.current, [scrollContainerRef.current]);
