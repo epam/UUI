@@ -12,6 +12,7 @@
     * [IconButton]: add '18' size ([#2943](https://github.com/epam/UUI/issues/2943]))
 
 **What's Fixed**
+* [TimePicker]: fixed inconsistent time format between input field and dropdown - both now display hours and minutes with leading zeros (e.g., 01:00 AM) ([#2910](https://github.com/epam/UUI/issues/2910))
 * [uui-core]: fix double decoding in `searchToQuery` helper ([#3058](https://github.com/epam/UUI/issues/3058)).
 * [Dropdown]: fixed stale closure in onClose and onValueChange callbacks ([#3011](https://github.com/epam/UUI/issues/3011))
 * [VerticalTabButton]: added `aria-selected` attribute so screen readers announce the selected tab state ([#2742](https://github.com/epam/UUI/issues/2742))
