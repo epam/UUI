@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { ITree, NOT_FOUND_RECORD, PARTIALLY_LOADED, Tree } from '../tree';
-import { DataRowPathItem, DataRowProps } from '../../../../types';
+import { DataRowMap, DataRowPathItem, DataRowProps } from '../../../../types';
 import { idToKey } from '../helpers';
 import { NodeStats, getDefaultNodeStats, getRowStats, mergeStats } from './stats';
 import { CommonTreeConfig } from '../tree/hooks/strategies/types/common';
@@ -17,7 +17,7 @@ export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends
     getMissingRecordsCount: (id: TId, totalRowsCount: number, loadedChildrenCount: number) => number;
     maxVisibleRowIndex: number;
 
-    getRowProps: (item: TItem, index: number) => DataRowProps<TItem, TId>;
+    getRowProps: (item: TItem, index: number, rowsMap: DataRowMap<TItem, TId>, stats: NodeStats) => DataRowProps<TItem, TId>;
     getLoadingRowProps: (id: any, index?: number, path?: DataRowPathItem<TId, TItem>[]) => DataRowProps<TItem, TId>;
 
     isLoading?: boolean;
@@ -38,6 +38,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
         const rows: DataRowProps<TItem, TId>[] = [];
         const pinned: Record<string, number> = {};
         const pinnedByParentId: Record<string, number[]> = {};
+        const rowsMap: DataRowMap<TItem, TId> = {};
 
         const iterateNode = (
             parentId: TId,
@@ -61,10 +62,13 @@ export function useBuildRows<TItem, TId, TFilter = any>({
                     continue;
                 }
 
-                const row = getRowProps(item, rows.length);
+                const row = getRowProps(item, rows.length, rowsMap, stats);
+                const rowKey = idToKey(row.id);
+
                 if (appendRows) {
                     rows.push(row);
                     layerRows.push(row);
+                    rowsMap[rowKey] = row;
                     currentLevelRows++;
                 }
 
@@ -97,6 +101,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
                                 loadingRow.indent = parentsWithRow.length + 1;
                                 loadingRow.isLastChild = m === estimatedChildrenCount - 1;
                                 rows.push(loadingRow);
+                                rowsMap[idToKey(loadingRow.id)] = loadingRow;
                                 currentLevelRows++;
                             }
                         }
@@ -105,11 +110,12 @@ export function useBuildRows<TItem, TId, TFilter = any>({
 
                 row.isPinned = row.pin?.(row) ?? false;
                 if (row.isPinned) {
-                    pinned[idToKey(row.id)] = row.index;
-                    if (!pinnedByParentId[idToKey(row.parentId)]) {
-                        pinnedByParentId[idToKey(row.parentId)] = [];
+                    pinned[rowKey] = row.index;
+                    const parentKey = idToKey(row.parentId);
+                    if (!pinnedByParentId[parentKey]) {
+                        pinnedByParentId[parentKey] = [];
                     }
-                    pinnedByParentId[idToKey(row.parentId)]?.push(row.index);
+                    pinnedByParentId[parentKey]?.push(row.index);
                 }
             }
 
@@ -127,6 +133,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
                     const row = getLoadingRowProps('_loading_' + rows.length, rows.length, path);
                     rows.push(row);
                     layerRows.push(row);
+                    rowsMap[idToKey(row.id)] = row;
                     currentLevelRows++;
                     missingCount--;
                 }
@@ -146,6 +153,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
 
         return {
             rows,
+            rowsMap,
             pinned,
             pinnedByParentId,
             stats,

@@ -123,7 +123,11 @@ export interface DataRowPathItem<TId, TItem> {
  */
 export interface DataRowOptions<TItem, TId> extends Partial<IEditable<TItem>>, IHasValidationMessage {
     /** If row needs a checkbox, this field should be specified, and it props can be configured here */
-    checkbox?: { isVisible: boolean } & IDisableable & ICanBeInvalid;
+    checkbox?: {
+        isVisible: boolean,
+        /** If true, the checkbox will reserve space for itself, even if it's not visible */
+        reserveSpace?: boolean
+    } & IDisableable & ICanBeInvalid;
 
     /** True if row is selectable (for whole-row single-selection, multi-selection via checkbox are configured with the checkbox prop) */
     isSelectable?: boolean;
@@ -143,3 +147,6 @@ export interface DataRowOptions<TItem, TId> extends Partial<IEditable<TItem>>, I
      * */
     pin?(rowProps: DataRowProps<TItem, TId>): boolean;
 }
+
+/** A map of data rows, indexed by their ID */
+export type DataRowMap<TItem, TId> = Record<string, DataRowProps<TItem, TId>>;
