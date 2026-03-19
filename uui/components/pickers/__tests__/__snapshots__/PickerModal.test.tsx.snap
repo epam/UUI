@@ -1348,6 +1348,7 @@ exports[`PickerModal should open body 1`] = `
                 >
                   <div
                     class="uui-blocker uui-blocker-exit uui-blocker-exit-active"
+                    style="top: 0px; left: 0px; right: 0px; bottom: 0px;"
                   >
                     <div
                       class="container uui-spinner-container root uui-spinner"
