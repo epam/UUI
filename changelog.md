@@ -15,6 +15,7 @@
 
 
 **What's Fixed**
+* [FiltersPanel]: fixed filters being centered instead of left-aligned inside dropdown popups ([#3065](https://github.com/epam/UUI/issues/3065))
 * [DatePicker]: fixed value disappearing on blur when using formats with day name (e.g. `dddd, D MMMM YYYY`) ([#2560](https://github.com/epam/UUI/issues/2560))
 * [TimePicker]: fixed inconsistent time format between input field and dropdown - both now display hours and minutes with leading zeros (e.g., 01:00 AM) ([#2910](https://github.com/epam/UUI/issues/2910))
 * [uui-core]: fix double decoding in `searchToQuery` helper ([#3058](https://github.com/epam/UUI/issues/3058)).
