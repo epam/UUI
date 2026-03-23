@@ -7,6 +7,8 @@ export interface NodeStats {
     isSomeSelected: boolean;
     hasMoreRows: boolean;
     isSomeCheckboxEnabled: boolean;
+    hasRootCheckbox?: boolean;
+    hasFoldableRows?: boolean;
 
     isSomeEnabledChecked: boolean;
     isAllDisabledChecked: boolean;
@@ -23,6 +25,8 @@ export const getDefaultNodeStats = (): NodeStats => ({
     isPartiallyLoaded: false,
     isAllDisabledChecked: true,
     isSomeEnabledChecked: false,
+    hasRootCheckbox: false,
+    hasFoldableRows: false,
 });
 
 export const mergeStats = (parentStats: NodeStats, childStats: NodeStats) => ({
@@ -36,16 +40,30 @@ export const mergeStats = (parentStats: NodeStats, childStats: NodeStats) => ({
     isPartiallyLoaded: parentStats.isPartiallyLoaded || childStats.isPartiallyLoaded,
     isAllDisabledChecked: parentStats.isAllDisabledChecked && childStats.isAllDisabledChecked,
     isSomeEnabledChecked: parentStats.isSomeEnabledChecked || childStats.isSomeEnabledChecked,
+    hasRootCheckbox: parentStats.hasRootCheckbox || childStats.hasRootCheckbox,
+    hasFoldableRows: parentStats.hasFoldableRows || childStats.hasFoldableRows,
 });
 
 export const getRowStats = <TItem, TId>(row: DataRowProps<TItem, TId>, actualStats: NodeStats, cascadeSelection: CascadeSelection): NodeStats => {
     let {
-        isSomeCheckable, isSomeChecked, isAllChecked, isSomeSelected, isSomeCheckboxEnabled, isSomeEnabledChecked, isAllDisabledChecked,
+        isSomeCheckable,
+        isSomeChecked,
+        isAllChecked,
+        isSomeSelected,
+        isSomeCheckboxEnabled,
+        isSomeEnabledChecked,
+        isAllDisabledChecked,
+        hasRootCheckbox,
+        hasFoldableRows,
     } = actualStats;
+
     const isImplicitCascadeSelection = cascadeSelection === CascadeSelectionTypes.IMPLICIT;
 
     if (row.checkbox && row.checkbox.isVisible) {
         isSomeCheckable = true;
+        if (row.parentId == null) {
+            hasRootCheckbox = true;
+        }
         if (row.isChecked || row.isChildrenChecked) {
             isSomeChecked = true;
         }
@@ -76,6 +94,10 @@ export const getRowStats = <TItem, TId>(row: DataRowProps<TItem, TId>, actualSta
         isSomeSelected = true;
     }
 
+    if (row.isFoldable) {
+        hasFoldableRows = true;
+    }
+
     return {
         ...actualStats,
         isSomeCheckable,
@@ -85,5 +107,7 @@ export const getRowStats = <TItem, TId>(row: DataRowProps<TItem, TId>, actualSta
         isSomeCheckboxEnabled,
         isSomeEnabledChecked,
         isAllDisabledChecked,
+        hasRootCheckbox,
+        hasFoldableRows,
     };
 };

@@ -6168,6 +6168,32 @@
     }
    }
   },
+  "@epam/uui-core:DataRowMap": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "DataRowMap",
+     "nameFull": "DataRowMap<TItem, TId>"
+    },
+    "src": "uui-core/src/types/dataRows.ts",
+    "comment": {
+     "raw": [
+      "A map of data rows, indexed by their ID"
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "DataRowMap<TItem, TId>",
+     "print": [
+      "/** A map of data rows, indexed by their ID */",
+      "type DataRowMap<TItem, TId> = Record<string, DataRowProps<TItem, TId>>;"
+     ]
+    }
+   }
+  },
   "@epam/uui-core:DataRowOptions": {
    "summary": {
     "module": "@epam/uui-core",
@@ -6196,6 +6222,8 @@
       "    /** If row needs a checkbox, this field should be specified, and it props can be configured here */",
       "    checkbox?: {",
       "        isVisible: boolean;",
+      "        /** If true, the checkbox will reserve space for itself, even if it's not visible */",
+      "        reserveSpace?: boolean;",
       "    } & IDisableable & ICanBeInvalid;",
       "    /** True if row is selectable (for whole-row single-selection, multi-selection via checkbox are configured with the checkbox prop) */",
       "    isSelectable?: boolean;",
@@ -6223,8 +6251,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "required": false
      },
@@ -6743,8 +6771,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -9821,8 +9849,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -36670,8 +36698,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -72227,8 +72255,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -76073,8 +76101,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -89286,8 +89314,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -90055,8 +90083,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
