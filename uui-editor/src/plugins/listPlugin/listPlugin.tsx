@@ -1,5 +1,5 @@
 import {
-    PlateEditor, PlateElementProps, focusEditor, PlatePlugin,
+    PlateEditor, PlateElement, PlateElementProps, focusEditor, PlatePlugin,
     KEY_DESERIALIZE_HTML,
     traverseHtmlElements,
     isHtmlBlockElement,
@@ -36,9 +36,9 @@ export const listPlugin = (): PlatePlugin => createListPlugin<WithToolbarButton>
         [ELEMENT_LI]: {
             type: LI_TYPE,
             isElement: true,
-            component: ({ children, attributes }: PlateElementProps) => {
-                return <li { ...attributes }>{children}</li>;
-            },
+            component: (props: PlateElementProps) => (
+                <PlateElement as="li" { ...props } />
+            ),
             deserializeHtml: { rules: [{ validNodeName: 'LI' }] },
         },
         [ELEMENT_LIC]: {

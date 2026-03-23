@@ -2,6 +2,7 @@
 
 **What's New**
 * [DropdownContainer]: added Shadow DOM support.
+* [RTE]: UUI block and mark components render through `PlateElement` / `PlateLeaf` (with `asChild` where a semantic tag is used) so custom Plate plugins that wrap nodes (e.g. `inject.aboveComponent`) compose correctly ([#3062](https://github.com/epam/UUI/issues/3062)).
 
 **What's Fixed**
 * [PickerModal]: fixed footer **Select all** staying available while searching — the control is now disabled until the search field is cleared.([#3083](https://github.com/epam/UUI/issues/3083))

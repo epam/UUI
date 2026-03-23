@@ -3,7 +3,7 @@ import { useUuiContext } from '@epam/uui-core';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { isElement, PlateEditor, PlatePlugin, someNode } from '@udecode/plate-common';
+import { isElement, PlateEditor, PlateElement, PlatePlugin, someNode } from '@udecode/plate-common';
 import { ELEMENT_LINK, LinkPlugin, createLinkPlugin, withLink } from '@udecode/plate-link';
 import { useIsPluginActive } from '../../helpers';
 import { ReactComponent as LinkIcon } from '../../icons/link.svg';
@@ -17,15 +17,14 @@ export const linkPlugin = (): PlatePlugin => createLinkPlugin<WithToolbarButton 
     overrideByKey: {
         [ELEMENT_LINK]: {
             component: (props) => (
-                <a
-                    { ...props.attributes }
+                <PlateElement
+                    as="a"
+                    { ...props }
                     style={ { display: 'inline' } }
                     target="_blank"
                     rel="noopener noreferrer"
                     href={ props.element.url }
-                >
-                    { props.children }
-                </a>
+                />
             ),
         },
     },
