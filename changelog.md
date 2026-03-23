@@ -1,7 +1,6 @@
-# 6.4.x - xx.xx.2026
+# 6.4.4 - xx.xx.2026
 
 **What's New**
-* Added Cursor AI integration with skills and developer documentation to improve AI-assisted development workflow.
 * [Dropdown]: added `fallbackPlacements` prop to customize alternative placements when preferred placement doesn't fit
 * [DropdownMenu]:
     * `IDropdownMenuItemProps` now extends `IHasRawProps`; use `rawProps` to pass any HTML attributes to the menu item element.
@@ -16,6 +15,7 @@
 
 
 **What's Fixed**
+* [DatePicker]: fixed value disappearing on blur when using formats with day name (e.g. `dddd, D MMMM YYYY`) ([#2560](https://github.com/epam/UUI/issues/2560))
 * [TimePicker]: fixed inconsistent time format between input field and dropdown - both now display hours and minutes with leading zeros (e.g., 01:00 AM) ([#2910](https://github.com/epam/UUI/issues/2910))
 * [uui-core]: fix double decoding in `searchToQuery` helper ([#3058](https://github.com/epam/UUI/issues/3058)).
 * [Dropdown]: fixed stale closure in onClose and onValueChange callbacks ([#3011](https://github.com/epam/UUI/issues/3011))
