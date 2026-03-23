@@ -4,6 +4,12 @@
     padding-inline-end: var(--uui-horizontal-gap);
 }
 
+:global(.uui-dr_addons-checkbox-spacer) {
+    padding-inline-end: var(--uui-horizontal-gap);
+    width: var(--uui-size);
+    min-height: var(--uui-size);
+}
+
 :global(.-draggable) {
     .drag-handle-wrapper {
         @include dnd-cursor-style();
