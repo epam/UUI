@@ -13,7 +13,7 @@ export function ToDoItem(props: PlateElementProps<Value, TTodoListItemElement>) 
         className, editor, attributes, children,
     } = props;
 
-    const checked = element.data?.checked || false;
+    const checked = element?.checked || false;
 
     return (
         <PlateElement asChild { ...{ ...props, rawProps: attributes } }>
@@ -31,7 +31,7 @@ export function ToDoItem(props: PlateElementProps<Value, TTodoListItemElement>) 
 
                             setNodes<TTodoListItemElement>(
                                 editor,
-                                { data: { checked: value } },
+                                { checked: value },
                                 { at: path },
                             );
                         } }

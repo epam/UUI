@@ -73,15 +73,14 @@ Array [
     "type": "paragraph",
   },
   Object {
+    "checked": false,
     "children": Array [
       Object {
         "text": " An item",
         "uui-richTextEditor-span-mark": true,
       },
     ],
-    "data": Object {
-      "checked": false,
-    },
+    "data": Object {},
     "type": "toDoItem",
   },
   Object {
@@ -405,6 +404,17 @@ Array [
       "checked": false,
     },
     "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {},
+    "type": "iframe",
+    "url": "https://www.youtube.com/embed/5qap5aO4i9A",
   },
   Object {
     "children": Array [

@@ -1,5 +1,6 @@
 import { TLinkElement } from '@udecode/plate-link';
 import { TTableCellElement, TTableElement } from '@udecode/plate-table';
+import { TTodoListItemElement } from '@udecode/plate-list';
 import { TAttachmentElement } from '../plugins/attachmentPlugin/types';
 import { TIframeElement } from '../plugins/iframePlugin/types';
 import { TImageElement } from '../plugins/imagePlugin/types';
@@ -48,6 +49,12 @@ export type DeprecatedTIframeElement = TIframeElement & {
 export type DeprecatedTAttachmentElement = TAttachmentElement & {
     data?: TAttachmentElement['data'] & {
         src?: string; // removed
+    }
+};
+
+export type DeprecatedTTodoListItemElement = TTodoListItemElement & {
+    data?: TTodoListItemElement['data'] & {
+        checked?: boolean; // removed
     }
 };
 

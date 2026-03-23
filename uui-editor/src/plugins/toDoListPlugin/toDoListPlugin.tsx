@@ -12,6 +12,7 @@ import { ELEMENT_TODO_LI, createTodoListPlugin } from '@udecode/plate-list';
 import { ToDoItem } from './ToDoItem';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 import { TODO_PLUGIN_KEY, TODO_TYPE } from './constants';
+import { withTodoList } from './withTodoList';
 
 export const toDoListPlugin = (): PlatePlugin<WithToolbarButton> => {
     // TODO: implement withOverrides for toggling between lists and todo lists
@@ -23,6 +24,7 @@ export const toDoListPlugin = (): PlatePlugin<WithToolbarButton> => {
                 component: ToDoItem,
             },
         },
+        withOverrides: withTodoList,
         options: {
             bottomBarButton: ToDoListButton,
         },
