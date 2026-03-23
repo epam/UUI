@@ -19,6 +19,7 @@
     * [RangeDatePickerBody]: fixed separator direction in RTL.
     * [DataRowAddons]: fixed drag handle position in RTL.
     * [PickerToggler]: fixed search input text direction in RTL.
+* [RTE]: Todo list items migrate legacy `element.data.checked` to `element.checked`. Iframe nodes normalize `url` from `url` or legacy `data.src`.
 
 
 # 6.4.4 - 01.04.2026

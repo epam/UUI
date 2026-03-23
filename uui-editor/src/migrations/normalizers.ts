@@ -1,4 +1,5 @@
 import { Value, setNodes, PlateEditor, TNodeEntry } from '@udecode/plate-common';
+import { TTodoListItemElement } from '@udecode/plate-list';
 import { TLinkElement } from '@udecode/plate-link';
 import { TTableCellElement, TTableElement } from '@udecode/plate-table';
 import { TAttachmentElement } from '../plugins/attachmentPlugin/types';
@@ -6,6 +7,7 @@ import { TIframeElement } from '../plugins/iframePlugin/types';
 import { TImageElement } from '../plugins/imagePlugin/types';
 import { toNewAlign } from './legacy_migrations';
 import { DepreactedTTableElement, DeprecatedImageElement, DeprecatedTAttachmentElement, DeprecatedTIframeElement, DeprecatedTLinkElement, DeprecatedTTableCellElement } from './types';
+import { isLegacyTodoListItemElement } from './utils';
 
 /**
  * Migration property functions
@@ -116,14 +118,20 @@ export const normalizeIframeElement = (editor: PlateEditor<Value>, entry: TNodeE
     const iframeNode = node as DeprecatedTIframeElement;
 
     if (iframeNode.data) {
-        const { src, ...otherData } = iframeNode.data;
+        const { data: { src, ...otherData }, url } = iframeNode;
 
         // removing props
         if (!src) {
             return;
         }
 
-        const iframe: TIframeElement = { ...iframeNode, data: { ...otherData } };
+        const newUrl = url || src;
+
+        const iframe: TIframeElement = {
+            ...iframeNode,
+            url: newUrl,
+            data: { ...otherData },
+        };
 
         setNodes<TTableCellElement>(
             editor,
@@ -171,6 +179,31 @@ export const normaizeColoredText = (editor: PlateEditor<Value>, entry: TNodeEntr
         setNodes<TTableCellElement>(
             editor,
             { ...node, color: WORD_TO_COLOR[node.color] },
+            { at: path },
+        );
+    }
+};
+
+/** migrate checked property if needed */
+export const migrateCheckedPropertyIfNeeded = <V extends Value>(
+    editor: PlateEditor<V>,
+    entry: TNodeEntry<TTodoListItemElement>,
+) => {
+    const [node, path] = entry;
+
+    if (isLegacyTodoListItemElement(node)) {
+        const { data: { checked, ...otherData }, ...otherNodeData } = node;
+        const updatedNode: TTodoListItemElement = {
+            ...otherNodeData,
+            data: {
+                ...otherData,
+            },
+            checked: checked,
+        };
+
+        setNodes<TTodoListItemElement>(
+            editor,
+            updatedNode,
             { at: path },
         );
     }

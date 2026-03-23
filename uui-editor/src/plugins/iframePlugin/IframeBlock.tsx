@@ -17,7 +17,7 @@ export const IframeBlock = function IframeComp({ children, ...props }: PlateElem
     const isPdf = element.data?.extension === 'pdf';
     const style = element.data?.style;
 
-    const url: string = element.url || element.src as string; // element.src it's previous editor format structure
+    const url: string = element.url;
 
     return (
         <PlateElement as="div" { ...props }>

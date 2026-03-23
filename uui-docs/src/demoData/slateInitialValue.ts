@@ -79,9 +79,7 @@ export const slateInitialValue = [
     },
     {
         type: 'toDoItem',
-        data: {
-            checked: false,
-        },
+        checked: true,
         children: [
             {
                 text: ' An item',
