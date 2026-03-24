@@ -32,3 +32,7 @@
     padding-top: var(--uui-data_picker_body-no-data-vertical-padding);
     padding-bottom: var(--uui-data_picker_body-no-data-vertical-padding);
 }
+
+.empty-status-announcer {
+    @include screen-reader-only();
+}
