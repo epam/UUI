@@ -1,7 +1,8 @@
 import React from 'react';
-import { renderHook, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
+import { renderHook, renderSnapshotWithContextAsync, renderWithContextAsync, waitFor, within } from '@epam/uui-test-utils';
 import { ArrayDataSource } from '@epam/uui-core';
 import { DataPickerBody, DataPickerBodyProps } from '../DataPickerBody';
+import { i18n } from '../../../i18n';
 
 type LanguageLevel = { id: number; level: string };
 const languageLevels = [
@@ -50,5 +51,59 @@ describe('DataPickerBody', () => {
             />,
         );
         expect(tree).toMatchSnapshot();
+    });
+
+    it('should update announcer div when empty list shows default no-records message', async () => {
+        const { container } = await renderWithContextAsync(
+            <DataPickerBody
+                { ...requiredProps }
+                rows={ [] }
+                showSearch
+                rowsCount={ 0 }
+                value={ { topIndex: 0, search: 'no-match' } }
+            />,
+        );
+
+        await waitFor(() => {
+            expect(within(container).getByRole('status')).toHaveTextContent(i18n.dataPickerBody.noRecordsMessage);
+        });
+    });
+
+    it('should update announcer div to match custom renderEmpty text', async () => {
+        const { container } = await renderWithContextAsync(
+            <DataPickerBody
+                { ...requiredProps }
+                rows={ [] }
+                renderEmpty={ () => <div>Custom empty message</div> }
+            />,
+        );
+
+        await waitFor(() => {
+            expect(within(container).getByRole('status')).toHaveTextContent('Custom empty message');
+        });
+    });
+
+    it('should clear announcer when list has rows', async () => {
+        const { container, rerender } = await renderWithContextAsync(
+            <DataPickerBody
+                { ...requiredProps }
+                rows={ [] }
+                renderEmpty={ () => <div>Was empty</div> }
+            />,
+        );
+
+        const emptyStatusAnnouncer = within(container).getByRole('status');
+
+        await waitFor(() => {
+            expect(emptyStatusAnnouncer).toHaveTextContent('Was empty');
+        });
+
+        rerender(
+            <DataPickerBody { ...requiredProps } rows={ rows } />,
+        );
+
+        await waitFor(() => {
+            expect(emptyStatusAnnouncer).toHaveTextContent('');
+        });
     });
 });

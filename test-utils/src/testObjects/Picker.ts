@@ -117,8 +117,9 @@ export class PickerTestObject {
     }
 
     static querySpinner(props: { editMode?: string } = {}) {
-        const dialog = within(this.getDialog(props.editMode));
-        return dialog.queryByRole('status', { busy: false }).querySelector('.uui-blocker');
+        const dialog = this.getDialog(props.editMode);
+        // VirtualList Blocker uses role="status"; DataPickerBody adds a separate empty-state announcer with the same role.
+        return dialog.querySelector<HTMLElement>('.uui-blocker-container .uui-blocker')!;
     }
 
     public static async waitForLoadingComplete(editMode?: string) {

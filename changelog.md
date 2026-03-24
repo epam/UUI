@@ -17,6 +17,7 @@
 
 
 **What's Fixed**
+* [DataPickerBody]: empty search results are announced via a **polite** off-screen `role="status"` region [#1506](https://github.com/epam/UUI/issues/1506) Case №9.
 * [VirtualList]: fixed loading `Blocker` not fully covering the visible area.
 * [FiltersPanel]: fixed filters being centered instead of left-aligned inside dropdown popups ([#3065](https://github.com/epam/UUI/issues/3065))
 * [DatePicker]: fixed value disappearing on blur when using formats with day name (e.g. `dddd, D MMMM YYYY`) ([#2560](https://github.com/epam/UUI/issues/2560))
