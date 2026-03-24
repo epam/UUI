@@ -47634,6 +47634,106 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-components:BlockerInset": {
+   "summary": {
+    "module": "@epam/uui-components",
+    "typeName": {
+     "name": "BlockerInset",
+     "nameFull": "BlockerInset"
+    },
+    "src": "uui-components/src/layout/Blocker.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "BlockerInset",
+     "print": [
+      "interface BlockerInset {",
+      "    /** Inset from the top edge in px */",
+      "    top?: number;",
+      "    /** Inset from the bottom edge in px */",
+      "    bottom?: number;",
+      "    /** Inset from the left edge in px */",
+      "    left?: number;",
+      "    /** Inset from the right edge in px */",
+      "    right?: number;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "top",
+      "name": "top",
+      "comment": {
+       "raw": [
+        "Inset from the top edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "bottom",
+      "name": "bottom",
+      "comment": {
+       "raw": [
+        "Inset from the bottom edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "left",
+      "name": "left",
+      "comment": {
+       "raw": [
+        "Inset from the left edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "right",
+      "name": "right",
+      "comment": {
+       "raw": [
+        "Inset from the right edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-components:BlockerProps": {
    "summary": {
     "module": "@epam/uui-components",
@@ -47658,6 +47758,8 @@
       "    spacerHeight?: number;",
       "    /** Replaces default spinner */",
       "    renderSpinner?(props: any): React.ReactNode;",
+      "    /** Inset spacing (in px) from each edge to control the blocker's coverage area */",
+      "    inset?: BlockerInset;",
       "}"
      ]
     },
@@ -47727,6 +47829,20 @@
       },
       "editor": {
        "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "inset",
+      "name": "inset",
+      "comment": {
+       "raw": [
+        "Inset spacing (in px) from each edge to control the blocker's coverage area"
+       ]
+      },
+      "typeValue": {
+       "raw": "BlockerInset",
+       "html": "BlockerInset"
       },
       "required": false
      },
@@ -68406,6 +68522,101 @@
        ]
       },
       "from": "@epam/uui:BadgeMods",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:BlockerInset": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "BlockerInset",
+     "nameFull": "BlockerInset"
+    },
+    "src": "uui/components/layout/Blocker.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "BlockerInset",
+     "print": [
+      "type BlockerInset = uuiBlockerInset;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "top",
+      "name": "top",
+      "comment": {
+       "raw": [
+        "Inset from the top edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:BlockerInset",
+      "required": false
+     },
+     {
+      "uid": "bottom",
+      "name": "bottom",
+      "comment": {
+       "raw": [
+        "Inset from the bottom edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:BlockerInset",
+      "required": false
+     },
+     {
+      "uid": "left",
+      "name": "left",
+      "comment": {
+       "raw": [
+        "Inset from the left edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:BlockerInset",
+      "required": false
+     },
+     {
+      "uid": "right",
+      "name": "right",
+      "comment": {
+       "raw": [
+        "Inset from the right edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:BlockerInset",
       "required": false
      }
     ],

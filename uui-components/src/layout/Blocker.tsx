@@ -3,6 +3,17 @@ import { CSSTransition } from 'react-transition-group';
 import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import css from './Blocker.module.scss';
 
+export interface BlockerInset {
+    /** Inset from the top edge in px */
+    top?: number;
+    /** Inset from the bottom edge in px */
+    bottom?: number;
+    /** Inset from the left edge in px */
+    left?: number;
+    /** Inset from the right edge in px */
+    right?: number;
+}
+
 export interface BlockerProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /** Turns the blocker on or off */
     isEnabled: boolean;
@@ -12,6 +23,8 @@ export interface BlockerProps extends IHasCX, IHasRawProps<React.HTMLAttributes<
     spacerHeight?: number;
     /** Replaces default spinner */
     renderSpinner?(props: any): React.ReactNode;
+    /** Inset spacing (in px) from each edge to control the blocker's coverage area */
+    inset?: BlockerInset;
 }
 
 const classNames = {
@@ -28,6 +41,12 @@ const uuiBlocker = {
 
 export const Blocker = forwardRef<HTMLDivElement, BlockerProps>((props, ref) => {
     const transitionRef = React.createRef<HTMLDivElement>();
+    const style = React.useMemo(() => ({
+        top: props.inset?.top,
+        left: props.inset?.left,
+        right: props.inset?.right,
+        bottom: props.inset?.bottom,
+    }), [props.inset]);
     return (
         <div
             className={ cx(css.container, classNames.container, props.cx) }
@@ -47,7 +66,7 @@ export const Blocker = forwardRef<HTMLDivElement, BlockerProps>((props, ref) => 
                 mountOnEnter
                 unmountOnExit
             >
-                <div ref={ transitionRef } className={ classNames.blocker }>
+                <div ref={ transitionRef } className={ classNames.blocker } style={ style }>
                     {!props.hideSpinner && props.renderSpinner && props.renderSpinner(props)}
                 </div>
             </CSSTransition>
