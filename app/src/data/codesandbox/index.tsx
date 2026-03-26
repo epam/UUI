@@ -39,7 +39,7 @@ const history = createBrowserHistory();
 const router = new HistoryAdaptedRouter(history);
 
 function apiDefinition(processRequest: IProcessRequest) {
-    return getApi({ processRequest, fetchOptions: { credentials: undefined }, origin });
+    return getApi({ processRequest, fetchOptions: { credentials: 'omit' }, origin });
 }
 
 function UuiEnhancedApp() {
