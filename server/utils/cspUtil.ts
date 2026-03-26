@@ -1,3 +1,5 @@
+import { CODESANDBOX_APEX_ORIGIN, EXTERNAL_API_CORS_CONNECT_SOURCES } from './externalConnectOrigins';
+
 // Origins where custom themes are hosted
 const CUSTOM_THEME_ASSETS = {
     // On localhost
@@ -17,14 +19,14 @@ const SCRIPT_ORIGINS = [
 
 const CONNECT_ORIGINS = [
     "'self'",
-    'https://*.epam.com',
+    ...EXTERNAL_API_CORS_CONNECT_SOURCES,
+    CODESANDBOX_APEX_ORIGIN,
     'https://*.amplitude.com/',
     'wss://menu.epam.com/',
     'https://*.google-analytics.com',
     'https://*.analytics.google.com',
     'https://*.googletagmanager.com',
     'https://cookie-cdn.cookiepro.com',
-    'https://codesandbox.io',
     'https://geolocation.onetrust.com/',
     'https://privacyportal.cookiepro.com/',
     'https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-coy.min.css.map',
