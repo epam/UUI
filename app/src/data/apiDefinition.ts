@@ -32,8 +32,13 @@ export function getApi({
     fetchOptions,
 } : GetApiParams) {
     const processRequestLocal: IProcessRequest = (url, method, data, options) => {
-        const opts = fetchOptions ? { fetchOptions, ...options } : options;
-        return processRequest(url, method, data, opts);
+        if (!fetchOptions) {
+            return processRequest(url, method, data, options);
+        }
+        return processRequest(url, method, data, {
+            ...options,
+            fetchOptions: { ...options?.fetchOptions, ...fetchOptions },
+        });
     };
 
     return {
