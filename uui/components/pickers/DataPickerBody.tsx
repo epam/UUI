@@ -43,6 +43,17 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, auto
     const prevProps = usePrevious(props);
     const showSearch = props.showSearch === 'auto' ? props.totalCount > 10 : Boolean(props.showSearch);
     const [isKeyboardNavigation, setIsKeyboardNavigation] = React.useState(false);
+    const [emptyMessage, setEmptyMessage] = React.useState('');
+
+    // We need to also ensure that topIndex === 0, because we can have state were there is no rows but topIndex > 0, in case when we scrolled lover than we have rows
+    // we fix this state on next render and shouldn't show empty state.
+    const isEmptyList = props.rows.length === 0 && props.value.topIndex === 0;
+
+    useEffect(() => {
+        if (!isEmptyList) {
+            setEmptyMessage('');
+        }
+    }, [isEmptyList]);
 
     useEffect(() => {
         if (props.rows.length !== prevProps?.rows.length || (!isEqual(prevProps?.value.checked, props.value.checked) && !props.fixedBodyPosition)) {
@@ -191,6 +202,14 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, auto
     const renderedDataRows = useMemo(() => props.rows.map((row) => renderRow(row, props.value)), [props.rows, props.value, isKeyboardNavigation]);
     return (
         <>
+            <div
+                className={ css.emptyStatusAnnouncer }
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+            >
+                {emptyMessage}
+            </div>
             {showSearch && (
                 <div key="search" className={ cx(css.searchWrapper, 'uui-picker_input-body-search') }>
                     <FlexCell grow={ 1 }>
@@ -203,10 +222,12 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, auto
                 cx={ cx('uui-picker_input-body') }
                 rawProps={ { style: { maxHeight: props.maxHeight, maxWidth: props.maxWidth }, tabIndex: -1 } }
             >
-                { props.rows.length === 0 && props.value.topIndex === 0
-                    // We need to also ensure that topIndex === 0, because we can have state were there is no rows but topIndex > 0, in case when we scrolled lover than we have rows
-                    // we fix this state on next render and shouldn't show empty state.
-                    ? renderEmpty() : (
+                { isEmptyList
+                    ? (
+                        <div ref={ (el) => el && setEmptyMessage(el.textContent ?? '') }>
+                            {renderEmpty()}
+                        </div>
+                    ) : (
                         <VirtualList
                             value={ props.value }
                             onValueChange={ props.onValueChange }

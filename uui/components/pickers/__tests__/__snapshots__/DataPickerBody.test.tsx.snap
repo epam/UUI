@@ -3,6 +3,12 @@
 exports[`DataPickerBody should be rendered with maximum props 1`] = `
 <DocumentFragment>
   <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="emptyStatusAnnouncer"
+    role="status"
+  />
+  <div
     class="searchWrapper uui-picker_input-body-search"
   >
     <div
@@ -560,6 +566,12 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
 exports[`DataPickerBody should be rendered with minimum props 1`] = `
 <DocumentFragment>
   <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="emptyStatusAnnouncer"
+    role="status"
+  />
+  <div
     class="root uui-flex-row uui-picker_input-body uui-size-36"
     tabindex="-1"
   >
@@ -1079,11 +1091,21 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
 exports[`DataPickerBody should be rendered without rows 1`] = `
 <DocumentFragment>
   <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="emptyStatusAnnouncer"
+    role="status"
+  >
+    Not found
+  </div>
+  <div
     class="root uui-flex-row uui-picker_input-body uui-size-36"
     tabindex="-1"
   >
     <div>
-      Not found
+      <div>
+        Not found
+      </div>
     </div>
   </div>
 </DocumentFragment>

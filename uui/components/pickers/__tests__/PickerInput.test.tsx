@@ -230,8 +230,8 @@ describe('PickerInput', () => {
             const dialog = await screen.findByRole('dialog');
             expect(dialog).toBeInTheDocument();
 
-            const dialogBody = dialog.firstElementChild?.firstElementChild;
-            expect(dialogBody).toHaveStyle('max-height: 100px');
+            const pickerBody = dialog.querySelector('.uui-picker_input-body');
+            expect(pickerBody).toHaveStyle('max-height: 100px');
         });
 
         it('should render custom not found', async () => {
@@ -307,7 +307,7 @@ describe('PickerInput', () => {
             expect(dialog).toBeInTheDocument();
 
             await waitFor(async () => {
-                const notFound = within(await screen.findByRole('dialog')).getByTestId(customTextForNotEnoughCharsInSearchId);
+                const notFound = within(dialog).getByTestId(customTextForNotEnoughCharsInSearchId);
                 expect(notFound).toHaveTextContent(customTextForNotEnoughCharsInSearch);
             });
 
@@ -315,7 +315,7 @@ describe('PickerInput', () => {
             fireEvent.change(bodyInput, { target: { value: 'A11' } });
 
             await waitFor(async () => {
-                const notFound = within(await screen.findByRole('dialog')).getByTestId(customTextForNotFoundId);
+                const notFound = within(dialog).getByTestId(customTextForNotFoundId);
                 expect(notFound).toHaveTextContent(customTextForNotFound);
             });
         });
@@ -610,8 +610,8 @@ describe('PickerInput', () => {
             expect(dialog).toBeInTheDocument();
 
             await waitFor(async () => {
-                const notFound = within(await screen.findByRole('dialog'));
-                expect(notFound.getByText('Type search to load items')).toBeInTheDocument();
+                const body = dialog.querySelector<HTMLElement>('.uui-picker_input-body')!;
+                expect(within(body).getByText('Type search to load items')).toBeInTheDocument();
             });
 
             expect(apiMock).toBeCalledTimes(0);
@@ -626,8 +626,8 @@ describe('PickerInput', () => {
             jest.useRealTimers();
 
             await waitFor(async () => {
-                const notFound = within(await screen.findByRole('dialog'));
-                expect(notFound.getByText('No records found')).toBeInTheDocument();
+                const body = dialog.querySelector<HTMLElement>('.uui-picker_input-body')!;
+                expect(within(body).getByText('No records found')).toBeInTheDocument();
             });
 
             expect(apiMock).toBeCalledTimes(1);
