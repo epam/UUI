@@ -25,6 +25,7 @@ const CONNECT_ORIGINS = [
     'https://*.googletagmanager.com',
     'https://cookie-cdn.cookiepro.com',
     'https://codesandbox.io',
+    'https://*.csb.app',
     'https://geolocation.onetrust.com/',
     'https://privacyportal.cookiepro.com/',
     'https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-coy.min.css.map',
