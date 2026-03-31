@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { IHasCaption, PickerBaseOptions, PickerRenderRowParams } from '@epam/uui-core';
+import { MoveFocusInside } from '@epam/uui-react-focus-lock-fork';
 import { IconContainer, PickerModalArrayProps, PickerModalOptions, PickerModalScalarProps, handleDataSourceKeyboard, usePickerModal } from '@epam/uui-components';
 import { DataPickerRow } from './DataPickerRow';
 import { Text } from '../typography';
@@ -14,7 +15,6 @@ import { i18n } from '../../i18n';
 import { settings } from '../../settings';
 
 import css from './PickerModal.module.scss';
-import { MoveFocusInside } from 'react-focus-lock';
 
 export type PickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> &
 IHasCaption &
