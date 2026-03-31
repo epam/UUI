@@ -1,5 +1,5 @@
 import React, { KeyboardEvent } from 'react';
-import FocusLock from 'react-focus-lock';
+import FocusLock from '@epam/uui-react-focus-lock-fork';
 import cx from 'classnames';
 import { Dropdown, MainMenuDropdownProps } from '@epam/uui-components';
 import { MainMenuButton } from './MainMenuButton';

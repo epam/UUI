@@ -1,13 +1,11 @@
 import * as React from 'react';
-import FocusLock from 'react-focus-lock';
+import FocusLock, { ReactFocusLockProps } from '@epam/uui-react-focus-lock-fork';
 import {
     uuiElement, IHasCX, IHasChildren, cx, IHasRawProps, uuiMarkers, IHasForwardedRef, IDropdownBodyProps,
     IHasStyleAttrs,
 } from '@epam/uui-core';
 import { VPanel } from '../layout/flexItems/VPanel';
 import PopoverArrow from './PopoverArrow';
-import { ReactFocusLockProps } from 'react-focus-lock';
-import { useCallback, useState } from 'react';
 
 export interface DropdownContainerProps
     extends IHasCX,
@@ -57,18 +55,11 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
         returnFocus = true,
         persistentFocus = true,
     } = props;
-    const [shadowRootHost, setShadowRootHost] = useState<ShadowRoot | null>(null);
-
-    const saveShadowRootHost = useCallback((node: HTMLElement | null) => {
-        if (!node) return;
-        const root = node.getRootNode();
-        setShadowRootHost(root instanceof ShadowRoot ? root : null);
-    }, []);
 
     function renderDropdownContainer() {
         return (
             <VPanel
-                forwardedRef={ !focusLock ? (ref as React.ForwardedRef<HTMLDivElement>) : saveShadowRootHost }
+                forwardedRef={ !focusLock ? (ref as React.ForwardedRef<HTMLDivElement>) : undefined }
                 cx={ cx(uuiElement.dropdownBody, uuiMarkers.lockFocus, props.cx) }
                 style={ {
                     ...props.style,
@@ -101,7 +92,6 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
                 shards={ props.shards }
                 autoFocus={ props.autoFocus ?? true }
                 as={ props.as }
-                shadowRootHost={ shadowRootHost }
             >
                 {renderDropdownContainer()}
             </FocusLock>
