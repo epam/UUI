@@ -51,6 +51,26 @@ describe('getUpdatedRowHeights', () => {
 
         expect(getUpdatedRowHeights(virtualListInfo)).toEqual([6, 7, 10, 5, 5, 5, 5, 5]);
     });
+
+    it('should include gap in row height if rowGap is provided', () => {
+        const listContainer = createListContainer([80, 80, 80]);
+        const virtualListInfo = {
+            ...creaateVirtualListInfo(listContainer, { topIndex: 0 }, []),
+            rowGap: 4,
+        };
+        expect(getUpdatedRowHeights(virtualListInfo)).toEqual([84, 84, 80]);
+    });
+
+    it('shouldn\'t call getBoundingClientRect if rowHeight is provided', () => {
+        const listContainer = createListContainer([80, 80, 80]);
+        const spy = jest.spyOn(listContainer.children[0], 'getBoundingClientRect');
+        const virtualListInfo = {
+            ...creaateVirtualListInfo(listContainer, { topIndex: 0 }, []),
+            rowHeight: 80,
+        };
+        expect(getUpdatedRowHeights(virtualListInfo)).toEqual([80, 80, 80]);
+        expect(spy).not.toHaveBeenCalled();
+    });
 });
 
 describe('getAverageRowHeight', () => {
@@ -111,8 +131,6 @@ describe('getUpdatedRowOffsets', () => {
         const info = {
             ...defaultInfo,
             rowsCount: 3,
-            blockSize: undefined,
-            overdrawRows: undefined,
             rowOffsets: [],
             listOffset: 38,
             averageRowHeight: 69,

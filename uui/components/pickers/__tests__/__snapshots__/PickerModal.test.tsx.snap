@@ -88,6 +88,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
+        aria-atomic="true"
+        aria-live="polite"
+        class="emptyStatusAnnouncer"
+        role="status"
+      />
+      <div
         class="root uui-flex-row uui-picker_input-body uui-size-36"
         tabindex="-1"
       >
@@ -399,6 +405,12 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
           </div>
         </label>
       </div>
+      <div
+        aria-atomic="true"
+        aria-live="polite"
+        class="emptyStatusAnnouncer"
+        role="status"
+      />
       <div
         class="root uui-flex-row uui-picker_input-body uui-size-36"
         tabindex="-1"
@@ -1219,6 +1231,12 @@ exports[`PickerModal should open body 1`] = `
           </div>
         </div>
         <div
+          aria-atomic="true"
+          aria-live="polite"
+          class="emptyStatusAnnouncer"
+          role="status"
+        />
+        <div
           class="root uui-flex-row uui-picker_input-body uui-size-36"
           tabindex="-1"
         >
@@ -1348,6 +1366,7 @@ exports[`PickerModal should open body 1`] = `
                 >
                   <div
                     class="uui-blocker uui-blocker-exit uui-blocker-exit-active"
+                    style="top: 0px; left: 0px; right: 0px; bottom: 0px;"
                   >
                     <div
                       class="container uui-spinner-container root uui-spinner"

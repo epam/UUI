@@ -12,58 +12,36 @@ export const getOppositePlacement = (inputPlacement: Placement): Placement => {
 };
 
 export const getFallbackPlacements = (inputPlacement: Placement): Placement[] => {
-    const [direction, alignment] = inputPlacement.split('-');
-    const fallbacks: Placement[] = [];
+    const [direction] = inputPlacement.split('-');
+    const oppositeDirection = getOppositePlacement(direction as Placement).split('-')[0];
 
-    // If there's an alignment (start/end), add variants with flipped alignments
-    if (alignment) {
-        const oppositeAlignment = alignment === 'start' ? 'end' : 'start';
-        // Add same direction with opposite alignment
-        fallbacks.push(`${direction}-${oppositeAlignment}` as Placement);
-    }
-
-    // Add opposite placement as second fallback
-    fallbacks.push(getOppositePlacement(inputPlacement));
-
-    // If there's an alignment, add opposite direction with opposite alignment
-    if (alignment) {
-        const oppositeAlignment = alignment === 'start' ? 'end' : 'start';
-        const oppositeDirection = getOppositePlacement(`${direction}` as Placement).split('-')[0];
-        fallbacks.push(`${oppositeDirection}-${oppositeAlignment}` as Placement);
-    }
-
-    const possiblePlacments = [
-        'bottom-start',
-        'bottom',
-        'bottom-end',
-        'right-end',
-        'right',
-        'right-start',
-        'top-end',
+    const ALL_PLACEMENTS: Placement[] = [
         'top',
         'top-start',
-        'left-start',
+        'top-end',
+        'bottom',
+        'bottom-start',
+        'bottom-end',
         'left',
+        'left-start',
         'left-end',
-    ] as Placement[];
+        'right',
+        'right-start',
+        'right-end',
+    ];
 
-    // Reorder placements by shifting array to start after input placement
-    const inputIndex = possiblePlacments.indexOf(inputPlacement);
-    if (inputIndex !== -1) {
-        // Create a new array with elements shifted so input placement is at the end
-        // [1,2,3,4,5] with index 2 becomes [3,4,5,1,2]
-        const reorderedPlacements = [
-            ...possiblePlacments.slice(inputIndex + 1),
-            ...possiblePlacments.slice(0, inputIndex),
-        ];
+    const sameDir = ALL_PLACEMENTS.filter((p) => p.startsWith(direction) && p !== inputPlacement);
+    const oppositeDir = ALL_PLACEMENTS.filter((p) => p.startsWith(oppositeDirection));
+    const otherDir = ALL_PLACEMENTS.filter((p) => !p.startsWith(direction) && !p.startsWith(oppositeDirection));
 
-        // Add only placements that aren't already in fallbacks
-        reorderedPlacements.forEach((pl) => {
-            if (!fallbacks.includes(pl) && pl !== inputPlacement) {
-                fallbacks.push(pl);
-            }
-        });
-    }
+    const fallbacks: Placement[] = [
+        ...new Set([
+            ...sameDir,
+            getOppositePlacement(inputPlacement),
+            ...oppositeDir,
+            ...otherDir,
+        ]),
+    ];
 
     return fallbacks;
 };

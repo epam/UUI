@@ -1,5 +1,5 @@
 {
- "version": "6.3.2-alpha.0",
+ "version": "6.4.3",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -189,6 +189,8 @@
       "        /** Request error message */",
       "        errorMessage?: string;",
       "    };",
+      "    /** Request error */",
+      "    error?: Error;",
       "    /** Request error status */",
       "    errorStatus?: number;",
       "    /** Timestamp of request start */",
@@ -333,6 +335,20 @@
       "typeValue": {
        "raw": "{ errorMessage?: string | undefined; }",
        "html": "<span class=\"token punctuation\">{</span> errorMessage<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span>"
+      },
+      "required": false
+     },
+     {
+      "uid": "error",
+      "name": "error",
+      "comment": {
+       "raw": [
+        "Request error"
+       ]
+      },
+      "typeValue": {
+       "raw": "Error",
+       "html": "Error"
       },
       "required": false
      },
@@ -703,9 +719,9 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "null | 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance'",
+     "raw": "null | 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance' | 'abort-signal'",
      "print": [
-      "type ApiRecoveryReason = 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance' | null;"
+      "type ApiRecoveryReason = 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance' | 'abort-signal' | null;"
      ]
     }
    }
@@ -2293,8 +2309,8 @@
        ]
       },
       "typeValue": {
-       "raw": "() => Promise<TItem[]>",
-       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token operator\">></span>"
+       "raw": "(options: FetchingOptions) => Promise<TItem[]>",
+       "html": "<span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> FetchingOptions<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token operator\">></span>"
       },
       "editor": {
        "type": "func"
@@ -2732,8 +2748,8 @@
        ]
       },
       "typeValue": {
-       "raw": "() => Promise<TItem[]>",
-       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token operator\">></span>"
+       "raw": "(options: FetchingOptions) => Promise<TItem[]>",
+       "html": "<span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> FetchingOptions<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token operator\">></span>"
       },
       "editor": {
        "type": "func"
@@ -6152,6 +6168,32 @@
     }
    }
   },
+  "@epam/uui-core:DataRowMap": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "DataRowMap",
+     "nameFull": "DataRowMap<TItem, TId>"
+    },
+    "src": "uui-core/src/types/dataRows.ts",
+    "comment": {
+     "raw": [
+      "A map of data rows, indexed by their ID"
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "DataRowMap<TItem, TId>",
+     "print": [
+      "/** A map of data rows, indexed by their ID */",
+      "type DataRowMap<TItem, TId> = Record<string, DataRowProps<TItem, TId>>;"
+     ]
+    }
+   }
+  },
   "@epam/uui-core:DataRowOptions": {
    "summary": {
     "module": "@epam/uui-core",
@@ -6180,6 +6222,8 @@
       "    /** If row needs a checkbox, this field should be specified, and it props can be configured here */",
       "    checkbox?: {",
       "        isVisible: boolean;",
+      "        /** If true, the checkbox will reserve space for itself, even if it's not visible */",
+      "        reserveSpace?: boolean;",
       "    } & IDisableable & ICanBeInvalid;",
       "    /** True if row is selectable (for whole-row single-selection, multi-selection via checkbox are configured with the checkbox prop) */",
       "    isSelectable?: boolean;",
@@ -6207,8 +6251,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "required": false
      },
@@ -6727,8 +6771,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -9805,8 +9849,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -12570,6 +12614,11 @@
       "    zIndex?: number;",
       "    /** Defines overlay content placement relative to target */",
       "    placement?: DropdownPlacement;",
+      "    /** Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+      "     * By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+      "     * See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}",
+      "     */",
+      "    fallbackPlacements?: DropdownPlacement[];",
       "    /** Defines an array of middleware objects that change the positioning of the overlay content. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}  */",
       "    middleware?: Middleware[];",
       "    /** Defines how much 'ms' user should hold mouse over target to open the overlay",
@@ -12765,6 +12814,22 @@
         "left-start",
         "left-end"
        ]
+      },
+      "required": false
+     },
+     {
+      "uid": "fallbackPlacements",
+      "name": "fallbackPlacements",
+      "comment": {
+       "raw": [
+        "Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+        " By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+        " See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}"
+       ]
+      },
+      "typeValue": {
+       "raw": "Placement[]",
+       "html": "Placement<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "required": false
      },
@@ -13390,6 +13455,56 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:FetchingOptions": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "FetchingOptions",
+     "nameFull": "FetchingOptions"
+    },
+    "src": "uui-core/src/services/ApiContext.ts",
+    "comment": {
+     "raw": [
+      "Options which are passed to the HTTP request."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "FetchingOptions",
+     "print": [
+      "/**",
+      " * Options which are passed to the HTTP request.",
+      " */",
+      "interface FetchingOptions {",
+      "    /**",
+      "     * Signal of request aborting.",
+      "     */",
+      "    signal: AbortSignal;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "signal",
+      "name": "signal",
+      "comment": {
+       "raw": [
+        "Signal of request aborting."
+       ]
+      },
+      "typeValue": {
+       "raw": "AbortSignal",
+       "html": "AbortSignal"
+      },
+      "required": true
      }
     ],
     "propsFromUnion": false
@@ -14646,7 +14761,9 @@
      "raw": "FormProps<T>",
      "print": [
       "interface FormProps<T> {",
-      "    /** Current value of the form state */",
+      "    /** Initial Form value",
+      "     * If changed after initialization, form will be reverted to the new value",
+      "     * */",
       "    value: T;",
       "    /**",
       "     * Render the form body, provided by form state",
@@ -14708,7 +14825,8 @@
       "name": "value",
       "comment": {
        "raw": [
-        "Current value of the form state"
+        "Initial Form value",
+        " If changed after initialization, form will be reverted to the new value"
        ]
       },
       "typeValue": {
@@ -15336,8 +15454,8 @@
        ]
       },
       "typeValue": {
-       "raw": "null | 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance'",
-       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token string\">'auth-lost'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'connection-lost'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'server-overload'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'maintenance'</span>"
+       "raw": "null | 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance' | 'abort-signal'",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token string\">'auth-lost'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'connection-lost'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'server-overload'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'maintenance'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'abort-signal'</span>"
       },
       "typeValueRef": "@epam/uui-core:ApiRecoveryReason",
       "editor": {
@@ -15347,6 +15465,7 @@
         "connection-lost",
         "server-overload",
         "maintenance",
+        "abort-signal",
         null
        ]
       },
@@ -18396,7 +18515,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'filter' | 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch' | 'disableClear'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & { type: 'datePicker'; renderFooter?: ((props: FilterDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'renderDay' | 'preventEmptyToDate' | 'preventEmptyFromDate'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; renderFooter?: ((props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
+     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'filter' | 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch' | 'disableClear'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & { type: 'datePicker'; renderFooter?: ((props: FilterDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<NumericInputCoreProps, 'max' | 'min' | 'step'> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'renderDay' | 'preventEmptyToDate' | 'preventEmptyFromDate'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; renderFooter?: ((props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
       "type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> & IEditable<any> & IDropdownBodyProps & {",
       "    /** Name of currently selected predicate */",
@@ -19079,6 +19198,64 @@
        "type": "component"
       },
       "from": "@epam/uui-core:DatePickerFilterConfig",
+      "required": false
+     },
+     {
+      "uid": "max",
+      "name": "max",
+      "comment": {
+       "raw": [
+        "Maximum value (default is Number.MAX_SAFE_INTEGER)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "min",
+      "name": "min",
+      "comment": {
+       "raw": [
+        "Minimum value (default is 0)",
+        " @default 0"
+       ],
+       "tags": {
+        "@default": 0
+       }
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "step",
+      "name": "step",
+      "comment": {
+       "raw": [
+        "Increase/decrease step on up/down icons clicks and up/down arrow keys"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
       "required": false
      },
      {
@@ -24557,7 +24734,7 @@
       "/** Defines input arguments for Lazy Data Source APIs */",
       "request: LazyDataSourceApiRequest<TItem, TId, TFilter>, ",
       "/** Defines the context of API request. */",
-      "context?: LazyDataSourceApiRequestContext<TItem, TId>) => Promise<LazyDataSourceApiResponse<TItem>>;"
+      "context: LazyDataSourceApiRequestContext<TItem, TId>) => Promise<LazyDataSourceApiResponse<TItem>>;"
      ]
     }
    }
@@ -24788,7 +24965,7 @@
      "raw": "LazyDataSourceApiRequestContext<TItem, TId>",
      "print": [
       "/** Defines the context of API request. E.g. parent if we require to retrieve sub-list of the tree */",
-      "interface LazyDataSourceApiRequestContext<TItem, TId> {",
+      "interface LazyDataSourceApiRequestContext<TItem, TId> extends FetchingOptions {",
       "    /**",
       "     * The ID of the parent item whose children are being requested.",
       "     * Used for lazy-loading data in tree lists.",
@@ -24828,6 +25005,21 @@
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> TItem"
       },
       "required": false
+     },
+     {
+      "uid": "signal",
+      "name": "signal",
+      "comment": {
+       "raw": [
+        "Signal of request aborting."
+       ]
+      },
+      "typeValue": {
+       "raw": "AbortSignal",
+       "html": "AbortSignal"
+      },
+      "from": "@epam/uui-core:FetchingOptions",
+      "required": true
      }
     ],
     "propsFromUnion": false
@@ -27220,6 +27412,113 @@
         "top-center",
         "bot-center"
        ]
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:NumericInputCoreProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "NumericInputCoreProps",
+     "nameFull": "NumericInputCoreProps"
+    },
+    "src": "uui-core/src/types/components/NumericInput.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "NumericInputCoreProps",
+     "print": [
+      "interface NumericInputCoreProps {",
+      "    /** Maximum value (default is Number.MAX_SAFE_INTEGER) */",
+      "    max?: number;",
+      "    /**",
+      "     * Minimum value (default is 0)",
+      "     * @default 0",
+      "     */",
+      "    min?: number;",
+      "    /** Increase/decrease step on up/down icons clicks and up/down arrow keys */",
+      "    step?: number;",
+      "    /** HTML ID */",
+      "    id?: string;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "max",
+      "name": "max",
+      "comment": {
+       "raw": [
+        "Maximum value (default is Number.MAX_SAFE_INTEGER)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "min",
+      "name": "min",
+      "comment": {
+       "raw": [
+        "Minimum value (default is 0)",
+        " @default 0"
+       ],
+       "tags": {
+        "@default": 0
+       }
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "step",
+      "name": "step",
+      "comment": {
+       "raw": [
+        "Increase/decrease step on up/down icons clicks and up/down arrow keys"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "HTML ID"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "required": false
      }
@@ -36399,8 +36698,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -39930,6 +40229,64 @@
       "required": false
      },
      {
+      "uid": "max",
+      "name": "max",
+      "comment": {
+       "raw": [
+        "Maximum value (default is Number.MAX_SAFE_INTEGER)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "min",
+      "name": "min",
+      "comment": {
+       "raw": [
+        "Minimum value (default is 0)",
+        " @default 0"
+       ],
+       "tags": {
+        "@default": 0
+       }
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "step",
+      "name": "step",
+      "comment": {
+       "raw": [
+        "Increase/decrease step on up/down icons clicks and up/down arrow keys"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
       "uid": "type_3",
       "name": "type",
       "comment": {
@@ -40719,7 +41076,7 @@
     "typeValue": {
      "raw": "TooltipCoreProps",
      "print": [
-      "interface TooltipCoreProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, Partial<IControlled<boolean>>, Pick<DropdownProps, 'onClose' | 'middleware' | 'openDelay' | 'closeDelay' | 'closeOnMouseLeave' | 'portalTarget' | 'boundaryElement' | 'closeBodyOnTogglerHidden' | 'closeOnEscape'> {",
+      "interface TooltipCoreProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, Partial<IControlled<boolean>>, Pick<DropdownProps, 'onClose' | 'middleware' | 'openDelay' | 'closeDelay' | 'closeOnMouseLeave' | 'portalTarget' | 'boundaryElement' | 'closeBodyOnTogglerHidden' | 'closeOnEscape' | 'fallbackPlacements'> {",
       "    /** Content to show in the tooltip (ReactNode) */",
       "    content?: any;",
       "    /** Alternative to 'content' prop, you can pass a render function.",
@@ -41096,6 +41453,23 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
+     },
+     {
+      "uid": "fallbackPlacements",
+      "name": "fallbackPlacements",
+      "comment": {
+       "raw": [
+        "Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+        " By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+        " See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}"
+       ]
+      },
+      "typeValue": {
+       "raw": "Placement[]",
+       "html": "Placement<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
@@ -41879,7 +42253,8 @@
       "name": "value",
       "comment": {
        "raw": [
-        "Current value of the form state"
+        "Initial Form value",
+        " If changed after initialization, form will be reverted to the new value"
        ]
       },
       "typeValue": {
@@ -43549,8 +43924,8 @@
        ]
       },
       "typeValue": {
-       "raw": "() => Promise<TItem[]>",
-       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token operator\">></span>"
+       "raw": "(options: FetchingOptions) => Promise<TItem[]>",
+       "html": "<span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> FetchingOptions<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">Promise</span><span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token operator\">></span>"
       },
       "editor": {
        "type": "func"
@@ -44640,6 +45015,10 @@
       "     * Selector to get rows container node.",
       "     */",
       "    rowsSelector?: string;",
+      "    /** Row height in px. When set, skips getBoundingClientRect measurement. */",
+      "    rowHeight?: number;",
+      "    /** Vertical spacing between rows in px (e.g. flex gap, or grid gap). */",
+      "    rowGap?: number;",
       "}"
      ]
     },
@@ -44732,6 +45111,40 @@
       },
       "editor": {
        "type": "string"
+      },
+      "required": false
+     },
+     {
+      "uid": "rowHeight",
+      "name": "rowHeight",
+      "comment": {
+       "raw": [
+        "Row height in px. When set, skips getBoundingClientRect measurement."
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "rowGap",
+      "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Vertical spacing between rows in px (e.g. flex gap, or grid gap)."
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
       },
       "required": false
      },
@@ -47221,6 +47634,106 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-components:BlockerInset": {
+   "summary": {
+    "module": "@epam/uui-components",
+    "typeName": {
+     "name": "BlockerInset",
+     "nameFull": "BlockerInset"
+    },
+    "src": "uui-components/src/layout/Blocker.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "BlockerInset",
+     "print": [
+      "interface BlockerInset {",
+      "    /** Inset from the top edge in px */",
+      "    top?: number;",
+      "    /** Inset from the bottom edge in px */",
+      "    bottom?: number;",
+      "    /** Inset from the left edge in px */",
+      "    left?: number;",
+      "    /** Inset from the right edge in px */",
+      "    right?: number;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "top",
+      "name": "top",
+      "comment": {
+       "raw": [
+        "Inset from the top edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "bottom",
+      "name": "bottom",
+      "comment": {
+       "raw": [
+        "Inset from the bottom edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "left",
+      "name": "left",
+      "comment": {
+       "raw": [
+        "Inset from the left edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "right",
+      "name": "right",
+      "comment": {
+       "raw": [
+        "Inset from the right edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-components:BlockerProps": {
    "summary": {
     "module": "@epam/uui-components",
@@ -47245,6 +47758,8 @@
       "    spacerHeight?: number;",
       "    /** Replaces default spinner */",
       "    renderSpinner?(props: any): React.ReactNode;",
+      "    /** Inset spacing (in px) from each edge to control the blocker's coverage area */",
+      "    inset?: BlockerInset;",
       "}"
      ]
     },
@@ -47314,6 +47829,20 @@
       },
       "editor": {
        "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "inset",
+      "name": "inset",
+      "comment": {
+       "raw": [
+        "Inset spacing (in px) from each edge to control the blocker's coverage area"
+       ]
+      },
+      "typeValue": {
+       "raw": "BlockerInset",
+       "html": "BlockerInset"
       },
       "required": false
      },
@@ -57754,24 +58283,13 @@
     "typeValue": {
      "raw": "NumericInputProps",
      "print": [
-      "interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
-      "    /** Maximum value (default is Number.MAX_SAFE_INTEGER) */",
-      "    max?: number;",
-      "    /**",
-      "     * Minimum value (default is 0)",
-      "     * @default 0",
-      "     */",
-      "    min?: number;",
+      "interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, NumericInputCoreProps {",
       "    /** Overrides the up/increase icon */",
       "    upIcon?: Icon;",
       "    /** Overrides the down/decrease icon */",
       "    downIcon?: Icon;",
-      "    /** Increase/decrease step on up/down icons clicks and up/down arrow keys */",
-      "    step?: number;",
       "    /** CSS classes to put directly on the Input element */",
       "    inputCx?: CX;",
-      "    /** HTML ID */",
-      "    id?: string;",
       "    /** Turn off up/down (increase/decrease) buttons */",
       "    disableArrows?: boolean;",
       "    /** Align text inside the component. Useful for tables (in cell-mode) - to align numbers in table column */",
@@ -57794,44 +58312,6 @@
      ]
     },
     "props": [
-     {
-      "uid": "max",
-      "name": "max",
-      "comment": {
-       "raw": [
-        "Maximum value (default is Number.MAX_SAFE_INTEGER)"
-       ]
-      },
-      "typeValue": {
-       "raw": "number",
-       "html": "<span class=\"token builtin\">number</span>"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": "min",
-      "name": "min",
-      "comment": {
-       "raw": [
-        "Minimum value (default is 0)",
-        " @default 0"
-       ],
-       "tags": {
-        "@default": 0
-       }
-      },
-      "typeValue": {
-       "raw": "number",
-       "html": "<span class=\"token builtin\">number</span>"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
      {
       "uid": "upIcon",
       "name": "upIcon",
@@ -57867,23 +58347,6 @@
       "required": false
      },
      {
-      "uid": "step",
-      "name": "step",
-      "comment": {
-       "raw": [
-        "Increase/decrease step on up/down icons clicks and up/down arrow keys"
-       ]
-      },
-      "typeValue": {
-       "raw": "number",
-       "html": "<span class=\"token builtin\">number</span>"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
       "uid": "inputCx",
       "name": "inputCx",
       "comment": {
@@ -57896,23 +58359,6 @@
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
-      "required": false
-     },
-     {
-      "uid": "id",
-      "name": "id",
-      "comment": {
-       "raw": [
-        "HTML ID"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
       "required": false
      },
      {
@@ -58234,6 +58680,82 @@
        "html": "React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
       },
       "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "max",
+      "name": "max",
+      "comment": {
+       "raw": [
+        "Maximum value (default is Number.MAX_SAFE_INTEGER)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "min",
+      "name": "min",
+      "comment": {
+       "raw": [
+        "Minimum value (default is 0)",
+        " @default 0"
+       ],
+       "tags": {
+        "@default": 0
+       }
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "step",
+      "name": "step",
+      "comment": {
+       "raw": [
+        "Increase/decrease step on up/down icons clicks and up/down arrow keys"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "HTML ID"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
       "required": false
      }
     ],
@@ -64713,6 +65235,23 @@
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
+     },
+     {
+      "uid": "fallbackPlacements",
+      "name": "fallbackPlacements",
+      "comment": {
+       "raw": [
+        "Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+        " By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+        " See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}"
+       ]
+      },
+      "typeValue": {
+       "raw": "Placement[]",
+       "html": "Placement<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -67983,6 +68522,101 @@
        ]
       },
       "from": "@epam/uui:BadgeMods",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:BlockerInset": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "BlockerInset",
+     "nameFull": "BlockerInset"
+    },
+    "src": "uui/components/layout/Blocker.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "BlockerInset",
+     "print": [
+      "type BlockerInset = uuiBlockerInset;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "top",
+      "name": "top",
+      "comment": {
+       "raw": [
+        "Inset from the top edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:BlockerInset",
+      "required": false
+     },
+     {
+      "uid": "bottom",
+      "name": "bottom",
+      "comment": {
+       "raw": [
+        "Inset from the bottom edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:BlockerInset",
+      "required": false
+     },
+     {
+      "uid": "left",
+      "name": "left",
+      "comment": {
+       "raw": [
+        "Inset from the left edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:BlockerInset",
+      "required": false
+     },
+     {
+      "uid": "right",
+      "name": "right",
+      "comment": {
+       "raw": [
+        "Inset from the right edge in px"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:BlockerInset",
       "required": false
      }
     ],
@@ -71832,8 +72466,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -72616,24 +73250,6 @@
       },
       "editor": {
        "type": "component"
-      },
-      "from": "@epam/uui:DataRowAddonsCoreProps",
-      "required": false
-     },
-     {
-      "uid": "isFoldingFocusable",
-      "name": "isFoldingFocusable",
-      "comment": {
-       "raw": [
-        "If true, folding arrow is focusable"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui:DataRowAddonsCoreProps",
       "required": false
@@ -75208,6 +75824,21 @@
       "required": false
      },
      {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>",
+       "html": "React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
       "uid": "size",
       "name": "size",
       "comment": {
@@ -75681,8 +76312,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -79507,6 +80138,32 @@
       "required": false
      },
      {
+      "uid": "rowGap",
+      "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number | '6' | '12' | '18' | '36' | '24'",
+       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token string\">'6'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'12'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
+      "from": "@epam/uui:FlexRowMods",
+      "required": false
+     },
+     {
       "uid": "spacing",
       "name": "spacing",
       "comment": {
@@ -79638,32 +80295,6 @@
       "comment": {
        "raw": [
         "Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
-       ]
-      },
-      "typeValue": {
-       "raw": "number | '6' | '12' | '18' | '36' | '24'",
-       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token string\">'6'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'12'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span>"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18",
-        "24",
-        "36"
-       ],
-       "scalarTypeOption": "number"
-      },
-      "from": "@epam/uui:FlexRowMods",
-      "required": false
-     },
-     {
-      "uid": "rowGap",
-      "name": "rowGap",
-      "comment": {
-       "raw": [
-        "Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
        ]
       },
       "typeValue": {
@@ -80560,7 +81191,7 @@
     "typeValue": {
      "raw": "IDropdownMenuItemProps",
      "print": [
-      "interface IDropdownMenuItemProps extends IDropdownTogglerProps, IHasCaption, IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick {",
+      "interface IDropdownMenuItemProps extends IDropdownTogglerProps, IHasCaption, IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
       "    isSelected?: boolean;",
       "    isActive?: boolean;",
       "    indent?: boolean;",
@@ -80939,6 +81570,21 @@
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">{</span> <span class=\"token punctuation\">[</span>key<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">]</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">;</span> name<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span>"
       },
       "from": "@epam/uui-core:IAnalyticableClick",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>",
+       "html": "React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      }
     ],
@@ -86350,46 +86996,6 @@
     },
     "props": [
      {
-      "uid": "max",
-      "name": "max",
-      "comment": {
-       "raw": [
-        "Maximum value (default is Number.MAX_SAFE_INTEGER)"
-       ]
-      },
-      "typeValue": {
-       "raw": "number",
-       "html": "<span class=\"token builtin\">number</span>"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:NumericInputProps",
-      "required": false
-     },
-     {
-      "uid": "min",
-      "name": "min",
-      "comment": {
-       "raw": [
-        "Minimum value (default is 0)",
-        " @default 0"
-       ],
-       "tags": {
-        "@default": 0
-       }
-      },
-      "typeValue": {
-       "raw": "number",
-       "html": "<span class=\"token builtin\">number</span>"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:NumericInputProps",
-      "required": false
-     },
-     {
       "uid": "upIcon",
       "name": "upIcon",
       "comment": {
@@ -86426,24 +87032,6 @@
       "required": false
      },
      {
-      "uid": "step",
-      "name": "step",
-      "comment": {
-       "raw": [
-        "Increase/decrease step on up/down icons clicks and up/down arrow keys"
-       ]
-      },
-      "typeValue": {
-       "raw": "number",
-       "html": "<span class=\"token builtin\">number</span>"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:NumericInputProps",
-      "required": false
-     },
-     {
       "uid": "inputCx",
       "name": "inputCx",
       "comment": {
@@ -86456,24 +87044,6 @@
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:NumericInputProps",
-      "required": false
-     },
-     {
-      "uid": "id",
-      "name": "id",
-      "comment": {
-       "raw": [
-        "HTML ID"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
       "from": "@epam/uui-components:NumericInputProps",
       "required": false
      },
@@ -86801,6 +87371,82 @@
        "html": "React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
       },
       "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "max",
+      "name": "max",
+      "comment": {
+       "raw": [
+        "Maximum value (default is Number.MAX_SAFE_INTEGER)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "min",
+      "name": "min",
+      "comment": {
+       "raw": [
+        "Minimum value (default is 0)",
+        " @default 0"
+       ],
+       "tags": {
+        "@default": 0
+       }
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "step",
+      "name": "step",
+      "comment": {
+       "raw": [
+        "Increase/decrease step on up/down icons clicks and up/down arrow keys"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "HTML ID"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:NumericInputCoreProps",
       "required": false
      },
      {
@@ -88879,8 +89525,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -89648,8 +90294,8 @@
        ]
       },
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid",
-       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
+       "raw": "{ isVisible: boolean; reserveSpace?: boolean | undefined; } & IDisableable & ICanBeInvalid",
+       "html": "<span class=\"token punctuation\">{</span> isVisible<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> reserveSpace<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">&amp;</span> IDisableable <span class=\"token operator\">&amp;</span> ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -96680,6 +97326,11 @@
       "     * @default 'none'",
       "     */",
       "    overflowBottomEffect?: 'line' | 'shadow' | 'none';",
+      "    /**",
+      "     * The given Event(s) from the elements with the given selector(s) will trigger an update.",
+      "     * Useful for cases where OverlayScrollbars' default logic does not detect changes, such as shadow DOM size changes.",
+      "     */",
+      "    elementEvents?: Options['update']['elementEvents'];",
       "    children?: ReactNode | undefined;",
       "};"
      ]
@@ -96840,6 +97491,21 @@
         "line",
         "shadow"
        ]
+      },
+      "required": false
+     },
+     {
+      "uid": "elementEvents",
+      "name": "elementEvents",
+      "comment": {
+       "raw": [
+        "The given Event(s) from the elements with the given selector(s) will trigger an update.",
+        " Useful for cases where OverlayScrollbars' default logic does not detect changes, such as shadow DOM size changes."
+       ]
+      },
+      "typeValue": {
+       "raw": "null | [elementSelector: string, eventNames: string][]",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">[</span>elementSelector<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> eventNames<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "required": false
      },
@@ -99988,6 +100654,32 @@
       "required": false
      },
      {
+      "uid": "rowGap",
+      "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number | '6' | '12' | '18' | '36' | '24'",
+       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token string\">'6'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'12'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
+      "from": "@epam/uui:FlexRowMods",
+      "required": false
+     },
+     {
       "uid": "spacing",
       "name": "spacing",
       "comment": {
@@ -100119,32 +100811,6 @@
       "comment": {
        "raw": [
         "Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
-       ]
-      },
-      "typeValue": {
-       "raw": "number | '6' | '12' | '18' | '36' | '24'",
-       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token string\">'6'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'12'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span>"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18",
-        "24",
-        "36"
-       ],
-       "scalarTypeOption": "number"
-      },
-      "from": "@epam/uui:FlexRowMods",
-      "required": false
-     },
-     {
-      "uid": "rowGap",
-      "name": "rowGap",
-      "comment": {
-       "raw": [
-        "Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
        ]
       },
       "typeValue": {
@@ -103970,6 +104636,23 @@
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
+     },
+     {
+      "uid": "fallbackPlacements",
+      "name": "fallbackPlacements",
+      "comment": {
+       "raw": [
+        "Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+        " By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+        " See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}"
+       ]
+      },
+      "typeValue": {
+       "raw": "Placement[]",
+       "html": "Placement<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -104379,6 +105062,23 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
+     },
+     {
+      "uid": "fallbackPlacements",
+      "name": "fallbackPlacements",
+      "comment": {
+       "raw": [
+        "Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+        " By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+        " See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}"
+       ]
+      },
+      "typeValue": {
+       "raw": "Placement[]",
+       "html": "Placement<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
@@ -105531,6 +106231,42 @@
       },
       "editor": {
        "type": "string"
+      },
+      "from": "@epam/uui-core:UseVirtualListProps",
+      "required": false
+     },
+     {
+      "uid": "rowHeight",
+      "name": "rowHeight",
+      "comment": {
+       "raw": [
+        "Row height in px. When set, skips getBoundingClientRect measurement."
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:UseVirtualListProps",
+      "required": false
+     },
+     {
+      "uid": "rowGap",
+      "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Vertical spacing between rows in px (e.g. flex gap, or grid gap)."
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
       },
       "from": "@epam/uui-core:UseVirtualListProps",
       "required": false
@@ -108232,20 +108968,17 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines component size.",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
+        "Defines component size. Promo adds size 18 for compact layouts."
+       ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'",
-       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'42'</span>"
+       "raw": "'36' | '48' | '18' | '24' | '30' | '42'",
+       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'18'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'42'</span>"
       },
       "editor": {
        "type": "oneOf",
        "options": [
+        "18",
         "24",
         "30",
         "36",
@@ -108253,7 +108986,7 @@
         "48"
        ]
       },
-      "from": "@epam/uui:LinkButtonMods",
+      "from": "@epam/promo:IconButtonMods",
       "required": false
      }
     ],
@@ -111003,6 +111736,23 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
+     },
+     {
+      "uid": "fallbackPlacements",
+      "name": "fallbackPlacements",
+      "comment": {
+       "raw": [
+        "Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+        " By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+        " See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}"
+       ]
+      },
+      "typeValue": {
+       "raw": "Placement[]",
+       "html": "Placement<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
@@ -117758,9 +118508,9 @@
       "     * Icon click handler.",
       "     */",
       "    getHandlerIcon?: (value: number) => Icon;",
-      "    /*",
-      "    * Defines Tooltip color.",
-      "    */",
+      "    /**",
+      "     * Defines Tooltip color.",
+      "     */",
       "    tooltipColor?: 'white' | 'fire' | 'gray';",
       "}"
      ]
@@ -117891,6 +118641,11 @@
      {
       "uid": "tooltipColor",
       "name": "tooltipColor",
+      "comment": {
+       "raw": [
+        "Defines Tooltip color."
+       ]
+      },
       "typeValue": {
        "raw": "'fire' | 'white' | 'gray'",
        "html": "<span class=\"token string\">'fire'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'white'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'gray'</span>"
@@ -119363,6 +120118,23 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "from": "@epam/uui-core:DropdownProps",
+      "required": false
+     },
+     {
+      "uid": "fallbackPlacements",
+      "name": "fallbackPlacements",
+      "comment": {
+       "raw": [
+        "Defines the list of alternative placements to try when the preferred placement doesn't fit.",
+        " By default, same-direction variants are tried first, then the opposite direction, then orthogonal directions.",
+        " See [Floating UI docs]{@link https://floating-ui.com/docs/flip#fallbackplacements}"
+       ]
+      },
+      "typeValue": {
+       "raw": "Placement[]",
+       "html": "Placement<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false

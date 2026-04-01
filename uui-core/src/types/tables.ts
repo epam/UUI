@@ -18,6 +18,7 @@ import {
     RangeDatePickerProps,
     RangeDatePickerValue,
     TooltipCoreProps,
+    NumericInputCoreProps,
 } from './components';
 import { IFilterItemBodyProps } from './components/filterItemBody';
 
@@ -479,7 +480,7 @@ export type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & P
     renderFooter?: (props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode;
 };
 
-type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<NumericInputCoreProps, 'max' | 'min' | 'step'> & {
     /** Type of the filter */
     type: 'numeric';
 };

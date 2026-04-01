@@ -226,6 +226,12 @@ exports[`PickerList should open body 1`] = `
           </div>
         </div>
         <div
+          aria-atomic="true"
+          aria-live="polite"
+          class="emptyStatusAnnouncer"
+          role="status"
+        />
+        <div
           class="root uui-flex-row uui-picker_input-body uui-size-36"
           tabindex="-1"
         >

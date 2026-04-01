@@ -90,8 +90,8 @@ describe('LazyListView - row options', () => {
             await waitFor(() => {
                 const view = hookResult.result.current;
                 expectViewToLookLike(view, [
-                    { id: 'c-AF', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox },
-                    { id: 'c-EU', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox },
+                    { id: 'c-AF', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox: { ...checkbox, reserveSpace: true } },
+                    { id: 'c-EU', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox: { ...checkbox, reserveSpace: true } },
                 ]);
             });
         });
@@ -167,8 +167,8 @@ describe('LazyListView - row options', () => {
             await waitFor(() => {
                 const view = hookResult.result.current;
                 expectViewToLookLike(view, [
-                    { id: 'c-AF', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox },
-                    { id: 'c-EU', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox },
+                    { id: 'c-AF', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox: { ...checkbox, reserveSpace: true } },
+                    { id: 'c-EU', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox: { ...checkbox, reserveSpace: true } },
                 ]);
             });
 
@@ -180,8 +180,9 @@ describe('LazyListView - row options', () => {
         });
 
         it('should selectAll be null, if selectAll = false', async () => {
+            const checkbox = { isVisible: true, isDisabled: false };
             const { dataSource } = getLazyLocationsDS({
-                rowOptions: { checkbox: { isVisible: true, isDisabled: false } },
+                rowOptions: { checkbox },
                 selectAll: false,
             });
 
@@ -197,8 +198,8 @@ describe('LazyListView - row options', () => {
             await waitFor(() => {
                 const view = hookResult.result.current;
                 expectViewToLookLike(view, [
-                    { id: 'c-AF', parentId: undefined, isCheckable: true },
-                    { id: 'c-EU', parentId: undefined, isCheckable: true },
+                    { id: 'c-AF', parentId: undefined, isCheckable: true, checkbox: { ...checkbox, reserveSpace: true } },
+                    { id: 'c-EU', parentId: undefined, isCheckable: true, checkbox: { ...checkbox, reserveSpace: true } },
                 ]);
             });
 
@@ -225,8 +226,8 @@ describe('LazyListView - row options', () => {
             await waitFor(() => {
                 const view = hookResult.result.current;
                 expectViewToLookLike(view, [
-                    { id: 'c-AF', parentId: undefined, isCheckable: false, isChecked: false, isChildrenChecked: true, onCheck: undefined, checkbox },
-                    { id: 'c-EU', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox },
+                    { id: 'c-AF', parentId: undefined, isCheckable: false, isChecked: false, isChildrenChecked: true, onCheck: undefined, checkbox: { ...checkbox, reserveSpace: true } },
+                    { id: 'c-EU', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox: { ...checkbox, reserveSpace: true } },
                 ]);
             });
 
@@ -247,7 +248,7 @@ describe('LazyListView - row options', () => {
             await waitFor(() => {
                 view = hookResult.result.current;
                 expectViewToLookLike(view, [
-                    { id: 'c-AF', parentId: undefined, isCheckable: false, isChecked: false, isChildrenChecked: true, onCheck: undefined, checkbox },
+                    { id: 'c-AF', parentId: undefined, isCheckable: false, isChecked: false, isChildrenChecked: true, onCheck: undefined, checkbox: { ...checkbox, reserveSpace: true } },
                     { id: 'DZ', isChecked: false },
                     { id: 'BJ', isChecked: true },
                 ]);
@@ -273,8 +274,8 @@ describe('LazyListView - row options', () => {
             await waitFor(() => {
                 const view = hookResult.result.current;
                 expectViewToLookLike(view, [
-                    { id: 'c-AF', parentId: undefined, isCheckable: true, isChecked: false, isChildrenChecked: true, checkbox },
-                    { id: 'c-EU', parentId: undefined, isCheckable: true, checkbox },
+                    { id: 'c-AF', parentId: undefined, isCheckable: true, isChecked: false, isChildrenChecked: true, checkbox: { ...checkbox, reserveSpace: true } },
+                    { id: 'c-EU', parentId: undefined, isCheckable: true, checkbox: { ...checkbox, reserveSpace: true } },
                 ]);
             });
 
@@ -295,7 +296,7 @@ describe('LazyListView - row options', () => {
             await waitFor(() => {
                 view = hookResult.result.current;
                 expectViewToLookLike(view, [
-                    { id: 'c-AF', parentId: undefined, isCheckable: true, isChecked: false, isChildrenChecked: true, checkbox },
+                    { id: 'c-AF', parentId: undefined, isCheckable: true, isChecked: false, isChildrenChecked: true, checkbox: { ...checkbox, reserveSpace: true } },
                     { id: 'DZ', isChecked: false },
                     { id: 'BJ', isChecked: true },
                 ]);
@@ -645,8 +646,8 @@ describe('LazyListView - row options', () => {
             await waitFor(() => {
                 const view = hookResult.result.current;
                 expectViewToLookLike(view, [
-                    { id: 'c-AF', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox },
-                    { id: 'c-EU', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox },
+                    { id: 'c-AF', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox: { ...checkbox, reserveSpace: true } },
+                    { id: 'c-EU', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox: { ...checkbox, reserveSpace: true } },
                 ]);
             });
         });
@@ -722,8 +723,8 @@ describe('LazyListView - row options', () => {
             await waitFor(() => {
                 const view = hookResult.result.current;
                 expectViewToLookLike(view, [
-                    { id: 'c-AF', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox },
-                    { id: 'c-EU', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox },
+                    { id: 'c-AF', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox: { ...checkbox, reserveSpace: true } },
+                    { id: 'c-EU', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox: { ...checkbox, reserveSpace: true } },
                 ]);
             });
 
@@ -735,8 +736,9 @@ describe('LazyListView - row options', () => {
         });
 
         it('should selectAll be null, if selectAll = false', async () => {
+            const checkbox = { isVisible: true, isDisabled: false };
             const { dataSource } = getLazyLocationsDS({
-                getRowOptions: () => ({ checkbox: { isVisible: true, isDisabled: false } }),
+                getRowOptions: () => ({ checkbox }),
                 selectAll: false,
             });
 
@@ -752,8 +754,8 @@ describe('LazyListView - row options', () => {
             await waitFor(() => {
                 const view = hookResult.result.current;
                 expectViewToLookLike(view, [
-                    { id: 'c-AF', parentId: undefined, isCheckable: true },
-                    { id: 'c-EU', parentId: undefined, isCheckable: true },
+                    { id: 'c-AF', parentId: undefined, isCheckable: true, checkbox: { ...checkbox, reserveSpace: true } },
+                    { id: 'c-EU', parentId: undefined, isCheckable: true, checkbox: { ...checkbox, reserveSpace: true } },
                 ]);
             });
 
@@ -780,8 +782,8 @@ describe('LazyListView - row options', () => {
             await waitFor(() => {
                 const view = hookResult.result.current;
                 expectViewToLookLike(view, [
-                    { id: 'c-AF', parentId: undefined, isCheckable: false, isChecked: false, isChildrenChecked: true, onCheck: undefined, checkbox },
-                    { id: 'c-EU', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox },
+                    { id: 'c-AF', parentId: undefined, isCheckable: false, isChecked: false, isChildrenChecked: true, onCheck: undefined, checkbox: { ...checkbox, reserveSpace: true } },
+                    { id: 'c-EU', parentId: undefined, isCheckable: false, onCheck: undefined, checkbox: { ...checkbox, reserveSpace: true } },
                 ]);
             });
 
@@ -802,7 +804,7 @@ describe('LazyListView - row options', () => {
             await waitFor(() => {
                 view = hookResult.result.current;
                 expectViewToLookLike(view, [
-                    { id: 'c-AF', parentId: undefined, isCheckable: false, isChecked: false, isChildrenChecked: true, onCheck: undefined, checkbox },
+                    { id: 'c-AF', parentId: undefined, isCheckable: false, isChecked: false, isChildrenChecked: true, onCheck: undefined, checkbox: { ...checkbox, reserveSpace: true } },
                     { id: 'DZ', isChecked: false },
                     { id: 'BJ', isChecked: true },
                 ]);
@@ -828,8 +830,8 @@ describe('LazyListView - row options', () => {
             await waitFor(() => {
                 const view = hookResult.result.current;
                 expectViewToLookLike(view, [
-                    { id: 'c-AF', parentId: undefined, isCheckable: true, isChecked: false, isChildrenChecked: true, checkbox },
-                    { id: 'c-EU', parentId: undefined, isCheckable: true, checkbox },
+                    { id: 'c-AF', parentId: undefined, isCheckable: true, isChecked: false, isChildrenChecked: true, checkbox: { ...checkbox, reserveSpace: true } },
+                    { id: 'c-EU', parentId: undefined, isCheckable: true, checkbox: { ...checkbox, reserveSpace: true } },
                 ]);
             });
 
@@ -850,7 +852,7 @@ describe('LazyListView - row options', () => {
             await waitFor(() => {
                 view = hookResult.result.current;
                 expectViewToLookLike(view, [
-                    { id: 'c-AF', parentId: undefined, isCheckable: true, isChecked: false, isChildrenChecked: true, checkbox },
+                    { id: 'c-AF', parentId: undefined, isCheckable: true, isChecked: false, isChildrenChecked: true, checkbox: { ...checkbox, reserveSpace: true } },
                     { id: 'DZ', isChecked: false },
                     { id: 'BJ', isChecked: true },
                 ]);

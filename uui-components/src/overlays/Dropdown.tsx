@@ -30,6 +30,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         zIndex,
         portalTarget,
         placement = 'bottom-start',
+        fallbackPlacements,
         middleware,
         boundaryElement,
         closeOnEscape = true,
@@ -53,10 +54,9 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     const layerRef = useRef<LayoutLayer | null>(null);
     const openDropdownTimerIdRef = useRef<NodeJS.Timeout | null>(null);
     const closeDropdownTimerIdRef = useRef<NodeJS.Timeout | null>(null);
+    const isTargetHoveredRef = useRef<boolean | null>(null);
 
-    const isOpened = useCallback(() => {
-        return open;
-    }, [open]);
+    const isOpened = useCallback(() => open, [open]);
 
     const handleOpenedChange = useCallback((newOpened: boolean) => {
         setOpen(newOpened);
@@ -67,7 +67,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     }, [setOpen]);
 
     const defaultMiddleware = [
-        flip({ fallbackPlacements: getFallbackPlacements(placement) }),
+        flip({ fallbackPlacements: fallbackPlacements ?? getFallbackPlacements(placement) }),
         shift({ boundary: boundaryElement, rootBoundary: 'viewport' }),
         hide(),
     ];
@@ -136,6 +136,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     };
 
     const handleMouseEnter = useCallback(() => {
+        isTargetHoveredRef.current = true;
         clearCloseDropdownTimer();
         if (openDelay) {
             setOpenDropdownTimer();
@@ -145,6 +146,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     }, []);
 
     const handleMouseLeave = useCallback(() => {
+        isTargetHoveredRef.current = false;
         clearOpenDropdownTimer();
 
         if (closeOnMouseLeave !== 'boundary') {
@@ -166,7 +168,16 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         }
     }, []);
 
-    const handleBlur = useCallback(() => {
+    const handleBlur = useCallback((e: FocusEvent | React.FocusEvent<HTMLElement>) => {
+        if (isTargetHoveredRef.current) return;
+
+        const relatedTarget = e.relatedTarget as Node | null;
+        const isFocusWithinTarget = relatedTarget && (targetNodeRef.current?.contains(relatedTarget) || bodyNodeRef.current?.contains(relatedTarget));
+
+        if (isFocusWithinTarget) {
+            return;
+        }
+
         clearOpenDropdownTimer();
         if (closeDelay) {
             setCloseDropdownTimer(closeDelay);
@@ -245,16 +256,24 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         return undefined;
     }, [openOnClick, openOnHover, handleTargetClick]);
 
+    /*
+    * Ref ensures onClose always runs the latest callback (avoids stale closure when bodyProps.onClose
+    * is called from a stale render). See https://github.com/epam/UUI/issues/3011
+    */
+    const onCloseHandlerRef = useRef<DropdownProps['onClose']>(null);
+
     const onCloseHandler = useCallback(() => {
         if (onClose) onClose();
         else handleOpenedChange(false);
     }, [onClose, handleOpenedChange]);
 
+    onCloseHandlerRef.current = onCloseHandler;
+
     const clickOutsideHandler = useCallback((e: Event) => {
         if (isInteractedOutside(e)) {
             handleOpenedChange(false);
         }
-    }, [isInteractedOutside]);
+    }, [isInteractedOutside, handleOpenedChange]);
 
     // We'll use this function to get the reference element (either virtual or real)
     const getReferenceElement = () => {
@@ -306,7 +325,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     }, [virtualTarget, refs.setPositionReference, update]);
 
     const body = useMemo(() => renderBody({
-        onClose: onCloseHandler,
+        onClose: () => onCloseHandlerRef.current(),
         togglerWidth: togglerWidthRef.current,
         togglerHeight: togglerHeightRef.current,
         scheduleUpdate: update,
@@ -321,7 +340,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         placement: finalPlacement,
     }), [
         renderBody,
-        onCloseHandler,
+        onCloseHandlerRef.current,
         togglerWidthRef.current,
         togglerHeightRef.current,
         update,
@@ -354,7 +373,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
             window.removeEventListener('dragstart', clickOutsideHandler);
             window.removeEventListener('click', clickOutsideHandler, true);
         };
-    }, [closeOnClickOutside, isOpened()]);
+    }, [closeOnClickOutside, clickOutsideHandler, isOpened()]);
 
     useEffect(() => {
         if (open && closeOnMouseLeave === 'boundary') {
@@ -391,13 +410,13 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
 
     useEffect(() => {
         if (openOnFocus) {
-            targetNodeRef.current?.addEventListener?.('focus', handleFocus);
-            targetNodeRef.current?.addEventListener?.('blur', handleBlur);
+            targetNodeRef.current?.addEventListener?.('focusin', handleFocus);
+            targetNodeRef.current?.addEventListener?.('focusout', handleBlur);
         }
 
         return () => {
-            targetNodeRef.current?.removeEventListener?.('focus', handleFocus);
-            targetNodeRef.current?.removeEventListener?.('blur', handleBlur);
+            targetNodeRef.current?.removeEventListener?.('focusin', handleFocus);
+            targetNodeRef.current?.removeEventListener?.('focusout', handleBlur);
         };
     }, [
         openOnFocus,

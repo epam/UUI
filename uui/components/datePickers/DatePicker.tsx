@@ -62,6 +62,11 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
     const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         props.onBlur?.(e);
 
+        const formattedValue = toCustomDateFormat(value, format);
+        if (inputValue === formattedValue) {
+            return; // No changes made to the field, skip validation
+        }
+
         if (isValidDate(inputValue, format, props.filter)) {
             setInputValue(toCustomDateFormat(inputValue, format));
             onValueChange(toValueDateFormat(inputValue, format));

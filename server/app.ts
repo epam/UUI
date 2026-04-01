@@ -34,7 +34,7 @@ app.use(cookieParser());
 app.use(cors({ credentials: false }));
 
 app.use((req, res, next) => {
-    const nonce = crypto.randomBytes(16).toString('base64');
+    const nonce = !isDevServer() ? crypto.randomBytes(16).toString('base64') : undefined;
     res.locals.cspNonce = nonce;
 
     res.set('X-XSS-Protection', '1; mode=block');
