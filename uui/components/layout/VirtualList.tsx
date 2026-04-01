@@ -2,9 +2,10 @@ import React, { HTMLAttributes } from 'react';
 import {
     IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, cx, UseVirtualListProps,
 } from '@epam/uui-core';
-import { Blocker } from './Blocker';
+import { Blocker, BlockerInset } from './Blocker';
 import { ScrollBars } from './ScrollBars';
 import type { ScrollbarsApi, ScrollbarProps } from './ScrollBars';
+
 import css from './VirtualList.module.scss';
 
 export interface VirtualListRenderRowsParams<ListContainer extends HTMLElement = any> {
@@ -24,7 +25,7 @@ interface BaseVirtualListProps
     extends IHasCX,
     IEditable<VirtualListState>,
     IHasRawProps<HTMLAttributes<HTMLDivElement>>,
-    Pick<UseVirtualListProps, 'rowsCount' | 'rowsSelector' | 'onScroll'>,
+    Pick<UseVirtualListProps, 'rowsCount' | 'rowsSelector' | 'onScroll' | 'rowHeight' | 'rowGap'>,
     Pick<ScrollbarProps, 'overflowTopEffect' | 'overflowBottomEffect'> {
     /** HTML role attribute to place on list container */
     role?: React.HTMLAttributes<HTMLDivElement>['role'];
@@ -48,9 +49,13 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
         onScroll: props.onScroll,
         rowsCount: props.rowsCount,
         rowsSelector: props.rowsSelector,
+        rowHeight: props.rowHeight,
+        rowGap: props.rowGap,
     });
 
     React.useImperativeHandle(ref, () => scrollContainerRef.current, [scrollContainerRef.current]);
+
+    const [blockerInset, setBlockerInset] = React.useState<BlockerInset | null>(null);
 
     const renderRows = () =>
         props.renderRows?.({
@@ -68,17 +73,40 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
         scrollContainerRef.current = scrollbars.view;
     }, []);
 
+    const rawProps = React.useMemo(() => ({
+        ...(props.rawProps ?? {}),
+        style: {
+            ...(props.rawProps?.style ?? {}),
+            overflow: props.isLoading ? 'hidden' : props.rawProps?.style?.overflow,
+        },
+    }), [props.rawProps, props.isLoading]);
+
+    const updateBlockerInset = React.useCallback(() => {
+        const scrollContainer = scrollContainerRef.current;
+        if (!scrollContainer) return;
+
+        const { scrollTop, scrollLeft } = scrollContainer;
+        setBlockerInset({ top: scrollTop, left: scrollLeft, right: -scrollLeft, bottom: -scrollTop });
+    }, [setBlockerInset]);
+
+    React.useEffect(() => {
+        if (props.isLoading) {
+            updateBlockerInset();
+        }
+    }, [props.isLoading, updateBlockerInset]);
+
     return (
         <ScrollBars
             cx={ cx(css.scrollContainer, props.cx) }
             onScroll={ handleScroll }
             ref={ scrollBarsRef }
-            rawProps={ props.rawProps }
+            rawProps={ rawProps }
             overflowTopEffect={ props.overflowTopEffect }
             overflowBottomEffect={ props.overflowBottomEffect }
+            autoHide={ props.isLoading ? 'scroll' : undefined }
         >
             {renderRows()}
-            <Blocker isEnabled={ props.isLoading } />
+            <Blocker isEnabled={ props.isLoading } inset={ blockerInset } />
         </ScrollBars>
     );
 });

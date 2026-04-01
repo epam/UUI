@@ -47,6 +47,10 @@ export interface DataRowAddonsProps<TItem, TId> extends DataRowAddonsCoreProps<T
 
 export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>) {
     const row = props.rowProps;
+    const checkboxSize = settings.dataTable.sizes.body.checkboxMap[props.size];
+    const isCheckboxVisible = row?.checkbox?.isVisible;
+    const reserveCheckboxSpace = row?.checkbox?.reserveSpace;
+
     const getIndent = () => {
         return (row.indent - 1) * settings.dataTable.sizes.body.indentUnitMap[props.size || settings.dataTable.sizes.body.row];
     };
@@ -77,18 +81,25 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
             {
                 row.dnd?.srcData && renderDragHandle()
             }
-            {row?.checkbox?.isVisible && (
+            {isCheckboxVisible && (
                 <Checkbox
                     key="cb"
                     cx="uui-dr_addons-checkbox"
                     tabIndex={ props.tabIndex }
-                    size={ settings.dataTable.sizes.body.checkboxMap[props.size] }
+                    size={ checkboxSize }
                     value={ row.isChecked }
                     indeterminate={ !row.isChecked && row.isChildrenChecked }
                     onValueChange={ () => row.onCheck?.(row) }
                     isDisabled={ row.checkbox.isDisabled }
                     isInvalid={ row.checkbox.isInvalid }
                     rawProps={ { 'aria-label': 'Select' } }
+                />
+            )}
+            {!isCheckboxVisible && reserveCheckboxSpace && (
+                <div
+                    key="cb-spacer"
+                    className={ cx('uui-checkbox-container', 'uui-dr_addons-checkbox-spacer', `uui-size-${checkboxSize}`) }
+                    aria-hidden="true"
                 />
             )}
             {row.indent > 0 && (

@@ -153,7 +153,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         ...focusService,
     });
 
-    const { rows: allRows, pinned, pinnedByParentId, stats } = useBuildRows({
+    const { rows: allRows, pinned, pinnedByParentId, stats, rowsMap } = useBuildRows({
         tree,
         dataSourceState,
         cascadeSelection,
@@ -165,7 +165,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         isLoading,
     });
 
-    const updatedRows = useUpdateRowOptions({ rows: allRows, updateRowOptions });
+    const updatedRows = useUpdateRowOptions({ rows: allRows, rowsMap, stats, updateRowOptions });
 
     const withPinnedRows = usePinnedRows({
         rows: updatedRows,
@@ -197,7 +197,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
             return getUnknownRowProps(id, index, []);
         }
 
-        return getRowProps(item, index);
+        return getRowProps(item, index, rowsMap, stats);
     };
 
     const listProps = useMemo((): DataSourceListProps => {

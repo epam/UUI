@@ -13,7 +13,7 @@ Below, you can find instructions on how to add Doc Example and update component 
     ```
       { "name": "Basic", "componentPath": "alert/Basic.example.tsx" },
    ```
-4. If you add a new documents page, update `app/src/documents/structure.ts` to add your page to the sidebar menu.
+4. If you add a new documents page, update `app/src/documents/structure/components.ts` to add your page to the sidebar menu.
 5. In your browser, open the local environment of the UUI site (http://localhost:9009/), navigate to your page, and add the example description via the RTE field.
 
 ### Property Explorer

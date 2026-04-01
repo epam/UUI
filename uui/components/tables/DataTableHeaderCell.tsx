@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useId, useState } from 'react';
 import {
     cx, DataColumnProps, DataTableHeaderCellProps as UuiCoreDataTableHeaderCellProps, IDropdownTogglerProps, Overwrite, uuiDataTableHeaderCell, uuiMarkers,
 } from '@epam/uui-core';
@@ -21,23 +21,14 @@ import { settings } from '../../settings';
 import './variables.scss';
 import css from './DataTableHeaderCell.module.scss';
 
-interface DataTableHeaderCellState {
-    isDropdownOpen: boolean;
-}
-
-export interface DataTableHeaderCellModsOverride {
-}
+export interface DataTableHeaderCellModsOverride {}
 
 export interface DataTableHeaderCellProps<TItem, TId> extends
     UuiCoreDataTableHeaderCellProps<TItem, TId>,
     Overwrite<DataTableHeaderCellMods, DataTableHeaderCellModsOverride> {}
 
-export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHeaderCellProps<TItem, TId>, DataTableHeaderCellState> {
-    state: DataTableHeaderCellState = {
-        isDropdownOpen: null,
-    };
-
-    getTooltipContent = (column: DataColumnProps<TItem, TId>) => (
+function DefaultTooltipContent<TItem, TId>(column: DataColumnProps<TItem, TId>) {
+    return (
         <div className={ cx(css.cellTooltipWrapper, uuiDataTableHeaderCell.uuiTableHeaderCaptionTooltip) }>
             <Text cx={ [css.cellTooltipText, css.tooltipCaption] }>
                 { column.caption }
@@ -49,15 +40,27 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             ) }
         </div>
     );
+}
 
-    getColumnCaption = (props: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
-        const renderTooltip = this.props.column.renderTooltip || this.getTooltipContent;
+export function DataTableHeaderCell<TItem, TId>(props: DataTableHeaderCellProps<TItem, TId>) {
+    const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(null);
+    const id = useId();
+
+    const captionId = `uui-dt-header-caption-${id}-${props.column.key}`;
+
+    const captionAriaProps = {
+        'aria-labelledby': captionId,
+        'aria-description': props.isFilterActive ? i18n.tables.columnHeader.filterActiveLabel : undefined,
+    };
+
+    const getColumnCaption = (contentProps: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
+        const renderTooltip = props.column.renderTooltip || DefaultTooltipContent;
         const captionCx = cx([
             css.caption,
-            this.props.textCase === 'upper' && css.upperCase,
+            props.textCase === 'upper' && css.upperCase,
             uuiDataTableHeaderCell.uuiTableHeaderCaption,
             'uui-typography-inline',
-            this.props.size >= '48' && css.truncate,
+            props.size >= '48' && css.truncate,
         ]);
 
         const handleFilterOpen = (e: React.KeyboardEvent) => {
@@ -69,84 +72,87 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
 
         const handleSort = (e: React.KeyboardEvent) => {
             if (e.key === 'Enter' || e.key === ' ') {
-                props.toggleSort(e);
+                contentProps.toggleSort(e);
                 e.preventDefault();
             }
         };
 
         return (
             <div
-                className={ cx(css.captionWrapper, css['align-' + this.props.column.textAlign], uuiDataTableHeaderCell.uuiTableHeaderCaptionWrapper) }
+                className={ cx(css.captionWrapper, css['align-' + props.column.textAlign], uuiDataTableHeaderCell.uuiTableHeaderCaptionWrapper) }
             >
                 <Tooltip
                     placement="top"
                     color="inverted"
-                    content={ renderTooltip(this.props.column) }
+                    content={ renderTooltip(props.column) }
                     cx={ [css.cellTooltip, 'uui-dt-header-tooltip'] }
                     openDelay={ 600 }
                     closeOnMouseLeave="boundary"
                 >
-                    <div key="text" className={ captionCx }>
-                        { this.props.column.caption }
+                    <div key="text" id={ captionId } className={ captionCx }>
+                        { props.column.caption }
                     </div>
                 </Tooltip>
-                { this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) && (
+                { props.column.isSortable && (!props.column.renderFilter || props.sortDirection) && (
                     <ControlIcon
                         key="sort"
-                        cx={ cx(css.icon, css.sortIcon, !this.props.sortDirection && css.sortInActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
-                        icon={ settings.dataTable.icons.header[this.props.sortDirection === 'desc' ? 'descSortIcon' : this.props.sortDirection === 'asc' ? 'ascSortIcon' : 'defaultSortIcon'] }
-                        onKeyDown={ !this.props.column.renderFilter ? handleSort : undefined }
+                        cx={ cx(css.icon, css.sortIcon, !props.sortDirection && css.sortInActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
+                        icon={ settings.dataTable.icons.header[props.sortDirection === 'desc' ? 'descSortIcon' : props.sortDirection === 'asc' ? 'ascSortIcon' : 'defaultSortIcon'] }
+                        onKeyDown={ !props.column.renderFilter ? handleSort : undefined }
+                        rawProps={ { ...captionAriaProps, 'aria-hidden': !!props.column.renderFilter } }
                     />
                 ) }
-                { this.props.isFilterActive && (
+                { props.isFilterActive && (
                     <IconButton
                         key="filter"
-                        cx={ cx(css.icon, !this.props.sortDirection && css.filterIcon, uuiDataTableHeaderCell.uuiTableHeaderFilterIcon) }
+                        cx={ cx(css.icon, !props.sortDirection && css.filterIcon, uuiDataTableHeaderCell.uuiTableHeaderFilterIcon) }
                         color="neutral"
                         icon={ settings.dataTable.icons.header.filterIcon }
+                        rawProps={ { 'aria-hidden': true } }
                     />
                 ) }
-                { this.props.column.renderFilter && (
+                { props.column.renderFilter && (
                     <ControlIcon
                         key="dropdown"
                         cx={ cx(css.icon, css.dropdownIcon, uuiDataTableHeaderCell.uuiTableHeaderDropdownIcon) }
-                        icon={ settings.dataTable.icons.header[this.state.isDropdownOpen ? 'openedDropdownIcon' : 'dropdownIcon'] }
+                        icon={ settings.dataTable.icons.header[isDropdownOpen ? 'openedDropdownIcon' : 'dropdownIcon'] }
                         onKeyDown={ handleFilterOpen }
+                        rawProps={ captionAriaProps }
                     />
                 ) }
             </div>
         );
     };
 
-    renderHeaderCheckbox = () => {
-        if (this.props.selectAll && this.props.isFirstColumn) {
+    const renderHeaderCheckbox = () => {
+        if (props.selectAll && props.isFirstColumn) {
             return (
                 <Checkbox
-                    size={ settings.dataTable.sizes.body.checkboxMap[this.props.size] }
+                    size={ settings.dataTable.sizes.body.checkboxMap[props.size] }
                     rawProps={ { 'aria-label': 'Select All' } }
-                    { ...this.props.selectAll }
+                    { ...props.selectAll }
                     cx={ cx(css.checkbox, uuiDataTableHeaderCell.uuiTableHeaderCheckbox) }
                 />
             );
         }
     };
 
-    renderFoldAllIcon = () => {
-        if (this.props.isFirstColumn && this.props.showFoldAll) {
+    const renderFoldAllIcon = () => {
+        if (props.isFirstColumn && props.showFoldAll) {
             return (
                 <Tooltip content={
-                    this.props.areAllFolded
+                    props.areAllFolded
                         ? i18n.tables.columnHeader.expandAllTooltip
                         : i18n.tables.columnHeader.collapseAllTooltip
                 }
                 >
                     <ControlIcon
                         cx={ cx(css.icon, css.foldAllIcon, uuiDataTableHeaderCell.uuiTableHeaderFoldAllIcon) }
-                        icon={ settings.dataTable.icons.header[this.props.areAllFolded ? 'unfoldIcon' : 'foldIcon'] }
-                        onClick={ this.props.onFoldAll }
+                        icon={ settings.dataTable.icons.header[props.areAllFolded ? 'unfoldIcon' : 'foldIcon'] }
+                        onClick={ props.onFoldAll }
                         rawProps={ {
-                            'aria-label': this.props.areAllFolded ? 'Expand All' : 'Collapse All',
-                            'aria-expanded': !!this.props.areAllFolded,
+                            'aria-label': props.areAllFolded ? 'Expand All' : 'Collapse All',
+                            'aria-expanded': !!props.areAllFolded,
                         } }
                     />
                 </Tooltip>
@@ -154,106 +160,104 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         }
     };
 
-    renderResizingMarker = (props: HeaderCellContentProps) => {
+    const renderResizingMarker = (contentProps: HeaderCellContentProps) => {
         return (
             <div
                 role="separator"
-                onMouseDown={ props.onResizeStart }
+                onMouseDown={ contentProps.onResizeStart }
                 className={ cx(css.resizingMarker, uuiMarkers.draggable, uuiMarkers.clickable) }
             />
         );
     };
 
-    getLeftPadding = () => {
-        const { columnsGap, isFirstColumn } = this.props;
+    const getLeftPadding = () => {
+        const { columnsGap, isFirstColumn } = props;
 
         if (columnsGap) return isFirstColumn ? `${columnsGap}px` : `${+columnsGap / 2}px`;
         return `var(--uui-dt-header-cell-padding${isFirstColumn ? '-edge' : ''})`;
     };
 
-    getRightPadding = () => {
-        const { columnsGap, isLastColumn } = this.props;
+    const getRightPadding = () => {
+        const { columnsGap, isLastColumn } = props;
 
         if (columnsGap) return isLastColumn ? `${columnsGap}px` : `${+columnsGap / 2}px`;
         return `var(--uui-dt-header-cell-padding${isLastColumn ? '-edge' : ''})`;
     };
 
-    getResizingMarkerWidth = () => {
-        const { columnsGap } = this.props;
+    const getResizingMarkerWidth = () => {
+        const { columnsGap } = props;
         return columnsGap ? `${+columnsGap / 2}px` : 'var(--uui-resize-marker-width)';
     };
 
-    renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
-        const isResizable = this.props.column.allowResizing ?? this.props.allowColumnsResizing;
-        const onClickEvent = !props.isResizing && (!this.props.column.renderFilter ? props.toggleSort : dropdownProps?.onClick);
+    const renderCellContent = (contentProps: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
+        const isResizable = props.column.allowResizing ?? props.allowColumnsResizing;
+        const onClickEvent = !contentProps.isResizing && (!props.column.renderFilter ? contentProps.toggleSort : dropdownProps?.onClick);
 
         const computeStyles = {
-            '--uui-dt-header-cell-icon-size': `${settings.dataTable.sizes.header.iconMap[this.props.size || settings.dataTable.sizes.header.row]}px`,
-            '--uui-dt-header-cell-padding-start': this.getLeftPadding(),
-            '--uui-dt-header-cell-padding-end': this.getRightPadding(),
-            '--uui-dt-header-cell-resizing-marker-width': this.getResizingMarkerWidth(),
+            '--uui-dt-header-cell-icon-size': `${settings.dataTable.sizes.header.iconMap[props.size || settings.dataTable.sizes.header.row]}px`,
+            '--uui-dt-header-cell-padding-start': getLeftPadding(),
+            '--uui-dt-header-cell-padding-end': getRightPadding(),
+            '--uui-dt-header-cell-resizing-marker-width': getResizingMarkerWidth(),
         } as React.CSSProperties;
 
         return (
             <DataTableCellContainer
-                column={ this.props.column }
+                column={ props.column }
                 ref={ (ref) => {
-                    (props.ref as React.RefCallback<HTMLElement>)(ref);
+                    (contentProps.ref as React.RefCallback<HTMLElement>)(ref);
                     (dropdownProps?.ref as React.RefCallback<HTMLElement>)?.(ref);
                 } }
                 cx={ cx(
                     uuiDataTableHeaderCell.uuiTableHeaderCell,
-                    (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
+                    (props.column.isSortable || props.isDropdown) && uuiMarkers.clickable,
                     css.root,
-                    `uui-size-${this.props.size || settings.dataTable.sizes.header.row}`,
-                    this.props.isFirstColumn && 'uui-dt-header-first-column',
-                    this.props.isLastColumn && 'uui-dt-header-last-column',
-                    this.props.column.fix && css['pinned-' + this.props.column.fix],
+                    `uui-size-${props.size || settings.dataTable.sizes.header.row}`,
+                    props.isFirstColumn && 'uui-dt-header-first-column',
+                    props.isLastColumn && 'uui-dt-header-last-column',
+                    props.column.fix && css['pinned-' + props.column.fix],
                     isResizable && uuiMarkers.resizable,
-                    props.isDraggable && css.draggable,
-                    props.isDragGhost && css.ghost,
-                    props.isDraggedOut && css.isDraggedOut,
-                    props.isDndInProgress && css['dnd-marker-' + props.position],
+                    contentProps.isDraggable && css.draggable,
+                    contentProps.isDragGhost && css.ghost,
+                    contentProps.isDraggedOut && css.isDraggedOut,
+                    contentProps.isDndInProgress && css['dnd-marker-' + contentProps.position],
                 ) }
                 onClick={ onClickEvent }
                 rawProps={ {
                     role: 'columnheader',
-                    'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none',
-                    ...props.eventHandlers,
+                    'aria-sort': props.sortDirection === 'asc' ? 'ascending' : props.sortDirection ? 'descending' : 'none',
+                    ...contentProps.eventHandlers,
                 } }
                 style={ computeStyles }
             >
-                { this.renderHeaderCheckbox() }
-                { this.renderFoldAllIcon() }
-                { this.getColumnCaption(props, dropdownProps) }
-                { isResizable && this.renderResizingMarker(props) }
+                { renderHeaderCheckbox() }
+                { renderFoldAllIcon() }
+                { getColumnCaption(contentProps, dropdownProps) }
+                { isResizable && renderResizingMarker(contentProps) }
             </DataTableCellContainer>
         );
     };
 
-    renderCellWithFilter = (props: HeaderCellContentProps) => (
+    const renderCellWithFilter = (contentProps: HeaderCellContentProps) => (
         <ColumnHeaderDropdown
-            isOpen={ this.state.isDropdownOpen }
-            isSortable={ this.props.column.isSortable }
-            renderTarget={ (dropdownProps) => this.renderCellContent(props, dropdownProps) }
-            renderFilter={ this.props.renderFilter }
-            onSort={ this.props.onSort }
-            sortDirection={ this.props.sortDirection }
-            onOpenChange={ (isDropdownOpen) => this.setState({ isDropdownOpen }) }
-            title={ this.props.column.caption as string }
+            isOpen={ isDropdownOpen }
+            isSortable={ props.column.isSortable }
+            renderTarget={ (dropdownProps) => renderCellContent(contentProps, dropdownProps) }
+            renderFilter={ props.renderFilter }
+            onSort={ props.onSort }
+            sortDirection={ props.sortDirection }
+            onOpenChange={ setIsDropdownOpen }
+            title={ props.column.caption as string }
         />
     );
 
-    render() {
-        if (this.props.column.renderHeaderCell) {
-            return this.props.column.renderHeaderCell(this.props);
-        }
-
-        return (
-            <UuiDataTableHeaderCell
-                { ...this.props }
-                renderCellContent={ this.props.column.renderFilter ? this.renderCellWithFilter : this.renderCellContent }
-            />
-        );
+    if (props.column.renderHeaderCell) {
+        return props.column.renderHeaderCell(props);
     }
+
+    return (
+        <UuiDataTableHeaderCell
+            { ...props }
+            renderCellContent={ props.column.renderFilter ? renderCellWithFilter : renderCellContent }
+        />
+    );
 }

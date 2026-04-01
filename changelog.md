@@ -1,3 +1,39 @@
+# 6.4.4 - 01.04.2026
+
+**What's New**
+* [Blocker]: added `inset` prop (`BlockerInset`: top, bottom, left, right in px) to control the blocker's coverage area.
+* [Dropdown]: added `fallbackPlacements` prop to customize alternative placements when preferred placement doesn't fit
+* [DropdownMenu]:
+    * `IDropdownMenuItemProps` now extends `IHasRawProps`; use `rawProps` to pass any HTML attributes to the menu item element.
+    * Menu arrow-key navigation now includes all roles starting with `menuitem` (e.g. `menuitem`, `menuitemradio`, `menuitemcheckbox`).
+* [useVirtualList]: Added optional `virtualRowInfo` prop. When `height` is provided, skips `getBoundingClientRect` measurement; when `gap` is provided, uses it for vertical spacing between rows (flex/grid gap). Improves scroll performance on lists with uniform row sizing.
+* [FiltersPanel]: Added support `min`/`max`/`step` props at numeric filter config ([#3034](https://github.com/epam/UUI/issues/3034]))
+* [Promo]:
+    * [IconButton]: add '18' size ([#2943](https://github.com/epam/UUI/issues/2943]))
+* [DataRowOptions]: Added `reserveSpace` property to checkbox configuration
+  - When set and `checkbox.isVisible` is `false`, reserves space for the checkbox in the row
+  - Automatically calculated for tree-like data structures to maintain consistent alignment
+
+
+**What's Fixed**
+* [DataPickerBody]: empty search results are announced via a **polite** off-screen `role="status"` region ([#1506](https://github.com/epam/UUI/issues/1506) Case №9)
+* [VirtualList]: fixed loading `Blocker` not fully covering the visible area ([#3064](https://github.com/epam/UUI/issues/3064))
+* [FiltersPanel]: fixed filters being centered instead of left-aligned inside dropdown popups ([#3065](https://github.com/epam/UUI/issues/3065))
+* [DatePicker]: fixed value disappearing on blur when using formats with day name (e.g. `dddd, D MMMM YYYY`) ([#2560](https://github.com/epam/UUI/issues/2560))
+* [TimePicker]: fixed inconsistent time format between input field and dropdown - both now display hours and minutes with leading zeros (e.g., 01:00 AM) ([#2910](https://github.com/epam/UUI/issues/2910))
+* [uui-core]: fix double decoding in `searchToQuery` helper ([#3058](https://github.com/epam/UUI/issues/3058)).
+* [Dropdown]: fixed stale closure in onClose and onValueChange callbacks ([#3011](https://github.com/epam/UUI/issues/3011))
+* [VerticalTabButton]: added `aria-selected` attribute so screen readers announce the selected tab state ([#2742](https://github.com/epam/UUI/issues/2742))
+* [DropdownMenuSwitchButton]: prevent calling `onValueChange` multiple times on Switch click ([#3045](https://github.com/epam/UUI/issues/3045))
+* [Dropdown]: fixed unexpected placement change from top/bottom to left/right when content doesn't fit the available space. Affects `Tooltip`, `DatePicker`, `PickerInput`, and other components built on `Dropdown` ([#3016](https://github.com/epam/UUI/issues/3016))
+* [SortingPanel]: Sort options in the column header dropdown are exposed as `role="menuitemradio"` with `aria-checked`, so screen readers announce the selected sort direction ([#2992](https://github.com/epam/UUI/issues/2992) Case 2).
+* [DataTable]:
+    * Table accepts `rawProps` for additional ARIA/HTML attributes (e.g. `aria-label` for table name); `role`, `aria-colcount`, and `aria-rowcount` remain controlled by the component. ([#2992](https://github.com/epam/UUI/issues/2992) Case 3)
+    * Fixed Property Explorer by providing values for properties that are not automatically resolved ([#2832](https://github.com/epam/UUI/issues/2832))
+    * Fixed tree table indentation when child rows have no checkbox: child rows now reserve consistent checkbox space for alignment ([#2844](https://github.com/epam/UUI/issues/2844))
+* [Tooltip]: fixed tooltip not showing on keyboard focus for complex elements with focusable children (e.g. Switch) ([#2959](https://github.com/epam/UUI/issues/2959))
+
+
 # 6.4.3 - 04.02.2026
 
 **What's New**

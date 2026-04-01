@@ -43,7 +43,7 @@ import { NumericInputConfig } from './NumericInputConfig';
 import { TextPlaceholderConfig } from './TextPlaceholderConfig';
 import { NotificationCardConfig } from './NotificationCardConfig';
 import { RadioGroupConfig } from './RadioGroupConfig';
-import { TablesOverviewExplorerConfig } from './TablesOverviewConfig';
+import { TablesOverviewExplorerConfig } from './dataTable/TablesOverviewConfig';
 import { LabeledInputExplorerConfig } from './LabeledInputConfig';
 import { TabButtonExplorerConfig } from './TabButtonConfig';
 import { VerticalTabButtonExplorerConfig } from './VerticalTabButtonConfig';

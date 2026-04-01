@@ -13,6 +13,7 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
     >
       <div
         class="caption uui-table-header-caption uui-typography-inline"
+        id="uui-dt-header-caption-«r0»-test"
       >
         Test
       </div>

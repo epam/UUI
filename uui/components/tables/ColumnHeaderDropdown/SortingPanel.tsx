@@ -16,19 +16,24 @@ const SortingPanelImpl: React.FC<SortingPanelProps> = ({ sortDirection, onSort }
     const sortAsc = useCallback(() => onSort(sortDirection === 'asc' ? undefined : 'asc'), [onSort]);
     const sortDesc = useCallback(() => onSort(sortDirection === 'desc' ? undefined : 'desc'), [onSort]);
 
+    const isAscSelected = sortDirection === 'asc';
+    const isDescSelected = sortDirection === 'desc';
+
     return (
         <FlexCell cx={ cx(css.sortingPanelContainer, 'uui-dropdownMenu-body') }>
             <DropdownMenuButton
-                isActive={ sortDirection === 'asc' }
+                isActive={ isAscSelected }
                 caption={ i18n.pickerFilterHeader.sortAscending }
                 icon={ settings.dataTable.icons.header.ascSortIcon }
                 onClick={ sortAsc }
+                rawProps={ { role: 'menuitemradio', 'aria-checked': isAscSelected } }
             />
             <DropdownMenuButton
-                isActive={ sortDirection === 'desc' }
+                isActive={ isDescSelected }
                 caption={ i18n.pickerFilterHeader.sortDescending }
                 icon={ settings.dataTable.icons.header.descSortIcon }
                 onClick={ sortDesc }
+                rawProps={ { role: 'menuitemradio', 'aria-checked': isDescSelected } }
             />
         </FlexCell>
     );

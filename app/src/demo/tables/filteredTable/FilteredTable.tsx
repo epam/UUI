@@ -79,7 +79,7 @@ export function FilteredTable() {
     return (
         <div className={ css.container }>
             <div className={ css.presetsPanel }>
-                <Text fontSize="24" lineHeight="30" cx={ css.presetsTitle }>
+                <Text fontSize="24" lineHeight="30" cx={ css.presetsTitle } rawProps={ { id: 'presets-title' } }>
                     Users Dashboard
                 </Text>
                 <PresetsPanel { ...presetsApi } />
@@ -101,6 +101,7 @@ export function FilteredTable() {
                 showColumnsConfig={ true }
                 allowColumnsResizing={ true }
                 allowColumnsReordering={ true }
+                rawProps={ { 'aria-labelledby': 'presets-title' } }
                 { ...listProps }
             />
             <FilteredTableFooter tableState={ tableStateApi.tableState } setTableState={ tableStateApi.setTableState } totalCount={ listProps.totalCount } />
