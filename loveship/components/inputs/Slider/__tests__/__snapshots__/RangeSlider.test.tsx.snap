@@ -10,7 +10,7 @@ exports[`RangeSlider should be rendered correctly 1`] = `
     />
     <div
       class="uui-slider-filled"
-      style="width: 0px; left: 0px;"
+      style="width: 0px; inset-inline-start: 0;"
     />
     <div
       class="uui-slider-scale"

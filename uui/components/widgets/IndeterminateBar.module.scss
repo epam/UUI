@@ -21,11 +21,11 @@
 
 @keyframes progressBar-indeterminate {
     0% {
-        left: -33%;
+        inset-inline-start: -33%;
     }
 
     100% {
-        left: 100%;
+        inset-inline-start: 100%;
     }
 }
 
