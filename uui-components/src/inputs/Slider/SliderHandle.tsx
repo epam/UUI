@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
+import { IHasCX, cx, IHasRawProps, useDocumentDir } from '@epam/uui-core';
 import css from './SliderHandle.module.scss';
 import { useFloating, arrow, autoUpdate, offset } from '@floating-ui/react';
 import { DropdownContainer, Portal } from '../../overlays';
@@ -32,6 +32,10 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
     const sliderHandleRef = React.useRef<HTMLDivElement | null>(null);
     const arrowRef = React.useRef<HTMLDivElement | null>(null);
     const updateTooltipRafRef = React.useRef<number | null>(null);
+    const dir = useDocumentDir();
+
+    const isRtl = dir === 'rtl';
+    const handleOffsetSign = isRtl ? -1 : 1;
 
     const { refs, floatingStyles, placement, middlewareData, update } = useFloating({
         placement: 'top',
@@ -108,9 +112,9 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
         if (e.key === 'ArrowLeft') {
-            onKeyDownUpdate?.('left');
+            onKeyDownUpdate?.(isRtl ? 'right' : 'left');
         } else if (e.key === 'ArrowRight') {
-            onKeyDownUpdate?.('right');
+            onKeyDownUpdate?.(isRtl ? 'left' : 'right');
         }
     };
 
@@ -162,7 +166,7 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
                 tabIndex={ 0 }
                 ref={ setRefs }
                 className={ cx(uuiSlider.handle, propsCx) }
-                style={ { transform: `translateX(${handleOffset || 0}px)` } }
+                style={ { transform: `translateX(${handleOffsetSign * (handleOffset || 0)}px)` } }
                 onMouseDown={ handleMouseDown }
                 onKeyDown={ handleKeyDown }
                 onFocus={ handleFocus }

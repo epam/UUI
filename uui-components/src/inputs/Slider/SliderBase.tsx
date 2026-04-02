@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    IHasCX, IEditable, IDisableable, IHasRawProps, IHasForwardedRef,
+    IHasCX, IEditable, IDisableable, IHasRawProps, IHasForwardedRef, getDir,
 } from '@epam/uui-core';
 
 export interface SliderBaseProps<TSelection>
@@ -90,12 +90,26 @@ export abstract class SliderBase<TSelection, TState extends SliderBaseState> ext
     };
 
     getValue = (mouseX: number, valueWidth?: number) => {
-        if (mouseX < this.slider.getBoundingClientRect().left) {
-            return this.props.min;
-        } else if (mouseX > this.slider.getBoundingClientRect().right) {
-            return this.props.max;
-        } else {
-            return this.roundToStep((mouseX - this.slider.getBoundingClientRect().left) / valueWidth + this.props.min, this.props.step);
+        const rect = this.slider.getBoundingClientRect();
+
+        if (this.isRtl()) {
+            if (mouseX > rect.right) {
+                return this.props.min;
+            }
+            if (mouseX < rect.left) {
+                return this.props.max;
+            }
+            return this.roundToStep((rect.right - mouseX) / valueWidth + this.props.min, this.props.step);
         }
+
+        if (mouseX < rect.left) {
+            return this.props.min;
+        }
+        if (mouseX > rect.right) {
+            return this.props.max;
+        }
+        return this.roundToStep((mouseX - rect.left) / valueWidth + this.props.min, this.props.step);
     };
+
+    isRtl = () => getDir() === 'rtl';
 }
