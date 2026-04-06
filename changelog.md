@@ -5,6 +5,8 @@
 
 **What's Fixed**
 * [DropdownContainer]: fixed `autoFocus` always being `true` even when `false` is passed through params
+* [RTE]: fixed incorrect floating toolbar position when in shadow DOM ([#3073](https://github.com/epam/UUI/issues/3073))
+
 
 # 6.4.4 - 01.04.2026
 
