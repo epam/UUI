@@ -20,7 +20,7 @@
     "classnames": "2.2.6",
     "dayjs": "1.11.12",
     "react-fast-compare": "^3.2.2",
-    "react-focus-lock": "2.13.5",
+    "@epam/uui-react-focus-lock-fork": "2.13.8",
     "react-transition-group": "4.4.5"
   },
   "peerDependencies": {

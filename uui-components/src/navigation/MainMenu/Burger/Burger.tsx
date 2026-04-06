@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import FocusLock from 'react-focus-lock';
+import FocusLock from '@epam/uui-react-focus-lock-fork';
 import {
     IHasCX, Icon, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';

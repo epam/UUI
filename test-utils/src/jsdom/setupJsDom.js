@@ -90,8 +90,8 @@ function enableMockForCommon3rdPartyDeps() {
         };
     });
 
-    testRunner.mock('react-focus-lock', () => ({
-        ...testRunner.requireActual('react-focus-lock'),
+    testRunner.mock('@epam/uui-react-focus-lock-fork', () => ({
+        ...testRunner.requireActual('@epam/uui-react-focus-lock-fork'),
         __esModule: true,
         /**
          * @param {object} props - Component's props

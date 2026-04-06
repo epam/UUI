@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useLayoutEffect, useMemo, useContext, us
 import {
     useFloating, autoUpdate, flip, shift, useMergeRefs, hide, arrow, useDismiss,
 } from '@floating-ui/react';
-import { FreeFocusInside } from 'react-focus-lock';
+import { FreeFocusInside } from '@epam/uui-react-focus-lock-fork';
 import { isEventTargetInsideClickable, UuiContext } from '@epam/uui-core';
 import type { LayoutLayer, DropdownProps } from '@epam/uui-core';
 import { getFallbackPlacements } from '../helpers';
