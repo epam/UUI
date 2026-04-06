@@ -2,10 +2,10 @@
 
 exports[`PresetActionsDropdown should render correctly 1`] = `
 <DocumentFragment>
-  <button
+  <span
     class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-primary root tabButton"
+    role="button"
     tabindex="0"
-    type="button"
   >
     <div
       class="container uui-icon uui-enabled"
@@ -16,6 +16,6 @@ exports[`PresetActionsDropdown should render correctly 1`] = `
         width="18"
       />
     </div>
-  </button>
+  </span>
 </DocumentFragment>
 `;
