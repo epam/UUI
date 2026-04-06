@@ -1,7 +1,7 @@
 import { Locator, Page } from '@playwright/test';
 import type { Link } from '@epam/uui-core';
 import { TClip, TEngine } from '../../types';
-import { slowTestExpectTimeout } from '../../../playwright.config';
+import { expectTimeout, slowTestExpectTimeout } from '../../../playwright.config';
 import { CdpSessionWrapper } from '../previewPage/cdpSessionWrapper';
 import { queryToSearch } from '../../utils/queryToSearch';
 
@@ -52,6 +52,17 @@ export abstract class AbsPage {
         await this.page.locator(selector).first().click();
     }
 
+    protected async waitForImagesLoaded(timeoutMs: number = expectTimeout): Promise<void> {
+        await this.page.waitForFunction(
+            () => {
+                const images = Array.from(document.images);
+                return images.length === 0 || images.every((img) => img.complete);
+            },
+            undefined,
+            { timeout: timeoutMs },
+        );
+    }
+
     protected async _getScreenshotOptions(
         params: { isSlowTest?: boolean; locator?: Locator },
     ): Promise<IScreenshotOptions> {
@@ -68,7 +79,7 @@ export abstract class AbsPage {
 
     protected async _clientRedirect(link: Link) {
         await this.page.mouse.move(0, 0);
-   
+
         const params = link.query ? queryToSearch(link.query) : link.search;
         await this.page.goto(`${link.pathname}${params?.length ? `?${params}` : ''}`);
         await this.page.waitForFunction(() => document.fonts.ready);

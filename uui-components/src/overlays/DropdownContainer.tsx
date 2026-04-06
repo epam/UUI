@@ -1,12 +1,11 @@
 import * as React from 'react';
-import FocusLock from 'react-focus-lock';
+import FocusLock, { ReactFocusLockProps } from '@epam/uui-react-focus-lock-fork';
 import {
     uuiElement, IHasCX, IHasChildren, cx, IHasRawProps, uuiMarkers, IHasForwardedRef, IDropdownBodyProps,
     IHasStyleAttrs,
 } from '@epam/uui-core';
 import { VPanel } from '../layout/flexItems/VPanel';
 import PopoverArrow from './PopoverArrow';
-import { ReactFocusLockProps } from 'react-focus-lock';
 
 export interface DropdownContainerProps
     extends IHasCX,
@@ -60,7 +59,7 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
     function renderDropdownContainer() {
         return (
             <VPanel
-                forwardedRef={ !focusLock ? ref as React.ForwardedRef<HTMLDivElement> : undefined }
+                forwardedRef={ !focusLock ? (ref as React.ForwardedRef<HTMLDivElement>) : undefined }
                 cx={ cx(uuiElement.dropdownBody, uuiMarkers.lockFocus, props.cx) }
                 style={ {
                     ...props.style,
@@ -91,7 +90,7 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
                 persistentFocus={ persistentFocus }
                 lockProps={ { ...({ onKeyDown: props?.onKeyDown }), ...props.lockProps } }
                 shards={ props.shards }
-                autoFocus={ props.autoFocus || true }
+                autoFocus={ props.autoFocus ?? true }
                 as={ props.as }
             >
                 {renderDropdownContainer()}

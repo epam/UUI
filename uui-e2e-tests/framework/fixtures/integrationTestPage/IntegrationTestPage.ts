@@ -1,6 +1,7 @@
 import { expect, type Locator } from '@playwright/test';
 import { type IPageParams, AbsPage } from '../shared/absPage';
 import { Link } from '@epam/uui-core';
+import { slowTestExpectTimeout } from '../../../playwright.config';
 
 export class IntegrationTestPage extends AbsPage {
     private readonly locators: {
@@ -20,6 +21,7 @@ export class IntegrationTestPage extends AbsPage {
     }
 
     async expectScreenshot(screenshotName: string) {
+        await this.waitForImagesLoaded(slowTestExpectTimeout);
         const screenshotOptions = await super._getScreenshotOptions({ isSlowTest: true });
         await expect(this.page).toHaveScreenshot(screenshotName, screenshotOptions);
     }

@@ -4,16 +4,16 @@ import {
     IHasRawProps, usePrevious, DataRowProps, FlattenSearchResultsConfig,
 } from '@epam/uui-core';
 import { FlexCell } from '@epam/uui-components';
+import { MoveFocusInside } from '@epam/uui-react-focus-lock-fork';
+import isEqual from 'react-fast-compare';
 import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
 import { Text } from '../typography';
 import { i18n } from '../../i18n';
 import { settings } from '../../settings';
 import css from './DataPickerBody.module.scss';
-import isEqual from 'react-fast-compare';
 import { DataPickerRow } from './DataPickerRow';
 import type { PickerInputProps } from './PickerInput';
-import { MoveFocusInside } from 'react-focus-lock';
 
 export interface DataPickerBodyModsOverride {}
 
