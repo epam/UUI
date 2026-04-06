@@ -75,7 +75,6 @@ function TableRenderer(props: any) {
                             <TableToolbarContent canUnmerge={ canUnmerge } />
                         )
                     }
-                    editor={ editor }
                     isTable
                 />
             ) }
