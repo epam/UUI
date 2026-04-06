@@ -78,7 +78,7 @@
         "text": ", "
       },
       {
-        "text": "react-focus-lock",
+        "text": "@epam/uui-react-focus-lock-fork",
         "uui-richTextEditor-code": true
       },
       {

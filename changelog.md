@@ -1,3 +1,11 @@
+# 6.x.x - xx.xx.2026
+
+**What's New**
+* [DropdownContainer]: added Shadow DOM support.
+
+**What's Fixed**
+* [DropdownContainer]: fixed `autoFocus` always being `true` even when `false` is passed through params
+
 # 6.4.4 - 01.04.2026
 
 **What's New**

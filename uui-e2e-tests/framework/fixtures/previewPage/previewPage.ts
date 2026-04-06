@@ -4,6 +4,7 @@ import { AbsPage, type IPageParams } from '../shared/absPage';
 import type { TComponentPreview } from '@epam/uui-docs';
 import { Link } from '@epam/uui-core';
 import { PlayWrightInterfaceName } from '../../constants';
+import { slowTestExpectTimeout } from '../../../playwright.config';
 
 const INLINE_PREVIEW_PREFIX = 'json:';
 
@@ -47,6 +48,9 @@ export class PreviewPage extends AbsPage {
     async expectScreenshot(
         params: { screenshotName: string, isSlowTest?: boolean },
     ) {
+        await this.waitForImagesLoaded(
+            params.isSlowTest ? slowTestExpectTimeout : undefined,
+        );
         const screenshotOptions = await super._getScreenshotOptions({
             isSlowTest: params.isSlowTest,
             locator: this.locators.regionScreenshotContent,
