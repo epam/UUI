@@ -16,6 +16,7 @@ export function getAppRootNode() {
             div = document.createElement('div');
             div.id = SHADOW_ROOT_ID;
             div.className = document.body.className;
+            div.style.height = '100%';
             document.body.className = '';
             defaultRoot.shadowRoot.appendChild(div);
         }

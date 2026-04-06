@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import FocusLock from 'react-focus-lock';
+import FocusLock from '@epam/uui-react-focus-lock-fork';
 import css from './ModalBlocker.module.scss';
 import { ModalBlockerProps, UuiContext, cx, uuiElement } from '@epam/uui-core';
 

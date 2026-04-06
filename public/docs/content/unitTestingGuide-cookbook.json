@@ -609,7 +609,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "react-focus-lock",
+        "text": "@epam/uui-react-focus-lock-fork",
         "uui-richTextEditor-bold": true
       }
     ]
@@ -679,7 +679,7 @@
         "text": "("
       },
       {
-        "text": "'react-focus-lock'",
+        "text": "'@epam/uui-react-focus-lock-fork'",
         "uui-richTextEditor-bold": true
       },
       {
@@ -693,7 +693,7 @@
         "text": "("
       },
       {
-        "text": "'react-focus-lock'",
+        "text": "'@epam/uui-react-focus-lock-fork'",
         "uui-richTextEditor-bold": true
       },
       {
