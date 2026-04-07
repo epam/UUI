@@ -6,6 +6,15 @@
 **What's Fixed**
 * [DropdownContainer]: fixed `autoFocus` always being `true` even when `false` is passed through params
 * [RTE]: fixed incorrect floating toolbar position when in shadow DOM ([#3073](https://github.com/epam/UUI/issues/3073))
+* Fixed multiple RTL layout issues across components ([#2548](https://github.com/epam/UUI/issues/2548)):
+    * [Slider], [RangeSlider]: fixed RTL layout and interaction (track fill, handle, scale marks, pointer position, arrow keys).
+    * [PopoverArrow]: fixed popover/tooltip arrow chevron alignment in RTL.
+    * [IndeterminateBar]: fixed progress bar animation direction in RTL.
+    * [Typography]: fixed list bullet alignment in RTL.
+    * [Accordion]: fixed chevron icon position in RTL.
+    * [RangeDatePickerBody]: fixed separator direction in RTL.
+    * [DataRowAddons]: fixed drag handle position in RTL.
+    * [PickerToggler]: fixed search input text direction in RTL.
 
 
 # 6.4.4 - 01.04.2026

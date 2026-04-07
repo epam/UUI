@@ -16,6 +16,7 @@
         background: none;
         cursor: pointer;
         text-overflow: ellipsis;
+        direction: inherit;
 
         &[type='search']::-webkit-search-decoration,
         &[type='search']::-webkit-search-cancel-button,

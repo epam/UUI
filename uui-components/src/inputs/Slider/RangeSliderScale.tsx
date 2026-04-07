@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { SliderScaleElement } from './SliderScaleElement';
-import { SliderScaleBase } from './SliderScaleBase';
-import { isClientSide } from '@epam/uui-core';
+import { SliderScaleBase, getSliderTrackMarginInlineStart } from './SliderScaleBase';
 
 interface HandleOffsetValue {
     from: number;
@@ -14,7 +13,7 @@ export class RangeSliderScale extends SliderScaleBase<HandleOffsetValue> {
         const sliderWidth = this.props.slider && this.props.slider.offsetWidth;
         return this.generateScale(splitAt).map((value) => {
             const offset = (value - this.props.min) * this.props.valueWidth;
-            const sliderMargin = isClientSide && this.props.slider && +window.getComputedStyle(this.props.slider).marginLeft.slice(0, -2);
+            const sliderMargin = getSliderTrackMarginInlineStart(this.props.slider);
             return (
                 <SliderScaleElement
                     key={ value }

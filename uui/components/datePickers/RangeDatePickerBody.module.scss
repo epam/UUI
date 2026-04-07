@@ -29,9 +29,13 @@
                         display: block;
                         position: absolute;
                         bottom: 0;
-                        right: 0;
+                        inset-inline-end: 0;
                         width: var(--uui-rdtp-gradient-size);
                         height: 100%;
+                    }
+
+                    &:dir(rtl)::after {
+                        transform: scaleX(-1);
                     }
                 }
             }
@@ -58,9 +62,13 @@
                         display: block;
                         position: absolute;
                         bottom: 0;
-                        left: 0;
+                        inset-inline-start: 0;
                         width: var(--uui-rdtp-gradient-size);
                         height: 100%;
+                    }
+
+                    &:dir(rtl)::after {
+                        transform: scaleX(-1);
                     }
                 }
             }
@@ -76,23 +84,23 @@
 
     :global(.uui-range-datepicker-first-day-in-range-wrapper) {
         &:global(.uui-calendar-selected-day) {
-            border-top-left-radius: var(--uui-rdtp-selected-day-radius);
-            border-bottom-left-radius: var(--uui-rdtp-selected-day-radius);
+            border-start-start-radius: var(--uui-rdtp-selected-day-radius);
+            border-end-start-radius: var(--uui-rdtp-selected-day-radius);
         }
     }
 
     :global(.uui-range-datepicker-last-day-in-range-wrapper) {
         &:global(.uui-calendar-selected-day) {
-            border-top-right-radius: var(--uui-rdtp-selected-day-radius);
-            border-bottom-right-radius: var(--uui-rdtp-selected-day-radius);
-            margin-right: var(--uui-rdtp-margin-right);
+            border-start-end-radius: var(--uui-rdtp-selected-day-radius);
+            border-end-end-radius: var(--uui-rdtp-selected-day-radius);
+            margin-inline-end: var(--uui-rdtp-margin-right);
         }
     }
 
     :global(.uui-range-datepicker-separator) {
         display: flex;
         flex: 0 0 auto;
-        border-left: var(--uui-rdtp-separator-width) solid var(--uui-control-border);
+        border-inline-start: var(--uui-rdtp-separator-width) solid var(--uui-control-border);
     }
 }
 
