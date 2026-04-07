@@ -9,7 +9,7 @@
 
         :global(.uui-slider-handle) {
             position: absolute;
-            left: 0;
+            inset-inline-start: 0;
 
             &:focus {
                 outline-offset: 1px;
@@ -23,6 +23,7 @@
 
         :global(.uui-slider-filled) {
             position: absolute;
+            inset-inline-start: 0;
             pointer-events: none;
         }
 
@@ -32,10 +33,12 @@
 
         :global(.uui-slider-scale-number) {
             position: absolute;
+            inset-inline-start: 0;
         }
 
         :global(.uui-slider-scale-dot) {
             position: absolute;
+            inset-inline-start: 0;
         }
     }
 }

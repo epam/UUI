@@ -1,6 +1,16 @@
 import * as React from 'react';
+import { isClientSide } from '@epam/uui-core';
 import { SliderScaleElement } from './SliderScaleElement';
 import { uuiSlider } from './SliderBase';
+
+export function getSliderTrackMarginInlineStart(slider: HTMLElement | null): number {
+    if (!isClientSide || !slider) {
+        return 0;
+    }
+    const raw = window.getComputedStyle(slider).marginInlineStart;
+    const parsed = parseFloat(raw);
+    return Number.isFinite(parsed) ? parsed : 0;
+}
 
 interface SliderScaleProps<THandleOffsetValue> {
     min: number;
