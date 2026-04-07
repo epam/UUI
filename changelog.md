@@ -1,6 +1,7 @@
-# 6.x.x - xx.xx.2026
+# 6.5.0-alpha - 07.04.2026
 
 **What's New**
+* Patched `react-focus-lock` via a fork of the package to address Shadow DOM issues
 * [DropdownContainer]: added Shadow DOM support.
 
 **What's Fixed**
