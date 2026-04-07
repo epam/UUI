@@ -13,6 +13,9 @@ Note: If the release fails and packages aren't published, revert all commits and
 #### Beta release
 Use `yarn release-beta` instead of `yarn release`. This will create a release with the `beta` (not `latest`) dist-tag.
 
+#### Alpha release
+Use `yarn release-alpha` instead of `yarn release`. This will create a release with the `alpha` (not `latest`) dist-tag.
+
 #### Tips
 1. Revert failed release: if your release was failed during the release process (build error, authorization error, other). 
    - Often in such cases, packages will not be published to the NPM, but lerna may already commit version update and new git tags, so you need to revert this:

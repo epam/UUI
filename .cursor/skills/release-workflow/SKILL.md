@@ -1,13 +1,13 @@
 ---
 name: uui-release-workflow
-description: Guides the UUI package release process including stable and beta releases, changelog updates, and handling failed releases. Use when releasing UUI packages, updating changelog, or troubleshooting release issues. For maintainers only.
+description: Guides the UUI package release process including stable, beta, and alpha releases, changelog updates, and handling failed releases. Use when releasing UUI packages, updating changelog, or troubleshooting release issues. For maintainers only.
 ---
 
 # UUI Release Workflow
 
 ## Important
 
-**Always ask for explicit user permission before running `yarn release` or `yarn release-beta`.** These commands publish packages to npm and cannot be undone. Never publish to npm without confirming the user intends to do so.
+**Always ask for explicit user permission before running `yarn release`, `yarn release-beta`, or `yarn release-alpha`.** These commands publish packages to npm and cannot be undone. Never publish to npm without confirming the user intends to do so.
 
 **Before asking for permission, provide a pre-publish summary:**
 - **Version**: The version that will be published (from `changelog.md` top section or Lerna)
@@ -39,6 +39,14 @@ Provide pre-publish summary, then **ask user for permission** before running. Us
 
 ```bash
 yarn release-beta
+```
+
+## Alpha Release
+
+Provide pre-publish summary, then **ask user for permission** before running. Use alpha dist-tag instead of latest:
+
+```bash
+yarn release-alpha
 ```
 
 ## NPM Login with MFA
