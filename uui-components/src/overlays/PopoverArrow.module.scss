@@ -11,6 +11,10 @@
             // calc function - arrow size correction
             transform: translateX(calc(100% - 1px)) translateY(20%) rotate(45deg);
         }
+
+        &:dir(rtl)::after {
+            left: 0;
+        }
     }
 }
 
@@ -21,6 +25,10 @@
 
         &::after {
             transform: translateX(calc(-50% + 1px)) translateY(20%) rotate(45deg);
+        }
+
+        &:dir(rtl)::after {
+            left: 0;
         }
     }
 }
@@ -33,6 +41,10 @@
         &::after {
             transform: translateX(30%) translateY(calc(-50% + 1px)) rotate(45deg);
         }
+
+        &:dir(rtl)::after {
+            transform: translateX(-30%) translateY(calc(-50% + 1px)) rotate(45deg);
+        }
     }
 }
 
@@ -43,6 +55,10 @@
 
         &::after {
             transform: translateX(30%) translateY(calc(100% - 1px)) rotate(45deg);
+        }
+
+        &:dir(rtl)::after {
+            transform: translateX(-30%) translateY(calc(100% - 1px)) rotate(45deg);
         }
     }
 }

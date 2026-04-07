@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cx } from '@epam/uui-core';
+import { cx, getDir } from '@epam/uui-core';
 import { uuiSlider } from './SliderBase';
 
 interface SliderScaleElementProps {
@@ -26,17 +26,24 @@ export class SliderScaleElement extends React.Component<SliderScaleElementProps,
     }
 
     calculateLabelPosition = () => {
-        if (this.props.offset === 0) {
+        const { offset, sliderWidth, sliderMargin } = this.props;
+        const scaleNumberWidth = this.scaleNumber ? this.state.scaleNumberWidth ?? 0 : 0;
+
+        if (offset === 0) {
             return 0;
         }
-        if (this.props.sliderWidth === parseInt(`${this.props.offset}`, 10)) {
-            return this.props.offset - Math.ceil(this.scaleNumber ? this.state.scaleNumberWidth : 0) + 2 * this.props.sliderMargin;
+        if (Math.abs(sliderWidth - offset) < 1) {
+            return offset - Math.ceil(scaleNumberWidth) + 2 * sliderMargin;
         }
-        return this.props.offset + this.props.sliderMargin - Math.ceil(this.scaleNumber ? this.state.scaleNumberWidth / 2 : 0);
+        return offset + sliderMargin - Math.ceil(scaleNumberWidth / 2);
     };
 
     render() {
-        const dotOffset = this.props.offset + this.props.sliderMargin - (this.scaleDot ? this.state.scaleDotWidth / 2 : 0);
+        const { offset, sliderMargin } = this.props;
+        const isRtl = getDir() === 'rtl';
+        const sign = isRtl ? -1 : 1;
+
+        const dotOffset = offset + sliderMargin - (this.scaleDot ? (this.state.scaleDotWidth ?? 0) / 2 : 0);
         const numberOffset = this.calculateLabelPosition();
 
         return (
@@ -46,14 +53,14 @@ export class SliderScaleElement extends React.Component<SliderScaleElementProps,
                     ref={ (scaleDotRef) => {
                         (this.scaleDot = scaleDotRef);
                     } }
-                    style={ { transform: `translateX(${dotOffset}px)` } }
+                    style={ { transform: `translateX(${sign * dotOffset}px)` } }
                 />
                 <div
                     className={ uuiSlider.scaleNumber }
                     ref={ (scaleNumberRef) => {
                         (this.scaleNumber = scaleNumberRef);
                     } }
-                    style={ { transform: `translateX(${numberOffset}px)` } }
+                    style={ { transform: `translateX(${sign * numberOffset}px)` } }
                 >
                     {this.props.label}
                 </div>
