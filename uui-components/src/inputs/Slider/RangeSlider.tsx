@@ -92,6 +92,9 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
 
         const fromHandleOffset = (normValueFrom - this.props.min) * valueWidth;
         const toHandleOffset = (normValueTo - this.props.min) * valueWidth;
+        const low = Math.min(normValueFrom, normValueTo);
+        const high = Math.max(normValueFrom, normValueTo);
+        const rangeBarWidth = (high - low) * valueWidth;
 
         return (
             <div
@@ -109,8 +112,8 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
                 <div
                     className={ uuiSlider.filled }
                     style={ {
-                        width: (normValueFrom < normValueTo ? normValueTo - normValueFrom : normValueFrom - normValueTo) * valueWidth,
-                        left: (normValueFrom < normValueTo ? normValueFrom - this.props.min : normValueTo - this.props.min) * valueWidth,
+                        width: rangeBarWidth,
+                        insetInlineStart: (low - this.props.min) * valueWidth,
                     } }
                 />
                 <RangeSliderScale
