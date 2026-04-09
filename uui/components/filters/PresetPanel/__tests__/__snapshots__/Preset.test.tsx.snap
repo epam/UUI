@@ -19,10 +19,10 @@ exports[`Preset renders correctly when not in rename mode and active 1`] = `
       <div
         class="container uui-icon uui-enabled"
       >
-        <button
+        <span
           class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-primary root tabButton"
+          role="button"
           tabindex="0"
-          type="button"
         >
           <div
             class="container uui-icon uui-enabled"
@@ -33,7 +33,7 @@ exports[`Preset renders correctly when not in rename mode and active 1`] = `
               width="18"
             />
           </div>
-        </button>
+        </span>
       </div>
     </span>
   </div>
@@ -59,10 +59,10 @@ exports[`Preset renders correctly when not in rename mode and not active 1`] = `
       <div
         class="container uui-icon uui-enabled"
       >
-        <button
+        <span
           class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-primary root tabButton"
+          role="button"
           tabindex="0"
-          type="button"
         >
           <div
             class="container uui-icon uui-enabled"
@@ -73,7 +73,7 @@ exports[`Preset renders correctly when not in rename mode and not active 1`] = `
               width="18"
             />
           </div>
-        </button>
+        </span>
       </div>
     </span>
   </div>
