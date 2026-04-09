@@ -6,6 +6,7 @@
 **What's Fixed**
 * [DropdownContainer]: fixed `autoFocus` always being `true` even when `false` is passed through params
 * [RTE]: fixed incorrect floating toolbar position when in shadow DOM ([#3073](https://github.com/epam/UUI/issues/3073))
+* [PresetsPanel]: fixed preset tab rendering nested `<button>` elements (preset actions `IconButton` inside the tab control), which caused invalid HTML and a React console warning.
 * Fixed multiple RTL layout issues across components ([#2548](https://github.com/epam/UUI/issues/2548)):
     * [Slider], [RangeSlider]: fixed RTL layout and interaction (track fill, handle, scale marks, pointer position, arrow keys).
     * [PopoverArrow]: fixed popover/tooltip arrow chevron alignment in RTL.
