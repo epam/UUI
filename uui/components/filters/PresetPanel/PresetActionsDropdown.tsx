@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { offset } from '@floating-ui/react';
-import type { IPresetsApi, IDropdownToggler, ITablePreset, DataTableState, DropdownBodyProps } from '@epam/uui-core';
+import type { IPresetsApi, IDropdownTogglerProps, ITablePreset, DataTableState, DropdownBodyProps } from '@epam/uui-core';
 import { useUuiContext } from '@epam/uui-core';
 import { Dropdown, DropdownMenuBody, DropdownMenuButton, SuccessNotification, DropdownMenuSplitter } from '../../overlays';
 import { IconButton } from '../../buttons';
@@ -152,7 +152,7 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
         );
     };
 
-    const renderTarget = useCallback((dropdownProps: IDropdownToggler) => {
+    const renderTarget = useCallback((dropdownProps: IDropdownTogglerProps) => {
         return (
             <IconButton
                 cx={ [css.tabButton, dropdownProps.isOpen && css.targetOpen] }
@@ -160,9 +160,11 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
                 { ...dropdownProps }
                 icon={ settings.presetsPanel.icons.menuIcon }
                 size={ settings.presetsPanel.sizes.dropdownTargetIconButton }
+                type="span"
+                rawProps={ { role: 'button' } }
             />
         );
-    }, []);
+    }, [props.preset.id, props.activePresetId]);
 
     return (
         <Dropdown renderBody={ renderBody } renderTarget={ renderTarget } placement="bottom-end" middleware={ [offset(22)] } />

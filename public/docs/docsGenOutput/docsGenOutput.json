@@ -1,5 +1,5 @@
 {
- "version": "6.4.3",
+ "version": "6.4.4",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -49282,6 +49282,56 @@
     }
    }
   },
+  "@epam/uui-components:ClickableType": {
+   "summary": {
+    "module": "@epam/uui-components",
+    "typeName": {
+     "name": "ClickableType",
+     "nameFull": "ClickableType"
+    },
+    "src": "uui-components/src/widgets/Clickable.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "ClickableType",
+     "print": [
+      "type ClickableType = {",
+      "    /**",
+      "     * Can pass the desired type of Clickable component. Using 'span' type will force the component to be a span, even if href, link, onClick, etc. are present.",
+      "     */",
+      "    type?: 'button' | 'anchor' | 'span';",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "type",
+      "name": "type",
+      "comment": {
+       "raw": [
+        "Can pass the desired type of Clickable component. Using 'span' type will force the component to be a span, even if href, link, onClick, etc. are present."
+       ]
+      },
+      "typeValue": {
+       "raw": "'button' | 'anchor' | 'span'",
+       "html": "<span class=\"token string\">'button'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'anchor'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'span'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "button",
+        "anchor",
+        "span"
+       ]
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-components:ColumnsConfigurationRowProps": {
    "summary": {
     "module": "@epam/uui-components",
@@ -51912,7 +51962,7 @@
     "typeValue": {
      "raw": "IconButtonProps",
      "print": [
-      "type IconButtonProps = ClickableComponentProps & Omit<IDropdownToggler, 'isDropdown'> & {",
+      "type IconButtonProps = ClickableComponentProps & ClickableType & Omit<IDropdownToggler, 'isDropdown'> & {",
       "    /** Icon can be a React element (usually an SVG element) */",
       "    icon?: Icon;",
       "    /** Icon for drop-down toggler */",
@@ -52106,6 +52156,29 @@
        "type": "func"
       },
       "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
+      "uid": "type",
+      "name": "type",
+      "comment": {
+       "raw": [
+        "Can pass the desired type of Clickable component. Using 'span' type will force the component to be a span, even if href, link, onClick, etc. are present."
+       ]
+      },
+      "typeValue": {
+       "raw": "'button' | 'anchor' | 'span'",
+       "html": "<span class=\"token string\">'button'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'anchor'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'span'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "button",
+        "anchor",
+        "span"
+       ]
+      },
+      "from": "@epam/uui-components:ClickableType",
       "required": false
      },
      {
@@ -52923,8 +52996,8 @@
       "uid": "type",
       "name": "type",
       "typeValue": {
-       "raw": "'number' | 'hidden' | string & {} | 'button' | 'search' | 'time' | 'image' | 'text' | 'color' | 'checkbox' | 'radio' | 'date' | 'email' | 'tel' | 'datetime-local' | 'file' | 'month' | 'password' | 'range' | 'reset' | 'submit' | 'url' | 'week'",
-       "html": "<span class=\"token string\">'number'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'hidden'</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> <span class=\"token string\">'button'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'search'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'time'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'image'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'text'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'color'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'checkbox'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'radio'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'date'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'email'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'tel'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'datetime-local'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'file'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'month'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'password'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'range'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'reset'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'submit'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'url'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'week'</span>"
+       "raw": "'number' | 'button' | 'hidden' | string & {} | 'search' | 'time' | 'image' | 'text' | 'color' | 'checkbox' | 'radio' | 'date' | 'email' | 'tel' | 'datetime-local' | 'file' | 'month' | 'password' | 'range' | 'reset' | 'submit' | 'url' | 'week'",
+       "html": "<span class=\"token string\">'number'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'button'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'hidden'</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> <span class=\"token string\">'search'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'time'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'image'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'text'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'color'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'checkbox'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'radio'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'date'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'email'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'tel'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'datetime-local'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'file'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'month'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'password'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'range'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'reset'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'submit'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'url'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'week'</span>"
       },
       "from": "@types/react:InputHTMLAttributes",
       "required": false
@@ -53302,8 +53375,8 @@
       "uid": "role",
       "name": "role",
       "typeValue": {
-       "raw": "string & {} | 'article' | 'button' | 'dialog' | 'figure' | 'form' | 'img' | 'link' | 'main' | 'menu' | 'menuitem' | 'option' | 'search' | 'table' | 'switch' | 'alert' | 'alertdialog' | 'application' | 'banner' | 'cell' | 'checkbox' | 'columnheader' | 'combobox' | 'complementary' | 'contentinfo' | 'definition' | 'directory' | 'document' | 'feed' | 'grid' | 'gridcell' | 'group' | 'heading' | 'list' | 'listbox' | 'listitem' | 'log' | 'marquee' | 'math' | 'menubar' | 'menuitemcheckbox' | 'menuitemradio' | 'navigation' | 'none' | 'note' | 'presentation' | 'progressbar' | 'radio' | 'radiogroup' | 'region' | 'row' | 'rowgroup' | 'rowheader' | 'scrollbar' | 'searchbox' | 'separator' | 'slider' | 'spinbutton' | 'status' | 'tab' | 'tablist' | 'tabpanel' | 'term' | 'textbox' | 'timer' | 'toolbar' | 'tooltip' | 'tree' | 'treegrid' | 'treeitem'",
-       "html": "<span class=\"token builtin\">string</span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> <span class=\"token string\">'article'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'button'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'dialog'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'figure'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'form'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'img'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'link'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'main'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'menu'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'menuitem'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'option'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'search'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'table'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'switch'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'alert'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'alertdialog'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'application'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'banner'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'cell'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'checkbox'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'columnheader'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'combobox'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'complementary'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'contentinfo'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'definition'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'directory'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'document'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'feed'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'grid'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'gridcell'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'group'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'heading'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'list'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'listbox'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'listitem'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'log'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'marquee'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'math'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'menubar'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'menuitemcheckbox'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'menuitemradio'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'navigation'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'none'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'note'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'presentation'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'progressbar'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'radio'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'radiogroup'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'region'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'row'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'rowgroup'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'rowheader'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'scrollbar'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'searchbox'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'separator'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'slider'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'spinbutton'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'status'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'tab'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'tablist'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'tabpanel'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'term'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'textbox'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'timer'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'toolbar'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'tooltip'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'tree'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'treegrid'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'treeitem'</span>"
+       "raw": "'button' | string & {} | 'article' | 'dialog' | 'figure' | 'form' | 'img' | 'link' | 'main' | 'menu' | 'menuitem' | 'option' | 'search' | 'table' | 'switch' | 'alert' | 'alertdialog' | 'application' | 'banner' | 'cell' | 'checkbox' | 'columnheader' | 'combobox' | 'complementary' | 'contentinfo' | 'definition' | 'directory' | 'document' | 'feed' | 'grid' | 'gridcell' | 'group' | 'heading' | 'list' | 'listbox' | 'listitem' | 'log' | 'marquee' | 'math' | 'menubar' | 'menuitemcheckbox' | 'menuitemradio' | 'navigation' | 'none' | 'note' | 'presentation' | 'progressbar' | 'radio' | 'radiogroup' | 'region' | 'row' | 'rowgroup' | 'rowheader' | 'scrollbar' | 'searchbox' | 'separator' | 'slider' | 'spinbutton' | 'status' | 'tab' | 'tablist' | 'tabpanel' | 'term' | 'textbox' | 'timer' | 'toolbar' | 'tooltip' | 'tree' | 'treegrid' | 'treeitem'",
+       "html": "<span class=\"token string\">'button'</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">&amp;</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> <span class=\"token string\">'article'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'dialog'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'figure'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'form'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'img'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'link'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'main'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'menu'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'menuitem'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'option'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'search'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'table'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'switch'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'alert'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'alertdialog'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'application'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'banner'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'cell'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'checkbox'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'columnheader'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'combobox'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'complementary'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'contentinfo'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'definition'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'directory'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'document'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'feed'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'grid'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'gridcell'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'group'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'heading'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'list'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'listbox'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'listitem'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'log'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'marquee'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'math'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'menubar'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'menuitemcheckbox'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'menuitemradio'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'navigation'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'none'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'note'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'presentation'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'progressbar'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'radio'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'radiogroup'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'region'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'row'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'rowgroup'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'rowheader'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'scrollbar'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'searchbox'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'separator'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'slider'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'spinbutton'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'status'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'tab'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'tablist'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'tabpanel'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'term'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'textbox'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'timer'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'toolbar'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'tooltip'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'tree'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'treegrid'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'treeitem'</span>"
       },
       "from": "@types/react:HTMLAttributes",
       "required": false
@@ -80564,6 +80637,29 @@
       "required": false
      },
      {
+      "uid": "type",
+      "name": "type",
+      "comment": {
+       "raw": [
+        "Can pass the desired type of Clickable component. Using 'span' type will force the component to be a span, even if href, link, onClick, etc. are present."
+       ]
+      },
+      "typeValue": {
+       "raw": "'button' | 'span' | 'anchor'",
+       "html": "<span class=\"token string\">'button'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'span'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'anchor'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "button",
+        "span",
+        "anchor"
+       ]
+      },
+      "from": "@epam/uui-components:ClickableType",
+      "required": false
+     },
+     {
       "uid": "cx",
       "name": "cx",
       "comment": {
@@ -80898,6 +80994,29 @@
        ]
       },
       "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "type",
+      "name": "type",
+      "comment": {
+       "raw": [
+        "Can pass the desired type of Clickable component. Using 'span' type will force the component to be a span, even if href, link, onClick, etc. are present."
+       ]
+      },
+      "typeValue": {
+       "raw": "'button' | 'span' | 'anchor'",
+       "html": "<span class=\"token string\">'button'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'span'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'anchor'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "button",
+        "span",
+        "anchor"
+       ]
+      },
+      "from": "@epam/uui-components:ClickableType",
       "required": false
      },
      {
@@ -108827,6 +108946,29 @@
       "required": false
      },
      {
+      "uid": "type",
+      "name": "type",
+      "comment": {
+       "raw": [
+        "Can pass the desired type of Clickable component. Using 'span' type will force the component to be a span, even if href, link, onClick, etc. are present."
+       ]
+      },
+      "typeValue": {
+       "raw": "'button' | 'anchor' | 'span'",
+       "html": "<span class=\"token string\">'button'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'anchor'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'span'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "button",
+        "anchor",
+        "span"
+       ]
+      },
+      "from": "@epam/uui-components:ClickableType",
+      "required": false
+     },
+     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -115881,6 +116023,29 @@
        "type": "func"
       },
       "from": "@epam/uui-components:ClickableComponentProps",
+      "required": false
+     },
+     {
+      "uid": "type",
+      "name": "type",
+      "comment": {
+       "raw": [
+        "Can pass the desired type of Clickable component. Using 'span' type will force the component to be a span, even if href, link, onClick, etc. are present."
+       ]
+      },
+      "typeValue": {
+       "raw": "'button' | 'anchor' | 'span'",
+       "html": "<span class=\"token string\">'button'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'anchor'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'span'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "button",
+        "anchor",
+        "span"
+       ]
+      },
+      "from": "@epam/uui-components:ClickableType",
       "required": false
      },
      {

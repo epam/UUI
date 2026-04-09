@@ -4,11 +4,11 @@ import {
     IClickable, IDisableable, IAnalyticableClick, IHasTabIndex, IHasCX, ICanRedirect,
 } from '@epam/uui-core';
 
-type ClickableType = {
+export type ClickableType = {
     /**
-     * Can pass the desired type of Clickable component
+     * Can pass the desired type of Clickable component. Using 'span' type will force the component to be a span, even if href, link, onClick, etc. are present.
      */
-    type?: 'button' | 'anchor'
+    type?: 'button' | 'anchor' | 'span'
 };
 type ClickableForwardedRef = HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement;
 
@@ -22,8 +22,9 @@ export type ClickableComponentProps = IClickable & IAnalyticableClick & IHasTabI
 
 export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildren<ClickableComponentProps & ClickableType>>((props, ref) => {
     const context = useUuiContext();
-    const isAnchor = Boolean(props.href || props.link || props.type === 'anchor');
-    const isButton = Boolean(!isAnchor && (props.onClick || props.type === 'button'));
+    const isSpan = props.type === 'span'; // if user wants to use span as clickable component, we should not check for href, link, onClick, etc.
+    const isAnchor = Boolean(!isSpan && (props.href || props.link || props.type === 'anchor'));
+    const isButton = Boolean(!isSpan && !isAnchor && (props.onClick || props.type === 'button'));
     const hasClick = Boolean(!props.isDisabled && (props.link || props.onClick || props.clickAnalyticsEvent));
 
     const clickHandler = (e: React.MouseEvent) => {
