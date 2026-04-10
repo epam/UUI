@@ -6,21 +6,21 @@ import { sortBy } from 'lodash';
 const router = express.Router();
 
 router.post('/get-demo-doc-content', (req, res) => {
-    const contentDir = path.join(__dirname, '../../../../../public/rte_contents/');
+    const contentDir = path.resolve(__dirname, '../../../public/rte_contents');
     const docContentPath = path.resolve(contentDir, `${req.body.name}`);
-    if (!docContentPath.startsWith(contentDir)) {
-        res.send(null);
+    const relativeToContentDir = path.relative(contentDir, docContentPath);
+    if (relativeToContentDir.startsWith('..') || path.isAbsolute(relativeToContentDir)) {
+        return res.send(null);
     }
     if (!fs.existsSync(docContentPath)) {
-        res.send(null);
-    } else {
-        const content = JSON.parse(JSON.parse(fs.readFileSync(docContentPath, 'utf8')).content);
-        res.send(content);
+        return res.send(null);
     }
+    const content = JSON.parse(JSON.parse(fs.readFileSync(docContentPath, 'utf8')).content);
+    return res.send(content);
 });
 
 router.get('/get-contents-list', (req, res) => {
-    const propsFilePath = path.join(__dirname, '../../public/rte_contents');
+    const propsFilePath = path.join(__dirname, '../../../public/rte_contents');
     const contentsList = [];
     fs.readdirSync(propsFilePath).forEach((file) => {
         contentsList.push(file);
