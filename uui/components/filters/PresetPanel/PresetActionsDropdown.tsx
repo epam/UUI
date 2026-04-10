@@ -42,7 +42,13 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
         successNotificationHandler('Link copied!');
     }, [props.activePresetId, props.preset, props.hasPresetChanged, props.getPresetLink, props.tableState]);
 
-    const onCopyLink = props.onCopyLink ? props.onCopyLink : copyUrlToClipboard;
+    const onCopyLink = useCallback(() => {
+        if (props.onCopyLink) {
+            props.onCopyLink(props.tableState);
+        } else {
+            copyUrlToClipboard();
+        }
+    }, [props.onCopyLink, copyUrlToClipboard]);
 
     const saveInCurrent = useCallback(
         async (preset: ITablePreset) => {
