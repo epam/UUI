@@ -4,6 +4,7 @@
 * [DropdownContainer]: added Shadow DOM support.
 
 **What's Fixed**
+* [PresetsPanel]: custom `onCopyLink` is now invoked with `DataTableState` as declared, instead of receiving the click event
 * [DropdownContainer]: fixed `autoFocus` always being `true` even when `false` is passed through params
 * [RTE]: fixed incorrect floating toolbar position when in shadow DOM ([#3073](https://github.com/epam/UUI/issues/3073))
 * [PresetsPanel]: fixed preset tab rendering nested `<button>` elements (preset actions `IconButton` inside the tab control), which caused invalid HTML and a React console warning.
