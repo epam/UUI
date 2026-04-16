@@ -24,6 +24,7 @@ import { getCspHeaderValue } from './utils/cspUtil';
 // });
 
 export const app = express();
+app.disable('x-powered-by');
 
 !isDevServer() && app.use(logger('dev'));
 
@@ -42,7 +43,6 @@ app.use((req, res, next) => {
     res.set('X-Frame-Options', 'SAMEORIGIN');
     res.set('X-Content-Type-Options', 'nosniff');
     res.set('Content-Security-Policy', getCspHeaderValue(isDevServer(), nonce));
-    res.removeHeader('X-Powered-By');
 
     next();
 });
