@@ -17,10 +17,19 @@ module.exports = {
 
 function getReportLocationPath() {
     const i = process.argv.indexOf('-o');
-    if (i !== -1) {
-        const dir = process.argv[i + 1];
-        return forwardSlashes(path.resolve(ROOT_DIR, dir));
+    if (i === -1) {
+        return undefined;
     }
+    const dir = process.argv[i + 1];
+    if (typeof dir !== 'string' || dir.length === 0) {
+        return undefined;
+    }
+    const resolved = path.resolve(ROOT_DIR, dir);
+    const relative = path.relative(ROOT_DIR, resolved);
+    if (relative.startsWith('..') || path.isAbsolute(relative)) {
+        return undefined;
+    }
+    return forwardSlashes(resolved);
 }
 
 function forwardSlashes(pathStr) {
