@@ -5,12 +5,24 @@ import { isDevServer } from '../utils/envUtils';
 
 const router = express.Router();
 
+const docsContentDir = path.resolve(__dirname, '../../../public/docs/content');
+
+function resolveDocJsonPath(name: string | undefined): string | null {
+    if (name == null || typeof name !== 'string') {
+        return null;
+    }
+    const docContentPath = path.resolve(docsContentDir, `${name}.json`);
+    const relativeToContent = path.relative(docsContentDir, docContentPath);
+    if (relativeToContent.startsWith('..') || path.isAbsolute(relativeToContent)) {
+        return null;
+    }
+    return docContentPath;
+}
+
 router.post('/get-doc-content', (req: any, res: any) => {
-    const docContentPath = path.join(__dirname, '../../../', 'public/docs/content/', `${req.body.name}.json`);
+    const docContentPath = resolveDocJsonPath(req.body.name);
 
-    const isPathInsideDocsDirectory = docContentPath.includes(path.normalize('public/docs/content/'));
-
-    if (!isPathInsideDocsDirectory) {
+    if (!docContentPath) {
         return res.status(500).json({ error: "Doc with such file name doesn't exist" });
     }
 
@@ -26,11 +38,9 @@ router.post('/save-doc-content', (req: any, res: any) => {
     if (!isDevServer()) {
         return res.sendStatus(403);
     }
-    const docContentPath = path.join(__dirname, '../../../', 'public/docs/content/', `${req.body.name}.json`);
+    const docContentPath = resolveDocJsonPath(req.body.name);
 
-    const isPathInsideDocsDirectory = docContentPath.includes(path.normalize('public/docs/content/'));
-
-    if (!isPathInsideDocsDirectory) {
+    if (!docContentPath) {
         return res.status(500).json({ error: "File name isn't correct" });
     }
 
