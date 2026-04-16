@@ -58,6 +58,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
         const isEmptyRowsAndHasNoSelection = (rowsCount === 0 || !hasSelection);
         const showClear = !props.disableClear && (isSingleSelect() ? true : (!view.selectAll || hasSelection));
         const isClearDisabled = isSearching || isEmptyRowsAndHasNoSelection;
+        const isSelectAllDisabled = isSearching;
 
         return (
             <>
@@ -65,6 +66,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                     <LinkButton
                         caption={ i18n.pickerModal.selectAllButton }
                         onClick={ () => view.selectAll.onValueChange(true) }
+                        isDisabled={ isSelectAllDisabled }
                     />
                 )}
                 {showClear && (
