@@ -1,12 +1,12 @@
 import { Dropdown } from '@epam/uui';
-import { findNode, toDOMNode, toDOMRange, useEditorState, useEventEditorSelectors } from '@udecode/plate-common';
-import { getCellTypes } from '@udecode/plate-table';
+import { useForceUpdate } from '@epam/uui-core';
+import { useEditorState, useEventEditorSelectors } from '@udecode/plate-common';
 import cx from 'classnames';
-import React from 'react';
-import { Range } from 'slate';
-import { offset } from '@floating-ui/react';
+import React, { useEffect, useRef } from 'react';
+import { offset, inline, type VirtualElement } from '@floating-ui/react';
 
 import { isImageSelected, isTextSelected } from '../helpers';
+import { getVirtualReferenceElement } from './PositionedToolbar.helpers';
 import css from './PositionedToolbar.module.scss';
 
 interface ToolbarProps {
@@ -18,40 +18,13 @@ interface ToolbarProps {
 
 export function FloatingToolbar(props: ToolbarProps): any {
     const editor = useEditorState();
+    const forceUpdate = useForceUpdate();
+    const virtualTarget = useRef<VirtualElement | null>(null);
 
     // useEventEditorSelectors.focus() hook is not working correctly at Safari in ShadowDOM,
     // editor focus state changes on tripple click
     // TODO: Consider upgrading Plate @udecode/* to check if this is fixed
     const inFocus = useEventEditorSelectors.focus() === editor.id;
-
-    const getVirtualReferenceElement = () => {
-        if (props.isTable) {
-            const [selectedNode] = findNode(editor, {
-                at: Range.start(editor.selection),
-                match: { type: getCellTypes(editor) },
-            });
-
-            const domNode = toDOMNode(editor, selectedNode);
-
-            if (!domNode) {
-                return null;
-            }
-
-            return {
-                getBoundingClientRect(): DOMRect {
-                    return domNode.getBoundingClientRect();
-                },
-            };
-        }
-
-        return {
-            getBoundingClientRect(): DOMRect {
-                const range = toDOMRange(editor, editor.selection);
-
-                return range.getBoundingClientRect();
-            },
-        };
-    };
 
     let isToolbarVisible: boolean;
     if (props.isImage) {
@@ -60,14 +33,22 @@ export function FloatingToolbar(props: ToolbarProps): any {
         isToolbarVisible = !!props.isTable || isTextSelected(editor, inFocus);
     }
 
+    useEffect(() => {
+        virtualTarget.current = isToolbarVisible
+            ? getVirtualReferenceElement(editor, { isTable: props.isTable })
+            : null;
+        forceUpdate();
+    }, [JSON.stringify(editor.selection), isToolbarVisible, props.isTable]);
+
     return isToolbarVisible && (
         <Dropdown
             value={ isToolbarVisible }
-            virtualTarget={ getVirtualReferenceElement() }
+            virtualTarget={ virtualTarget.current }
             renderTarget={ (p) => <div { ...p }></div> }
             placement={ props.placement || 'top' }
             middleware={ [
                 offset(12),
+                inline(),
             ] }
             renderBody={ (bodyProps) => (
                 <div
