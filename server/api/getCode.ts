@@ -5,18 +5,36 @@ import { highlightTsCode } from './prism';
 
 const router = express.Router();
 
+const EXAMPLES_ROOT = path.resolve(__dirname, '../../../app/src/docs/_examples');
+/** Paths are joined relative to EXAMPLES_ROOT (e.g. codesandbox uses ../../data/...); must stay under this tree. */
+const GET_CODE_ALLOWED_ROOT = path.resolve(__dirname, '../../../app/src');
+
+function resolveSafeExamplePath(userPath: unknown): string | null {
+    if (typeof userPath !== 'string' || userPath.length === 0) {
+        return null;
+    }
+    if (path.isAbsolute(userPath)) {
+        return null;
+    }
+    const resolved = path.resolve(EXAMPLES_ROOT, userPath);
+    const relative = path.relative(GET_CODE_ALLOWED_ROOT, resolved);
+    if (relative.startsWith('..') || path.isAbsolute(relative)) {
+        return null;
+    }
+    return resolved;
+}
+
 router.post('/get-code', async (req: any, res: any) => {
     try {
         const params = req.body;
-        const filePath = path.resolve(__dirname, '../../../app/src/docs/_examples/', path.normalize(params.path));
+        const filePath = resolveSafeExamplePath(params?.path);
 
-        const isPathInsideSrcDirectory = filePath.includes(path.normalize('/app/src/'));
-
-        if (!isPathInsideSrcDirectory) {
-            return res.status(500).json({ error: `path ${filePath} is not inside docs examples folder)}` });
+        if (!filePath) {
+            return res.status(500).json({ error: 'path is not inside allowed app/src tree' });
         }
 
-        const gitUrl = 'https://github.com/epam/UUI/tree/develop' + path.join(...params.path).replace('\\', '/');
+        const gitPath = String(params.path).replace(/\\/g, '/').replace(/^\/+/, '');
+        const gitUrl = `https://github.com/epam/UUI/tree/develop/${gitPath}`;
 
         const raw = await fs.readFile(filePath, 'utf8');
         const highlighted = highlightTsCode(raw);
