@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/chance": "^1.1.0",
-    "@types/express": "^5.0.1",
+    "@types/express": "^4.17.21",
     "@types/node": "^22.15.18",
     "typescript": "^5.8.3",
     "ts-node-dev": "^2.0.0"
