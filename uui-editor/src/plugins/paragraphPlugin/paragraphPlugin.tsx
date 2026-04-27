@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ELEMENT_DEFAULT, PlatePlugin } from '@udecode/plate-common';
+import { ELEMENT_DEFAULT, PlateElement, PlatePlugin } from '@udecode/plate-common';
 import { createParagraphPlugin } from '@udecode/plate-paragraph';
 import { PARAGRAPH_TYPE } from './constants';
 
@@ -10,11 +10,9 @@ export const paragraphPlugin = (): PlatePlugin => {
         type: PARAGRAPH_TYPE,
         overrideByKey: {
             [ELEMENT_DEFAULT]: {
-                component: (props): JSX.Element => {
-                    const { attributes, children } = props;
-
-                    return <p { ...attributes }>{ children }</p>;
-                },
+                component: (props): JSX.Element => (
+                    <PlateElement as="p" { ...props } />
+                ),
                 type: PARAGRAPH_TYPE,
             },
         },

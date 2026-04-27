@@ -426,6 +426,18 @@ export const initialValue = [
     },
     {
         data: {
+            src: 'https://www.youtube.com/embed/5qap5aO4i9A',
+        },
+        type: 'iframe',
+        children: [
+            {
+                text: '',
+                'uui-richTextEditor-span-mark': true,
+            },
+        ],
+    },
+    {
+        data: {
             checked: false,
         },
         type: 'paragraph',

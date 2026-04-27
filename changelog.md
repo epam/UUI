@@ -2,12 +2,14 @@
 
 **What's New**
 * [DropdownContainer]: added Shadow DOM support.
+* [RTE]: UUI block and mark components render through `PlateElement` / `PlateLeaf` (with `asChild` where a semantic tag is used) so custom Plate plugins that wrap nodes (e.g. `inject.aboveComponent`) compose correctly ([#3062](https://github.com/epam/UUI/issues/3062)).
 
 **What's Fixed**
 * [PickerModal]: fixed footer **Select all** staying available while searching — the control is now disabled until the search field is cleared.([#3083](https://github.com/epam/UUI/issues/3083))
 * [PresetsPanel]: custom `onCopyLink` is now invoked with `DataTableState` as declared, instead of receiving the click event
 * [DropdownContainer]: fixed `autoFocus` always being `true` even when `false` is passed through params
 * [RTE]: fixed incorrect floating toolbar position when in shadow DOM ([#3073](https://github.com/epam/UUI/issues/3073))
+    * floating toolbar now respects target element client rects (ie multiline selections)
 * [PresetsPanel]: fixed preset tab rendering nested `<button>` elements (preset actions `IconButton` inside the tab control), which caused invalid HTML and a React console warning.
 * Fixed multiple RTL layout issues across components ([#2548](https://github.com/epam/UUI/issues/2548)):
     * [Slider], [RangeSlider]: fixed RTL layout and interaction (track fill, handle, scale marks, pointer position, arrow keys).
@@ -18,6 +20,7 @@
     * [RangeDatePickerBody]: fixed separator direction in RTL.
     * [DataRowAddons]: fixed drag handle position in RTL.
     * [PickerToggler]: fixed search input text direction in RTL.
+* [RTE]: Todo list items migrate legacy `element.data.checked` to `element.checked`. Iframe nodes normalize `url` from `url` or legacy `data.src`.
 
 
 # 6.4.4 - 01.04.2026

@@ -1,5 +1,5 @@
 import {
-    PlateEditor, createPluginFactory, getBlockAbove, getEndPoint, getPluginType, insertEmptyElement, selectEditor, PlatePlugin, isElement,
+    PlateEditor, createPluginFactory, getBlockAbove, getEndPoint, getPluginType, insertEmptyElement, selectEditor, PlatePlugin,
 } from '@udecode/plate-common';
 import React from 'react';
 
@@ -14,7 +14,7 @@ import { WithToolbarButton } from '../../implementation/Toolbars';
 import { IFRAME_PLUGIN_KEY, IFRAME_TYPE } from './constants';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/constants';
-import { normalizeIframeElement } from '../../migrations';
+import { withIframe } from './withIframe';
 
 // TODO: implement iframe resize
 export const iframePlugin = (): PlatePlugin => {
@@ -66,22 +66,7 @@ export const iframePlugin = (): PlatePlugin => {
         options: {
             bottomBarButton: IframeButton,
         },
-        // move to common function / plugin
-        withOverrides: (editor) => {
-            const { normalizeNode } = editor;
-
-            editor.normalizeNode = (entry) => {
-                const [node] = entry;
-
-                if (isElement(node) && node.type === IFRAME_TYPE) {
-                    normalizeIframeElement(editor, entry);
-                }
-
-                normalizeNode(entry);
-            };
-
-            return editor;
-        },
+        withOverrides: withIframe,
     });
 
     return createIframePlugin();

@@ -1,7 +1,7 @@
-import { Value } from '@udecode/plate-common';
+import { TElement, Value } from '@udecode/plate-common';
 import { EditorValue } from '../types';
 import { migrateLegacySchema } from './legacy_migrations';
-import { SlateSchema } from './types';
+import { DeprecatedTTodoListItemElement, SlateSchema } from './types';
 
 /** type guard to distinct slate format */
 export const isSlateSchema = (value: EditorValue): value is SlateSchema => {
@@ -21,3 +21,7 @@ export const getMigratedPlateValue = (value: EditorValue): Value | undefined => 
 export const isPlateValue = (value: EditorValue): value is Value => {
     return Array.isArray(value);
 };
+
+export const isLegacyTodoListItemElement = (element: TElement): element is DeprecatedTTodoListItemElement =>
+    element.data !== undefined
+    && 'checked' in (element.data as Record<string, unknown>);
