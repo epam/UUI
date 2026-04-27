@@ -1,5 +1,5 @@
 import {
-    PlateEditor, PlatePluginComponent, isMarkActive, PlatePlugin,
+    PlateEditor, PlateLeaf, PlateLeafProps, isMarkActive, PlatePlugin,
 } from '@udecode/plate-common';
 import React from 'react';
 
@@ -17,32 +17,9 @@ import { ReactComponent as UnderlineIcon } from '../../icons/underline.svg';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
 import { BOLD_KEY, ITALIC_KEY, UNDERLINE_KEY } from './constants';
 
-// eslint-disable-next-line react/function-component-definition
-const Bold: PlatePluginComponent = (props) => {
-    const { attributes, children } = props;
-
-    return (
-        <span { ...attributes }><strong>{ children }</strong></span>
-    );
-};
-
-// eslint-disable-next-line react/function-component-definition
-const Italic: PlatePluginComponent = (props) => {
-    const { attributes, children } = props;
-
-    return (
-        <span { ...attributes }><i>{ children }</i></span>
-    );
-};
-
-// eslint-disable-next-line react/function-component-definition
-const Underline: PlatePluginComponent = (props) => {
-    const { attributes, children } = props;
-
-    return (
-        <span { ...attributes }><u>{ children }</u></span>
-    );
-};
+const Bold = (props: PlateLeafProps) => <PlateLeaf as="strong" { ...props } />;
+const Italic = (props: PlateLeafProps) => <PlateLeaf as="i" { ...props } />;
+const Underline = (props: PlateLeafProps) => <PlateLeaf as="u" { ...props } />;
 
 export const boldPlugin = (): PlatePlugin => createBoldPlugin<WithToolbarButton>({
     type: BOLD_KEY,

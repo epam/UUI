@@ -1,6 +1,6 @@
 import { createCodePlugin } from '@udecode/plate-basic-marks';
 import {
-    PlateEditor, PlateElementProps, isMarkActive, PlatePlugin,
+    PlateEditor, PlateLeaf, PlateLeafProps, isMarkActive, PlatePlugin,
 } from '@udecode/plate-common';
 import React from 'react';
 
@@ -11,12 +11,9 @@ import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 import { INLINE_CODE_KEY, INLINE_CODE_TYPE } from './constants';
 
-function Code(props: PlateElementProps) {
-    const { attributes, children } = props;
-    return (
-        <span { ...attributes }><code>{ children }</code></span>
-    );
-}
+const Code = (props: PlateLeafProps) => (
+    <PlateLeaf as="code" { ...props } />
+);
 
 export const codeBlockPlugin = (): PlatePlugin => createCodePlugin<WithToolbarButton>({
     key: INLINE_CODE_KEY,

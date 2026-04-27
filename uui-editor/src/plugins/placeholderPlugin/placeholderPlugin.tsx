@@ -11,6 +11,7 @@ import {
 import { PLACEHOLDER_PLUGIN_KEY } from './constants';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 import css from './PlaceholderPlugin.module.scss';
+import { TPlaceholderElement } from './types';
 
 export interface PlaceholderPluginParams {
     /** Placeholder items */
@@ -62,7 +63,7 @@ export function PlaceholderButton({ editor }: IPlaceholderButton): any {
                                         data: i,
                                         type: 'placeholder',
                                         children: [{ text: '' }],
-                                    },
+                                    } satisfies TPlaceholderElement,
                                 );
                             } }
                         >

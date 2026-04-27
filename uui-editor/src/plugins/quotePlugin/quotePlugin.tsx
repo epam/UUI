@@ -2,9 +2,10 @@ import React from 'react';
 
 import { ELEMENT_BLOCKQUOTE, createBlockquotePlugin } from '@udecode/plate-block-quote';
 import {
-    PlateEditor, PlatePluginComponent, focusEditor, toggleNodeType, PlatePlugin, getBlockAbove,
+    PlateEditor, PlateElement, focusEditor, toggleNodeType, PlatePlugin, getBlockAbove,
+    PlateElementProps,
 } from '@udecode/plate-common';
-
+import cx from 'classnames';
 import { useIsPluginActive } from '../../helpers';
 import { ReactComponent as QuoteIcon } from '../../icons/quote.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
@@ -12,14 +13,13 @@ import css from './quote.module.scss';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 import { QUOTE_PLUGIN_KEY, QUOTE_TYPE } from './constants';
 
-const Quote: PlatePluginComponent = function QuoteComponent(props) {
+const Quote = function QuoteComponent({ className, ...props }: PlateElementProps) {
     return (
-        <blockquote
-            { ...props.attributes }
-            className={ css.quote }
-        >
-            { props.children }
-        </blockquote>
+        <PlateElement
+            as="blockquote"
+            className={ cx(className, css.quote) }
+            { ...props }
+        />
     );
 };
 
