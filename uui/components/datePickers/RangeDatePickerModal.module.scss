@@ -152,6 +152,44 @@
             flex-shrink: 0;
         }
 
+        :global(.uui-range-datepicker-first-day-in-range-wrapper) {
+            &:global(.uui-calendar-selected-day) {
+                &:global(.uui-range-datepicker-in-range) {
+                    background-color: transparent;
+
+                    &::before {
+                        background-color: var(--uui-rdtp-date-bg-selected);
+                        content: '';
+                        position: absolute;
+                        z-index: 0;
+                        inset-inline-start: 50%;
+                        inset-inline-end: 0;
+                        top: 0;
+                        bottom: 0;
+                    }
+                }
+            }
+        }
+
+        :global(.uui-range-datepicker-last-day-in-range-wrapper) {
+            &:global(.uui-calendar-selected-day) {
+                &:global(.uui-range-datepicker-in-range) {
+                    background-color: transparent;
+
+                    &::before {
+                        background-color: var(--uui-rdtp-date-bg-selected);
+                        content: '';
+                        position: absolute;
+                        z-index: 0;
+                        inset-inline-start: 0;
+                        inset-inline-end: 50%;
+                        top: 0;
+                        bottom: 0;
+                    }
+                }
+            }
+        }
+
         :global(.uui-presets-container) {
             flex: 0 0 auto;
             box-sizing: border-box;
