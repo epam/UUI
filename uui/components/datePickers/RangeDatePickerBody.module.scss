@@ -11,7 +11,7 @@
     --uui-rdtp-margin-right: 10px;
 
     :global(.uui-calendar-days) > div:last-child {
-        :global(.uui-calendar-day-cell):last-child > :global(.uui-range-datepicker-in-range) {
+        :global(.uui-calendar-day-cell):nth-last-child(1 of :global(.uui-calendar-day-cell):has(:global(.uui-range-datepicker-in-range))) > :global(.uui-range-datepicker-in-range) {
             &:not(:global(.uui-range-datepicker-first-day-in-range-wrapper)) {
                 &:not(:global(.uui-range-datepicker-last-day-in-range-wrapper)) {
                     position: relative;
