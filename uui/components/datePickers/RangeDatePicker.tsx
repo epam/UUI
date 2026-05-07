@@ -1,13 +1,21 @@
-import React, { useImperativeHandle, useState, type JSX } from 'react';
+import React, { useCallback, useImperativeHandle, useRef, useState, type JSX } from 'react';
 import cx from 'classnames';
 import { offset } from '@floating-ui/react';
-import type { RangeDatePickerProps as CoreRangeDatePickerProps, DropdownBodyProps, Overwrite, RangeDatePickerValue, RangeDatePickerInputType } from '@epam/uui-core';
-import { useUuiContext } from '@epam/uui-core';
+import type {
+    IDropdownTogglerProps,
+    RangeDatePickerProps as CoreRangeDatePickerProps,
+    DropdownBodyProps,
+    Overwrite,
+    RangeDatePickerValue,
+    RangeDatePickerInputType,
+} from '@epam/uui-core';
+import { isMobile, useUuiContext } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
 import { FlexRow } from '../layout';
 import { RangeDatePickerBody, RangeDatePickerBodyValue } from './RangeDatePickerBody';
 import { RangeDatePickerInput } from './RangeDatePickerInput';
+import { RangeDatePickerModal } from './RangeDatePickerModal';
 import { defaultFormat, defaultRangeValue } from './helpers';
 import { settings } from '../../settings';
 
@@ -29,13 +37,14 @@ export interface RangeDatePickerProps extends CoreRangeDatePickerProps, Overwrit
 
 function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.ForwardedRef<HTMLElement>): JSX.Element {
     const { value: _value, format = defaultFormat, size = settings.rangeDatePicker.sizes.default } = props;
-    const value = _value || defaultRangeValue; // also handles null in comparison to default value
+    const value = _value || defaultRangeValue;
 
     const context = useUuiContext();
     const [isOpen, setIsOpen] = useState(false);
     const [inFocus, setInFocus] = useState<RangeDatePickerInputType>(null);
 
-    const targetRef = React.useRef<HTMLDivElement>(null);
+    const targetRef = useRef<HTMLDivElement>(null);
+    const isMobileView = isMobile();
 
     useImperativeHandle(ref, () => targetRef.current);
 
@@ -69,45 +78,12 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
 
         const toChanged = value.to !== newValue.selectedDate.to;
         const closeBody = newValue.selectedDate.from && newValue.selectedDate.to
-         && inFocus === 'to'
-           && toChanged;
+            && inFocus === 'to'
+            && toChanged;
 
         if (closeBody) {
             onOpenChange(false);
         }
-    };
-
-    const renderBody = (renderProps: DropdownBodyProps): JSX.Element => {
-        return (
-            <DropdownContainer
-                { ...renderProps }
-                cx={ cx(css.dropdownContainer) }
-                shards={ [targetRef] }
-                returnFocus={ true }
-            >
-                <FlexRow>
-                    <RangeDatePickerBody
-                        cx={ cx(props.bodyCx) }
-                        value={ {
-                            selectedDate: _value,
-                            inFocus,
-                        } }
-                        onValueChange={ onBodyValueChange }
-                        filter={ props.filter }
-                        presets={ props.presets }
-                        renderDay={ props.renderDay }
-                        renderFooter={ () => {
-                            return props.renderFooter?.(value);
-                        } }
-                        isHoliday={ props.isHoliday }
-                        rawProps={ props.rawProps?.body }
-                        preventEmptyToDate={ props.preventEmptyToDate }
-                        preventEmptyFromDate={ props.preventEmptyFromDate }
-                        initialViewMonth={ props.initialViewMonth }
-                    />
-                </FlexRow>
-            </DropdownContainer>
-        );
     };
 
     const handleEscape = (e: React.KeyboardEvent<HTMLElement>) => {
@@ -117,40 +93,112 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
         }
     };
 
+    const openModal = useCallback(() => {
+        if (props.isDisabled || props.isReadonly) return;
+
+        const valueBeforeOpen = { ...value };
+
+        context.uuiModals.show<RangeDatePickerValue>((modalProps) => (
+            <RangeDatePickerModal
+                { ...modalProps }
+                pickerProps={ props }
+                initialValue={ valueBeforeOpen }
+            />
+        ))
+            .then((result) => {
+                if (result) {
+                    onValueChange(result);
+                }
+            })
+            .catch(() => {
+                onValueChange(valueBeforeOpen);
+            });
+    }, [props.isDisabled, props.isReadonly, value, onValueChange]);
+
+    const commonInputProps = {
+        id: props.id,
+        cx: props.inputCx,
+        isDisabled: props.isDisabled,
+        isInvalid: props.isInvalid,
+        isReadonly: props.isReadonly,
+        size: size as RangeDatePickerProps['size'],
+        getPlaceholder: props.getPlaceholder,
+        disableClear: props.disableClear,
+        rawProps: props.rawProps,
+        inFocus,
+        value,
+        format,
+        filter: props.filter,
+        onValueChange,
+        onFocusInput: (e: React.FocusEvent<HTMLInputElement>, type: RangeDatePickerInputType) => {
+            props.onFocus?.(e, type);
+            setInFocus(type);
+        },
+        preventEmptyFromDate: props.preventEmptyFromDate,
+        preventEmptyToDate: props.preventEmptyToDate,
+    };
+
+    const renderInput = (dropdownRenderProps?: IDropdownTogglerProps) => (
+        <RangeDatePickerInput
+            { ...commonInputProps }
+            ref={ (node) => {
+                (dropdownRenderProps as any)?.ref?.(node);
+                targetRef.current = node;
+            } }
+            onClick={ () => dropdownRenderProps?.toggleDropdownOpening?.(true) }
+            onIconClick={ isMobileView ? openModal : undefined }
+            onBlurInput={ (e, type) => {
+                props.onBlur?.(e, type);
+                (!isOpen || isMobileView) && setInFocus(null);
+            } }
+            onKeyDown={ !isMobileView ? handleEscape : undefined }
+        />
+    );
+
+    if (isMobileView) {
+        const mobileTogglerProps: IDropdownTogglerProps = {
+            isOpen: false,
+            toggleDropdownOpening: openModal,
+            onClick: openModal,
+            ref: (node) => {
+                (targetRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+            },
+        };
+        const customTarget = props.renderTarget?.(mobileTogglerProps);
+        return (React.isValidElement(customTarget) ? customTarget : renderInput()) as JSX.Element;
+    }
+
+    const renderBody = (renderProps: DropdownBodyProps): JSX.Element => (
+        <DropdownContainer
+            { ...renderProps }
+            cx={ css.dropdownContainer }
+            shards={ [targetRef] }
+            returnFocus={ true }
+        >
+            <FlexRow>
+                <RangeDatePickerBody
+                    cx={ cx(props.bodyCx) }
+                    value={ { selectedDate: value, inFocus } }
+                    onValueChange={ onBodyValueChange }
+                    filter={ props.filter }
+                    presets={ props.presets }
+                    renderDay={ props.renderDay }
+                    renderFooter={ () => props.renderFooter?.(value) }
+                    isHoliday={ props.isHoliday }
+                    rawProps={ props.rawProps?.body }
+                    preventEmptyToDate={ props.preventEmptyToDate }
+                    preventEmptyFromDate={ props.preventEmptyFromDate }
+                    initialViewMonth={ props.initialViewMonth }
+                />
+            </FlexRow>
+        </DropdownContainer>
+    );
+
     return (
         <Dropdown
-            renderTarget={ (renderProps) => {
-                return props.renderTarget?.(renderProps) || (
-                    <RangeDatePickerInput
-                        id={ props.id }
-                        ref={ (node) => { (renderProps as any).ref(node); targetRef.current = node; } }
-                        cx={ props.inputCx }
-                        onClick={ () => renderProps.toggleDropdownOpening(true) }
-                        isDisabled={ props.isDisabled }
-                        isInvalid={ props.isInvalid }
-                        isReadonly={ props.isReadonly }
-                        size={ size as RangeDatePickerProps['size'] }
-                        getPlaceholder={ props.getPlaceholder }
-                        disableClear={ props.disableClear }
-                        rawProps={ props.rawProps }
-                        inFocus={ inFocus }
-                        value={ value }
-                        format={ format }
-                        filter={ props.filter }
-                        onValueChange={ onValueChange }
-                        onFocusInput={ (e, type) => {
-                            props.onFocus?.(e, type);
-                            setInFocus(type);
-                        } }
-                        onBlurInput={ (e, type) => { props.onBlur?.(e, type); !isOpen && setInFocus(null); } }
-                        onKeyDown={ handleEscape }
-                        preventEmptyFromDate={ props.preventEmptyFromDate }
-                        preventEmptyToDate={ props.preventEmptyToDate }
-                    />
-                );
-            } }
-            renderBody={ (renderProps) => renderBody(renderProps) }
-            onValueChange={ (v) => onOpenChange(v) }
+            renderTarget={ (rp) => props.renderTarget?.(rp) || renderInput(rp) }
+            renderBody={ renderBody }
+            onValueChange={ onOpenChange }
             value={ isOpen }
             middleware={ [offset(6)] }
             placement={ props.placement }

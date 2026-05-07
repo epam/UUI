@@ -7,7 +7,6 @@
     --uui-rdtp-separator-width: 1px;
     --uui-rdtp-calendar-day-top: -3px;
     --uui-rdtp-gradient-size: 6px;
-    --uui-rdtp-selected-day-radius: 50%;
     --uui-rdtp-margin-right: 10px;
 
     :global(.uui-calendar-days) > div:last-child {
@@ -82,18 +81,42 @@
         }
     }
 
+    /* Stretched cells: full-width range bg would show beside the fixed-size selected circle */
     :global(.uui-range-datepicker-first-day-in-range-wrapper) {
         &:global(.uui-calendar-selected-day) {
-            border-start-start-radius: var(--uui-rdtp-selected-day-radius);
-            border-end-start-radius: var(--uui-rdtp-selected-day-radius);
+            &:global(.uui-range-datepicker-in-range) {
+                background-color: transparent;
+
+                &::before {
+                    background-color: var(--uui-rdtp-date-bg-selected);
+                    content: '';
+                    position: absolute;
+                    z-index: 0;
+                    inset-inline-start: 50%;
+                    inset-inline-end: 0;
+                    top: 0;
+                    bottom: 0;
+                }
+            }
         }
     }
 
     :global(.uui-range-datepicker-last-day-in-range-wrapper) {
         &:global(.uui-calendar-selected-day) {
-            border-start-end-radius: var(--uui-rdtp-selected-day-radius);
-            border-end-end-radius: var(--uui-rdtp-selected-day-radius);
-            margin-inline-end: var(--uui-rdtp-margin-right);
+            &:global(.uui-range-datepicker-in-range) {
+                background-color: transparent;
+
+                &::before {
+                    background-color: var(--uui-rdtp-date-bg-selected);
+                    content: '';
+                    position: absolute;
+                    z-index: 0;
+                    inset-inline-start: 0;
+                    inset-inline-end: 50%;
+                    top: 0;
+                    bottom: 0;
+                }
+            }
         }
     }
 
@@ -105,7 +128,7 @@
 }
 
 .container {
-    &.day-selection {
+    &.day-selection:not(.mobile) {
         .from-picker {
             :global(.uui-datepicker-header-nav-icon-right) {
                 visibility: hidden;
@@ -124,6 +147,13 @@
         transition: height 0.3s ease-in-out;
     }
 
+    :global(.uui-range-datepicker-body-footer) {
+        box-sizing: border-box;
+        width: 100%;
+        flex: 0 0 auto;
+        align-self: stretch;
+    }
+
     .blocker {
         background-color: var(--uui-rdtp-blocker-bg);
         position: absolute;
@@ -137,5 +167,3 @@
 :global(.uui-datepicker-container) {
     transition: height 0.3s ease-in-out;
 }
-
-
