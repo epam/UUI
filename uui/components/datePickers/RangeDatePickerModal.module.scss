@@ -1,0 +1,205 @@
+@use  '../../assets/styles/index' as *;
+
+.root {
+    --uui-rdtp-separator-margin: calc(var(--uui-grid-unit) * 2);
+    --uui-rdtp-separator-color: var(--uui-text-tertiary);
+    --uui-rdtp-modal-header-padding: 18px;
+    --uui-rdtp-modal-range-selector-margin-top: 12px;
+    --uui-rdtp-modal-calendar-days-row-gap: 8px;
+    --uui-rdtp-modal-presets-padding: 18px 18px 12px 0;
+    --uui-rdtp-modal-presets-button-stack-gap: 6px;
+
+    :global(.uui-modal-header) {
+        --uui-modals-header-padding: var(--uui-rdtp-modal-header-padding);
+        flex-shrink: 0;
+        padding-bottom: 0;
+        border-bottom-width: 0;
+
+        .modal-title {
+            margin-top: 0;
+        }
+
+        .range-selector {
+            margin-top: var(--uui-rdtp-modal-range-selector-margin-top);
+            display: flex;
+            align-items: center;
+        }
+
+        .range-selector-button {
+            --uui-font-size: inherit;
+            font-size: var(--uui-font-size);
+        }
+
+        .header-range-separator {
+            margin: 0 var(--uui-rdtp-separator-margin);
+            color: var(--uui-rdtp-separator-color);
+        }
+    }
+
+    /* FlexRow body: grow to fill modal, override default flex: 0 0 auto */
+    .body {
+        :global(.uui-datepicker-container) {
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        > :global(.uui-datepicker-container) > :global(.uui-flex-row) {
+            flex: 1 1 auto;
+            min-height: 0;
+            width: 100%;
+        }
+
+        > :global(.uui-datepicker-container) > :global(.uui-flex-row) > :first-child {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto;
+            min-height: 0;
+        }
+
+        > :global(.uui-datepicker-container) > :global(.uui-flex-row) > :first-child > :global(.uui-flex-row) {
+            flex: 1 1 auto;
+            min-height: 0;
+            width: 100%;
+        }
+
+        > :global(.uui-datepicker-container) > :global(.uui-flex-row) > :first-child > :global(.uui-flex-row) > :global(.uui-flex-row) {
+            flex: 1 1 auto;
+            min-height: 0;
+            min-width: 0;
+        }
+
+        :global(.uui-datepicker-container) :global(.uui-datepicker-container) {
+            flex: 1 1 auto;
+            min-height: 0;
+            min-width: 0;
+            width: 100%;
+        }
+
+        /* Modal body layout: stretch calendar + scroll presets only */
+        :global(.uui-calendar-container),
+        :global(.uui-datepicker-body-wrapper),
+        :global(.uui-calendar-content) {
+            display: flex;
+            flex: 1 1 auto;
+            min-height: 0;
+            min-width: 0;
+        }
+
+        :global(.uui-datepicker-body-wrapper),
+        :global(.uui-calendar-content) {
+            flex-direction: column;
+        }
+
+        :global(.uui-calendar-container) {
+            width: 100%;
+        }
+
+        :global(.uui-datepicker-body-wrapper) > :global(.uui-datepicker-header-container) {
+            flex-shrink: 0;
+        }
+
+        :global(.uui-calendar-weekdays-container) {
+            flex-shrink: 0;
+        }
+
+        :global(.uui-calendar-days) {
+            flex: 1 1 auto;
+            min-height: 0;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--uui-rdtp-modal-calendar-days-row-gap);
+        }
+
+        :global(.uui-calendar-days) > div {
+            flex: 1 1 0;
+            min-height: 0;
+            display: flex;
+        }
+
+        :global(.uui-calendar-weekday) {
+            flex: 1 1 0;
+            min-width: 0;
+            width: auto;
+        }
+
+        :global(.uui-calendar-day-cell) {
+            align-items: center;
+            flex: 1 1 0;
+            min-width: 0;
+            min-height: 0;
+            width: auto;
+        }
+
+        :global(.uui-calendar-day-wrapper) {
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        :global(.uui-calendar-day) {
+            position: relative;
+            left: auto;
+            top: auto;
+            flex-shrink: 0;
+        }
+
+        :global(.uui-presets-container) {
+            flex: 0 0 auto;
+            box-sizing: border-box;
+            padding: var(--uui-rdtp-modal-presets-padding);
+            min-height: 0;
+
+            & > button {
+                &:not(:last-child) {
+                    margin-bottom: var(--uui-rdtp-modal-presets-button-stack-gap);
+                }
+            }
+        }
+
+        :global(.uui-month_selection-container) {
+            height: 100%;
+
+            :global(.uui-month_selection-content) {
+                height: 100%;
+
+                :global(.uui-month_selection-month-container) {
+                    height: 100%;
+
+                    :global(.uui-month_selection-months-row) {
+                        flex-grow: 1;
+                    }
+                }
+            }
+        }
+
+        :global(.uui-year_selection-container) {
+            height: 100%;
+
+            :global(.uui-year_selection-content) {
+                height: 100%;
+
+                :global(.uui-year_selection-years-container) {
+                    height: 100%;
+
+                    :global(.uui-year_selection-years-row) {
+                        flex-grow: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    :global(.uui-modal-footer) {
+        border-top-width: 0;
+        flex-shrink: 0;
+    }
+}

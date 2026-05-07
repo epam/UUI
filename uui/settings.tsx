@@ -829,6 +829,7 @@ interface RangeDatePickerIcons {
 interface RangeDatePickerSizes {
     default: RangeDatePickerProps['size'];
     preset: LinkButtonProps['size'];
+    mobilePreset: LinkButtonProps['size'];
 }
 
 interface RangeDatePickerSettings {
@@ -845,6 +846,7 @@ const rangeDatePickerSettings: RangeDatePickerSettings = {
     sizes: {
         default: '36',
         preset: '24',
+        mobilePreset: '30',
     },
 };
 
