@@ -16,23 +16,8 @@ import { i18n } from '../../i18n';
 
 import css from './RangeDatePickerModal.module.scss';
 
-export type RangeDatePickerModalPickerProps = Pick<
-RangeDatePickerProps,
-| 'bodyCx'
-| 'format'
-| 'filter'
-| 'presets'
-| 'renderDay'
-| 'renderFooter'
-| 'isHoliday'
-| 'rawProps'
-| 'preventEmptyToDate'
-| 'preventEmptyFromDate'
-| 'initialViewMonth'
->;
-
 export interface RangeDatePickerModalProps extends IModal<RangeDatePickerValue> {
-    pickerProps: RangeDatePickerModalPickerProps;
+    pickerProps: RangeDatePickerProps;
     initialValue: RangeDatePickerValue;
 }
 
@@ -54,11 +39,11 @@ export function RangeDatePickerModal({
     };
 
     const onClearAll = useCallback(() => {
-        setModalValue({
-            from: null,
-            to: null,
-        });
-    }, []);
+        setModalValue((prevValue) => ({
+            from: pickerProps.preventEmptyFromDate ? prevValue.from : null,
+            to: pickerProps.preventEmptyToDate ? prevValue.to : null,
+        }));
+    }, [pickerProps.preventEmptyFromDate, pickerProps.preventEmptyToDate]);
 
     const getDateButtonCaption = (date: string | null, placeholder: string) => {
         return date ? toCustomDateFormat(date, defaultFormatShort) : placeholder;
@@ -72,6 +57,8 @@ export function RangeDatePickerModal({
         () => getDateButtonCaption(modalValue?.to ?? null, i18n.rangeDatePicker.mobileModalEndPlaceholder),
         [modalValue?.to],
     );
+
+    const hideClearButton = pickerProps.disableClear || (pickerProps.preventEmptyToDate && pickerProps.preventEmptyFromDate);
 
     const renderModalHeaderTitle = () => {
         return (
@@ -119,7 +106,7 @@ export function RangeDatePickerModal({
                     />
                 </FlexRow>
                 <ModalFooter borderTop>
-                    <Button fill="ghost" color="primary" caption={ i18n.rangeDatePicker.mobileModalClearAll } onClick={ onClearAll } icon={ NavigationRefreshOutlineIcon } />
+                    {!hideClearButton && <Button fill="ghost" color="primary" caption={ i18n.rangeDatePicker.mobileModalClearAll } onClick={ onClearAll } icon={ NavigationRefreshOutlineIcon } />}
                     <FlexSpacer />
                     <Button fill="outline" color="secondary" caption={ i18n.rangeDatePicker.mobileModalCancel } onClick={ abort } />
                     <Button color="primary" caption={ i18n.rangeDatePicker.mobileModalApply } onClick={ () => success(modalValue) } />

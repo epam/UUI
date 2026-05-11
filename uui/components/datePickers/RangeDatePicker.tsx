@@ -98,6 +98,8 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
 
         const valueBeforeOpen = { ...value };
 
+        props.onOpenChange?.(true);
+
         context.uuiModals.show<RangeDatePickerValue>((modalProps) => (
             <RangeDatePickerModal
                 { ...modalProps }
@@ -112,6 +114,9 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
             })
             .catch(() => {
                 onValueChange(valueBeforeOpen);
+            })
+            .finally(() => {
+                props.onOpenChange?.(false);
             });
     }, [props.isDisabled, props.isReadonly, value, onValueChange]);
 
