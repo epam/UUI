@@ -143,6 +143,14 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
         preventEmptyToDate: props.preventEmptyToDate,
     };
 
+    const onInputClick = (dropdownRenderProps?: IDropdownTogglerProps) => {
+        if (isMobileView) {
+            openModal();
+        } else {
+            dropdownRenderProps?.toggleDropdownOpening?.(true);
+        }
+    };
+
     const renderInput = (dropdownRenderProps?: IDropdownTogglerProps) => (
         <RangeDatePickerInput
             { ...commonInputProps }
@@ -150,8 +158,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
                 (dropdownRenderProps as any)?.ref?.(node);
                 targetRef.current = node;
             } }
-            onClick={ () => dropdownRenderProps?.toggleDropdownOpening?.(true) }
-            onIconClick={ isMobileView ? openModal : undefined }
+            onClick={ () => onInputClick(dropdownRenderProps) }
             onBlurInput={ (e, type) => {
                 props.onBlur?.(e, type);
                 (!isOpen || isMobileView) && setInFocus(null);
