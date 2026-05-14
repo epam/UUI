@@ -16,8 +16,12 @@ import { i18n } from '../../i18n';
 
 import css from './RangeDatePickerModal.module.scss';
 
+export type RangeDatePickerModalPickerProps = RangeDatePickerProps & {
+    initialInFocus?: RangeDatePickerInputType;
+};
+
 export interface RangeDatePickerModalProps extends IModal<RangeDatePickerValue> {
-    pickerProps: RangeDatePickerProps;
+    pickerProps: RangeDatePickerModalPickerProps;
     initialValue: RangeDatePickerValue;
 }
 
@@ -31,7 +35,7 @@ export function RangeDatePickerModal({
     initialValue,
 }: RangeDatePickerModalProps): JSX.Element {
     const [modalValue, setModalValue] = useState<RangeDatePickerValue>(initialValue);
-    const [inFocus, setInFocus] = useState<RangeDatePickerInputType>('from');
+    const [inFocus, setInFocus] = useState<RangeDatePickerInputType>(pickerProps.initialInFocus ?? 'from');
 
     const onModalBodyValueChange = (newValue: RangeDatePickerBodyValue<RangeDatePickerValue>) => {
         setInFocus(newValue.inFocus ?? inFocus);
