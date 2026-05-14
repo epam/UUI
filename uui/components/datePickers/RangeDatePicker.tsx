@@ -1,4 +1,4 @@
-import React, { useCallback, useImperativeHandle, useRef, useState, type JSX } from 'react';
+import React, { useImperativeHandle, useRef, useState, type JSX } from 'react';
 import cx from 'classnames';
 import { offset } from '@floating-ui/react';
 import type {
@@ -37,7 +37,7 @@ export interface RangeDatePickerProps extends CoreRangeDatePickerProps, Overwrit
 
 function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.ForwardedRef<HTMLElement>): JSX.Element {
     const { value: _value, format = defaultFormat, size = settings.rangeDatePicker.sizes.default } = props;
-    const value = _value || defaultRangeValue;
+    const value = _value || defaultRangeValue; // also handles null in comparison to default value
 
     const context = useUuiContext();
     const [isOpen, setIsOpen] = useState(false);
@@ -93,7 +93,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
         }
     };
 
-    const openModal = useCallback(() => {
+    const openModal = () => {
         if (props.isDisabled || props.isReadonly) return;
 
         const valueBeforeOpen = { ...value };
@@ -103,7 +103,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
         context.uuiModals.show<RangeDatePickerValue>((modalProps) => (
             <RangeDatePickerModal
                 { ...modalProps }
-                pickerProps={ props }
+                pickerProps={ { ...props, initialInFocus: inFocus } }
                 initialValue={ valueBeforeOpen }
             />
         ))
@@ -118,32 +118,9 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
             .finally(() => {
                 props.onOpenChange?.(false);
             });
-    }, [props.isDisabled, props.isReadonly, value, onValueChange]);
-
-    const commonInputProps = {
-        id: props.id,
-        cx: props.inputCx,
-        isDisabled: props.isDisabled,
-        isInvalid: props.isInvalid,
-        isReadonly: props.isReadonly,
-        size: size as RangeDatePickerProps['size'],
-        getPlaceholder: props.getPlaceholder,
-        disableClear: props.disableClear,
-        rawProps: props.rawProps,
-        inFocus,
-        value,
-        format,
-        filter: props.filter,
-        onValueChange,
-        onFocusInput: (e: React.FocusEvent<HTMLInputElement>, type: RangeDatePickerInputType) => {
-            props.onFocus?.(e, type);
-            setInFocus(type);
-        },
-        preventEmptyFromDate: props.preventEmptyFromDate,
-        preventEmptyToDate: props.preventEmptyToDate,
     };
 
-    const onInputClick = (dropdownRenderProps?: IDropdownTogglerProps) => {
+    const onInputClick = (dropdownRenderProps: IDropdownTogglerProps) => {
         if (isMobileView) {
             openModal();
         } else {
@@ -153,17 +130,36 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
 
     const renderInput = (dropdownRenderProps?: IDropdownTogglerProps) => (
         <RangeDatePickerInput
-            { ...commonInputProps }
+            id={ props.id }
             ref={ (node) => {
                 (dropdownRenderProps as any)?.ref?.(node);
                 targetRef.current = node;
             } }
+            cx={ props.inputCx }
             onClick={ () => onInputClick(dropdownRenderProps) }
+            isDisabled={ props.isDisabled }
+            isInvalid={ props.isInvalid }
+            isReadonly={ props.isReadonly }
+            size={ size as RangeDatePickerProps['size'] }
+            getPlaceholder={ props.getPlaceholder }
+            disableClear={ props.disableClear }
+            rawProps={ props.rawProps }
+            inFocus={ inFocus }
+            value={ value }
+            format={ format }
+            filter={ props.filter }
+            onValueChange={ onValueChange }
+            onFocusInput={ (e, type) => {
+                props.onFocus?.(e, type);
+                setInFocus(type);
+            } }
             onBlurInput={ (e, type) => {
                 props.onBlur?.(e, type);
                 (!isOpen || isMobileView) && setInFocus(null);
             } }
             onKeyDown={ !isMobileView ? handleEscape : undefined }
+            preventEmptyFromDate={ props.preventEmptyFromDate }
+            preventEmptyToDate={ props.preventEmptyToDate }
         />
     );
 
@@ -173,7 +169,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
             toggleDropdownOpening: openModal,
             onClick: openModal,
             ref: (node) => {
-                (targetRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                targetRef.current = node;
             },
         };
         const customTarget = props.renderTarget?.(mobileTogglerProps);
