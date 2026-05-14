@@ -131,11 +131,14 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 />
               </div>
               <div
-                aria-expanded="true"
                 class="uui-accordion-container container uui-opened subgroupAccordion"
               >
                 <div
+                  aria-controls="«r2»"
+                  aria-expanded="true"
                   class="uui-accordion-toggler uui-opened"
+                  id="«r1»"
+                  role="button"
                   tabindex="0"
                 >
                   <div
@@ -163,7 +166,9 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   </div>
                 </div>
                 <div
+                  aria-labelledby="«r1»"
                   class="uui-accordion-body"
+                  id="«r2»"
                   role="region"
                 >
                   <div
@@ -240,11 +245,14 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 class="root uui-flex-row hDivider"
               />
               <div
-                aria-expanded="true"
                 class="uui-accordion-container container uui-opened subgroupAccordion"
               >
                 <div
+                  aria-controls="«r5»"
+                  aria-expanded="true"
                   class="uui-accordion-toggler uui-opened"
+                  id="«r4»"
+                  role="button"
                   tabindex="0"
                 >
                   <div
@@ -272,7 +280,9 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   </div>
                 </div>
                 <div
+                  aria-labelledby="«r4»"
                   class="uui-accordion-body"
+                  id="«r5»"
                   role="region"
                 >
                   <div
