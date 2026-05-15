@@ -11,6 +11,7 @@ const offset = 30;
 export interface SnackbarProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     closeIcon?: Icon;
     notifications?: NotificationOperation[];
+    zIndex?: number;
 }
 
 const uuiSnackbar = {
@@ -140,8 +141,22 @@ export class Snackbar extends React.Component<SnackbarProps> {
 
         const botCenterItems = items.filter((item: NotificationOperation) => item.config.position === 'bot-center').map(this.renderItemWithOffset(botCenterOffset));
 
+        const rawProps = this.props.rawProps ?? {};
+        const { style: rawStyle, ...restRawProps } = rawProps;
+        const rootStyle = this.props.zIndex !== undefined || rawStyle
+            ? {
+                ...(rawStyle ?? {}),
+                ...(this.props.zIndex !== undefined ? { zIndex: this.props.zIndex } : {}),
+            }
+            : undefined;
+
         return (
-            <div className={ cx(css.container, uuiSnackbar.snackbar, this.props.cx) } { ...this.props.rawProps } ref={ this.props.forwardedRef }>
+            <div
+                className={ cx(css.container, uuiSnackbar.snackbar, this.props.cx) }
+                { ...restRawProps }
+                style={ rootStyle }
+                ref={ this.props.forwardedRef }
+            >
                 <TransitionGroup>
                     {botLeftItems}
                     {botRightItems}

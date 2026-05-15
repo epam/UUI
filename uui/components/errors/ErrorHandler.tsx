@@ -24,7 +24,7 @@ export interface ErrorHandlerProps extends IHasCX, IHasChildren {
 }
 
 export function ErrorHandler(props: ErrorHandlerProps) {
-    const { uuiNotifications, uuiModals, uuiApi } = useUuiContext();
+    const { uuiNotifications, uuiModals, uuiApi, uuiLayout } = useUuiContext();
     const { errorType, errorInfo } = useUuiError({
         getErrorInfo: props.getErrorInfo,
         options: { errorConfig: getErrorPageConfig(), recoveryConfig: getRecoveryMessageConfig() },
@@ -52,7 +52,14 @@ export function ErrorHandler(props: ErrorHandlerProps) {
         const { title, subtitle } = errorInform;
 
         return (
-            <ModalBlocker key="recovery-blocker" cx={ css.modalBlocker } isActive={ true } zIndex={ 100500 } success={ () => {} } abort={ () => {} }>
+            <ModalBlocker
+                key="recovery-blocker"
+                cx={ css.modalBlocker }
+                isActive={ true }
+                zIndex={ uuiLayout.getTopOverlayZIndex() }
+                success={ () => {} }
+                abort={ () => {} }
+            >
                 <ModalWindow>
                     <ModalHeader borderBottom title={ title } />
                     <Spinner cx={ css.recoverySpinner } />

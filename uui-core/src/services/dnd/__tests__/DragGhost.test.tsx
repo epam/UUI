@@ -27,6 +27,7 @@ describe('DragGhost', () => {
     let mockLayoutContext: {
         getLayer: jest.Mock;
         releaseLayer: jest.Mock;
+        getTopOverlayZIndex: jest.Mock;
         getPortalRoot?: ILayoutContext['getPortalRoot'];
         getPortalRootId?: ILayoutContext['getPortalRootId'];
     };
@@ -39,6 +40,7 @@ describe('DragGhost', () => {
         mockLayoutContext = {
             getLayer: jest.fn(() => ({ zIndex: 1000 })),
             releaseLayer: jest.fn(),
+            getTopOverlayZIndex: jest.fn(() => 100500),
         };
 
         mockUuiContext = {

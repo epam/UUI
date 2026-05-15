@@ -5,6 +5,8 @@
 * [RTE]: UUI block and mark components render through `PlateElement` / `PlateLeaf` (with `asChild` where a semantic tag is used) so custom Plate plugins that wrap nodes (e.g. `inject.aboveComponent`) compose correctly ([#3062](https://github.com/epam/UUI/issues/3062)).
 
 **What's Fixed**
+* [Snackbar] / [Notification]: snackbar container `z-index` now follows the layout layer stack (via `uuiLayout.getTopOverlayZIndex()`), capped by the previous default (100500), so notifications stay above modals when many overlays are open ([#3095](https://github.com/epam/UUI/issues/3095)).
+* [ErrorHandler]: recovery `ModalBlocker` uses `uuiLayout.getTopOverlayZIndex()` instead of a hardcoded `z-index` ([#3095](https://github.com/epam/UUI/issues/3095)).
 * [PickerModal]: fixed footer **Select all** staying available while searching — the control is now disabled until the search field is cleared.([#3083](https://github.com/epam/UUI/issues/3083))
 * [PresetsPanel]: custom `onCopyLink` is now invoked with `DataTableState` as declared, instead of receiving the click event
 * [DropdownContainer]: fixed `autoFocus` always being `true` even when `false` is passed through params
