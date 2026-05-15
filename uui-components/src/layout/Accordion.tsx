@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 import {
     IHasCX, IDisableable, uuiMod, IHasChildren, Icon, cx, IHasRawProps, IControlled,
 } from '@epam/uui-core';
@@ -35,6 +35,8 @@ const uuiAccordion = {
 const isEditableAccordionProps = (props: AccordionProps): props is EditableAccordionProps => (props as EditableAccordionProps).onValueChange !== undefined;
 
 export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props, ref) => {
+    const headerId = useId();
+    const panelId = useId();
     const [state, setState] = useState<AccordionState>({
         opened: isEditableAccordionProps(props) ? props.value : false,
     });
@@ -65,6 +67,11 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
 
         return (
             <div
+                id={ headerId }
+                role="button"
+                aria-expanded={ isAccordionOpened }
+                aria-controls={ panelId }
+                aria-disabled={ props.isDisabled }
                 onKeyDown={ !props.isDisabled ? handleKeyDown : undefined }
                 onClick={ !props.isDisabled ? toggleAccordion : undefined }
                 tabIndex={ !props.isDisabled ? 0 : -1 }
@@ -85,7 +92,12 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
     };
 
     const renderBody = () => (
-        <div className={ uuiAccordion.body } role="region">
+        <div
+            id={ panelId }
+            className={ uuiAccordion.body }
+            role="region"
+            aria-labelledby={ headerId }
+        >
             {props.children}
         </div>
     );
@@ -95,8 +107,6 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
     return (
         <div
             ref={ ref }
-            aria-disabled={ props.isDisabled }
-            aria-expanded={ isAccordionOpened }
             className={ cx(
                 uuiAccordion.container,
                 css.container,

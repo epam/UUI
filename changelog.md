@@ -46,6 +46,7 @@
 * [FiltersPanel]: fixed filters being centered instead of left-aligned inside dropdown popups ([#3065](https://github.com/epam/UUI/issues/3065))
 * [DatePicker]: fixed value disappearing on blur when using formats with day name (e.g. `dddd, D MMMM YYYY`) ([#2560](https://github.com/epam/UUI/issues/2560))
 * [TimePicker]: fixed inconsistent time format between input field and dropdown - both now display hours and minutes with leading zeros (e.g., 01:00 AM) ([#2910](https://github.com/epam/UUI/issues/2910))
+* [Accordion]: added `role="button"`, `aria-expanded`, `aria-controls`, and `aria-labelledby` attributes so screen readers announce accordion header role, current state (collapsed/expanded), and state changes ([#1553](https://github.com/epam/UUI/issues/1553) Case 1).
 * [uui-core]: fix double decoding in `searchToQuery` helper ([#3058](https://github.com/epam/UUI/issues/3058)).
 * [Dropdown]: fixed stale closure in onClose and onValueChange callbacks ([#3011](https://github.com/epam/UUI/issues/3011))
 * [VerticalTabButton]: added `aria-selected` attribute so screen readers announce the selected tab state ([#2742](https://github.com/epam/UUI/issues/2742))

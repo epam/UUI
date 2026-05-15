@@ -3,11 +3,14 @@
 exports[`Accordion should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
-    aria-expanded="false"
     class="uui-accordion-container container root mode-block"
   >
     <div
+      aria-controls="«r1»"
+      aria-expanded="false"
       class="uui-accordion-toggler"
+      id="«r0»"
+      role="button"
       tabindex="0"
     >
       <div
@@ -34,12 +37,15 @@ exports[`Accordion should be rendered correctly 1`] = `
 exports[`Accordion should be rendered correctly with props 1`] = `
 <DocumentFragment>
   <div
-    aria-disabled="true"
-    aria-expanded="false"
     class="uui-accordion-container container uui-disabled root mode-inline padding-18"
   >
     <div
+      aria-controls="«r3»"
+      aria-disabled="true"
+      aria-expanded="false"
       class="uui-accordion-toggler uui-disabled"
+      id="«r2»"
+      role="button"
       tabindex="-1"
     >
       <div
