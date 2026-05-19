@@ -80,6 +80,7 @@
         line-height: var(--uui-calendar-day-line-height);
         border: var(--uui-calendar-day-border-width) solid transparent;
         box-sizing: border-box;
+        z-index: 1;
     }
 
     :global(.uui-calendar-clickable-day) {

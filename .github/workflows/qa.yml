@@ -3,7 +3,7 @@ name: qa
 # Controls when the action will run.
 on:
     push:
-        branches: [ add-electric_dark ]
+        branches: [ add-electric_dark, feat/3057-range-date-picker-mobile ]
     # Allows you to run this workflow manually from the Actions tab
     workflow_dispatch:
 

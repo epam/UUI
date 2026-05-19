@@ -1,6 +1,7 @@
 # 6.x.x - xx.xx.2026
 
 **What's New**
+* [RangeDatePicker]: added mobile view for date range picker on mobile devices.
 * [DropdownContainer]: added Shadow DOM support.
 * [RTE]: UUI block and mark components render through `PlateElement` / `PlateLeaf` (with `asChild` where a semantic tag is used) so custom Plate plugins that wrap nodes (e.g. `inject.aboveComponent`) compose correctly ([#3062](https://github.com/epam/UUI/issues/3062)).
 

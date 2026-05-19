@@ -12,7 +12,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
     >
       <div
         class="flexCell"
-        style="min-width: 0; flex-basis: auto;"
+        style="min-width: 0; flex-grow: 1; flex-basis: auto;"
       >
         <div
           class="root uui-flex-row uui-size-36"
@@ -607,6 +607,18 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                             </div>
                           </div>
                         </div>
+                        <div
+                          class="uui-calendar-day-cell"
+                          tabindex="-1"
+                        />
+                        <div
+                          class="uui-calendar-day-cell"
+                          tabindex="-1"
+                        />
+                        <div
+                          class="uui-calendar-day-cell"
+                          tabindex="-1"
+                        />
                       </div>
                     </div>
                   </div>
@@ -1189,6 +1201,10 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                             </div>
                           </div>
                         </div>
+                        <div
+                          class="uui-calendar-day-cell"
+                          tabindex="-1"
+                        />
                       </div>
                     </div>
                   </div>

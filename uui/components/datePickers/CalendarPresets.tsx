@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    IHasCX, cx, IHasRawProps, IHasForwardedRef,
+    IHasCX, cx, IHasRawProps, IHasForwardedRef, isMobile,
 } from '@epam/uui-core';
 import { LinkButton } from '../buttons';
 
@@ -61,6 +61,9 @@ const getPresets = (presets: RangeDatePickerPresets) => {
 };
 
 export function CalendarPresets(props: CalendarPresetsProps) {
+    const isMobileView = isMobile();
+    const presetSize = isMobileView ? settings.rangeDatePicker.sizes.mobilePreset : settings.rangeDatePicker.sizes.preset;
+
     return (
         <div
             ref={ props.forwardedRef }
@@ -73,7 +76,7 @@ export function CalendarPresets(props: CalendarPresetsProps) {
                     key={ item.key }
                     caption={ item.name }
                     onClick={ () => props.onPresetSet(item) }
-                    size={ settings.rangeDatePicker.sizes.preset }
+                    size={ presetSize }
                 />
             ))}
         </div>
