@@ -604,6 +604,26 @@ exports[`DataPicker should be rendered correctly 1`] = `
                   </div>
                 </div>
               </div>
+              <div
+                class="uui-calendar-day-cell"
+                tabindex="-1"
+              />
+              <div
+                class="uui-calendar-day-cell"
+                tabindex="-1"
+              />
+              <div
+                class="uui-calendar-day-cell"
+                tabindex="-1"
+              />
+              <div
+                class="uui-calendar-day-cell"
+                tabindex="-1"
+              />
+              <div
+                class="uui-calendar-day-cell"
+                tabindex="-1"
+              />
             </div>
           </div>
         </div>

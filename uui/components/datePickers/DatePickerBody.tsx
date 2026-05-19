@@ -12,6 +12,7 @@ import {
 } from './helpers';
 import { Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
 import { settings } from '../../settings';
+import { DatePickerProps } from './DatePicker';
 
 import css from './DatePickerBody.module.scss';
 
@@ -25,6 +26,10 @@ export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControl
      * If not specified, defaults to the current month.
      */
     initialViewMonth?: string;
+    /**
+     * Defines calendar size.
+     */
+    size?: DatePickerProps['size'];
 }
 
 export const uuiDatePickerBody = {
@@ -69,6 +74,7 @@ export interface StatelessDatePickerBodyProps extends CommonDatePickerBodyProps,
     onMonthChange: (m: Dayjs) => void;
     onViewChange: (v: ViewType) => void;
     isHoliday?: (day: Dayjs) => boolean;
+    size?: DatePickerProps['size'];
 }
 
 export const StatelessDatePickerBody = forwardRef(StatelessDatePickerBodyComp);
@@ -86,6 +92,7 @@ function StatelessDatePickerBodyComp({
     onMonthChange,
     onViewChange,
     isDisabled,
+    size,
 }: StatelessDatePickerBodyProps, ref: React.ForwardedRef<HTMLDivElement>) {
     const selectedDate = useMemo(() => uuiDayjs.dayjs(value), [value]);
 
@@ -133,6 +140,7 @@ function StatelessDatePickerBodyComp({
                         renderDay={ renderDay }
                         isHoliday={ isHoliday }
                         isDisabled={ isDisabled }
+                        size={ size }
                     />
                 );
         }
@@ -141,7 +149,7 @@ function StatelessDatePickerBodyComp({
     return (
         <div
             ref={ ref }
-            className={ cx(uuiDatePickerBodyBase.container, `uui-size-${settings.datePicker.sizes.body}`, classes) }
+            className={ cx(uuiDatePickerBodyBase.container, `uui-size-${size ?? settings.datePicker.sizes.body}`, classes) }
             { ...rawProps }
         >
             <div className={ cx(css.root, uuiDatePickerBody.wrapper) }>

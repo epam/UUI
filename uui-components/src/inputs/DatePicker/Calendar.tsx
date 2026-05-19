@@ -27,6 +27,20 @@ export interface CalendarProps<TSelection> extends IHasCX, IDisableable, IHasRaw
 
 const DAYS_COUNT_IN_WEEK = 7;
 
+/** Placeholder cells for calendar grid alignment (leading / trailing outside the month). */
+function createEmptyDayCells(monthValueOf: number, count: number, keyPrefix: string): ReactElement[] {
+    if (count === 0) {
+        return [];
+    }
+    return Array.from({ length: count }, (_, index) => (
+        <div
+            className={ uuiDaySelection.dayCell }
+            tabIndex={ -1 }
+            key={ `${keyPrefix}-${monthValueOf}-${index}` }
+        />
+    ));
+}
+
 const getDays = (start: number, end: number, date: Dayjs): Dayjs[] => {
     const daysMomentObjects = [];
     for (let i = start; i <= end; i += 1) {
@@ -96,21 +110,16 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
         // We need to adjust the day() value based on the first day of week
         const dayOfWeek = firstDayOfMonth.day();
         const emptyCellsCount = (dayOfWeek - firstDayOfWeek + DAYS_COUNT_IN_WEEK) % DAYS_COUNT_IN_WEEK;
+        const daysInMonth = currentDate.daysInMonth();
+        /* Close the last week: total cells (leading + days) must be a multiple of 7. */
+        const trailingEmptyCount = (DAYS_COUNT_IN_WEEK - ((emptyCellsCount + daysInMonth) % DAYS_COUNT_IN_WEEK)) % DAYS_COUNT_IN_WEEK;
 
-        // get days of current month
-        const days = Array.from({ length: emptyCellsCount }, (_, index) => {
-            return (
-                <div
-                    className={ uuiDaySelection.dayCell }
-                    tabIndex={ -1 }
-                    key={ `day-${props.month.valueOf()}-${index}` }
-                />
-            );
-        }).concat(
-            getDaysToRender(getDays(1, currentDate?.daysInMonth(), currentDate)),
-        );
+        const monthMs = props.month.valueOf();
+        const paddedDays = createEmptyDayCells(monthMs, emptyCellsCount, 'day')
+            .concat(getDaysToRender(getDays(1, daysInMonth, currentDate)))
+            .concat(createEmptyDayCells(monthMs, trailingEmptyCount, 'day-trailing'));
 
-        return arrayToMatrix(days, DAYS_COUNT_IN_WEEK);
+        return arrayToMatrix(paddedDays, DAYS_COUNT_IN_WEEK);
     };
 
     const daysMatrix = getDaysMatrix(props.month?.startOf('day'));
