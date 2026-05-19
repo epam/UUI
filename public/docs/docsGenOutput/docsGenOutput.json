@@ -70023,6 +70023,411 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:CalendarCoreProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "CalendarCoreProps",
+     "nameFull": "CalendarCoreProps<Dayjs>"
+    },
+    "src": "uui/components/datePickers/Calendar.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "CalendarCoreProps",
+     "print": [
+      "type CalendarCoreProps = CalendarProps<Dayjs>;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "value",
+      "name": "value",
+      "typeValue": {
+       "raw": "Dayjs",
+       "html": "Dayjs"
+      },
+      "from": "@epam/uui-components:CalendarProps",
+      "required": false
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "typeValue": {
+       "raw": "(day: Dayjs) => void",
+       "html": "<span class=\"token punctuation\">(</span>day<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:CalendarProps",
+      "required": true
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>",
+       "html": "<span class=\"token punctuation\">(</span>renderProps<span class=\"token operator\">:</span> DayProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactElement<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>JSXElementConstructor<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">>></span>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:CalendarProps",
+      "required": false
+     },
+     {
+      "uid": "filter",
+      "name": "filter",
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean",
+       "html": "<span class=\"token punctuation\">(</span>day<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:CalendarProps",
+      "required": false
+     },
+     {
+      "uid": "hideAnotherMonths",
+      "name": "hideAnotherMonths",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:CalendarProps",
+      "required": false
+     },
+     {
+      "uid": "isHoliday",
+      "name": "isHoliday",
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean",
+       "html": "<span class=\"token punctuation\">(</span>day<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:CalendarProps",
+      "required": false
+     },
+     {
+      "uid": "month",
+      "name": "month",
+      "comment": {
+       "raw": [
+        "Represents displayed month"
+       ]
+      },
+      "typeValue": {
+       "raw": "Dayjs",
+       "html": "Dayjs"
+      },
+      "from": "@epam/uui-components:CalendarProps",
+      "required": true
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>",
+       "html": "React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "forwardedRef",
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLDivElement | null) => void | React.RefObject<HTMLDivElement | null>",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> HTMLDivElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>HTMLDivElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:CalendarModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "CalendarModsOverride",
+     "nameFull": "CalendarModsOverride"
+    },
+    "src": "uui/components/datePickers/Calendar.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "CalendarModsOverride",
+     "print": [
+      "interface CalendarModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
+  "@epam/uui:CalendarPropsExtended": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "CalendarPropsExtended",
+     "nameFull": "CalendarPropsExtended"
+    },
+    "src": "uui/components/datePickers/Calendar.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "CalendarPropsExtended",
+     "print": [
+      "interface CalendarPropsExtended extends CalendarCoreProps, Overwrite<CalendarMods, CalendarModsOverride> {",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "value",
+      "name": "value",
+      "typeValue": {
+       "raw": "Dayjs",
+       "html": "Dayjs"
+      },
+      "from": "@epam/uui-components:CalendarProps",
+      "required": false
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "typeValue": {
+       "raw": "(day: Dayjs) => void",
+       "html": "<span class=\"token punctuation\">(</span>day<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:CalendarProps",
+      "required": true
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>",
+       "html": "<span class=\"token punctuation\">(</span>renderProps<span class=\"token operator\">:</span> DayProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactElement<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>JSXElementConstructor<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">>></span>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:CalendarProps",
+      "required": false
+     },
+     {
+      "uid": "filter",
+      "name": "filter",
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean",
+       "html": "<span class=\"token punctuation\">(</span>day<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:CalendarProps",
+      "required": false
+     },
+     {
+      "uid": "hideAnotherMonths",
+      "name": "hideAnotherMonths",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:CalendarProps",
+      "required": false
+     },
+     {
+      "uid": "isHoliday",
+      "name": "isHoliday",
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean",
+       "html": "<span class=\"token punctuation\">(</span>day<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:CalendarProps",
+      "required": false
+     },
+     {
+      "uid": "month",
+      "name": "month",
+      "comment": {
+       "raw": [
+        "Represents displayed month"
+       ]
+      },
+      "typeValue": {
+       "raw": "Dayjs",
+       "html": "Dayjs"
+      },
+      "from": "@epam/uui-components:CalendarProps",
+      "required": true
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>",
+       "html": "React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "forwardedRef",
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLDivElement | null) => void | React.RefObject<HTMLDivElement | null>",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> HTMLDivElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>HTMLDivElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines calendar size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'",
+       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'42'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "from": "@epam/uui:CalendarMods",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui:CheckboxGroupProps": {
    "summary": {
     "module": "@epam/uui",
@@ -77113,6 +77518,10 @@
       "     * If not specified, defaults to the current month.",
       "     */",
       "    initialViewMonth?: string;",
+      "    /**",
+      "     * Defines calendar size.",
+      "     */",
+      "    size?: DatePickerProps['size'];",
       "}"
      ]
     },
@@ -77149,6 +77558,30 @@
       },
       "editor": {
        "type": "string"
+      },
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines calendar size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'",
+       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'42'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
       },
       "required": false
      },
@@ -88020,7 +88453,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "{ accordion?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; alert?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | undefined; actionMap?: { 36?: ControlSize | undefined; 48?: ControlSize | undefined; } | undefined; } | undefined; } | undefined; badge?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; button?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; blocker?: { renderSpinner?: {} | undefined; } | undefined; checkbox?: { icons?: { checkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; indeterminateIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; countIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; dataTable?: { icons?: { emptyTable?: { propTypes?: any; displayName?: string | undefined; } | undefined; header?: { configIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; ascSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; descSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; defaultSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; filterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; openedDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; foldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; unfoldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { foldingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; columnsConfigurationModal?: { dragIndicator?: { propTypes?: any; displayName?: string | undefined; } | undefined; lockIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinLeftIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinRightIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; resetIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; expandedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; collapsedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { columnsConfigurationModal?: { columnRow?: '36' | '48' | '24' | '30' | '42' | null | undefined; countIndicator?: '12' | '18' | '24' | undefined; menuButton?: '18' | ControlSize | '60' | undefined; searchInput?: ControlSize | '60' | undefined; } | undefined; header?: { row?: '36' | '48' | '60' | undefined; iconMap?: { 36?: string | undefined; 48?: string | undefined; 60?: string | undefined; } | undefined; } | undefined; body?: { row?: DataTableControlSize | undefined; checkboxMap?: { 36?: '12' | '18' | undefined; 48?: '12' | '18' | undefined; 24?: '12' | '18' | undefined; 30?: '12' | '18' | undefined; 42?: '12' | '18' | undefined; 60?: '12' | '18' | undefined; } | undefined; iconMap?: { 36?: string | number | undefined; 48?: string | number | undefined; 24?: string | number | undefined; 30?: string | number | undefined; 42?: string | number | undefined; 60?: string | number | undefined; } | undefined; indentUnitMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; indentWidthMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; datePicker?: { icons?: { body?: { prevIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; nextIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { input?: '36' | '48' | '24' | '30' | '42' | undefined; body?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; dropdownMenu?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; flexRow?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | null | undefined; } | undefined; } | undefined; fileCard?: { icons?: { docIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; exelIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pdfIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; imgIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; videoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; tableIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; textIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; mailIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fileIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; filtersPanel?: { icons?: { addFilterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; itemDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pickerBodyRemoveIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; footerLinkButton?: ControlSize | undefined; mobileFooterLinkButton?: ControlSize | undefined; pickerBodyMultiSwitch?: '36' | '48' | '24' | '30' | '42' | '60' | undefined; pickerBodyLinkButton?: ControlSize | undefined; pickerBodyMinWidth?: number | undefined; rangeDatePickerInput?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; iconButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; labeledInput?: { icons?: { infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fillInfoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; linkButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | undefined; } | undefined; weight?: 'semibold' | 'regular' | undefined; } | undefined; modal?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; notificationCard?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; hintIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { action?: ControlSize | undefined; icon?: number | undefined; } | undefined; } | undefined; numericInput?: { icons?: { arrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; paginator?: { icons?: { leftArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; rightArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; pickerInput?: { icons?: { toggler?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { selectIcon?: { propTypes?: any; displayName?: string | undefined; } | {} | undefined; pickerBodyMobileHeaderCloseIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; modalNotFoundSearchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { toggler?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; tag?: ControlSize | undefined; tagMap?: { 36?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 48?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 24?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 30?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 42?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; body?: { maxHeight?: number | undefined; minWidth?: number | undefined; row?: '36' | '48' | '24' | '30' | '42' | undefined; itemAvatarMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemAvatarMultilineMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemVerticalPaddingMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; selectIconMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; footerSwitchMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; mobileFooterLinkButton?: ControlSize | undefined; mobileRow?: '36' | '48' | '24' | '30' | '42' | undefined; getSearchSize?: {} | undefined; mobileSearchInput?: ControlSize | '60' | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; renderBlocker?: {} | undefined; } | undefined; presetsPanel?: { icons?: { addIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyLinkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; deleteIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; discardChangesIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; renameIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveAsNewIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveInCurrentIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { tabButton?: '36' | '48' | '60' | undefined; dropdownTargetIconButton?: '18' | '36' | '24' | '30' | undefined; } | undefined; } | undefined; radioInput?: { icons?: { dotIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; rangeDatePicker?: { icons?: { input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; preset?: ControlSize | undefined; } | undefined; } | undefined; rating?: { icons?: { filledRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; emptyRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: 18 | 24 | 30 | undefined; } | undefined; } | undefined; richTextView?: { sizes?: { default?: '12' | '14' | '16' | undefined; } | undefined; } | undefined; statusIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; switch?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; tabButton?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '60' | undefined; countIndicatorMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 60?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; verticalTabButton?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; foldingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '30' | undefined; countIndicatorMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; weight?: 'semibold' | 'regular' | undefined; } | undefined; tag?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; text?: { sizes?: { default?: TextSize | undefined; } | undefined; } | undefined; textArea?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; textInput?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; searchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | '60' | undefined; } | undefined; } | undefined; }",
+     "raw": "{ accordion?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; alert?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | undefined; actionMap?: { 36?: ControlSize | undefined; 48?: ControlSize | undefined; } | undefined; } | undefined; } | undefined; badge?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; button?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; blocker?: { renderSpinner?: {} | undefined; } | undefined; checkbox?: { icons?: { checkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; indeterminateIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; countIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; dataTable?: { icons?: { emptyTable?: { propTypes?: any; displayName?: string | undefined; } | undefined; header?: { configIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; ascSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; descSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; defaultSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; filterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; openedDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; foldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; unfoldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { foldingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; columnsConfigurationModal?: { dragIndicator?: { propTypes?: any; displayName?: string | undefined; } | undefined; lockIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinLeftIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinRightIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; resetIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; expandedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; collapsedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { columnsConfigurationModal?: { columnRow?: '36' | '48' | '24' | '30' | '42' | null | undefined; countIndicator?: '12' | '18' | '24' | undefined; menuButton?: '18' | ControlSize | '60' | undefined; searchInput?: ControlSize | '60' | undefined; } | undefined; header?: { row?: '36' | '48' | '60' | undefined; iconMap?: { 36?: string | undefined; 48?: string | undefined; 60?: string | undefined; } | undefined; } | undefined; body?: { row?: DataTableControlSize | undefined; checkboxMap?: { 36?: '12' | '18' | undefined; 48?: '12' | '18' | undefined; 24?: '12' | '18' | undefined; 30?: '12' | '18' | undefined; 42?: '12' | '18' | undefined; 60?: '12' | '18' | undefined; } | undefined; iconMap?: { 36?: string | number | undefined; 48?: string | number | undefined; 24?: string | number | undefined; 30?: string | number | undefined; 42?: string | number | undefined; 60?: string | number | undefined; } | undefined; indentUnitMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; indentWidthMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; datePicker?: { icons?: { body?: { prevIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; nextIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { input?: '36' | '48' | '24' | '30' | '42' | undefined; body?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; dropdownMenu?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; flexRow?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | null | undefined; } | undefined; } | undefined; fileCard?: { icons?: { docIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; exelIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pdfIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; imgIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; videoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; tableIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; textIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; mailIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fileIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; filtersPanel?: { icons?: { addFilterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; itemDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pickerBodyRemoveIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; footerLinkButton?: ControlSize | undefined; mobileFooterLinkButton?: ControlSize | undefined; pickerBodyMultiSwitch?: '36' | '48' | '24' | '30' | '42' | '60' | undefined; pickerBodyLinkButton?: ControlSize | undefined; pickerBodyMinWidth?: number | undefined; rangeDatePickerInput?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; iconButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; labeledInput?: { icons?: { infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fillInfoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; linkButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | undefined; } | undefined; weight?: 'semibold' | 'regular' | undefined; } | undefined; modal?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; notificationCard?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; hintIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { action?: ControlSize | undefined; icon?: number | undefined; } | undefined; } | undefined; numericInput?: { icons?: { arrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; paginator?: { icons?: { leftArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; rightArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; pickerInput?: { icons?: { toggler?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { selectIcon?: { propTypes?: any; displayName?: string | undefined; } | {} | undefined; pickerBodyMobileHeaderCloseIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; modalNotFoundSearchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { toggler?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; tag?: ControlSize | undefined; tagMap?: { 36?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 48?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 24?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 30?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 42?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; body?: { maxHeight?: number | undefined; minWidth?: number | undefined; row?: '36' | '48' | '24' | '30' | '42' | undefined; itemAvatarMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemAvatarMultilineMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemVerticalPaddingMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; selectIconMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; footerSwitchMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; mobileFooterLinkButton?: ControlSize | undefined; mobileRow?: '36' | '48' | '24' | '30' | '42' | undefined; getSearchSize?: {} | undefined; mobileSearchInput?: ControlSize | '60' | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; renderBlocker?: {} | undefined; } | undefined; presetsPanel?: { icons?: { addIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyLinkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; deleteIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; discardChangesIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; renameIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveAsNewIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveInCurrentIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { tabButton?: '36' | '48' | '60' | undefined; dropdownTargetIconButton?: '18' | '36' | '24' | '30' | undefined; } | undefined; } | undefined; radioInput?: { icons?: { dotIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; rangeDatePicker?: { icons?: { input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; preset?: ControlSize | undefined; mobilePreset?: ControlSize | undefined; } | undefined; } | undefined; rating?: { icons?: { filledRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; emptyRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: 18 | 24 | 30 | undefined; } | undefined; } | undefined; richTextView?: { sizes?: { default?: '12' | '14' | '16' | undefined; } | undefined; } | undefined; statusIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; switch?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; tabButton?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '60' | undefined; countIndicatorMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 60?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; verticalTabButton?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; foldingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '30' | undefined; countIndicatorMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; weight?: 'semibold' | 'regular' | undefined; } | undefined; tag?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; text?: { sizes?: { default?: TextSize | undefined; } | undefined; } | undefined; textArea?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; textInput?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; searchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | '60' | undefined; } | undefined; } | undefined; }",
      "print": [
       "type PartialSettings = DeepPartial<Settings>;"
      ]
@@ -95822,6 +96255,10 @@
       "     Can be used to provide your own handlers.",
       "     */",
       "    onKeyDown?(e: React.KeyboardEvent<HTMLDivElement>): void;",
+      "    /**",
+      "     * Called when the icon is clicked",
+      "     */",
+      "    onIconClick?: () => void;",
       "}"
      ]
     },
@@ -95909,6 +96346,23 @@
       "typeValue": {
        "raw": "(e: React.KeyboardEvent<HTMLDivElement>) => void",
        "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>KeyboardEvent<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "onIconClick",
+      "name": "onIconClick",
+      "comment": {
+       "raw": [
+        "Called when the icon is clicked"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
       },
       "editor": {
        "type": "func"
@@ -106600,6 +107054,17 @@
      "nameFull": "ButtonMods"
     },
     "src": "uui/components/buttons/Button.tsx",
+    "exported": false
+   }
+  },
+  "@epam/uui:CalendarMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "CalendarMods",
+     "nameFull": "CalendarMods"
+    },
+    "src": "uui/components/datePickers/Calendar.tsx",
     "exported": false
    }
   },

@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, type JSX } from 'react';
+import React, { forwardRef, useEffect, useState, type JSX } from 'react';
 import cx from 'classnames';
 import {
     IControlled,
@@ -7,6 +7,7 @@ import {
     RangeDatePickerInputType,
     RangeDatePickerValue,
     RangeDatePickerProps, useLayoutEffectSafeForSsr,
+    isMobile,
 } from '@epam/uui-core';
 import { uuiDaySelection, Day } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
@@ -132,9 +133,16 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
 
     const [view, setView] = useState<ViewType>('DAY_SELECTION');
     const [disabledPanel, setDisabledPanel] = useState<'left' | 'right' | null>(null);
-    const [month, setMonth] = useState(() => {
-        return getDisplayedMonth(selectedDate, inFocus, initialViewMonth);
-    });
+    const [month, setMonth] = useState(() => getDisplayedMonth(selectedDate, inFocus, initialViewMonth));
+
+    const isMobileView = isMobile();
+
+    useEffect(() => {
+        if (isMobileView && selectedDate[inFocus]) {
+            setMonth(getDisplayedMonth(selectedDate, inFocus, initialViewMonth));
+            setView('DAY_SELECTION');
+        }
+    }, [selectedDate, inFocus, initialViewMonth]);
 
     const getRange = (newValue: string | null) => {
         if (!filter || filter(uuiDayjs.dayjs(newValue))) {
@@ -195,7 +203,8 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
     const renderPresets = (presets: RangeDatePickerPresets) => {
         return (
             <React.Fragment>
-                <div className={ uuiRangeDatePickerBody.separator } />
+                {/** Vertical separator only for desktop two-calendar layout; mobile modal uses column gap (see modal styles). */}
+                {!isMobileView && <div className={ uuiRangeDatePickerBody.separator } />}
                 <CalendarPresets
                     onPresetSet={ (presetVal) => {
                         // enable day if smth other were selected
@@ -218,8 +227,10 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
 
     useLayoutEffectSafeForSsr(() => {
         const monthToSet = getDisplayedMonth(selectedDate, inFocus, initialViewMonth);
-        // To avoid re-rendering the body if the current month being displayed is equal to or greater than 1
-        const shouldNotIgnoreUpdate = !(uuiDayjs.dayjs(month).isSame(monthToSet, 'month') || uuiDayjs.dayjs(month).add(1, 'month').isSame(monthToSet, 'month'));
+        // Desktop: sync when displayed month differs from left or right panel anchor. Mobile: single month only.
+        const shouldNotIgnoreUpdate = isMobileView
+            ? !uuiDayjs.dayjs(month).isSame(monthToSet, 'month')
+            : !(uuiDayjs.dayjs(month).isSame(monthToSet, 'month') || uuiDayjs.dayjs(month).add(1, 'month').isSame(monthToSet, 'month'));
         if (shouldNotIgnoreUpdate) {
             setMonth(monthToSet);
         }
@@ -228,16 +239,20 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
     return (
         <div
             ref={ ref }
-            className={ cx(css.root, uuiDatePickerBodyBase.container, props.cx) }
+            className={ cx(
+                css.root,
+                uuiDatePickerBodyBase.container,
+                props.cx,
+            ) }
             { ...props.rawProps }
             aria-multiselectable="true"
         >
             <FlexRow
-                cx={ [view === 'DAY_SELECTION' && css.daySelection, css.container] }
+                cx={ [view === 'DAY_SELECTION' && css.daySelection, isMobileView && css.mobile, css.container] }
                 alignItems="top"
             >
-                <FlexCell width="auto">
-                    <FlexRow>
+                <FlexCell width="auto" grow={ 1 }>
+                    <FlexRow alignItems={ isMobileView ? 'stretch' : undefined }>
                         <FlexRow
                             cx={ css.bodesWrapper }
                             alignItems="top"
@@ -258,25 +273,28 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
                                 isHoliday={ props.isHoliday }
                                 renderDay={ props.renderDay || renderDay }
                                 isDisabled={ disabledPanel === 'left' }
+                                size={ isMobileView ? '36' : undefined }
                             />
-                            <StatelessDatePickerBody
-                                key="date-picker-body-right"
-                                cx={ cx(css.toPicker) }
-                                { ...to }
-                                onValueChange={ (v) => onBodyValueChange(v) }
-                                onMonthChange={ (m) => {
-                                    setMonth(m.subtract(1, 'month'));
-                                } }
-                                onViewChange={ (v) => {
-                                    setView(v);
-                                    setDisabledPanel(v !== 'DAY_SELECTION' ? 'left' : null);
-                                } }
-                                filter={ props.filter }
-                                renderDay={ props.renderDay || renderDay }
-                                isHoliday={ props.isHoliday }
-                                isDisabled={ disabledPanel === 'right' }
-                            />
-                            {view !== 'DAY_SELECTION' && (
+                            {!isMobileView && (
+                                <StatelessDatePickerBody
+                                    key="date-picker-body-right"
+                                    cx={ cx(css.toPicker) }
+                                    { ...to }
+                                    onValueChange={ (v) => onBodyValueChange(v) }
+                                    onMonthChange={ (m) => {
+                                        setMonth(m.subtract(1, 'month'));
+                                    } }
+                                    onViewChange={ (v) => {
+                                        setView(v);
+                                        setDisabledPanel(v !== 'DAY_SELECTION' ? 'left' : null);
+                                    } }
+                                    filter={ props.filter }
+                                    renderDay={ props.renderDay || renderDay }
+                                    isHoliday={ props.isHoliday }
+                                    isDisabled={ disabledPanel === 'right' }
+                                />
+                            )}
+                            {!isMobileView && view !== 'DAY_SELECTION' && (
                                 <div
                                     style={ {
                                         left: disabledPanel === 'right' ? '50%' : undefined,
@@ -288,7 +306,11 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
                         </FlexRow>
                         {props.presets && renderPresets(props.presets)}
                     </FlexRow>
-                    {props.renderFooter && props.renderFooter()}
+                    {props.renderFooter && (
+                        <div className="uui-range-datepicker-body-footer">
+                            {props.renderFooter()}
+                        </div>
+                    )}
                 </FlexCell>
             </FlexRow>
         </div>
