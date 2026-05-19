@@ -11,6 +11,10 @@ const offset = 30;
 export interface SnackbarProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     closeIcon?: Icon;
     notifications?: NotificationOperation[];
+    /**
+     * When set, applied as root `z-index` (e.g. from `uuiLayout.getTopOverlayZIndex()`).
+     * If omitted, styles use the default from CSS.
+     */
     zIndex?: number;
 }
 
