@@ -11,7 +11,7 @@
     --uui-rdtp-margin-right: 10px;
 
     :global(.uui-calendar-days) > div:last-child {
-        :global(.uui-calendar-day-cell):last-child > :global(.uui-range-datepicker-in-range) {
+        :global(.uui-calendar-day-cell):nth-last-child(1 of :global(.uui-calendar-day-cell):has(:global(.uui-range-datepicker-in-range))) > :global(.uui-range-datepicker-in-range) {
             &:not(:global(.uui-range-datepicker-first-day-in-range-wrapper)) {
                 &:not(:global(.uui-range-datepicker-last-day-in-range-wrapper)) {
                     position: relative;
@@ -105,7 +105,7 @@
 }
 
 .container {
-    &.day-selection {
+    &.day-selection:not(.mobile) {
         .from-picker {
             :global(.uui-datepicker-header-nav-icon-right) {
                 visibility: hidden;
@@ -124,6 +124,13 @@
         transition: height 0.3s ease-in-out;
     }
 
+    :global(.uui-range-datepicker-body-footer) {
+        box-sizing: border-box;
+        width: 100%;
+        flex: 0 0 auto;
+        align-self: stretch;
+    }
+
     .blocker {
         background-color: var(--uui-rdtp-blocker-bg);
         position: absolute;
@@ -137,5 +144,3 @@
 :global(.uui-datepicker-container) {
     transition: height 0.3s ease-in-out;
 }
-
-
