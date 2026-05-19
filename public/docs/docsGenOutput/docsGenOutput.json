@@ -21020,11 +21020,17 @@
     "typeValue": {
      "raw": "ILayoutContext",
      "print": [
-      "interface ILayoutContext {",
+      "interface ILayoutContext extends IBaseContext {",
       "    /** Returns the new layer. This layer will be higher than previous. */",
       "    getLayer(): LayoutLayer;",
       "    /** Removes provided layer from layers list */",
       "    releaseLayer(layer: LayoutLayer): void;",
+      "    /**",
+      "     * Returns a z-index for global overlays (e.g. snackbar, recovery modal) that should sit above all registered layout layers.",
+      "     * Uses max(layer z-index) + 1, but never below the legacy default (100500), so existing pages that rely on",
+      "     * that stacking level stay unchanged when the layer stack is small.",
+      "     */",
+      "    getTopOverlayZIndex(): number;",
       "    /**",
       "     * Returns portal root node.",
       "     * In simple cases it will be node with 'main' or 'root' id or document.body.",
@@ -21075,6 +21081,25 @@
       "required": true
      },
      {
+      "uid": "getTopOverlayZIndex",
+      "name": "getTopOverlayZIndex",
+      "comment": {
+       "raw": [
+        "Returns a z-index for global overlays (e.g. snackbar, recovery modal) that should sit above all registered layout layers.",
+        " Uses max(layer z-index) + 1, but never below the legacy default (100500), so existing pages that rely on",
+        " that stacking level stay unchanged when the layer stack is small."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => number",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
       "uid": "getPortalRoot",
       "name": "getPortalRoot",
       "comment": {
@@ -21109,6 +21134,60 @@
       "editor": {
        "type": "func"
       },
+      "required": true
+     },
+     {
+      "uid": "subscribe",
+      "name": "subscribe",
+      "comment": {
+       "raw": [
+        "Add your handler, which will be called on context updates"
+       ]
+      },
+      "typeValue": {
+       "raw": "(handler: (state: {}) => void) => void",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token function-variable function\">handler</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>state<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IBaseContext",
+      "required": true
+     },
+     {
+      "uid": "unsubscribe",
+      "name": "unsubscribe",
+      "comment": {
+       "raw": [
+        "Unsubscribe from context updates"
+       ]
+      },
+      "typeValue": {
+       "raw": "(handler: (state: {}) => void) => void",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token function-variable function\">handler</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>state<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IBaseContext",
+      "required": true
+     },
+     {
+      "uid": "destroyContext",
+      "name": "destroyContext",
+      "comment": {
+       "raw": [
+        "Manually destroy context and unsubscribe from all listeners"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IBaseContext",
       "required": true
      }
     ],
@@ -63394,6 +63473,11 @@
       "interface SnackbarProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
       "    closeIcon?: Icon;",
       "    notifications?: NotificationOperation[];",
+      "    /**",
+      "     * When set, applied as root `z-index` (e.g. from `uuiLayout.getTopOverlayZIndex()`).",
+      "     * If omitted, styles use the default from CSS.",
+      "     */",
+      "    zIndex?: number;",
       "}"
      ]
     },
@@ -63416,6 +63500,24 @@
       "typeValue": {
        "raw": "NotificationOperation[]",
        "html": "NotificationOperation<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+      },
+      "required": false
+     },
+     {
+      "uid": "zIndex",
+      "name": "zIndex",
+      "comment": {
+       "raw": [
+        "When set, applied as root `z-index` (e.g. from `uuiLayout.getTopOverlayZIndex()`).",
+        " If omitted, styles use the default from CSS."
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
       },
       "required": false
      },
@@ -98802,6 +98904,25 @@
       "typeValue": {
        "raw": "NotificationOperation[]",
        "html": "NotificationOperation<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+      },
+      "from": "@epam/uui-components:SnackbarProps",
+      "required": false
+     },
+     {
+      "uid": "zIndex",
+      "name": "zIndex",
+      "comment": {
+       "raw": [
+        "When set, applied as root `z-index` (e.g. from `uuiLayout.getTopOverlayZIndex()`).",
+        " If omitted, styles use the default from CSS."
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
       },
       "from": "@epam/uui-components:SnackbarProps",
       "required": false
