@@ -25,7 +25,13 @@ export function Snackbar(props: SnackbarProps) {
         items = [clearOperation].concat(items);
     }
 
-    return <UuiSnackbar forwardedRef={ props.forwardedRef } notifications={ items } />;
+    return (
+        <UuiSnackbar
+            forwardedRef={ props.forwardedRef }
+            notifications={ items }
+            zIndex={ uuiCtx.uuiLayout.getTopOverlayZIndex() }
+        />
+    );
 }
 
 /**

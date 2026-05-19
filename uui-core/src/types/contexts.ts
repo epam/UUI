@@ -38,11 +38,17 @@ export interface INotificationContext extends IBaseContext {
     clearAll(): void;
 }
 
-export interface ILayoutContext {
+export interface ILayoutContext extends IBaseContext {
     /** Returns the new layer. This layer will be higher than previous. */
     getLayer(): LayoutLayer;
     /** Removes provided layer from layers list */
     releaseLayer(layer: LayoutLayer): void;
+    /**
+     * Returns a z-index for global overlays (e.g. snackbar, recovery modal) that should sit above all registered layout layers.
+     * Uses max(layer z-index) + 1, but never below the legacy default (100500), so existing pages that rely on
+     * that stacking level stay unchanged when the layer stack is small.
+     */
+    getTopOverlayZIndex(): number;
     /**
      * Returns portal root node.
      * In simple cases it will be node with 'main' or 'root' id or document.body.

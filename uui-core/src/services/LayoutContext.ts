@@ -27,6 +27,9 @@ function getPortalRootById(id: string) {
     return root;
 }
 
+/** Legacy default top-overlay z-index (former snackbar value); used as a floor so existing apps keep the same stacking when few layers exist */
+export const LEGACY_TOP_OVERLAY_Z_INDEX = 100500;
+
 function maxBy<T>(arr: T[], getMax: (item: T) => number) {
     let maxItem: T;
     arr.forEach((value) => {
@@ -83,5 +86,13 @@ export class LayoutContext extends BaseContext {
             id = layer.id;
         }
         this.layers = this.layers.filter((l) => l.id !== id);
+    }
+
+    public getTopOverlayZIndex(): number {
+        if (this.layers.length === 0) {
+            return LEGACY_TOP_OVERLAY_Z_INDEX;
+        }
+        const maxZ = Math.max(...this.layers.map((l) => l.zIndex));
+        return Math.max(LEGACY_TOP_OVERLAY_Z_INDEX, maxZ + 1);
     }
 }
