@@ -18,6 +18,8 @@ export interface GetCodeResponse {
     gitUrl: string;
     raw: string;
     highlighted: string;
+    /** Present when the requested file is `.scss` (precompiled for CodeSandbox). */
+    compiledCss?: string;
 }
 
 interface GetApiParams {
