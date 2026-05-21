@@ -1,7 +1,27 @@
 import express from 'express';
 import path from 'path';
 import fs from 'fs/promises';
+import { pathToFileURL } from 'url';
+import * as sass from 'sass';
 import { highlightTsCode } from './prism';
+
+const UUI_DND_MIXINS_PATH = path.resolve(__dirname, '../../../uui/assets/styles/dnd.scss');
+
+/** Strip webpack-style ~@epam @import/@use — not resolvable in server sass; theme CSS is loaded in CodeSandbox separately. */
+async function compileScssForCodesandbox(filePath: string, raw: string): Promise<string> {
+    let scssSource = raw.replace(/^@(import|use)\s+['"]~@epam\/[^'"]+['"][^;]*;?\s*\r?\n/gm, '');
+
+    if (scssSource.includes('dnd-cursor-style')) {
+        const mixins = await fs.readFile(UUI_DND_MIXINS_PATH, 'utf8');
+        scssSource = `${mixins}\n${scssSource}`;
+    }
+
+    return sass.compileString(scssSource, {
+        style: 'expanded',
+        url: pathToFileURL(filePath),
+        loadPaths: [path.dirname(filePath)],
+    }).css;
+}
 
 const router = express.Router();
 
@@ -38,6 +58,8 @@ router.post('/get-code', async (req: any, res: any) => {
 
         const raw = await fs.readFile(filePath, 'utf8');
         const highlighted = highlightTsCode(raw);
+        const isScss = filePath.endsWith('.scss');
+        const compiledCss = isScss ? await compileScssForCodesandbox(filePath, raw) : undefined;
 
         res.json({
             ...req.body,
@@ -45,9 +67,11 @@ router.post('/get-code', async (req: any, res: any) => {
             raw,
             highlighted,
             gitUrl,
+            compiledCss,
         });
     } catch (error) {
-        res.status(500).json({ error: error });
+        const message = error instanceof Error ? error.message : String(error);
+        res.status(500).json({ error: message });
     }
 });
 
