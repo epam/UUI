@@ -1,5 +1,5 @@
 {
- "version": "6.4.4",
+ "version": "6.5.0",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -21042,6 +21042,16 @@
       "     * Usually used for cases with shadow DOM, to be able to find this portal root element if it's located under shadow DOM",
       "     */",
       "    getPortalRootId(): string;",
+      "    /**",
+      "     * Used by PortalRoot to register the portal container element.",
+      "     * @internal",
+      "     */",
+      "    registerPortalRoot(element: HTMLElement): void;",
+      "    /**",
+      "     * Used by PortalRoot to unregister the portal container element.",
+      "     * @internal",
+      "     */",
+      "    unregisterPortalRoot(element?: HTMLElement): void;",
       "}"
      ]
     },
@@ -21130,6 +21140,42 @@
       "typeValue": {
        "raw": "() => string",
        "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "registerPortalRoot",
+      "name": "registerPortalRoot",
+      "comment": {
+       "raw": [
+        "Used by PortalRoot to register the portal container element.",
+        " @internal"
+       ]
+      },
+      "typeValue": {
+       "raw": "(element: HTMLElement) => void",
+       "html": "<span class=\"token punctuation\">(</span>element<span class=\"token operator\">:</span> HTMLElement<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "unregisterPortalRoot",
+      "name": "unregisterPortalRoot",
+      "comment": {
+       "raw": [
+        "Used by PortalRoot to unregister the portal container element.",
+        " @internal"
+       ]
+      },
+      "typeValue": {
+       "raw": "(element?: HTMLElement | undefined) => void",
+       "html": "<span class=\"token punctuation\">(</span>element<span class=\"token operator\">?</span><span class=\"token operator\">:</span> HTMLElement <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
       },
       "editor": {
        "type": "func"
