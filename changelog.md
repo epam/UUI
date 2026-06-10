@@ -1,3 +1,9 @@
+# 6.5.1 - XX.XX.2026
+
+**What's Fixed**
+* [PortalRoot] / [uui-core]: fixed portal root resolution inside nested shadow DOM — `PortalRoot` registers the portal container with `LayoutContext`, with a DOM fallback that walks shadow host chains via ancestor markers so overlays and popups render correctly when UUI is embedded in web components at any shadow depth.
+
+
 # 6.5.0 - 26.05.2026
 
 **What's New**

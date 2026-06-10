@@ -1,4 +1,5 @@
 import { BaseContext } from './BaseContext';
+import { getPortalRootById } from '../helpers/portalRootDiscovery';
 import { isClientSide } from '../helpers/ssr';
 
 export interface LayoutLayer {
@@ -11,20 +12,6 @@ export interface LayoutLayer {
 }
 function genUniqueId() {
     return [Math.random(), Math.random()].reduce((acc, n) => (acc + n.toString(36).substring(2)), '');
-}
-
-function getPortalRootById(id: string) {
-    let root = document.getElementById(id);
-    if (!root) {
-        /*
-         * document.getElementById doesn't find elements by ID if they are located in shadow DOM.
-         * so, as a fallback, we try to find shadow host by attribute name like this: [data-<id>]
-         * and after that - try to find by id in the shadow root.
-         */
-        const shadow = document.querySelector(`[data-shadow-host-id="${id}"]`);
-        root = shadow?.shadowRoot?.getElementById(id);
-    }
-    return root;
 }
 
 /** Legacy default top-overlay z-index (former snackbar value); used as a floor so existing apps keep the same stacking when few layers exist */
@@ -50,18 +37,38 @@ export class LayoutContext extends BaseContext {
     layers: LayoutLayer[] = [];
 
     private readonly portalRootId: string = genUniqueId();
+    private portalRootElement: HTMLElement | null = null;
+
+    public registerPortalRoot(element: HTMLElement) {
+        this.portalRootElement = element;
+    }
+
+    public unregisterPortalRoot(element?: HTMLElement) {
+        if (!element || this.portalRootElement === element) {
+            this.portalRootElement = null;
+        }
+    }
 
     public getPortalRoot() {
         /**
          * TODO: we should remove this part: document.getElementById('main') || document.getElementById('root')
          */
         if (isClientSide) {
+            if (this.portalRootElement?.isConnected) {
+                return this.portalRootElement;
+            }
+
             return getPortalRootById(this.portalRootId) || document.getElementById('main') || document.getElementById('root') || document.body;
         }
     }
 
     public getPortalRootId() {
         return this.portalRootId;
+    }
+
+    public destroyContext() {
+        this.portalRootElement = null;
+        super.destroyContext();
     }
 
     public getLayer(): LayoutLayer {
