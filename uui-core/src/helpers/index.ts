@@ -22,3 +22,4 @@ export * from './orderBy';
 export * from './range';
 export * from './typeHelpers';
 export * from './getDir';
+export * from './portalRootDiscovery';

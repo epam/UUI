@@ -60,6 +60,10 @@ export interface ILayoutContext extends IBaseContext {
      * Usually used for cases with shadow DOM, to be able to find this portal root element if it's located under shadow DOM
      */
     getPortalRootId(): string;
+    /** @internal Used by PortalRoot to register the portal container element */
+    registerPortalRoot(element: HTMLElement): void;
+    /** @internal Used by PortalRoot to unregister the portal container element */
+    unregisterPortalRoot(element?: HTMLElement): void;
 }
 
 export interface ILockContext {
