@@ -1,27 +1,6 @@
 import React from 'react';
 import { isClientSide, useUuiContext } from '@epam/uui-core';
-
-/**
- * Adds a marker to the shadow host which helps the LayoutContext
- * to find this portal root element if it's located under shadow DOM.
- *
- * @param node
- * @param id
- */
-function makePortalRootDiscoverable(node: HTMLElement, id: string): () => void {
-    if (node) {
-        const root = node.getRootNode();
-        if (root instanceof ShadowRoot) {
-            const hostElem = root.host;
-            const name = 'data-shadow-host-id';
-            hostElem.setAttribute(name, id);
-            return () => {
-                hostElem.removeAttribute(name);
-            };
-        }
-    }
-    return () => {};
-}
+import { makePortalRootDiscoverable } from './PortalRootHelpers';
 
 export function PortalRoot() {
     const { uuiLayout } = useUuiContext();
