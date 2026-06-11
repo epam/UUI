@@ -9,7 +9,6 @@ import fileUpload from 'express-fileupload';
 import api from './api';
 import fileUploadApi from './api/fileUpload';
 import { isDevServer } from './utils/envUtils';
-import actuator from 'express-actuator';
 import staticMiddleware from './static';
 import { getCspHeaderValue } from './utils/cspUtil';
 
@@ -47,7 +46,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(actuator({ basePath: '/actuator' }));
+// Expose only the health endpoint publicly. /actuator/metrics and /actuator/info
+// reveal runtime details and must not be accessible on production hosts (EPMSPRT-3690).
+app.get('/actuator/health', (_req, res) => {
+    res.status(200).json({ status: 'UP' });
+});
 
 app.use('/upload', fileUploadApi);
 app.use('/api', api);
