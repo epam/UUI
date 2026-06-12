@@ -51,6 +51,9 @@ app.use((req, res, next) => {
 app.get('/actuator/health', (_req, res) => {
     res.status(200).json({ status: 'UP' });
 });
+app.use('/actuator', (_req, res) => {
+    res.sendStatus(404);
+});
 
 app.use('/upload', fileUploadApi);
 app.use('/api', api);
