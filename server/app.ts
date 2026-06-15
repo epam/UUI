@@ -54,7 +54,6 @@ app.get('/actuator/health', (_req, res) => {
 app.use('/actuator', (_req, res) => {
     res.sendStatus(404);
 });
-
 app.use('/upload', fileUploadApi);
 app.use('/api', api);
 
