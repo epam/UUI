@@ -1,4 +1,4 @@
-# 6.5.1 - XX.XX.2026
+# 6.5.1 - 19.06.2026
 
 **What's Fixed**
 * [PortalRoot] / [uui-core]: fixed portal root lookup when nested more than one level inside Shadow DOM — shadow hosts now store comma-separated portal IDs along the hierarchy, and `LayoutContext` discovers the correct root across nested shadow trees.
