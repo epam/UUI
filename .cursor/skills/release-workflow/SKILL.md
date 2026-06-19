@@ -32,6 +32,45 @@ Then ask the user to confirm before running the release command.
 6. After successful release:
    - Publish changelog to GitHub Releases: https://github.com/epam/UUI/releases
    - Post in UUI Teams channel
+7. **Sync `main` back into `develop`** (required after every stable and beta release)
+
+## Sync main into develop
+
+Do this immediately after a successful release, before new commits land on `develop`.
+
+`yarn release` / `yarn release-beta` create version-bump commits only on `main`. Without syncing back, `develop` keeps old package versions and the branches diverge.
+
+### Steps
+
+```bash
+git fetch origin
+git checkout develop
+git pull origin develop
+git merge origin/main
+```
+
+Resolve conflicts if any:
+- `package.json`, `lerna.json` — take released versions from `main`
+- `changelog.md` — keep the released version section from `main`; add an empty unreleased `# 6.x.x - xx.xx.2026` section on top
+
+`develop` is protected — push via a sync branch and open a PR:
+
+```bash
+git commit -m "Merge branch 'main' into develop after vX.Y.Z release"
+git checkout -b sync/main-into-develop-vX.Y.Z
+git push -u origin sync/main-into-develop-vX.Y.Z
+```
+
+After the PR is merged, verify:
+
+```bash
+git fetch origin
+git log origin/develop..origin/main
+```
+
+Output must be empty.
+
+**Rules:** use merge, not rebase. Do not squash the sync PR — preserve release history.
 
 ## Beta Release
 
@@ -69,3 +108,5 @@ If release fails and packages aren't published, revert Lerna commits and tags:
 - [ ] Run release command
 - [ ] Publish changelog to GitHub Releases
 - [ ] Notify team in Teams channel
+- [ ] Sync `main` into `develop` (merge + PR if needed)
+- [ ] Verify `git log origin/develop..origin/main` is empty
