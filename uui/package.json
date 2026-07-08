@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui",
-  "version": "4.12.2",
+  "version": "4.12.3",
   "description": "EPAM UUI components set",
   "author": "EPAM",
   "license": "MIT",
@@ -12,9 +12,9 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "4.12.2",
-    "@epam/uui-components": "4.12.2",
-    "@epam/uui-core": "4.12.2",
+    "@epam/assets": "4.12.3",
+    "@epam/uui-components": "4.12.3",
+    "@epam/uui-core": "4.12.3",
     "classnames": "2.2.6",
     "dayjs": "1.10.7",
     "lodash.sortby": "4.7.0",
@@ -34,7 +34,7 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "0ddb4279e9ac69f7796c1239214ab6c99c3d5b64",
+  "gitHead": "5c57d349c09eff296af50ec7b085fdcbf0a581b1",
   "publishConfig": {
     "directory": "build"
   }

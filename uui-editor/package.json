@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-editor",
-  "version": "4.12.2",
+  "version": "4.12.3",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
@@ -13,9 +13,9 @@
   "dependencies": {
     "@braintree/sanitize-url": "4.0.1",
     "@convertkit/slate-lists": "0.2.2",
-    "@epam/assets": "4.12.2",
-    "@epam/uui-components": "4.12.2",
-    "@epam/uui-core": "4.12.2",
+    "@epam/assets": "4.12.3",
+    "@epam/uui-components": "4.12.3",
+    "@epam/uui-core": "4.12.3",
     "@mercuriya/slate-linkify": "0.1.2",
     "@popperjs/core": "2.9.0",
     "@types/lodash.flatten": "4.4.6",
@@ -43,7 +43,7 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "41609f0fcd234b99185dfb83a32a54914795f78c",
+  "gitHead": "5c57d349c09eff296af50ec7b085fdcbf0a581b1",
   "publishConfig": {
     "directory": "build"
   }

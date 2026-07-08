@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-timeline",
-  "version": "4.12.2",
+  "version": "4.12.3",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
@@ -11,8 +11,8 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-components": "4.12.2",
-    "@epam/uui-core": "4.12.2",
+    "@epam/uui-components": "4.12.3",
+    "@epam/uui-core": "4.12.3",
     "@types/lodash.sortby": "4.7.6",
     "@types/lodash.sortedindex": "4.1.6",
     "classnames": "^2.2.6",
@@ -26,7 +26,7 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "0ddb4279e9ac69f7796c1239214ab6c99c3d5b64",
+  "gitHead": "5c57d349c09eff296af50ec7b085fdcbf0a581b1",
   "publishConfig": {
     "directory": "build"
   }
