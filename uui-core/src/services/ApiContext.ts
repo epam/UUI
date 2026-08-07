@@ -146,8 +146,6 @@ export class ApiContext extends BaseContext implements IApiContext {
         }
 
         if (reason === 'abort-signal') {
-            call.status = 'error';
-            this.setStatus('error');
             call.reject(call.error);
             return;
         }
@@ -208,6 +206,7 @@ export class ApiContext extends BaseContext implements IApiContext {
                 if (error?.name === 'AbortError') {
                     this.removeFromQueue(call);
                     this.handleApiError({ ...call, error }, 'abort-signal');
+                    return;
                 }
                 if (call.attemptsCount < 2) {
                     this.handleApiError(call, 'connection-lost');
