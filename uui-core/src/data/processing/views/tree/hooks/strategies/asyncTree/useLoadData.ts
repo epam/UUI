@@ -3,7 +3,7 @@ import { DataSourceState, IImmutableMap, IMap, LazyDataSourceApi } from '../../.
 import { TreeState } from '../../../treeState';
 import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import { isQueryChanged } from '../lazyTree/helpers';
-import { useAbortController, useItemsStatusCollector } from '../../common';
+import { useLoadCancellation, isAbortError, useItemsStatusCollector } from '../../common';
 import { getSelectedAndChecked } from '../../../treeStructure';
 import { NOT_FOUND_RECORD } from '../../../constants';
 import { ItemsStatuses } from '../types';
@@ -12,7 +12,6 @@ export interface LoadResult<TItem, TId> {
     isUpdated: boolean;
     isOutdated: boolean;
     tree: TreeState<TItem, TId>;
-    error?: Error;
 }
 
 export interface UseLoadDataProps<TItem, TId, TFilter = any> extends ItemsStatuses<TItem, TId, TFilter> {
@@ -56,7 +55,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
         [itemsStatusMap, externalItemsStatusCollector],
     );
 
-    const { getAbortSignal } = useAbortController();
+    const { getSignal } = useLoadCancellation();
 
     const loadData = async (
         sourceTree: TreeState<TItem, TId>,
@@ -64,10 +63,10 @@ export function useLoadData<TItem, TId, TFilter = any>(
     ): Promise<LoadResult<TItem, TId>> => {
         const loadingTree = sourceTree;
         const { checked, ...partialDsState } = dsState;
-        try {
-            const signal = getAbortSignal();
+        const signal = getSignal();
 
-            const newTreePromise = sourceTree.loadAll<TFilter>({
+        try {
+            const newTree = await sourceTree.loadAll<TFilter>({
                 using: partialDsState.search ? 'visible' : undefined,
                 options: {
                     api: itemsStatusCollector.watch(api),
@@ -79,18 +78,23 @@ export function useLoadData<TItem, TId, TFilter = any>(
                 dataSourceState: partialDsState,
             });
 
-            const newTree = await newTreePromise;
-            const linkToTree = sourceTree;
+            if (signal.aborted) {
+                return { isUpdated: false, isOutdated: true, tree: loadingTree };
+            }
 
-            // If tree is changed during this load, than there was reset occurred (new value arrived)
-            // We need to tell caller to reject this result
-            const isOutdated = linkToTree !== loadingTree;
-            const isUpdated = linkToTree !== newTree;
-            return { isUpdated, isOutdated, tree: newTree };
+            return {
+                isUpdated: loadingTree !== newTree,
+                isOutdated: false,
+                tree: newTree,
+            };
         } catch (e) {
+            if (signal.aborted || isAbortError(e)) {
+                return { isUpdated: false, isOutdated: true, tree: loadingTree };
+            }
+
             // TBD - correct error handling
             console.error('useLoadData: Error while loading items.', e);
-            return { isUpdated: false, isOutdated: false, tree: loadingTree, error: e };
+            return { isUpdated: false, isOutdated: false, tree: loadingTree };
         }
     };
 

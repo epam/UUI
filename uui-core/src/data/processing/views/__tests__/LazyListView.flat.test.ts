@@ -230,6 +230,93 @@ describe('LazyListView - flat list test', () => {
         expect(view.getListProps().rowsCount).toEqual(5);
     });
 
+    it('should not apply stale response when old request resolves after newer request', async () => {
+        let resolveFirst!: (value: any) => void;
+        let resolveSecond!: (value: any) => void;
+
+        const deferred1 = new Promise<any>((resolve) => { resolveFirst = resolve; });
+        const deferred2 = new Promise<any>((resolve) => { resolveSecond = resolve; });
+
+        // First call (no filter) → deferred1; second call (filter set) → deferred2
+        const racingApi = jest.fn().mockImplementation(
+            (rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => (
+                rq.filter?.id !== undefined ? deferred2 : deferred1
+            ),
+        );
+
+        const racingDS = new LazyDataSource<TestItem, number, DataQueryFilter<TestItem>>({ api: racingApi });
+
+        const hookResult = renderHook(
+            ({ value, onValueChange }) => racingDS.useView(value, onValueChange, {}),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged } },
+        );
+
+        // Wait for the first (no-filter) request to be in-flight
+        await waitFor(() => expect(racingApi).toHaveBeenCalledTimes(1));
+
+        // Change filter before the first request resolves — triggers abortInProgress + generationRef++
+        currentValue = { ...currentValue, filter: { id: { gte: 200 } } };
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
+
+        // Wait for the second (filtered) request to start
+        await waitFor(() => expect(racingApi).toHaveBeenCalledTimes(2));
+
+        // Resolve the NEWER request first — correct result for the active filter
+        act(() => resolveSecond({ items: [{ id: 200 }], count: 1 }));
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [{ id: 200 }]);
+        });
+
+        // Resolve the OLDER (stale) request and flush the full async chain:
+        // deferred1 → tree.load() → loadMissingImpl → .then(setTreeWithData)
+        await act(async () => {
+            resolveFirst({ items: [{ id: 100 }], count: 1 });
+            for (let i = 0; i < 10; i++) {
+                await Promise.resolve();
+            }
+        });
+
+        // Stale result must not overwrite the current view
+        const view = hookResult.result.current;
+        expectViewToLookLike(view, [{ id: 200 }]);
+    });
+
+    it('aborts the previous AbortSignal when filter changes', async () => {
+        const abortedSignals: AbortSignal[] = [];
+
+        const trackingApi = jest.fn().mockImplementation(
+            async (_rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>, ctx: { signal?: AbortSignal }) => {
+                const signal = ctx?.signal;
+                if (signal) {
+                    signal.addEventListener('abort', () => abortedSignals.push(signal));
+                }
+                // Keep the request pending so the signal can be aborted before it resolves
+                await new Promise(() => {});
+            },
+        );
+
+        const ds = new LazyDataSource<TestItem, number, DataQueryFilter<TestItem>>({
+            api: trackingApi,
+        });
+
+        const hookResult = renderHook(
+            ({ value, onValueChange }) => ds.useView(value, onValueChange, {}),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged } },
+        );
+
+        // Wait for the first request to be in-flight
+        await waitFor(() => expect(trackingApi).toHaveBeenCalledTimes(1));
+
+        // Change filter — should abort the first request's signal
+        currentValue = { ...currentValue, filter: { id: { gte: 200 } } };
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
+
+        await waitFor(() => expect(abortedSignals).toHaveLength(1));
+        expect(abortedSignals[0].aborted).toBe(true);
+    });
+
     it('applies the filter from props', async () => {
         const hookResult = renderHook(
             ({ value, onValueChange, props }) => flatDataSource.useView(value, onValueChange, props),
