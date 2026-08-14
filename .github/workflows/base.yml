@@ -13,9 +13,6 @@ on:
       image-name:
         required: true
         type: string
-      git-version-mode:
-        required: true
-        type: string
       env:
         required: true
         type: string
@@ -119,17 +116,16 @@ jobs:
           # Image will be tagged with all tags from "Docker meta" step
           tags: ${{ steps.meta.outputs.tags }}
 
-      # install Gitversion to obtain semver version
-      - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v4
-        with:
-          versionSpec: '6.2.0'
-      - name: Version determination
-        id:   gitversion
-        uses: gittools/actions/gitversion/execute@v4
-        with:
-          configFilePath: GitVersion.yml
-          verbosity: Diagnostic
+      - name: Determine version
+        id: version
+        run: |
+          SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
+          LATEST_TAG=$(git tag --sort=-version:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -1)
+          MAJOR=$(echo $LATEST_TAG | sed 's/^v//' | cut -d. -f1)
+          MINOR=$(echo $LATEST_TAG | sed 's/^v//' | cut -d. -f2)
+          echo "shortSha=${SHORT_SHA}" >> $GITHUB_OUTPUT
+          echo "major=${MAJOR}" >> $GITHUB_OUTPUT
+          echo "minor=${MINOR}" >> $GITHUB_OUTPUT
 
       - name: Install Helm
         uses: azure/setup-helm@v5
@@ -138,7 +134,7 @@ jobs:
 
       - name: Preparation and Helm chart packaging
         env:
-          GITVERSION_SHORTSHA: ${{ steps.gitversion.outputs.shortSha }}
+          GITVERSION_SHORTSHA: ${{ steps.version.outputs.shortSha }}
         run: |
           echo ${{ steps.auth.outputs.access_token }} | helm registry login ${{ secrets.ARTIFACTORY_REGISTRY_URL }} --username ${{ secrets.ARTIFACTORY_AUTH2_USER }} --password-stdin
           mkdir helmchart && cd ./helmchart # helm cannot untar file to the repo with the same name as a package. To avoid error we create temp folder
@@ -148,8 +144,8 @@ jobs:
 
       - name: Packaging and Uploading Helm Chart
         env:
-          GITVERSION_MAJOR: ${{ steps.gitversion.outputs.major }}
-          GITVERSION_MINOR: ${{ steps.gitversion.outputs.minor }}
+          GITVERSION_MAJOR: ${{ steps.version.outputs.major }}
+          GITVERSION_MINOR: ${{ steps.version.outputs.minor }}
         run: |
           cd ./helmchart
           # workaround to avoid Helm chart versioning issues
