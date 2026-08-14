@@ -129,6 +129,7 @@ jobs:
         uses: gittools/actions/gitversion/execute@v4
         with:
           configFilePath: GitVersion.yml
+          verbosity: Diagnostic
 
       - name: Install Helm
         uses: azure/setup-helm@v5
