@@ -139,6 +139,8 @@ jobs:
           version: v3.8.0
 
       - name: Preparation and Helm chart packaging
+        env:
+          GITVERSION_SHORTSHA: ${{ steps.gitversion.outputs.shortSha }}
         run: |
           echo ${{ steps.auth.outputs.access_token }} | helm registry login ${{ secrets.ARTIFACTORY_REGISTRY_URL }} --username ${{ secrets.ARTIFACTORY_AUTH2_USER }} --password-stdin
           mkdir helmchart && cd ./helmchart # helm cannot untar file to the repo with the same name as a package. To avoid error we create temp folder
@@ -147,6 +149,9 @@ jobs:
           sed -i -e "s/tag: latest/tag: sha-${GITVERSION_SHORTSHA}/g" ${{ secrets.BASE_HELMCHART_NAME }}/${VALUES_FILE}
 
       - name: Packaging and Uploading Helm Chart
+        env:
+          GITVERSION_MAJOR: ${{ steps.gitversion.outputs.major }}
+          GITVERSION_MINOR: ${{ steps.gitversion.outputs.minor }}
         run: |
           cd ./helmchart
           # workaround to avoid Helm chart versioning issues
