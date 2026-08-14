@@ -53,12 +53,12 @@ jobs:
       VALUES_FILE: ${{ inputs.values-file }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-            node-version: '20.x'
+            node-version: '22.x'
             cache: 'yarn'
             cache-dependency-path: |
                 **/yarn.lock
@@ -80,7 +80,7 @@ jobs:
 
       - name: Authenticate to Cloud
         id: auth
-        uses: 'google-github-actions/auth@v2'
+        uses: 'google-github-actions/auth@v3'
         with:
           token_format: access_token
           project_id: ${{ secrets.PROJECT_ID }}
@@ -88,7 +88,7 @@ jobs:
           service_account: ${{ secrets.WFI_SA }}
 
       - name: Login to artifactory
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ${{ secrets.ARTIFACTORY_REGISTRY_URL }}
           username: ${{ secrets.ARTIFACTORY_AUTH2_USER }}
@@ -96,7 +96,7 @@ jobs:
 
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           # list of Docker images to use as base name for tags
           images: |
@@ -107,11 +107,11 @@ jobs:
             type=sha
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: ./
           file: ./Dockerfile
@@ -121,20 +121,20 @@ jobs:
 
       # install Gitversion to obtain semver version
       - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v0.9.15
+        uses: gittools/actions/gitversion/setup@v3
         with:
           versionSpec: '5.8.3'
       # need to updated
       - name: Version determination
         id:   gitversion
-        uses: gittools/actions/gitversion/execute@v0.9.15
+        uses: gittools/actions/gitversion/execute@v3
         with:
           additionalArguments: ${{ inputs.git-version-mode }}
           useConfigFile: true
           configFilePath: GitVersion.yml
 
       - name: Install Helm
-        uses: azure/setup-helm@v3
+        uses: azure/setup-helm@v4
         with:
           version: v3.8.0
 
