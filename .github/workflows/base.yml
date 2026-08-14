@@ -121,12 +121,12 @@ jobs:
 
       # install Gitversion to obtain semver version
       - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v4
+        uses: gittools/actions/gitversion/setup@v3
         with:
-          versionSpec: '6.8.2'
+          versionSpec: '5.8.3'
       - name: Version determination
         id:   gitversion
-        uses: gittools/actions/gitversion/execute@v4
+        uses: gittools/actions/gitversion/execute@v3
         with:
           additionalArguments: ${{ inputs.git-version-mode }}
           useConfigFile: true
