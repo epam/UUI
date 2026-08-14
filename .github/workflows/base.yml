@@ -121,15 +121,13 @@ jobs:
 
       # install Gitversion to obtain semver version
       - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v3
+        uses: gittools/actions/gitversion/setup@v4
         with:
-          versionSpec: '5.8.3'
+          versionSpec: '6.8.2'
       - name: Version determination
         id:   gitversion
-        uses: gittools/actions/gitversion/execute@v3
+        uses: gittools/actions/gitversion/execute@v4
         with:
-          additionalArguments: ${{ inputs.git-version-mode }}
-          useConfigFile: true
           configFilePath: GitVersion.yml
 
       - name: Install Helm
