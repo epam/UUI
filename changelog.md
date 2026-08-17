@@ -1,4 +1,4 @@
-# 6.5.x - xx.xx.xxxx
+# 6.5.2 - 17.08.2026
 
 **What's Fixed**
 * [LazyDataSource] / [AsyncDataSource] / [uui-core]: fixed stale response being applied when a filter or search change triggers a new request while a previous one is still in-flight. `isOutdated` now uses `signal.aborted` — the same `AbortSignal` passed to the API — so superseded results are reliably discarded. Previous requests are aborted via `AbortController` when `abortInProgress` is set ([#3099](https://github.com/epam/UUI/issues/3099)).
