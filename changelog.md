@@ -1,3 +1,11 @@
+# 6.5.2 - 17.08.2026
+
+**What's Fixed**
+* [LazyDataSource] / [AsyncDataSource] / [uui-core]: fixed stale response being applied when a filter or search change triggers a new request while a previous one is still in-flight. `isOutdated` now uses `signal.aborted` — the same `AbortSignal` passed to the API — so superseded results are reliably discarded. Previous requests are aborted via `AbortController` when `abortInProgress` is set ([#3099](https://github.com/epam/UUI/issues/3099)).
+* [ApiContext] / [uui-core]: fixed "Network connection down" modal appearing after an intentional request abort (e.g. on filter or search change). The `AbortError` handler no longer falls through to the `connection-lost` recovery path.
+* [ApiContext] / [uui-core]: fixed new requests being blocked after a request abort. The API context no longer transitions to `error` status on `AbortError` — abort is an intentional cancellation, not a network failure, so subsequent requests are dispatched normally.
+
+
 # 6.5.1 - 19.06.2026
 
 **What's Fixed**
