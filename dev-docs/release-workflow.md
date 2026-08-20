@@ -23,7 +23,7 @@ See [release-workflow-setup.md](release-workflow-setup.md) for initial configura
    - **dry_run**: `false`
    - Click **Run workflow**
 6. Approve the deployment in the `npm-publish` environment when prompted
-7. Monitor the workflow run — all 15 packages are published from their `build/` directories in staged state (not yet visible to consumers)
+7. Monitor the workflow run — all 15 packages are published via `npm publish --provenance` in staged state (not yet visible to consumers)
 8. Promote each package on npmjs.com: open the package page → **Versions** → find the staged version → **Promote to latest**. Repeat for all 15 packages.
 9. After a successful release, publish the changelog to the GitHub Releases page (`https://github.com/epam/UUI/releases`) and in the UUI Teams channel (`https://teams.microsoft.com/l/channel/19%3Af9ce97808e1e419cb976f71d310ca74f%40thread.skype/General?groupId=726eb5c9-1516-4c6a-be33-0838d9a33b02&tenantId=b41b72d0-4e9f-4c26-8a69-f949f367c91d`)
 10. Open a PR from the release branch into `main`
@@ -57,6 +57,8 @@ When promoting (step 8), use the **Promote to beta** option instead of **Promote
 
 When the current `latest` is v6.x but a fix is needed for an older major version:
 
+> **Warning — manual trigger only.** The workflow fires automatically on every tag push with `dist_tag: latest`. For a hotfix on an old major version, that would silently overwrite the current v6.x as the default install. You **must** cancel the auto-triggered run and publish manually with `dist_tag: hotfix` instead (steps 5–6 below).
+
 1. Create a hotfix branch from the last tag of the target version:
    ```bash
    git checkout -b hotfix/5.5.1 v5.5.0
@@ -72,15 +74,15 @@ When the current `latest` is v6.x but a fix is needed for an older major version
    ```bash
    yarn release
    ```
-   When Lerna prompts, choose `patch` (or enter the exact version, e.g. `5.5.1`).
-5. Trigger the publish in GitHub Actions:
+   When Lerna prompts, choose `patch` (or enter the exact version, e.g. `5.5.1`). Lerna pushes the tag automatically — the auto-triggered workflow run will appear immediately.
+5. **Cancel the auto-triggered run** in GitHub Actions before it reaches the `npm-publish` approval gate.
+6. Trigger the publish manually:
    - Go to **Actions → Release → Run workflow**
    - **tag**: the hotfix tag (e.g. `v5.5.1`)
-   - **dist_tag**: `hotfix` — **do not use `latest`**, it would overwrite the current v6.x as the default install
-   - **dry_run**: `false`
+   - **dist_tag**: `hotfix` — **never use `latest`**, it would overwrite the current v6.x as the default install
    - Click **Run workflow**
-6. Approve the deployment in the `npm-publish` environment when prompted
-7. Promote each staged package on npmjs.com using the **Promote to hotfix** option. Repeat for all 15 packages.
+7. Approve the deployment in the `npm-publish` environment when prompted
+8. Promote each staged package on npmjs.com using the **Promote to hotfix** option. Repeat for all 15 packages.
 
 After this, consumers can install the hotfix explicitly:
 ```bash

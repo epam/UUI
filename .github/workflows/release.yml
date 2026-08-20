@@ -76,9 +76,13 @@ jobs:
           sed 's/_authToken=.*//' ~/.npmrc 2>/dev/null || echo "(no .npmrc)"
 
       - name: Publish
-        run: npx lerna publish from-git --force-publish --yes --dist-tag ${{ inputs.dist_tag || 'latest' }}
+        # lerna publish from-git cannot be used here: lerna 5.6.2 bundles libnpmpublish from 2022
+        # which does not support OIDC/Trusted Publishers. lerna exec delegates to the global
+        # npm 11.x, which properly exchanges the GitHub OIDC token for a publish token.
+        run: |
+          npx lerna exec --sort --stream \
+            --ignore=@epam/app --ignore=@epam/uui-e2e-tests \
+            -- npm publish --provenance --access public --tag "$DIST_TAG" --ignore-scripts
         env:
-          # Passes --provenance to npm CLI (required for Trusted Publishers).
-          # Lerna 5 does not support --provenance directly, so it is set via env var.
-          NPM_CONFIG_PROVENANCE: 'true'
+          DIST_TAG: ${{ inputs.dist_tag || 'latest' }}
           NPM_CONFIG_LOGLEVEL: 'verbose'
