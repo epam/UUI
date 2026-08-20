@@ -53,11 +53,12 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
-          registry-url: 'https://registry.npmjs.org'
+          # Do NOT set registry-url: setup-node@v6 would inject GITHUB_TOKEN as NODE_AUTH_TOKEN,
+          # which npm would use instead of OIDC, breaking Trusted Publishers authentication.
 
       - name: Upgrade npm
-        # Trusted Publishers require npm >= 11.5.1
-        run: npm install -g npm@latest
+        # Trusted Publishers require npm >= 11.5.1; stay on npm 11.x (not 12) for stability.
+        run: npm install -g npm@^11
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
