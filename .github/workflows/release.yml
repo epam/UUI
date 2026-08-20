@@ -80,13 +80,16 @@ jobs:
         # which does not support OIDC/Trusted Publishers. lerna exec delegates to the global
         # npm 11.x, which properly exchanges the GitHub OIDC token for a publish token.
         #
-        # npm 11 ignores publishConfig.directory when called directly, so we cd into build/
-        # explicitly when build/package.json exists (all compiled packages). Packages without
-        # a build step (e.g. cra-template-uui) publish from their root as before.
+        # npm 11 ignores publishConfig.directory when called directly, so we pass ./build as
+        # the explicit directory argument. cra-template-uui has no build step and publishes from
+        # root — it is handled in a separate lerna exec call to avoid shell nesting issues.
         run: |
           npx lerna exec --sort --stream \
-            --ignore=@epam/app --ignore=@epam/uui-e2e-tests \
-            -- bash -c 'if [ -f build/package.json ]; then npm stage publish ./build --provenance --access public --tag "$DIST_TAG" --ignore-scripts; else npm stage publish --provenance --access public --tag "$DIST_TAG" --ignore-scripts; fi'
+            --ignore=@epam/app --ignore=@epam/uui-e2e-tests --ignore=@epam/cra-template-uui \
+            -- npm stage publish ./build --provenance --access public --tag "$DIST_TAG" --ignore-scripts
+          npx lerna exec --sort --stream \
+            --scope=@epam/cra-template-uui \
+            -- npm stage publish --provenance --access public --tag "$DIST_TAG" --ignore-scripts
         env:
           DIST_TAG: ${{ inputs.dist_tag || 'latest' }}
 
