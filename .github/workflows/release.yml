@@ -86,7 +86,7 @@ jobs:
         run: |
           npx lerna exec --sort --stream \
             --ignore=@epam/app --ignore=@epam/uui-e2e-tests \
-            -- bash -c 'DIR=$([ -f build/package.json ] && echo ./build || echo .); npm stage publish "$DIR" --provenance --access public --tag "$DIST_TAG" --ignore-scripts'
+            -- bash -c 'if [ -f build/package.json ]; then npm stage publish ./build --provenance --access public --tag "$DIST_TAG" --ignore-scripts; else npm stage publish --provenance --access public --tag "$DIST_TAG" --ignore-scripts; fi'
         env:
           DIST_TAG: ${{ inputs.dist_tag || 'latest' }}
 
