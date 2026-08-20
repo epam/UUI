@@ -76,11 +76,11 @@ jobs:
 
       - name: Publish (dry run)
         if: ${{ inputs.dry_run == true }}
-        run: lerna publish from-git --force-publish --yes --dist-tag ${{ inputs.dist_tag || 'latest' }} --dry-run
+        run: npx lerna publish from-git --force-publish --yes --dist-tag ${{ inputs.dist_tag || 'latest' }} --dry-run
 
       - name: Publish
         if: ${{ inputs.dry_run != true }}
-        run: lerna publish from-git --force-publish --yes --dist-tag ${{ inputs.dist_tag || 'latest' }}
+        run: npx lerna publish from-git --force-publish --yes --dist-tag ${{ inputs.dist_tag || 'latest' }}
         env:
           # Passes --provenance to npm CLI (required for Trusted Publishers).
           # Lerna 5 does not support --provenance directly, so it is set via env var.
