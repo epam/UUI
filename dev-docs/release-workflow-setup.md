@@ -33,30 +33,13 @@ In repository **Settings → Environments → New environment**:
 
 This creates an approval gate — every publish will pause and wait for a maintainer to approve before packages are sent to npm.
 
-#### 3. Verify with a dry run
+#### 3. Verify the setup
 
-Before the first real release, confirm the setup works:
+Before the first real release, confirm the workflow is reachable:
 
 1. Go to **Actions → Release → Run workflow**
-2. Set **tag** to an existing tag (e.g. `v6.5.2`)
-3. Leave **dry_run** as `true` (default)
-4. Click **Run workflow** and approve the `npm-publish` deployment
+2. Set **tag** to an existing tag (e.g. `v6.5.2`) and **dist_tag** to `hotfix`
+3. Click **Run workflow** and approve the `npm-publish` deployment
+4. The workflow will build and attempt to publish — since the tag is already published, lerna should find nothing new to push
 
-Lerna will output what would be published without actually pushing to npm. If the workflow completes successfully, the setup is correct.
-
-#### 4. Enable automatic trigger (optional)
-
-Once a dry run passes, you can enable automatic publishing on every tag push.
-Uncomment the `push.tags` block at the top of `.github/workflows/release.yml`:
-
-```yaml
-on:
-  push:
-    tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
-      - 'v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+'
-  workflow_dispatch:
-    ...
-```
-
-With this enabled, pushing a tag via `yarn release` will automatically trigger the publish workflow — no need to run it manually from the Actions tab.
+After this, pushing any new tag via `yarn release` will automatically trigger the publish workflow.

@@ -1,17 +1,11 @@
 name: Release
 
-# Automatic tag trigger is disabled until Trusted Publishers are configured on npmjs.org.
-# To enable: uncomment the block below and remove the comment from the 'on:' section.
-#
-# on:
-#   push:
-#     tags:
-#       - 'v[0-9]+.[0-9]+.[0-9]+'
-#       - 'v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+'
-#       - 'v[0-9]+.[0-9]+.[0-9]+-alpha.[0-9]+'
-#   workflow_dispatch:
-
 on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-alpha.[0-9]+'
   workflow_dispatch:
     inputs:
       tag:
@@ -26,10 +20,6 @@ on:
           - beta
           - alpha
           - hotfix
-      dry_run:
-        description: 'Dry run — simulate without publishing to npm'
-        type: boolean
-        default: true
 
 jobs:
   publish:
@@ -40,13 +30,14 @@ jobs:
     environment: npm-publish
 
     permissions:
-      id-token: write # Required for npm Trusted Publishers (OIDC)
+      id-token: write  # Required for npm Trusted Publishers (OIDC)
+      contents: read   # Required for actions/checkout
 
     steps:
       - name: Resolve ref
         id: ref
         # On workflow_dispatch: use the provided tag input.
-        # On tag push (when auto-trigger is enabled): use the pushed tag (github.ref).
+        # On tag push: use the pushed tag (github.ref).
         run: |
           if [ -n "${{ inputs.tag }}" ]; then
             echo "value=${{ inputs.tag }}" >> $GITHUB_OUTPUT
@@ -54,14 +45,14 @@ jobs:
             echo "value=${{ github.ref }}" >> $GITHUB_OUTPUT
           fi
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ steps.ref.outputs.value }}
           fetch-depth: 0 # Required for lerna publish from-git to read tags
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '24'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Upgrade npm
@@ -74,13 +65,8 @@ jobs:
       - name: Build all packages
         run: yarn build
 
-      - name: Publish (dry run)
-        if: ${{ inputs.dry_run == true }}
-        run: lerna publish from-git --force-publish --yes --dist-tag ${{ inputs.dist_tag || 'latest' }} --dry-run
-
       - name: Publish
-        if: ${{ inputs.dry_run != true }}
-        run: lerna publish from-git --force-publish --yes --dist-tag ${{ inputs.dist_tag || 'latest' }}
+        run: npx lerna publish from-git --force-publish --yes --dist-tag ${{ inputs.dist_tag || 'latest' }}
         env:
           # Passes --provenance to npm CLI (required for Trusted Publishers).
           # Lerna 5 does not support --provenance directly, so it is set via env var.
