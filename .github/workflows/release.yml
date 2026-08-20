@@ -75,8 +75,13 @@ jobs:
         run: yarn build
 
       - name: Publish (dry run)
+        # lerna 5 does not support --dry-run for publish; simulate by listing packages
         if: ${{ inputs.dry_run == true }}
-        run: npx lerna publish from-git --force-publish --yes --dist-tag ${{ inputs.dist_tag || 'latest' }} --dry-run
+        run: |
+          echo "=== Packages that would be published from tag ${{ inputs.tag }} ==="
+          npx lerna ls --long
+          echo "=== npm registry connectivity ==="
+          npm ping
 
       - name: Publish
         if: ${{ inputs.dry_run != true }}
