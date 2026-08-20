@@ -1,17 +1,11 @@
 name: Release
 
-# Automatic tag trigger is disabled until Trusted Publishers are configured on npmjs.org.
-# To enable: uncomment the block below and remove the comment from the 'on:' section.
-#
-# on:
-#   push:
-#     tags:
-#       - 'v[0-9]+.[0-9]+.[0-9]+'
-#       - 'v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+'
-#       - 'v[0-9]+.[0-9]+.[0-9]+-alpha.[0-9]+'
-#   workflow_dispatch:
-
 on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-alpha.[0-9]+'
   workflow_dispatch:
     inputs:
       tag:
@@ -26,10 +20,6 @@ on:
           - beta
           - alpha
           - hotfix
-      dry_run:
-        description: 'Dry run — simulate without publishing to npm'
-        type: boolean
-        default: true
 
 jobs:
   publish:
@@ -47,7 +37,7 @@ jobs:
       - name: Resolve ref
         id: ref
         # On workflow_dispatch: use the provided tag input.
-        # On tag push (when auto-trigger is enabled): use the pushed tag (github.ref).
+        # On tag push: use the pushed tag (github.ref).
         run: |
           if [ -n "${{ inputs.tag }}" ]; then
             echo "value=${{ inputs.tag }}" >> $GITHUB_OUTPUT
@@ -75,17 +65,7 @@ jobs:
       - name: Build all packages
         run: yarn build
 
-      - name: Publish (dry run)
-        # lerna 5 does not support --dry-run for publish; simulate by listing packages
-        if: ${{ inputs.dry_run == true }}
-        run: |
-          echo "=== Packages that would be published from tag ${{ inputs.tag }} ==="
-          npx lerna ls --long
-          echo "=== npm registry connectivity ==="
-          npm ping
-
       - name: Publish
-        if: ${{ inputs.dry_run != true }}
         run: npx lerna publish from-git --force-publish --yes --dist-tag ${{ inputs.dist_tag || 'latest' }}
         env:
           # Passes --provenance to npm CLI (required for Trusted Publishers).
