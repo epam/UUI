@@ -714,11 +714,6 @@ dayjs@1.11.12:
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.12.tgz#5245226cc7f40a15bf52e0b99fd2a04669ccac1d"
   integrity sha512-Rt2g+nTbLlDWZTwwrIXjy9MeiZmSDI375FvZs72ngxx8PDC6YXOeR3q5LAuPzjZQxhiWdRKac7RKV+YyQYfYIg==
 
-dayjs@^1.11.3:
-  version "1.11.9"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.9.tgz#9ca491933fadd0a60a2c19f6c237c03517d71d1a"
-  integrity sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==
-
 debug@2.6.9, debug@~2.6.9:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -936,14 +931,6 @@ eventsource@^3.0.2:
   integrity sha512-l19WpE2m9hSuyP06+FbuUUf1G+R0SFLrtQfbRb9PRr+oimOfxQhgGCbVaXg5IvZyyTThJsxh6L/srkMiCeBPDA==
   dependencies:
     eventsource-parser "^3.0.1"
-
-express-actuator@1.8.4:
-  version "1.8.4"
-  resolved "https://registry.yarnpkg.com/express-actuator/-/express-actuator-1.8.4.tgz#4be0c469aefbd288a7916f7f1a86674961525083"
-  integrity sha512-V0VbfdnxYTp2IPIDh78LVoxShW0CL83rbLQ/BtFansamEaX93DepIhy9v78zZysJoPvce8nmS3TumwYSV4XKiw==
-  dependencies:
-    dayjs "^1.11.3"
-    properties-reader "^2.2.0"
 
 express-fileupload@^1.1.6:
   version "1.3.1"
@@ -1742,13 +1729,6 @@ process@^0.11.10:
   version "0.11.10"
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
   integrity sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==
-
-properties-reader@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/properties-reader/-/properties-reader-2.2.0.tgz#41d837fe143d8d5f2386b6a869a1975c0b2c595c"
-  integrity sha512-CgVcr8MwGoBKK24r9TwHfZkLLaNFHQ6y4wgT9w/XzdpacOOi5ciH4hcuLechSDAwXsfrGQtI2JTutY2djOx2Ow==
-  dependencies:
-    mkdirp "^1.0.4"
 
 proxy-addr@^2.0.7, proxy-addr@~2.0.4:
   version "2.0.7"
