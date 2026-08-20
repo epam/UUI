@@ -89,4 +89,3 @@ jobs:
             -- bash -c '[ -f build/package.json ] && cd build; npm publish --provenance --access public --tag "$DIST_TAG" --ignore-scripts'
         env:
           DIST_TAG: ${{ inputs.dist_tag || 'latest' }}
-          NPM_CONFIG_LOGLEVEL: 'verbose'
