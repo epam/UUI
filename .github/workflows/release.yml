@@ -40,7 +40,8 @@ jobs:
     environment: npm-publish
 
     permissions:
-      id-token: write # Required for npm Trusted Publishers (OIDC)
+      id-token: write  # Required for npm Trusted Publishers (OIDC)
+      contents: read   # Required for actions/checkout
 
     steps:
       - name: Resolve ref
