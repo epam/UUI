@@ -65,9 +65,19 @@ jobs:
       - name: Build all packages
         run: yarn build
 
+      - name: Debug npm auth
+        run: |
+          echo "npm version: $(npm --version)"
+          echo "registry: $(npm config get registry)"
+          echo "NODE_AUTH_TOKEN set: ${NODE_AUTH_TOKEN:+yes (non-empty):-no (empty or unset)}"
+          echo "ACTIONS_ID_TOKEN_REQUEST_URL: $ACTIONS_ID_TOKEN_REQUEST_URL"
+          echo ".npmrc contents (tokens redacted):"
+          sed 's/_authToken=.*//' ~/.npmrc 2>/dev/null || echo "(no .npmrc)"
+
       - name: Publish
         run: npx lerna publish from-git --force-publish --yes --dist-tag ${{ inputs.dist_tag || 'latest' }}
         env:
           # Passes --provenance to npm CLI (required for Trusted Publishers).
           # Lerna 5 does not support --provenance directly, so it is set via env var.
           NPM_CONFIG_PROVENANCE: 'true'
+          NPM_CONFIG_LOGLEVEL: 'verbose'
