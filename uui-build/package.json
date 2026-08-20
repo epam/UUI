@@ -72,6 +72,10 @@
     "ts-morph": "21.0.1",
     "typescript": "5.4.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epam/UUI"
+  },
   "publishConfig": {
     "directory": "build"
   },
