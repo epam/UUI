@@ -55,11 +55,12 @@
             :global(.uui-icon) {
                 fill: var(--uui-radio_input-fill-checked);
                 position: absolute;
-                inset: calc((var(--uui-radio_input-size) - var(--uui-radio_input-bullet-size)) / 2);
+                top: calc(0px - var(--uui-radio_input-border-width));
+                left: calc(0px - var(--uui-radio_input-border-width));
 
                 svg {
-                    height: 100%;
-                    width: 100%;
+                    height: var(--uui-radio_input-bullet-size);
+                    width: var(--uui-radio_input-bullet-size);
                 }
             }
         }
