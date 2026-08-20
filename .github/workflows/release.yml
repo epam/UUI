@@ -79,10 +79,14 @@ jobs:
         # lerna publish from-git cannot be used here: lerna 5.6.2 bundles libnpmpublish from 2022
         # which does not support OIDC/Trusted Publishers. lerna exec delegates to the global
         # npm 11.x, which properly exchanges the GitHub OIDC token for a publish token.
+        #
+        # npm 11 ignores publishConfig.directory when called directly, so we cd into build/
+        # explicitly when build/package.json exists (all compiled packages). Packages without
+        # a build step (e.g. cra-template-uui) publish from their root as before.
         run: |
           npx lerna exec --sort --stream \
             --ignore=@epam/app --ignore=@epam/uui-e2e-tests \
-            -- npm publish --provenance --access public --tag "$DIST_TAG" --ignore-scripts
+            -- bash -c '[ -f build/package.json ] && cd build; npm publish --provenance --access public --tag "$DIST_TAG" --ignore-scripts'
         env:
           DIST_TAG: ${{ inputs.dist_tag || 'latest' }}
           NPM_CONFIG_LOGLEVEL: 'verbose'
