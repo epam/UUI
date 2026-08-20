@@ -7,7 +7,7 @@ import { LazyTreeProps } from './types';
 import { CommonTreeConfig } from '../types';
 import { ROOT_ID } from '../../../constants';
 import { LoadAllConfig, TreeStructureId } from '../../../treeState/types';
-import { useLoadCancellation, isAbortError } from '../../common';
+import { useAbortController } from '../../common';
 
 export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
     Pick<LazyTreeProps<TItem, TId, TFilter>, 'getChildCount'>,
@@ -50,7 +50,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
 
     const promiseInProgressRef = useRef<Promise<LoadResult<TItem, TId>>>(undefined);
 
-    const { getSignal, abort } = useLoadCancellation();
+    const { getAbortSignal } = useAbortController();
 
     const loadMissingImpl = useCallback(async ({
         using,
@@ -61,10 +61,8 @@ export function useLoadData<TItem, TId, TFilter = any>(
     }: LoadMissingOptions<TItem, TId, TFilter>): Promise<LoadResult<TItem, TId>> => {
         const loadingTree = tree;
         const completeDsState = { ...props.dataSourceState, ...dataSourceState };
-        const signal = getSignal();
-
         try {
-            const newTree = await tree.load({
+            const newTreePromise = tree.load({
                 using,
                 options: {
                     ...props,
@@ -77,30 +75,25 @@ export function useLoadData<TItem, TId, TFilter = any>(
                         ...props.dataSourceState?.filter,
                         ...dataSourceState?.filter,
                     },
-                    signal,
+                    signal: getAbortSignal(),
                 },
                 dataSourceState: completeDsState,
             });
 
-            if (signal.aborted) {
-                return { isUpdated: false, isOutdated: true, tree: loadingTree };
-            }
+            const newTree = await newTreePromise;
+            const linkToTree = tree;
 
-            return {
-                isUpdated: loadingTree !== newTree,
-                isOutdated: false,
-                tree: newTree,
-            };
+            // If tree is changed during this load, than there was reset occurred (new value arrived)
+            // We need to tell caller to reject this result
+            const isOutdated = linkToTree !== loadingTree;
+            const isUpdated = linkToTree !== newTree;
+            return { isUpdated, isOutdated, tree: newTree };
         } catch (e) {
-            if (signal.aborted || isAbortError(e)) {
-                return { isUpdated: false, isOutdated: true, tree: loadingTree };
-            }
-
             // TBD - correct error handling
             console.error('LazyListView: Error while loading items.', e);
             return { isUpdated: false, isOutdated: false, tree: loadingTree };
         }
-    }, [isFolded, api, filter, props.dataSourceState, getSignal]);
+    }, [isFolded, api, filter, props.dataSourceState, getAbortSignal]);
 
     const loadMissing = useCallback(({
         tree,
@@ -112,7 +105,6 @@ export function useLoadData<TItem, TId, TFilter = any>(
     }: LoadMissingOptions<TItem, TId, TFilter>): Promise<LoadResult<TItem, TId>> => {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
         if (abortInProgress && promiseInProgressRef.current) {
-            abort();
             promiseInProgressRef.current = Promise.resolve({ isUpdated: false, isOutdated: false, tree });
         }
 
@@ -122,7 +114,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
             : loadMissingImpl({ tree, using, loadAllChildren, isLoadStrict, dataSourceState });
 
         return promiseInProgressRef.current;
-    }, [loadMissingImpl, abort]);
+    }, [loadMissingImpl]);
 
     const loadMissingOnCheck = useCallback(async ({ tree, id, isRoot, isChecked }: LoadMissingOptionsOnCheck<TItem, TId>) => {
         const isImplicitMode = cascadeSelection === CascadeSelectionTypes.IMPLICIT;
