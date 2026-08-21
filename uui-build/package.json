@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "6.5.1",
+  "version": "6.5.2",
   "bin": {
     "epam-uui-build": "./bin/cli.js"
   },
@@ -71,6 +71,10 @@
     "svgo": "1.3.2",
     "ts-morph": "21.0.1",
     "typescript": "5.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epam/UUI"
   },
   "publishConfig": {
     "directory": "build"

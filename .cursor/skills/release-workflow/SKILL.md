@@ -7,106 +7,73 @@ description: Guides the UUI package release process including stable and beta re
 
 ## Important
 
-**Always ask for explicit user permission before running `yarn release` or `yarn release-beta`.** These commands publish packages to npm and cannot be undone. Never publish to npm without confirming the user intends to do so.
+**Always ask for explicit user permission before triggering a release.** Publishing packages to npm cannot be undone. Never initiate the publish workflow without confirming the user intends to do so.
 
 **Before asking for permission, provide a pre-publish summary:**
 - **Version**: The version that will be published (from `changelog.md` top section or Lerna)
 - **Packages**: Which packages will be published (from `package.json` workspaces)
 - **Summary**: Brief highlights of changes from the current `changelog.md` entry
 
-Then ask the user to confirm before running the release command.
+## How publishing works
+
+Publishing is done via GitHub Actions using npm Trusted Publishers (OIDC). No npm token or OTP is required.
+
+The release process has two parts:
+1. **Version bump (local)** — `yarn release` runs `lerna version --force-publish` interactively. Lerna creates a version commit, tag, and pushes both to the release branch.
+2. **Publish (GitHub Actions)** — the maintainer manually triggers the `Release` workflow in GitHub, selects the tag and dist-tag, approves the `npm-publish` environment gate, and CI publishes all 13 packages.
 
 ## Prerequisites
 
-- Terminal logged into UUI GitHub account
-- NPM account with write access to UUI packages
-- For MFA: Generate Access Token in NPM profile
+- Release branch created from `develop` (e.g. `release/vX.Y.Z`)
+- `changelog.md` updated with all released changes
+- Builds verified: `yarn build`
 
 ## Stable Release
 
-1. Merge all release changes to `main` branch
-2. Update `changelog.md` with all released changes
-3. Verify builds: `yarn build`
-4. Provide pre-publish summary (version, packages, changelog highlights), **ask user for permission**, then run: `yarn release`
-5. Follow console prompts
-6. After successful release:
-   - Publish changelog to GitHub Releases: https://github.com/epam/UUI/releases
-   - Post in UUI Teams channel
-7. **Sync `main` back into `develop`** (required after every stable and beta release)
-
-## Sync main into develop
-
-Do this immediately after a successful release, before new commits land on `develop`.
-
-`yarn release` / `yarn release-beta` create version-bump commits only on `main`. Without syncing back, `develop` keeps old package versions and the branches diverge.
-
-### Steps
-
-```bash
-git fetch origin
-git checkout develop
-git pull origin develop
-git merge origin/main
-```
-
-Resolve conflicts if any:
-- `package.json`, `lerna.json` — take released versions from `main`
-- `changelog.md` — keep the released version section from `main`; add an empty unreleased `# 6.x.x - xx.xx.2026` section on top
-
-`develop` is protected — push via a sync branch and open a PR:
-
-```bash
-git commit -m "Merge branch 'main' into develop after vX.Y.Z release"
-git checkout -b sync/main-into-develop-vX.Y.Z
-git push -u origin sync/main-into-develop-vX.Y.Z
-```
-
-After the PR is merged, verify:
-
-```bash
-git fetch origin
-git log origin/develop..origin/main
-```
-
-Output must be empty.
-
-**Rules:** use merge, not rebase. Do not squash the sync PR — preserve release history.
+1. On the release branch, run: `yarn release`
+2. Lerna prompts for version type — choose patch / minor / major
+3. Lerna commits the version bump, creates tag `vX.Y.Z`, pushes to the release branch
+4. Go to GitHub → Actions → Release → **Run workflow**
+   - `tag`: the tag from step 3 (e.g. `v6.5.3`)
+   - `dist_tag`: `latest`
+   - `dry_run`: `false`
+5. Approve the deployment in the `npm-publish` environment
+6. After successful publish: post changelog to GitHub Releases and UUI Teams channel
+7. Open PR from release branch into `main`
+8. **Sync `main` back into `develop`** (see dev-docs/release-workflow.md for steps)
 
 ## Beta Release
 
-Provide pre-publish summary, then **ask user for permission** before running. Use beta dist-tag instead of latest:
+Same steps, with:
+- In step 2, enter a prerelease version when prompted (e.g. `6.5.3-beta.0`)
+- In step 4, set `dist_tag` to `beta`
 
-```bash
-yarn release-beta
-```
+## Dry Run (testing)
 
-## NPM Login with MFA
-
-If using MFA, login with access token:
-
-```bash
-npm config set //registry.npmjs.org/:_authToken=your_token
-```
+Trigger the workflow with `dry_run: true` (default) and an existing tag to validate the build and publish steps without actually uploading to npm.
 
 ## Handling Failed Releases
 
-If release fails and packages aren't published, revert Lerna commits and tags:
+If the release fails after Lerna already created the version commit and tag:
 
-1. Revert latest commit (usually has version number in message)
-2. Delete local tag: `git tag -d <tag_name>` (e.g., `v5.7.0`)
+1. Revert the version bump commit
+2. Delete local tag: `git tag -d <tag_name>`
 3. Delete remote tag: `git push --delete origin <tag_name>`
-4. Try release again
+4. Fix the issue and run `yarn release` again
 
 ## Release Checklist
 
-- [ ] All changes merged to `main`
+- [ ] Release branch created from `develop`
+- [ ] All changes merged into the release branch
 - [ ] Changelog updated
 - [ ] Builds verified (`yarn build`)
-- [ ] GitHub and NPM accounts authenticated
-- [ ] Pre-publish summary shown (version, packages, changelog)
 - [ ] **User permission obtained** to publish to npm
-- [ ] Run release command
-- [ ] Publish changelog to GitHub Releases
-- [ ] Notify team in Teams channel
-- [ ] Sync `main` into `develop` (merge + PR if needed)
-- [ ] Verify `git log origin/develop..origin/main` is empty
+- [ ] `yarn release` — version bump + tag pushed
+- [ ] GitHub Actions workflow triggered with correct tag and dist-tag
+- [ ] `npm-publish` environment approved
+- [ ] Workflow completed successfully
+- [ ] Changelog published to GitHub Releases
+- [ ] Team notified in Teams channel
+- [ ] PR from release branch into `main` opened
+- [ ] `main` synced back into `develop`
+- [ ] `git log origin/develop..origin/main` is empty

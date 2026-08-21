@@ -1,0 +1,92 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-alpha.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Git tag to publish (e.g. v6.5.3)'
+        required: true
+      dist_tag:
+        description: 'npm dist-tag'
+        type: choice
+        default: 'latest'
+        options:
+          - latest
+          - beta
+          - alpha
+          - hotfix
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    # Requires a GitHub Environment named 'npm-publish' to be created in repository Settings.
+    # Recommended: add required reviewers to this environment for an approval gate.
+    environment: npm-publish
+
+    permissions:
+      id-token: write  # Required for npm Trusted Publishers (OIDC)
+      contents: read   # Required for actions/checkout
+
+    steps:
+      - name: Resolve ref
+        id: ref
+        # On workflow_dispatch: use the provided tag input.
+        # On tag push: use the pushed tag (github.ref).
+        run: |
+          if [ -n "${{ inputs.tag }}" ]; then
+            echo "value=${{ inputs.tag }}" >> $GITHUB_OUTPUT
+          else
+            echo "value=${{ github.ref }}" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ steps.ref.outputs.value }}
+          fetch-depth: 0 # Required for lerna publish from-git to read tags
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          # Do NOT set registry-url: setup-node@v6 would inject GITHUB_TOKEN as NODE_AUTH_TOKEN,
+          # which npm would use instead of OIDC, breaking Trusted Publishers authentication.
+
+      - name: Upgrade npm
+        # Trusted Publishers require npm >= 11.5.1; stay on npm 11.x (not 12) for stability.
+        run: npm install -g npm@^11
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build all packages
+        run: yarn build
+
+      - name: Publish
+        # lerna publish from-git cannot be used here: lerna 5.6.2 bundles libnpmpublish from 2022
+        # which does not support OIDC/Trusted Publishers. lerna exec delegates to the global
+        # npm 11.x, which properly exchanges the GitHub OIDC token for a publish token.
+        #
+        # npm 11 ignores publishConfig.directory when called directly, so we pass ./build as
+        # the explicit directory argument. cra-template-uui has no build step and publishes from
+        # root — it is handled in a separate lerna exec call to avoid shell nesting issues.
+        run: |
+          npx lerna exec --sort --stream \
+            --ignore=@epam/app --ignore=@epam/uui-e2e-tests --ignore=@epam/cra-template-uui \
+            -- npm stage publish ./build --provenance --access public --tag "$DIST_TAG" --ignore-scripts
+          npx lerna exec --sort --stream \
+            --scope=@epam/cra-template-uui \
+            -- npm stage publish --provenance --access public --tag "$DIST_TAG" --ignore-scripts
+        env:
+          DIST_TAG: ${{ inputs.dist_tag || 'latest' }}
+
+      - name: Upload npm debug logs
+        if: failure()
+        uses: actions/upload-artifact@v6
+        with:
+          name: npm-debug-logs
+          path: /home/runner/.npm/_logs/
