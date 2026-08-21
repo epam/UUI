@@ -1,6 +1,6 @@
 {
   "name": "@epam/cra-template-uui",
-  "version": "6.5.1",
+  "version": "6.5.2",
   "keywords": [
     "UUI",
     "react",
@@ -11,7 +11,7 @@
   "description": "UUI template for Create React App.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/epam/uui"
+    "url": "https://github.com/epam/UUI"
   },
   "license": "MIT",
   "engines": {

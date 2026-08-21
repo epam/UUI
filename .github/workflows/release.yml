@@ -53,11 +53,12 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
-          registry-url: 'https://registry.npmjs.org'
+          # Do NOT set registry-url: setup-node@v6 would inject GITHUB_TOKEN as NODE_AUTH_TOKEN,
+          # which npm would use instead of OIDC, breaking Trusted Publishers authentication.
 
       - name: Upgrade npm
-        # Trusted Publishers require npm >= 11.5.1
-        run: npm install -g npm@latest
+        # Trusted Publishers require npm >= 11.5.1; stay on npm 11.x (not 12) for stability.
+        run: npm install -g npm@^11
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -66,8 +67,26 @@ jobs:
         run: yarn build
 
       - name: Publish
-        run: npx lerna publish from-git --force-publish --yes --dist-tag ${{ inputs.dist_tag || 'latest' }}
+        # lerna publish from-git cannot be used here: lerna 5.6.2 bundles libnpmpublish from 2022
+        # which does not support OIDC/Trusted Publishers. lerna exec delegates to the global
+        # npm 11.x, which properly exchanges the GitHub OIDC token for a publish token.
+        #
+        # npm 11 ignores publishConfig.directory when called directly, so we pass ./build as
+        # the explicit directory argument. cra-template-uui has no build step and publishes from
+        # root — it is handled in a separate lerna exec call to avoid shell nesting issues.
+        run: |
+          npx lerna exec --sort --stream \
+            --ignore=@epam/app --ignore=@epam/uui-e2e-tests --ignore=@epam/cra-template-uui \
+            -- npm stage publish ./build --provenance --access public --tag "$DIST_TAG" --ignore-scripts
+          npx lerna exec --sort --stream \
+            --scope=@epam/cra-template-uui \
+            -- npm stage publish --provenance --access public --tag "$DIST_TAG" --ignore-scripts
         env:
-          # Passes --provenance to npm CLI (required for Trusted Publishers).
-          # Lerna 5 does not support --provenance directly, so it is set via env var.
-          NPM_CONFIG_PROVENANCE: 'true'
+          DIST_TAG: ${{ inputs.dist_tag || 'latest' }}
+
+      - name: Upload npm debug logs
+        if: failure()
+        uses: actions/upload-artifact@v6
+        with:
+          name: npm-debug-logs
+          path: /home/runner/.npm/_logs/
