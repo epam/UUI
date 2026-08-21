@@ -66,15 +66,6 @@ jobs:
       - name: Build all packages
         run: yarn build
 
-      - name: Debug npm auth
-        run: |
-          echo "npm version: $(npm --version)"
-          echo "registry: $(npm config get registry)"
-          echo "NODE_AUTH_TOKEN set: ${NODE_AUTH_TOKEN:+yes (non-empty):-no (empty or unset)}"
-          echo "ACTIONS_ID_TOKEN_REQUEST_URL: $ACTIONS_ID_TOKEN_REQUEST_URL"
-          echo ".npmrc contents (tokens redacted):"
-          sed 's/_authToken=.*//' ~/.npmrc 2>/dev/null || echo "(no .npmrc)"
-
       - name: Publish
         # lerna publish from-git cannot be used here: lerna 5.6.2 bundles libnpmpublish from 2022
         # which does not support OIDC/Trusted Publishers. lerna exec delegates to the global
