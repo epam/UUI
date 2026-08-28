@@ -1,3 +1,9 @@
+# 6.5.xx - xx.xx.2026
+**What's New**
+
+**What's Fixed**
+* [RadioInput]: fixed the checked-state dot rendering off-center and with fractional pixel sizes at fractional browser/OS zoom levels.
+
 # 6.5.2 - 20.08.2026
 
 **What's Fixed**
