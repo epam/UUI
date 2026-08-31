@@ -168,6 +168,28 @@ function configureWebpack(config, { paths }) {
         // Template receives plugin.options, not userOptions (options is a copy made at plugin construction time)
         plugin.options.isWrapUuiAppInShadowDom = isWrapUuiAppInShadowDom;
     });
+    // Prevent OtAutoBlock.js (OneTrust) from blocking app bundles on cookie reject.
+    // Without this attribute, OneTrust may categorize bundle scripts as non-essential
+    // and block them, causing a white screen when the user rejects cookies.
+    // Note: HtmlWebpackPlugin v5 does not support a scriptAttributes option — we must
+    // use the alterAssetTagGroups hook to inject the attribute into generated script tags.
+    // We derive the class from the existing plugin instance to guarantee the same module reference
+    // as react-scripts uses, avoiding WeakMap mismatch if there are multiple copies in node_modules.
+    const HtmlWebpackPluginClass = config.plugins.find((p) => p.constructor.name === 'HtmlWebpackPlugin').constructor;
+    config.plugins.push({
+        apply(compiler) {
+            compiler.hooks.compilation.tap('AddOtIgnoreToScripts', (compilation) => {
+                HtmlWebpackPluginClass.getHooks(compilation).alterAssetTagGroups.tap('AddOtIgnoreToScripts', (data) => {
+                    [...data.headTags, ...data.bodyTags].forEach((tag) => {
+                        if (tag.tagName === 'script' && tag.attributes.src) {
+                            tag.attributes['data-ot-ignore'] = true;
+                        }
+                    });
+                    return data;
+                });
+            });
+        },
+    });
     changePluginByName(config, 'ForkTsCheckerWebpackPlugin', (plugin) => {
         // custom formatter can be removed when next bug is fixed:
         // https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/issues/789
