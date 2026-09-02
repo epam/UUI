@@ -23,7 +23,7 @@
 - `@epam/uui-docs` — Utilities for docs site (DocBuilder, demo data, Property Explorer contexts). Needed when working on documentation
 - `@epam/uui-build` — Build scripts, linting config, npm scripts
 - `@epam/uui-db` — Client-side relational state cache
-- `templates/` — Project templates (CRA, Next.js, Vite)
+- `templates/` — Project templates: `uui-vite-template` and `uui-nextjs-template`; `uui-cra-template` deprecated — kept only for the `trackBundleSize` CI pipeline
 - `next-demo/` — Next.js demo apps for integration testing
 
 ## 2) Development Environment
