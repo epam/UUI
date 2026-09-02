@@ -1,5 +1,6 @@
 # 6.5.xx - xx.xx.2026
 **What's New**
+* Remove support of deprecated `@epam/cra-template-uui` package. Create React App has been [officially deprecated](https://react.dev/blog/2025/02/14/sunsetting-create-react-app) by the React team. The package will no longer receive new updates or releases. Use the [Vite](https://github.com/epam/UUI/tree/main/templates/uui-vite-template) or [Next.js](https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template) templates instead.
 
 **What's Fixed**
 * [RadioInput]: fixed the checked-state dot rendering off-center and with fractional pixel sizes at fractional browser/OS zoom levels.

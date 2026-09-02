@@ -72,15 +72,11 @@ jobs:
         # npm 11.x, which properly exchanges the GitHub OIDC token for a publish token.
         #
         # npm 11 ignores publishConfig.directory when called directly, so we pass ./build as
-        # the explicit directory argument. cra-template-uui has no build step and publishes from
-        # root — it is handled in a separate lerna exec call to avoid shell nesting issues.
+        # the explicit directory argument.
         run: |
           npx lerna exec --sort --stream \
             --ignore=@epam/app --ignore=@epam/uui-e2e-tests --ignore=@epam/cra-template-uui \
             -- npm stage publish ./build --provenance --access public --tag "$DIST_TAG" --ignore-scripts
-          npx lerna exec --sort --stream \
-            --scope=@epam/cra-template-uui \
-            -- npm stage publish --provenance --access public --tag "$DIST_TAG" --ignore-scripts
         env:
           DIST_TAG: ${{ inputs.dist_tag || 'latest' }}
 
