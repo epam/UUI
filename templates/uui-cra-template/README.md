@@ -1,21 +1,15 @@
 # cra-template-uui
 
-This is the official [UUI](https://uui.epam.com/) template for [Create React App](https://github.com/facebook/create-react-app).
+> **Deprecated**: This package is no longer published to npm and is not recommended for new projects.
+> It is kept in the repository solely for use by the internal `trackBundleSize` CI pipeline.
+>
+> For new projects, use the [Vite template](../uui-vite-template) or [Next.js template](../uui-nextjs-template) instead:
+> ```sh
+> # Vite
+> npx -- degit@latest https://github.com/epam/UUI/templates/uui-vite-template my-app
+>
+> # Next.js
+> npx -- degit@latest https://github.com/epam/UUI/templates/uui-nextjs-template/template my-app
+> ```
 
-To use this template, add `--template @epam/uui` when creating a new app.
-
-For example:
-
-```sh
-npx create-react-app my-app --template @epam/uui
-
-# or
-
-yarn create react-app my-app --template @epam/uui
-```
-
-For more information, please refer to:
-
-- [Getting Started](https://create-react-app.dev/docs/getting-started) – How to create a new app.
-- [User Guide](https://create-react-app.dev) – How to develop apps bootstrapped with Create React App.
-- [UUI docs](https://uui.epam.com/) – UUI library official documentation.
+This was the official [UUI](https://uui.epam.com/) template for [Create React App](https://github.com/facebook/create-react-app).
