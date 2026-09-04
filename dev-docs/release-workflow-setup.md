@@ -17,11 +17,11 @@ For each of the 13 published packages, add a Trusted Publisher on npmjs.org:
 
   CI will run the full publish cycle (OIDC auth, build, lerna publish from-git), but packages will land in a staged state and won't be visible to consumers until a maintainer promotes them on npmjs.com. This provides an extra review gate after the automated publish.
 
-Packages to configure (15 total):
+Packages to configure (14 total):
 
-`@epam/uui`, `@epam/uui-core`, `@epam/uui-components`, `@epam/loveship`, `@epam/promo`, `@epam/electric`, `@epam/assets`, `@epam/uui-editor`, `@epam/uui-timeline`, `@epam/uui-docs`, `@epam/uui-db`, `@epam/uui-test-utils`, `@epam/uui-build`, `@epam/uui-extra`, `@epam/cra-template-uui`
+`@epam/uui`, `@epam/uui-core`, `@epam/uui-components`, `@epam/loveship`, `@epam/promo`, `@epam/electric`, `@epam/assets`, `@epam/uui-editor`, `@epam/uui-timeline`, `@epam/uui-docs`, `@epam/uui-db`, `@epam/uui-test-utils`, `@epam/uui-build`, `@epam/uui-extra`
 
-**Deprecated packages** — these names exist on npmjs.com but are no longer published from this repository and should be ignored: `@epam/edu-core-routing`, `@epam/internal`, `@epam/draft-rte`.
+**Deprecated packages** — these names exist on npmjs.com but are no longer published from this repository and should be ignored: `@epam/edu-core-routing`, `@epam/internal`, `@epam/draft-rte`, `@epam/cra-template-uui`.
 
 #### 2. Create a GitHub Environment
 
