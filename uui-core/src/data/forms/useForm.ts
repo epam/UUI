@@ -143,7 +143,13 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
         if (!unsavedChanges || !props.loadUnsavedChanges || isEqual(unsavedChanges, initialForm.current.form)) return;
         props
             .loadUnsavedChanges()
-            .then(() => handleFormUpdate(() => unsavedChanges))
+            .then((shouldRestore) => {
+                if (shouldRestore === false) {
+                    removeUnsavedChanges();
+                } else {
+                    handleFormUpdate(() => unsavedChanges);
+                }
+            })
             .catch(() => null);
     }, []);
 
