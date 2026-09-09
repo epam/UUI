@@ -4,12 +4,12 @@ import { WarningNotification } from '../overlays';
 import { Text, RichTextView } from '../typography';
 import { i18n } from '../../i18n';
 
-export function showUnsavedChangesNotification(
+export async function showUnsavedChangesNotification(
     notifications: INotificationContext,
-): Promise<void | boolean> {
-    let isDeclined = false;
+): Promise<boolean> {
+    let restore = false;
 
-    return notifications
+    await notifications
         .show(
             (props: INotification) => (
                 <WarningNotification
@@ -17,13 +17,16 @@ export function showUnsavedChangesNotification(
                     actions={ [
                         {
                             name: i18n.form.notifications.actionButtonCaption,
-                            action: props.onSuccess,
+                            action: () => {
+                                restore = true;
+                                props.onSuccess();
+                            },
                         },
                         {
                             name: i18n.form.notifications.declineButtonCaption,
                             action: () => {
-                                isDeclined = true;
-                                props.onClose();
+                                restore = false;
+                                props.onSuccess();
                             },
                         },
                     ] }
@@ -34,11 +37,7 @@ export function showUnsavedChangesNotification(
                 </WarningNotification>
             ),
             { duration: 5, position: 'bot-left' },
-        )
-        .catch(() => {
-            if (isDeclined) {
-                return false;
-            }
-            return Promise.reject();
-        });
+        );
+
+    return restore;
 }
