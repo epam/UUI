@@ -31,7 +31,8 @@ const TREE_SHAKEABLE_INIT = () => ({
     form: {
         notifications: {
             actionButtonCaption: 'Restore',
-            unsavedChangesMessage: 'You have unsaved changes. Click Restore button if you would like to recover the data',
+            declineButtonCaption: 'Decline',
+            unsavedChangesMessage: 'You have unsaved changes. Click Restore to recover the data, or Decline to discard it',
         },
         modals: {
             beforeLeaveMessage: 'Your data may be lost. Do you want to save data?',

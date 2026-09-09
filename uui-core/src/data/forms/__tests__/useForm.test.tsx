@@ -548,6 +548,55 @@ describe('useForm', () => {
             svc.uuiUserSettings.set('form-test', null);
         });
 
+        it('Should discard unsaved data from local storage when loadUnsavedChanges resolves false', async () => {
+            const loadUnsavedChangesMock = jest.fn().mockResolvedValue(false);
+            const props: UseFormProps<IFoo> = {
+                value: testData,
+                settingsKey: 'form-test-decline',
+                onSave: () => Promise.resolve(),
+                beforeLeave: null,
+                getMetadata: () => testMetadata,
+                loadUnsavedChanges: loadUnsavedChangesMock,
+            };
+
+            const { result: firstRenderResult, unmount } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
+
+            act(() => firstRenderResult.current.lens.prop('dummy').set('hi'));
+
+            unmount();
+
+            const { result: secondRenderResult, svc } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
+
+            expect(loadUnsavedChangesMock).toHaveBeenCalled();
+            expect(secondRenderResult.current.lens.prop('dummy').get()).toBe('');
+            expect(svc.uuiUserSettings.get('form-test-decline')).toBe(null);
+        });
+
+        it('Should keep unsaved data in local storage when loadUnsavedChanges is rejected', async () => {
+            const loadUnsavedChangesMock = jest.fn().mockRejectedValue(undefined);
+            const props: UseFormProps<IFoo> = {
+                value: testData,
+                settingsKey: 'form-test-dismiss',
+                onSave: () => Promise.resolve(),
+                beforeLeave: null,
+                getMetadata: () => testMetadata,
+                loadUnsavedChanges: loadUnsavedChangesMock,
+            };
+
+            const { result: firstRenderResult, unmount } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
+
+            act(() => firstRenderResult.current.lens.prop('dummy').set('hi'));
+
+            unmount();
+
+            const { result: secondRenderResult, svc } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
+
+            expect(loadUnsavedChangesMock).toHaveBeenCalled();
+            expect(secondRenderResult.current.lens.prop('dummy').get()).toBe('');
+            expect(svc.uuiUserSettings.get<IFoo>('form-test-dismiss').dummy).toBe('hi');
+            svc.uuiUserSettings.set('form-test-dismiss', null);
+        });
+
         it('Should not invoke loadUnsavedChanges callback if localStorage value equal initial from value', async () => {
             const loadUnsavedChangesMock = jest.fn().mockResolvedValue(true);
             const props: UseFormProps<IFoo> = {
