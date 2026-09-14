@@ -21,6 +21,10 @@
     color: var(--uui-text_placeholder);
     vertical-align: 1px; // to fix vertical over-sizing of line
 
+    &.font-failed {
+        visibility: hidden; // hide fallback-font letterforms (and their shimmer) instead of showing readable text
+    }
+
     &.animated-loading {
         color: transparent;
         background-clip: border-box;
