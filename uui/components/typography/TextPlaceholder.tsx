@@ -14,7 +14,7 @@ export interface ITextPlaceholderProps extends IHasRawProps<React.HTMLAttributes
 export type TextPlaceholderProps = PropsWithChildren<ITextPlaceholderProps>;
 
 export const TextPlaceholder: React.FunctionComponent<PropsWithChildren<ITextPlaceholderProps>> = (props) => {
-    const pattern = '&nbsp;';
+    const pattern = 'x';
     const text = React.useMemo(() => {
         const words = [];
         for (let i = 0; i < (props.wordsCount || 1); i++) {
@@ -32,8 +32,9 @@ export const TextPlaceholder: React.FunctionComponent<PropsWithChildren<ITextPla
                     className={ cx([
                         props.cx, css.loadingWord, !props.isNotAnimated && css.animatedLoading,
                     ]) }
-                    dangerouslySetInnerHTML={ { __html: it } }
-                />
+                >
+                    {it}
+                </span>
             ))}
         </div>
     );

@@ -9,7 +9,7 @@ exports[`TextPlaceholder should be rendered correctly 1`] = `
     <span
       class="loadingWord animatedLoading"
     >
-                   
+      xxxxxxxxxxxxx
     </span>
   </div>
 </DocumentFragment>
@@ -24,27 +24,27 @@ exports[`TextPlaceholder should be rendered correctly 2`] = `
     <span
       class="loadingWord"
     >
-                   
+      xxxxxxxxxxxxx
     </span>
     <span
       class="loadingWord"
     >
-                   
+      xxxxxxxxxxxxx
     </span>
     <span
       class="loadingWord"
     >
-                   
+      xxxxxxxxxxxxx
     </span>
     <span
       class="loadingWord"
     >
-                   
+      xxxxxxxxxxxxx
     </span>
     <span
       class="loadingWord"
     >
-                   
+      xxxxxxxxxxxxx
     </span>
   </div>
 </DocumentFragment>
