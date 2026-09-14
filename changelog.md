@@ -5,6 +5,8 @@
 
 **What's Fixed**
 * [RadioInput]: fixed the checked-state dot rendering off-center and with fractional pixel sizes at fractional browser/OS zoom levels.
+* [TextPlaceholder]: fixed placeholder bars not being visible in Safari ([#3127](https://github.com/epam/UUI/issues/3127))
+
 
 # 6.5.2 - 20.08.2026
 
