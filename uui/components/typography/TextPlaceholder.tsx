@@ -25,7 +25,7 @@ export const TextPlaceholder: React.FunctionComponent<PropsWithChildren<ITextPla
     }, [props.wordsCount]);
 
     return (
-        <div aria-busy={ true } className={ cx(css.root, 'uui-text-placeholder') } { ...props.rawProps }>
+        <div aria-busy={ true } aria-hidden="true" className={ cx(css.root, 'uui-text-placeholder') } { ...props.rawProps }>
             {text.map((it: string, index: number) => (
                 <span
                     key={ index }

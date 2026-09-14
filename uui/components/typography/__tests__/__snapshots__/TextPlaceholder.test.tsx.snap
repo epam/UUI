@@ -4,6 +4,7 @@ exports[`TextPlaceholder should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
     aria-busy="true"
+    aria-hidden="true"
     class="root uui-text-placeholder"
   >
     <span
@@ -19,6 +20,7 @@ exports[`TextPlaceholder should be rendered correctly 2`] = `
 <DocumentFragment>
   <div
     aria-busy="true"
+    aria-hidden="true"
     class="root uui-text-placeholder"
   >
     <span
