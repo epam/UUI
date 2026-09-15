@@ -11,7 +11,7 @@ jobs:
         name: Update closed_at issue field
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v5
             -   uses: monry/actions-get-project-item-id@v2
                 with:
                     github-token: ${{ secrets.UUI_CI_SECRET }}
