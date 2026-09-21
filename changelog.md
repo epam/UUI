@@ -1,5 +1,6 @@
 # 6.5.xx - xx.xx.2026
 **What's New**
+* [ApiContext] / [uui-core]: added support for supplying a custom authentication recovery service.
 * [Form] / [useForm]: added a **Decline** action to the unsaved-changes notification so drafts can be discarded and removed from storage ([#3025](https://github.com/epam/UUI/issues/3025)).
 * Remove support of deprecated `@epam/cra-template-uui` package. Create React App has been [officially deprecated](https://react.dev/blog/2025/02/14/sunsetting-create-react-app) by the React team. The package will no longer receive new updates or releases. Use the [Vite](https://github.com/epam/UUI/tree/main/templates/uui-vite-template) or [Next.js](https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template) templates instead.
 
@@ -3239,4 +3240,3 @@ To update, please add make this changes:
 * Fixed dropdown crash and popper flickering
 * [breaking change] withMods helper API changed. Now default props in a function accepting mods. This allow to change child components according to mods (e.g. PickerInput can change color of PickerInputToggler according to it's mods)
 * [breaking change] VirtualList reworked, now it's delegates visible range state via IEditable<VirtualListStateProps>. This allows parent component to know up-front what rows are visible.
-
