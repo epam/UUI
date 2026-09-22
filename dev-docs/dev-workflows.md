@@ -60,7 +60,7 @@ This will generate test report into .reports/unit-tests folder
 Read this [guide](../uui-e2e-tests/readme.md).
 
 ### Generate Property explore data and API references
-To generate the metadata which is used to build PE pages and API blocks
+Run this locally whenever public props/types are added, removed, or modified. Commit the updated generated files under `public/docs/docsGenOutput/`.
 ```
 yarn generate-components-api
 ```

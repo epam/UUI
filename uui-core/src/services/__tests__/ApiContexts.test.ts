@@ -1,4 +1,5 @@
 import { ApiCallError, ApiContext } from '../ApiContext';
+import { AuthRecoveryContextProps } from '../AuthRecoveryService';
 
 type GlobalOpenType = typeof global.open;
 
@@ -178,6 +179,41 @@ describe('ApiContext', () => {
         (global.open as jest.Mock<ReturnType<GlobalOpenType>>).mockClear();
     });
 
+    it('should use a custom auth recovery service instead of opening the relogin popup', async () => {
+        const fetchMock = jest.fn()
+            .mockResolvedValueOnce({
+                ok: false,
+                status: 401,
+            } as Response)
+            .mockResolvedValueOnce({
+                json: () => Promise.resolve(testData),
+                ok: true,
+                status: 200,
+            } as Response);
+        let authRecoveryProps: AuthRecoveryContextProps | undefined;
+        const tryToRecover = jest.fn();
+        class CustomAuthRecoveryService {
+            constructor(props: AuthRecoveryContextProps) {
+                authRecoveryProps = props;
+            }
+
+            tryToRecover = tryToRecover;
+        }
+        const windowOpenMock = jest.fn((() => {}) as GlobalOpenType);
+        global.fetch = fetchMock;
+        global.open = windowOpenMock;
+        context = new ApiContext({ authRecoveryService: CustomAuthRecoveryService });
+
+        const request = context.processRequest<TestData>('path', 'POST', testData);
+        await delay();
+
+        expect(tryToRecover).toHaveBeenCalledTimes(1);
+        expect(windowOpenMock).not.toHaveBeenCalled();
+        authRecoveryProps?.onSuccessAuthRecovery();
+
+        await expect(request).resolves.toEqual(testData);
+        expect(fetchMock).toHaveBeenCalledTimes(2);
+    });
     it('should reject promise on api error with type manual', async () => {
         const fetchMock500 = getFetchMock(500);
         const fetchMock503 = getFetchMock(503);

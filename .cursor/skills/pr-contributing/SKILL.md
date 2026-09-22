@@ -94,7 +94,9 @@ If making API changes or adding functionality:
    - Location: `app/src/docs/explorerConfigs`
    - Add/update explorer config for component
 
-3. **Generate API** (usually done in deployment):
+3. **Add JSDoc** on every new/changed exported type and non-inherited public prop. The quality gate fails if the amount of props without comments increases (see [documentation](../documentation/SKILL.md#jsdoc-comments-required)).
+
+4. **Generate API**:
    ```bash
    yarn generate-components-api
    ```

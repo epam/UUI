@@ -4,12 +4,13 @@ exports[`TextPlaceholder should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
     aria-busy="true"
+    aria-hidden="true"
     class="root uui-text-placeholder"
   >
     <span
       class="loadingWord animatedLoading"
     >
-                   
+      xxxxxxxxxxxxx
     </span>
   </div>
 </DocumentFragment>
@@ -19,32 +20,33 @@ exports[`TextPlaceholder should be rendered correctly 2`] = `
 <DocumentFragment>
   <div
     aria-busy="true"
+    aria-hidden="true"
     class="root uui-text-placeholder"
   >
     <span
       class="loadingWord"
     >
-                   
+      xxxxxxxxxxxxx
     </span>
     <span
       class="loadingWord"
     >
-                   
+      xxxxxxxxxxxxx
     </span>
     <span
       class="loadingWord"
     >
-                   
+      xxxxxxxxxxxxx
     </span>
     <span
       class="loadingWord"
     >
-                   
+      xxxxxxxxxxxxx
     </span>
     <span
       class="loadingWord"
     >
-                   
+      xxxxxxxxxxxxx
     </span>
   </div>
 </DocumentFragment>
