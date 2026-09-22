@@ -11,23 +11,27 @@ See [release-workflow-setup.md](release-workflow-setup.md) for initial configura
 1. Create a release branch from `develop`: `release/vX.Y.Z`
 2. Update `changelog.md` with mention of all released changes
 3. Ensure that all packages are building without errors — run `yarn build`
-4. Bump versions and create a git tag:
+4. Push the release branch to origin (Lerna pushes the version commit and tag to the remote branch):
+   ```bash
+   git push -u origin release/vX.Y.Z
+   ```
+5. Bump versions and create a git tag:
    ```bash
    yarn release
    ```
    Lerna will prompt for version type (patch / minor / major). After confirmation, it commits the version bump, creates a tag `vX.Y.Z`, and pushes both to the release branch.
-5. Trigger the publish in GitHub Actions:
+6. Trigger the publish in GitHub Actions:
    - Go to **Actions → Release → Run workflow**
-   - **tag**: the tag created in step 4 (e.g. `v6.5.3`)
+   - **tag**: the tag created in step 5 (e.g. `v6.5.3`)
    - **dist_tag**: `latest`
    - **dry_run**: `false`
    - Click **Run workflow**
-6. Approve the deployment in the `npm-publish` environment when prompted
-7. Monitor the workflow run — all 15 packages are published via `npm publish --provenance` in staged state (not yet visible to consumers)
-8. Promote each package on npmjs.com: open the package page → **Versions** → find the staged version → **Promote to latest**. Repeat for all 15 packages.
-9. After a successful release, publish the changelog to the GitHub Releases page (`https://github.com/epam/UUI/releases`) and in the UUI Teams channel (`https://teams.microsoft.com/l/channel/19%3Af9ce97808e1e419cb976f71d310ca74f%40thread.skype/General?groupId=726eb5c9-1516-4c6a-be33-0838d9a33b02&tenantId=b41b72d0-4e9f-4c26-8a69-f949f367c91d`)
-10. Open a PR from the release branch into `main`
-11. **Sync `main` back into `develop`** — do this right after the release, before new work lands on `develop`:
+7. Approve the deployment in the `npm-publish` environment when prompted
+8. Monitor the workflow run — all 15 packages are published via `npm publish --provenance` in staged state (not yet visible to consumers)
+9. Promote each package on npmjs.com: open the package page → **Versions** → find the staged version → **Promote to latest**. Repeat for all 15 packages.
+10. After a successful release, publish the changelog to the GitHub Releases page (`https://github.com/epam/UUI/releases`) and in the UUI Teams channel (`https://teams.microsoft.com/l/channel/19%3Af9ce97808e1e419cb976f71d310ca74f%40thread.skype/General?groupId=726eb5c9-1516-4c6a-be33-0838d9a33b02&tenantId=b41b72d0-4e9f-4c26-8a69-f949f367c91d`)
+11. Open a PR from the release branch into `main`
+12. **Sync `main` back into `develop`** — do this right after the release, before new work lands on `develop`:
     1. Update local branches: `git fetch origin`
     2. Merge `main` into `develop` (use merge, not rebase):
        ```bash
@@ -48,10 +52,10 @@ See [release-workflow-setup.md](release-workflow-setup.md) for initial configura
 #### Beta release
 
 Same as stable release, with two differences:
-- In step 4, enter a prerelease version (e.g. `6.5.3-beta.0`) when Lerna prompts
-- In step 5, set **dist_tag** to `beta`
+- In step 5, enter a prerelease version (e.g. `6.5.3-beta.0`) when Lerna prompts
+- In step 6, set **dist_tag** to `beta`
 
-When promoting (step 8), use the **Promote to beta** option instead of **Promote to latest**.
+When promoting (step 9), use the **Promote to beta** option instead of **Promote to latest**.
 
 #### Legacy hotfix release (e.g. patch for v5.5.x while v6.x is current)
 
