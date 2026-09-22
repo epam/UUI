@@ -5,7 +5,9 @@ import {
 } from '../types';
 import { isClientSide } from '../helpers/ssr';
 import { getCookie } from '../helpers/cookie';
-import { AuthRecoveryService } from './AuthRecoveryService';
+import {
+    AuthRecoveryContextProps, AuthRecoveryService, IAuthRecoveryService,
+} from './AuthRecoveryService';
 
 interface ApiCall extends ApiCallInfo {
     /** Request promise resolve callback */
@@ -60,6 +62,7 @@ export interface FileUploadResponse {
 }
 
 export type BlockTypes = 'attachment' | 'iframe' | 'image';
+
 export interface ApiContextProps {
     /** Url to the relogin page. Used to open new browser window by this path, in case of auth lost error.
      * Opened by this path page, should process authentication and then post 'authSuccess' cross-window message to the opener, to recover failed requests.
@@ -80,6 +83,9 @@ export interface ApiContextProps {
      * By default, standard fetch will be used.
      */
     fetch?: typeof fetch;
+
+    /** Custom authentication recovery service. By default, ApiContext uses the relogin popup flow. */
+    authRecoveryService?: new (props: AuthRecoveryContextProps) => IAuthRecoveryService;
 }
 
 export class ApiContext extends BaseContext implements IApiContext {
@@ -88,14 +94,15 @@ export class ApiContext extends BaseContext implements IApiContext {
     public status: ApiStatus = 'idle';
     public recoveryReason: ApiRecoveryReason | null = null;
     public apiReloginPath: string;
-    private readonly authRecoveryContext: AuthRecoveryService;
+    private readonly authRecoveryContext: IAuthRecoveryService;
 
     constructor(private props: ApiContextProps, private analyticsCtx?: AnalyticsContext) {
         super();
         this.apiReloginPath = this.props.apiReloginPath ?? '/auth/login';
         this.props.apiPingPath = this.props.apiPingPath ?? '/auth/ping';
         this.props.apiServerUrl = this.props.apiServerUrl ?? '';
-        this.authRecoveryContext = new AuthRecoveryService({
+        const AuthRecoveryContext = this.props.authRecoveryService || AuthRecoveryService;
+        this.authRecoveryContext = new AuthRecoveryContext({
             apiReloginPath: this.apiReloginPath,
             onSuccessAuthRecovery: this.handleSuccessAuthRecovery,
         });
@@ -103,7 +110,7 @@ export class ApiContext extends BaseContext implements IApiContext {
 
     init() {
         super.init();
-        this.authRecoveryContext.init();
+        this.authRecoveryContext.init?.();
     }
 
     private handleSuccessAuthRecovery = () => {
@@ -115,7 +122,7 @@ export class ApiContext extends BaseContext implements IApiContext {
     };
 
     public destroyContext() {
-        this.authRecoveryContext.destroy();
+        this.authRecoveryContext.destroy?.();
         super.destroyContext();
     }
 

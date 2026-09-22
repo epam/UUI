@@ -4,6 +4,7 @@ export * from './ContextProvider';
 export * from './UuiContext';
 export * from './AnalyticsContext';
 export * from './ApiContext';
+export * from './AuthRecoveryService';
 export * from './ErrorContext';
 export * from './LockContext';
 export * from './NotificationContext';
