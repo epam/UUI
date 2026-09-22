@@ -1,4 +1,4 @@
-# 6.5.xx - xx.xx.2026
+# 6.5.3 - 22.09.2026
 **What's New**
 * [ApiContext] / [uui-core]: added support for supplying a custom authentication recovery service.
 * [Form] / [useForm]: added a **Decline** action to the unsaved-changes notification so drafts can be discarded and removed from storage ([#3025](https://github.com/epam/UUI/issues/3025)).
