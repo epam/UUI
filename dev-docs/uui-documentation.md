@@ -50,9 +50,34 @@ You still need to create an `explorerConfig` and connect it to the doc page. Som
 
 #### API Block
 
-The Component API section is generated based on component prop interfaces. You don't need to regenerate it locally — it's part of the deployment steps.
+The Component API section is generated from component prop interfaces (and other exported public types).
 
-To update this block locally, run `yarn generate-components-api` in the project root.
+When you add, remove, or change a public API (props, types, interfaces in `uui-core`, `uui-components`, `uui`, etc.), run this command locally in the project root and commit the updated generated files:
+
+```
+yarn generate-components-api
+```
+
+Without this step, new or changed props will not appear correctly in the Property Explorer or API docs, and the PR quality gate may fail.
+
+#### JSDoc comments (required for public API)
+
+Exported types and their own (non-inherited) props must have JSDoc comments. The API docs and Property Explorer take descriptions from these comments.
+
+The PR quality gate compares the number of exported props without JSDoc to the target branch. If that number increases, CI fails with:
+`The amount of props/type without comments is increased`.
+
+When you add or change a public type/prop (in `uui-core`, `uui-components`, `uui`, etc.), always add a JSDoc comment, for example:
+
+```ts
+/** Props for the authentication recovery service. */
+export type AuthRecoveryContextProps = {
+    /** Url to the relogin page opened when auth is lost. */
+    apiReloginPath: string;
+};
+```
+
+The CI report lists new missing comments under **New missing comments** (`TypeRef` / `TypeRef/propName`). Fix those items before merging.
 
 ### Use external theme
 UUI documentation allows you to connect external themes (not stored into UUI repo).

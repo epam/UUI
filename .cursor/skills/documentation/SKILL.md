@@ -73,7 +73,23 @@ Component API section is auto-generated from prop interfaces.
 yarn generate-components-api
 ```
 
-**Important:** You **must** run this command whenever public props are added, removed, or modified on any component interface (in `uui-core`, `uui-components`, or `uui`). Without this step, new or changed props will not appear in the Property Explorer or API docs.
+**Important:** You **must** run this command locally whenever public props/types are added, removed, or modified (in `uui-core`, `uui-components`, `uui`, etc.), and commit the updated files under `public/docs/docsGenOutput/`. Without this step, new or changed props will not appear in the Property Explorer or API docs, and the PR quality gate may fail.
+
+### JSDoc comments (required)
+
+Exported types and their own (non-inherited) props **must** have JSDoc comments — API docs and Property Explorer use them for descriptions.
+
+The PR quality gate fails if the number of exported props without JSDoc increases vs the target branch (`The amount of props/type without comments is increased`). Always add JSDoc when introducing or changing public types/props:
+
+```ts
+/** Props for the authentication recovery service. */
+export type AuthRecoveryContextProps = {
+    /** Url to the relogin page opened when auth is lost. */
+    apiReloginPath: string;
+};
+```
+
+CI report details list new gaps under **New missing comments** (`TypeRef` / `TypeRef/propName`).
 
 ## External Themes
 
@@ -106,5 +122,6 @@ When adding new functionality:
 1. Add doc example in `app/src/docs/_examples`
 2. Update page config to link example
 3. Create/update explorerConfig for Property Explorer
-4. Generate API: `yarn generate-components-api`
-5. Test locally at http://localhost:9009/
+4. Add JSDoc on new/changed public types and props
+5. Generate API: `yarn generate-components-api`
+6. Test locally at http://localhost:9009/
