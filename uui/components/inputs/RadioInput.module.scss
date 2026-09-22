@@ -22,7 +22,8 @@
 
     // size
     --uui-radio_input-size: var(--uui-size);
-    --uui-radio_input-bullet-size: var(--uui-size);
+    // dot is 7/12 of the ring per design spec (e.g. 10.5px at 18px, 7px at 12px)
+    --uui-radio_input-bullet-size: calc(var(--uui-radio_input-size) * 7 / 12);
     --uui-radio_input-border-radius: var(--uui-border-radius);
     --uui-radio_input-border-width: var(--uui-border-width);
     --uui-radio_input-horizontal-gap: var(--uui-horizontal-gap);
@@ -55,12 +56,15 @@
             :global(.uui-icon) {
                 fill: var(--uui-radio_input-fill-checked);
                 position: absolute;
-                top: calc(0px - var(--uui-radio_input-border-width));
-                left: calc(0px - var(--uui-radio_input-border-width));
+                top: 50%;
+                left: 50%;
+                height: var(--uui-radio_input-bullet-size);
+                width: var(--uui-radio_input-bullet-size);
+                transform: translate(-50%, -50%);
 
                 svg {
-                    height: var(--uui-radio_input-bullet-size);
-                    width: var(--uui-radio_input-bullet-size);
+                    height: 100%;
+                    width: 100%;
                 }
             }
         }

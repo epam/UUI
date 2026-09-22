@@ -51,11 +51,14 @@ export interface FormProps<T> {
 
     /**
      * Used to restore unsaved user edits from the last session (usually to localstorage, via uuiUserSettings context)
-     * If unsaved changes are detected, this callback is called. If it is resolved - the form restores unsaved edits.
-     * The common use-case is to show a modal with "You have unsaved changes, restore them?" dialog
+     * If unsaved changes are detected, this callback is called.
+     * If it is resolved with a truthy value or void - the form restores unsaved edits.
+     * If it is resolved with false - unsaved edits are discarded and removed from storage.
+     * If it is rejected - unsaved edits are kept in storage.
+     * The common use-case is to show a notification with "You have unsaved changes, restore them?" dialog
      * Skins usually implement this as default behavior. To prevent it, you can pass null to this prop to override it.
      */
-    loadUnsavedChanges?: () => Promise<void>;
+    loadUnsavedChanges?: () => Promise<void | boolean>;
 
     /**
      * Called after successful save.

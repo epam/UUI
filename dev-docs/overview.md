@@ -13,7 +13,7 @@ However, for building modules for release and for production environments, each 
 ├── epam-electric    # @epam/electric package. Skin for Electric theme.
 ├── public    # static files for uui.epam.com site (example contents, images, doc gen artifacts). Usually this folder is used by the UUI server.
 ├── server    # Node.js server for uui.epam.com site. Serves docs content, demo API, UUI MCP.
-├── templates    # templates of uui project for CRA, Next.js and Vite
+├── templates    # project templates: uui-vite-template and uui-nextjs-template; uui-cra-template is deprecated — kept only for the trackBundleSize CI pipeline
 ├── test-utils    # @epam/uui-test-utils package. Common utils for writing tests with UUI components.
 ├── uui    # @epam/uui package. Ready-to-use, themeable UUI components for default and custom themes.
 ├── uui-build    # epam/uui-build package. Utils and scripts to build UUI repo and packages, linting configuration and some npm scripts.
