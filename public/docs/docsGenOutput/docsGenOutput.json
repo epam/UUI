@@ -573,6 +573,8 @@
       "     * By default, standard fetch will be used.",
       "     */",
       "    fetch?: typeof fetch;",
+      "    /** Custom authentication recovery service. By default, ApiContext uses the relogin popup flow. */",
+      "    authRecoveryService?: new (props: AuthRecoveryContextProps) => IAuthRecoveryService;",
       "}"
      ]
     },
@@ -656,6 +658,20 @@
       },
       "editor": {
        "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "authRecoveryService",
+      "name": "authRecoveryService",
+      "comment": {
+       "raw": [
+        "Custom authentication recovery service. By default, ApiContext uses the relogin popup flow."
+       ]
+      },
+      "typeValue": {
+       "raw": "new (props: AuthRecoveryContextProps) => IAuthRecoveryService",
+       "html": "<span class=\"token keyword\">new</span> <span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> AuthRecoveryContextProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> IAuthRecoveryService"
       },
       "required": false
      }
@@ -2755,6 +2771,74 @@
        "type": "func"
       },
       "from": "@epam/uui-core:AsyncDataSourceConfig",
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:AuthRecoveryContextProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "AuthRecoveryContextProps",
+     "nameFull": "AuthRecoveryContextProps"
+    },
+    "src": "uui-core/src/services/AuthRecoveryService.ts",
+    "comment": {
+     "raw": [
+      "Props passed to the authentication recovery service constructor."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "AuthRecoveryContextProps",
+     "print": [
+      "/** Props passed to the authentication recovery service constructor. */",
+      "type AuthRecoveryContextProps = {",
+      "    /** Url to the relogin page. Used to open a new browser window when auth is lost. */",
+      "    apiReloginPath: string;",
+      "    /** Called when authentication has been successfully recovered, so ApiContext can retry failed requests. */",
+      "    onSuccessAuthRecovery: () => void;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "apiReloginPath",
+      "name": "apiReloginPath",
+      "comment": {
+       "raw": [
+        "Url to the relogin page. Used to open a new browser window when auth is lost."
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "uid": "onSuccessAuthRecovery",
+      "name": "onSuccessAuthRecovery",
+      "comment": {
+       "raw": [
+        "Called when authentication has been successfully recovered, so ApiContext can retry failed requests."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
       "required": true
      }
     ],
@@ -5077,6 +5161,21 @@
       },
       "editor": {
        "type": "func"
+      },
+      "from": "@epam/uui-core:ApiContextProps",
+      "required": false
+     },
+     {
+      "uid": "authRecoveryService",
+      "name": "authRecoveryService",
+      "comment": {
+       "raw": [
+        "Custom authentication recovery service. By default, ApiContext uses the relogin popup flow."
+       ]
+      },
+      "typeValue": {
+       "raw": "new (props: AuthRecoveryContextProps) => IAuthRecoveryService",
+       "html": "<span class=\"token keyword\">new</span> <span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> AuthRecoveryContextProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> IAuthRecoveryService"
       },
       "from": "@epam/uui-core:ApiContextProps",
       "required": false
@@ -15626,6 +15725,93 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:IAuthRecoveryService": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "IAuthRecoveryService",
+     "nameFull": "IAuthRecoveryService"
+    },
+    "src": "uui-core/src/services/AuthRecoveryService.ts",
+    "comment": {
+     "raw": [
+      "Service that recovers from lost authentication (e.g. opens a relogin popup and notifies ApiContext on success)."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "IAuthRecoveryService",
+     "print": [
+      "/** Service that recovers from lost authentication (e.g. opens a relogin popup and notifies ApiContext on success). */",
+      "interface IAuthRecoveryService {",
+      "    /** Subscribes to recovery signals (e.g. storage events). Called when ApiContext initializes. */",
+      "    init?(): void;",
+      "    /** Unsubscribes from recovery signals. Called when ApiContext is destroyed. */",
+      "    destroy?(): void;",
+      "    /** Starts the authentication recovery flow (e.g. opens the relogin page in a new tab). */",
+      "    tryToRecover(): void;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "init",
+      "name": "init",
+      "comment": {
+       "raw": [
+        "Subscribes to recovery signals (e.g. storage events). Called when ApiContext initializes."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "destroy",
+      "name": "destroy",
+      "comment": {
+       "raw": [
+        "Unsubscribes from recovery signals. Called when ApiContext is destroyed."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "tryToRecover",
+      "name": "tryToRecover",
+      "comment": {
+       "raw": [
+        "Starts the authentication recovery flow (e.g. opens the relogin page in a new tab)."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:IBaseContext": {
    "summary": {
     "module": "@epam/uui-core",
@@ -16789,6 +16975,21 @@
       },
       "editor": {
        "type": "func"
+      },
+      "from": "@epam/uui-core:ApiContextProps",
+      "required": false
+     },
+     {
+      "uid": "authRecoveryService",
+      "name": "authRecoveryService",
+      "comment": {
+       "raw": [
+        "Custom authentication recovery service. By default, ApiContext uses the relogin popup flow."
+       ]
+      },
+      "typeValue": {
+       "raw": "new (props: AuthRecoveryContextProps) => IAuthRecoveryService",
+       "html": "<span class=\"token keyword\">new</span> <span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> AuthRecoveryContextProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> IAuthRecoveryService"
       },
       "from": "@epam/uui-core:ApiContextProps",
       "required": false
@@ -45060,6 +45261,21 @@
       },
       "from": "@epam/uui-core:ApiContextProps",
       "required": false
+     },
+     {
+      "uid": "authRecoveryService",
+      "name": "authRecoveryService",
+      "comment": {
+       "raw": [
+        "Custom authentication recovery service. By default, ApiContext uses the relogin popup flow."
+       ]
+      },
+      "typeValue": {
+       "raw": "new (props: AuthRecoveryContextProps) => IAuthRecoveryService",
+       "html": "<span class=\"token keyword\">new</span> <span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> AuthRecoveryContextProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> IAuthRecoveryService"
+      },
+      "from": "@epam/uui-core:ApiContextProps",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -45726,6 +45942,21 @@
       },
       "editor": {
        "type": "func"
+      },
+      "from": "@epam/uui-core:ApiContextProps",
+      "required": false
+     },
+     {
+      "uid": "authRecoveryService",
+      "name": "authRecoveryService",
+      "comment": {
+       "raw": [
+        "Custom authentication recovery service. By default, ApiContext uses the relogin popup flow."
+       ]
+      },
+      "typeValue": {
+       "raw": "new (props: AuthRecoveryContextProps) => IAuthRecoveryService",
+       "html": "<span class=\"token keyword\">new</span> <span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> AuthRecoveryContextProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> IAuthRecoveryService"
       },
       "from": "@epam/uui-core:ApiContextProps",
       "required": false
