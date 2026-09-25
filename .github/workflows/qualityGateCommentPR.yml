@@ -103,12 +103,12 @@ jobs:
         # Update comment: track-bundle-size
         #
         - id: prevCommentId
-          uses: peter-evans/find-comment@v2
+          uses: peter-evans/find-comment@v3
           with:
               issue-number: ${{ steps.readPrNumber.outputs.result }}
               comment-author: '${{env.COMMENT_AUTHOR}}'
               body-includes: '${{env.COMMENT_TAG}}'
-        - uses: peter-evans/create-or-update-comment@v3
+        - uses: peter-evans/create-or-update-comment@v4
           with:
               comment-id: ${{ steps.prevCommentId.outputs.comment-id }}
               issue-number: ${{ steps.readPrNumber.outputs.result }}
