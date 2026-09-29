@@ -5,6 +5,7 @@
 
 **What's Fixed**
 
+* [Icons]: fixed `file-export-outline` rendering larger than other icons at the same size ([#3136](https://github.com/epam/UUI/issues/3136)).
 
 # 6.5.3 - 22.09.2026
 **What's New**
