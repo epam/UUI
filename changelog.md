@@ -4,6 +4,8 @@
 
 
 **What's Fixed**
+* [DataPickerBody]: fixed a page-breaking issue when used inside `FilterPanel` with `LazyDataSource`, `minCharsToSearch` > 0, and an empty search input.
+* [MainMenuButton]: fixed the default icon size to 18px.
 
 * [Icons]: fixed `file-export-outline` rendering larger than other icons at the same size ([#3136](https://github.com/epam/UUI/issues/3136)).
 
