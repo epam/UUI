@@ -4,6 +4,8 @@
 
 
 **What's Fixed**
+* [DataPickerBody]: fixed a page-breaking issue when used inside `FilterPanel` with `LazyDataSource`, `minCharsToSearch` > 0, and an empty search input.
+* [MainMenuButton]: fixed the default icon size to 18px.
 
 
 # 6.5.3 - 22.09.2026
