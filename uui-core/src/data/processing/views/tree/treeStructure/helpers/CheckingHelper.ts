@@ -23,7 +23,11 @@ export class CheckingHelper {
         const optionsWithDefaults = { isCheckable: isCheckable ?? (() => true), cascadeSelectionType };
 
         const { count } = tree.getItems(undefined);
-        const treeIsLoaded = count !== 0;
+        const treeIsLoaded = count !== undefined;
+        // Checking must still apply the explicit selection when the tree is not loaded yet
+        // (e.g. checking a search-result row whose complete tree has no root count), otherwise
+        // the checked id is silently dropped. Unchecking on a not-loaded tree stays a tag clear.
+        const shouldUpdateSelection = treeIsLoaded || isChecked;
         // If clear items while tree is not loaded yet (while clearing tags of PickerInput before opening body).
         if (!treeIsLoaded && !isChecked) {
             checkedIdsMap = this.clearIfTreeNotLoaded({
@@ -34,7 +38,7 @@ export class CheckingHelper {
             });
         }
 
-        if (treeIsLoaded && !optionsWithDefaults.cascadeSelectionType) {
+        if (shouldUpdateSelection && !optionsWithDefaults.cascadeSelectionType) {
             checkedIdsMap = this.simpleSelection({
                 tree,
                 checkedIdsMap,
@@ -44,7 +48,7 @@ export class CheckingHelper {
             });
         }
 
-        if (treeIsLoaded && (
+        if (shouldUpdateSelection && (
             optionsWithDefaults.cascadeSelectionType === true
             || optionsWithDefaults.cascadeSelectionType === CascadeSelectionTypes.EXPLICIT)
         ) {
@@ -57,7 +61,7 @@ export class CheckingHelper {
             });
         }
 
-        if (treeIsLoaded && optionsWithDefaults.cascadeSelectionType === CascadeSelectionTypes.IMPLICIT) {
+        if (shouldUpdateSelection && optionsWithDefaults.cascadeSelectionType === CascadeSelectionTypes.IMPLICIT) {
             checkedIdsMap = this.implicitCascadeSelection({
                 tree,
                 checkedIdsMap,
