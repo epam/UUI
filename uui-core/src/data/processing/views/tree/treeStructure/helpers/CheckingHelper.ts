@@ -23,7 +23,7 @@ export class CheckingHelper {
         const optionsWithDefaults = { isCheckable: isCheckable ?? (() => true), cascadeSelectionType };
 
         const { count } = tree.getItems(undefined);
-        const treeIsLoaded = count !== 0;
+        const treeIsLoaded = count !== undefined;
         // If clear items while tree is not loaded yet (while clearing tags of PickerInput before opening body).
         if (!treeIsLoaded && !isChecked) {
             checkedIdsMap = this.clearIfTreeNotLoaded({
