@@ -1,13 +1,9 @@
-# 6.x.x - xx.xx.xxxx
-
-**What's New**
-
+# 6.5.4 - 05.11.2026
 
 **What's Fixed**
 * [DataPickerBody]: fixed a page-breaking issue when used inside `FilterPanel` with `LazyDataSource`, `minCharsToSearch` > 0, and an empty search input.
 * [MainMenuButton]: fixed the default icon size to 18px.
 * [CheckingHelper] / [uui-core]: fixed item checking being silently ignored with `LazyDataSource` and empty initial data.
-
 * [Icons]: fixed `file-export-outline` rendering larger than other icons at the same size ([#3136](https://github.com/epam/UUI/issues/3136)).
 
 # 6.5.3 - 22.09.2026
