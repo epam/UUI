@@ -106,7 +106,7 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, auto
     }, [props.showSearch, focusedIndex, topIndex]);
 
     const renderEmpty = () => {
-        const search = props.value.search;
+        const search = props.value.search ?? '';
 
         if (props.renderEmpty) {
             return props.renderEmpty({

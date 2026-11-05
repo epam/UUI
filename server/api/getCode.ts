@@ -70,8 +70,10 @@ router.post('/get-code', async (req: any, res: any) => {
             compiledCss,
         });
     } catch (error) {
-        const message = error instanceof Error ? error.message : String(error);
-        res.status(500).json({ error: message });
+        // Log details server-side for diagnostics; don't leak internals (paths, stack) to the client (CWE-209).
+        // eslint-disable-next-line no-console
+        console.error('[get-code] failed:', error);
+        res.status(500).json({ error: 'Failed to read example code' });
     }
 });
 

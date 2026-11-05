@@ -32,21 +32,21 @@ jobs:
             # By default, it checks out the "merge-commit" for "pull_request" events (https://github.com/actions/checkout)
             # I.e. the result of merging source branch to the target branch will be checked out.
             - name: 'Checkout the "merge commit" branch'
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
               with:
                   path: ${{ env.MERGE_COMMIT_BRANCH_DIR }}
 
             # Checkout the TARGET branch.
             - name: 'Checkout "target" branch'
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
               with:
                   ref: ${{ github.event.pull_request.base.ref }}
                   repository: ${{ github.event.pull_request.base.repo.full_name }}
                   path: ${{ env.TARGET_BRANCH_DIR }}
 
-            - uses: actions/setup-node@v4
+            - uses: actions/setup-node@v6
               with:
-                  node-version: '20.x'
+                  node-version: '24'
                   cache: 'yarn'
                   cache-dependency-path: |
                       ${{ env.TARGET_BRANCH_DIR }}/yarn.lock
@@ -79,19 +79,19 @@ jobs:
               run: |
                   echo ${{ github.event.pull_request.number }} > ./${{ env.PR_NUM_ARTIFACT }}
             - name: 'Upload artifact (pr number)'
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v6
               with:
                   name: ${{ env.PR_NUM_ARTIFACT }}
                   path: ./${{ env.PR_NUM_ARTIFACT }}
                   retention-days: 1 # minimum retention
             - name: 'Upload artifact (report 1 content)'
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v6
               with:
                   name: ${{ env.REPORT_1_ARTIFACT }}
                   path: ${{ env.REPORT_1_PATH }}
                   retention-days: 1 # minimum retention
             -   name: 'Upload artifact (report 2 content)'
-                uses: actions/upload-artifact@v4
+                uses: actions/upload-artifact@v6
                 with:
                     name: ${{ env.REPORT_2_ARTIFACT }}
                     path: ${{ env.REPORT_2_PATH }}
@@ -102,7 +102,7 @@ jobs:
             #
             #
             - name: 'Mark as failed if any quality check is unsuccessful'
-              uses: actions/github-script@v7
+              uses: actions/github-script@v8
               with:
                   script: |
                       const REPORTS_MAP = {
