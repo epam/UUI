@@ -55,10 +55,11 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     let content: React.ReactNode;
 
     const handleEditableCellClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback((e) => {
-        if (!props.isReadonly && !props.isDisabled
-            && (editorRef.current === e.target || editorRef.current.parentNode === e.target)
+        const editor = editorRef.current;
+        if (!props.isReadonly && !props.isDisabled && editor
+            && (editor === e.target || editor.parentNode === e.target)
         ) {
-            editorRef.current?.focus();
+            editor.focus();
         }
     }, []);
 

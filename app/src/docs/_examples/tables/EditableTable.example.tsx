@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { DataColumnProps, DataSourceState, DataTableRowProps, IImmutableMap, ItemsMap, Metadata, PatchOrdering, useArrayDataSource } from '@epam/uui-core';
+import { DataColumnProps, DataSourceState, DataTableRowProps, IImmutableMap, ItemsMap, Metadata, PatchOrdering, RenderEditorProps, useArrayDataSource } from '@epam/uui-core';
 import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput,
     TextArea, TextInput, useForm, IconButton } from '@epam/uui';
 import { TodoTask } from '@epam/uui-docs';
@@ -8,6 +8,56 @@ import css from './TablesExamples.module.scss';
 import { useDataTableFocusManager } from '@epam/uui-components';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/content-edit_redo-outline.svg';
+import { boldPlugin, createDeserializer, defaultPlugins, EditorValue, headerPlugin, italicPlugin, linkPlugin, listPlugin, SlateEditor } from '@epam/uui-editor';
+
+const serialize = createDeserializer('md');
+
+const editVal = serialize(`# UUI
+[<img align="right" width="120" height="120"
+     alt="UUI project logo"
+     src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/uui-logo-readme.svg"
+      />](https://uui.epam.com/)
+
+React-based components and accelerators library built by EPAM Systems.
+<br/>
+<br/>
+<br/>
+
+
+## Features
+
+- :black_joker: Rich set of components: from buttons to data tables
+- :rocket: Common services: modals, notifications, error, monitoring, and more
+- :wrench: State-management primitives: Forms with validation, Lists and Tables with lazy-loading
+- :octocat: Open for contribution, actively evolving, supported by EPAM dedicated team
+- :lipstick: Allows deep customization to build your own brand UI components set on top
+- :memo: Not opinionated, you don't have to go all in: it's compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.`);
+
+export function SlateEditorWrapper(props: RenderEditorProps<TodoTask, number, NonNullable<EditorValue>>) {
+    const editorPlugins = useMemo(
+        () => [
+            ...defaultPlugins,
+            boldPlugin(),
+            italicPlugin(),
+            headerPlugin(),
+            listPlugin(),
+            linkPlugin(),
+        ],
+        [],
+    );
+
+    return (
+        <SlateEditor
+            minHeight="none"
+            onValueChange={ (newValue) => props.onValueChange(newValue) }
+            placeholder="Add description"
+            plugins={ editorPlugins }
+            value={ props.value }
+            mode="inline"
+            cx="fields-editor"
+        />
+    );
+}
 
 // Define a blank item - for use as a new item, and to simplify mock data definition below
 const blankItem: Partial<TodoTask> = {
@@ -16,6 +66,7 @@ const blankItem: Partial<TodoTask> = {
     priority: null,
     comments: '',
     dueDate: '',
+    description: editVal,
 };
 
 // Interface to hold form data. Here we'll only store items, so we might use ToDoItem[] as a state.
@@ -186,6 +237,21 @@ export default function EditableTableExample() {
                     width: 120,
                     grow: 1,
                 }, 
+                {
+                    key: 'description',
+                    caption: 'Description',
+                    renderCell: (props) => (
+                        <DataTableCell
+                            { ...props.rowLens.prop('description').toProps() }
+                            renderEditor={ (props) => (
+                                <SlateEditorWrapper { ...props } />
+                            ) }
+                            { ...props }
+                        />
+                    ),
+                    width: 120,
+                    grow: 1,
+                },
                 {
                     key: 'actions',
                     render: (item) => (

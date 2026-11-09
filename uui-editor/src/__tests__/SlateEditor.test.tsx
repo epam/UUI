@@ -1,5 +1,5 @@
 import React from 'react';
-import { setupComponentForTest, screen } from '@epam/uui-test-utils';
+import { setupComponentForTest, screen, userEvent } from '@epam/uui-test-utils';
 import { SlateEditor, PlateEditorProps } from '../SlateEditor';
 
 async function setupSlateEditor() {
@@ -43,5 +43,15 @@ describe('SlateEditor', () => {
 
         expect(screen.queryByText('Hello')).not.toBeInTheDocument();
         expect(screen.getByText('World')).toBeInTheDocument();
+    });
+
+    it('should keep Slate text points mapped to the DOM while typing', async () => {
+        await setupSlateEditor();
+        const input = screen.getByRole('textbox');
+
+        await userEvent.click(input);
+        await userEvent.type(input, '!');
+
+        expect(input).toHaveTextContent('!');
     });
 });
