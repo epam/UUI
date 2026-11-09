@@ -1,3 +1,8 @@
+# 6.x.x - xx.xx.xxxx
+
+**What's New**
+* React 19.3 support: upgraded the documentation app and maintained starter templates; updated the Slate dependencies and editor peer requirements to React 18.2+.
+
 # 6.5.4 - 05.11.2026
 
 **What's Fixed**

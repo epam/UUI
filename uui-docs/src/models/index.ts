@@ -1,5 +1,6 @@
 import { FileUploadResponse } from '@epam/uui-core';
 import { TimePickerValue } from '@epam/uui';
+import type { EditorValue } from '@epam/uui-editor';
 
 export interface Person {
     __typename: 'Person';
@@ -288,6 +289,7 @@ export interface TodoTask {
     priority?: number;
     dueDate?: string;
     comments?: string;
+    description?: EditorValue;
     isDeleted?: boolean;
 }
 
