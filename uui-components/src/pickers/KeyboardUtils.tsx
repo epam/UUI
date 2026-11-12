@@ -11,6 +11,9 @@ interface DataSourceKeyboardParams {
 
 export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: React.KeyboardEvent) => {
     const value = params.value;
+    const target = e.target as HTMLElement;
+    const isEditableTarget = target.isContentEditable
+        || target.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"])');
 
     let focusedIndex = value.focusedIndex || 0;
     const maxVisibleIndex = value.topIndex + params.rows.length - 1;
@@ -54,6 +57,7 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
             break;
         }
         case 'ArrowLeft': {
+            if (isEditableTarget) return;
             e.preventDefault();
             const focusedRow: DataRowProps<any, any> = params.rows[value.focusedIndex - value.topIndex];
             if (focusedRow.isFolded) break;
@@ -62,6 +66,7 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
             break;
         }
         case 'ArrowRight': {
+            if (isEditableTarget) return;
             e.preventDefault();
             const focusedRow: DataRowProps<any, any> = params.rows[value.focusedIndex - value.topIndex];
             if (!focusedRow.isFolded) break;

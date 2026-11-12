@@ -1,3 +1,10 @@
+# 6.xx.xx - xx.xx.2026
+
+**What's New**
+
+**What's Fixed**
+* [PickerInput]: preserve native caret handling if focus is on the input field.
+
 # 6.5.4 - 05.11.2026
 
 **What's Fixed**
@@ -7,6 +14,7 @@
 * [Icons]: fixed `file-export-outline` rendering larger than other icons at the same size ([#3136](https://github.com/epam/UUI/issues/3136)).
 
 # 6.5.3 - 22.09.2026
+
 **What's New**
 * [ApiContext] / [uui-core]: added support for supplying a custom authentication recovery service.
 * [Form] / [useForm]: added a **Decline** action to the unsaved-changes notification so drafts can be discarded and removed from storage ([#3025](https://github.com/epam/UUI/issues/3025)).

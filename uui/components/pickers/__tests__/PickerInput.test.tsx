@@ -1498,6 +1498,26 @@ describe('PickerInput', () => {
             });
         });
 
+        it.each(['ArrowLeft', 'ArrowRight'])('should preserve native %s handling in the body search input', async (key) => {
+            const { dom } = await setupPickerInputForTest<TestItemType, number>({
+                value: undefined,
+                selectionMode: 'multi',
+                searchPosition: 'body',
+            });
+
+            await user.click(dom.input);
+
+            const dialog = await screen.findByRole('dialog');
+            await PickerInputTestObject.waitForOptionsToBeReady();
+
+            const searchInput = await within(dialog).findByPlaceholderText('Search');
+            const event = new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true });
+
+            searchInput.dispatchEvent(event);
+
+            expect(event.defaultPrevented).toBe(false);
+        });
+
         it('should focus first founded item after search', async () => {
             const { dom } = await setupPickerInputForTest<TestItemType, number>({
                 value: undefined,
