@@ -1,5 +1,6 @@
 import { IImmutableMap, IMap } from './objects';
 import { ICanBeReadonly, ICanBeRequired, IDisableable } from './props';
+import type { MetadataExtensions } from './metadataExtensions';
 
 type ElementType<ArrayOrObject> = ArrayOrObject extends readonly (infer ArrayType)[]
     ? ArrayType
@@ -11,7 +12,7 @@ type ElementType<ArrayOrObject> = ArrayOrObject extends readonly (infer ArrayTyp
                 ? ValueType
                 : never;
 
-export interface Metadata<T> extends IDisableable, ICanBeReadonly, ICanBeRequired {
+export interface Metadata<T> extends IDisableable, ICanBeReadonly, ICanBeRequired, MetadataExtensions {
     /** Metadata for the nested fields */
     props?: {
         [P in keyof T]?: Metadata<T[P]>;

@@ -3,6 +3,7 @@ import {
 } from 'react';
 import { FloatingArrowProps, Placement } from '@floating-ui/react';
 import { Link, CX, Icon, AnalyticsEvent } from './objects';
+import type { MetadataExtensions } from './metadataExtensions';
 import * as CSS from 'csstype';
 import * as React from 'react';
 
@@ -26,7 +27,7 @@ export interface IControlled<T> {
 }
 
 /** Component displays an editable value. Text Input is a basic example. */
-export interface IEditable<T> extends ICanBeInvalid, IDisableable, ICanBeReadonly, ICanBeRequired, IControlled<T> { }
+export interface IEditable<T> extends ICanBeInvalid, IDisableable, ICanBeReadonly, ICanBeRequired, IControlled<T>, MetadataExtensions { }
 
 /** Component supports click action */
 export interface IClickable {
