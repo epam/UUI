@@ -1,5 +1,5 @@
 {
- "version": "6.5.2",
+ "version": "6.5.4",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -88846,7 +88846,10 @@
       "     * If omitted, default `PickerTogglerTag` component will be rendered",
       "     */",
       "    renderTag?: (props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element;",
-      "    /** Replaces default 'toggler' - an input to which Picker attaches dropdown */",
+      "    /**",
+      "     * Replaces the default toggler, the element to which the Picker attaches its dropdown.",
+      "     * For input-like togglers, use a native input element or a component that renders one.",
+      "     */",
       "    renderToggler?: (props: PickerTogglerProps<TItem, TId>) => React.ReactNode;",
       "};"
      ]
@@ -89908,7 +89911,8 @@
       "name": "renderToggler",
       "comment": {
        "raw": [
-        "Replaces default 'toggler' - an input to which Picker attaches dropdown"
+        "Replaces the default toggler, the element to which the Picker attaches its dropdown.",
+        " For input-like togglers, use a native input element or a component that renders one."
        ]
       },
       "typeValue": {
