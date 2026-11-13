@@ -5,6 +5,7 @@ export * from './tables';
 export * from './contexts';
 export * from './dataQuery';
 export * from './validation';
+export * from './metadataExtensions';
 export * from './components';
 export * from './dataRows';
 export * from './dataSources';
