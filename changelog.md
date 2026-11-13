@@ -1,6 +1,4 @@
-# 6.xx.xx - xx.xx.2026
-
-**What's New**
+# 6.5.5 - 13.11.2026
 
 **What's Fixed**
 * [PickerInput]: preserve native caret handling if focus is on the input field.
