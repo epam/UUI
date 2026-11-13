@@ -25,7 +25,10 @@ export type PickerInputProps<TItem, TId> = Overwrite<PickerInputMods, PickerInpu
      */
     renderTag?: (props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element;
 
-    /** Replaces default 'toggler' - an input to which Picker attaches dropdown */
+    /**
+     * Replaces the default toggler, the element to which the Picker attaches its dropdown.
+     * For input-like togglers, use a native input element or a component that renders one.
+     */
     renderToggler?: (props: PickerTogglerProps<TItem, TId>) => React.ReactNode;
 };
 
