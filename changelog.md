@@ -1,3 +1,11 @@
+# 6.xx.xx - xx.xx.2026
+
+**What's Fixed**
+* [BurgerButton]: fixed several styling issues ([#3006](https://github.com/epam/UUI/issues/3006)):
+  * `cx` prop was ignored. Now it's applied together with the component's own classes.
+  * `indentLevel` prop had no effect. Now each level adds an extra left padding (`--uui-burger_btn-indent-size`, 24px by default).
+  * Left padding was removed for `isDropdown` buttons, so they were not aligned with other items. It was needed when the dropdown icon was on the left, but now the icon is rendered after the caption.
+
 # 6.5.5 - 13.11.2026
 
 **What's Fixed**
