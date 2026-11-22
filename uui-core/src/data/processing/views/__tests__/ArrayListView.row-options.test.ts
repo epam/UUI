@@ -1142,4 +1142,66 @@ describe('ArrayListView - row options', () => {
             });
         });
     });
+
+    describe('selectAll', () => {
+        it('should show/hide selectAll when checkbox visibility in getRowOptions changes', async () => {
+            const dataSource = getArrayLocationsDS({});
+            const getProps = (isCheckboxVisible: boolean) => ({
+                getRowOptions: () => ({ checkbox: { isVisible: isCheckboxVisible } }),
+            });
+
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: getProps(true),
+                } },
+            );
+
+            await waitFor(() => {
+                expect(hookResult.result.current.selectAll).toBeTruthy();
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: getProps(false) });
+
+            await waitFor(() => {
+                expect(hookResult.result.current.getVisibleRows()[0].checkbox?.isVisible).toBe(false);
+            });
+            expect(hookResult.result.current.selectAll).toBeNull();
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: getProps(true) });
+
+            await waitFor(() => {
+                expect(hookResult.result.current.selectAll).toBeTruthy();
+            });
+        });
+
+        it('should show/hide selectAll when checkbox visibility in rowOptions changes', async () => {
+            const dataSource = getArrayLocationsDS({});
+            const getProps = (isCheckboxVisible: boolean) => ({
+                rowOptions: { checkbox: { isVisible: isCheckboxVisible } },
+            });
+
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: getProps(true),
+                } },
+            );
+
+            await waitFor(() => {
+                expect(hookResult.result.current.selectAll).toBeTruthy();
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: getProps(false) });
+
+            await waitFor(() => {
+                expect(hookResult.result.current.getVisibleRows()[0].checkbox?.isVisible).toBe(false);
+            });
+            expect(hookResult.result.current.selectAll).toBeNull();
+        });
+    });
 });

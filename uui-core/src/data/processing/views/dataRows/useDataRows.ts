@@ -163,6 +163,8 @@ export function useDataRows<TItem, TId, TFilter = any>(
         getRowProps,
         getLoadingRowProps,
         isLoading,
+        rowOptions,
+        getRowOptions,
     });
 
     const updatedRows = useUpdateRowOptions({ rows: allRows, rowsMap, stats, updateRowOptions });

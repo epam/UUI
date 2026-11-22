@@ -33,6 +33,8 @@ export function useBuildRows<TItem, TId, TFilter = any>({
     getRowProps,
     getLoadingRowProps,
     isLoading = false,
+    rowOptions,
+    getRowOptions,
 }: UseBuildRowsProps<TItem, TId, TFilter>) {
     const buildRows = () => {
         const rows: DataRowProps<TItem, TId>[] = [];
@@ -160,5 +162,10 @@ export function useBuildRows<TItem, TId, TFilter = any>({
         };
     };
 
-    return useMemo(() => buildRows(), [tree, dataSourceState.folded, dataSourceState.checked, isLoading, dataSourceState.foldAll]);
+    // Rows should be rebuilt on rowOptions/getRowOptions change, since stats (e.g. isSomeCheckable, used by selectAll) depend on them.
+    // Otherwise, stats are outdated, and, for example, selectAll checkbox is still visible after hiding rows checkboxes.
+    return useMemo(
+        () => buildRows(),
+        [tree, dataSourceState.folded, dataSourceState.checked, isLoading, dataSourceState.foldAll, rowOptions, getRowOptions],
+    );
 }

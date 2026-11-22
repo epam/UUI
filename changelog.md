@@ -1,3 +1,8 @@
+# 6.xx.xx - xx.xx.2026
+
+**What's Fixed**
+* [DataTable] / [uui-core]: fixed "Select All" checkbox not being hidden/shown when checkboxes visibility is changed via `rowOptions` or `getRowOptions`. Previously, it was updated only after the next checked state change, e.g. after clicking it ([#3135](https://github.com/epam/UUI/issues/3135)).
+
 # 6.5.5 - 13.11.2026
 
 **What's Fixed**
