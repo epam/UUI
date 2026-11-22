@@ -1,6 +1,7 @@
 import { i18n } from '../../i18n';
 import { Metadata } from '../../types';
 import { ValidationState } from '../lenses';
+import { getTextLength } from '../../helpers/textLength';
 
 export type ValidationMode = 'change' | 'save';
 export const blankValidationState: ValidationState = {};
@@ -112,7 +113,9 @@ const validateValue = (value: any, path: any[], meta: Metadata<any>): Validation
         };
     }
 
-    if (meta.maxLength != null && value != null && value.length > meta.maxLength) {
+    // Strings length is counted in user-perceived characters, e.g. emoji are counted as 1 character, like in the LabeledInput char counter.
+    const valueLength = typeof value === 'string' ? getTextLength(value) : value?.length;
+    if (meta.maxLength != null && value != null && valueLength > meta.maxLength) {
         return {
             isInvalid: true,
             validationMessage: i18n.lenses.validation.greaterThanMaximumLengthMessage(meta.maxLength),

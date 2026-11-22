@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import {
     IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, IHasRawProps,
-    CX, cx, ICanFocus,
+    CX, cx, ICanFocus, limitTextLength,
 } from '@epam/uui-core';
 import css from './TextArea.module.scss';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
@@ -27,7 +27,7 @@ export interface TextAreaProps
     autoFocus?: boolean;
     /** CSS class names to put to the HTML Input element */
     inputCx?: CX;
-    /** Maximum text length, in characters */
+    /** Maximum text length, in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character. */
     maxLength?: number;
     /** HTML id attribute to put on the HTML Input element */
     id?: string;
@@ -91,13 +91,9 @@ export const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>((props, 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         // Android does not support maxLength
         // https://studysection.com/blog/the-html-maxlength-attribute-is-not-working-as-expected-on-android-phones/
+        // Also, native maxLength counts UTF-16 code units, so emoji are counted as 2+ characters. That's why maxLength is applied here.
         const targetValue = e.target.value;
-        let newValue;
-        if (props.maxLength && targetValue.length > props.maxLength) {
-            newValue = targetValue.slice(0, props.maxLength);
-        } else {
-            newValue = targetValue;
-        }
+        const newValue = props.maxLength ? limitTextLength(targetValue, props.maxLength, props.value ?? '') : targetValue;
 
         props.onValueChange(newValue);
     };
@@ -146,7 +142,6 @@ export const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>((props, 
                 aria-disabled={ props.isDisabled }
                 onChange={ handleChange }
                 value={ props.value || '' }
-                maxLength={ props.maxLength }
                 onFocus={ handleFocus }
                 onBlur={ handleBlur }
                 ref={ textAreaRef }

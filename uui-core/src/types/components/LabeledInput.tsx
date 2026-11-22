@@ -21,7 +21,7 @@ export interface LabeledInputCoreProps
     htmlFor?: string;
     /** A value from LabeledInput children */
     value?: any;
-    /** Maximum text length, in characters */
+    /** Maximum text length, in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character. */
     maxLength?: number;
     /** Showing current text length, in characters and maxLength */
     charCounter?: boolean

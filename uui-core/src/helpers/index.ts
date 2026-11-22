@@ -23,3 +23,4 @@ export * from './range';
 export * from './typeHelpers';
 export * from './getDir';
 export * from './fonts';
+export * from './textLength';

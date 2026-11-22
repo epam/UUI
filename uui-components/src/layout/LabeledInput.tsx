@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { uuiElement, labelMod, cx } from '@epam/uui-core';
+import { uuiElement, labelMod, cx, getTextLength } from '@epam/uui-core';
 import type { Icon, LabeledInputCoreProps } from '@epam/uui-core';
 import type { TooltipProps } from '../overlays';
 import { FlexSpacer } from './flexItems';
@@ -39,7 +39,7 @@ export const LabeledInput = React.forwardRef<HTMLDivElement, LabeledInputProps>(
 
     const getCharCounter = () => (
         <div dir="auto" className={ uuiLabeledInput.charCounter }>
-            { `${props.value?.length || '0'}/${props.maxLength}` }
+            { `${(typeof props.value === 'string' ? getTextLength(props.value) : props.value?.length) || '0'}/${props.maxLength}` }
         </div>
     );
 

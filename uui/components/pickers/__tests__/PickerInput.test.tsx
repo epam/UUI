@@ -633,6 +633,75 @@ describe('PickerInput', () => {
             expect(apiMock).toBeCalledTimes(1);
         });
 
+        it('should count emoji as a single character for minCharsToSearch', async () => {
+            const apiMock = jest.fn().mockResolvedValue([]);
+
+            const mockEmptyDS = new LazyDataSource<TestItemType, number, any>({
+                api: apiMock,
+                getId: ({ id }) => id,
+            });
+
+            const { dom } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'multi',
+                minCharsToSearch: 2,
+                searchPosition: 'body',
+                dataSource: mockEmptyDS,
+                getSearchFields: (item) => [item!.level],
+            });
+
+            fireEvent.click(dom.input);
+            const dialog = await screen.findByRole('dialog');
+            const bodyInput = within(dialog).getByPlaceholderText('Search');
+
+            // '😊' is 2 UTF-16 code units, but only 1 character
+            jest.useFakeTimers();
+            fireEvent.change(bodyInput, { target: { value: '😊' } });
+            act(() => {
+                jest.runAllTimers();
+            });
+            jest.useRealTimers();
+
+            await waitFor(async () => {
+                const body = dialog.querySelector<HTMLElement>('.uui-picker_input-body')!;
+                expect(within(body).getByText('Type search to load items')).toBeInTheDocument();
+            });
+            expect(apiMock).toBeCalledTimes(0);
+
+            jest.useFakeTimers();
+            fireEvent.change(bodyInput, { target: { value: '😊😊' } });
+            act(() => {
+                jest.runAllTimers();
+            });
+            jest.useRealTimers();
+
+            await waitFor(async () => {
+                const body = dialog.querySelector<HTMLElement>('.uui-picker_input-body')!;
+                expect(within(body).getByText('No records found')).toBeInTheDocument();
+            });
+            expect(apiMock).toBeCalledTimes(1);
+        });
+
+        it('should not open dialog, if search in input has less characters than minCharsToSearch because of emoji', async () => {
+            const { dom } = await setupPickerInputForTest({
+                value: undefined,
+                minCharsToSearch: 2,
+                selectionMode: 'single',
+                searchPosition: 'input',
+            });
+
+            fireEvent.click(dom.input);
+
+            jest.useFakeTimers();
+            fireEvent.change(dom.input, { target: { value: '😊' } });
+            act(() => {
+                jest.runAllTimers();
+            });
+            jest.useRealTimers();
+
+            expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        });
+
         it.each(['id', 'entity'])('should use selected value as a search value for single select and search in input', async (valueType) => {
             const { dom } = await setupPickerInputForTest({
                 value: undefined,

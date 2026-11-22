@@ -25,7 +25,7 @@ export interface Metadata<T> extends IDisableable, ICanBeReadonly, ICanBeRequire
     minValue?: number;
     /** Defines maximal value to pass the validation */
     maxValue?: number;
-    /** Defines maximal length of the string to pass the validation */
+    /** Defines maximal length of the string (or array) to pass the validation. For strings, emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character. */
     maxLength?: number;
     /** Array of your custom validators.
      * Validator is a pure function that accept value and should return error message if this field is invalid.

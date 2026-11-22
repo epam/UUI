@@ -198,4 +198,30 @@ describe('TextInput', () => {
 
         expect(onIconClick).toBeCalledTimes(1);
     });
+
+    describe('maxLength with emoji', () => {
+        it('should count emoji as a single character', async () => {
+            const onValueChange = jest.fn();
+            await setupTextInput({ value: '', onValueChange, maxLength: 3 });
+
+            fireEvent.change(screen.getByRole('textbox'), { target: { value: '😊😊😊' } });
+
+            expect(onValueChange).toHaveBeenLastCalledWith('😊😊😊');
+        });
+
+        it('should not split emoji when value is truncated', async () => {
+            const onValueChange = jest.fn();
+            await setupTextInput({ value: 'ab', onValueChange, maxLength: 3 });
+
+            fireEvent.change(screen.getByRole('textbox'), { target: { value: 'ab😊😊' } });
+
+            expect(onValueChange).toHaveBeenLastCalledWith('ab😊');
+        });
+
+        it('should not set native maxlength attribute, since it counts emoji as several characters', async () => {
+            await setupTextInput({ value: '', maxLength: 3 });
+
+            expect(screen.getByRole('textbox')).not.toHaveAttribute('maxlength');
+        });
+    });
 });

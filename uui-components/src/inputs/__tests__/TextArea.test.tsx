@@ -114,4 +114,39 @@ describe('TextArea', () => {
 
         expect(textarea.style.height).toBe('175px');
     });
+
+    describe('maxLength with emoji', () => {
+        it('should count emoji as a single character', () => {
+            const onValueChange = jest.fn();
+            render(<TextArea value="" onValueChange={ onValueChange } maxLength={ 3 } />);
+
+            fireEvent.change(screen.getByRole('textbox'), { target: { value: '😊😊😊' } });
+
+            expect(onValueChange).toHaveBeenCalledWith('😊😊😊');
+        });
+
+        it('should not split emoji when value is truncated', () => {
+            const onValueChange = jest.fn();
+            render(<TextArea value="" onValueChange={ onValueChange } maxLength={ 3 } />);
+
+            fireEvent.change(screen.getByRole('textbox'), { target: { value: '😊😊😊😊' } });
+
+            expect(onValueChange).toHaveBeenCalledWith('😊😊😊');
+        });
+
+        it('should keep existing text, when text is typed in the middle of the value at the limit', () => {
+            const onValueChange = jest.fn();
+            render(<TextArea value="abcde" onValueChange={ onValueChange } maxLength={ 5 } />);
+
+            fireEvent.change(screen.getByRole('textbox'), { target: { value: 'abxcde' } });
+
+            expect(onValueChange).toHaveBeenCalledWith('abcde');
+        });
+
+        it('should not set native maxlength attribute, since it counts emoji as several characters', () => {
+            render(<TextArea value="" onValueChange={ jest.fn() } maxLength={ 3 } />);
+
+            expect(screen.getByRole('textbox')).not.toHaveAttribute('maxlength');
+        });
+    });
 });

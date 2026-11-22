@@ -24634,7 +24634,7 @@
       "    htmlFor?: string;",
       "    /** A value from LabeledInput children */",
       "    value?: any;",
-      "    /** Maximum text length, in characters */",
+      "    /** Maximum text length, in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character. */",
       "    maxLength?: number;",
       "    /** Showing current text length, in characters and maxLength */",
       "    charCounter?: boolean;",
@@ -24736,7 +24736,7 @@
       "name": "maxLength",
       "comment": {
        "raw": [
-        "Maximum text length, in characters"
+        "Maximum text length, in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character."
        ]
       },
       "typeValue": {
@@ -26675,7 +26675,7 @@
       "    minValue?: number;",
       "    /** Defines maximal value to pass the validation */",
       "    maxValue?: number;",
-      "    /** Defines maximal length of the string to pass the validation */",
+      "    /** Defines maximal length of the string (or array) to pass the validation. For strings, emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character. */",
       "    maxLength?: number;",
       "    /** Array of your custom validators.",
       "     * Validator is a pure function that accept value and should return error message if this field is invalid.",
@@ -26754,7 +26754,7 @@
       "name": "maxLength",
       "comment": {
        "raw": [
-        "Defines maximal length of the string to pass the validation"
+        "Defines maximal length of the string (or array) to pass the validation. For strings, emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character."
        ]
       },
       "typeValue": {
@@ -40796,7 +40796,7 @@
       "    autoComplete?: string;",
       "    /** Standard [name attribute]{@link https://www.w3schools.com/tags/att_input_name.asp} */",
       "    name?: string;",
-      "    /** Maximum input length in characters */",
+      "    /** Maximum input length in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character. */",
       "    maxLength?: number;",
       "    /** Standard [inputMode attribute]{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode} */",
       "    inputMode?: React.InputHTMLAttributes<HTMLInputElement>['inputMode'];",
@@ -40930,7 +40930,7 @@
       "name": "maxLength",
       "comment": {
        "raw": [
-        "Maximum input length in characters"
+        "Maximum input length in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character."
        ]
       },
       "typeValue": {
@@ -57793,7 +57793,7 @@
       "name": "maxLength",
       "comment": {
        "raw": [
-        "Maximum text length, in characters"
+        "Maximum text length, in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character."
        ]
       },
       "typeValue": {
@@ -64162,7 +64162,7 @@
       "    autoFocus?: boolean;",
       "    /** CSS class names to put to the HTML Input element */",
       "    inputCx?: CX;",
-      "    /** Maximum text length, in characters */",
+      "    /** Maximum text length, in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character. */",
       "    maxLength?: number;",
       "    /** HTML id attribute to put on the HTML Input element */",
       "    id?: string;",
@@ -64258,7 +64258,7 @@
       "name": "maxLength",
       "comment": {
        "raw": [
-        "Maximum text length, in characters"
+        "Maximum text length, in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character."
        ]
       },
       "typeValue": {
@@ -64725,7 +64725,7 @@
       "name": "maxLength",
       "comment": {
        "raw": [
-        "Maximum input length in characters"
+        "Maximum input length in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character."
        ]
       },
       "typeValue": {
@@ -83187,7 +83187,7 @@
       "name": "maxLength",
       "comment": {
        "raw": [
-        "Maximum text length, in characters"
+        "Maximum text length, in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character."
        ]
       },
       "typeValue": {
@@ -85831,7 +85831,7 @@
       "name": "maxLength",
       "comment": {
        "raw": [
-        "Maximum input length in characters"
+        "Maximum input length in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character."
        ]
       },
       "typeValue": {
@@ -98743,7 +98743,7 @@
       "name": "maxLength",
       "comment": {
        "raw": [
-        "Maximum input length in characters"
+        "Maximum input length in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character."
        ]
       },
       "typeValue": {
@@ -102876,7 +102876,7 @@
       "name": "maxLength",
       "comment": {
        "raw": [
-        "Maximum text length, in characters"
+        "Maximum text length, in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character."
        ]
       },
       "typeValue": {
@@ -103542,7 +103542,7 @@
       "name": "maxLength",
       "comment": {
        "raw": [
-        "Maximum input length in characters"
+        "Maximum input length in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character."
        ]
       },
       "typeValue": {

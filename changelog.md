@@ -1,3 +1,10 @@
+# 6.xx.xx - xx.xx.2026
+
+**What's Fixed**
+* [TextArea], [TextInput], [LabeledInput], [PickerInput], [Validation]: fixed incorrect count of characters for emoji and other symbols, which consist of several UTF-16 code units. Now they are counted as a single character in `maxLength` (including `charCounter`), `minCharsToSearch` and `maxLength` validation ([#3013](https://github.com/epam/UUI/issues/3013)).
+  * [TextArea], [TextInput]: `maxLength` is no longer passed as the native `maxlength` attribute (which counts UTF-16 code units), it's applied in `onValueChange` instead. When the limit is exceeded, only the inserted text is cut, and the rest of the value is kept.
+* [uui-core]: added `getTextLength`, `splitTextToCharacters` and `limitTextLength` helpers, which count user-perceived characters (grapheme clusters).
+
 # 6.5.5 - 13.11.2026
 
 **What's Fixed**
