@@ -85,6 +85,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
             >
               <div
                 aria-posinset="1"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="2"
                 role="option"
@@ -125,6 +126,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
               </div>
               <div
                 aria-posinset="2"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="3"
                 role="option"
@@ -165,6 +167,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
               </div>
               <div
                 aria-posinset="3"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="4"
                 role="option"
@@ -205,6 +208,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
               </div>
               <div
                 aria-posinset="4"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="5"
                 role="option"
@@ -245,6 +249,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
               </div>
               <div
                 aria-posinset="5"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="6"
                 role="option"
@@ -285,6 +290,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
               </div>
               <div
                 aria-posinset="6"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="7"
                 role="option"
@@ -325,6 +331,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
               </div>
               <div
                 aria-posinset="7"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="8"
                 role="option"
@@ -365,6 +372,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
               </div>
               <div
                 aria-posinset="8"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="9"
                 role="option"
@@ -405,6 +413,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
               </div>
               <div
                 aria-posinset="9"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="10"
                 role="option"
@@ -445,6 +454,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
               </div>
               <div
                 aria-posinset="10"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="11"
                 role="option"
@@ -485,6 +495,7 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
               </div>
               <div
                 aria-posinset="11"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="12"
                 role="option"
@@ -610,6 +621,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             >
               <div
                 aria-posinset="1"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="2"
                 role="option"
@@ -650,6 +662,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               </div>
               <div
                 aria-posinset="2"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="3"
                 role="option"
@@ -690,6 +703,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               </div>
               <div
                 aria-posinset="3"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="4"
                 role="option"
@@ -730,6 +744,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               </div>
               <div
                 aria-posinset="4"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="5"
                 role="option"
@@ -770,6 +785,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               </div>
               <div
                 aria-posinset="5"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="6"
                 role="option"
@@ -810,6 +826,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               </div>
               <div
                 aria-posinset="6"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="7"
                 role="option"
@@ -850,6 +867,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               </div>
               <div
                 aria-posinset="7"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="8"
                 role="option"
@@ -890,6 +908,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               </div>
               <div
                 aria-posinset="8"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="9"
                 role="option"
@@ -930,6 +949,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               </div>
               <div
                 aria-posinset="9"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="10"
                 role="option"
@@ -970,6 +990,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               </div>
               <div
                 aria-posinset="10"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="11"
                 role="option"
@@ -1010,6 +1031,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               </div>
               <div
                 aria-posinset="11"
+                aria-setsize="-1"
                 class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
                 id="12"
                 role="option"

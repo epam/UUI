@@ -41,6 +41,17 @@ export interface PickerTogglerProps<TItem = any, TId = any>
     * HTML ID attribute for the toggler input
     */
     id?: string;
+    /**
+     * HTML ID of the currently focused option in the picker body.
+     * Set as `aria-activedescendant` of the toggler input when search is located in the toggler (`searchPosition="input"`),
+     * so screen readers announce options while navigating them with the keyboard.
+     */
+    activeDescendantId?: string;
+    /**
+     * HTML ID of the picker body, which contains the list of options.
+     * Set as `aria-controls` of the toggler input when search is located in the toggler (`searchPosition="input"`) and the body is opened.
+     */
+    bodyId?: string;
 }
 
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLDivElement>) {
@@ -232,13 +243,29 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             return null;
         }
 
+        /*
+            When search is in the toggler, focus stays on this input while the user navigates options with arrow keys.
+            So it should be a combobox, which refers to the focused option via aria-activedescendant.
+            Otherwise, screen readers (e.g. NVDA) don't announce the options at all.
+        */
+        const comboboxProps: React.InputHTMLAttributes<HTMLInputElement> = isSearchInToggler
+            ? {
+                role: 'combobox',
+                'aria-haspopup': 'listbox',
+                'aria-autocomplete': 'list',
+                'aria-expanded': Boolean(props.isOpen),
+                'aria-controls': props.isOpen ? props.bodyId : undefined,
+                'aria-activedescendant': props.isOpen ? props.activeDescendantId : undefined,
+            }
+            : { 'aria-haspopup': 'dialog' };
+
         return (
             <input
                 id={ props?.id }
                 type="search"
                 tabIndex={ isPickerDisabled || !isSearchInToggler ? -1 : 0 } // If search not in toggler, we shouldn't make this input focusable
                 ref={ searchInputRef }
-                aria-haspopup="dialog"
+                { ...comboboxProps }
                 autoComplete="no"
                 aria-required={ props.isRequired }
                 aria-disabled={ props.isDisabled }

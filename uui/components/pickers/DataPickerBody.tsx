@@ -152,9 +152,14 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, auto
         return props.size || settings.pickerInput.sizes.body.row;
     };
 
+    // Total count of options, announced by screen readers (e.g. "21 of 100").
+    // If the total count is unknown (e.g. LazyDataSource without count in API response), it should be -1, according to the WAI-ARIA spec.
+    const setSize = props.exactRowsCount ?? -1;
+
     const renderRow = (row: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
         const pickerRowProps = {
             ...row,
+            rawProps: { 'aria-setsize': setSize, ...row.rawProps },
             getName: props.getName,
             cx: cx(
                 row.cx,
@@ -199,7 +204,7 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, auto
         ? settings.pickerInput.sizes.body.mobileSearchInput
         : settings.pickerInput.sizes.body.getSearchSize({ pickerSize: props.searchSize });
 
-    const renderedDataRows = useMemo(() => props.rows.map((row) => renderRow(row, props.value)), [props.rows, props.value, isKeyboardNavigation]);
+    const renderedDataRows = useMemo(() => props.rows.map((row) => renderRow(row, props.value)), [props.rows, props.value, isKeyboardNavigation, setSize]);
     return (
         <>
             <div

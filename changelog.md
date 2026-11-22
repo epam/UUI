@@ -1,3 +1,10 @@
+# 6.xx.xx - xx.xx.2026
+
+**What's Fixed**
+* [PickerInput]: fixed options not being announced by screen readers (e.g. NVDA) during keyboard navigation when search is located in the toggler (default for `selectionMode="single"`). The toggler input is now exposed as a `combobox` with `aria-expanded`, `aria-controls` and `aria-activedescendant` pointing to the focused option ([#3085](https://github.com/epam/UUI/issues/3085) Case #1).
+* [DataPickerBody]: options now have `aria-setsize` equal to the total count of rows, or `-1` if it is unknown (e.g. `LazyDataSource` without `count` in API response), instead of being calculated from the loaded rows only ([#3085](https://github.com/epam/UUI/issues/3085) Case #2).
+* [LazyDataSource] / [uui-core]: `exactRowsCount` in `getListProps()` is now `undefined` while the total count of rows is unknown (API didn't return `count` and not all rows are loaded), as documented. Previously it was equal to `knownRowsCount`.
+
 # 6.5.5 - 13.11.2026
 
 **What's Fixed**

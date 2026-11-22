@@ -57,7 +57,8 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
             </>
         ),
     );
-    const input = screen.queryByRole('searchbox') as HTMLElement;
+    // When search is in the toggler (default for single mode), toggler input is a combobox. Otherwise, it's a plain searchbox.
+    const input = (screen.queryByRole('combobox') ?? screen.queryByRole('searchbox')) as HTMLElement;
 
     return {
         setProps,
@@ -127,7 +128,8 @@ async function setupPickerInputForTestWithFirstValueChangeRewriting<TItem = Test
             </>
         ),
     );
-    const input = screen.queryByRole('searchbox') as HTMLElement;
+    // When search is in the toggler (default for single mode), toggler input is a combobox. Otherwise, it's a plain searchbox.
+    const input = (screen.queryByRole('combobox') ?? screen.queryByRole('searchbox')) as HTMLElement;
 
     return {
         setProps,
@@ -1840,7 +1842,7 @@ describe('PickerInput', () => {
                     disableClear: true,
                 });
 
-                const inputSearch = screen.getByRole('searchbox');
+                const inputSearch = dom.input;
 
                 await userEvent.click(inputSearch);
 
@@ -2008,7 +2010,7 @@ describe('PickerInput', () => {
             <TestComponent />,
         );
 
-        const pickerInput = await screen.findByRole('searchbox');
+        const pickerInput = await screen.findByRole('combobox');
         expect(pickerInput).toBeInTheDocument();
         expect(pickerInput).toHaveValue('');
         expect(pickerInput).not.toHaveFocus();
@@ -2060,5 +2062,89 @@ describe('PickerInput', () => {
         expect(pickerInput).toHaveValue('');
         expect(pickerInput).toHaveFocus();
         expect(clearButton).not.toBeInTheDocument();
+    });
+
+    describe('Accessibility', () => {
+        it('should expose toggler input as a combobox linked to the focused option, if search is in input', async () => {
+            const { dom } = await setupPickerInputForTest<TestItemType, number>({
+                value: undefined,
+                selectionMode: 'single',
+            });
+
+            expect(dom.input).toHaveAttribute('role', 'combobox');
+            expect(dom.input).toHaveAttribute('aria-haspopup', 'listbox');
+            expect(dom.input).toHaveAttribute('aria-expanded', 'false');
+            expect(dom.input).not.toHaveAttribute('aria-controls');
+            expect(dom.input).not.toHaveAttribute('aria-activedescendant');
+
+            fireEvent.click(dom.input);
+            await PickerInputTestObject.waitForOptionsToBeReady();
+
+            expect(dom.input).toHaveAttribute('aria-expanded', 'true');
+            const bodyId = dom.input.getAttribute('aria-controls');
+            const body = document.getElementById(bodyId!);
+            expect(body).toBeInTheDocument();
+            expect(within(body!).getByRole('listbox')).toBeInTheDocument();
+
+            await waitFor(() => {
+                const activeOption = document.getElementById(dom.input.getAttribute('aria-activedescendant')!);
+                expect(activeOption).toHaveAttribute('aria-posinset', '1');
+            });
+
+            fireEvent.keyDown(dom.input, { key: 'ArrowDown', code: 'ArrowDown', charCode: 40 });
+
+            await waitFor(() => {
+                const activeOption = document.getElementById(dom.input.getAttribute('aria-activedescendant')!);
+                expect(activeOption).toHaveAttribute('aria-posinset', '2');
+            });
+            expect(document.getElementById(dom.input.getAttribute('aria-activedescendant')!)).toHaveAttribute('role', 'option');
+
+            fireEvent.keyDown(dom.input, { key: 'Escape', code: 'Escape', charCode: 27 });
+
+            await waitFor(() => {
+                expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+            });
+            expect(dom.input).toHaveAttribute('aria-expanded', 'false');
+            expect(dom.input).not.toHaveAttribute('aria-activedescendant');
+        });
+
+        it('should not expose toggler input as a combobox, if search is in body', async () => {
+            await setupPickerInputForTest<TestItemType, number>({
+                value: undefined,
+                selectionMode: 'multi',
+                searchPosition: 'body',
+            });
+
+            expect(screen.queryByRole('combobox')).not.toBeInTheDocument();
+            expect(screen.getByRole('searchbox')).toHaveAttribute('aria-haspopup', 'dialog');
+        });
+
+        it('should set aria-setsize of options to the total count of items', async () => {
+            const { dom } = await setupPickerInputForTest<TestItemType, number>({
+                value: undefined,
+                selectionMode: 'single',
+            });
+
+            fireEvent.click(dom.input);
+            const options = await PickerInputTestObject.findOptions();
+
+            options.forEach((option) => {
+                expect(option).toHaveAttribute('aria-setsize', `${options.length}`);
+            });
+        });
+
+        it('should use rawProps.body.id as the id of the picker body', async () => {
+            const { dom } = await setupPickerInputForTest<TestItemType, number>({
+                value: undefined,
+                selectionMode: 'single',
+                rawProps: { body: { id: 'custom-body-id' } },
+            });
+
+            fireEvent.click(dom.input);
+            await PickerInputTestObject.waitForOptionsToBeReady();
+
+            expect(dom.input).toHaveAttribute('aria-controls', 'custom-body-id');
+            expect(document.getElementById('custom-body-id')).toBeInTheDocument();
+        });
     });
 });

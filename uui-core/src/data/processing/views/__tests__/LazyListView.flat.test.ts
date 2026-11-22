@@ -79,6 +79,8 @@ describe('LazyListView - flat list test', () => {
         view = hookResult.result.current;
         let listProps = view.getListProps();
         expect(listProps.rowsCount).toEqual(10);
+        // API returned count, so the exact count is known, even if not all rows are loaded yet.
+        expect(listProps.exactRowsCount).toEqual(10);
 
         // Scroll down by 1 row
         hookResult.rerender({ value: { topIndex: 1, visibleCount: 3 }, onValueChange: onValueChanged, props: {} });
@@ -363,6 +365,9 @@ describe('LazyListView - flat list test', () => {
         });
 
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
+        // API didn't return count, and there are more rows to load, so the exact count is unknown.
+        expect(view.getListProps().exactRowsCount).toBeUndefined();
+        expect(view.getListProps().knownRowsCount).toBeGreaterThanOrEqual(3);
 
         // Scroll down by 1 row
         hookResult.rerender({ value: { topIndex: 1, visibleCount: 3 }, onValueChange: onValueChanged, props: {} });
@@ -405,6 +410,8 @@ describe('LazyListView - flat list test', () => {
         });
 
         expect(view.getListProps().rowsCount).toEqual(10);
+        // The end of the list is reached, so the exact count is known.
+        expect(view.getListProps().exactRowsCount).toEqual(10);
     });
 
     it('handles empty result', async () => {

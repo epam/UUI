@@ -1,4 +1,4 @@
-import React, { useContext, useImperativeHandle, useMemo, useRef, type JSX } from 'react';
+import React, { useContext, useId, useImperativeHandle, useMemo, useRef, type JSX } from 'react';
 import { Middleware, offset } from '@floating-ui/react';
 import {
     DropdownBodyProps, IEditableDebouncer, PickerInputElement, isMobile, Overwrite,
@@ -97,6 +97,11 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
 
     const rows = getRows();
 
+    // Links the toggler input (combobox) with the picker body and the focused option for screen readers.
+    const defaultBodyId = useId();
+    const bodyId = props.rawProps?.body?.id ?? defaultBodyId;
+    const activeDescendantId = rows.find((row) => row.isFocused)?.rowKey;
+
     const renderTarget = (targetProps: PickerTogglerProps<TItem, TId>) => {
         const renderTargetFn = props.renderToggler || ((props) => <PickerToggler { ...props } />);
 
@@ -109,6 +114,8 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
                     ...getTogglerMods(),
                     ...targetProps,
                     ...editableProps,
+                    bodyId,
+                    activeDescendantId,
                     onKeyDown: (e) => handlePickerInputKeyboard(rows, e, editableProps.value),
                 }) }
             />
@@ -157,7 +164,7 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
                     minCharsToSearch={ props.minCharsToSearch }
                     fixedBodyPosition={ props.fixedBodyPosition }
                     searchDebounceDelay={ props.searchDebounceDelay }
-                    rawProps={ props.rawProps?.body }
+                    rawProps={ { ...props.rawProps?.body, id: bodyId } }
                     highlightSearchMatches={ props.highlightSearchMatches }
                     flattenSearchResults={ view.getConfig().flattenSearchResults }
                 />
