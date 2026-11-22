@@ -230,10 +230,19 @@ export function useDataRows<TItem, TId, TFilter = any>(
             rowsCount = Math.max(updatedRows.length, maxVisibleRowIndex + rowsToAddBelowLastKnown);
         }
 
+        // exactRowsCount should be known only if API returned the count of the flat list, or if all rows are loaded.
+        // Otherwise, it is unknown, and only knownRowsCount (count of loaded rows) is available.
+        let exactRowsCount: number | undefined;
+        if (completeFlatListRowsCount !== undefined) {
+            exactRowsCount = completeFlatListRowsCount;
+        } else if (!stats.hasMoreRows) {
+            exactRowsCount = updatedRows.length;
+        }
+
         return {
             rowsCount,
             knownRowsCount: updatedRows.length,
-            exactRowsCount: updatedRows.length,
+            exactRowsCount,
             selectAll,
             isReloading: isFetching,
         };

@@ -106,4 +106,40 @@ describe('DataPickerBody', () => {
             expect(emptyStatusAnnouncer).toHaveTextContent('');
         });
     });
+
+    describe('aria-setsize', () => {
+        it('should set aria-setsize of options to exactRowsCount', async () => {
+            const { container } = await renderWithContextAsync(
+                <DataPickerBody { ...requiredProps } exactRowsCount={ 100 } />,
+            );
+
+            const options = within(container).getAllByRole('option');
+            expect(options.length).toBe(rows.length);
+            options.forEach((option, index) => {
+                expect(option).toHaveAttribute('aria-setsize', '100');
+                expect(option).toHaveAttribute('aria-posinset', `${index + 1}`);
+            });
+        });
+
+        it('should set aria-setsize of options to -1 if total count is unknown', async () => {
+            const { container } = await renderWithContextAsync(
+                <DataPickerBody { ...requiredProps } knownRowsCount={ rows.length } />,
+            );
+
+            within(container).getAllByRole('option').forEach((option) => {
+                expect(option).toHaveAttribute('aria-setsize', '-1');
+            });
+        });
+
+        it('should not override aria-setsize passed via row rawProps', async () => {
+            const rowsWithRawProps = rows.map((row) => ({ ...row, rawProps: { ...row.rawProps, 'aria-setsize': 5 } }));
+            const { container } = await renderWithContextAsync(
+                <DataPickerBody { ...requiredProps } rows={ rowsWithRawProps } exactRowsCount={ 100 } />,
+            );
+
+            within(container).getAllByRole('option').forEach((option) => {
+                expect(option).toHaveAttribute('aria-setsize', '5');
+            });
+        });
+    });
 });

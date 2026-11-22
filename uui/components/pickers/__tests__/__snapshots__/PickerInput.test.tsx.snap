@@ -10,11 +10,16 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
         class="body"
       >
         <input
-          aria-haspopup="dialog"
+          aria-activedescendant="2"
+          aria-autocomplete="list"
+          aria-controls="«ri»"
+          aria-expanded="true"
+          aria-haspopup="listbox"
           autocomplete="no"
           class="uui-input singleInput cursorText -clickable"
           dir="ltr"
           placeholder="Please select "
+          role="combobox"
           tabindex="0"
           type="search"
           value=""
@@ -85,6 +90,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
               class="viewport"
               data-overlayscrollbars-contents=""
               data-overlayscrollbars-viewport="overflowXHidden overflowYHidden"
+              id="«ri»"
               style="padding: 0px 0px 0px 0px;"
               tabindex="0"
             >
@@ -99,6 +105,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
                   <div
                     aria-posinset="1"
                     aria-selected="false"
+                    aria-setsize="2"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top uui-focus -clickable"
                     id="2"
                     role="option"
@@ -140,6 +147,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
                   <div
                     aria-posinset="2"
                     aria-selected="false"
+                    aria-setsize="2"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="3"
                     role="option"
@@ -348,11 +356,14 @@ exports[`PickerInput Rendering should render with minimum props 1`] = `
       class="body"
     >
       <input
-        aria-haspopup="dialog"
+        aria-autocomplete="list"
+        aria-expanded="false"
+        aria-haspopup="listbox"
         autocomplete="no"
         class="uui-input singleInput cursorText -clickable"
         dir="ltr"
         placeholder="Please select "
+        role="combobox"
         tabindex="0"
         type="search"
         value=""

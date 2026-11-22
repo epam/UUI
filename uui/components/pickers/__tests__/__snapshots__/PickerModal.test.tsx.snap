@@ -133,6 +133,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   <div
                     aria-posinset="1"
                     aria-selected="false"
+                    aria-setsize="2"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="2"
                     role="option"
@@ -174,6 +175,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   <div
                     aria-posinset="2"
                     aria-selected="false"
+                    aria-setsize="2"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="3"
                     role="option"
@@ -451,6 +453,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   <div
                     aria-checked="false"
                     aria-posinset="1"
+                    aria-setsize="11"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="12"
                     role="option"
@@ -506,6 +509,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   <div
                     aria-checked="false"
                     aria-posinset="2"
+                    aria-setsize="11"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="11"
                     role="option"
@@ -561,6 +565,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   <div
                     aria-checked="false"
                     aria-posinset="3"
+                    aria-setsize="11"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="10"
                     role="option"
@@ -616,6 +621,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   <div
                     aria-checked="false"
                     aria-posinset="4"
+                    aria-setsize="11"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="9"
                     role="option"
@@ -671,6 +677,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   <div
                     aria-checked="false"
                     aria-posinset="5"
+                    aria-setsize="11"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="8"
                     role="option"
@@ -726,6 +733,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   <div
                     aria-checked="false"
                     aria-posinset="6"
+                    aria-setsize="11"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="7"
                     role="option"
@@ -781,6 +789,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   <div
                     aria-checked="false"
                     aria-posinset="7"
+                    aria-setsize="11"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="6"
                     role="option"
@@ -836,6 +845,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   <div
                     aria-checked="false"
                     aria-posinset="8"
+                    aria-setsize="11"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="5"
                     role="option"
@@ -891,6 +901,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   <div
                     aria-checked="false"
                     aria-posinset="9"
+                    aria-setsize="11"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="4"
                     role="option"
@@ -946,6 +957,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   <div
                     aria-checked="false"
                     aria-posinset="10"
+                    aria-setsize="11"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="3"
                     role="option"
@@ -1001,6 +1013,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   <div
                     aria-checked="false"
                     aria-posinset="11"
+                    aria-setsize="11"
                     class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                     id="2"
                     role="option"
@@ -1276,6 +1289,7 @@ exports[`PickerModal should open body 1`] = `
                     <div
                       aria-posinset="1"
                       aria-selected="false"
+                      aria-setsize="2"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                       id="2"
                       role="option"
@@ -1317,6 +1331,7 @@ exports[`PickerModal should open body 1`] = `
                     <div
                       aria-posinset="2"
                       aria-selected="false"
+                      aria-setsize="2"
                       class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                       id="3"
                       role="option"

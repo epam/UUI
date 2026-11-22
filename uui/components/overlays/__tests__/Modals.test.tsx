@@ -265,7 +265,7 @@ describe('Modals', () => {
             },
         );
         await userEvent.click(openModalWindowButton);
-        const pickerInput = await screen.findByRole('searchbox');
+        const pickerInput = await screen.findByRole('combobox');
         expect(pickerInput).toBeInTheDocument();
 
         await userEvent.click(pickerInput);
@@ -297,7 +297,7 @@ describe('Modals', () => {
         // Second 'Escape' key press should close the modal window.
         await userEvent.keyboard('{Escape}');
         expect(
-            screen.queryByRole('searchbox'),
+            screen.queryByRole('combobox'),
         ).not.toBeInTheDocument();
         expect(successMock).not.toBeCalled();
         expect(abortMock).toBeCalled();
