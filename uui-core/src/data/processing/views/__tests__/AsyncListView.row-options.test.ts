@@ -1142,4 +1142,42 @@ describe('AsyncListView - row options', () => {
             });
         });
     });
+
+    describe('selectAll visibility on row options change', () => {
+        it('should show/hide selectAll when checkbox visibility in getRowOptions changes', async () => {
+            const { dataSource } = getAsyncLocationsDS({});
+            const getProps = (isCheckboxVisible: boolean) => ({
+                getRowOptions: () => ({ checkbox: { isVisible: isCheckboxVisible } }),
+            });
+
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: getProps(true),
+                } },
+            );
+
+            await waitFor(() => {
+                expect(hookResult.result.current.getVisibleRows()[0].isLoading).toBeFalsy();
+            });
+            await waitFor(() => {
+                expect(hookResult.result.current.selectAll).toBeTruthy();
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: getProps(false) });
+
+            await waitFor(() => {
+                expect(hookResult.result.current.getVisibleRows()[0].checkbox?.isVisible).toBe(false);
+            });
+            expect(hookResult.result.current.selectAll).toBeNull();
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: getProps(true) });
+
+            await waitFor(() => {
+                expect(hookResult.result.current.selectAll).toBeTruthy();
+            });
+        });
+    });
 });
