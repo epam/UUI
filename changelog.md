@@ -1,3 +1,8 @@
+# 6.xx.xx - xx.xx.2026
+
+**What's Fixed**
+* [VirtualList]: fixed only the first `visibleCount` items being reachable by scrolling, when `visibleCount` is 20 or greater. The scroll container (`ScrollBars`) gets its size after the first render, so the list offset and estimated height were not calculated, if nothing else re-rendered the list after that ([#3129](https://github.com/epam/UUI/issues/3129)).
+
 # 6.5.5 - 13.11.2026
 
 **What's Fixed**

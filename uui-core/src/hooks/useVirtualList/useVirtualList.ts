@@ -77,16 +77,34 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         }
     });
 
+    const initListOffset = React.useCallback((): boolean => {
+        if (!scrollContainer.current || !listContainer.current) return false;
+        const { top: scrollContainerTop, bottom } = scrollContainer.current.getBoundingClientRect();
+        const { top: listContainerTop } = listContainer.current.getBoundingClientRect();
+        // Scroll container has no size yet, so the offset can't be calculated.
+        if (bottom === scrollContainerTop) return false;
+
+        setListOffset(listContainerTop - scrollContainerTop);
+        return true;
+    }, []);
+
     useLayoutEffectSafeForSsr(() => {
         // Set listOffset only for the first time on list initialization
         if (!scrollContainer.current || !listContainer.current || listOffset !== undefined) return;
-        const { top: scrollContainerTop, bottom } = scrollContainer.current.getBoundingClientRect();
-        const { top: listContainerTop } = listContainer.current.getBoundingClientRect();
-        if (bottom === scrollContainerTop) return;
+        if (initListOffset()) return;
 
-        const newListOffset = listContainerTop - scrollContainerTop;
-
-        setListOffset(newListOffset);
+        // The scroll container can get its size after the first render (e.g. ScrollBars are initialized in useEffect).
+        // If nothing else re-renders the list after that (e.g. visibleCount is already >= blockSize, so it's not changed),
+        // listOffset and estimatedHeight are never calculated, and only the first visibleCount rows can be scrolled to.
+        // So, wait for the scroll container to get its size.
+        if (typeof ResizeObserver === 'undefined') return;
+        const resizeObserver = new ResizeObserver(() => {
+            if (initListOffset()) {
+                resizeObserver.disconnect();
+            }
+        });
+        resizeObserver.observe(scrollContainer.current);
+        return () => resizeObserver.disconnect();
     });
 
     const getTopIndexAndVisibleCountOnScroll = React.useCallback(() => {
