@@ -5,7 +5,7 @@ exports[`BurgerButton should be rendered correctly 1`] = `
   <a
     aria-expanded="false"
     aria-haspopup="true"
-    class="uui-button-box uui-enabled -clickable uui-anchor container root uui-main_menu-burger-button button-secondary indent-0 uui-active dropdown hasIcon"
+    class="uui-button-box uui-enabled -clickable uui-anchor container root uui-main_menu-burger-button button-secondary uui-active hasIcon"
     href="#"
     rel="noopener noreferrer"
     role="menuitem"
@@ -38,7 +38,7 @@ exports[`BurgerButton should be rendered correctly 1`] = `
 exports[`BurgerButton should be rendered correctly with minimum props 1`] = `
 <DocumentFragment>
   <button
-    class="uui-button-box uui-enabled container root uui-main_menu-burger-button button-primary indent-0"
+    class="uui-button-box uui-enabled container root uui-main_menu-burger-button button-primary"
     role="menuitem"
     tabindex="-1"
     type="button"

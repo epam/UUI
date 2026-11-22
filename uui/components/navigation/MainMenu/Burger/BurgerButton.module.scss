@@ -10,8 +10,12 @@
     --uui-burger_btn-font-weight: 400;
 
     --uui-burger_btn-icon-size: 18px;
+    --uui-burger_btn-padding-start: 24px;
+    --uui-burger_btn-indent-size: 24px;
     //
     padding: 0 24px;
+    // Extra padding for each indentLevel. --uui-burger_btn-indent-level is set in BurgerButton.tsx
+    padding-left: calc(var(--uui-burger_btn-padding-start) + var(--uui-burger_btn-indent-size) * var(--uui-burger_btn-indent-level, 0));
     background: none;
     border: 0;
     outline: none;
@@ -50,18 +54,16 @@
     }
 
     &.button-secondary {
+        --uui-burger_btn-padding-start: 18px;
         font-size: 14px;
-        padding-left: 18px;
         margin-left: 48px;
         border-left: 1px var(--uui-burger_btn-border) solid;
     }
 
-    &.hasIcon,
-    &.dropdown {
-        padding-left: 0;
-    }
-
+    // Note: dropdown buttons keep the same left padding as other buttons, since the dropdown icon is rendered after the caption
     &.hasIcon {
+        --uui-burger_btn-padding-start: 0px;
+
         :global(.uui-icon) {
             padding: 0 12px 0 20px;
 
