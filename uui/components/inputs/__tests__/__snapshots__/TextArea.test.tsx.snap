@@ -22,7 +22,6 @@ exports[`TextArea should be rendered with props correctly 1`] = `
   >
     <textarea
       class="-clickable noAutoSize uui-input"
-      maxlength="200"
       placeholder="Type here"
       rows="4"
       tabindex="0"

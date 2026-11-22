@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
     Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext,
-    isEventTargetInsideClickable,
+    isEventTargetInsideClickable, limitTextLength,
 } from '@epam/uui-core';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
 import { ControlIcon } from '../widgets/ControlIcon';
@@ -35,13 +35,9 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         // Android does not support maxLength
         // https://studysection.com/blog/the-html-maxlength-attribute-is-not-working-as-expected-on-android-phones/
+        // Also, native maxLength counts UTF-16 code units, so emoji are counted as 2+ characters. That's why maxLength is applied here.
         const targetValue = e.target.value;
-        let newValue;
-        if (props.maxLength && targetValue.length > props.maxLength) {
-            newValue = targetValue.slice(0, props.maxLength);
-        } else {
-            newValue = targetValue;
-        }
+        const newValue = props.maxLength ? limitTextLength(targetValue, props.maxLength, props.value ?? '') : targetValue;
 
         props.onValueChange(newValue);
 
@@ -103,7 +99,6 @@ export const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>((props
         ref: inputElement,
         autoComplete: props.autoComplete,
         name: props.name,
-        maxLength: props.maxLength,
         inputMode: props.inputMode,
         tabIndex: (props.isReadonly || props.isDisabled) ? -1 : props.tabIndex || 0,
         id: props.id,

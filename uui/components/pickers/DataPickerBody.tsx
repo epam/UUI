@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import {
     DataSourceState, isMobile, cx, Overwrite, IDropdownBodyProps, devLogger, DataSourceListProps, IEditable,
-    IHasRawProps, usePrevious, DataRowProps, FlattenSearchResultsConfig,
+    IHasRawProps, usePrevious, DataRowProps, FlattenSearchResultsConfig, getTextLength,
 } from '@epam/uui-core';
 import { FlexCell } from '@epam/uui-components';
 import { MoveFocusInside } from '@epam/uui-react-focus-lock-fork';
@@ -116,7 +116,7 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, auto
             });
         }
 
-        if (props.minCharsToSearch && search.length < props.minCharsToSearch) {
+        if (props.minCharsToSearch && getTextLength(search) < props.minCharsToSearch) {
             return (
                 <FlexCell cx={ css.noData } grow={ 1 } textAlign="center">
                     <Text size={ props.searchSize }>{i18n.dataPickerBody.typeSearchToLoadMessage}</Text>

@@ -84,6 +84,21 @@ const emptyBarValue: IBar = initBarValue;
 const filledBarValue: IBar = { name: 'hello' };
 
 describe('validate', () => {
+    it('should count emoji as a single character for maxLength of strings', () => {
+        const metadata: Metadata<{ text: string }> = { props: { text: { maxLength: 2 } } };
+
+        expect('😊😊'.length).toBe(4);
+        expect(validate({ text: '😊😊' }, metadata, { text: '' }, 'save')).toHaveProperty('isInvalid', false);
+        expect(validate({ text: '😊😊😊' }, metadata, { text: '' }, 'save')).toHaveProperty('isInvalid', true);
+    });
+
+    it('should use array length for maxLength of arrays', () => {
+        const metadata: Metadata<{ list: string[] }> = { props: { list: { maxLength: 2 } } };
+
+        expect(validate({ list: ['😊', '😊'] }, metadata, { list: [] }, 'save')).toHaveProperty('isInvalid', false);
+        expect(validate({ list: ['a', 'b', 'c'] }, metadata, { list: [] }, 'save')).toHaveProperty('isInvalid', true);
+    });
+
     it('Empty required field should be invalid, filled - valid', () => {
         expect(validate(emptyFooValue, fooMetadata, initFooValueSimple, 'save')).toHaveProperty('isInvalid', true);
         expect(validate(filledFooValue, fooMetadata, initFooValueSimple, 'save')).toHaveProperty('isInvalid', false);

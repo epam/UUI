@@ -30,7 +30,7 @@ export interface TextInputCoreProps
     autoComplete?: string;
     /** Standard [name attribute]{@link https://www.w3schools.com/tags/att_input_name.asp} */
     name?: string;
-    /** Maximum input length in characters */
+    /** Maximum input length in characters. Emoji and other symbols, which consist of several UTF-16 code units, are counted as a single character. */
     maxLength?: number;
     /** Standard [inputMode attribute]{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode} */
     inputMode?: React.InputHTMLAttributes<HTMLInputElement>['inputMode'];

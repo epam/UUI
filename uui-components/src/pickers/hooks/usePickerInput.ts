@@ -1,5 +1,5 @@
 import React, { useMemo, useEffect, useCallback, useContext, useState } from 'react';
-import { DataRowProps, isMobile, PickerFooterProps, UuiContext, PickerInputBaseProps, DataSourceState } from '@epam/uui-core';
+import { DataRowProps, isMobile, PickerFooterProps, UuiContext, PickerInputBaseProps, DataSourceState, getTextLength } from '@epam/uui-core';
 import { PickerTogglerProps } from '../PickerToggler';
 import { dataSourceStateToValue } from '../bindingHelpers';
 import { handleDataSourceKeyboard } from '../KeyboardUtils';
@@ -38,7 +38,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         }
     };
 
-    const isSearchLongEnough = () => props.minCharsToSearch ? (dsState.search?.length ?? 0) >= props.minCharsToSearch : true;
+    const isSearchLongEnough = () => props.minCharsToSearch ? getTextLength(dsState.search) >= props.minCharsToSearch : true;
 
     const shouldShowBody = () => {
         const isOpened = opened && !props.isDisabled;
@@ -148,7 +148,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const handleTogglerSearchChange = useCallback((value: string) => {
         let isOpen = !opened && value.length > 0 ? true : opened;
         if (props.minCharsToSearch) {
-            isOpen = value.length >= props.minCharsToSearch;
+            isOpen = getTextLength(value) >= props.minCharsToSearch;
         }
 
         handleDataSourceValueChange((state) => ({

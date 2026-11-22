@@ -84,6 +84,16 @@ describe('LabeledInput', () => {
         expect(screen.getByText('0/5')).toBeInTheDocument();
     });
 
+    it('should count emoji as a single character in charCounter', async () => {
+        const { setProps } = await setupTestComponent();
+        setProps({
+            charCounter: true,
+            maxLength: 5,
+            value: 'Hi 😊',
+        });
+        expect(screen.getByText('4/5')).toBeInTheDocument();
+    });
+
     it('uses isOptional prop', async () => {
         const { setProps } = await setupTestComponent();
         setProps({
